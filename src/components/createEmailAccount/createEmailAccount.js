@@ -1,5 +1,6 @@
 import './createEmailAccount.css'
 import Logo from '../logo/logo';
+import { Link } from 'react-router-dom';
 
 const CreateEmailAccount = () => {
     return (
@@ -14,7 +15,9 @@ const CreateEmailAccount = () => {
                 <button> <img src="/img/google1.svg" alt="" /></button>
                 <button> e-mail</button>
             </section>
-            <button className='btn-create'>create</button>
+            <Link to="/registration">
+                <button className='btn-create'>create</button>
+            </Link>
             <label>
                 <input type="checkbox" />
                 I agree with <a href="#">The Terms of Service</a> and <a href="#">Privacy Policy</a>
