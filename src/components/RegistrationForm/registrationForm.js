@@ -1,7 +1,54 @@
+import { useEffect, useRef, useState } from 'react';
+
 import Logo from '../logo/logo'
 import './registrationForm.css'
 
+
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^&*()_+-=';:/.,]).{8,24}$/;
 const RegistrationForm = () => {
+    // const userRef = useRef();
+    // const errorRef = userRef();
+
+    // const [email, setEmail] = useState('');
+    // const [validEmail, setValidEmail] = useState(false);
+    // const [emailFocus, setEmailFocus] = useState(false);
+
+    const [pwd, setPwd] = useState('');
+    const [validPwd, setValidPwd] = useState(false);
+    const [pwdFocus, setPwdFocus] = useState(false);
+
+    const [matchPwd, setMatchPwd] = useState('');
+    const [validMatch, setValidMatch] = useState(false);
+    const [matchFocus, setMatchFocus] = useState(false);
+
+    const [errMsg, setErrMsg] = useState('');
+    const [success, setSuccess] = useState(false);
+
+
+    useEffect(() => {
+        const result = PWD_REGEX.test(pwd);
+        console.log('Password check: ', result);
+        console.log('Password: ', pwd);
+        setValidPwd(result);
+        const match = pwd === matchPwd;
+        console.log('Match:', match)
+        setValidMatch(match);
+    }, [pwd, matchPwd])
+
+    useEffect(() => {
+        setErrMsg('');
+    }, [pwd, matchPwd])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const v2 = PWD_REGEX.test(pwd);
+        if (!v2) {
+            setErrMsg("Invalid Entry");
+            return;
+        }
+        console.log("Password for backend: ", pwd);
+        setSuccess(true);
+    }
 
 
     return (
@@ -11,14 +58,40 @@ const RegistrationForm = () => {
                 <section className="header">
                     <h1> Enter Email</h1>
                 </section>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <label for="email">Login</label>
                     <input type="email" id="email"></input>
                     <label for="password">Password</label>
-                    <input type="password" id="password"></input>
+                    <input type="password"
+                        id="password"
+                        onChange={(e) => setPwd(e.target.value)}
+                        required
+                        aria-invalid={validPwd ? "false" : "true"}
+                        aria-describedby="pwdnote"
+                        onFocus={() => setPwdFocus(true)}
+                        onBlur={() => setPwdFocus(false)}></input>
+                    <div id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+                        Your Password must have:
+                        <ul>
+                            <li className={pwd.length > 8 ? 'green' : 'rot'}> 8 or more symbols</li>
+                            <li className={/[0-9]/i.test(pwd) ? 'green' : 'rot'}>1 or more numbers</li>
+                            <li className={/[a-zA-Z]/i.test(pwd) ? 'green' : 'rot'}>1 or more Latin letters</li>
+                            <li className={/[~!@#$%^&*()_+`-]/i.test(pwd) ? 'green' : 'rot'}>1 or more special characters</li>
+                        </ul>
+                    </div>
                     <label for="confirmPassword">One more time</label>
-                    <input type="password" id="confrimPassword"></input>
-                    <button className='btn'>submit</button>
+                    <input type="password"
+                        id="confrimPassword"
+                        onChange={(e) => setMatchPwd(e.target.value)}
+                        required
+                        aria-invalid={validMatch ? "false" : "true"}
+                        aria-describedby="confirmnote"
+                        onFocus={() => setMatchFocus(true)}
+                        onBlur={() => setMatchFocus(false)}></input>
+                    <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"} >
+                        Must match the first password input field.
+                    </p>
+                    <button className='btn' disabled={!validPwd || !validMatch ? true : false}>submit</button>
                 </form>
             </div>
         </div>

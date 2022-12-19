@@ -52,3 +52,19 @@ label {
     line-height: 24px;
     font-weight: 600;
 }
+
+.btn:disabled {
+    background-color: gray;
+}
+
+.offscreen {
+    display: none;
+}
+
+.rot {
+    color: red;
+}
+
+.green {
+    color: green;
+}
