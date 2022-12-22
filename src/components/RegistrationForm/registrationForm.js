@@ -50,6 +50,17 @@ const RegistrationForm = () => {
         setSuccess(true);
     }
 
+    const usePasswordToggle = () => {
+        const [visible, setVisibility] = useState(false);
+
+        const icon = (
+            <img src={visible ? "/img/eye.svg" : "/img/eye-hide.svg"} alt="" onClick={() => { setVisibility(visibility => !visibility) }} />
+        )
+        const inputType = visible ? "text" : "password"
+        return [inputType, icon]
+    }
+
+    const [passwordInputType, toggleIcon] = usePasswordToggle();
 
     return (
         <div>
@@ -62,14 +73,19 @@ const RegistrationForm = () => {
                     <label for="email">Login</label>
                     <input type="email" id="email"></input>
                     <label for="password">Password</label>
-                    <input type="password"
-                        id="password"
-                        onChange={(e) => setPwd(e.target.value)}
-                        required
-                        aria-invalid={validPwd ? "false" : "true"}
-                        aria-describedby="pwdnote"
-                        onFocus={() => setPwdFocus(true)}
-                        onBlur={() => setPwdFocus(false)}></input>
+                    <div>
+                        <input type={passwordInputType}
+                            id="password"
+                            onChange={(e) => setPwd(e.target.value)}
+                            required
+                            aria-invalid={validPwd ? "false" : "true"}
+                            aria-describedby="pwdnote"
+                            onFocus={() => setPwdFocus(true)}
+                            onBlur={() => setPwdFocus(false)}>
+
+                        </input>
+                        <span className='password-toggle-icon'>{toggleIcon}</span>
+                    </div>
                     <div id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                         Your Password must have:
                         <ul>
@@ -78,16 +94,20 @@ const RegistrationForm = () => {
                             <li className={/[a-zA-Z]/i.test(pwd) ? 'green' : 'rot'}>1 or more Latin letters</li>
                             <li className={/[~!@#$%^&*()_+`-]/i.test(pwd) ? 'green' : 'rot'}>1 or more special characters</li>
                         </ul>
+
                     </div>
                     <label for="confirmPassword">One more time</label>
-                    <input type="password"
-                        id="confrimPassword"
-                        onChange={(e) => setMatchPwd(e.target.value)}
-                        required
-                        aria-invalid={validMatch ? "false" : "true"}
-                        aria-describedby="confirmnote"
-                        onFocus={() => setMatchFocus(true)}
-                        onBlur={() => setMatchFocus(false)}></input>
+                    <div>
+                        <input type={passwordInputType}
+                            id="confrimPassword"
+                            onChange={(e) => setMatchPwd(e.target.value)}
+                            required
+                            aria-invalid={validMatch ? "false" : "true"}
+                            aria-describedby="confirmnote"
+                            onFocus={() => setMatchFocus(true)}
+                            onBlur={() => setMatchFocus(false)}></input>
+                        <span className='password-toggle-icon'>{toggleIcon}</span>
+                    </div>
                     <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"} >
                         Must match the first password input field.
                     </p>
