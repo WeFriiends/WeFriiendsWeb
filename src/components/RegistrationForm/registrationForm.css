@@ -70,7 +70,8 @@ label {
     color: green;
 }
 
-#emailnote {
+#emailnote,
+#confirmnote {
     color: red;
 }
 
