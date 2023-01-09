@@ -4,14 +4,16 @@ import Logo from '../logo/logo'
 import './registrationForm.css'
 
 
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^&*()_+-=';:/.,]).{8,24}$/;
+const PWD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%]).{8,24}$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
+
 const RegistrationForm = () => {
-    // const userRef = useRef();
+    // const emailRef = useRef();
     // const errorRef = userRef();
 
-    // const [email, setEmail] = useState('');
-    // const [validEmail, setValidEmail] = useState(false);
-    // const [emailFocus, setEmailFocus] = useState(false);
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
 
     const [pwd, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
@@ -24,20 +26,28 @@ const RegistrationForm = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
+    // useEffect(() => {
+    //     emailRef.current.focus();
+    // }, [])
+
+    useEffect(() => {
+        const result = EMAIL_REGEX.test(email);
+        setValidEmail(result);
+        console.log('useEffect validEmail: ', result)
+    }, [email])
 
     useEffect(() => {
         const result = PWD_REGEX.test(pwd);
-        console.log('Password check: ', result);
-        console.log('Password: ', pwd);
         setValidPwd(result);
         const match = pwd === matchPwd;
-        console.log('Match:', match)
         setValidMatch(match);
+        console.log("useEffect validPwd:", result)
+        console.log("useEffect validMatch:", match)
     }, [pwd, matchPwd])
 
     useEffect(() => {
         setErrMsg('');
-    }, [pwd, matchPwd])
+    }, [email, pwd, matchPwd])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,6 +57,7 @@ const RegistrationForm = () => {
             return;
         }
         console.log("Password for backend: ", pwd);
+        console.log("Email for backend: ", email)
         setSuccess(true);
     }
 
@@ -71,7 +82,18 @@ const RegistrationForm = () => {
                 </section>
                 <form onSubmit={handleSubmit}>
                     <label for="email">Login</label>
-                    <input type="email" id="email"></input>
+                    <input type="email"
+                        id="email"
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        aria-invalid={validEmail ? "false" : "true"}
+                        aria-describedby="emailnote"
+                        onFocus={() => setEmailFocus(true)}
+                        onBlur={() => setEmailFocus(false)}
+                    ></input>
+                    <div id="emailnote" className={emailFocus && !validEmail ? "instructions" : "offscreen"} >
+                        Your Email is not correct
+                    </div>
                     <label for="password">Password</label>
                     <div>
                         <input type={passwordInputType}
@@ -94,7 +116,6 @@ const RegistrationForm = () => {
                             <li className={/[a-zA-Z]/i.test(pwd) ? 'green' : 'rot'}>1 or more Latin letters</li>
                             <li className={/[~!@#$%^&*()_+`-]/i.test(pwd) ? 'green' : 'rot'}>1 or more special characters</li>
                         </ul>
-
                     </div>
                     <label for="confirmPassword">One more time</label>
                     <div>
@@ -111,7 +132,7 @@ const RegistrationForm = () => {
                     <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"} >
                         Must match the first password input field.
                     </p>
-                    <button className='btn' disabled={!validPwd || !validMatch ? true : false}>submit</button>
+                    <button className='btn' disabled={!validEmail || !validPwd || !validMatch ? true : false}>submit</button>
                 </form>
             </div>
         </div>

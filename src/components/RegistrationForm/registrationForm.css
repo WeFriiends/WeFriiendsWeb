@@ -32,6 +32,7 @@ input {
     align-items: center;
     font-size: 18px;
     color: #262626;
+    width: 100%;
 }
 
 label {
@@ -67,4 +68,20 @@ label {
 
 .green {
     color: green;
+}
+
+#emailnote {
+    color: red;
+}
+
+.password-toggle-icon {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    z-index: 2;
+}
+
+div {
+    width: 100%;
+    position: relative;
 }
