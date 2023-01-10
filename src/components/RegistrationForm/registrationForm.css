@@ -55,7 +55,9 @@ label {
 }
 
 .btn:disabled {
-    background-color: gray;
+    background-color: #FFFFFF;
+    border: 2px solid #FB8F67;
+    color: #FB8F67;
 }
 
 .offscreen {
