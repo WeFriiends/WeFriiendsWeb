@@ -33,7 +33,6 @@ const RegistrationForm = () => {
     useEffect(() => {
         const result = EMAIL_REGEX.test(email);
         setValidEmail(result);
-        console.log('useEffect validEmail: ', result)
     }, [email])
 
     useEffect(() => {
@@ -41,8 +40,6 @@ const RegistrationForm = () => {
         setValidPwd(result);
         const match = pwd === matchPwd;
         setValidMatch(match);
-        console.log("useEffect validPwd:", result)
-        console.log("useEffect validMatch:", match)
     }, [pwd, matchPwd])
 
     useEffect(() => {
