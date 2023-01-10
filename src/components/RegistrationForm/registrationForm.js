@@ -71,7 +71,7 @@ const RegistrationForm = () => {
     const [passwordInputType, toggleIcon] = usePasswordToggle();
 
     return (
-        <div>
+        <div className='registrationEmail'>
             <Logo />
             {success ? (
                 <section>
