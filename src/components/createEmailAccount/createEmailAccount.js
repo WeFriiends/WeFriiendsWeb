@@ -19,7 +19,7 @@ const CreateEmailAccount = () => {
                 <button className='btn-create'>create</button>
             </Link>
             <label>
-                <input type="checkbox" />
+                <input type="checkbox" checked />
                 I agree with <a href="#">The Terms of Service</a> and <a href="#">Privacy Policy</a>
             </label>
             <section className="signIn">
