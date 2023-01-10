@@ -8,7 +8,7 @@
 }
 
 
-.registrationForm h1 {
+h1 {
     color: #F46B5D;
     text-align: center;
     font-size: 2rem;
@@ -85,4 +85,27 @@ label {
 div {
     width: 100%;
     position: relative;
+}
+
+.colorEmail {
+    color: #FB8F67;
+}
+
+section {
+    text-align: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 22px;
+    padding-left: 12%;
+    padding-right: 12%;
+}
+
+section h1 {
+    padding-bottom: 4vh;
+}
+
+.colorEmail {
+    padding: 2vh 0 8vh 0;
 }
