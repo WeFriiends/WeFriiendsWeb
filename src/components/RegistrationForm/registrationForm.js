@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 
 import Logo from '../logo/logo'
@@ -56,6 +57,13 @@ const RegistrationForm = () => {
         console.log("Password for backend: ", pwd);
         console.log("Email for backend: ", email)
         setSuccess(true);
+    }
+
+    const saveRegistration = () => {
+
+        axios.post('http://localhost:3001/api/auth/register', { password: pwd, password2: matchPwd, email })
+            .then(result => console.log('result:', result))
+            .catch(err => console.log(err))
     }
 
     const usePasswordToggle = () => {
@@ -137,7 +145,7 @@ const RegistrationForm = () => {
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"} >
                             Must match the first password input field.
                         </p>
-                        <button className='btn' disabled={!validEmail || !validPwd || !validMatch ? true : false}>submit</button>
+                        <button className='btn' disabled={!validEmail || !validPwd || !validMatch ? true : false} onClick={saveRegistration}>submit</button>
                     </form>
                 </div>
             )}
