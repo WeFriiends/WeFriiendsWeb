@@ -6,7 +6,8 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import CreateEmailAccount from './components/createEmailAccount/createEmailAccount';
-import RegistrationForm from './components/RegistrationForm/registrationForm';
+import RegistrationForm from './components/registrationForm/registrationForm';
+import AccountCreated from './components/accountCreated/accountCreated';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<CreateEmailAccount />} />
           <Route path="/registration" element={<RegistrationForm />} />
+          <Route path="/account" element={<AccountCreated />} />
         </Routes>
       </div>
     </Router>
