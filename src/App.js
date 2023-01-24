@@ -5,7 +5,7 @@ import {
   Routes, Route
 } from 'react-router-dom';
 import './App.css';
-import CreateEmailAccount from './components/createEmailAccount/createEmailAccount';
+import CreateAccount from './components/createAccount/createAccount';
 import RegistrationForm from './components/registrationForm/registrationForm';
 import AccountCreated from './components/accountCreated/accountCreated';
 import SignIn from './components/signIn/signIn';
@@ -16,7 +16,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route exact path="/" element={<CreateEmailAccount />} />
+          <Route exact path="/" element={<CreateAccount />} />
           <Route path="/registration" element={<RegistrationForm />} />
           <Route path="/account" element={<AccountCreated />} />
           <Route path="/signIn" element={<SignIn />} />

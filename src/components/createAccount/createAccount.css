@@ -1,0 +1,64 @@
+.createAccount {
+    width: 90%;
+    min-height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+}
+
+
+.createAccount h1 {
+    color: #F46B5D;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 2.5rem;
+}
+
+.createAccount .header p {
+    color: #444444;
+    text-align: center;
+    line-height: 2.5rem;
+    font-size: 1.625rem;
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.account button {
+    height: 4rem;
+    background-color: #FFF1EC;
+    border-radius: 10px;
+    border: none;
+    padding: 1rem;
+    font-size: 1.125rem;
+    color: #444444;
+    width: 100%;
+}
+
+.createAccount .privacyPolicy {
+    font-size: 13px;
+    line-height: 16px;
+    color: #3B4054;
+    padding-top: 8px;
+}
+
+.createAccount .signIn {
+    margin-top: 5vh;
+    text-align: center;
+    font-size: 22px;
+    line-height: 22px;
+    color: #3B4054;
+}
+
+.createAccount .signIn p {
+    padding-bottom: 2vh;
+}
+
+
+.createAccount a {
+    color: #1D878C;
+    text-decoration: none;
+}
