@@ -101,7 +101,6 @@ const RegistrationForm = () => {
                         <p>Still didn't get it?</p>
                     </div>
                     <button className='btn-create'>send  me e-mail again</button>
-
                 </section>
 
             ) : (

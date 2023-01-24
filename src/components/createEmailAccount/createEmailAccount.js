@@ -24,7 +24,7 @@ const CreateEmailAccount = () => {
             </label>
             <section className="signIn">
                 <p>Already have an account?</p>
-                <a href="account"> Sign In</a>
+                <a href="signIn"> Sign In</a>
             </section>
         </div>
     )
