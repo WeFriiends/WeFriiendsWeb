@@ -83,11 +83,25 @@ const RegistrationForm = () => {
             <Logo />
             {success ? (
                 <section>
-                    <h1>Just one more step!</h1>
-                    <p>We sent an authentication email to </p>
-                    <p className='colorEmail'>
-                        {email}</p>
-                    <p>Please, check your mailbox.</p>
+                    <div className='div-text'>
+                        <h1>Just one more step!</h1>
+                        <div>
+                            <p>We've sent an e-mail to </p>
+                            <p className='colorEmail'>
+                                {email}</p>
+                        </div>
+                        <div>
+                            <p>to confirm your e-mail.</p>
+                            <p>Please, check your mailbox.</p>
+                        </div>
+                        <h3>Didn't get a e-mail?</h3>
+                        <div>
+                            <p>Please, check your spam folder or wait a little bit more.</p>
+                        </div>
+                        <p>Still didn't get it?</p>
+                    </div>
+                    <button className='btn-create'>send  me e-mail again</button>
+
                 </section>
 
             ) : (

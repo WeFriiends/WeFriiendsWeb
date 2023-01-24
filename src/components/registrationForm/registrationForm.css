@@ -93,21 +93,37 @@ div {
     color: #FB8F67;
 }
 
-.registrationEmail section {
+.registrationEmail .div-text {
     text-align: center;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 22px;
+    font-size: 18px;
     line-height: 22px;
-    padding-left: 12%;
-    padding-right: 12%;
+    padding-left: 14%;
+    padding-right: 14%;
+    color: #3B4054;
 }
 
-.registrationEmail section h1 {
+.registrationEmail .div-text h1 {
     padding-bottom: 4vh;
 }
 
-.colorEmail {
-    padding: 2vh 0 8vh 0;
+.registrationEmail .div-text div {
+    padding-bottom: 5vh;
+}
+
+.registrationEmail .div-text h3 {
+    color: #F46B5D;
+    padding-top: 2vh;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 40px;
+}
+
+.registrationEmail .btn-create {
+    display: block;
+    margin: 0 auto;
+    margin-top: 3vh;
+    width: 90%;
 }
