@@ -107,7 +107,7 @@ const RegistrationForm = () => {
                 <div className='registrationForm'>
                     <h1> Enter Email</h1>
                     <form onSubmit={handleSubmit}>
-                        <label for="email">Login</label>
+                        <label htmlFor="email">Login</label>
                         <input type="email"
                             id="email"
                             onChange={(e) => setEmail(e.target.value)}
@@ -120,7 +120,7 @@ const RegistrationForm = () => {
                         <div id="emailnote" className={emailFocus && !validEmail ? "instructions" : "offscreen"} >
                             Your Email is not correct
                         </div>
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <div>
                             <input type={passwordInputType}
                                 id="password"
@@ -143,7 +143,7 @@ const RegistrationForm = () => {
                                 <li className={/[~!@#$%^&*()_+`-]/i.test(pwd) ? 'green' : 'rot'}>1 or more special characters</li>
                             </ul>
                         </div>
-                        <label for="confirmPassword">One more time</label>
+                        <label htmlFor="confirmPassword">One more time</label>
                         <div>
                             <input type={passwordInputType}
                                 id="confrimPassword"
