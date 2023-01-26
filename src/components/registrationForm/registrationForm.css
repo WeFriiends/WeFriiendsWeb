@@ -13,7 +13,7 @@
     text-align: center;
     font-size: 2rem;
     line-height: 2.5rem;
-    margin-bottom: 16px;
+    margin-top: 9.5vh;
 }
 
 
@@ -28,17 +28,21 @@ form {
     border-radius: 10px;
     border: none;
     padding: 18px 24px;
-    margin-bottom: 25px;
     align-items: center;
     font-size: 18px;
     color: #262626;
     width: 100%;
 }
 
+.registrationEmail input:focus-visible {
+    outline: none;
+}
+
 label {
     color: #444444;
     font-size: 0.875rem;
     line-height: 1.375rem;
+    margin-top: 25px;
 }
 
 .btn {
@@ -48,7 +52,7 @@ label {
     border-radius: 10px;
     border: none;
     color: #ffffff;
-    margin-top: 20px;
+    margin-top: 45px;
     font-size: 18px;
     line-height: 24px;
     font-weight: 600;
@@ -60,21 +64,60 @@ label {
     color: #FB8F67;
 }
 
-.offscreen {
-    display: none;
+#pwdnote {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 2vh 0;
+    margin-top: 5px;
+    font-size: 14px;
 }
 
-.rot {
-    color: red;
+#pwdnote ul {
+    padding-left: 0;
+}
+
+#pwdnote ul li {
+    list-style-type: none;
+}
+
+#pwdnote .rot {
+    background-image: url(/public/img/hyphen.svg);
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-position-x: left;
+
+}
+
+#pwdnote .green {
+    /* list-style-image: url("/public/img/check.svg");
+    list-style-position: inside; */
+    background-image: url(/public/img/check.svg);
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-position-x: left;
+}
+
+.offscreen {
+    display: none;
+    color: #3B4054;
 }
 
 .green {
-    color: green;
+    color: #1D878C;
+}
+
+.green,
+.rot {
+    font-size: 12px;
+    line-height: 22px;
+    padding-left: 12px;
 }
 
 #emailnote,
 #confirmnote {
-    color: red;
+    color: #F1562A;
+    font-size: 12px;
+    line-height: 22px;
 }
 
 .password-toggle-icon {
@@ -84,7 +127,7 @@ label {
     z-index: 2;
 }
 
-div {
+.registrationForm div {
     width: 100%;
     position: relative;
 }

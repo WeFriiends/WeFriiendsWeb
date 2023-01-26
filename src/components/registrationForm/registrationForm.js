@@ -137,7 +137,7 @@ const RegistrationForm = () => {
                         <div id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                             Your Password must have:
                             <ul>
-                                <li className={pwd.length > 8 ? 'green' : 'rot'}> 8 or more symbols</li>
+                                <li className={pwd.length > 8 ? 'green' : 'rot'}>8 or more symbols</li>
                                 <li className={/[0-9]/i.test(pwd) ? 'green' : 'rot'}>1 or more numbers</li>
                                 <li className={/[a-zA-Z]/i.test(pwd) ? 'green' : 'rot'}>1 or more Latin letters</li>
                                 <li className={/[~!@#$%^&*()_+`-]/i.test(pwd) ? 'green' : 'rot'}>1 or more special characters</li>
