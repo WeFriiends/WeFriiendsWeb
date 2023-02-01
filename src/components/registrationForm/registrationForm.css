@@ -164,18 +164,3 @@ label {
     font-size: 22px;
     line-height: 40px;
 }
-
-.registrationEmail .btn-create {
-    display: block;
-    margin: 0 auto;
-    margin-top: 3vh;
-    width: 90%;
-
-    height: 4rem;
-    background-color: #FB8F67;
-    border-radius: 10px;
-    border: none;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 600;
-}

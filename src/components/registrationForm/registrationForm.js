@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import ButtonActive from '../buttonActive/buttonActive';
 
 import Logo from '../logo/logo'
 import './registrationForm.css'
@@ -100,7 +101,7 @@ const RegistrationForm = () => {
                         </div>
                         <p>Still didn't get it?</p>
                     </div>
-                    <button className='btn-create'>send  me e-mail again</button>
+                    <ButtonActive name='send  me e-mail again' />
                 </section>
 
             ) : (
