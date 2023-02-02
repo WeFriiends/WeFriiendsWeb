@@ -25,21 +25,20 @@ const AccountCreated = () => {
 
     return (
         <>
-            {/* {success ? ( */}
-            <div className="accountCreated">
-                <img className="imgHeader" src="/img/account-header.svg" alt="" />
-                <section>
-                    <Logo />
-                    <p>Glad you’re here!<br />Hope, you’ll enjoy!</p>
-                    {/* <button className='btn-create'>let’s start!</button> */}
-                    <ButtonActive name='let’s start!' />
-                </section>
-                <img className="imgFooter" src="/img/account-footer.svg" alt="" />
-            </div>
-            {/* ) : (
+            {success ? (
+                <div className="accountCreated">
+                    <img className="imgHeader" src="/img/account-header.svg" alt="" />
+                    <section>
+                        <Logo />
+                        <p>Glad you’re here!<br />Hope, you’ll enjoy!</p>
+                        <ButtonActive name='let’s start!' />
+                    </section>
+                    <img className="imgFooter" src="/img/account-footer.svg" alt="" />
+                </div>
+            ) : (
                 <div>Error</div>
             )
-            } */}
+            }
         </>
     )
 }
