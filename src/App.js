@@ -9,6 +9,7 @@ import CreateAccount from './components/createAccount/createAccount';
 import RegistrationForm from './components/registrationForm/registrationForm';
 import AccountCreated from './components/accountCreated/accountCreated';
 import SignIn from './components/signIn/signIn';
+import SignInMail from './components/signInMail/signInMail';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/registration" element={<RegistrationForm />} />
           <Route path="/account" element={<AccountCreated />} />
           <Route path="/signIn" element={<SignIn />} />
+          <Route path="/mailSignIn" element={<SignInMail />} />
         </Routes>
       </div>
     </Router>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Logo from "../logo/logo"
 import "./signIn.css"
 
@@ -12,7 +13,9 @@ const SignIn = () => {
             <section className="account">
                 <button> <img src="/img/facebook.svg" alt="" /></button>
                 <button> <img src="/img/google1.svg" alt="" /></button>
-                <button> e-mail</button>
+                <Link to="/mailSignIn">
+                    <button> e-mail</button>
+                </Link>
             </section>
             <section className="signUp">
                 <p>Don't have an account?</p>
