@@ -1,8 +1,10 @@
 import Logo from "../logo/logo"
+import "./signIn.css"
+
 const SignIn = () => {
 
     return (
-        <div>
+        <div className="signIn">
             <Logo />
             <section className="header">
                 <h1> Sign In</h1>
@@ -12,9 +14,9 @@ const SignIn = () => {
                 <button> <img src="/img/google1.svg" alt="" /></button>
                 <button> e-mail</button>
             </section>
-            <section className="signIn">
+            <section className="signUp">
                 <p>Don't have an account?</p>
-                <a href="singIn"> Sign Up</a>
+                <a href="signIn"> Sign Up</a>
             </section>
         </div>
     )
