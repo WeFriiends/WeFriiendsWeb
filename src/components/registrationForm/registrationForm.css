@@ -120,7 +120,7 @@ label {
     line-height: 22px;
 }
 
-.password-toggle-icon {
+.registrationForm .password-toggle-icon {
     position: absolute;
     top: 15px;
     right: 10px;

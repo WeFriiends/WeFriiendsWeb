@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 import ButtonActive from '../buttonActive/buttonActive';
 
 import Logo from '../logo/logo'
@@ -67,6 +68,10 @@ const RegistrationForm = () => {
             .catch(err => console.log(err))
     }
 
+    const sendEmail = () => {
+        console.log("Sending Email")
+    }
+
     const usePasswordToggle = () => {
         const [visible, setVisibility] = useState(false);
 
@@ -101,7 +106,7 @@ const RegistrationForm = () => {
                         </div>
                         <p>Still didn't get it?</p>
                     </div>
-                    <ButtonActive name='send  me e-mail again' />
+                    <ButtonActive name='send  me e-mail again' onClick={sendEmail} />
                 </section>
 
             ) : (

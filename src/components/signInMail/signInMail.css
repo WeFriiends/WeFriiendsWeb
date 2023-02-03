@@ -24,6 +24,10 @@
     width: 100%;
 }
 
+.signInMail input:focus-visible {
+    outline: none;
+}
+
 .signInMail a {
     display: block;
     text-decoration: none;
@@ -33,4 +37,15 @@
     color: #444444;
     padding-top: 2vh;
     padding-bottom: 2vh;
+}
+
+.signInMail div {
+    position: relative;
+}
+
+.signInMail .password-toggle-icon {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    z-index: 2;
 }
