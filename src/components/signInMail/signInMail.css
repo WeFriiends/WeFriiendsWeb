@@ -49,3 +49,14 @@
     right: 10px;
     z-index: 2;
 }
+
+.signInMail .offscreen {
+    display: none;
+}
+
+.signInMail .instructions {
+    color: #F1562A;
+    font-size: 12px;
+    line-height: 22px;
+    margin-top: 5px;
+}
