@@ -3,6 +3,7 @@ import Logo from "../logo/logo"
 import ButtonActive from "../buttonActive/buttonActive"
 import "./signInMail.css"
 import axios from "axios"
+import { useAuthContext } from "../../hooks/useAuthContext"
 
 
 const SignInMail = () => {
@@ -11,16 +12,19 @@ const SignInMail = () => {
     const [successSignIn, setSuccessSignIn] = useState();
     const [error, setError] = useState(false);
     const [errorSignIn, setErrorSignIn] = useState('');
+    const {dispatch} =useAuthContext()
 
     const checkAndSignIn = () => {
         console.log("Email: ", inputEmail)
         console.log("Password: ", inputPassword)
         axios.post('http://localhost:3001/api/auth/signin', { email: inputEmail, password: inputPassword })
             .then(result => {
-                console.log("result signIn:", result)
+                console.log("result signIn:", result)                
                 if (result.status === 200) {
                     setSuccessSignIn(true)
-                    console.log("status: ", result.status)
+                    let user = { 'token': result.data.token}
+                    localStorage.setItem('user', user.token)
+                    dispatch({type: 'LOGIN', payload: user})
                 }
             })
             .catch(err => {
