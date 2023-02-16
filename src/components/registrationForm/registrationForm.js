@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
+import { useEffect, useState, useRef } from 'react';
 import ButtonActive from '../buttonActive/buttonActive';
 
 import Logo from '../logo/logo'
@@ -11,8 +10,8 @@ const PWD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
 
 const RegistrationForm = () => {
-    // const emailRef = useRef();
-    // const errorRef = userRef();
+    const emailRef = useRef();
+    const errorRef = useRef();
 
     const [email, setEmail] = useState('');
     const [validEmail, setValidEmail] = useState(false);
@@ -29,9 +28,9 @@ const RegistrationForm = () => {
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
-    // useEffect(() => {
-    //     emailRef.current.focus();
-    // }, [])
+    useEffect(() => {
+        emailRef.current.focus();
+    }, [])
 
     useEffect(() => {
         const result = EMAIL_REGEX.test(email);
@@ -116,12 +115,13 @@ const RegistrationForm = () => {
                         <label htmlFor="email">Login</label>
                         <input type="email"
                             id="email"
+                            ref = {emailRef}
                             onChange={(e) => setEmail(e.target.value)}
                             required
                             aria-invalid={validEmail ? "false" : "true"}
                             aria-describedby="emailnote"
-                            onFocus={() => setEmailFocus(true)}
-                            onBlur={() => setEmailFocus(false)}
+                            onFocus={() => setEmailFocus(false)}
+                            onBlur={() => setEmailFocus(true)}
                         ></input>
                         <div id="emailnote" className={emailFocus && !validEmail ? "instructions" : "offscreen"} >
                             Your Email is not correct
@@ -134,8 +134,8 @@ const RegistrationForm = () => {
                                 required
                                 aria-invalid={validPwd ? "false" : "true"}
                                 aria-describedby="pwdnote"
-                                onFocus={() => setPwdFocus(true)}
-                                onBlur={() => setPwdFocus(false)}>
+                                onFocus={() => setPwdFocus(false)}
+                                onBlur={(e) => (e.target.value == '' ? setPwdFocus(false) : setPwdFocus(true))}>
 
                             </input>
                             <span className='password-toggle-icon'>{toggleIcon}</span>
@@ -158,7 +158,7 @@ const RegistrationForm = () => {
                                 aria-invalid={validMatch ? "false" : "true"}
                                 aria-describedby="confirmnote"
                                 onFocus={() => setMatchFocus(true)}
-                                onBlur={() => setMatchFocus(false)}></input>
+                                onBlur={()=> setMatchFocus(false)}></input>
                             <span className='password-toggle-icon'>{toggleIcon}</span>
                         </div>
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"} >
