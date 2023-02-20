@@ -4,6 +4,7 @@ import ButtonActive from "../buttonActive/buttonActive"
 import "./signInMail.css"
 import axios from "axios"
 import { useAuthContext } from "../../hooks/useAuthContext"
+import { Navigate } from "react-router-dom"
 
 
 const SignInMail = () => {
@@ -53,6 +54,7 @@ const SignInMail = () => {
 
     return (
         <div className="signInMail">
+            {successSignIn && (<Navigate to ="/test"/>)}
             <Logo />
             <section className="header">
                 <h1> Sign In</h1>

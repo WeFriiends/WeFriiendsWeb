@@ -10,6 +10,7 @@ import RegistrationForm from './components/registrationForm/registrationForm';
 import AccountCreated from './components/accountCreated/accountCreated';
 import SignIn from './components/signIn/signIn';
 import SignInMail from './components/signInMail/signInMail';
+import TestPage from './components/testPage/testPage';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="/account" element={<AccountCreated />} />
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/mailSignIn" element={<SignInMail />} />
+          <Route path ="/test" element={<TestPage/>}/>
         </Routes>
       </div>
     </Router>
