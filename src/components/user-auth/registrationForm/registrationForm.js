@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { useEffect, useState, useRef } from 'react';
-import ButtonActive from '../buttonActive/buttonActive';
-import Logo from '../logo/logo'
+import ButtonActive from '../../buttonActive/buttonActive';
+import Logo from '../../logo/logo';
 import './registrationForm.css'
-
 
 const PWD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/

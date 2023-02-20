@@ -5,12 +5,12 @@ import {
   Routes, Route
 } from 'react-router-dom';
 import './App.css';
-import CreateAccount from './components/createAccount/createAccount';
-import RegistrationForm from './components/registrationForm/registrationForm';
-import AccountCreated from './components/accountCreated/accountCreated';
-import SignIn from './components/signIn/signIn';
-import SignInMail from './components/signInMail/signInMail';
-import TestPage from './components/testPage/testPage';
+import CreateAccount from './components/user-auth/createAccount/createAccount';
+import RegistrationForm from './components/user-auth/registrationForm/registrationForm';
+import AccountCreated from './components/user-auth/accountCreated/accountCreated';
+import SignIn from './components/user-auth/signIn/signIn';
+import SignInMail from './components/user-auth/signInMail/signInMail';
+import TestPage from './components/user-auth/testPage/testPage';
 
 
 function App() {

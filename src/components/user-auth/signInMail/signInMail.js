@@ -1,9 +1,9 @@
 import { useState } from "react"
-import Logo from "../logo/logo"
-import ButtonActive from "../buttonActive/buttonActive"
+import Logo from "../../logo/logo"
+import ButtonActive from "../../buttonActive/buttonActive"
 import "./signInMail.css"
 import axios from "axios"
-import { useAuthContext } from "../../hooks/useAuthContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 import { Navigate } from "react-router-dom"
 
 
