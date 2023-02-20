@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState, useRef } from 'react';
 import ButtonActive from '../buttonActive/buttonActive';
-
 import Logo from '../logo/logo'
 import './registrationForm.css'
 
@@ -11,7 +10,6 @@ const EMAIL_REGEX = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
 
 const RegistrationForm = () => {
     const emailRef = useRef();
-    const errorRef = useRef();
 
     const [email, setEmail] = useState('');
     const [validEmail, setValidEmail] = useState(false);
@@ -25,7 +23,6 @@ const RegistrationForm = () => {
     const [validMatch, setValidMatch] = useState(false);
     const [matchFocus, setMatchFocus] = useState(false);
 
-    const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
@@ -44,28 +41,21 @@ const RegistrationForm = () => {
         setValidMatch(match);
     }, [pwd, matchPwd])
 
-    useEffect(() => {
-        setErrMsg('');
-    }, [email, pwd, matchPwd])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const v2 = PWD_REGEX.test(pwd);
-        if (!v2) {
-            setErrMsg("Invalid Entry");
-            return;
-        }
-        console.log("Password for backend: ", pwd);
-        console.log("Email for backend: ", email)
-        setSuccess(true);
+        await axios.post('http://localhost:3001/api/auth/register', { password: pwd, password2: matchPwd, email })
+        .then(result => {
+            console.log('result:', result)
+            if(result.status === 200){
+                console.log("Password for backend: ", pwd);
+                console.log("Email for backend: ", email)
+                setSuccess(true)
+            }        
+        })
+        .catch(err => console.log(err))
     }
 
-    const saveRegistration = () => {
-
-        axios.post('http://localhost:3001/api/auth/register', { password: pwd, password2: matchPwd, email })
-            .then(result => console.log('result:', result))
-            .catch(err => console.log(err))
-    }
 
     const sendEmail = () => {
         console.log("Sending Email")
@@ -135,8 +125,7 @@ const RegistrationForm = () => {
                                 aria-invalid={validPwd ? "false" : "true"}
                                 aria-describedby="pwdnote"
                                 onFocus={() => setPwdFocus(false)}
-                                onBlur={(e) => (e.target.value == '' ? setPwdFocus(false) : setPwdFocus(true))}>
-
+                                onBlur={(e) => (e.target.value === '' ? setPwdFocus(false) : setPwdFocus(true))}>
                             </input>
                             <span className='password-toggle-icon'>{toggleIcon}</span>
                         </div>
@@ -164,8 +153,9 @@ const RegistrationForm = () => {
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"} >
                             Must match the first password input field.
                         </p>
-                        <button className='btn' disabled={!validEmail || !validPwd || !validMatch ? true : false} onClick={saveRegistration}>submit</button>
+                        <button className='btn' disabled={!validEmail || !validPwd || !validMatch ? true : false}>submit</button>
                     </form>
+                    
                 </div>
             )}
         </div>
