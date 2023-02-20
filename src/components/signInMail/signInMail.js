@@ -16,11 +16,11 @@ const SignInMail = () => {
     const {dispatch} =useAuthContext()
 
     const checkAndSignIn = () => {
-        console.log("Email: ", inputEmail)
-        console.log("Password: ", inputPassword)
+        // console.log("Email: ", inputEmail)
+        // console.log("Password: ", inputPassword)
         axios.post('http://localhost:3001/api/auth/signin', { email: inputEmail, password: inputPassword })
             .then(result => {
-                console.log("result signIn:", result)                
+                // console.log("result signIn:", result)                
                 if (result.status === 200) {
                     setSuccessSignIn(true)
                     let user = { 'token': result.data.token}
@@ -33,7 +33,7 @@ const SignInMail = () => {
                 if (err.response.data.message === "Pending Account. Please verify your email to gain access to your profile") {
                     setError(true)
                     setErrorSignIn("Please verify your email to gain access to your profile")
-                    console.log("errorSignIn:", errorSignIn)
+                    // console.log("errorSignIn:", errorSignIn)
                 } else {
                     setError(true)
                     setErrorSignIn("Login or Password is incorrect. Please, try again")

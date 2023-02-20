@@ -48,15 +48,15 @@ const RegistrationForm = () => {
         .then(result => {
             console.log('result:', result)
             if(result.status === 200){
-                console.log("Password for backend: ", pwd);
-                console.log("Email for backend: ", email)
+                // console.log("Password for backend: ", pwd);
+                // console.log("Email for backend: ", email)
                 setSuccess(true)
             }        
         })
         .catch(err => console.log(err))
     }
 
-
+    // Need a screen and backend to resend the email
     const sendEmail = () => {
         console.log("Sending Email")
     }
