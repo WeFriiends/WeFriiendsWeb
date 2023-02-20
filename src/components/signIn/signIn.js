@@ -19,7 +19,7 @@ const SignIn = () => {
             </section>
             <section className="signUp">
                 <p>Don't have an account?</p>
-                <a href="signIn"> Sign Up</a>
+                <a href="/"> Sign Up</a>
             </section>
         </div>
     )
