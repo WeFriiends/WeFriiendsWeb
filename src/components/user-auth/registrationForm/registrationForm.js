@@ -1,5 +1,6 @@
-import axios from 'axios';
+
 import { useEffect, useState, useRef } from 'react';
+import accountRegistration from '../../../actions/accountRegistration';
 import ButtonActive from '../../buttonActive/buttonActive';
 import Logo from '../../logo/logo';
 import './registrationForm.css'
@@ -43,16 +44,8 @@ const RegistrationForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:3001/api/auth/register', { password: pwd, password2: matchPwd, email })
-        .then(result => {
-            console.log('result:', result)
-            if(result.status === 200){
-                // console.log("Password for backend: ", pwd);
-                // console.log("Email for backend: ", email)
-                setSuccess(true)
-            }        
-        })
-        .catch(err => console.log(err))
+        let result = await accountRegistration(pwd, matchPwd, email)
+        setSuccess(result)
     }
 
     // Need a screen and backend to resend the email
