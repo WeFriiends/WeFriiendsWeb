@@ -4,6 +4,7 @@ import ButtonActive from "../../buttonActive/buttonActive"
 import "./signInMail.css"
 import axios from "axios"
 import { useAuthContext } from "../../../hooks/useAuthContext"
+import useTogglePasswordType from "../../../hooks/useTogglePasswordType"
 import { Navigate } from "react-router-dom"
 
 
@@ -39,15 +40,6 @@ const SignInMail = () => {
                     setErrorSignIn("Login or Password is incorrect. Please, try again")
                 }
             })
-    }
-
-    const useTogglePasswordType = () => {
-        const [visible, setVisibility] = useState(false);
-        const icon = (
-            <img src={visible ? "/img/eye.svg" : "/img/eye-hide.svg"} alt="" onClick={() => { setVisibility(visibility => !visibility) }} />
-        )
-        const inputType = visible ? "text" : "password"
-        return [inputType, icon]
     }
 
     const [passwordType, toggleIcon] = useTogglePasswordType();

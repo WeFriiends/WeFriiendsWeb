@@ -4,6 +4,7 @@ import accountRegistration from '../../../actions/accountRegistration';
 import ButtonActive from '../../buttonActive/buttonActive';
 import Logo from '../../logo/logo';
 import './registrationForm.css'
+import useTogglePasswordType from '../../../hooks/useTogglePasswordType';
 
 const PWD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
@@ -53,17 +54,7 @@ const RegistrationForm = () => {
         console.log("Sending Email")
     }
 
-    const usePasswordToggle = () => {
-        const [visible, setVisibility] = useState(false);
-
-        const icon = (
-            <img src={visible ? "/img/eye.svg" : "/img/eye-hide.svg"} alt="" onClick={() => { setVisibility(visibility => !visibility) }} />
-        )
-        const inputType = visible ? "text" : "password"
-        return [inputType, icon]
-    }
-
-    const [passwordInputType, toggleIcon] = usePasswordToggle();
+    const [passwordInputType, toggleIcon] = useTogglePasswordType();
 
     return (
         <div className='registrationEmail'>
