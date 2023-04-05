@@ -1,33 +1,97 @@
-import './createAccount.css'
+
 import Logo from '../../logo/logo';
-import { Link } from 'react-router-dom';
+import { Button, Grid, Typography, Box, Link} from '@mui/material';
 
 const CreateAccount = () => {
     return (
-        <div className='createAccount'>
-            <Logo />
-            <section className="header">
-                <h1> New here?</h1>
-                <p>Create an account</p>
-            </section>
-            <section className='accountAndP'>
-                <div className="account">
-                    <button> <img src="/img/facebook.svg" alt="" /></button>
-                    <button> <img src="/img/google1.svg" alt="" /></button>
-                    <Link to="/registration">
-                        <button> e-mail</button>
-                    </Link>
-                </div>
-                <p className="privacyPolicy">
-                    By creating an account,I agree with <a href="#">The Terms of Service</a> and <a href="#">Privacy Policy</a>
-                </p>
-            </section>
+        <Box 
+            mr={2.5} 
+            ml={2.5} 
+            align ='center' >            
+            <Logo />            
+            <Typography 
+                variant='h1' 
+                fontSize={32} 
+                fontWeight='600' 
+                lineHeight='40px' 
+                pt={10} 
+                color='#F46B5D' >
+                New here?
+            </Typography>
+            <Typography 
+                variant='body1' 
+                fontSize={26} lineHeight='40px' 
+                pb={4.75} 
+                color ='#444444'>
+                Create an account
+            </Typography>
 
-            <section className="signIn">
-                <p>Already have an account?</p>
-                <a href="signIn"> Sign In</a>
-            </section>
-        </div>
+            <Grid 
+                container 
+                spacing={2.5}> 
+                <Grid 
+                    item xs={12}>
+                    <Button 
+                        fullWidth 
+                        variant="contained"  
+                        sx={{textTransform:'capitalize', backgroundColor:'#FFF1EC', color:'#444444', height: '56px', fontSize:'18px'}} 
+                        startIcon={<img alt='fb' src={'/img/fb.svg'} sx={{ width: 24, height: 24, pr:10}}/>} >
+                        Facebook
+                    </Button>
+                </Grid>
+                <Grid 
+                    item xs={12}>
+                    <Button  
+                        fullWidth 
+                        variant="contained" 
+                        sx={{textTransform:'capitalize', backgroundColor:'#FFF1EC', color:'#444444', height: '56px', fontSize:'18px'}} 
+                        startIcon={<img alt='google' src={'/img/google.svg'} sx={{ width: 24, height: 24, mr:'16px' }}/>} >
+                        Google
+                    </Button>
+                </Grid>
+                <Grid 
+                    item xs={12}>
+                    <Link href='/registration' underline='none'>
+                        <Button 
+                            fullWidth 
+                            variant="contained" 
+                            sx={{textTransform:'lowercase', backgroundColor:'#FFF1EC', color:'#444444', height: '56px', fontSize:'18px'}} >
+                            e-mail
+                        </Button>
+                    </Link>
+                </Grid>
+            </Grid>
+            <Typography 
+                variant='body2'
+                pt={1.75}
+                align='left'>
+                By creating an account, I agree with &nbsp;
+                <Link 
+                    underline='none' 
+                    color='#1D878C'>
+                    The Terms of Service &nbsp;
+                </Link> 
+                    and &nbsp;
+                    <Link 
+                        underline='none' 
+                        color='#1D878C'> 
+                    Privacy Policy
+                    </Link>
+            </Typography>
+            <Typography 
+                variant='body1' 
+                fontSize={22}
+                color='#3B4054'>
+                Already have an account?
+            </Typography>
+            <Link 
+                href= '/signIn'
+                underline='none' 
+                fontSize={22} 
+                color='#1D878C'>
+                Sign In
+            </Link>
+        </Box>
     )
 }
 
