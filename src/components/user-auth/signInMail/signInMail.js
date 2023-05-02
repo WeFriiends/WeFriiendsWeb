@@ -65,20 +65,24 @@ const SignInMail = () => {
       <form>
         <Typography 
          variant="p"
-         align="left">
+         align="left"
+         marginTop={2.5}>
           Login
         </Typography>
         <TextField
+          sx= {{backgroundColor:"#FFF1EC" }}
           type="email"
           id="email"
           onChange={(e) => setInputEmail(e.target.value)}
         ></TextField>
         <Typography
         variant="p"
-        align="left">
+        align="left"
+        marginTop={3}>
           Password
         </Typography>  
         <OutlinedInput
+           sx= {{backgroundColor:"#FFF1EC"}}
           type={visible ? 'text' : 'password'}
           id="password"
           onChange={(e) => setInputPassword(e.target.value)}
@@ -97,7 +101,13 @@ const SignInMail = () => {
           {errorSignIn}
         </div>
       </form>
-      <Link href="#">Forgot Password?</Link>
+      <Link
+        display= "block"
+        marginTop={3}
+        marginBottom={6}
+        underline="none"
+        color="#444444"
+        href="#">Forgot Password?</Link>
       <Button 
       onClick={checkAndSignIn} 
       fullWidth 
