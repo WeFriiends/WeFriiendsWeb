@@ -7,8 +7,10 @@ import { useAuthContext } from "../../../hooks/useAuthContext";
 import useTogglePasswordType from "../../../hooks/useTogglePasswordType";
 import { Navigate } from "react-router-dom";
 import LoginEmail from "../../../actions/loginEmail";
-import { Container, Typography } from "@mui/material";
-
+import { Container, OutlinedInput, TextField, Typography, InputAdornment } from "@mui/material";
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const SignInMail = () => {
   const [inputEmail, setInputEmail] = useState("");
@@ -17,6 +19,7 @@ const SignInMail = () => {
   const [error, setError] = useState(false);
   const [errorSignIn, setErrorSignIn] = useState("");
   const { dispatch } = useAuthContext();
+  const [visible, setVisibility] = useState(false);
 
 
   const checkAndSignIn = async () => {
@@ -42,8 +45,9 @@ const SignInMail = () => {
     }
   };
 
-  const [passwordType, toggleIcon] = useTogglePasswordType();
-
+  const useTogglePasswordType = () => {
+    setVisibility(!visible);
+  }
   return (
     <Container maxWidth = 'xs' align ="center">
       {successSignIn && <Navigate to="/test" />}
@@ -63,24 +67,31 @@ const SignInMail = () => {
          align="left">
           Login
         </Typography>
-        <input
+        <TextField
           type="email"
           id="email"
           onChange={(e) => setInputEmail(e.target.value)}
-        ></input>
+        ></TextField>
         <Typography
         variant="p"
         align="left">
           Password
-        </Typography>
-        <div>
-          <input
-            type={passwordType}
-            id="password"
-            onChange={(e) => setInputPassword(e.target.value)}
-          ></input>
-          <span className="password-toggle-icon">{toggleIcon}</span>
-        </div>
+        </Typography>  
+        <OutlinedInput
+          type={visible ? 'text' : 'password'}
+          id="password"
+          onChange={(e) => setInputPassword(e.target.value)}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={useTogglePasswordType}
+              >
+                {visible ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          }
+        ></OutlinedInput>      
         <div id="errornote" className={error ? "instructions" : "offscreen"}>
           {errorSignIn}
         </div>
