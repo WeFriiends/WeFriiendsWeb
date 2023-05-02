@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom"
+
 import Logo from "../../logo/logo"
-import { Box, Typography } from "@mui/material"
+import { Box, Typography, Grid, Button, Link } from "@mui/material"
 
 const SignIn = () => {
 
@@ -19,13 +19,42 @@ const SignIn = () => {
                 color='#F46B5D' >
                 Sign In?
             </Typography>
-            <section className="account">
-                <button> <img src="/img/facebook.svg" alt="" /></button>
-                <button> <img src="/img/google1.svg" alt="" /></button>
-                <Link to="/mailSignIn">
-                    <button> e-mail</button>
-                </Link>
-            </section>
+            <Grid 
+                container 
+                spacing={2.5}
+                marginTop={5.875}> 
+                <Grid 
+                    item xs={12}>
+                    <Button 
+                        fullWidth 
+                        variant="contained"  
+                        sx={{textTransform:'capitalize', backgroundColor:'#FFF1EC', color:'#444444', height: '56px', fontSize:'18px'}} 
+                        startIcon={<img alt='fb' src={'/img/fb.svg'} sx={{ width: 24, height: 24, pr:10}}/>} >
+                        Facebook
+                    </Button>
+                </Grid>
+                <Grid 
+                    item xs={12}>
+                    <Button  
+                        fullWidth 
+                        variant="contained" 
+                        sx={{textTransform:'capitalize', backgroundColor:'#FFF1EC', color:'#444444', height: '56px', fontSize:'18px'}} 
+                        startIcon={<img alt='google' src={'/img/google.svg'} sx={{ width: 24, height: 24, mr:'16px' }}/>} >
+                        Google
+                    </Button>
+                </Grid>
+                <Grid 
+                    item xs={12}>
+                    <Link href='/mailSignIn' underline='none'>
+                        <Button 
+                            fullWidth 
+                            variant="contained" 
+                            sx={{textTransform:'lowercase', backgroundColor:'#FFF1EC', color:'#444444', height: '56px', fontSize:'18px'}} >
+                            e-mail
+                        </Button>
+                    </Link>
+                </Grid>
+            </Grid>
             <section className="signUp">
                 <p>Don't have an account?</p>
                 <a href="/"> Sign Up</a>
