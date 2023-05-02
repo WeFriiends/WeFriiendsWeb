@@ -11,7 +11,15 @@ import { Container, OutlinedInput, TextField, Typography, InputAdornment, Link, 
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { BorderAllRounded } from "@mui/icons-material";
+import {styled } from '@mui/material/styles';
+
+const CssTextField = styled(TextField)({
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      border: 'none'
+    },
+  },
+});
 
 const SignInMail = () => {
   const [inputEmail, setInputEmail] = useState("");
@@ -69,12 +77,12 @@ const SignInMail = () => {
          marginTop={2.5}>
           Login
         </Typography>
-        <TextField
-          sx= {{backgroundColor:"#FFF1EC" }}
+        <CssTextField
+          sx= {{backgroundColor:"#FFF1EC",borderRadius: 2.5}}
           type="email"
           id="email"
           onChange={(e) => setInputEmail(e.target.value)}
-        ></TextField>
+        ></CssTextField>
         <Typography
         variant="p"
         align="left"
@@ -82,7 +90,12 @@ const SignInMail = () => {
           Password
         </Typography>  
         <OutlinedInput
-           sx= {{backgroundColor:"#FFF1EC"}}
+          sx= {{backgroundColor:"#FFF1EC", borderRadius: 2.5, outline:"none",
+          "&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+            border: "none"
+          },
+         }}
+     
           type={visible ? 'text' : 'password'}
           id="password"
           onChange={(e) => setInputPassword(e.target.value)}
