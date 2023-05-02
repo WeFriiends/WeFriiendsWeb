@@ -7,6 +7,7 @@ import { useAuthContext } from "../../../hooks/useAuthContext";
 import useTogglePasswordType from "../../../hooks/useTogglePasswordType";
 import { Navigate } from "react-router-dom";
 import LoginEmail from "../../../actions/loginEmail";
+import { Container, Typography } from "@mui/material";
 
 const SignInMail = () => {
   const [inputEmail, setInputEmail] = useState("");
@@ -42,12 +43,18 @@ const SignInMail = () => {
   const [passwordType, toggleIcon] = useTogglePasswordType();
 
   return (
-    <div className="signInMail">
+    <Container maxWidth = 'xs' align ="center">
       {successSignIn && <Navigate to="/test" />}
       <Logo />
-      <section className="header">
-        <h1> Sign In</h1>
-      </section>
+      <Typography
+        variant="h1"
+        fontSize={32} 
+        fontWeight='600' 
+        lineHeight='40px' 
+        pt={10} 
+        color='#F46B5D' >
+        Sign In
+      </Typography>
       <form>
         <label htmlFor="email">Login</label>
         <input
@@ -70,7 +77,7 @@ const SignInMail = () => {
       </form>
       <a href="#">Forgot Password?</a>
       <ButtonActive name="sign in" onClick={checkAndSignIn} />
-    </div>
+</Container>
   );
 };
 
