@@ -55,10 +55,19 @@ const SignIn = () => {
                     </Link>
                 </Grid>
             </Grid>
-            <section className="signUp">
-                <p>Don't have an account?</p>
-                <a href="/"> Sign Up</a>
-            </section>
+            <Typography 
+                variant='body1' 
+                fontSize={22}
+                color='#3B4054'>
+                Don't have an account?
+            </Typography>
+            <Link 
+                href= '/'
+                underline='none' 
+                fontSize={22} 
+                color='#1D878C'>
+                Sign Up
+            </Link>
         </Box>
     )
 }
