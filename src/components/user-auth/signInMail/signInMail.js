@@ -9,6 +9,7 @@ import { Navigate } from "react-router-dom";
 import LoginEmail from "../../../actions/loginEmail";
 import { Container, Typography } from "@mui/material";
 
+
 const SignInMail = () => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
@@ -16,6 +17,7 @@ const SignInMail = () => {
   const [error, setError] = useState(false);
   const [errorSignIn, setErrorSignIn] = useState("");
   const { dispatch } = useAuthContext();
+
 
   const checkAndSignIn = async () => {
     const result = await LoginEmail(inputEmail, inputPassword);
@@ -56,13 +58,21 @@ const SignInMail = () => {
         Sign In
       </Typography>
       <form>
-        <label htmlFor="email">Login</label>
+        <Typography 
+         variant="p"
+         align="left">
+          Login
+        </Typography>
         <input
           type="email"
           id="email"
           onChange={(e) => setInputEmail(e.target.value)}
         ></input>
-        <label htmlFor="password">Password</label>
+        <Typography
+        variant="p"
+        align="left">
+          Password
+        </Typography>
         <div>
           <input
             type={passwordType}
