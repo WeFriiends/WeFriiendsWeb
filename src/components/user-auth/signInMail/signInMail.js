@@ -7,10 +7,11 @@ import { useAuthContext } from "../../../hooks/useAuthContext";
 import useTogglePasswordType from "../../../hooks/useTogglePasswordType";
 import { Navigate } from "react-router-dom";
 import LoginEmail from "../../../actions/loginEmail";
-import { Container, OutlinedInput, TextField, Typography, InputAdornment } from "@mui/material";
+import { Container, OutlinedInput, TextField, Typography, InputAdornment, Link, Button } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { BorderAllRounded } from "@mui/icons-material";
 
 const SignInMail = () => {
   const [inputEmail, setInputEmail] = useState("");
@@ -96,8 +97,21 @@ const SignInMail = () => {
           {errorSignIn}
         </div>
       </form>
-      <a href="#">Forgot Password?</a>
-      <ButtonActive name="sign in" onClick={checkAndSignIn} />
+      <Link href="#">Forgot Password?</Link>
+      <Button 
+      onClick={checkAndSignIn} 
+      fullWidth 
+      variant="contained"
+      disableElevation 
+      sx={{textTransform:'lowercase', 
+            backgroundColor:'#FB8F67', 
+            color:'#FFFFFF', 
+            height: '56px', 
+            fontSize:'24px',
+            fontWeight: "600",
+            borderRadius:"10px"}} >
+       Sign In
+      </Button>
 </Container>
   );
 };
