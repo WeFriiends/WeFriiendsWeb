@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import Logo from "../../logo/logo"
-import { Box } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 
 const SignIn = () => {
 
@@ -10,9 +10,15 @@ const SignIn = () => {
             ml={2.5} 
             align ='center'>
             <Logo />
-            <section className="header">
-                <h1> Sign In</h1>
-            </section>
+            <Typography 
+                variant='h1' 
+                fontSize={32} 
+                fontWeight='600' 
+                lineHeight='40px' 
+                pt={10} 
+                color='#F46B5D' >
+                Sign In?
+            </Typography>
             <section className="account">
                 <button> <img src="/img/facebook.svg" alt="" /></button>
                 <button> <img src="/img/google1.svg" alt="" /></button>
