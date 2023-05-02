@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom"
 import Logo from "../../logo/logo"
-import "./signIn.css"
+import { Box } from "@mui/material"
 
 const SignIn = () => {
 
     return (
-        <div className="signIn">
+        <Box
+            mr={2.5} 
+            ml={2.5} 
+            align ='center'>
             <Logo />
             <section className="header">
                 <h1> Sign In</h1>
@@ -21,7 +24,7 @@ const SignIn = () => {
                 <p>Don't have an account?</p>
                 <a href="/"> Sign Up</a>
             </section>
-        </div>
+        </Box>
     )
 }
 
