@@ -1,13 +1,13 @@
 import { useState } from "react";
 import Logo from "../../logo/logo";
 import ButtonActive from "../../buttonActive/buttonActive";
-import "./signInMail.css";
+// import "./signInMail.css";
 import axios from "axios";
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import useTogglePasswordType from "../../../hooks/useTogglePasswordType";
 import { Navigate } from "react-router-dom";
 import LoginEmail from "../../../actions/loginEmail";
-import { Container, OutlinedInput, TextField, Typography, InputAdornment, Link, Button } from "@mui/material";
+import { Box, OutlinedInput, TextField, Typography, InputAdornment, Link, Button, FormControl, FormHelperText } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -58,7 +58,10 @@ const SignInMail = () => {
     setVisibility(!visible);
   }
   return (
-    <Container maxWidth = 'xs' align ="center">
+    <Box 
+      mr={2.5} 
+      ml={2.5} 
+     align ="center">
       {successSignIn && <Navigate to="/test" />}
       <Logo />
       <Typography
@@ -71,6 +74,7 @@ const SignInMail = () => {
         Sign In
       </Typography>
       <form>
+        <FormControl>
         <Typography 
          variant="p"
          align="left"
@@ -110,9 +114,8 @@ const SignInMail = () => {
             </InputAdornment>
           }
         ></OutlinedInput>      
-        <div id="errornote" className={error ? "instructions" : "offscreen"}>
-          {errorSignIn}
-        </div>
+        {error && <FormHelperText>{errorSignIn}</FormHelperText>}
+        </FormControl>
       </form>
       <Link
         display= "block"
@@ -135,7 +138,7 @@ const SignInMail = () => {
             borderRadius:"10px"}} >
        Sign In
       </Button>
-</Container>
+</Box>
   );
 };
 
