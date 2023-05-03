@@ -114,7 +114,7 @@ const SignInMail = () => {
             </InputAdornment>
           }
         ></OutlinedInput>      
-        {error && <FormHelperText>{errorSignIn}</FormHelperText>}
+        {error && <FormHelperText sx={{color:"#F1562A", marginLeft: 0}}>{errorSignIn}</FormHelperText>}
         </FormControl>
       </form>
       <Link
