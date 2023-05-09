@@ -1,10 +1,6 @@
 import { useState } from "react";
 import Logo from "../../logo/logo";
-import ButtonActive from "../../buttonActive/buttonActive";
-// import "./signInMail.css";
-import axios from "axios";
 import { useAuthContext } from "../../../hooks/useAuthContext";
-import useTogglePasswordType from "../../../hooks/useTogglePasswordType";
 import { Navigate } from "react-router-dom";
 import LoginEmail from "../../../actions/loginEmail";
 import { Box, OutlinedInput, TextField, Typography, InputAdornment, Link, Button, FormControl, FormHelperText } from "@mui/material";
@@ -123,7 +119,8 @@ const SignInMail = () => {
         marginBottom={6}
         underline="none"
         color="#444444"
-        href="#">Forgot Password?</Link>
+        href="#">Forgot Password?
+      </Link>
       <Button 
       onClick={checkAndSignIn} 
       fullWidth 
