@@ -1,9 +1,10 @@
 import axios from "axios";
 
 const LoginEmail = async (email, password) => {
-  try {
+  try {    
     const result = await axios.post(
       "https://clumsy-glasses-clam.cyclic.app/api/auth/signin",
+      // "http://localhost:3002/api/auth/signin",
       {
         email: email,
         password: password,
