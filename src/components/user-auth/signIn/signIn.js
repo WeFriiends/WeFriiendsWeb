@@ -15,7 +15,7 @@ const SignIn = () => {
                 fontSize={32} 
                 fontWeight='600' 
                 lineHeight='40px' 
-                pt={10} 
+                pt={11} 
                 color='#F46B5D' >
                 Sign In?
             </Typography>
@@ -58,7 +58,8 @@ const SignIn = () => {
             <Typography 
                 variant='body1' 
                 fontSize={22}
-                color='#3B4054'>
+                color='#3B4054'
+                pt={15}>
                 Don't have an account?
             </Typography>
             <Link 
