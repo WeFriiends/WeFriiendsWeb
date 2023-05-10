@@ -5,11 +5,20 @@ import ButtonActive from '../../buttonActive/buttonActive';
 import Logo from '../../logo/logo';
 // import './registrationForm.css'
 import useTogglePasswordType from '../../../hooks/useTogglePasswordType';
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, TextField } from '@mui/material';
+import {styled} from '@mui/material/styles';
+
 
 const PWD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
 
+const CssTextField = styled(TextField)({
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        border: 'none'
+      },
+    },
+  });
 const RegistrationForm = () => {
     const emailRef = useRef();
 
@@ -86,19 +95,29 @@ const RegistrationForm = () => {
                 <Box  
                     mr={2.5} 
                     ml={2.5} 
-                    align ="center">
-                          <Typography
-                                variant="h1"
-                                fontSize={32} 
-                                fontWeight='600' 
-                                lineHeight='40px' 
-                                pt={10} 
-                                color='#F46B5D' >
-                                Enter Email
-                            </Typography>
+                    >
+                    <Typography
+                        variant="h1"
+                        fontSize={32} 
+                        fontWeight='600' 
+                        lineHeight='40px' 
+                        pt={10} 
+                        pb={2}
+                        color='#F46B5D'
+                        align='center' >
+                        Enter Email
+                    </Typography>
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="email">Login</label>
-                        <input type="email"
+                        <Typography 
+                            variant="p"
+                            align="left"
+                            marginTop={2.5}>
+                            Login
+                        </Typography>                                            
+                        <CssTextField 
+                            sx= {{backgroundColor:"#FFF1EC",borderRadius: 2.5}}
+                            fullWidth
+                            type="email"
                             id="email"
                             ref = {emailRef}
                             onChange={(e) => setEmail(e.target.value)}
@@ -107,7 +126,7 @@ const RegistrationForm = () => {
                             aria-describedby="emailnote"
                             onFocus={() => setEmailFocus(false)}
                             onBlur={() => setEmailFocus(true)}
-                        ></input>
+                        ></CssTextField>
                         <div id="emailnote" className={emailFocus && !validEmail ? "instructions" : "offscreen"} >
                             Your Email is not correct
                         </div>
