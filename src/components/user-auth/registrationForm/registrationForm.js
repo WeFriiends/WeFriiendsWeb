@@ -3,8 +3,9 @@ import { useEffect, useState, useRef } from 'react';
 import accountRegistration from '../../../actions/accountRegistration';
 import ButtonActive from '../../buttonActive/buttonActive';
 import Logo from '../../logo/logo';
-import './registrationForm.css'
+// import './registrationForm.css'
 import useTogglePasswordType from '../../../hooks/useTogglePasswordType';
+import { Box, Typography } from '@mui/material';
 
 const PWD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
@@ -82,8 +83,19 @@ const RegistrationForm = () => {
                 </section>
 
             ) : (
-                <div className='registrationForm'>
-                    <h1> Enter Email</h1>
+                <Box  
+                    mr={2.5} 
+                    ml={2.5} 
+                    align ="center">
+                          <Typography
+                                variant="h1"
+                                fontSize={32} 
+                                fontWeight='600' 
+                                lineHeight='40px' 
+                                pt={10} 
+                                color='#F46B5D' >
+                                Enter Email
+                            </Typography>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="email">Login</label>
                         <input type="email"
@@ -139,7 +151,7 @@ const RegistrationForm = () => {
                         <button className='btn' disabled={!validEmail || !validPwd || !validMatch ? true : false}>submit</button>
                     </form>
                     
-                </div>
+                </Box>
             )}
         </div>
     )
