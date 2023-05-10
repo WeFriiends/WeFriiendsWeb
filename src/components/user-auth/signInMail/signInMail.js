@@ -70,7 +70,7 @@ const SignInMail = () => {
         Sign In
       </Typography>
       <form>
-        <FormControl>
+        <FormControl fullWidth>
         <Typography 
          variant="p"
          align="left"
