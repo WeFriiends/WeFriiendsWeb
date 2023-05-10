@@ -7,9 +7,15 @@ const CreateAccount = () => {
         <Box 
             mr={2.5} 
             ml={2.5} 
-            align ='center' >            
-            <Logo />            
-            <Typography 
+            align ='center'
+            height="100vh"
+            sx={{display: 'grid', gridTemplateRows: '1fr 2fr 4fr 1fr'}}>   
+              
+            <Box>
+                <Logo />    
+            </Box>
+            <Box>
+                <Typography 
                 variant='h1' 
                 fontSize={32} 
                 fontWeight='600' 
@@ -17,16 +23,16 @@ const CreateAccount = () => {
                 pt={10} 
                 color='#F46B5D' >
                 New here?
-            </Typography>
-            <Typography 
+                </Typography>
+                <Typography 
                 variant='body1' 
                 fontSize={26} lineHeight='40px' 
-                pb={4.75} 
                 color ='#444444'>
                 Create an account
-            </Typography>
-
-            <Grid 
+                </Typography>
+            </Box>
+            <Box>
+                <Grid 
                 container 
                 spacing={2.5}> 
                 <Grid 
@@ -60,8 +66,8 @@ const CreateAccount = () => {
                         </Button>
                     </Link>
                 </Grid>
-            </Grid>
-            <Typography 
+                </Grid>
+                <Typography 
                 variant='body2'
                 pt={1.75}
                 align='left'>
@@ -77,20 +83,24 @@ const CreateAccount = () => {
                         color='#1D878C'> 
                     Privacy Policy
                     </Link>
-            </Typography>
-            <Typography 
+                </Typography>
+            </Box>
+            <Box>
+                <Typography 
                 variant='body1' 
                 fontSize={22}
                 color='#3B4054'>
                 Already have an account?
-            </Typography>
-            <Link 
+                </Typography>
+                <Link 
                 href= '/signIn'
                 underline='none' 
                 fontSize={22} 
                 color='#1D878C'>
                 Sign In
-            </Link>
+                </Link>
+            </Box>
+   
         </Box>
     )
 }
