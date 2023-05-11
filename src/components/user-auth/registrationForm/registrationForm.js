@@ -132,6 +132,8 @@ const RegistrationForm = () => {
                             onBlur={() => setEmailFocus(true)}
                         ></CssTextField>
                         {emailFocus && !validEmail && <FormHelperText id="emailnote">Your Email is not correct</FormHelperText>}
+                    </FormControl>
+                    <FormControl fullWidth>
                         <Typography 
                             display="block"
                             align="left"
@@ -174,6 +176,8 @@ const RegistrationForm = () => {
                                 <li className={/[~!@#$%^&*()_+`-]/i.test(pwd) ? 'green' : 'rot'}>1 or more special characters</li>
                             </ul>
                         </div> */}
+                        </FormControl>
+                        <FormControl fullWidth>
                         <Typography 
                             display="block"
                             align="left"
@@ -207,9 +211,7 @@ const RegistrationForm = () => {
                             onBlur={()=> setMatchFocus(false)}
                         >
                         </OutlinedInput>                        
-                        {/* <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"} >
-                            Must match the first password input field.
-                        </p> */}
+                        {matchFocus && !validMatch && <FormHelperText id="confirmnote">Must match the first password input field.</FormHelperText>}
                         <Button                            
                             fullWidth 
                             variant="contained"
