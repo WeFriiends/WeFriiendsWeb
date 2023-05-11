@@ -111,10 +111,9 @@ const RegistrationForm = () => {
                         Enter Email
                     </Typography>
                     <form onSubmit={handleSubmit}>
-                        <Typography 
-                            variant="p"
+                        <Typography                       
                             align="left"
-                            marginTop={2.5}>
+                        >
                             Login
                         </Typography>                                            
                         <CssTextField 
@@ -134,9 +133,9 @@ const RegistrationForm = () => {
                             Your Email is not correct
                         </div> */}
                         <Typography 
-                            variant="p"
+                            display="block"
                             align="left"
-                            marginTop={2.5}>
+                            marginTop={3}>
                             Password
                         </Typography>                        
                         <OutlinedInput
@@ -176,9 +175,9 @@ const RegistrationForm = () => {
                             </ul>
                         </div> */}
                         <Typography 
-                            variant="p"
+                            display="block"
                             align="left"
-                            marginTop={2.5}>
+                            marginTop={3}>
                             One more time
                         </Typography> 
                         <OutlinedInput
@@ -221,7 +220,8 @@ const RegistrationForm = () => {
                                     height: '56px', 
                                     fontSize:'24px',
                                     fontWeight: "600",
-                                    borderRadius:"10px"}} >
+                                    borderRadius:"10px",
+                                    marginTop:"45px"}} >
                             submit
                             </Button>
                         {/* <button className='btn' disabled={!validEmail || !validPwd || !validMatch ? true : false}>submit</button> */}
