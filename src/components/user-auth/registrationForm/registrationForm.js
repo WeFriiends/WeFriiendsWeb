@@ -146,9 +146,8 @@ const RegistrationForm = () => {
                                 onFocus={() => setPwdFocus(false)}
                                 onBlur={(e) => (e.target.value === '' ? setPwdFocus(false) : setPwdFocus(true))}>
                             </input>
-                            <span className='password-toggle-icon'>{toggleIcon}</span>
                         </div>
-                        <div id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+                        {/* <div id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                             Your Password must have:
                             <ul>
                                 <li className={pwd.length > 8 ? 'green' : 'rot'}>8 or more symbols</li>
@@ -156,7 +155,7 @@ const RegistrationForm = () => {
                                 <li className={/[a-zA-Z]/i.test(pwd) ? 'green' : 'rot'}>1 or more Latin letters</li>
                                 <li className={/[~!@#$%^&*()_+`-]/i.test(pwd) ? 'green' : 'rot'}>1 or more special characters</li>
                             </ul>
-                        </div>
+                        </div> */}
                         <Typography 
                             variant="p"
                             align="left"
@@ -172,11 +171,10 @@ const RegistrationForm = () => {
                                 aria-describedby="confirmnote"
                                 onFocus={() => setMatchFocus(true)}
                                 onBlur={()=> setMatchFocus(false)}></input>
-                            <span className='password-toggle-icon'>{toggleIcon}</span>
                         </div>
-                        <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"} >
+                        {/* <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"} >
                             Must match the first password input field.
-                        </p>
+                        </p> */}
                         <Button                            
                             fullWidth 
                             variant="contained"
