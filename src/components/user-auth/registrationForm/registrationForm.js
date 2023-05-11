@@ -5,7 +5,8 @@ import ButtonActive from '../../buttonActive/buttonActive';
 import Logo from '../../logo/logo';
 // import './registrationForm.css'
 import useTogglePasswordType from '../../../hooks/useTogglePasswordType';
-import { Box, Typography, TextField,Button } from '@mui/material';
+import { Box, Typography, TextField, Button, OutlinedInput, InputAdornment, IconButton } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {styled} from '@mui/material/styles';
 
 
@@ -35,6 +36,7 @@ const RegistrationForm = () => {
     const [matchFocus, setMatchFocus] = useState(false);
 
     const [success, setSuccess] = useState(false);
+    const [visible, setVisibility] = useState(false);
 
     useEffect(() => {
         emailRef.current.focus();
@@ -64,8 +66,9 @@ const RegistrationForm = () => {
         console.log("Sending Email")
     }
 
-    const [passwordInputType, toggleIcon] = useTogglePasswordType();
-
+    const useTogglePasswordType = () => {
+        setVisibility(!visible);
+      }
     return (
         <div className='registrationEmail'>
             <Logo />
@@ -136,17 +139,33 @@ const RegistrationForm = () => {
                             marginTop={2.5}>
                             Password
                         </Typography>                        
-                        <div>
-                            <input type={passwordInputType}
-                                id="password"
-                                onChange={(e) => setPwd(e.target.value)}
-                                required
-                                aria-invalid={validPwd ? "false" : "true"}
-                                aria-describedby="pwdnote"
-                                onFocus={() => setPwdFocus(false)}
-                                onBlur={(e) => (e.target.value === '' ? setPwdFocus(false) : setPwdFocus(true))}>
-                            </input>
-                        </div>
+                        <OutlinedInput
+                            sx= {{backgroundColor:"#FFF1EC", borderRadius: 2.5, outline:"none",
+                            "&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                border: "none"
+                            },
+                            }}
+                            fullWidth                            
+                            type={visible ? 'text' : 'password'}
+                            id="password"
+                            onChange={(e) => setPwd(e.target.value)}
+                            required
+                            endAdornment={
+                                <InputAdornment position="end">
+                                  <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={useTogglePasswordType}
+                                  >
+                                    {visible ? <Visibility /> : <VisibilityOff />}
+                                  </IconButton>
+                                </InputAdornment>
+                            }
+                            aria-invalid={validPwd ? "false" : "true"}
+                            aria-describedby="pwdnote"
+                            onFocus={() => setPwdFocus(false)}
+                            onBlur={(e) => (e.target.value === '' ? setPwdFocus(false) : setPwdFocus(true))}
+                        >
+                        </OutlinedInput> 
                         {/* <div id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
                             Your Password must have:
                             <ul>
@@ -163,7 +182,7 @@ const RegistrationForm = () => {
                             One more time
                         </Typography> 
                         <div>
-                            <input type={passwordInputType}
+                            <input 
                                 id="confrimPassword"
                                 onChange={(e) => setMatchPwd(e.target.value)}
                                 required
@@ -171,6 +190,7 @@ const RegistrationForm = () => {
                                 aria-describedby="confirmnote"
                                 onFocus={() => setMatchFocus(true)}
                                 onBlur={()=> setMatchFocus(false)}></input>
+
                         </div>
                         {/* <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"} >
                             Must match the first password input field.
