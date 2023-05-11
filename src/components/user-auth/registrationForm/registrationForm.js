@@ -5,7 +5,7 @@ import ButtonActive from '../../buttonActive/buttonActive';
 import Logo from '../../logo/logo';
 // import './registrationForm.css'
 import useTogglePasswordType from '../../../hooks/useTogglePasswordType';
-import { Box, Typography, TextField } from '@mui/material';
+import { Box, Typography, TextField,Button } from '@mui/material';
 import {styled} from '@mui/material/styles';
 
 
@@ -177,7 +177,20 @@ const RegistrationForm = () => {
                         <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"} >
                             Must match the first password input field.
                         </p>
-                        <button className='btn' disabled={!validEmail || !validPwd || !validMatch ? true : false}>submit</button>
+                        <Button                            
+                            fullWidth 
+                            variant="contained"
+                            disableElevation 
+                            sx={{textTransform:'lowercase', 
+                                    backgroundColor:'#FB8F67', 
+                                    color:'#FFFFFF', 
+                                    height: '56px', 
+                                    fontSize:'24px',
+                                    fontWeight: "600",
+                                    borderRadius:"10px"}} >
+                            submit
+                            </Button>
+                        {/* <button className='btn' disabled={!validEmail || !validPwd || !validMatch ? true : false}>submit</button> */}
                     </form>
                     
                 </Box>
