@@ -127,10 +127,15 @@ const RegistrationForm = () => {
                             onFocus={() => setEmailFocus(false)}
                             onBlur={() => setEmailFocus(true)}
                         ></CssTextField>
-                        <div id="emailnote" className={emailFocus && !validEmail ? "instructions" : "offscreen"} >
+                        {/* <div id="emailnote" className={emailFocus && !validEmail ? "instructions" : "offscreen"} >
                             Your Email is not correct
-                        </div>
-                        <label htmlFor="password">Password</label>
+                        </div> */}
+                        <Typography 
+                            variant="p"
+                            align="left"
+                            marginTop={2.5}>
+                            Password
+                        </Typography>                        
                         <div>
                             <input type={passwordInputType}
                                 id="password"
@@ -152,7 +157,12 @@ const RegistrationForm = () => {
                                 <li className={/[~!@#$%^&*()_+`-]/i.test(pwd) ? 'green' : 'rot'}>1 or more special characters</li>
                             </ul>
                         </div>
-                        <label htmlFor="confirmPassword">One more time</label>
+                        <Typography 
+                            variant="p"
+                            align="left"
+                            marginTop={2.5}>
+                            One more time
+                        </Typography> 
                         <div>
                             <input type={passwordInputType}
                                 id="confrimPassword"
