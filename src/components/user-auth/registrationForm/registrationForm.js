@@ -181,17 +181,33 @@ const RegistrationForm = () => {
                             marginTop={2.5}>
                             One more time
                         </Typography> 
-                        <div>
-                            <input 
-                                id="confrimPassword"
-                                onChange={(e) => setMatchPwd(e.target.value)}
-                                required
-                                aria-invalid={validMatch ? "false" : "true"}
-                                aria-describedby="confirmnote"
-                                onFocus={() => setMatchFocus(true)}
-                                onBlur={()=> setMatchFocus(false)}></input>
-
-                        </div>
+                        <OutlinedInput
+                            sx= {{backgroundColor:"#FFF1EC", borderRadius: 2.5, outline:"none",
+                            "&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+                                border: "none"
+                            },
+                            }}
+                            fullWidth                            
+                            type={visible ? 'text' : 'password'}
+                            id="confrimPassword"
+                            onChange={(e) => setMatchPwd(e.target.value)}
+                            required
+                            endAdornment={
+                                <InputAdornment position="end">
+                                  <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={useTogglePasswordType}
+                                  >
+                                    {visible ? <Visibility /> : <VisibilityOff />}
+                                  </IconButton>
+                                </InputAdornment>
+                            }
+                            aria-invalid={validMatch ? "false" : "true"}
+                            aria-describedby="confirmnote"
+                            onFocus={() => setMatchFocus(true)}
+                            onBlur={()=> setMatchFocus(false)}
+                        >
+                        </OutlinedInput>                        
                         {/* <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"} >
                             Must match the first password input field.
                         </p> */}
