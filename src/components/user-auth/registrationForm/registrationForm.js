@@ -5,7 +5,7 @@ import ButtonActive from '../../buttonActive/buttonActive';
 import Logo from '../../logo/logo';
 // import './registrationForm.css'
 import useTogglePasswordType from '../../../hooks/useTogglePasswordType';
-import { Box, Typography, TextField, Button, OutlinedInput, InputAdornment, IconButton } from '@mui/material';
+import { Box, Typography, TextField, Button, OutlinedInput, InputAdornment, IconButton, FormControl, FormHelperText } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {styled} from '@mui/material/styles';
 
@@ -110,7 +110,9 @@ const RegistrationForm = () => {
                         align='center' >
                         Enter Email
                     </Typography>
+                  
                     <form onSubmit={handleSubmit}>
+                    <FormControl fullWidth>
                         <Typography                       
                             align="left"
                         >
@@ -129,9 +131,7 @@ const RegistrationForm = () => {
                             onFocus={() => setEmailFocus(false)}
                             onBlur={() => setEmailFocus(true)}
                         ></CssTextField>
-                        {/* <div id="emailnote" className={emailFocus && !validEmail ? "instructions" : "offscreen"} >
-                            Your Email is not correct
-                        </div> */}
+                        {emailFocus && !validEmail && <FormHelperText id="emailnote">Your Email is not correct</FormHelperText>}
                         <Typography 
                             display="block"
                             align="left"
@@ -225,6 +225,7 @@ const RegistrationForm = () => {
                             submit
                             </Button>
                         {/* <button className='btn' disabled={!validEmail || !validPwd || !validMatch ? true : false}>submit</button> */}
+                        </FormControl>
                     </form>
                     
                 </Box>
