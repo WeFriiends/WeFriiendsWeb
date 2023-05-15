@@ -5,9 +5,10 @@ import ButtonActive from '../../buttonActive/buttonActive';
 import Logo from '../../logo/logo';
 // import './registrationForm.css'
 import useTogglePasswordType from '../../../hooks/useTogglePasswordType';
-import { Box, Typography, TextField, Button, OutlinedInput, InputAdornment, IconButton, FormControl, FormHelperText } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Box, Typography, TextField, Button, OutlinedInput, InputAdornment, IconButton, FormControl, FormHelperText, List, ListItem } from '@mui/material';
+import { Diversity2, Visibility, VisibilityOff } from '@mui/icons-material';
 import {styled} from '@mui/material/styles';
+import CheckIcon from '@mui/icons-material/Check';
 
 
 const PWD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%]).{8,24}$/;
@@ -167,15 +168,20 @@ const RegistrationForm = () => {
                             onBlur={(e) => (e.target.value === '' ? setPwdFocus(false) : setPwdFocus(true))}
                         >
                         </OutlinedInput> 
-                        {/* <div id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+                        {pwdFocus && !validPwd  && <FormHelperText id="pwdnote" component="div">
                             Your Password must have:
-                            <ul>
-                                <li className={pwd.length > 8 ? 'green' : 'rot'}>8 or more symbols</li>
-                                <li className={/[0-9]/i.test(pwd) ? 'green' : 'rot'}>1 or more numbers</li>
-                                <li className={/[a-zA-Z]/i.test(pwd) ? 'green' : 'rot'}>1 or more Latin letters</li>
-                                <li className={/[~!@#$%^&*()_+`-]/i.test(pwd) ? 'green' : 'rot'}>1 or more special characters</li>
-                            </ul>
-                        </div> */}
+                            <List>
+                                {(pwd.length > 8) ? <ListItem sx={{color:"#1D878C", padding: 0}}><CheckIcon sx={{height:"12px", width:"12px", paddingRight:"2px"}}/>8 or more symbols</ListItem> :
+                                                    <ListItem sx={{color:"#F1562A", padding: 0}}>- 8 or more symbols</ListItem>}
+                                {(/[0-9]/i.test(pwd)) ? <ListItem sx={{color:"#1D878C", padding: 0}}><Box component="img" src='/img/check.svg'></Box>1 or more numbers</ListItem> :
+                                                        <ListItem sx={{color:"#F1562A", padding: 0}}>- 1 or more numbers</ListItem>}
+                                                        
+                                {(/[a-zA-Z]/i.test(pwd)) ? <ListItem sx={{color:"#1D878C", padding: 0}}>1 or more Latin letters</ListItem> :
+                                                            <ListItem sx={{color:"#F1562A", padding: 0}}>- 1 or more Latin letters</ListItem>}
+                                {(/[~!@#$%^&*()_+`-]/i.test(pwd)) ? <ListItem sx={{color:"#1D878C", padding: 0}}>1 or more special characters</ListItem> :
+                                                                    <ListItem sx={{color:"#F1562A", padding: 0}}>- 1 or more special characters</ListItem>}
+                            </List>
+                        </FormHelperText>}
                         </FormControl>
                         <FormControl fullWidth>
                         <Typography 
