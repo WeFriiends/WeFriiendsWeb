@@ -225,6 +225,7 @@ const RegistrationForm = () => {
                             variant="contained"
                             disableElevation 
                             onClick={handleSubmit}
+                            disabled={!validEmail || !validPwd || !validMatch ? true : false}
                             sx={{textTransform:'lowercase', 
                                     backgroundColor:'#FB8F67', 
                                     color:'#FFFFFF', 
@@ -234,8 +235,7 @@ const RegistrationForm = () => {
                                     borderRadius:"10px",
                                     marginTop:"45px"}} >
                             submit
-                            </Button>
-                        {/* <button className='btn' disabled={!validEmail || !validPwd || !validMatch ? true : false}>submit</button> */}
+                            </Button>                    
                         </FormControl>
                     </form>
                     
