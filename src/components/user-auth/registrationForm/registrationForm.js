@@ -57,9 +57,11 @@ const RegistrationForm = () => {
 
 
     const handleSubmit = async (e) => {
+        console.log("test")
         e.preventDefault();
         let result = await accountRegistration(pwd, matchPwd, email)
         setSuccess(result)
+        console.log(pwd, email)
     }
 
     // Need a screen and backend to resend the email
@@ -112,7 +114,7 @@ const RegistrationForm = () => {
                         Enter Email
                     </Typography>
                   
-                    <form onSubmit={handleSubmit}>
+                    <form>
                     <FormControl fullWidth>
                         <Typography                       
                             align="left"
@@ -222,6 +224,7 @@ const RegistrationForm = () => {
                             fullWidth 
                             variant="contained"
                             disableElevation 
+                            onClick={handleSubmit}
                             sx={{textTransform:'lowercase', 
                                     backgroundColor:'#FB8F67', 
                                     color:'#FFFFFF', 
