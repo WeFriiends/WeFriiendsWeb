@@ -132,7 +132,7 @@ const RegistrationForm = () => {
                             onFocus={() => setEmailFocus(false)}
                             onBlur={() => setEmailFocus(true)}
                         ></CssTextField>
-                        {emailFocus && !validEmail && <FormHelperText id="emailnote">Your Email is not correct</FormHelperText>}
+                        {emailFocus && !validEmail && <FormHelperText sx={{color:"#F1562A"}} id="emailnote">Your Email is not correct</FormHelperText>}
                     </FormControl>
                     <FormControl fullWidth>
                         <Typography 
@@ -171,15 +171,15 @@ const RegistrationForm = () => {
                         {pwdFocus && !validPwd  && <FormHelperText id="pwdnote" component="div">
                             Your Password must have:
                             <List>
-                                {(pwd.length > 8) ? <ListItem sx={{color:"#1D878C", padding: 0}}><CheckIcon sx={{height:"12px", width:"12px", paddingRight:"2px"}}/>8 or more symbols</ListItem> :
-                                                    <ListItem sx={{color:"#F1562A", padding: 0}}>- 8 or more symbols</ListItem>}
+                                {(pwd.length > 8) ? <ListItem sx={{color:"#1D878C", padding: 0}}><Box component="img" src='/img/check.svg'></Box>8 or more symbols</ListItem> :
+                                                    <ListItem sx={{padding: 0}}>- 8 or more symbols</ListItem>}
                                 {(/[0-9]/i.test(pwd)) ? <ListItem sx={{color:"#1D878C", padding: 0}}><Box component="img" src='/img/check.svg'></Box>1 or more numbers</ListItem> :
-                                                        <ListItem sx={{color:"#F1562A", padding: 0}}>- 1 or more numbers</ListItem>}
+                                                        <ListItem sx={{padding: 0}}>- 1 or more numbers</ListItem>}
                                                         
-                                {(/[a-zA-Z]/i.test(pwd)) ? <ListItem sx={{color:"#1D878C", padding: 0}}>1 or more Latin letters</ListItem> :
-                                                            <ListItem sx={{color:"#F1562A", padding: 0}}>- 1 or more Latin letters</ListItem>}
-                                {(/[~!@#$%^&*()_+`-]/i.test(pwd)) ? <ListItem sx={{color:"#1D878C", padding: 0}}>1 or more special characters</ListItem> :
-                                                                    <ListItem sx={{color:"#F1562A", padding: 0}}>- 1 or more special characters</ListItem>}
+                                {(/[a-zA-Z]/i.test(pwd)) ? <ListItem sx={{color:"#1D878C", padding: 0}}><Box component="img" src='/img/check.svg'></Box>1 or more Latin letters</ListItem> :
+                                                            <ListItem sx={{padding: 0}}>- 1 or more Latin letters</ListItem>}
+                                {(/[~!@#$%^&*()_+`-]/i.test(pwd)) ? <ListItem sx={{color:"#1D878C", padding: 0}}><Box component="img" src='/img/check.svg'></Box>1 or more special characters</ListItem> :
+                                                                    <ListItem sx={{padding: 0}}>- 1 or more special characters</ListItem>}
                             </List>
                         </FormHelperText>}
                         </FormControl>
@@ -217,7 +217,7 @@ const RegistrationForm = () => {
                             onBlur={()=> setMatchFocus(false)}
                         >
                         </OutlinedInput>                        
-                        {matchFocus && !validMatch && <FormHelperText id="confirmnote">Must match the first password input field.</FormHelperText>}
+                        {matchFocus && !validMatch && <FormHelperText id="confirmnote" sx={{color:"#F1562A"}}>Must match the first password input field.</FormHelperText>}
                         <Button                            
                             fullWidth 
                             variant="contained"
