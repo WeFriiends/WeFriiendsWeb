@@ -76,26 +76,62 @@ const RegistrationForm = () => {
         <div className='registrationEmail'>
             <Logo />
             {success ? (
-                <section>
-                    <div className='div-text'>
-                        <h1>Just one more step!</h1>
-                        <div>
-                            <p>We've sent an e-mail to </p>
-                            <p className='colorEmail'>
-                                {email}</p>
-                        </div>
-                        <div>
-                            <p>to confirm your e-mail.</p>
-                            <p>Please, check your mailbox.</p>
-                        </div>
-                        <h3>Didn't get a e-mail?</h3>
-                        <div>
-                            <p>Please, check your spam folder or wait a little bit more.</p>
-                        </div>
-                        <p>Still didn't get it?</p>
-                    </div>
-                    <ButtonActive name='send  me e-mail again' onClick={sendEmail} />
-                </section>
+                <Box  
+                    mr={2.5} 
+                    ml={2.5} 
+                    >
+                    <Box mr={5} ml={5}>
+                    <Typography
+                        variant="h1"
+                        fontSize={32} 
+                        fontWeight='600' 
+                        lineHeight='40px' 
+                        pt={10} 
+                        pb={5}
+                        color='#F46B5D'
+                        align='center' >
+                        Just one more step!
+                    </Typography>                        
+                        <Box mb={5}>
+                        <Typography variant='body1' align='center' fontSize={18} lineHeight='22px'>We've sent an e-mail to </Typography>
+                        <Typography variant='body1' align='center' fontSize={18} color='#FB8F67' lineHeight='22px'>{email}</Typography>
+                        </Box>
+                        <Box>
+                        <Typography variant='body1' align='center' fontSize={18} lineHeight='22px'>to confirm your e-mail.</Typography>
+                        <Typography variant='body1' align='center' fontSize={18} lineHeight='22px'>Please, check your mailbox.</Typography>
+                        </Box>
+                        <Typography
+                        variant="h3"
+                        fontSize={22} 
+                        fontWeight='600' 
+                        lineHeight='40px' 
+                        pt={7} 
+                        pb={1}
+                        color='#F46B5D'
+                        align='center' >
+                        Didn't get a e-mail?
+                    </Typography>                         
+                        <Box mb={7}>
+                            <Typography variant='body1' align='center' fontSize={18} lineHeight='22px'>Please, check your spam folder or wait a little bit more.</Typography>
+                        </Box>
+                        <Typography variant='body1' align='center'fontSize={18} lineHeight='22px'>Still didn't get it?</Typography>
+                    </Box>                   
+                    <Button                            
+                            fullWidth 
+                            variant="contained"
+                            disableElevation 
+                            onClick={sendEmail}                            
+                            sx={{textTransform:'lowercase', 
+                                    backgroundColor:'#FB8F67', 
+                                    color:'#FFFFFF', 
+                                    height: '56px', 
+                                    fontSize:'18px',
+                                    fontWeight: "600",
+                                    borderRadius:"10px",
+                                    marginTop:"45px"}} >
+                            send  me e-mail again
+                            </Button>  
+                </Box>
 
             ) : (
                 <Box  
@@ -230,7 +266,7 @@ const RegistrationForm = () => {
                                     backgroundColor:'#FB8F67', 
                                     color:'#FFFFFF', 
                                     height: '56px', 
-                                    fontSize:'24px',
+                                    fontSize:'18px',
                                     fontWeight: "600",
                                     borderRadius:"10px",
                                     marginTop:"45px"}} >
