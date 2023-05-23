@@ -1,15 +1,10 @@
 
 import { useEffect, useState, useRef } from 'react';
 import accountRegistration from '../../../actions/accountRegistration';
-import ButtonActive from '../../buttonActive/buttonActive';
 import Logo from '../../logo/logo';
-// import './registrationForm.css'
-import useTogglePasswordType from '../../../hooks/useTogglePasswordType';
 import { Box, Typography, TextField, Button, OutlinedInput, InputAdornment, IconButton, FormControl, FormHelperText, List, ListItem } from '@mui/material';
-import { Diversity2, Visibility, VisibilityOff } from '@mui/icons-material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {styled} from '@mui/material/styles';
-import CheckIcon from '@mui/icons-material/Check';
-
 
 const PWD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
