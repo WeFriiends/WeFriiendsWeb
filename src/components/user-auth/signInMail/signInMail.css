@@ -1,0 +1,62 @@
+.signInMail {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.signInMail h1 {
+    color: #F46B5D;
+    margin-top: 10vh;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.signInMail input {
+    height: 4rem;
+    background-color: #FFF1EC;
+    border-radius: 10px;
+    border: none;
+    padding: 18px 24px;
+    align-items: center;
+    font-size: 18px;
+    color: #262626;
+    width: 100%;
+}
+
+.signInMail input:focus-visible {
+    outline: none;
+}
+
+.signInMail a {
+    display: block;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    color: #444444;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+.signInMail div {
+    position: relative;
+}
+
+.signInMail .password-toggle-icon {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    z-index: 2;
+}
+
+.signInMail .offscreen {
+    display: none;
+}
+
+.signInMail .instructions {
+    color: #F1562A;
+    font-size: 12px;
+    line-height: 22px;
+    margin-top: 5px;
+}
