@@ -15,90 +15,49 @@ const CreateAccount = () => {
                 <Logo />    
             </Box>
             <Box>
-                <Typography 
-                variant='h1' 
-                fontSize={32} 
-                fontWeight='600' 
-                lineHeight='40px' 
-                pt={10} 
-                color='#F46B5D' >
-                New here?
-                </Typography>
-                <Typography 
-                variant='body1' 
-                fontSize={26} lineHeight='40px' 
-                color ='#444444'>
-                Create an account
-                </Typography>
+                <Typography variant='h1' sx={styles.title}>New here?</Typography>
+                <Typography sx={styles.subTitle}>Create an account</Typography>
             </Box>
             <Box>
-                <Grid 
-                container 
-                spacing={2.5}> 
-                <Grid 
-                    item xs={12}>
-                    <Button 
-                        fullWidth 
-                        variant="contained"  
-                        sx={{textTransform:'capitalize', backgroundColor:'#FFF1EC', color:'#444444', height: '56px', fontSize:'18px'}} 
-                        startIcon={<img alt='fb' src={'/img/fb.svg'} sx={{ width: 24, height: 24, pr:10}}/>} >
-                        Facebook
-                    </Button>
-                </Grid>
-                <Grid 
-                    item xs={12}>
-                    <Button  
-                        fullWidth 
-                        variant="contained" 
-                        sx={{textTransform:'capitalize', backgroundColor:'#FFF1EC', color:'#444444', height: '56px', fontSize:'18px'}} 
-                        startIcon={<img alt='google' src={'/img/google.svg'} sx={{ width: 24, height: 24, mr:'16px' }}/>} >
-                        Google
-                    </Button>
-                </Grid>
-                <Grid 
-                    item xs={12}>
-                    <Link href='/registration' underline='none'>
+                <Grid container spacing={2.5}> 
+                    <Grid item xs={12}>
                         <Button 
                             fullWidth 
-                            variant="contained" 
-                            sx={{textTransform:'lowercase', backgroundColor:'#FFF1EC', color:'#444444', height: '56px', fontSize:'18px'}} >
-                            e-mail
+                            variant="contained"  
+                            sx={styles.Button} 
+                            startIcon={<img alt='fb' src={'/img/fb.svg'} sx={{ width: 24, height: 24, pr:10}}/>} >
+                            Facebook
                         </Button>
-                    </Link>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button  
+                            fullWidth 
+                            variant="contained" 
+                            sx={styles.Button} 
+                            startIcon={<img alt='google' src={'/img/google.svg'} sx={{ width: 24, height: 24, mr:'16px' }}/>} >
+                            Google
+                        </Button>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Link href='/registration'>
+                            <Button 
+                                fullWidth 
+                                variant="contained" 
+                                sx={styles.button} >
+                                e-mail
+                            </Button>
+                        </Link>
+                    </Grid>
                 </Grid>
-                </Grid>
-                <Typography 
-                variant='body2'
-                pt={1.75}
-                align='left'>
-                By creating an account, I agree with &nbsp;
-                <Link 
-                    underline='none' 
-                    color='#1D878C'>
-                    The Terms of Service &nbsp;
-                </Link> 
-                    and &nbsp;
-                    <Link 
-                        underline='none' 
-                        color='#1D878C'> 
-                    Privacy Policy
-                    </Link>
+                <Typography sx={styles.p}> By creating an account, I agree with 
+                    <Link sx={styles.link_small}> The Terms of Service </Link> 
+                    and
+                    <Link sx={styles.link_small}> Privacy Policy</Link>
                 </Typography>
             </Box>
             <Box>
-                <Typography 
-                variant='body1' 
-                fontSize={22}
-                color='#3B4054'>
-                Already have an account?
-                </Typography>
-                <Link 
-                href= '/signIn'
-                underline='none' 
-                fontSize={22} 
-                color='#1D878C'>
-                Sign In
-                </Link>
+                <Typography sx={styles.text}>Already have an account?</Typography>
+                <Link href= '/signIn' sx={styles.link}>Sign In</Link>
             </Box>
    
         </Box>
@@ -106,3 +65,48 @@ const CreateAccount = () => {
 }
 
 export default CreateAccount;
+
+const styles = {
+    title:{
+        fontSize: '32px', 
+        fontWeight:'600', 
+        lineHeight:'40px', 
+        pt:'80px', 
+        color:'#F46B5D'
+    },
+    subTitle:{
+        fontSize: '26px',
+        lineHeight: '40px', 
+        color:'#444444'
+    },
+    link:{
+        color: '#1D878C',
+        fontSize: '22px',
+        textDecoration: 'none'
+    },
+    link_small:{
+        textDecoration:'none',
+        color:'#1D878C'
+    },
+    button:{
+        textTransform:'lowercase', 
+        backgroundColor:'#FFF1EC', 
+        color:'#444444', 
+        height: '56px', 
+        fontSize:'18px',
+        textDecoration: 'none'
+    },
+    Button:{
+        textTransform:'capitalize',
+        backgroundColor:'#FFF1EC', 
+        color:'#444444', 
+        height: '56px', 
+        fontSize:'18px'},
+    p:{ paddingTop:'15px',
+        textAlign:'left'
+    },
+    text:{
+        fontSize:'22px',
+        color:'#3B4054'
+    }        
+}
