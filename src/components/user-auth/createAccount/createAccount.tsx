@@ -30,7 +30,7 @@ const CreateAccount = () => {
                 <img
                   alt="fb"
                   src={'/img/fb.svg'}
-                  sx={{ width: 24, height: 24, pr: 10 }}
+                  sx={{ widthP: 24, height: 24, pr: 10 }}
                 />
               }
             >
@@ -46,7 +46,7 @@ const CreateAccount = () => {
                 <img
                   alt="google"
                   src={'/img/google.svg'}
-                  sx={{ width: 24, height: 24, mr: '16px' }}
+                  sx={{ widthP: 24, height: 24, pr: 10 }}
                 />
               }
             >

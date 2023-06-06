@@ -11,6 +11,8 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/react": "^18.2.8",
+    "@types/react-dom": "^18.2.4",
     "axios": "^1.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -22,7 +24,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prettify": "prettier --write .",
+    "lint:eslint:fix": "eslint --ignore-path .gitignore --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -43,7 +47,16 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.41.0",
-    "prettier": "2.8.8"
+    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "@typescript-eslint/parser": "^5.59.9",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier-eslint": "^15.0.1",
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.3"
   }
 }
