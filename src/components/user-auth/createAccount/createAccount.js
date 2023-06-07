@@ -27,7 +27,7 @@ const CreateAccount = () => {
             <Button
               fullWidth
               variant="contained"
-              className={classes.Button}
+              className={classes.fbAndGoogleButton}
               startIcon={
                 <img
                   alt="fb"
@@ -43,12 +43,12 @@ const CreateAccount = () => {
             <Button
               fullWidth
               variant="contained"
-              className={classes.Button}
+              className={classes.fbAndGoogleButton}
               startIcon={
                 <img
                   alt="google"
                   src={'/img/google.svg'}
-                  sx={{ width: 24, height: 24, mr: '16px' }}
+                  sx={{ width: 24, height: 24, mr: 16 }}
                 />
               }
             >
@@ -57,7 +57,11 @@ const CreateAccount = () => {
           </Grid>
           <Grid item xs={12}>
             <Link href="/registration">
-              <Button fullWidth variant="contained" className={classes.button}>
+              <Button
+                fullWidth
+                variant="contained"
+                className={classes.emailButton}
+              >
                 e-mail
               </Button>
             </Link>
@@ -65,9 +69,9 @@ const CreateAccount = () => {
         </Grid>
         <Typography className={classes.p}>
           By creating an account, I agree with
-          <Link className={classes.link_small}> The Terms of Service </Link>
+          <Link className={classes.linkSmall}> The Terms of Service </Link>
           and
-          <Link className={classes.link_small}> Privacy Policy</Link>
+          <Link className={classes.linkSmall}> Privacy Policy</Link>
         </Typography>
       </Box>
       <Box>
@@ -86,49 +90,49 @@ export default CreateAccount
 const useStyles = makeStyles()((theme) => {
   return {
     title: {
-      fontSize: '32px',
-      fontWeight: '600',
+      fontSize: 32,
+      fontWeight: 600,
       lineHeight: '40px',
-      paddingTop: '80px',
+      paddingTop: 80,
       color: '#F46B5D',
     },
     subTitle: {
-      fontSize: '26px',
+      fontSize: 26,
       lineHeight: '40px',
       color: '#444444',
     },
     link: {
       color: '#1D878C',
-      fontSize: '22px',
+      fontSize: 22,
       textDecoration: 'none',
     },
-    link_small: {
+    linkSmall: {
       textDecoration: 'none',
       color: '#1D878C',
-      fontSize: '13px',
+      fontSize: 13,
     },
-    button: {
+    emailButton: {
       textTransform: 'lowercase',
       backgroundColor: '#FFF1EC',
       color: '#444444',
-      height: '56px',
-      fontSize: '18px',
+      height: 56,
+      fontSize: 18,
       textDecoration: 'none',
     },
-    Button: {
+    fbAndGoogleButton: {
       textTransform: 'capitalize',
       backgroundColor: '#FFF1EC',
       color: '#444444',
-      height: '56px',
-      fontSize: '18px',
+      height: 56,
+      fontSize: 18,
     },
     p: {
-      paddingTop: '15px',
+      paddingTop: 15,
       textAlign: 'left',
-      fontSize: '13px',
+      fontSize: 13,
     },
     text: {
-      fontSize: '22px',
+      fontSize: 22,
       color: '#3B4054',
     },
   }
