@@ -16,6 +16,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.5.0",
     "react-scripts": "5.0.1",
+    "tss-react": "^4.8.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -23,12 +24,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -43,7 +38,6 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.41.0",
     "prettier": "2.8.8"
   }
 }
