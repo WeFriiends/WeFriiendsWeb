@@ -6,7 +6,7 @@ const CreateAccount = () => {
     <Box
       mr={2.5}
       ml={2.5}
-      align="center"
+      // align="center"
       height="100vh"
       sx={{ display: 'grid', gridTemplateRows: '1fr 2fr 4fr 1fr' }}
     >
@@ -26,13 +26,8 @@ const CreateAccount = () => {
               fullWidth
               variant="contained"
               sx={styles.Button}
-              startIcon={
-                <img
-                  alt="fb"
-                  src={'/img/fb.svg'}
-                  sx={{ widthP: 24, height: 24, pr: 10 }}
-                />
-              }
+              // sx={{ widthP: 24, height: 24, pr: 10 }}
+              startIcon={<img alt="fb" src={'/img/fb.svg'} />}
             >
               Facebook
             </Button>
@@ -46,7 +41,7 @@ const CreateAccount = () => {
                 <img
                   alt="google"
                   src={'/img/google.svg'}
-                  sx={{ widthP: 24, height: 24, pr: 10 }}
+                  // sx={{ widthP: 24, height: 24, pr: 10 }}
                 />
               }
             >

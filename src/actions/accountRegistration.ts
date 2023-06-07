@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-const accountRegistration = async (password1, password2, email) => {
+const accountRegistration = async (
+  password1: string,
+  password2: string,
+  email: string
+) => {
   try {
     const result = await axios.post(
       // "https://clumsy-glasses-clam.cyclic.app/api/auth/register",
@@ -15,7 +19,8 @@ const accountRegistration = async (password1, password2, email) => {
     if (result.status === 200) return true
     else return false
   } catch (err) {
-    console.log(err.response)
+    const er = err as Error
+    console.log(er.message)
   }
 }
 

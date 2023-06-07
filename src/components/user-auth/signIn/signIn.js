@@ -31,7 +31,7 @@ const SignIn = () => {
               <img
                 alt="fb"
                 src={'/img/fb.svg'}
-                sx={{ width: 24, height: 24, pr: 10 }}
+                // sx={{ width: 24, height: 24, pr: 10 }}
               />
             }
           >
@@ -53,7 +53,7 @@ const SignIn = () => {
               <img
                 alt="google"
                 src={'/img/google.svg'}
-                sx={{ width: 24, height: 24, mr: '16px' }}
+                // sx={{ width: 24, height: 24, mr: '16px' }}
               />
             }
           >

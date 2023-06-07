@@ -5,14 +5,14 @@ import './accountCreated.css'
 import accountConfirmation from '../../../actions/accountConfirmation'
 
 const AccountCreated = () => {
-  const [success, setSuccess] = useState(undefined)
+  const [success, setSuccess] = useState(false as boolean | undefined)
 
   useEffect(() => {
-    function fetchData() {
-      let { location } = document
+    async function fetchData() {
+      const { location } = document
       // It is assumed that the link will look like this http://localhost:3000/account?code=1dfsdfsfd where 1dfsdfsfd is confirmationCode
       const confirmationCode = location.search.substring(6)
-      const result = accountConfirmation(confirmationCode)
+      const result = await accountConfirmation(confirmationCode)
       setSuccess(result)
     }
     if (success === undefined) {
