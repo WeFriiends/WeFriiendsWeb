@@ -1,12 +1,13 @@
 import Logo from '../../logo/logo'
 import { Button, Grid, Typography, Box, Link } from '@mui/material'
+import { makeStyles } from 'tss-react/mui'
 
 const CreateAccount = () => {
+  const { classes } = useStyles()
   return (
     <Box
       mr={2.5}
       ml={2.5}
-      // align="center"
       height="100vh"
       sx={{ display: 'grid', gridTemplateRows: '1fr 2fr 4fr 1fr' }}
     >
@@ -14,10 +15,10 @@ const CreateAccount = () => {
         <Logo />
       </Box>
       <Box>
-        <Typography variant="h1" sx={styles.title}>
+        <Typography variant="h1" className={classes.title}>
           New here?
         </Typography>
-        <Typography sx={styles.subTitle}>Create an account</Typography>
+        <Typography className={classes.subTitle}>Create an account</Typography>
       </Box>
       <Box>
         <Grid container spacing={2.5}>
@@ -25,8 +26,7 @@ const CreateAccount = () => {
             <Button
               fullWidth
               variant="contained"
-              sx={styles.Button}
-              // sx={{ widthP: 24, height: 24, pr: 10 }}
+              className={classes.fbAndGoogleButton}
               startIcon={<img alt="fb" src={'/img/fb.svg'} />}
             >
               Facebook
@@ -36,37 +36,36 @@ const CreateAccount = () => {
             <Button
               fullWidth
               variant="contained"
-              sx={styles.Button}
-              startIcon={
-                <img
-                  alt="google"
-                  src={'/img/google.svg'}
-                  // sx={{ widthP: 24, height: 24, pr: 10 }}
-                />
-              }
+              className={classes.fbAndGoogleButton}
+              startIcon={<img alt="google" src={'/img/google.svg'} />}
             >
               Google
             </Button>
           </Grid>
           <Grid item xs={12}>
             <Link href="/registration">
-              <Button fullWidth variant="contained" sx={styles.button}>
+              <Button
+                fullWidth
+                variant="contained"
+                className={classes.emailButton}
+              >
                 e-mail
               </Button>
             </Link>
           </Grid>
         </Grid>
-        <Typography sx={styles.p}>
-          {' '}
+        <Typography className={classes.p}>
           By creating an account, I agree with
-          <Link sx={styles.link_small}> The Terms of Service </Link>
+          <Link className={classes.linkSmall}> The Terms of Service </Link>
           and
-          <Link sx={styles.link_small}> Privacy Policy</Link>
+          <Link className={classes.linkSmall}> Privacy Policy</Link>
         </Typography>
       </Box>
       <Box>
-        <Typography sx={styles.text}>Already have an account?</Typography>
-        <Link href="/signIn" sx={styles.link}>
+        <Typography className={classes.text}>
+          Already have an account?
+        </Typography>
+        <Link href="/signIn" className={classes.link}>
           Sign In
         </Link>
       </Box>
@@ -76,46 +75,61 @@ const CreateAccount = () => {
 
 export default CreateAccount
 
-const styles = {
-  title: {
-    fontSize: '32px',
-    fontWeight: '600',
-    lineHeight: '40px',
-    pt: '80px',
-    color: '#F46B5D',
-  },
-  subTitle: {
-    fontSize: '26px',
-    lineHeight: '40px',
-    color: '#444444',
-  },
-  link: {
-    color: '#1D878C',
-    fontSize: '22px',
-    textDecoration: 'none',
-  },
-  link_small: {
-    textDecoration: 'none',
-    color: '#1D878C',
-  },
-  button: {
-    textTransform: 'lowercase',
-    backgroundColor: '#FFF1EC',
-    color: '#444444',
-    height: '56px',
-    fontSize: '18px',
-    textDecoration: 'none',
-  },
-  Button: {
-    textTransform: 'capitalize',
-    backgroundColor: '#FFF1EC',
-    color: '#444444',
-    height: '56px',
-    fontSize: '18px',
-  },
-  p: { paddingTop: '15px', textAlign: 'left' },
-  text: {
-    fontSize: '22px',
-    color: '#3B4054',
-  },
-}
+const useStyles = makeStyles()(() => {
+  return {
+    title: {
+      fontSize: 32,
+      fontWeight: 600,
+      lineHeight: '40px',
+      paddingTop: 80,
+      color: '#F46B5D',
+      textAlign: 'center',
+    },
+    subTitle: {
+      fontSize: 26,
+      lineHeight: '40px',
+      color: '#444444',
+      textAlign: 'center',
+    },
+    link: {
+      color: '#1D878C',
+      fontSize: 22,
+      textDecoration: 'none',
+      display: 'block',
+      textAlign: 'center',
+    },
+    linkSmall: {
+      textDecoration: 'none',
+      color: '#1D878C',
+      fontSize: 13,
+    },
+    emailButton: {
+      textTransform: 'lowercase',
+      backgroundColor: '#FFF1EC',
+      color: '#444444',
+      height: 56,
+      fontSize: 18,
+      textDecoration: 'none',
+    },
+    fbAndGoogleButton: {
+      textTransform: 'capitalize',
+      backgroundColor: '#FFF1EC',
+      color: '#444444',
+      height: 56,
+      fontSize: 18,
+    },
+    p: {
+      paddingTop: 15,
+      textAlign: 'left',
+      fontSize: 13,
+    },
+    text: {
+      fontSize: 22,
+      color: '#3B4054',
+      textAlign: 'center',
+    },
+    startIcon: {
+      marginRight: 16,
+    },
+  }
+})
