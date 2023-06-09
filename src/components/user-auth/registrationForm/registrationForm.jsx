@@ -16,7 +16,6 @@ import {
 } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { styled } from '@mui/material/styles'
-import { makeStyles } from 'tss-react/mui'
 
 const PWD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%]).{8,24}$/
 const EMAIL_REGEX = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
@@ -29,7 +28,6 @@ const CssTextField = styled(TextField)({
   },
 })
 const RegistrationForm = () => {
-  const { classes } = useStyles()
   const emailRef = useRef()
 
   const [email, setEmail] = useState('')
@@ -104,7 +102,7 @@ const RegistrationForm = () => {
                 fontSize={18}
                 lineHeight="22px"
               >
-                We've sent an e-mail to{' '}
+                We’ve sent an e-mail to{' '}
               </Typography>
               <Typography
                 variant="body1"
@@ -144,7 +142,7 @@ const RegistrationForm = () => {
               color="#F46B5D"
               align="center"
             >
-              Didn't get a e-mail?
+              Didn’t get a e-mail?
             </Typography>
             <Box mb={7}>
               <Typography
@@ -162,7 +160,7 @@ const RegistrationForm = () => {
               fontSize={18}
               lineHeight="22px"
             >
-              Still didn't get it?
+              Still didn’t get it?
             </Typography>
           </Box>
           <Button
@@ -186,7 +184,16 @@ const RegistrationForm = () => {
         </Box>
       ) : (
         <Box mr={2.5} ml={2.5}>
-          <Typography variant="h1" className={classes.title}>
+          <Typography
+            variant="h1"
+            fontSize={32}
+            fontWeight="600"
+            lineHeight="40px"
+            pt={10}
+            pb={2}
+            color="#F46B5D"
+            align="center"
+          >
             Enter Email
           </Typography>
 
@@ -217,7 +224,14 @@ const RegistrationForm = () => {
                 Password
               </Typography>
               <OutlinedInput
-                className={classes.borderAndBackgroundButton}
+                sx={{
+                  backgroundColor: '#FFF1EC',
+                  borderRadius: 2.5,
+                  outline: 'none',
+                  '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+                    border: 'none',
+                  },
+                }}
                 fullWidth
                 type={visible ? 'text' : 'password'}
                 id="password"
@@ -294,7 +308,14 @@ const RegistrationForm = () => {
                 One more time
               </Typography>
               <OutlinedInput
-                className={classes.borderAndBackgroundButton}
+                sx={{
+                  backgroundColor: '#FFF1EC',
+                  borderRadius: 2.5,
+                  outline: 'none',
+                  '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+                    border: 'none',
+                  },
+                }}
                 fullWidth
                 type={visible ? 'text' : 'password'}
                 id="confrimPassword"
@@ -322,13 +343,22 @@ const RegistrationForm = () => {
               )}
               <Button
                 fullWidth
-                className={classes.submitButton}
                 variant="contained"
                 disableElevation
                 onClick={handleSubmit}
                 disabled={
                   !validEmail || !validPwd || !validMatch ? true : false
                 }
+                sx={{
+                  textTransform: 'lowercase',
+                  backgroundColor: '#FB8F67',
+                  color: '#FFFFFF',
+                  height: '56px',
+                  fontSize: '18px',
+                  fontWeight: '600',
+                  borderRadius: '10px',
+                  marginTop: '45px',
+                }}
               >
                 submit
               </Button>
@@ -341,36 +371,3 @@ const RegistrationForm = () => {
 }
 
 export default RegistrationForm
-
-const useStyles = makeStyles()((theme) => {
-  return {
-    title: {
-      fontSize: 32,
-      fontWeight: 600,
-      lineHeight: '40px',
-      paddingTop: 80,
-      paddingBottom: 16,
-      color: '#F46B5D',
-      align: 'center',
-      textAlign: 'center',
-    },
-    borderAndBackgroundButton: {
-      backgroundColor: '#FFF1EC',
-      borderRadius: 2.5,
-      outline: 'none',
-      '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-        border: 'none',
-      },
-    },
-    submitButton: {
-      textTransform: 'lowercase',
-      backgroundColor: '#FB8F67',
-      color: '#FFFFFF',
-      height: 56,
-      fontSize: 18,
-      fontWeight: 600,
-      borderRadius: 10,
-      marginTop: 45,
-    },
-  }
-})

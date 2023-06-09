@@ -1,9 +1,5 @@
-const TestPage = () =>{
-    return(
-        <div>
-            Login is successful
-        </div>
-    )
+const TestPage = () => {
+  return <div>Login is successful</div>
 }
 
 export default TestPage
