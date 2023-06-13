@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import ButtonActive from '../../buttonActive/buttonActive'
 import Logo from '../../logo/logo'
-import './accountCreated.css'
 import accountConfirmation from '../../../actions/accountConfirmation'
+import { Box, Button, Typography } from '@mui/material'
+import { makeStyles } from 'tss-react/mui'
 
 const AccountCreated = () => {
+  const { classes } = useStyles()
   const [success, setSuccess] = useState(false as boolean | undefined)
 
   useEffect(() => {
@@ -23,24 +24,68 @@ const AccountCreated = () => {
   return (
     <>
       {success ? (
-        <div className="accountCreated">
-          <img className="imgHeader" src="../img/account-header.svg" alt="" />
-          <section>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateRows: 'auto 1fr auto',
+            minHeight: '100vh',
+          }}
+        >
+          <Box
+            component="img"
+            sx={{
+              width: '100%',
+            }}
+            src="../img/account-header.svg"
+            alt=""
+          ></Box>
+          <Box>
             <Logo />
-            <p>
+            <Typography className={classes.text} sx={{ paddingTop: '65px' }}>
               Glad you’re here!
-              <br />
+            </Typography>
+            <Typography className={classes.text} sx={{ marginBottom: '50px' }}>
               Hope, you’ll enjoy!
-            </p>
-            <ButtonActive name="let’s start!" />
-          </section>
-          <img className="imgFooter" src="../img/account-footer.svg" alt="" />
-        </div>
+            </Typography>
+            <Button className={classes.startButton} variant="contained">
+              let’s start!
+            </Button>
+          </Box>
+          <Box
+            component="img"
+            sx={{ width: '100%' }}
+            src="../img/account-footer.svg"
+            alt=""
+          ></Box>
+        </Box>
       ) : (
-        <div>Error</div>
+        <Box>Error</Box>
       )}
     </>
   )
 }
 
 export default AccountCreated
+
+const useStyles = makeStyles()(() => {
+  return {
+    text: {
+      fontSize: 40,
+      lineHeight: '150%',
+      fontWeight: 500,
+      paddingLeft: '10%',
+      paddingRight: '20%',
+    },
+    startButton: {
+      width: '70%',
+      marginLeft: '15%',
+      textTransform: 'lowercase',
+      backgroundColor: '#FB8F67',
+      color: '#FFFFFF',
+      height: 56,
+      fontSize: 18,
+      fontWeight: 600,
+      borderRadius: 10,
+    },
+  }
+})
