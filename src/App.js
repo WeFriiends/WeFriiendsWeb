@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import CreateAccount from './components/user-auth/createAccount/CreateAccount'
 import RegistrationForm from './components/user-auth/registrationForm/RegistrationForm'
-import AccountCreated from './components/user-auth/accountCreated/accountCreated'
+import AccountCreated from './components/user-auth/accountCreated/AccountCreated'
 import SignIn from './components/user-auth/signIn/SignIn'
-import SignInMail from './components/user-auth/signInMail/signInMail'
-import TestPage from './components/user-auth/testPage/testPage'
+import SignInMail from './components/user-auth/signInMail/SignInMail'
+import TestPage from './components/user-auth/testPage/TestPage'
 
 function App() {
   return (
