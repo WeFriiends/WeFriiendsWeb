@@ -16,13 +16,7 @@ const SignIn = () => {
             fullWidth
             variant="contained"
             className={classes.fbAndGoogleButton}
-            startIcon={
-              <img
-                alt="fb"
-                src={'/img/fb.svg'}
-                // sx={{ width: 24, height: 24, pr: 10 }}
-              />
-            }
+            startIcon={<img alt="fb" src={'/img/fb.svg'} />}
           >
             Facebook
           </Button>
@@ -32,13 +26,7 @@ const SignIn = () => {
             fullWidth
             variant="contained"
             className={classes.fbAndGoogleButton}
-            startIcon={
-              <img
-                alt="google"
-                src={'/img/google.svg'}
-                // sx={{ width: 24, height: 24, mr: '16px' }}
-              />
-            }
+            startIcon={<img alt="google" src={'/img/google.svg'} />}
           >
             Google
           </Button>
