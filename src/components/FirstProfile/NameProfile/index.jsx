@@ -82,7 +82,7 @@ const StyledRoot = styled(Box)(({ theme }) => ({
   paddingBottom: theme.spacing(2),
 }))
 
-const StyledSection = styled(Box)(({ theme }) => ({
+const StyledSection = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   height: '90vh',
@@ -98,7 +98,7 @@ const StyledSection = styled(Box)(({ theme }) => ({
     color: '#f46b5d',
   },
   '& .name': {
-    margin: '0 auto',
+    margin: '10vh auto',
     height: '4rem',
     fontFamily: 'Inter',
     fontStyle: 'normal',
