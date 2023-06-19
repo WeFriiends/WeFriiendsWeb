@@ -16,6 +16,7 @@ import {
 } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { styled } from '@mui/material/styles'
+import { makeStyles } from 'tss-react/mui'
 
 const PWD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%]).{8,24}$/
 const EMAIL_REGEX = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/
@@ -28,6 +29,7 @@ const CssTextField = styled(TextField)({
   },
 })
 const RegistrationForm = () => {
+  const { classes } = useStyles()
   const emailRef = useRef()
 
   const [email, setEmail] = useState('')
@@ -62,11 +64,9 @@ const RegistrationForm = () => {
   }, [pwd, matchPwd])
 
   const handleSubmit = async (e) => {
-    console.log('test')
     e.preventDefault()
     let result = await accountRegistration(pwd, matchPwd, email)
     setSuccess(result)
-    console.log(pwd, email)
   }
 
   // Need a screen and backend to resend the email
@@ -83,83 +83,34 @@ const RegistrationForm = () => {
       {success ? (
         <Box mr={2.5} ml={2.5}>
           <Box mr={5} ml={5}>
-            <Typography
-              variant="h1"
-              fontSize={32}
-              fontWeight="600"
-              lineHeight="40px"
-              pt={10}
-              pb={5}
-              color="#F46B5D"
-              align="center"
-            >
+            <Typography className={classes.title}>
               Just one more step!
             </Typography>
-            <Box mb={5}>
-              <Typography
-                variant="body1"
-                align="center"
-                fontSize={18}
-                lineHeight="22px"
-              >
+            <Box mb={5} mt={3}>
+              <Typography variant="body1" className={classes.text}>
                 We’ve sent an e-mail to{' '}
               </Typography>
-              <Typography
-                variant="body1"
-                align="center"
-                fontSize={18}
-                color="#FB8F67"
-                lineHeight="22px"
-              >
+              <Typography variant="body1" className={classes.textColor}>
                 {email}
               </Typography>
             </Box>
             <Box>
-              <Typography
-                variant="body1"
-                align="center"
-                fontSize={18}
-                lineHeight="22px"
-              >
+              <Typography variant="body1" className={classes.text}>
                 to confirm your e-mail.
               </Typography>
-              <Typography
-                variant="body1"
-                align="center"
-                fontSize={18}
-                lineHeight="22px"
-              >
+              <Typography variant="body1" className={classes.text}>
                 Please, check your mailbox.
               </Typography>
             </Box>
-            <Typography
-              variant="h3"
-              fontSize={22}
-              fontWeight="600"
-              lineHeight="40px"
-              pt={7}
-              pb={1}
-              color="#F46B5D"
-              align="center"
-            >
+            <Typography variant="h3" className={classes.subTitle}>
               Didn’t get a e-mail?
             </Typography>
             <Box mb={7}>
-              <Typography
-                variant="body1"
-                align="center"
-                fontSize={18}
-                lineHeight="22px"
-              >
+              <Typography variant="body1" className={classes.text}>
                 Please, check your spam folder or wait a little bit more.
               </Typography>
             </Box>
-            <Typography
-              variant="body1"
-              align="center"
-              fontSize={18}
-              lineHeight="22px"
-            >
+            <Typography variant="body1" className={classes.text}>
               Still didn’t get it?
             </Typography>
           </Box>
@@ -168,35 +119,14 @@ const RegistrationForm = () => {
             variant="contained"
             disableElevation
             onClick={sendEmail}
-            sx={{
-              textTransform: 'lowercase',
-              backgroundColor: '#FB8F67',
-              color: '#FFFFFF',
-              height: '56px',
-              fontSize: '18px',
-              fontWeight: '600',
-              borderRadius: '10px',
-              marginTop: '45px',
-            }}
+            className={classes.submitButton}
           >
             send me e-mail again
           </Button>
         </Box>
       ) : (
         <Box mr={2.5} ml={2.5}>
-          <Typography
-            variant="h1"
-            fontSize={32}
-            fontWeight="600"
-            lineHeight="40px"
-            pt={10}
-            pb={2}
-            color="#F46B5D"
-            align="center"
-          >
-            Enter Email
-          </Typography>
-
+          <Typography className={classes.title}> Enter Email </Typography>
           <form>
             <FormControl fullWidth>
               <Typography align="left">Login</Typography>
@@ -224,14 +154,7 @@ const RegistrationForm = () => {
                 Password
               </Typography>
               <OutlinedInput
-                sx={{
-                  backgroundColor: '#FFF1EC',
-                  borderRadius: 2.5,
-                  outline: 'none',
-                  '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-                    border: 'none',
-                  },
-                }}
+                className={classes.borderAndBackgroundButton}
                 fullWidth
                 type={visible ? 'text' : 'password'}
                 id="password"
@@ -308,14 +231,7 @@ const RegistrationForm = () => {
                 One more time
               </Typography>
               <OutlinedInput
-                sx={{
-                  backgroundColor: '#FFF1EC',
-                  borderRadius: 2.5,
-                  outline: 'none',
-                  '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-                    border: 'none',
-                  },
-                }}
+                className={classes.borderAndBackgroundButton}
                 fullWidth
                 type={visible ? 'text' : 'password'}
                 id="confrimPassword"
@@ -349,16 +265,7 @@ const RegistrationForm = () => {
                 disabled={
                   !validEmail || !validPwd || !validMatch ? true : false
                 }
-                sx={{
-                  textTransform: 'lowercase',
-                  backgroundColor: '#FB8F67',
-                  color: '#FFFFFF',
-                  height: '56px',
-                  fontSize: '18px',
-                  fontWeight: '600',
-                  borderRadius: '10px',
-                  marginTop: '45px',
-                }}
+                className={classes.submitButton}
               >
                 submit
               </Button>
@@ -371,3 +278,60 @@ const RegistrationForm = () => {
 }
 
 export default RegistrationForm
+
+const useStyles = makeStyles()(() => {
+  return {
+    title: {
+      fontSize: 32,
+      fontWeight: 600,
+      lineHeight: '40px',
+      paddingTop: 80,
+      paddingBottom: 16,
+      color: '#F46B5D',
+      textAlign: 'center',
+    },
+    subTitle: {
+      fontSize: 22,
+      fontWeight: 600,
+      lineHeight: '40px',
+      paddingTop: 28,
+      paddingBottom: 8,
+      color: '#F46B5D',
+      textAlign: 'center',
+    },
+    text: {
+      fontSize: 18,
+      lineHeight: '22px',
+      textAlign: 'center',
+    },
+    textColor: {
+      fontSize: 18,
+      lineHeight: '22px',
+      textAlign: 'center',
+      color: '#FB8F67',
+    },
+    borderAndBackgroundButton: {
+      backgroundColor: '#FFF1EC',
+      borderRadius: 10,
+      outline: 'none',
+      '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+        border: 'none',
+      },
+    },
+    submitButton: {
+      textTransform: 'lowercase',
+      backgroundColor: '#FB8F67',
+      color: '#FFFFFF',
+      height: 56,
+      fontSize: 18,
+      fontWeight: 600,
+      borderRadius: 10,
+      marginTop: 45,
+      ':disabled': {
+        backgroundColor: '#FFFFFF',
+        border: '2px solid #FB8F67',
+        color: '#FB8F67',
+      },
+    },
+  }
+})
