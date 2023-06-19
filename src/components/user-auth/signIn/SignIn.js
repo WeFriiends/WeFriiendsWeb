@@ -70,6 +70,9 @@ const useStyles = makeStyles()(() => {
       height: 56,
       fontSize: 18,
       textDecoration: 'none',
+      '&: hover': {
+        backgroundColor: '#FFF1EC',
+      },
     },
     fbAndGoogleButton: {
       textTransform: 'capitalize',
@@ -77,6 +80,9 @@ const useStyles = makeStyles()(() => {
       color: '#444444',
       height: 56,
       fontSize: 18,
+      '&: hover': {
+        backgroundColor: '#FFF1EC',
+      },
     },
   }
 })

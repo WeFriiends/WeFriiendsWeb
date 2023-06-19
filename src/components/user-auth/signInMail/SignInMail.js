@@ -122,6 +122,7 @@ const SignInMail = () => {
         fullWidth
         variant="contained"
         disableElevation
+        disableRipple
         className={classes.loginBtn}
       >
         Sign In
@@ -160,6 +161,9 @@ const useStyles = makeStyles()(() => {
       fontSize: 24,
       fontWeight: 600,
       borderRadius: 10,
+      '&: hover': {
+        backgroundColor: '#FB8F67',
+      },
     },
   }
 })
