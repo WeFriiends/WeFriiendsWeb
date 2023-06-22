@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Logo from '../../logo/logo'
+import Logo from '../../logo/Logo'
 import { useAuthContext } from '../../../hooks/useAuthContext'
 import { Navigate } from 'react-router-dom'
 import LoginEmail from '../../../actions/loginEmail'
@@ -18,6 +18,7 @@ import IconButton from '@mui/material/IconButton'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { styled } from '@mui/material/styles'
+import { makeStyles } from 'tss-react/mui'
 
 const CssTextField = styled(TextField)({
   '& .MuiOutlinedInput-root': {
@@ -28,6 +29,7 @@ const CssTextField = styled(TextField)({
 })
 
 const SignInMail = () => {
+  const { classes } = useStyles()
   const [inputEmail, setInputEmail] = useState('')
   const [inputPassword, setInputPassword] = useState('')
   const [successSignIn, setSuccessSignIn] = useState()
@@ -66,14 +68,7 @@ const SignInMail = () => {
     <Box mr={2.5} ml={2.5} align="center">
       {successSignIn && <Navigate to="/test" />}
       <Logo />
-      <Typography
-        variant="h1"
-        fontSize={32}
-        fontWeight="600"
-        lineHeight="40px"
-        pt={10}
-        color="#F46B5D"
-      >
+      <Typography variant="h1" className={classes.title} pt={10}>
         Sign In
       </Typography>
       <form>
@@ -91,14 +86,7 @@ const SignInMail = () => {
             Password
           </Typography>
           <OutlinedInput
-            sx={{
-              backgroundColor: '#FFF1EC',
-              borderRadius: 2.5,
-              outline: 'none',
-              '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-                border: 'none',
-              },
-            }}
+            className={classes.loginInput}
             type={visible ? 'text' : 'password'}
             id="password"
             onChange={(e) => setInputPassword(e.target.value)}
@@ -124,9 +112,8 @@ const SignInMail = () => {
         display="block"
         marginTop={3}
         marginBottom={6}
-        underline="none"
-        color="#444444"
         href="#"
+        className={classes.link}
       >
         Forgot Password?
       </Link>
@@ -135,15 +122,8 @@ const SignInMail = () => {
         fullWidth
         variant="contained"
         disableElevation
-        sx={{
-          textTransform: 'lowercase',
-          backgroundColor: '#FB8F67',
-          color: '#FFFFFF',
-          height: '56px',
-          fontSize: '24px',
-          fontWeight: '600',
-          borderRadius: '10px',
-        }}
+        disableRipple
+        className={classes.loginBtn}
       >
         Sign In
       </Button>
@@ -152,3 +132,38 @@ const SignInMail = () => {
 }
 
 export default SignInMail
+
+const useStyles = makeStyles()(() => {
+  return {
+    title: {
+      fontSize: 32,
+      fontWeight: 600,
+      lineHeight: '40px',
+      color: '#F46B5D',
+    },
+    loginInput: {
+      backgroundColor: '#FFF1EC',
+      borderRadius: 2.5,
+      outline: 'none',
+      '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+        border: 'none',
+      },
+    },
+    link: {
+      textDecoration: 'none',
+      color: '#444444',
+    },
+    loginBtn: {
+      textTransform: 'lowercase',
+      backgroundColor: '#FB8F67',
+      color: '#FFFFFF',
+      height: 56,
+      fontSize: 24,
+      fontWeight: 600,
+      borderRadius: 10,
+      '&: hover': {
+        backgroundColor: '#FB8F67',
+      },
+    },
+  }
+})

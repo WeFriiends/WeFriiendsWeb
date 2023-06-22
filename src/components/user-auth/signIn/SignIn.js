@@ -1,18 +1,13 @@
-import Logo from '../../logo/logo'
+import Logo from '../../logo/Logo'
 import { Box, Typography, Grid, Button, Link } from '@mui/material'
+import { makeStyles } from 'tss-react/mui'
 
 const SignIn = () => {
+  const { classes } = useStyles()
   return (
     <Box mr={2.5} ml={2.5} align="center">
       <Logo />
-      <Typography
-        variant="h1"
-        fontSize={32}
-        fontWeight="600"
-        lineHeight="40px"
-        pt={11}
-        color="#F46B5D"
-      >
+      <Typography variant="h1" className={classes.title} pt={11}>
         Sign In?
       </Typography>
       <Grid container spacing={2.5} marginTop={5.875}>
@@ -20,20 +15,8 @@ const SignIn = () => {
           <Button
             fullWidth
             variant="contained"
-            sx={{
-              textTransform: 'capitalize',
-              backgroundColor: '#FFF1EC',
-              color: '#444444',
-              height: '56px',
-              fontSize: '18px',
-            }}
-            startIcon={
-              <img
-                alt="fb"
-                src={'/img/fb.svg'}
-                // sx={{ width: 24, height: 24, pr: 10 }}
-              />
-            }
+            className={classes.fbAndGoogleButton}
+            startIcon={<img alt="fb" src={'/img/fb.svg'} />}
           >
             Facebook
           </Button>
@@ -42,20 +25,8 @@ const SignIn = () => {
           <Button
             fullWidth
             variant="contained"
-            sx={{
-              textTransform: 'capitalize',
-              backgroundColor: '#FFF1EC',
-              color: '#444444',
-              height: '56px',
-              fontSize: '18px',
-            }}
-            startIcon={
-              <img
-                alt="google"
-                src={'/img/google.svg'}
-                // sx={{ width: 24, height: 24, mr: '16px' }}
-              />
-            }
+            className={classes.fbAndGoogleButton}
+            startIcon={<img alt="google" src={'/img/google.svg'} />}
           >
             Google
           </Button>
@@ -65,13 +36,7 @@ const SignIn = () => {
             <Button
               fullWidth
               variant="contained"
-              sx={{
-                textTransform: 'lowercase',
-                backgroundColor: '#FFF1EC',
-                color: '#444444',
-                height: '56px',
-                fontSize: '18px',
-              }}
+              className={classes.emailButton}
             >
               e-mail
             </Button>
@@ -89,3 +54,35 @@ const SignIn = () => {
 }
 
 export default SignIn
+
+const useStyles = makeStyles()(() => {
+  return {
+    title: {
+      fontSize: 32,
+      fontWeight: 600,
+      lineHeight: '40px',
+      color: '#F46B5D',
+    },
+    emailButton: {
+      textTransform: 'lowercase',
+      backgroundColor: '#FFF1EC',
+      color: '#444444',
+      height: 56,
+      fontSize: 18,
+      textDecoration: 'none',
+      '&: hover': {
+        backgroundColor: '#FFF1EC',
+      },
+    },
+    fbAndGoogleButton: {
+      textTransform: 'capitalize',
+      backgroundColor: '#FFF1EC',
+      color: '#444444',
+      height: 56,
+      fontSize: 18,
+      '&: hover': {
+        backgroundColor: '#FFF1EC',
+      },
+    },
+  }
+})
