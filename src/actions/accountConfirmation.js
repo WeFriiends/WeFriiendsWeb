@@ -3,7 +3,8 @@ import axios from 'axios'
 const accountConfirmation = async (confirmationCode) => {
   try {
     const result = await axios.get(
-      `http://localhost:3001/api/auth/confirm/${confirmationCode}`,
+      `http://clumsy-glasses-clam.cyclic.app/api/auth/confirm/${confirmationCode}`,
+      // `http://localhost:8080/api/auth/confirm/${confirmationCode}`,
       confirmationCode
     )
     console.log('result status: ', result.status)

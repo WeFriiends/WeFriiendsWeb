@@ -14,7 +14,10 @@ function App() {
         <Routes>
           <Route exact path="/" element={<CreateAccount />} />
           <Route path="/registration" element={<RegistrationForm />} />
-          <Route path="/account" element={<AccountCreated />} />
+          <Route
+            path="/registration/glad-screen/:confirmationCode"
+            element={<AccountCreated />}
+          />
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/mailSignIn" element={<SignInMail />} />
           <Route path="/test" element={<TestPage />} />
