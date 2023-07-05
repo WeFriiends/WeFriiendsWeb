@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Logo from '../../logo/Logo'
 import accountConfirmation from '../../../actions/accountConfirmation'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Typography, Link } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { useParams } from 'react-router-dom'
 
@@ -45,9 +45,11 @@ const AccountCreated = () => {
             <Typography className={classes.text} sx={{ marginBottom: '50px' }}>
               Hope, you’ll enjoy!
             </Typography>
-            <Button className={classes.startButton} variant="contained">
-              let’s start!
-            </Button>
+            <Link href="/mailSignIn" underline="none">
+              <Button className={classes.startButton} variant="contained">
+                let’s start!
+              </Button>
+            </Link>
           </Box>
           <Box
             component="img"
