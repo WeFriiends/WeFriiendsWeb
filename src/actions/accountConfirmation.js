@@ -7,7 +7,6 @@ const accountConfirmation = async (confirmationCode) => {
       // `http://localhost:8080/api/auth/confirm/${confirmationCode}`,
       confirmationCode
     )
-    console.log('result status: ', result.status)
     if (result.status === 200) return true
     else return false
   } catch (err) {

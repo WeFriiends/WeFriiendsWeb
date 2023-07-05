@@ -7,23 +7,17 @@ import { useParams } from 'react-router-dom'
 
 const AccountCreated = () => {
   const { classes } = useStyles()
-  const [success, setSuccess] = useState(false as boolean | undefined)
+  const [success, setSuccess] = useState(false as boolean)
   const { confirmationCode } = useParams()
 
   useEffect(() => {
-    console.log('success: ', success)
     async function fetchData() {
       // It is assumed that the link will look like this http://localhost:3000/registration/glad-screen/2de95be7-9450-4c3a-80c8-e32584c90315 where 2de95be7-9450-4c3a-80c8-e32584c90315 is confirmationCode
-      console.log('In function fetchData')
-      console.log('confirmationCode: ', confirmationCode)
       const result = await accountConfirmation(confirmationCode)
       setSuccess(result)
-      console.log('success after setSucces:', success)
     }
-    // if (success === undefined) {
     fetchData()
-    // }
-  }, [])
+  }, [confirmationCode])
 
   return (
     <>
@@ -63,7 +57,7 @@ const AccountCreated = () => {
           ></Box>
         </Box>
       ) : (
-        <Box>Error</Box>
+        <Box>Something went wrong</Box>
       )}
     </>
   )
