@@ -102,7 +102,7 @@ const RegistrationForm = () => {
                 Please, check your mailbox.
               </Typography>
             </Box>
-            <Typography variant="h3" className={classes.subTitle}>
+            {/* <Typography variant="h3" className={classes.subTitle}>
               Didn’t get a e-mail?
             </Typography>
             <Box mb={7}>
@@ -112,9 +112,9 @@ const RegistrationForm = () => {
             </Box>
             <Typography variant="body1" className={classes.text}>
               Still didn’t get it?
-            </Typography>
+            </Typography> */}
           </Box>
-          <Button
+          {/* <Button
             fullWidth
             variant="contained"
             disableElevation
@@ -122,7 +122,7 @@ const RegistrationForm = () => {
             className={classes.submitButton}
           >
             send me e-mail again
-          </Button>
+          </Button> */}
         </Box>
       ) : (
         <Box mr={2.5} ml={2.5}>
