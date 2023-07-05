@@ -7,7 +7,7 @@ import SignIn from './components/user-auth/signIn/signIn'
 import SignInMail from './components/user-auth/signInMail/signInMail'
 import TestPage from './components/user-auth/testPage/testPage'
 import FirstProfile from './components/FirstProfile/FirstProfile'
-import GenderForm from './components/FirstProfile/genderForm/genderForm'
+import GenderForm from './components/FirstProfile/genderForm'
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           <Route path="/mailSignIn" element={<SignInMail />} />
           <Route path="/test" element={<TestPage />} />
           <Route path="/firstProfile" element={<FirstProfile />} />
-          <Route path="/genderForm" element={<GenderForm />} />
+          <Route path="/firstProfile/gender" element={<GenderForm />} />
         </Routes>
       </div>
     </Router>

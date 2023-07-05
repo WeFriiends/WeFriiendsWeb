@@ -2,9 +2,9 @@ import { styled } from '@mui/material/styles'
 import { Grid, Typography, Box } from '@mui/material'
 import Logo from '../../logo/logo'
 import Buttonactive from '../../buttonActive/buttonActive'
-import MaleImage from '../media/Male.png'
-import FemaleImage from '../media/Female.png'
-import BackImage from '../media/back.png'
+import MaleImage from '../media/Male.svg'
+import FemaleImage from '../media/Female.svg'
+import BackImage from '../media/back.svg'
 
 const GenderForm = () => {
   return (
@@ -25,20 +25,20 @@ const GenderForm = () => {
         <img src={FemaleImage} alt="Female" />
         <img src={MaleImage} alt="Male" />
       </Grid>
-      <form>
-        <Grid className="buttonGender">
-          <button className="button1">Female</button>
-          <button className="button1">Male</button>
-        </Grid>
 
-        <Buttonactive
-          className="button"
-          variant="contained"
-          color="primary"
-          type="submit"
-          name="Next"
-        ></Buttonactive>
-      </form>
+      <Grid className="buttonGender">
+        <button className="button1">Female</button>
+        <button className="button1">Male</button>
+      </Grid>
+
+      <Buttonactive
+        className="button"
+        variant="contained"
+        color="primary"
+        type="submit"
+        name="Next"
+      ></Buttonactive>
+
       <Typography variant="h2" className="dot">
         .....
       </Typography>
@@ -54,10 +54,10 @@ const StyledRoot = styled(Box)(() => ({
     height: '90vh',
   },
   '& .imgBack': {
-    marginTop: '5vh',
-    marginLeft: '50%',
+    margin: '5vh auto',
     height: '30px',
     width: '30px',
+    display: 'block',
   },
   '& .title': {
     margin: '5vh auto',
@@ -71,26 +71,27 @@ const StyledRoot = styled(Box)(() => ({
     color: '#f46b5d',
   },
   '& .name': {
-    marginTop: '5vh',
-    marginLeft: '93vh',
+    margin: '5vh auto',
+    height: '30px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: 500,
     fontSize: '18px',
     color: '#444444',
+    textAlign: 'center',
   },
   '& .imgGender': {
     display: 'grid',
-    gridTemplateColumns: 'repeat(2, 150px)',
+    gridTemplateColumns: 'repeat(2, 120px)',
     height: '100px',
     marginTop: '5vh',
-    marginLeft: '88vh',
+    justifyContent: 'center',
   },
   '& .buttonGender': {
     display: 'grid',
-    gridTemplateColumns: 'repeat(2, 150px)',
-    margin: 50,
-    marginLeft: '85vh',
+    gridTemplateColumns: 'repeat(2, 120px)',
+    margin: '5vh',
+    justifyContent: 'center',
   },
   '& .button1': {
     border: 'none',
@@ -111,7 +112,7 @@ const StyledRoot = styled(Box)(() => ({
     },
   },
   '& .dot': {
-    marginLeft: '97vh',
+    textAlign: 'center',
     color: '#f46b5d',
     fontFamily: 'Inter',
     fontWeight: 500,

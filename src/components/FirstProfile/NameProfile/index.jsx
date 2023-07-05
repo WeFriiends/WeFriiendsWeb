@@ -1,11 +1,18 @@
 import { styled } from '@mui/material/styles'
-import { Grid, Typography, Box } from '@mui/material'
+import { Grid, Typography, Box, TextField, FormHelperText } from '@mui/material'
 import Buttonactive from '../../buttonActive/buttonActive'
 import Logo from '../../logo/logo'
-import Input from '../Input'
 import { useState } from 'react'
 
 const NameProfile = () => {
+  const CssTextField = styled(TextField)({
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        border: 'none',
+      },
+    },
+  })
+
   const [name, setName] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -43,17 +50,31 @@ const NameProfile = () => {
         <form onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <Input
+              <CssTextField
+                sx={{
+                  backgroundColor: '#FFF1EC',
+                  borderRadius: 2.5,
+                  width: '90%',
+                  margin: 'auto 10vh',
+                  height: '4rem',
+                }}
                 type="text"
                 name="name"
                 placeholder=""
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-              />
+              ></CssTextField>
               {errorMessage && (
-                <Typography variant="body2" className="errorMessage">
+                <FormHelperText
+                  sx={{
+                    color: '#F1562A',
+                    marginLeft: 0,
+                    marginTop: '10 px',
+                    textAlign: 'center',
+                  }}
+                >
                   {errorMessage}
-                </Typography>
+                </FormHelperText>
               )}
             </Grid>
             <Grid item xs={12}>
@@ -98,7 +119,7 @@ const StyledSection = styled(Box)(() => ({
     color: '#f46b5d',
   },
   '& .name': {
-    margin: '10vh auto',
+    margin: '5vh auto',
     height: '4rem',
     fontFamily: 'Inter',
     fontStyle: 'normal',
@@ -114,15 +135,10 @@ const StyledSection = styled(Box)(() => ({
     },
   },
   '& .dot': {
-    margin: '0 auto',
     color: '#f46b5d',
     fontFamily: 'Inter',
     fontWeight: 500,
     fontSize: '100px',
-  },
-  '& .errorMessage': {
-    color: 'rgb(172, 30, 30)',
-    fontSize: '15px',
     textAlign: 'center',
   },
 }))
