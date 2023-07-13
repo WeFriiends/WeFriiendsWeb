@@ -22,7 +22,7 @@ const CreateAccount = () => {
       </Box>
       <Box>
         <Grid container spacing={2.5}>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <Button
               fullWidth
               variant="contained"
@@ -41,7 +41,7 @@ const CreateAccount = () => {
             >
               Google
             </Button>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12}>
             <Link href="/registration">
               <Button
