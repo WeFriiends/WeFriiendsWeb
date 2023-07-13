@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import Logo from '../../logo/Logo'
 import accountConfirmation from '../../../actions/accountConfirmation'
-import { Box, Button, Typography, Link } from '@mui/material'
+import { Box, Button, Typography, Link, CircularProgress } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { useParams } from 'react-router-dom'
 
 const AccountCreated = () => {
   const { classes } = useStyles()
   const [success, setSuccess] = useState(false as boolean)
+  const [isLoading, setIsLoading] = useState(true)
   const { confirmationCode } = useParams()
 
   useEffect(() => {
@@ -15,13 +16,20 @@ const AccountCreated = () => {
       // It is assumed that the link will look like this http://localhost:3000/registration/glad-screen/2de95be7-9450-4c3a-80c8-e32584c90315 where 2de95be7-9450-4c3a-80c8-e32584c90315 is confirmationCode
       const result = await accountConfirmation(confirmationCode)
       setSuccess(result)
+      setIsLoading(false)
     }
     fetchData()
   }, [confirmationCode])
 
   return (
     <>
-      {success ? (
+      {isLoading ? (
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <CircularProgress
+            style={{ color: '#FB8F67', position: 'absolute', top: '50%' }}
+          />
+        </Box>
+      ) : success ? (
         <Box
           sx={{
             display: 'grid',
@@ -59,7 +67,7 @@ const AccountCreated = () => {
           ></Box>
         </Box>
       ) : (
-        <Box>Something went wrong</Box>
+        <Box>Account was not confirmed</Box>
       )}
     </>
   )
