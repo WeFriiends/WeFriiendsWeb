@@ -1,17 +1,18 @@
 import { styled } from '@mui/material/styles'
-import { Grid, Typography, Box } from '@mui/material'
+import { Grid, Typography, Box, Button } from '@mui/material'
 import Logo from '../../logo/logo'
-import Buttonactive from '../../buttonActive/buttonActive'
 import MaleImage from '../media/Male.svg'
 import FemaleImage from '../media/Female.svg'
 import BackImage from '../media/back.svg'
+import { Link } from 'react-router-dom'
 
 const GenderForm = () => {
   return (
     <StyledRoot>
-      {/* <img className="imgHeader" src="../img/account-header.svg" alt="" /> */}
       <Logo />
-      <img src={BackImage} alt="back" className="imgBack" />
+      <Link to="/firstProfile/birth" style={{ textDecoration: 'none' }}>
+        <img src={BackImage} alt="back" className="imgBack" />
+      </Link>
 
       <Typography variant="h4" className="title">
         More about you
@@ -21,26 +22,25 @@ const GenderForm = () => {
         What´s your gender?
       </Typography>
 
-      <Grid className="imgGender">
+      <Grid className="buttonGender">
         <img src={FemaleImage} alt="Female" />
         <img src={MaleImage} alt="Male" />
+        <Button className="button1">Female</Button>
+        <Button className="button1">Male</Button>
       </Grid>
 
-      <Grid className="buttonGender">
-        <button className="button1">Female</button>
-        <button className="button1">Male</button>
-      </Grid>
-
-      <Buttonactive
+      <Button
         className="button"
         variant="contained"
         color="primary"
         type="submit"
         name="Next"
-      ></Buttonactive>
+      >
+        Next
+      </Button>
 
       <Typography variant="h2" className="dot">
-        .....
+        ..<span className="span">.</span>..
       </Typography>
 
       <img className="imgFooter" src="../img/account-footer.svg" alt="" />
@@ -80,17 +80,11 @@ const StyledRoot = styled(Box)(() => ({
     color: '#444444',
     textAlign: 'center',
   },
-  '& .imgGender': {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 120px)',
-    height: '100px',
-    marginTop: '5vh',
-    justifyContent: 'center',
-  },
   '& .buttonGender': {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 120px)',
-    margin: '5vh',
+    columnGap: '5px',
+    margin: '5vh auto',
     justifyContent: 'center',
   },
   '& .button1': {
@@ -102,13 +96,19 @@ const StyledRoot = styled(Box)(() => ({
     color: '#444444',
   },
   '& .button': {
-    color: '#f46b5d',
-    background: 'white',
+    width: '90%',
+    margin: 'auto 10vh',
+    height: '4rem',
+    background: '#ffffff',
+    borderRadius: '10px',
     border: '2px solid #f46b5d',
+    color: '#fb8f67',
+    fontSize: '18px',
+    fontWeight: '600',
     '&:hover': {
-      color: '#f46b5d',
-      background: 'white',
-      border: '2px solid #f46b5d',
+      color: '#ffffff',
+      background: '#fb8f67',
+      border: 'none',
     },
   },
   '& .dot': {
@@ -117,6 +117,9 @@ const StyledRoot = styled(Box)(() => ({
     fontFamily: 'Inter',
     fontWeight: 500,
     fontSize: '100px',
+  },
+  '& .span': {
+    color: '#1D878C',
   },
 }))
 

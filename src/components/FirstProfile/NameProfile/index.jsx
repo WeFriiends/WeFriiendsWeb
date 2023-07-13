@@ -1,8 +1,14 @@
 import { styled } from '@mui/material/styles'
-import { Grid, Typography, Box, TextField, FormHelperText } from '@mui/material'
-import Buttonactive from '../../buttonActive/buttonActive'
+import {
+  Grid,
+  Typography,
+  Box,
+  TextField,
+  FormHelperText,
+  Button,
+} from '@mui/material'
 import Logo from '../../logo/logo'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 const NameProfile = () => {
   const CssTextField = styled(TextField)({
@@ -11,30 +17,73 @@ const NameProfile = () => {
         border: 'none',
       },
     },
+    '& input': {
+      textAlign: 'center',
+    },
   })
 
-  const [name, setName] = useState('')
+  const [fullName, setFullName] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+  const inputRef = useRef(null)
+  const [isInvalid, setIsInvalid] = useState(false)
+
+  const handleChange = (event) => {
+    const enteredFullName = event.target.value
+    const regex = /^[a-zA-Z\s]+$/
+
+    if (regex.test(enteredFullName) || enteredFullName === '') {
+      setIsInvalid(false)
+      setFullName(enteredFullName.trim())
+    } else {
+      setIsInvalid(true)
+    }
+  }
+
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [fullName])
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    if (name.trim() === '') {
-      setErrorMessage('Please enter your name')
+    if (fullName.trim === '') {
+      setErrorMessage('Please enter your full name')
       return
     }
+    console.log('Full Name:', fullName)
 
-    //  API request here
-    console.log('Name:', name)
-
-    const resetName = () => {
-      setName('')
-    }
-
-    resetName()
-
+    sendDataToBackend()
+    setFullName('')
     setErrorMessage('')
+    window.location.href = '/firstProfile/birth'
   }
+
+  const sendDataToBackend = () => {
+    // Replace this with actual API
+    const url = 'your-backend-endpoint'
+
+    const data = {
+      name: fullName,
+    }
+    // actual API
+    fetch('backend-endpoint', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: fullName,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Data sent to backend:', data)
+      })
+      .catch((error) => {
+        console.error('Error sending data to backend:', error)
+      })
+  }
+
   return (
     <StyledRoot>
       {/* <img className="imgHeader" src="../img/account-header.svg" alt="" /> */}
@@ -51,6 +100,7 @@ const NameProfile = () => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <CssTextField
+                inputRef={inputRef}
                 sx={{
                   backgroundColor: '#FFF1EC',
                   borderRadius: 2.5,
@@ -59,11 +109,24 @@ const NameProfile = () => {
                   height: '4rem',
                 }}
                 type="text"
-                name="name"
-                placeholder=""
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></CssTextField>
+                name="fullName"
+                placeholder="Full Name"
+                value={fullName}
+                onChange={handleChange}
+              />
+              {isInvalid && (
+                <FormHelperText
+                  sx={{
+                    color: '#F1562A',
+                    marginLeft: 0,
+                    marginTop: '10px',
+                    textAlign: 'center',
+                  }}
+                >
+                  Invalid characters detected. Please enter only letters and
+                  spaces.
+                </FormHelperText>
+              )}
               {errorMessage && (
                 <FormHelperText
                   sx={{
@@ -78,17 +141,20 @@ const NameProfile = () => {
               )}
             </Grid>
             <Grid item xs={12}>
-              <Buttonactive
+              <Button
                 name="Next"
                 variant="contained"
                 color="primary"
                 className="button"
-              ></Buttonactive>
+                type="submit"
+              >
+                Next
+              </Button>
             </Grid>
           </Grid>
         </form>
         <Typography variant="h2" className="dot">
-          .....
+          <span className="span">.</span>....
         </Typography>
       </StyledSection>
       <img className="imgFooter" src="../img/account-footer.svg" alt="" />
@@ -128,18 +194,31 @@ const StyledSection = styled(Box)(() => ({
     color: '#444444',
   },
   '& .button': {
+    width: '90%',
+    margin: 'auto 10vh',
+    height: '4rem',
+    background: '#ffffff',
+    borderRadius: '10px',
+    border: '2px solid #f46b5d',
+    color: '#fb8f67',
+    fontSize: '18px',
+    fontWeight: '600',
     '&:hover': {
-      color: '#f46b5d',
-      background: 'white',
-      border: '2px solid #f46b5d',
+      color: '#ffffff',
+      background: '#fb8f67',
+      border: 'none',
     },
   },
   '& .dot': {
+    margin: 'auto 0',
     color: '#f46b5d',
     fontFamily: 'Inter',
     fontWeight: 500,
     fontSize: '100px',
     textAlign: 'center',
+  },
+  '& .span': {
+    color: '#1D878C',
   },
 }))
 
