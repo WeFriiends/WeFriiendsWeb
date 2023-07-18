@@ -70,9 +70,9 @@ const RegistrationForm = () => {
   }
 
   // Need a screen and backend to resend the email
-  const sendEmail = () => {
-    console.log('Sending Email')
-  }
+  // const sendEmail = () => {
+  //   console.log('Sending Email')
+  // }
 
   const useTogglePasswordType = () => {
     setVisibility(!visible)
@@ -99,7 +99,7 @@ const RegistrationForm = () => {
                 to confirm your e-mail.
               </Typography>
               <Typography variant="body1" className={classes.text}>
-                Please, check your mailbox.
+                Please, check your inbox.
               </Typography>
             </Box>
             {/* <Typography variant="h3" className={classes.subTitle}>
