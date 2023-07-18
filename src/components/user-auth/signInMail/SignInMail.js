@@ -65,7 +65,7 @@ const SignInMail = () => {
     setVisibility(!visible)
   }
   return (
-    <Box mr={2.5} ml={2.5} align="center">
+    <Box className={classes.mainBox}>
       {successSignIn && <Navigate to="/test" />}
       <Logo />
       <Typography variant="h1" className={classes.title} pt={10}>
@@ -108,7 +108,7 @@ const SignInMail = () => {
           )}
         </FormControl>
       </form>
-      <Link
+      {/* <Link
         display="block"
         marginTop={3}
         marginBottom={6}
@@ -116,7 +116,7 @@ const SignInMail = () => {
         className={classes.link}
       >
         Forgot Password?
-      </Link>
+      </Link> */}
       <Button
         onClick={checkAndSignIn}
         fullWidth
@@ -133,8 +133,16 @@ const SignInMail = () => {
 
 export default SignInMail
 
-const useStyles = makeStyles()(() => {
+const useStyles = makeStyles()((theme) => {
   return {
+    mainBox: {
+      marginLeft: 20,
+      marginRight: 20,
+      [theme.breakpoints.up('sm')]: {
+        width: 400,
+        margin: '0 auto',
+      },
+    },
     title: {
       fontSize: 32,
       fontWeight: 600,
@@ -164,6 +172,7 @@ const useStyles = makeStyles()(() => {
       '&: hover': {
         backgroundColor: '#FB8F67',
       },
+      marginTop: 45,
     },
   }
 })
