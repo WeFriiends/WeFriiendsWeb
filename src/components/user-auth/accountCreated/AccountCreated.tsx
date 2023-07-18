@@ -36,7 +36,7 @@ const AccountCreated = () => {
 
 export default AccountCreated
 
-const useStyles = makeStyles()(() => {
+const useStyles = makeStyles()((theme) => {
   return {
     circularProgress: {
       color: '#FB8F67',
