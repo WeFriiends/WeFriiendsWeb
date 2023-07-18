@@ -10,39 +10,28 @@ const SignIn = () => {
       <Typography variant="h1" className={classes.title} pt={11}>
         Sign In?
       </Typography>
-      <Grid container spacing={2.5} marginTop={5.875}>
-        <Grid item xs={12}>
-          <Button
-            fullWidth
-            variant="contained"
-            className={classes.fbAndGoogleButton}
-            startIcon={<img alt="fb" src={'/img/fb.svg'} />}
-          >
-            Facebook
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          <Button
-            fullWidth
-            variant="contained"
-            className={classes.fbAndGoogleButton}
-            startIcon={<img alt="google" src={'/img/google.svg'} />}
-          >
-            Google
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          <Link href="/mailSignIn" underline="none">
-            <Button
-              fullWidth
-              variant="contained"
-              className={classes.emailButton}
-            >
-              e-mail
-            </Button>
-          </Link>
-        </Grid>
-      </Grid>
+      {/* <Button
+        fullWidth
+        variant="contained"
+        className={classes.fbAndGoogleButton}
+        startIcon={<img alt="fb" src={'/img/fb.svg'} />}
+      >
+        Facebook
+      </Button>
+      <Button
+        fullWidth
+        variant="contained"
+        className={classes.fbAndGoogleButton}
+        startIcon={<img alt="google" src={'/img/google.svg'} />}
+      >
+        Google
+      </Button> */}
+      <Link href="/mailSignIn" underline="none">
+        <Button fullWidth variant="contained" className={classes.emailButton}>
+          e-mail
+        </Button>
+      </Link>
+
       <Typography variant="body1" fontSize={22} color="#3B4054" pt={15}>
         Don’t have an account?
       </Typography>
