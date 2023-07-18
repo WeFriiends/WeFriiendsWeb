@@ -81,7 +81,7 @@ const RegistrationForm = () => {
     <div className="registrationEmail">
       <Logo />
       {success ? (
-        <Box mr={2.5} ml={2.5}>
+        <Box className={classes.mainBox}>
           <Box mr={5} ml={5}>
             <Typography className={classes.title}>
               Just one more step!
@@ -125,7 +125,7 @@ const RegistrationForm = () => {
           </Button> */}
         </Box>
       ) : (
-        <Box mr={2.5} ml={2.5}>
+        <Box className={classes.mainBox}>
           <Typography className={classes.title}> Enter Email </Typography>
           <form>
             <FormControl fullWidth>
@@ -279,8 +279,16 @@ const RegistrationForm = () => {
 
 export default RegistrationForm
 
-const useStyles = makeStyles()(() => {
+const useStyles = makeStyles()((theme) => {
   return {
+    mainBox: {
+      marginLeft: 20,
+      marginRight: 20,
+      [theme.breakpoints.up('sm')]: {
+        width: 400,
+        margin: '0 auto',
+      },
+    },
     title: {
       fontSize: 32,
       fontWeight: 600,
@@ -331,6 +339,9 @@ const useStyles = makeStyles()(() => {
         backgroundColor: '#FFFFFF',
         border: '2px solid #FB8F67',
         color: '#FB8F67',
+      },
+      '&: hover': {
+        backgroundColor: '#FB8F67',
       },
     },
   }
