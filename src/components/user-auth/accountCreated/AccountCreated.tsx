@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom'
 
 const AccountCreated = () => {
   const { classes } = useStyles()
-  const [success, setSuccess] = useState(false as boolean)
+  const [success, setSuccess] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const { confirmationCode } = useParams()
 
@@ -25,9 +25,7 @@ const AccountCreated = () => {
     <>
       {isLoading ? (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <CircularProgress
-            style={{ color: '#FB8F67', position: 'absolute', top: '50%' }}
-          />
+          <CircularProgress className={classes.circularProgress} />
         </Box>
       ) : success ? (
         <Box
@@ -77,6 +75,11 @@ export default AccountCreated
 
 const useStyles = makeStyles()(() => {
   return {
+    circularProgress: {
+      color: '#FB8F67',
+      position: 'absolute',
+      top: '50%',
+    },
     text: {
       fontSize: 40,
       lineHeight: '150%',
