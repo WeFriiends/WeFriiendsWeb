@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { Grid, Typography, Box, Button } from '@mui/material'
 import Logo from '../../logo/logo'
@@ -7,6 +8,16 @@ import BackImage from '../media/back.svg'
 import { Link } from 'react-router-dom'
 
 const GenderForm = () => {
+  const [selectedGender, setSelectedGender] = useState('')
+
+  const handleGenderSelection = (gender) => {
+    setSelectedGender(gender)
+  }
+
+  const handleNextButtonClick = () => {
+    console.log('Selected gender:', selectedGender)
+  }
+
   return (
     <StyledRoot>
       <Logo />
@@ -23,21 +34,52 @@ const GenderForm = () => {
       </Typography>
 
       <Grid className="buttonGender">
-        <img src={FemaleImage} alt="Female" />
-        <img src={MaleImage} alt="Male" />
-        <Button className="button1">Female</Button>
-        <Button className="button1">Male</Button>
+        <img
+          src={FemaleImage}
+          alt="Female"
+          onClick={() => handleGenderSelection('Female')}
+          className={selectedGender === 'Female' ? 'invert-color' : ''}
+        />
+        <img
+          src={MaleImage}
+          alt="Male"
+          onClick={() => handleGenderSelection('Male')}
+          className={selectedGender === 'Male' ? 'invert-color' : ''}
+        />
+        <Button
+          className="button1"
+          onClick={() => handleGenderSelection('Female')}
+          style={{ color: selectedGender === 'Female' ? '#fb8f67' : '#444444' }}
+        >
+          Female
+        </Button>
+        <Button
+          className="button1"
+          onClick={() => handleGenderSelection('Male')}
+          style={{ color: selectedGender === 'Male' ? '#fb8f67' : '#444444' }}
+        >
+          Male
+        </Button>
       </Grid>
-
-      <Button
-        className="button"
-        variant="contained"
-        color="primary"
-        type="submit"
-        name="Next"
-      >
-        Next
-      </Button>
+      <Link to="/firstProfile" style={{ textDecoration: 'none' }}>
+        <Button
+          className="button"
+          variant="contained"
+          color="primary"
+          type="submit"
+          name="Next"
+          disabled={!selectedGender}
+          onClick={handleNextButtonClick}
+          sx={{
+            '&:disabled': {
+              backgroundColor: '#ffffff',
+              color: '#fb8f67',
+            },
+          }}
+        >
+          Next
+        </Button>
+      </Link>
 
       <Typography variant="h2" className="dot">
         ..<span className="span">.</span>..
@@ -83,17 +125,21 @@ const StyledRoot = styled(Box)(() => ({
   '& .buttonGender': {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 120px)',
-    columnGap: '5px',
+    columnGap: '10px',
     margin: '5vh auto',
     justifyContent: 'center',
+    alignItems: 'center',
+    justifyItems: 'center',
   },
   '& .button1': {
     border: 'none',
+    pading: '0 10px',
     backgroundColor: 'transparent',
     fontFamily: 'Inter',
     fontWeight: 500,
     fontSize: '18px',
     color: '#444444',
+    textAlign: 'center',
   },
   '& .button': {
     width: '90%',
@@ -120,6 +166,9 @@ const StyledRoot = styled(Box)(() => ({
   },
   '& .span': {
     color: '#1D878C',
+  },
+  '& .invert-color': {
+    filter: 'invert(10%)',
   },
 }))
 
