@@ -6,7 +6,7 @@ import AccountCreated from './components/user-auth/accountCreated/AccountCreated
 import SignIn from './components/user-auth/signIn/SignIn'
 import SignInMail from './components/user-auth/signInMail/SignInMail'
 import TestPage from './components/user-auth/testPage/TestPage'
-import Menu from 'components/menu/Menu'
+import MessagesAndFriends from 'pages/messagesAndFriends'
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/mailSignIn" element={<SignInMail />} />
           <Route path="/test" element={<TestPage />} />
-          <Route path="/messages" element={<Menu />} />
+          <Route path="/messages" element={<MessagesAndFriends />} />
         </Routes>
       </div>
     </Router>
