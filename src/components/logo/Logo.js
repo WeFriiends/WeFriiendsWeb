@@ -4,7 +4,7 @@ import { makeStyles } from 'tss-react/mui'
 const Logo = () => {
   const { classes } = useStyles()
   return (
-    <Box>
+    <Box align="center">
       <Box
         component="img"
         src="/img/logo.svg"
@@ -21,7 +21,6 @@ const useStyles = makeStyles()(() => {
   return {
     logo: {
       marginTop: '5vh',
-      textAlign: 'center',
     },
   }
 })
