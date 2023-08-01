@@ -1,5 +1,5 @@
 import Header from 'components/header/header'
-import TabsMessagesFriends from 'components/tabsMessegeFriends/tabsMessegesFriends'
+import TabsMessagesFriends from 'components/tabsMessegeFriends/TabsMessegesFriends'
 
 const MessagesAndFriends = () => {
   return (

@@ -29,15 +29,18 @@ const TabsMessagesFriends = () => {
   }
   return (
     <Box sx={{ width: '50%' }}>
-      <Tabs value={value} onChange={handleChange}>
+      <Tabs value={value} onChange={handleChange} variant="fullWidth">
         <Tab label="Messages" />
         <Tab label="Friends" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Item One
+        Item One Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
+        ad.
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        Item Two Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Minima, quaerat recusandae? Iure nesciunt quaerat dolorem. Odit nihil
+        recusandae corporis voluptatum.
       </TabPanel>
     </Box>
   )
