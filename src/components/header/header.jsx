@@ -10,6 +10,7 @@ const Header = () => {
         display: 'flex',
         alignItems: 'end',
         justifyContent: 'space-around',
+        marginBottom: '140px',
       }}
     >
       <Logo />
