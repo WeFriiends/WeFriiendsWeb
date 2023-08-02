@@ -5,74 +5,75 @@ import { makeStyles } from 'tss-react/mui'
 const SignIn = () => {
   const { classes } = useStyles()
   return (
-    <Box mr={2.5} ml={2.5} align="center">
+    <Box className={classes.mainBox}>
       <Logo />
-      <Typography variant="h1" className={classes.title} pt={11}>
+      <Typography variant="h1" className={classes.title}>
         Sign In?
       </Typography>
-      <Grid container spacing={2.5} marginTop={5.875}>
-        <Grid item xs={12}>
-          <Button
-            fullWidth
-            variant="contained"
-            className={classes.fbAndGoogleButton}
-            startIcon={<img alt="fb" src={'/img/fb.svg'} />}
-          >
-            Facebook
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          <Button
-            fullWidth
-            variant="contained"
-            className={classes.fbAndGoogleButton}
-            startIcon={<img alt="google" src={'/img/google.svg'} />}
-          >
-            Google
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          <Link href="/mailSignIn" underline="none">
-            <Button
-              fullWidth
-              variant="contained"
-              className={classes.emailButton}
-            >
-              e-mail
-            </Button>
-          </Link>
-        </Grid>
-      </Grid>
-      <Typography variant="body1" fontSize={22} color="#3B4054" pt={15}>
-        Don’t have an account?
-      </Typography>
-      <Link href="/" underline="none" fontSize={22} color="#1D878C">
-        Sign Up
+      {/* <Button
+        fullWidth
+        variant="contained"
+        className={classes.fbAndGoogleButton}
+        startIcon={<img alt="fb" src={'/img/fb.svg'} />}
+      >
+        Facebook
+      </Button>
+      <Button
+        fullWidth
+        variant="contained"
+        className={classes.fbAndGoogleButton}
+        startIcon={<img alt="google" src={'/img/google.svg'} />}
+      >
+        Google
+      </Button> */}
+      <Link href="/mailSignIn" className={classes.linkBtn}>
+        e-mail
       </Link>
+      <div className={classes.textCenter}>
+        <Typography variant="body1" fontSize={22} color="#3B4054">
+          Don’t have an account?
+        </Typography>
+        <Link href="/" underline="none" fontSize={22} color="#1D878C">
+          Sign Up
+        </Link>
+      </div>
     </Box>
   )
 }
 
 export default SignIn
 
-const useStyles = makeStyles()(() => {
+const useStyles = makeStyles()((theme) => {
   return {
+    mainBox: {
+      display: 'grid',
+      gridTemplateRows: '1fr 2fr 1fr 2fr',
+      alignItems: 'center',
+      marginLeft: 20,
+      marginRight: 20,
+      [theme.breakpoints.up('sm')]: {
+        width: 400,
+        margin: '0 auto',
+      },
+    },
     title: {
       fontSize: 32,
       fontWeight: 600,
       lineHeight: '40px',
       color: '#F46B5D',
+      textAlign: 'center',
     },
-    emailButton: {
+    linkBtn: {
+      display: 'block',
       textTransform: 'lowercase',
       backgroundColor: '#FFF1EC',
       color: '#444444',
-      height: 56,
+      paddingTop: 18,
+      paddingBottom: 18,
+      borderRadius: 10,
       fontSize: 18,
       textDecoration: 'none',
-      '&: hover': {
-        backgroundColor: '#FFF1EC',
-      },
+      textAlign: 'center',
     },
     fbAndGoogleButton: {
       textTransform: 'capitalize',
@@ -83,6 +84,9 @@ const useStyles = makeStyles()(() => {
       '&: hover': {
         backgroundColor: '#FFF1EC',
       },
+    },
+    textCenter: {
+      textAlign: 'center',
     },
   }
 })

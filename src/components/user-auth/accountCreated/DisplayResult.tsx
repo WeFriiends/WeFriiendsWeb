@@ -27,7 +27,7 @@ const DisplayResult: FC<DisplayResultProps> = ({ state }) => {
             src="../img/account-header.svg"
             alt=""
           ></Box>
-          <Box>
+          <Box className={classes.mainBox}>
             <Logo />
             <Typography className={classes.text} sx={{ paddingTop: '65px' }}>
               Glad you’re here!
@@ -57,14 +57,25 @@ const DisplayResult: FC<DisplayResultProps> = ({ state }) => {
 
 export default DisplayResult
 
-const useStyles = makeStyles()(() => {
+const useStyles = makeStyles()((theme) => {
   return {
+    mainBox: {
+      [theme.breakpoints.up('sm')]: {
+        width: 500,
+        margin: '0 auto',
+      },
+    },
     text: {
       fontSize: 40,
       lineHeight: '150%',
       fontWeight: 500,
       paddingLeft: '10%',
       paddingRight: '20%',
+      [theme.breakpoints.up('sm')]: {
+        textAlign: 'center',
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
     },
     startButton: {
       width: '70%',
