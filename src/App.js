@@ -9,6 +9,7 @@ import TestPage from './components/user-auth/testPage/testPage'
 import FirstProfile from './components/FirstProfile/FirstProfile'
 import GenderForm from './components/FirstProfile/genderForm'
 import BirthProfile from './components/FirstProfile/birthProfile'
+import StatusForm from './components/FirstProfile/statusForm'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/firstProfile" element={<FirstProfile />} />
           <Route path="/firstProfile/gender" element={<GenderForm />} />
           <Route path="/firstProfile/birth" element={<BirthProfile />} />
+          <Route path="/firstProfile/status" element={<StatusForm />} />
         </Routes>
       </div>
     </Router>

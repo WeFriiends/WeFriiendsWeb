@@ -61,7 +61,7 @@ const GenderForm = () => {
           Male
         </Button>
       </Grid>
-      <Link to="/firstProfile" style={{ textDecoration: 'none' }}>
+      <Link to="/firstProfile/status" style={{ textDecoration: 'none' }}>
         <Button
           className="button"
           variant="contained"
