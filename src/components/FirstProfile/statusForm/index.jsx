@@ -1,26 +1,64 @@
 import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
-import { Grid, Typography, Box, TextField, Button } from '@mui/material'
+import {
+  Grid,
+  Typography,
+  Box,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+  TextField,
+} from '@mui/material'
 import Logo from '../../logo/logo'
 import BackImage from '../media/back.svg'
+import MapImage from '../media/Maps_512.svg'
 
-export default function StatusForm() {
+export default function LocationAccessForm() {
   const [fullName, setFullName] = useState('')
-  const [selectedStatus, setSelectedStatus] = useState('')
+  const [openDialog, setOpenDialog] = useState(false)
+  const [selectedStatuses, setSelectedStatuses] = useState([])
 
-  const handleStatusSelection = (status) => {
-    setSelectedStatus(status)
+  const toggleStatusSelection = (status) => {
+    if (selectedStatuses.includes(status)) {
+      setSelectedStatuses(
+        selectedStatuses.filter((selected) => selected !== status)
+      )
+    } else {
+      setSelectedStatuses([...selectedStatuses, status])
+    }
   }
 
   const handleNextButtonClick = () => {
-    console.log('Selected status:', selectedStatus)
+    console.log('Selected statuses:', selectedStatuses)
+    setOpenDialog(true)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
     // Handle form submission and data sending logic here
   }
+
+  const handleAllowLocation = () => {
+    setOpenDialog(false)
+  }
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false)
+  }
+
+  const statusOptions = [
+    'Looking for new friends',
+    'I`m a new mom',
+    'Let`s take the dogs for a walk',
+    'I`m learning a new language. Let`s talk!',
+    'Let`s be friends, I`m new in town',
+    'How do you do it? Share your experience',
+    'My plans are to move abroad',
+    'I look for emotional support',
+  ]
 
   return (
     <StyledRoot>
@@ -40,87 +78,33 @@ export default function StatusForm() {
       <form onSubmit={handleSubmit}>
         <Grid
           container
-          spacing={2}
+          spacing={1}
+          rowGap={2}
           justifyContent="center"
           alignItems="center"
-          height="60vh"
+          height="40vh"
           className="buttonStatus"
         >
-          <Button
-            variant="outlined"
-            color="primary"
-            className="button1"
-            onClick={() => handleStatusSelection('Looking for new friends')}
-          >
-            Looking for new friends
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            className="button1"
-            onClick={() => handleStatusSelection('I`m a new mom')}
-          >
-            I`m a new mom
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            className="button1"
-            onClick={() =>
-              handleStatusSelection('Let`s take the dogs for a walk')
-            }
-          >
-            Let`s take the dogs for a walk
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            className="button1"
-            onClick={() =>
-              handleStatusSelection('I`m learning a new languge. Let`s talk!')
-            }
-          >
-            I`m learning a new languge. Let`s talk!
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            className="button1"
-            onClick={() =>
-              handleStatusSelection('Let`s be friends, I`m new in town')
-            }
-          >
-            Let`s be friends, I`m new in town
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            className="button1"
-            onClick={() =>
-              handleStatusSelection('How do you do it? Share your experience')
-            }
-          >
-            How do you do it? Share your experience
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            className="button1"
-            onClick={() => handleStatusSelection('My plans are to move abroad')}
-          >
-            My plans are to move abroad
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            className="button1"
-            onClick={() =>
-              handleStatusSelection('I look for emotional support')
-            }
-          >
-            I look for emotional support
-          </Button>
+          {statusOptions.map((status, index) => (
+            <Button
+              key={index}
+              variant="outlined"
+              color={
+                selectedStatuses.includes(status) ? 'secondary' : 'primary'
+              }
+              className="button1"
+              onClick={() => toggleStatusSelection(status)}
+              style={{
+                background: selectedStatuses.includes(status)
+                  ? '#FFF1EC'
+                  : '#f2f2f2',
+              }}
+            >
+              {status}
+            </Button>
+          ))}
         </Grid>
+
         <TextField
           variant="outlined"
           fullWidth
@@ -136,7 +120,7 @@ export default function StatusForm() {
             variant="contained"
             color="primary"
             className="button"
-            type="submit"
+            type="button"
             onClick={handleNextButtonClick}
           >
             Next
@@ -148,9 +132,36 @@ export default function StatusForm() {
       </Typography>
 
       <img className="imgFooter" src="../img/account-footer.svg" alt="" />
+
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>
+          Allow WeFriends to access this device`s location?
+        </DialogTitle>
+        <DialogContent style={{ textAlign: 'center' }}>
+          <img
+            src={MapImage}
+            alt="Map"
+            style={{ width: '100%', maxWidth: '200px' }}
+          />
+        </DialogContent>
+        <DialogActions
+          style={{ flexDirection: 'column', alignItems: 'center' }}
+        >
+          <Button onClick={handleCloseDialog} color="primary">
+            Don´t allow
+          </Button>
+          <Button onClick={handleAllowLocation} color="primary">
+            While using the app
+          </Button>
+          <Button onClick={handleAllowLocation} color="primary">
+            Only this time
+          </Button>
+        </DialogActions>
+      </Dialog>
     </StyledRoot>
   )
 }
+
 const StyledRoot = styled(Box)(({ theme }) => ({
   sectionName: {
     display: 'flex',
@@ -188,11 +199,8 @@ const StyledRoot = styled(Box)(({ theme }) => ({
   '& .buttonStatus': {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 320px)',
-    columnGap: '5px',
-    margin: '5vh auto',
+    columnGap: '8px',
     justifyContent: 'center',
-    alignItems: 'center',
-    justifyItems: 'center',
   },
   '& .button1': {
     border: 'none',
