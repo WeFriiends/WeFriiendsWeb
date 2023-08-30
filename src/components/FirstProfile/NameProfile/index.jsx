@@ -86,7 +86,6 @@ const NameProfile = () => {
 
   return (
     <StyledRoot>
-      {/* <img className="imgHeader" src="../img/account-header.svg" alt="" /> */}
       <Logo />
       <StyledSection>
         <Typography variant="h4" className="title">

@@ -97,8 +97,8 @@ const StyledRoot = styled(Box)(() => ({
   },
   '& .imgBack': {
     margin: '5vh auto',
-    height: '30px',
-    width: '30px',
+    height: '7vh',
+    width: '50px',
     display: 'block',
   },
   '& .title': {

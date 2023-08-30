@@ -17,7 +17,7 @@ import BackImage from '../media/back.svg'
 import MapImage from '../media/Maps_512.svg'
 
 export default function LocationAccessForm() {
-  const [fullName, setFullName] = useState('')
+  const [fullAnything, setFullAnything] = useState('')
   const [openDialog, setOpenDialog] = useState(false)
   const [selectedStatuses, setSelectedStatuses] = useState([])
 
@@ -32,7 +32,7 @@ export default function LocationAccessForm() {
   }
 
   const handleNextButtonClick = () => {
-    console.log('Selected statuses:', selectedStatuses)
+    console.log('Selected statuses:', selectedStatuses, fullAnything)
     setOpenDialog(true)
   }
 
@@ -109,8 +109,8 @@ export default function LocationAccessForm() {
           variant="outlined"
           fullWidth
           label="Is there anything you'd like to add?"
-          value={fullName}
-          onChange={(event) => setFullName(event.target.value)}
+          value={fullAnything}
+          onChange={(event) => setFullAnything(event.target.value)}
           className="input"
         />
 
@@ -141,21 +141,25 @@ export default function LocationAccessForm() {
           <img
             src={MapImage}
             alt="Map"
-            style={{ width: '100%', maxWidth: '200px' }}
+            style={{ width: '100%', maxWidth: '100px' }}
           />
         </DialogContent>
         <DialogActions
           style={{ flexDirection: 'column', alignItems: 'center' }}
         >
-          <Button onClick={handleCloseDialog} color="primary">
-            Don´t allow
-          </Button>
-          <Button onClick={handleAllowLocation} color="primary">
-            While using the app
-          </Button>
-          <Button onClick={handleAllowLocation} color="primary">
-            Only this time
-          </Button>
+          <Link to="/firstProfile/country">
+            <Button onClick={handleCloseDialog} color="primary">
+              Don´t allow
+            </Button>
+          </Link>
+          <Link to="/firstProfile/country">
+            <Button onClick={handleAllowLocation} color="primary">
+              While using the app
+            </Button>
+          </Link>
+          <Link to="/firstProfile/country">
+            <Button color="primary">Only this time</Button>
+          </Link>
         </DialogActions>
       </Dialog>
     </StyledRoot>
@@ -171,8 +175,8 @@ const StyledRoot = styled(Box)(({ theme }) => ({
   },
   '& .imgBack': {
     margin: '5vh auto',
-    height: '5vh',
-    width: '30px',
+    height: '7vh',
+    width: '50px',
     display: 'block',
   },
   '& .title': {

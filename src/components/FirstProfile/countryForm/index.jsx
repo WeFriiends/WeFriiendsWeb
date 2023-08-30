@@ -14,78 +14,108 @@ import BackImage from '../media/back.svg'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const BirthProfile = () => {
+const CountryForm = () => {
   const [formData, setFormData] = useState({
-    selectedDay: '',
-    selectedMonth: '',
-    selectedYear: '',
-    isNumeric: false,
+    selectedCountry: '',
   })
   const [error, setError] = useState('')
 
-  const minDay = 1
-  const maxDay = 31
-  const minMonth = 1
-  const maxMonth = 12
-  const minYear = 1943
-  const maxYear = 2010
+  const countries = [
+    'Afghanistan',
+    'Albania',
+    'Algeria',
+    'Argentina',
+    'Australia',
+    'Austria',
+    'Belgium',
+    'Brazil',
+    'Canada',
+    'Chile',
+    'China',
+    'Colombia',
+    'Czech Republic',
+    'Denmark',
+    'Egypt',
+    'Finland',
+    'France',
+    'Germany',
+    'Greece',
+    'Hungary',
+    'India',
+    'Indonesia',
+    'Iran',
+    'Iraq',
+    'Ireland',
+    'Israel',
+    'Italy',
+    'Japan',
+    'Jordan',
+    'Kenya',
+    'Malaysia',
+    'Mexico',
+    'Netherlands',
+    'New Zealand',
+    'Nigeria',
+    'Norway',
+    'Pakistan',
+    'Peru',
+    'Philippines',
+    'Poland',
+    'Portugal',
+    'Romania',
+    'Russia',
+    'Saudi Arabia',
+    'Singapore',
+    'Slovakia',
+    'Slovenia',
+    'South Africa',
+    'South Korea',
+    'Spain',
+    'Sweden',
+    'Switzerland',
+    'Thailand',
+    'Turkey',
+    'UAE',
+    'Ukraine',
+    'United Kingdom',
+    'United States',
+    'Vietnam',
+    'Zimbabwe',
+  ]
 
   const handleChange = (event) => {
-    const { name, value } = event.target
+    const { value } = event.target
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
-      isNumeric: /^\d+$/.test(value),
+      selectedCountry: value,
     }))
     setError('')
-  }
-
-  const generateOptions = (minValue, maxValue) => {
-    const options = []
-    for (let i = minValue; i <= maxValue; i++) {
-      const value = i < 10 ? `0${i}` : `${i}`
-      options.push(
-        <MenuItem key={value} value={value}>
-          {value}
-        </MenuItem>
-      )
-    }
-    return options
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    if (
-      !/^\d+$/.test(formData.selectedDay) ||
-      !/^\d+$/.test(formData.selectedMonth) ||
-      !/^\d+$/.test(formData.selectedYear)
-    ) {
-      setError('Please enter your day of birth')
+    if (!formData.selectedCountry) {
+      setError('Please select a country')
       return
     }
 
     console.log(formData)
 
     setError('')
-    window.location.href = '/firstProfile/gender'
-
-    // Send data to backend
+    // Continue with your logic
     // ...
   }
 
   return (
     <StyledRoot>
       <Logo />
-      <Link to="/firstProfile" style={{ textDecoration: 'none' }}>
+      <Link to="/firstProfile/status" style={{ textDecoration: 'none' }}>
         <img src={BackImage} alt="back" className="imgBack" />
       </Link>
       <StyledSection>
-        <Typography variant="h4" className="title">
-          Tell us about you
-        </Typography>
         <Typography variant="body1" className="name">
-          What´s your day of birth?
+          Select your location
         </Typography>
 
         <form onSubmit={handleSubmit}>
@@ -96,62 +126,24 @@ const BirthProfile = () => {
             alignItems="center"
             height="40vh"
           >
-            <FormControl sx={{ m: -5, minWidth: 70 }}>
+            <FormControl sx={{ minWidth: 700, alignItems: 'center' }}>
               <Select
                 className="select"
-                labelId="birth-day-label"
-                id="birth-day"
-                label="DD"
-                name="selectedDay"
-                value={formData.selectedDay}
+                labelId="country-label"
+                id="country"
+                name="selectedCountry"
+                value={formData.selectedCountry}
                 onChange={handleChange}
                 displayEmpty
-                sx={{
-                  color: formData.isNumeric ? '#444444' : '#D3D3D3',
-                }}
               >
                 <MenuItem value="" disabled>
-                  DD
+                  Select a country
                 </MenuItem>
-                {generateOptions(minDay, maxDay)}
-              </Select>
-            </FormControl>
-            <FormControl sx={{ m: -5 }}>
-              <Select
-                className="select"
-                labelId="birth-month-label"
-                id="birth-month"
-                name="selectedMonth"
-                value={formData.selectedMonth}
-                onChange={handleChange}
-                displayEmpty
-                sx={{
-                  color: formData.isNumeric ? '#444444' : '#D3D3D3',
-                }}
-              >
-                <MenuItem value="" disabled>
-                  MM
-                </MenuItem>
-                {generateOptions(minMonth, maxMonth)}
-              </Select>
-            </FormControl>
-            <FormControl sx={{ m: -5, minWidth: 70 }}>
-              <Select
-                className="select"
-                labelId="birth-year-label"
-                id="birth-year"
-                name="selectedYear"
-                value={formData.selectedYear}
-                onChange={handleChange}
-                displayEmpty
-                sx={{
-                  color: formData.isNumeric ? '#444444' : '#D3D3D3',
-                }}
-              >
-                <MenuItem value="" disabled>
-                  YYYY
-                </MenuItem>
-                {generateOptions(minYear, maxYear)}
+                {countries.map((country) => (
+                  <MenuItem key={country} value={country}>
+                    {country}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
 
@@ -173,14 +165,14 @@ const BirthProfile = () => {
                 className="button"
                 type="submit"
               >
-                Next
+                Select
               </Button>
             </Grid>
           </Grid>
         </form>
 
         <Typography variant="h2" className="dot">
-          .<span className="span">.</span>...
+          ....<span className="span">.</span>
         </Typography>
       </StyledSection>
       <img className="imgFooter" src="../img/account-footer.svg" alt="" />
@@ -224,17 +216,6 @@ const StyledSection = styled(Box)(() => ({
     },
   },
 
-  '& .title': {
-    margin: '3vh auto',
-    height: '4rem',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    fontSize: '32px',
-    lineHeight: '40px',
-    textAlign: 'center',
-    color: '#f46b5d',
-  },
   '& .name': {
     margin: '4vh auto',
     height: '4rem',
@@ -273,4 +254,4 @@ const StyledSection = styled(Box)(() => ({
   },
 }))
 
-export default BirthProfile
+export default CountryForm
