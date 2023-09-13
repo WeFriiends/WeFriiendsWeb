@@ -4,10 +4,13 @@ import {
   AccordionSummary,
   Box,
   Typography,
+  Button,
 } from '@mui/material'
+import { makeStyles } from 'tss-react/mui'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 const Card = () => {
+  const { classes } = useStyles()
   return (
     <Box>
       <img src="/img/foto_Elena.jpg" alt="card" />
@@ -26,7 +29,24 @@ const Card = () => {
           <Typography>Freelance Journalist Bachelor degree</Typography>
         </AccordionDetails>
       </Accordion>
+      <Button fullWidth variant="contained" className={classes.submitButton}>
+        Skip
+      </Button>
+      <Button fullWidth variant="contained">
+        Be friend
+      </Button>
     </Box>
   )
 }
 export default Card
+
+const useStyles = makeStyles()(() => {
+  return {
+    submitButton: {
+      textTransform: 'lowercase',
+      backgroundColor: '#FB8F67',
+      color: '#FFFFFF',
+      height: 56,
+    },
+  }
+})
