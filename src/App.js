@@ -6,7 +6,7 @@ import AccountCreated from './components/user-auth/accountCreated/accountCreated
 import SignIn from './components/user-auth/signIn/signIn'
 import SignInMail from './components/user-auth/signInMail/signInMail'
 import TestPage from './components/user-auth/testPage/testPage'
-import NameProfile from './components/FirstProfile/nameProfile'
+import NameProfile from './components/FirstProfile/NameProfile'
 import GenderForm from './components/FirstProfile/genderForm'
 import BirthProfile from './components/FirstProfile/birthProfile'
 import StatusForm from './components/FirstProfile/statusForm'
