@@ -29,12 +29,10 @@ const Card = () => {
           <Typography>Freelance Journalist Bachelor degree</Typography>
         </AccordionDetails>
       </Accordion>
-      <Button fullWidth variant="contained" className={classes.submitButton}>
-        Skip
-      </Button>
-      <Button fullWidth variant="contained">
-        Be friend
-      </Button>
+      <Box className={classes.buttonSection}>
+        <Button className={classes.whiteButton}> Skip </Button>
+        <Button className={classes.orangeButton}>Be friend</Button>
+      </Box>
     </Box>
   )
 }
@@ -42,11 +40,40 @@ export default Card
 
 const useStyles = makeStyles()(() => {
   return {
-    submitButton: {
-      textTransform: 'lowercase',
+    buttonSection: {
+      display: 'flex',
+      justifyContent: 'center',
+      gap: 19,
+      background:
+        'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FEDED2 100%)',
+      paddingTop: 27,
+      paddingBottom: 24,
+    },
+    orangeButton: {
       backgroundColor: '#FB8F67',
       color: '#FFFFFF',
-      height: 56,
+      fontSize: 22,
+      fontWeight: 700,
+      lineHeight: '20px',
+      borderRadius: 10,
+      width: 141,
+      height: 58,
+      textTransform: 'capitalize',
+      '&: hover': {
+        backgroundColor: '#FB8F67',
+      },
+    },
+    whiteButton: {
+      backgroundColor: '#FFFFFF',
+      border: '2px solid #FB8F67',
+      color: '#FB8F67',
+      borderRadius: 10,
+      fontSize: 22,
+      fontWeight: 600,
+      lineHeight: '20px',
+      width: 141,
+      height: 58,
+      textTransform: 'capitalize',
     },
   }
 })
