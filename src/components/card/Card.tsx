@@ -13,20 +13,35 @@ const Card = () => {
   const { classes } = useStyles()
   return (
     <Box>
-      <img src="/img/foto_Elena.jpg" alt="card" />
+      <Box
+        component="img"
+        src="/img/foto_Elena.jpg"
+        alt="card"
+        className={classes.img}
+      />
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography>Elena S., 36</Typography>
+          <Box>
+            <Typography className={classes.name}>Elena S., 36</Typography>
+            <Typography className={classes.distance}>
+              from Roma, 10 km from you
+            </Typography>
+          </Box>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography variant="h3">About Me</Typography>
-          <Typography>
+          <Typography variant="h3" className={classes.title}>
+            About Me
+          </Typography>
+          <Typography className={classes.text}>
             I am a talented, ambitious and hardworking individual, with broad
             skills and experience in digital and printed marketing, social media
             and leading projects.
           </Typography>
-          <Typography variant="h3">Education and Profession</Typography>
-          <Typography>Freelance Journalist Bachelor degree</Typography>
+          <Typography variant="h3" className={classes.title}>
+            Education and Profession
+          </Typography>
+          <Typography className={classes.text}>Freelance Journalist</Typography>
+          <Typography className={classes.text}>Bachelor degree</Typography>
         </AccordionDetails>
       </Accordion>
       <Box className={classes.buttonSection}>
@@ -74,6 +89,34 @@ const useStyles = makeStyles()(() => {
       width: 141,
       height: 58,
       textTransform: 'capitalize',
+    },
+    name: {
+      color: '#F46B5D',
+      fontSize: 44,
+      fontWeight: 600,
+      lineHeight: '40px',
+    },
+    distance: {
+      fontSize: 18,
+      fontWeight: 500,
+      lineHeight: '20px',
+      padding: '16px 0 6px',
+    },
+    title: {
+      color: '#F1562A',
+      fontSize: 16,
+      fontWeight: 500,
+      lineHeight: '20px',
+      paddingBottom: 15,
+      paddingTop: 35,
+    },
+    text: {
+      fontSize: 14,
+      lineHeight: '22px',
+    },
+    img: {
+      height: '100%',
+      width: '100%',
     },
   }
 })
