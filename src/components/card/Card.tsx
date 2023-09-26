@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
   SvgIcon,
+  Icon,
 } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -21,7 +22,7 @@ const Card = () => {
         className={classes.img}
       />
       <Accordion className={classes.accordion}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary expandIcon={<img src="/img/arrow-down.svg" />}>
           <Box>
             <Typography className={classes.name}>Elena S., 36</Typography>
             <Box className={classes.distanceWithIcon}>
