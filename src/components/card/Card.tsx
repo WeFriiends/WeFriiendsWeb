@@ -12,12 +12,21 @@ const Card = () => {
   const { classes } = useStyles()
   return (
     <Box>
+      <Box className={classes.iconsAbove}>
+        <Box className={classes.likesYou}>
+          <img src="/img/likes_me.svg" alt="likes me" />
+          <Typography>Likes you</Typography>
+        </Box>
+        <img src="/img/verified.svg"></img>
+      </Box>
+
       <Box
         component="img"
         src="/img/foto_Elena.jpg"
         alt="card"
-        className={classes.img}
+        className={classes.foto}
       />
+
       <Accordion className={classes.accordion}>
         <AccordionSummary expandIcon={<img src="/img/arrow-down.svg" />}>
           <Box>
@@ -57,6 +66,20 @@ export default Card
 
 const useStyles = makeStyles()(() => {
   return {
+    iconsAbove: {
+      display: 'flex',
+      justifyContent: 'space-between',
+    },
+    likesYou: {
+      display: 'flex',
+      borderRadius: 4,
+      background: 'rgba(255, 241, 236, 0.80)',
+      width: 111,
+      height: 37,
+      alignItems: 'center',
+      gap: 4,
+      padding: '3px 5px',
+    },
     buttonSection: {
       display: 'flex',
       justifyContent: 'center',
@@ -121,7 +144,7 @@ const useStyles = makeStyles()(() => {
       fontSize: 14,
       lineHeight: '22px',
     },
-    img: {
+    foto: {
       height: '100%',
       width: '100%',
     },
