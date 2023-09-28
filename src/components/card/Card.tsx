@@ -154,6 +154,9 @@ const useStyles = makeStyles()(() => {
     },
     accordion: {
       marginTop: -106,
+      '&.Mui-expanded ': {
+        margin: '-106px 0 0 0',
+      },
     },
   }
 })
