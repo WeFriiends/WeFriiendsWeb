@@ -69,6 +69,10 @@ const useStyles = makeStyles()(() => {
     iconsAbove: {
       display: 'flex',
       justifyContent: 'space-between',
+      zIndex: 1,
+      position: 'relative',
+      marginBottom: -66,
+      padding: '0 11px',
     },
     likesYou: {
       display: 'flex',
