@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
 } from '@mui/material'
+import CircleRoundedIcon from '@mui/icons-material/CircleRounded'
 import { makeStyles } from 'tss-react/mui'
 
 const Card = () => {
@@ -30,7 +31,12 @@ const Card = () => {
       <Accordion className={classes.accordion}>
         <AccordionSummary expandIcon={<img src="/img/arrow-down.svg" />}>
           <Box>
-            <Typography className={classes.name}>Elena S., 36</Typography>
+            <Box sx={{ display: 'flex' }}>
+              <Typography className={classes.name}>Elena S., 36</Typography>
+              <CircleRoundedIcon
+                className={classes.roundIcon}
+              ></CircleRoundedIcon>
+            </Box>
             <Box className={classes.distanceWithIcon}>
               <img src="/img/near_me.svg" height={20} width={20} />
               <Typography className={classes.distance}>
@@ -124,6 +130,12 @@ const useStyles = makeStyles()(() => {
       fontSize: 44,
       fontWeight: 600,
       lineHeight: '40px',
+    },
+    roundIcon: {
+      fill: '#77BD65',
+      width: 15,
+      height: 15,
+      marginLeft: 5,
     },
     distanceWithIcon: {
       display: 'flex',
