@@ -165,9 +165,17 @@ const useStyles = makeStyles()(() => {
       width: '100%',
     },
     accordion: {
-      marginTop: -106,
+      marginTop: -212,
+      paddingTop: 106,
+      background:
+        'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 49.79%)',
       '&.Mui-expanded ': {
-        margin: '-106px 0 0 0',
+        margin: '-212px 0 0 0',
+        height: 'auto',
+        paddingTop: 90,
+      },
+      '&::before': {
+        height: 0,
       },
     },
   }
