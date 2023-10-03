@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import accountRegistration from '../../../actions/accountRegistration'
-import Logo from '../../logo/Logo'
+import Logo from '../../logo/Logo.jsx'
 import {
   Box,
   Typography,

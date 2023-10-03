@@ -11,13 +11,13 @@ const accountRegistration = async (
       // 'http://localhost:3002/api/auth/register',
       {
         password: password1,
-        password2: password2,
-        email: email,
+        password2,
+        email,
       }
     )
 
     if (result.status === 200) return true
-    else return false
+    return false
   } catch (err) {
     const er = err as Error
     console.log(er.message)

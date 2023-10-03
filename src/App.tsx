@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
+import MessagesAndFriends from './pages/messagesAndFriends'
 import CreateAccount from './components/user-auth/createAccount/CreateAccount'
 import RegistrationForm from './components/user-auth/registrationForm/RegistrationForm'
 import AccountCreated from './components/user-auth/accountCreated/AccountCreated'
 import SignIn from './components/user-auth/signIn/SignIn'
 import SignInMail from './components/user-auth/signInMail/SignInMail'
 import TestPage from './components/user-auth/testPage/TestPage'
-import MessagesAndFriends from 'pages/messagesAndFriends'
 
 function App() {
   return (

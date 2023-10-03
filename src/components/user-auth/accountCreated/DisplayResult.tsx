@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Box, Typography, Link, Button } from '@mui/material'
-import Logo from 'components/logo/Logo'
 import { makeStyles } from 'tss-react/mui'
+import Logo from '../../logo/Logo'
 
 type DisplayResultProps = {
   state: boolean

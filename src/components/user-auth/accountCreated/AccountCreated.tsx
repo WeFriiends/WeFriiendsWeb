@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import DisplayResult from './DisplayResult'
-import accountConfirmation from '../../../actions/accountConfirmation'
 import { Box, CircularProgress } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { useParams } from 'react-router-dom'
+import accountConfirmation from '../../../actions/accountConfirmation'
+import DisplayResult from './DisplayResult'
 
-const AccountCreated = () => {
+function AccountCreated() {
   const { classes } = useStyles()
   const [success, setSuccess] = useState(false)
   const [isLoading, setIsLoading] = useState(true)

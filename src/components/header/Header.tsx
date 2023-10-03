@@ -1,10 +1,10 @@
-import Logo from 'components/logo/Logo'
-import Menu from 'components/menu/Menu'
 import { Box } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import AvatarWithName from 'components/avatarWithName/AvatarWithName'
+import AvatarWithName from '../avatarWithName/AvatarWithName'
+import Menu from '../menu/Menu'
+import Logo from '../logo/Logo'
 
-const Header = () => {
+function Header() {
   const { classes } = useStyles()
   return (
     <Box className={classes.headerStyle}>

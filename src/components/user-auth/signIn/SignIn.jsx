@@ -1,4 +1,4 @@
-import Logo from '../../logo/Logo'
+import Logo from '../../logo/Logo.jsx'
 import { Box, Typography, Grid, Button, Link } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 

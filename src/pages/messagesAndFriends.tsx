@@ -1,9 +1,9 @@
 import { Box } from '@mui/material'
-import Header from 'components/header/Header'
-import TabsMessagesFriends from 'components/tabsMessegeFriends/TabsMessegesFriends'
-import Card from 'components/card/Card'
+import Header from '../components/header/Header'
+import TabsMessagesFriends from '../components/tabsMessegeFriends/TabsMessegesFriends'
+import Card from '../components/card/Card'
 
-const MessagesAndFriends = () => {
+function MessagesAndFriends() {
   return (
     <Box sx={{ width: '1043px', margin: '0 auto' }}>
       <Header />
