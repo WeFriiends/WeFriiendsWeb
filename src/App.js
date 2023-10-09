@@ -7,6 +7,7 @@ import SignIn from './components/user-auth/signIn/SignIn'
 import SignInMail from './components/user-auth/signInMail/SignInMail'
 import TestPage from './components/user-auth/testPage/TestPage'
 import MessagesAndFriends from 'pages/messagesAndFriends'
+import MaleRestricted from './components/questionnaire/MaleRestricted'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/mailSignIn" element={<SignInMail />} />
           <Route path="/test" element={<TestPage />} />
           <Route path="/messages" element={<MessagesAndFriends />} />
+          <Route path="/noFriends" element={<MaleRestricted />} />
         </Routes>
       </div>
     </Router>
