@@ -82,9 +82,9 @@ const useStyles = makeStyles()(() => {
     iconsAbove: {
       display: 'flex',
       justifyContent: 'space-between',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       zIndex: 1,
-      padding: '0 11px',
+      padding: '26px 11px 0',
       gridRow: '1/1',
       gridColumn: '1/2',
     },
