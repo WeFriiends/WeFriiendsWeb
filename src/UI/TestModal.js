@@ -1,9 +1,12 @@
+import Security from '../components/security/Security'
 import ModalDialog from './ModalDialog'
 
 const TestModal = () => {
   return (
     <div>
-      <ModalDialog></ModalDialog>
+      <ModalDialog>
+        <Security />
+      </ModalDialog>
     </div>
   )
 }

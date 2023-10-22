@@ -6,14 +6,17 @@ import theme from 'styles/createTheme'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { AuthContextProvider } from './context/authContext'
+import { DialogProvider } from './context/dialogContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
+      <DialogProvider>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </DialogProvider>
     </AuthContextProvider>
   </React.StrictMode>
 )
