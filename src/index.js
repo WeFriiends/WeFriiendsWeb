@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { ThemeProvider } from '@mui/material/styles'
 import './index.css'
+import theme from 'styles/createTheme'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { AuthContextProvider } from './context/authContext'
@@ -9,7 +11,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </AuthContextProvider>
   </React.StrictMode>
 )
