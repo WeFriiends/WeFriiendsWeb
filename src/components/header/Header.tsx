@@ -23,7 +23,7 @@ const useStyles = makeStyles()(() => {
       display: 'flex',
       alignItems: 'end',
       justifyContent: 'space-around',
-      marginBottom: 140,
+      marginBottom: 40,
     },
   }
 })
