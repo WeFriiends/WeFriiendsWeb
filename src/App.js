@@ -8,7 +8,7 @@ import SignIn from './components/user-auth/signIn/SignIn'
 import SignInMail from './components/user-auth/signInMail/SignInMail'
 import TestPage from './components/user-auth/testPage/TestPage'
 import MessagesAndFriends from 'pages/messagesAndFriends'
-import NearMe from "./pages/NearMe";
+import NearMe from './pages/NearMe'
 
 const theme = createTheme({
   typography: {
