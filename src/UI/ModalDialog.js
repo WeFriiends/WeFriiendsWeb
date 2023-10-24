@@ -44,6 +44,8 @@ export default function ModalDialog({ children }) {
               position: 'absolute',
               width: 16,
               height: 16,
+              stroke: (theme) => theme.palette.grey[600],
+              strokeWidth: 1,
             }}
           />
           <CheckBoxOutlineBlank />

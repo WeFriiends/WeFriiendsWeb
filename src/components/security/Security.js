@@ -7,6 +7,10 @@ import {
   CircularProgress,
 } from '@mui/material'
 import { useDialog } from '../../context/dialogContext'
+import DeleteUser from './DeleteUser'
+import UserDeleted from './UserDeleted'
+import BlockUser from './BlockUser'
+import UserBlocked from './UserBlocked'
 
 import { commonStyles } from '../../styles/commonStyles'
 
@@ -59,120 +63,30 @@ const Security = () => {
     </>
   )
 
-  const renderDeleteUser = () => (
-    <>
-      <Typography variant="h1" className={classes.titleSecondary}>
-        Delete Elena S.
-      </Typography>
-
-      <Typography className={classes.subTitleSecondary}>
-        Are you sure you want to delete user from friends?
-      </Typography>
-
-      <Box className={classes.buttonGroup}>
-        <Button
-          variant="outlined"
-          className={classes.dialogBtn}
-          onClick={closeDialog}
-        >
-          cancel
-        </Button>
-        <Button
-          variant="contained"
-          className={classes.dialogBtn}
-          onClick={() => handleStepChange('userDeleted')} // тут запрос в БД, состояние меняем после удаления юзера из друзей
-        >
-          delete
-        </Button>
-      </Box>
-    </>
-  )
-
-  const renderUserDeleted = () => (
-    <>
-      <Typography variant="h1" className={classes.titleSecondary}>
-        User deleted
-      </Typography>
-
-      <Typography className={classes.subTitleSecondary}>
-        Elena S. is deleted from your friends.
-      </Typography>
-
-      <Box className={classes.buttonGroup}>
-        <Button
-          variant="contained"
-          className={classes.dialogBtn}
-          onClick={closeDialog}
-        >
-          OK, thanks!
-        </Button>
-      </Box>
-    </>
-  )
-
-  const renderBlockUser = () => (
-    <>
-      <Typography variant="h1" className={classes.titleSecondary}>
-        Block Elena S.
-      </Typography>
-
-      <Typography className={classes.subTitleSecondary}>
-        Are you sure you want to block user?
-      </Typography>
-
-      <Box className={classes.buttonGroup}>
-        <Button
-          variant="outlined"
-          className={classes.dialogBtn}
-          onClick={closeDialog}
-        >
-          cancel
-        </Button>
-        <Button
-          variant="contained"
-          className={classes.dialogBtn}
-          onClick={() => handleStepChange('userBlocked')} // тут запрос в БД, состояние меняем после блокирования юзера
-        >
-          block
-        </Button>
-      </Box>
-    </>
-  )
-
-  const renderUserBlocked = () => (
-    <>
-      <Typography variant="h1" className={classes.titleSecondary}>
-        User blocked
-      </Typography>
-
-      <Typography className={classes.subTitleSecondary}>
-        Elena S. is blocked.
-      </Typography>
-
-      <Box className={classes.buttonGroup}>
-        <Button
-          variant="contained"
-          className={classes.dialogBtn}
-          onClick={closeDialog}
-        >
-          OK, thanks!
-        </Button>
-      </Box>
-    </>
-  )
-
   const renderStep = () => {
     switch (currentStep) {
       case 'securityOptions':
         return renderSecurityOptions()
       case 'deleteUser':
-        return renderDeleteUser()
+        return (
+          <DeleteUser
+            classes={classes}
+            closeDialog={closeDialog}
+            handleStepChange={handleStepChange}
+          />
+        )
       case 'userDeleted':
-        return renderUserDeleted()
+        return <UserDeleted classes={classes} closeDialog={closeDialog} />
       case 'blockUser':
-        return renderBlockUser()
+        return (
+          <BlockUser
+            classes={classes}
+            closeDialog={closeDialog}
+            handleStepChange={handleStepChange}
+          />
+        )
       case 'userBlocked':
-        return renderUserBlocked()
+        return <UserBlocked classes={classes} closeDialog={closeDialog} />
       default:
         return null
     }
