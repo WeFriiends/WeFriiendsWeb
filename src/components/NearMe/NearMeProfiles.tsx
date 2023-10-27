@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
+import { Box, Grid, ImageList, ImageListItem, Typography } from '@mui/material'
 import { LocationOn } from '@mui/icons-material'
 import { makeStyles } from 'tss-react/mui'
+import { getUsersNearMeData } from '../../actions/userServices'
+import { picProfileColMob, picProfileColWeb } from './enums'
 
 type isMobileProps = {
   isMobile: boolean
 }
-type objectType = {
+type userNearMeObjectType = {
   id: string
   location: string
   picture: string
@@ -15,39 +17,31 @@ type objectType = {
 }
 const NearMeProfiles = ({ isMobile }: isMobileProps) => {
   const { classes } = useStyles()
-  const [list, setList] = useState<Array<objectType>>([])
-  const columns = isMobile ? 3 : 6
-  const mrgLeft = isMobile ? 1 : 5
+  const [list, setList] = useState<Array<userNearMeObjectType>>([])
+  const columns = isMobile ? picProfileColMob : picProfileColWeb
   const txtAlign = isMobile ? 'center' : 'left'
-  const getData = () => {
-    fetch('users.json', {
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-    })
-      .then(function (response) {
-        return response.json()
-      })
-      .then(function (myJson) {
-        setList(myJson)
-      })
-      .catch((e) => {
-        console.log(e.message)
-      })
-  }
+
   useEffect(() => {
-    getData()
+    getUsersNearMeData().then((data) => {
+      if (data) {
+        setList(data)
+      }
+    })
   }, [])
   return (
-    <Box marginLeft={mrgLeft}>
-      <Typography className={classes.headerNear} sx={{ textAlign: txtAlign }}>
-        Near by
-      </Typography>
-      <Typography className={classes.description} sx={{ textAlign: txtAlign }}>
-        These people near you – just like them and see if it’s a match!
-      </Typography>
-      <Box p={2}>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <Typography className={classes.headerNear} sx={{ textAlign: txtAlign }}>
+          Near by
+        </Typography>
+        <Typography
+          className={classes.description}
+          sx={{ textAlign: txtAlign }}
+        >
+          These people near you – just like them and see if it’s a match!
+        </Typography>
+      </Grid>
+      <Grid item xs={12}>
         <ImageList cols={columns}>
           {list
             .filter((user) => user.location === 'Istanbul')
@@ -76,8 +70,8 @@ const NearMeProfiles = ({ isMobile }: isMobileProps) => {
               </ImageListItem>
             ))}
         </ImageList>
-      </Box>
-    </Box>
+      </Grid>
+    </Grid>
   )
 }
 
