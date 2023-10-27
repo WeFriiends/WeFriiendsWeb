@@ -1,4 +1,4 @@
-import { Box,  Avatar,  Typography,  Button,  Modal,  IconButton, } from '@mui/material'
+import { Box,  Avatar,  Typography,  Button,  Modal,  IconButton } from '@mui/material'
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation'
 import { makeStyles } from 'tss-react/mui'
 import { useState } from 'react'
@@ -7,11 +7,6 @@ const Match = () => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
-
-  const handleChat = () => {
-    //proceed to chat
-  }
-
   const { classes } = useStyles()
 
   return (
@@ -63,7 +58,7 @@ const Match = () => {
               <Button
                 className={`${classes.button} ${classes.chatButton}`}
                 startIcon={<img alt="fb" src={'/img/chatIcon.png'} />}
-                onClick={handleChat}
+                href="/messages"
               >
                 Chat
               </Button>
