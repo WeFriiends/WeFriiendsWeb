@@ -3,7 +3,7 @@ import { Box, Grid, ImageList, ImageListItem, Typography } from '@mui/material'
 import { LocationOn } from '@mui/icons-material'
 import { makeStyles } from 'tss-react/mui'
 import { getUsersNearMeData } from '../../actions/userServices'
-import { picProfileColMob, picProfileColWeb } from './enums'
+import { getColumns } from './helper'
 
 type isMobileProps = {
   isMobile: boolean
@@ -18,15 +18,19 @@ type userNearMeObjectType = {
 const NearMeProfiles = ({ isMobile }: isMobileProps) => {
   const { classes } = useStyles()
   const [list, setList] = useState<Array<userNearMeObjectType>>([])
-  const columns = isMobile ? picProfileColMob : picProfileColWeb
+  const columns = getColumns(isMobile)
   const txtAlign = isMobile ? 'center' : 'left'
 
   useEffect(() => {
-    getUsersNearMeData().then((data) => {
-      if (data) {
-        setList(data)
+    async function fetchData() {
+      try {
+        const result = await getUsersNearMeData()
+        setList(result)
+      } catch (error) {
+        console.error('Error fetching data:', error)
       }
-    })
+    }
+    fetchData()
   }, [])
   return (
     <Grid container spacing={3}>

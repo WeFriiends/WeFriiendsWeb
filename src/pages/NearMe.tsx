@@ -3,8 +3,8 @@ import Box from '@mui/material/Box'
 
 import { Container, useMediaQuery } from '@mui/material'
 import Header from '../components/header/Header'
-import NearMeProfiles from '../components/NearMe/NearMeProfiles'
-import FooterAppBar from '../components/FooterAppBar/FooterAppBar'
+import NearMeProfiles from '../components/nearMe/NearMeProfiles'
+import FooterAppBar from '../components/footerAppBar/FooterAppBar'
 
 export default function NearMe() {
   const isMobile = useMediaQuery<boolean>('(max-width:600px)')
