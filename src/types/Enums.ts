@@ -1,2 +1,4 @@
-export const picProfileColMob = 3
-export const picProfileColWeb = 6
+export enum ColumnNumber {
+  Mobile = 3,
+  Web = 6,
+}
