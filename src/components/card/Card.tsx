@@ -6,28 +6,28 @@ import {
   Typography,
   Button,
 } from '@mui/material'
-import CircleRoundedIcon from '@mui/icons-material/CircleRounded'
+
 import { makeStyles } from 'tss-react/mui'
+
+import FotoCarousel from './FotoCarousel'
 
 const Card = () => {
   const { classes } = useStyles()
+
   return (
     <>
-      <Box className={classes.mainGrid}>
+      {/* <Box className={classes.mainGrid}>
         <Box className={classes.iconsAbove}>
           <Box className={classes.likesYou}>
             <img src="/img/likes_me.svg" alt="likes me" />
             <Typography>Likes you</Typography>
           </Box>
           <img src="/img/verified.svg"></img>
-        </Box>
-        <Box
-          component="img"
-          src="/img/foto_Elena.jpg"
-          alt="card"
-          className={classes.foto}
-        />
-        <Accordion className={classes.accordion}>
+        </Box> */}
+      <div className={classes.test}>
+        <FotoCarousel />
+      </div>
+      {/* <Accordion className={classes.accordion}>
           <AccordionSummary expandIcon={<img src="/img/arrow-down.svg" />}>
             <Box>
               <Box sx={{ display: 'flex' }}>
@@ -61,12 +61,12 @@ const Card = () => {
             </Typography>
             <Typography className={classes.text}>Bachelor degree</Typography>
           </AccordionDetails>
-        </Accordion>
-      </Box>
+        </Accordion> */}
+      {/* </Box>
       <Box className={classes.buttonSection}>
         <Button className={classes.whiteButton}> Skip </Button>
         <Button className={classes.orangeButton}>Be friend</Button>
-      </Box>
+      </Box> */}
     </>
   )
 }
@@ -97,6 +97,12 @@ const useStyles = makeStyles()(() => {
       alignItems: 'center',
       gap: 4,
       padding: '3px 5px',
+    },
+    test: {
+      // gridRow: '1/9',
+      // gridColumn: '1/2',
+      // width: '100%',
+      // height: '50vh',
     },
     buttonSection: {
       display: 'flex',
@@ -170,8 +176,8 @@ const useStyles = makeStyles()(() => {
     },
     foto: {
       width: '100%',
-      gridRow: '1/9',
-      gridColumn: '1/2',
+      // gridRow: '1/9',
+      // gridColumn: '1/2',
     },
     accordion: {
       paddingTop: 106,
