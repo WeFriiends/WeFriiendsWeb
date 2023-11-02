@@ -7,7 +7,7 @@ const MessagesAndFriends = () => {
   return (
     <Box sx={{ width: '1043px', margin: '0 auto' }}>
       <Header />
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
         <TabsMessagesFriends />
         <Box sx={{ marginLeft: '113px', marginTop: '36px' }}>
           <Card />
