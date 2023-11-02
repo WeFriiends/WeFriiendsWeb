@@ -12,18 +12,28 @@ const FotoCarousel = () => {
       activeIndicatorIconButtonProps={{
         style: {
           backgroundColor: 'white',
+          borderRadius: 0,
+          height: '3px',
         },
       }}
       indicatorIconButtonProps={{
         style: {
-          paddingRight: '5px',
+          marginRight: '3px',
         },
       }}
       indicatorContainerProps={{
         style: {
           position: 'absolute',
           marginTop: 'calc(-14px - 50vh)',
-          zIndex: 1,
+          zIndex: 200,
+        },
+      }}
+      navButtonsProps={{
+        style: {
+          padding: '12px',
+          color: '#444444',
+          background: 'white',
+          opacity: '0.5',
         },
       }}
     >
