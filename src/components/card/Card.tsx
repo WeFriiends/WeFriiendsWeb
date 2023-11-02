@@ -16,25 +16,27 @@ const Card = () => {
 
   return (
     <>
-      {/* <Box className={classes.mainGrid}>
+      <Box className={classes.mainGrid}>
         <Box className={classes.iconsAbove}>
           <Box className={classes.likesYou}>
             <img src="/img/likes_me.svg" alt="likes me" />
             <Typography>Likes you</Typography>
           </Box>
           <img src="/img/verified.svg"></img>
-        </Box> */}
-      <div className={classes.test}>
-        <FotoCarousel />
-      </div>
-      {/* <Accordion className={classes.accordion}>
+        </Box>
+
+        <div className={classes.carousel}>
+          <FotoCarousel />
+        </div>
+
+        <Accordion className={classes.accordion}>
           <AccordionSummary expandIcon={<img src="/img/arrow-down.svg" />}>
             <Box>
               <Box sx={{ display: 'flex' }}>
                 <Typography className={classes.name}>Elena S., 36</Typography>
-                <CircleRoundedIcon
+                {/* <CircleRoundedIcon
                   className={classes.roundIcon}
-                ></CircleRoundedIcon>
+                ></CircleRoundedIcon> */}
               </Box>
               <Box className={classes.distanceWithIcon}>
                 <img src="/img/near_me.svg" height={20} width={20} />
@@ -61,12 +63,12 @@ const Card = () => {
             </Typography>
             <Typography className={classes.text}>Bachelor degree</Typography>
           </AccordionDetails>
-        </Accordion> */}
-      {/* </Box>
+        </Accordion>
+      </Box>
       <Box className={classes.buttonSection}>
         <Button className={classes.whiteButton}> Skip </Button>
         <Button className={classes.orangeButton}>Be friend</Button>
-      </Box> */}
+      </Box>
     </>
   )
 }
@@ -77,13 +79,13 @@ const useStyles = makeStyles()(() => {
     mainGrid: {
       display: ' grid',
       gridTemplateRows: 'repeat(9, 1fr)',
-      maxHeight: '65vh',
+      maxHeight: '59vh',
     },
     iconsAbove: {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'flex-start',
-      zIndex: 1,
+      zIndex: 100,
       padding: '26px 11px 0',
       gridRow: '1/1',
       gridColumn: '1/2',
@@ -98,11 +100,9 @@ const useStyles = makeStyles()(() => {
       gap: 4,
       padding: '3px 5px',
     },
-    test: {
-      // gridRow: '1/9',
-      // gridColumn: '1/2',
-      // width: '100%',
-      // height: '50vh',
+    carousel: {
+      gridRow: '1/9',
+      gridColumn: '1/2',
     },
     buttonSection: {
       display: 'flex',
@@ -174,13 +174,8 @@ const useStyles = makeStyles()(() => {
       fontSize: 14,
       lineHeight: '22px',
     },
-    foto: {
-      width: '100%',
-      // gridRow: '1/9',
-      // gridColumn: '1/2',
-    },
     accordion: {
-      paddingTop: 106,
+      zIndex: 100,
       background:
         'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 49.79%)',
       '&::before': {

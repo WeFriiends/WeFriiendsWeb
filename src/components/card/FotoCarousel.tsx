@@ -2,13 +2,10 @@ import React from 'react'
 import Carousel from 'react-material-ui-carousel'
 import Item from './Item'
 import items from './items.json'
-import { makeStyles } from 'tss-react/mui'
 
 const FotoCarousel = () => {
-  const { classes } = useStyles()
   return (
     <Carousel
-      className={classes.carousel}
       autoPlay={false}
       navButtonsAlwaysVisible={true}
       IndicatorIcon={<img src="/img/indicator.svg" />}
@@ -25,7 +22,7 @@ const FotoCarousel = () => {
       indicatorContainerProps={{
         style: {
           position: 'absolute',
-          marginTop: '-50vh',
+          marginTop: 'calc(-14px - 50vh)',
           zIndex: 1,
         },
       }}
@@ -38,11 +35,3 @@ const FotoCarousel = () => {
 }
 
 export default FotoCarousel
-
-const useStyles = makeStyles()(() => {
-  return {
-    carousel: {
-      background: 'red',
-    },
-  }
-})
