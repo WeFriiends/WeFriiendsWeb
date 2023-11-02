@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import {
   Typography,
   Box,
@@ -11,17 +11,27 @@ import DeleteUser from './DeleteUser'
 import UserDeleted from './UserDeleted'
 import BlockUser from './BlockUser'
 import UserBlocked from './UserBlocked'
-
 import { commonStyles } from '../../styles/commonStyles'
 
-// в Security передавать userId, userName френда, id авторизованного пользователя (или оно из контекста?)
-const Security = () => {
+// в Security передавать userId френда, userName френда, id авторизованного пользователя (или оно из контекста?)
+interface SecurityProps {
+  userId: string //need to be passed?  type number? define the correct types for these props
+  userFriendId: string // or number??
+  userFriendName: string
+}
+
+const Security: React.FC<SecurityProps> = ({
+  userId,
+  userFriendId,
+  userFriendName = 'Elena S.', // пока имя по умолчанию для тестирования
+}) => {
   const { closeDialog } = useDialog()
   const { classes } = commonStyles()
-  const [currentStep, setCurrentStep] = useState('securityOptions')
+  const [currentStep, setCurrentStep] = useState<string>('securityOptions')
+
   const [isBackdropOpen, setIsBackdropOpen] = useState(false)
 
-  const handleStepChange = (step) => {
+  const handleStepChange = (step: string) => {
     setIsBackdropOpen(true)
     setTimeout(() => {
       setCurrentStep(step)
@@ -44,7 +54,7 @@ const Security = () => {
           className={classes.dialogOption}
           onClick={() => handleStepChange('deleteUser')}
         >
-          Delete from friends Elena S.
+          Delete from friends {userFriendName}
         </Button>
         <Button fullWidth className={classes.dialogOption}>
           Report
@@ -73,20 +83,36 @@ const Security = () => {
             classes={classes}
             closeDialog={closeDialog}
             handleStepChange={handleStepChange}
+            userFriendId={userFriendId}
+            userFriendName={userFriendName}
           />
         )
       case 'userDeleted':
-        return <UserDeleted classes={classes} closeDialog={closeDialog} />
+        return (
+          <UserDeleted
+            classes={classes}
+            closeDialog={closeDialog}
+            userFriendName={userFriendName}
+          />
+        )
       case 'blockUser':
         return (
           <BlockUser
             classes={classes}
             closeDialog={closeDialog}
             handleStepChange={handleStepChange}
+            userFriendId={userFriendId}
+            userFriendName={userFriendName}
           />
         )
       case 'userBlocked':
-        return <UserBlocked classes={classes} closeDialog={closeDialog} />
+        return (
+          <UserBlocked
+            classes={classes}
+            closeDialog={closeDialog}
+            userFriendName={userFriendName}
+          />
+        )
       default:
         return null
     }

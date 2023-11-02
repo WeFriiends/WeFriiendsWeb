@@ -1,14 +1,24 @@
 import React from 'react'
 import { Typography, Box, Button } from '@mui/material'
 
-const UserBlocked = ({ classes, closeDialog }) => (
+interface UserBlockedProps {
+  classes: Record<string, string>
+  closeDialog: () => void
+  userFriendName: string
+}
+
+const UserBlocked: React.FC<UserBlockedProps> = ({
+  classes,
+  closeDialog,
+  userFriendName,
+}) => (
   <>
     <Typography variant="h1" className={classes.titleSecondary}>
       User blocked
     </Typography>
 
     <Typography className={classes.subTitleSecondary}>
-      Elena S. is blocked.
+      {userFriendName} is blocked.
     </Typography>
 
     <Box className={classes.buttonGroup}>

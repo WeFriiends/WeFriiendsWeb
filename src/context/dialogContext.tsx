@@ -1,8 +1,18 @@
-import { createContext, useState, useContext } from 'react'
+import React, { createContext, useState, useContext } from 'react'
 
-const DialogContext = createContext()
+interface DialogContextValue {
+  isDialogOpen: boolean
+  openDialog: () => void
+  closeDialog: () => void
+}
 
-export const DialogProvider = ({ children }) => {
+const DialogContext = createContext<DialogContextValue | undefined>(undefined)
+
+interface DialogProviderProps {
+  children: React.ReactNode
+}
+
+export const DialogProvider: React.FC<DialogProviderProps> = ({ children }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   const openDialog = () => {
@@ -20,7 +30,7 @@ export const DialogProvider = ({ children }) => {
   )
 }
 
-export const useDialog = () => {
+export const useDialog = (): DialogContextValue => {
   const context = useContext(DialogContext)
   if (!context) {
     throw new Error('useDialog must be used within a DialogProvider')

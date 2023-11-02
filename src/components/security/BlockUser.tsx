@@ -1,10 +1,24 @@
 import React from 'react'
 import { Typography, Box, Button } from '@mui/material'
 
-const BlockUser = ({ classes, closeDialog, handleStepChange }) => (
+interface BlockUserProps {
+  classes: Record<string, string>
+  closeDialog: () => void
+  handleStepChange: (step: string) => void
+  userFriendId: string
+  userFriendName: string
+}
+
+const BlockUser: React.FC<BlockUserProps> = ({
+  classes,
+  closeDialog,
+  handleStepChange,
+  userFriendId,
+  userFriendName,
+}) => (
   <>
     <Typography variant="h1" className={classes.titleSecondary}>
-      Block Elena S.
+      Block {userFriendName}
     </Typography>
 
     <Typography className={classes.subTitleSecondary}>

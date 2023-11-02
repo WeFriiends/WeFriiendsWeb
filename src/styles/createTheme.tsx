@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles'
 
-const theme = createTheme({
+const theme: Record<string, any> = createTheme({
   typography: {
     fontFamily: ['Inter', 'sans-serif'].join(','),
   },
