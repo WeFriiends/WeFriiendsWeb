@@ -8,7 +8,7 @@ import {
 } from '@mui/material'
 
 import { makeStyles } from 'tss-react/mui'
-
+import CircleRoundedIcon from '@mui/icons-material/CircleRounded'
 import FotoCarousel from './FotoCarousel'
 
 const Card = () => {
@@ -34,9 +34,9 @@ const Card = () => {
             <Box>
               <Box sx={{ display: 'flex' }}>
                 <Typography className={classes.name}>Elena S., 36</Typography>
-                {/* <CircleRoundedIcon
+                <CircleRoundedIcon
                   className={classes.roundIcon}
-                ></CircleRoundedIcon> */}
+                ></CircleRoundedIcon>
               </Box>
               <Box className={classes.distanceWithIcon}>
                 <img src="/img/near_me.svg" height={20} width={20} />

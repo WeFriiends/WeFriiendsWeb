@@ -9,7 +9,7 @@ const MessagesAndFriends = () => {
       <Header />
       <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
         <TabsMessagesFriends />
-        <Box sx={{ marginLeft: '113px', marginTop: '36px' }}>
+        <Box sx={{ marginLeft: '53px', marginTop: '36px' }}>
           <Card />
         </Box>
       </Box>
