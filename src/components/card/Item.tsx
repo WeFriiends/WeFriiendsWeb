@@ -13,9 +13,7 @@ const useStyles = makeStyles()(() => {
   return {
     foto: {
       width: '100%',
-      height: '50vh',
-      // gridRow: '1/9',
-      // gridColumn: '1/2',
+      height: '51vh',
       objectFit: 'cover',
     },
   }
