@@ -2,7 +2,7 @@ import React from 'react'
 
 import { makeStyles } from 'tss-react/mui'
 
-const Item = (props: any) => {
+const Item = (props: { item: { src: string } }) => {
   const { classes } = useStyles()
   return <img src={props.item.src} alt="card" className={classes.foto} />
 }
