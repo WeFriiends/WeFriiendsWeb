@@ -10,19 +10,13 @@ import {
 import CloseIcon from '@mui/icons-material/Close'
 import CheckBoxOutlineBlank from '@mui/icons-material/CheckBoxOutlineBlank'
 import { useDialog } from '../context/dialogContext'
-import { styled } from '@mui/system'
-
-const StyledDialogContent = styled(DialogContent)(({ theme }) => ({
-  modalBox: {
-    background: 'rgba(0, 0, 0, 0.02)',
-    color: '#000',
-  },
-}))
+import { makeStyles } from 'tss-react/mui'
 
 export default function ModalDialog({ children }: { children: ReactNode }) {
   const { isDialogOpen, openDialog, closeDialog } = useDialog()
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'))
+  const { classes } = useStyles()
 
   return (
     <div>
@@ -57,8 +51,17 @@ export default function ModalDialog({ children }: { children: ReactNode }) {
           <CheckBoxOutlineBlank />
         </IconButton>
 
-        <StyledDialogContent>{children}</StyledDialogContent>
+        <DialogContent className={classes.modalBox}>{children}</DialogContent>
       </Dialog>
     </div>
   )
 }
+
+const useStyles = makeStyles()(() => {
+  return {
+    modalBox: {
+      background: 'rgba(0, 0, 0, 0.02)',
+      color: '#000',
+    },
+  }
+})
