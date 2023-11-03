@@ -7,10 +7,9 @@ import {
   CircularProgress,
 } from '@mui/material'
 import { useDialog } from '../../context/dialogContext'
-import DeleteUser from './DeleteUser'
-import UserDeleted from './UserDeleted'
-import BlockUser from './BlockUser'
-import UserBlocked from './UserBlocked'
+import UserAction from './UserAction'
+import ActionConfirm from './ActionConfirm'
+
 import { commonStyles } from '../../styles/commonStyles'
 
 // в Security передавать userId френда, userName френда, id авторизованного пользователя (или оно из контекста?)
@@ -79,38 +78,44 @@ const Security: React.FC<SecurityProps> = ({
         return renderSecurityOptions()
       case 'deleteUser':
         return (
-          <DeleteUser
+          <UserAction
             classes={classes}
             closeDialog={closeDialog}
             handleStepChange={handleStepChange}
             userFriendId={userFriendId}
             userFriendName={userFriendName}
+            actionText="delete"
+            action="Deleted"
           />
         )
       case 'userDeleted':
         return (
-          <UserDeleted
+          <ActionConfirm
             classes={classes}
             closeDialog={closeDialog}
             userFriendName={userFriendName}
+            title="User deleted"
           />
         )
       case 'blockUser':
         return (
-          <BlockUser
+          <UserAction
             classes={classes}
             closeDialog={closeDialog}
             handleStepChange={handleStepChange}
             userFriendId={userFriendId}
             userFriendName={userFriendName}
+            actionText="block"
+            action="Blocked"
           />
         )
       case 'userBlocked':
         return (
-          <UserBlocked
+          <ActionConfirm
             classes={classes}
             closeDialog={closeDialog}
             userFriendName={userFriendName}
+            title="User blocked"
           />
         )
       default:

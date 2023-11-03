@@ -1,24 +1,29 @@
 import React from 'react'
 import { Typography, Box, Button } from '@mui/material'
 
-interface UserBlockedProps {
+interface ActionConfirmProps {
   classes: Record<string, string>
   closeDialog: () => void
   userFriendName: string
+  title: string
 }
 
-const UserBlocked: React.FC<UserBlockedProps> = ({
+const ActionConfirm: React.FC<ActionConfirmProps> = ({
   classes,
   closeDialog,
   userFriendName,
-}) => (
+  title,
+}: ActionConfirmProps) => (
   <>
     <Typography variant="h1" className={classes.titleSecondary}>
-      User blocked
+      {title}
     </Typography>
 
     <Typography className={classes.subTitleSecondary}>
-      {userFriendName} is blocked.
+      {userFriendName}{' '}
+      {title === 'User deleted'
+        ? 'is deleted from your friends.'
+        : 'is blocked.'}
     </Typography>
 
     <Box className={classes.buttonGroup}>
@@ -33,4 +38,4 @@ const UserBlocked: React.FC<UserBlockedProps> = ({
   </>
 )
 
-export default UserBlocked
+export default ActionConfirm

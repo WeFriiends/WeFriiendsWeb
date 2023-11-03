@@ -56,6 +56,12 @@ export const commonStyles = makeStyles()((theme) => {
       fontSize: 14,
       textAlign: 'center',
     },
+    textLow: {
+      textTransform: 'lowercase',
+    },
+    textCapitalizee: {
+      textTransform: 'capitalize',
+    },
     dialogOption: {
       display: 'block',
       backgroundColor: '#fff',
