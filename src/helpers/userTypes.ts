@@ -1,4 +1,5 @@
-export type UserNearMeObjectType = {
+export type UserObjectType = {
+  likedUsers: string[]
   id: string
   location: string
   picture: string
