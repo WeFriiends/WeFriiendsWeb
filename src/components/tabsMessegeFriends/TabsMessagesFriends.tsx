@@ -15,7 +15,13 @@ function TabPanel(props: TabPanelProps) {
   return (
     <div>
       {value === index && (
-        <Box sx={{ padding: '30px 30px 30px 0' }}>
+        <Box
+          sx={{
+            padding: '30px 0',
+            height: '67vh',
+            overflowY: 'scroll',
+          }}
+        >
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -78,6 +84,7 @@ const useStyles = makeStyles()(() => {
       gridTemplateColumns: '0.5fr 5fr 0.5fr',
       alignItems: 'center',
       paddingBottom: 30,
+      paddingRight: 30,
     },
     message: {
       paddingLeft: 16,
