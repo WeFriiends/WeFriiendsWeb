@@ -58,9 +58,11 @@ const TabsMessagesFriends = () => {
                   {element.message}
                 </Typography>
               </Box>
-              <Box className={classes.messageQuantity}>
-                {element.messageCount}
-              </Box>
+              {element.messageCount === '0' ? null : (
+                <Box className={classes.messageQuantity}>
+                  {element.messageCount}
+                </Box>
+              )}
             </Box>
             <Box className={classes.line}></Box>
           </>
