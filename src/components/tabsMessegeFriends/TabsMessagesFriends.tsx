@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Tab, Tabs, Box, Typography, Avatar } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
+import messages from './messages.json'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -36,19 +37,28 @@ const TabsMessagesFriends = () => {
         <Tab label="Friends" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Box className={classes.messageBlock}>
-          <Avatar
-            src="/img/photo_Elena_2.jpg"
-            sx={{ width: 66, height: 66 }}
-          ></Avatar>
-          <Box className={classes.message}>
-            <Typography className={classes.name}>Elena S., 36</Typography>
-            <Typography className={classes.textMessage}>
-              Hello! Nice to meet you! I’m Elena
-            </Typography>
-          </Box>
-          <Box className={classes.messageQuantity}>1</Box>
-        </Box>
+        {messages.map((element, index) => (
+          <>
+            <Box className={classes.messageBlock} key={index}>
+              <Avatar
+                src={element.avatar}
+                sx={{ width: 66, height: 66 }}
+              ></Avatar>
+              <Box className={classes.message}>
+                <Typography className={classes.name}>
+                  {element.name} {element.lastname}, {element.age}
+                </Typography>
+                <Typography className={classes.textMessage}>
+                  {element.message}
+                </Typography>
+              </Box>
+              <Box className={classes.messageQuantity}>
+                {element.messageCount}
+              </Box>
+            </Box>
+            <Box className={classes.line}></Box>
+          </>
+        ))}
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -67,6 +77,7 @@ const useStyles = makeStyles()(() => {
       display: 'grid',
       gridTemplateColumns: '0.5fr 5fr 0.5fr',
       alignItems: 'center',
+      paddingBottom: 30,
     },
     message: {
       paddingLeft: 16,
@@ -93,6 +104,10 @@ const useStyles = makeStyles()(() => {
     textMessage: {
       fontSize: 14,
       lineHeight: '22px',
+    },
+    line: {
+      borderTop: '1px solid #EEE',
+      paddingBottom: 30,
     },
   }
 })

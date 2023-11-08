@@ -3,27 +3,39 @@
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
     "lastname": "S.",
+    "age": "38",
     "message": "Hello! Nice to meet you! I’m Elena",
     "messageCount": "1"
   },
   {
     "avatar": "/img/photo_Elena_2.jpg",
     "name": "Elena",
-    "lastname": "S.",
+    "lastname": "T.",
+    "age": "40",
     "message": "Hello! Nice to meet you! I’m Elena. Can...",
     "messageCount": "3"
   },
   {
     "avatar": "/img/photo_Elena_3.jpg",
     "name": "Elena",
-    "lastname": "S.",
+    "lastname": "M.",
+    "age": "36",
     "message": "Hello! Nice to meet you! I’m Elena",
     "messageCount": "0"
   },
   {
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
-    "lastname": "S.",
+    "lastname": "Antonova",
+    "age": "42",
+    "message": "Hello! Nice to meet you! I’m Elena",
+    "messageCount": "1"
+  },
+  {
+    "avatar": "/img/photo_Elena.jpg",
+    "name": "Elena",
+    "lastname": "Petrova",
+    "age": "35",
     "message": "Hello! Nice to meet you! I’m Elena",
     "messageCount": "1"
   },
@@ -31,34 +43,31 @@
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
     "lastname": "S.",
+    "age": "38",
     "message": "Hello! Nice to meet you! I’m Elena",
     "messageCount": "1"
   },
   {
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
-    "lastname": "S.",
+    "lastname": "M.",
+    "age": "37",
     "message": "Hello! Nice to meet you! I’m Elena",
     "messageCount": "1"
   },
   {
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
-    "lastname": "S.",
+    "lastname": "V.",
+    "age": "39",
     "message": "Hello! Nice to meet you! I’m Elena",
     "messageCount": "1"
   },
   {
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
-    "lastname": "S.",
-    "message": "Hello! Nice to meet you! I’m Elena",
-    "messageCount": "1"
-  },
-  {
-    "avatar": "/img/photo_Elena.jpg",
-    "name": "Elena",
-    "lastname": "S.",
+    "lastname": "W.",
+    "age": "38",
     "message": "Hello! Nice to meet you! I’m Elena",
     "messageCount": "1"
   }
