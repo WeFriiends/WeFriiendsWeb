@@ -78,8 +78,6 @@ const useStyles = makeStyles()(() => {
   return {
     mainGrid: {
       display: ' grid',
-      gridTemplateRows: 'repeat(9, 1fr)',
-      maxHeight: '59vh',
     },
     iconsAbove: {
       display: 'flex',
@@ -176,10 +174,15 @@ const useStyles = makeStyles()(() => {
     },
     accordion: {
       zIndex: 100,
+      paddingTop: 100,
+      marginTop: -206,
       background:
         'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 49.79%)',
       '&::before': {
         height: 0,
+        '&.Mui-expanded': {
+          margin: 0,
+        },
       },
     },
   }
