@@ -176,13 +176,12 @@ const useStyles = makeStyles()(() => {
       zIndex: 100,
       paddingTop: 100,
       marginTop: -206,
+      // gridRow: '8/9',
+      // gridColumn: '1/2',
       background:
         'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 49.79%)',
       '&::before': {
         height: 0,
-        '&.Mui-expanded': {
-          margin: 0,
-        },
       },
     },
   }
