@@ -7,7 +7,7 @@ import AccountCreated from './components/user-auth/accountCreated/AccountCreated
 import SignIn from './components/user-auth/signIn/SignIn'
 import SignInMail from './components/user-auth/signInMail/SignInMail'
 import TestPage from './components/user-auth/testPage/TestPage'
-import MessagesAndFriends from 'pages/messagesAndFriends'
+import MessagesAndFriends from 'pages/MessagesAndFriends'
 
 const theme = createTheme({
   typography: {

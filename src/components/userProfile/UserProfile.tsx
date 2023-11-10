@@ -78,8 +78,6 @@ const useStyles = makeStyles()(() => {
   return {
     mainGrid: {
       display: ' grid',
-      gridTemplateRows: 'repeat(9, 1fr)',
-      maxHeight: '59vh',
     },
     iconsAbove: {
       display: 'flex',

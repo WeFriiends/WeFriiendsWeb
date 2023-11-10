@@ -1,6 +1,6 @@
 import React from 'react'
 import Carousel from 'react-material-ui-carousel'
-import Item from './Item'
+import UserPic from './UserPic'
 import items from './items.json'
 
 const FotoCarousel = () => {
@@ -38,7 +38,7 @@ const FotoCarousel = () => {
       }}
     >
       {items.map((item, i) => (
-        <Item key={i} item={item} />
+        <UserPic key={i} item={item} />
       ))}
     </Carousel>
   )
