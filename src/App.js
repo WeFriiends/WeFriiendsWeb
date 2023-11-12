@@ -7,6 +7,10 @@ import SignIn from './components/user-auth/signIn/SignIn'
 import SignInMail from './components/user-auth/signInMail/SignInMail'
 import TestPage from './components/user-auth/testPage/TestPage'
 import MessagesAndFriends from 'pages/messagesAndFriends'
+import Report from 'components/report/report'
+import ReportReceived from 'components/report/reportReceived'
+import ReportComment from 'components/report/reportComment'
+import CommentInput from './components/report/commentInput'
 
 function App() {
   return (
@@ -23,6 +27,13 @@ function App() {
           <Route path="/mailSignIn" element={<SignInMail />} />
           <Route path="/test" element={<TestPage />} />
           <Route path="/messages" element={<MessagesAndFriends />} />
+          <Route path="/" element={<Report />} />
+          <Route
+            path="/reportComment/:buttonName"
+            element={<ReportComment />}
+          />
+          <Route path="/commentInput" component={CommentInput} />
+          <Route path="/reportReceived" element={<ReportReceived />} />
         </Routes>
       </div>
     </Router>
