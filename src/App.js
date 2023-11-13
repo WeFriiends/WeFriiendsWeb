@@ -13,6 +13,19 @@ const theme = createTheme({
   typography: {
     fontFamily: ['Inter'],
   },
+  components: {
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          // '&.Mui-expanded': {
+          //   marginTop: -206,
+          //   // gridRow: '8/10',
+          //   // gridColumn: '1/2',
+          // },
+        },
+      },
+    },
+  },
 })
 
 function App() {
