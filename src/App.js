@@ -9,6 +9,7 @@ import SignInMail from './components/user-auth/signInMail/SignInMail'
 import TestPage from './components/user-auth/testPage/TestPage'
 import MessagesAndFriends from 'pages/messagesAndFriends'
 import NearMe from './pages/NearMe'
+import NameProfile from './components/profile/NameProfile'
 
 const theme = createTheme({
   typography: {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/test" element={<TestPage />} />
             <Route path="/messages" element={<MessagesAndFriends />} />
             <Route path="/nearMe" element={<NearMe />} />
+            <Route path="/name" element={<NameProfile />} />
           </Routes>
         </div>
       </Router>
