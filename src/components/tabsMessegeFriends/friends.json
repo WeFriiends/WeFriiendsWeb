@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Elena",
+    "lastname": "S",
+    "age": "36",
+    "foto": "/img/friends/friends_foto1.jpg"
+  },
+  {
+    "name": "Valentina",
+    "lastname": "M",
+    "age": "38",
+    "foto": "/img/friends/friends_foto2.jpg"
+  },
+  {
+    "name": "Katya",
+    "lastname": "N",
+    "age": "40",
+    "foto": "/img/friends/friends_foto3.jpg"
+  },
+  {
+    "name": "Polina",
+    "lastname": "T",
+    "age": "42",
+    "foto": "/img/friends/friends_foto4.jpg"
+  },
+  {
+    "name": "Nastya",
+    "lastname": "P",
+    "age": "42",
+    "foto": "/img/friends/friends_foto5.jpg"
+  },
+  {
+    "name": "Tanya",
+    "lastname": "P",
+    "age": "40",
+    "foto": "/img/friends/friends_foto1.jpg"
+  },
+  {
+    "name": "Sonya",
+    "lastname": "S",
+    "age": "38",
+    "foto": "/img/friends/friends_foto2.jpg"
+  },
+  {
+    "name": "Katya",
+    "lastname": "L",
+    "age": "36",
+    "foto": "/img/friends/friends_foto3.jpg"
+  }
+]
