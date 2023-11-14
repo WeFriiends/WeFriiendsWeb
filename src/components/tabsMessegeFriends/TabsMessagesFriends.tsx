@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Tab, Tabs, Box, Typography, Avatar } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import messages from './messages.json'
+import friends from './friends.json'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -40,7 +41,7 @@ const TabsMessagesFriends = () => {
     <Box>
       <Tabs value={value} onChange={handleChange} variant="fullWidth">
         <Tab label="Messages" />
-        <Tab label="Friends" />
+        <Tab label="New Friends" />
       </Tabs>
       <TabPanel value={value} index={0}>
         {messages.map((element, index) => (
@@ -69,9 +70,17 @@ const TabsMessagesFriends = () => {
         ))}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Minima, quaerat recusandae? Iure nesciunt quaerat dolorem. Odit nihil
-        recusandae corporis voluptatum.
+        <Box className={classes.friendsBlock}>
+          {friends.map((element, index) => (
+            <Box key={index} className={classes.friendsPhotos}>
+              <img
+                src={element.foto}
+                alt="photo"
+                className={classes.smallPhot}
+              />
+            </Box>
+          ))}
+        </Box>
       </TabPanel>
     </Box>
   )
@@ -117,6 +126,17 @@ const useStyles = makeStyles()(() => {
     line: {
       borderTop: '1px solid #EEE',
       paddingBottom: 30,
+    },
+    friendsBlock: {
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gridGap: 29,
+    },
+    friendsPhotos: {
+      justifySelf: 'center',
+    },
+    smallPhot: {
+      width: 162,
     },
   }
 })
