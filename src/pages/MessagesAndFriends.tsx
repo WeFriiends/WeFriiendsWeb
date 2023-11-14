@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import Header from 'components/header/Header'
 import TabsMessagesFriends from 'components/tabsMessegeFriends/TabsMessegesFriends'
-import Card from 'components/userProfile/UserProfile'
+import UserProfile from 'components/userProfile/UserProfile'
 
 const MessagesAndFriends = () => {
   return (
@@ -10,7 +10,7 @@ const MessagesAndFriends = () => {
       <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
         <TabsMessagesFriends />
         <Box sx={{ paddingLeft: '53px', paddingTop: '36px' }}>
-          <Card />
+          <UserProfile />
         </Box>
       </Box>
     </Box>

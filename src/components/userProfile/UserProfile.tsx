@@ -11,7 +11,7 @@ import { makeStyles } from 'tss-react/mui'
 import CircleRoundedIcon from '@mui/icons-material/CircleRounded'
 import FotoCarousel from './FotoCarousel'
 
-const Card = () => {
+const UserProfile = () => {
   const { classes } = useStyles()
 
   return (
@@ -72,7 +72,7 @@ const Card = () => {
     </>
   )
 }
-export default Card
+export default UserProfile
 
 const useStyles = makeStyles()(() => {
   return {
