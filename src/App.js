@@ -7,24 +7,11 @@ import AccountCreated from './components/user-auth/accountCreated/AccountCreated
 import SignIn from './components/user-auth/signIn/SignIn'
 import SignInMail from './components/user-auth/signInMail/SignInMail'
 import TestPage from './components/user-auth/testPage/TestPage'
-import MessagesAndFriends from 'pages/MessagesAndFriends'
+import MessagesAndFriends from './pages/MessagesAndFriends'
 
 const theme = createTheme({
   typography: {
     fontFamily: ['Inter'],
-  },
-  components: {
-    MuiAccordion: {
-      styleOverrides: {
-        root: {
-          // '&.Mui-expanded': {
-          //   marginTop: -206,
-          //   // gridRow: '8/10',
-          //   // gridColumn: '1/2',
-          // },
-        },
-      },
-    },
   },
 })
 

@@ -174,10 +174,15 @@ const useStyles = makeStyles()(() => {
     },
     accordion: {
       zIndex: 100,
+      paddingTop: 100,
+      marginTop: -206,
       background:
         'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 49.79%)',
       '&::before': {
         height: 0,
+      },
+      '&.Mui-expanded': {
+        marginTop: -206,
       },
     },
   }
