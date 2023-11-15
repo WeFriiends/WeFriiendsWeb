@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1,
+    "fName": "Elena",
+    "lName": "Musk",
+    "location": "Istanbul",
+    "picture": "img/users/1.svg"
+  },
+  {
+    "id": 2,
+    "fName": "Arina",
+    "lName": "Smith",
+    "location": "Istanbul",
+    "picture": "/img/users/2.svg"
+  },
+  {
+    "id": 3,
+    "fName": "Barbara",
+    "lName": "Baley",
+    "location": "Istanbul",
+    "picture": "/img/users/3.svg"
+  },
+  {
+    "id": 4,
+    "fName": "Irina",
+    "lName": "Lopatko",
+    "location": "Istanbul",
+    "picture": "/img/users/1.svg"
+  },
+  {
+    "id": 5,
+    "fName": "Abigale",
+    "lName": "Lee",
+    "location": "Istanbul",
+    "picture": "/img/users/2.svg"
+  },
+  {
+    "id": 6,
+    "fName": "Haley",
+    "lName": "Powers",
+    "location": "Istanbul",
+    "picture": "/img/users/3.svg"
+  },
+  {
+    "id": 7,
+    "fName": "Stacy",
+    "lName": "Matteroli",
+    "location": "Istanbul",
+    "picture": "/img/users/1.svg"
+  },
+  {
+    "id": 8,
+    "fName": "Jenifer",
+    "lName": "Hoplins",
+    "location": "Istanbul",
+    "picture": "/img/users/2.svg"
+  },
+  {
+    "id": 9,
+    "fName": "Marion",
+    "lName": "Davis",
+    "location": "Istanbul",
+    "picture": "/img/users/3.svg"
+  },
+  {
+    "id": 10,
+    "fName": "Maria",
+    "lName": "Muirhead",
+    "location": "Istanbul",
+    "picture": "/img/users/1.svg"
+  },
+  {
+    "id": 11,
+    "fName": "Kerry",
+    "lName": "Teran",
+    "location": "Istanbul",
+    "picture": "/img/users/2.svg"
+  },
+  {
+    "id": 12,
+    "fName": "Marianne",
+    "lName": "Kunche",
+    "location": "Istanbul",
+    "picture": "/img/users/3.svg"
+  },
+  {
+    "id": 13,
+    "fName": "Natasha",
+    "lName": "McGonagle",
+    "location": "Istanbul",
+    "picture": "/img/users/1.svg"
+  },
+  {
+    "id": 14,
+    "fName": "Kathy",
+    "lName": "Drummond",
+    "location": "Istanbul",
+    "picture": "/img/users/2.svg"
+  },
+  {
+    "id": 15,
+    "fName": "Susan",
+    "lName": "Saji",
+    "location": "Istanbul",
+    "picture": "/img/users/3.svg"
+  },
+  {
+    "id": 16,
+    "fName": "Amelie",
+    "lName": "Jain",
+    "location": "Istanbul",
+    "picture": "/img/users/1.svg"
+  },
+  {
+    "id": 17,
+    "fName": "Rita",
+    "lName": "Qasi",
+    "location": "Istanbul",
+    "picture": "/img/users/2.svg"
+  },
+  {
+    "id": 18,
+    "fName": "Kelly",
+    "lName": "Reddy",
+    "location": "Istanbul",
+    "picture": "/img/users/3.svg"
+  },
+  {
+    "id": 19,
+    "fName": "Vendy",
+    "lName": "Padilla",
+    "location": "Istanbul",
+    "picture": "/img/users/1.svg"
+  },
+  {
+    "id": 20,
+    "fName": "Barbie",
+    "lName": "Martinez",
+    "location": "Istanbul",
+    "picture": "/img/users/2.svg"
+  },
+  {
+    "id": 21,
+    "fName": "Luna",
+    "lName": "Hall",
+    "location": "Istanbul",
+    "picture": "/img/users/3.svg"
+  },
+  {
+    "id": 22,
+    "fName": "Vera",
+    "lName": "Chan",
+    "location": "Istanbul",
+    "picture": "/img/users/1.svg"
+  },
+  {
+    "id": 23,
+    "fName": "Alyssa",
+    "lName": "Day-Bobb",
+    "location": "Istanbul",
+    "picture": "/img/users/2.svg"
+  },
+  {
+    "id": 24,
+    "fName": "Daria",
+    "lName": "Khare",
+    "location": "Istanbul",
+    "picture": "/img/users/3.svg"
+  }
+]
