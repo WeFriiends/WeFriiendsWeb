@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
-import CreateAccount from './components/user-auth/createAccount/CreateAccount'
-import RegistrationForm from './components/user-auth/registrationForm/RegistrationForm'
-import AccountCreated from './components/user-auth/accountCreated/AccountCreated'
-import SignIn from './components/user-auth/signIn/SignIn'
-import SignInMail from './components/user-auth/signInMail/SignInMail'
-import TestPage from './components/user-auth/testPage/TestPage'
-import MessagesAndFriends from 'pages/messagesAndFriends'
+// import CreateAccount from './components/user-auth/createAccount/CreateAccount'
+// import RegistrationForm from './components/user-auth/registrationForm/RegistrationForm'
+// import AccountCreated from './components/user-auth/accountCreated/AccountCreated'
+// import SignIn from './components/user-auth/signIn/SignIn'
+// import SignInMail from './components/user-auth/signInMail/SignInMail'
+// import TestPage from './components/user-auth/testPage/TestPage'
+// import MessagesAndFriends from 'pages/messagesAndFriends'
 import Report from 'components/report/report'
 import ReportReceived from 'components/report/reportReceived'
 import ReportComment from 'components/report/reportComment'
@@ -17,7 +17,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route exact path="/" element={<CreateAccount />} />
+          {/* <Route exact path="/" element={<CreateAccount />} />
           <Route path="/registration" element={<RegistrationForm />} />
           <Route
             path="/registration/glad-screen/:confirmationCode"
@@ -26,7 +26,7 @@ function App() {
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/mailSignIn" element={<SignInMail />} />
           <Route path="/test" element={<TestPage />} />
-          <Route path="/messages" element={<MessagesAndFriends />} />
+          <Route path="/messages" element={<MessagesAndFriends />} /> */}
           <Route path="/" element={<Report />} />
           <Route
             path="/reportComment/:buttonName"

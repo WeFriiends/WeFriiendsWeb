@@ -80,7 +80,7 @@ const useStyles = makeStyles()(() => {
       },
     },
     dialogBtn: {
-      border: 'none',
+      border: '1px solid #FB8F67',
       marginBottom: 8,
       boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',
       height: 38,

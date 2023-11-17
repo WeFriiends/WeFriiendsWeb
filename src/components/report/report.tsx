@@ -15,28 +15,8 @@ const Report = () => {
 
   return (
     <Box className={classes.mainBox}>
-      <IconButton
-        className={classes.iconButton}
-        onClick={handleGoBack}
-        sx={{
-          position: 'absolute',
-          right: 8,
-          top: 8,
-          color: (theme) => theme.palette.grey[600],
-          borderRadius: '0',
-          border: '1px solid #ccc',
-        }}
-      >
-        <ClearIcon
-          className={classes.closeIcon}
-          sx={{
-            position: 'absolute',
-            width: 16,
-            height: 16,
-            stroke: (theme) => theme.palette.grey[600],
-            strokeWidth: 1,
-          }}
-        />
+      <IconButton className={classes.iconButton} onClick={handleGoBack}>
+        <ClearIcon className={classes.closeIcon} />
       </IconButton>
       <img
         src={require('./Images/alert-circle.png')}
@@ -44,11 +24,6 @@ const Report = () => {
         className={classes.imgAlert}
       />
 
-      {/* <img
-        src={'./components/Report/Images/alert-circle.png'}
-        alt=""
-        className={classes.imgAlert}
-      /> */}
       <Box>
         <Typography variant="h1" className={classes.title}>
           Report
@@ -93,16 +68,17 @@ export default Report
 
 const useStyles = makeStyles()((theme) => {
   return {
-    // typography: {
-    //   fontFamily: ['Inter', 'sans-serif'].join(','),
+    // body: {
+    //   overflow: 'hidden',
     // },
     mainBox: {
       display: 'grid',
-      gridTemplateRows: '1fr 2fr 2fr 1fr',
+      //gridTemplateRows: '1fr 2fr 2fr 1fr',
       alignItems: 'center',
       marginLeft: 20,
       marginRight: 20,
       overflow: 'hidden',
+      position: 'relative',
       [theme.breakpoints.up('sm')]: {
         width: 400,
         margin: '0 auto',
@@ -111,7 +87,7 @@ const useStyles = makeStyles()((theme) => {
     shadowBox: {
       borderRadius: 10,
       boxShadow: '0 0 7px 1px rgba(179, 179, 179, 0.14)',
-      padding: '30px 20px',
+      padding: '20px ',
       background: '#fff',
     },
 
@@ -119,7 +95,7 @@ const useStyles = makeStyles()((theme) => {
       fontSize: 24,
       fontWeight: 500,
       lineHeight: '40px',
-      paddingTop: 10,
+      paddingTop: 70,
       paddingBottom: 14,
       color: '#F46B5D',
       textAlign: 'center',
@@ -131,21 +107,21 @@ const useStyles = makeStyles()((theme) => {
     },
     imgAlert: {
       display: 'block',
+      marginTop: '80px',
       marginLeft: 'auto',
       marginRight: 'auto',
-      width: '25.833px',
-      height: '25.833px',
+      width: '31px',
+      height: '31px',
       flexShrink: 0,
       strokeWidth: '2px',
       stroke: 'var(--red, #F1562A)',
     },
 
     linkBtn: {
-      // textDecoration: 'none',
-      // backgroundColor: '#FFFFFFD',
       display: 'block',
       borderRadius: 10,
       fontSize: 14,
+      height: '50px',
       padding: '0 14px',
       '&:active, &:hover': {
         backgroundColor: '#FB8F67',
@@ -153,23 +129,22 @@ const useStyles = makeStyles()((theme) => {
         color: '#fff',
       },
       flexShrink: 0,
-      paddingTop: 18,
-      paddingBottom: 18,
+      paddingTop: 10,
+      paddingBottom: 10,
       background: '#FFF',
       boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',
       textAlign: 'left',
       textTransform: 'none',
       color: '#000',
-      marginBottom: 8,
+      marginBottom: 5,
     },
     iconButton: {
       width: '24px',
       height: '24px',
       flexShrink: 0,
-      // right: '0',
-      // position: 'absolute',
-      // top: '20px',
-      right: '20%',
+      position: 'absolute',
+      top: '30px',
+      right: '0',
       borderRadius: '0',
       border: '1px solid #ccc',
     },
