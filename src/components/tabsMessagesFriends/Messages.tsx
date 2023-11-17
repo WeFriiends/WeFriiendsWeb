@@ -7,9 +7,9 @@ const Messages = () => {
   const { classes } = useStyles()
   return (
     <>
-      {messages.map((element, index) => (
+      {messages.map((element) => (
         <>
-          <Box className={classes.messageBlock} key={index}>
+          <Box className={classes.messageBlock} key={element.id}>
             <Avatar
               src={element.avatar}
               sx={{ width: 66, height: 66 }}
