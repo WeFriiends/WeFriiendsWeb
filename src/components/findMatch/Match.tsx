@@ -1,4 +1,11 @@
-import { Box,  Avatar,  Typography,  Button,  Modal,  IconButton } from '@mui/material'
+import {
+  Box,
+  Avatar,
+  Typography,
+  Button,
+  Modal,
+  IconButton,
+} from '@mui/material'
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation'
 import { makeStyles } from 'tss-react/mui'
 import { useState } from 'react'
@@ -44,8 +51,10 @@ const Match = () => {
               </Typography>
               <Typography className={classes.subTitle}>
                 Anna was waiting for it for
-                <br />soooo looong...
-                <br />Hurry up to say hello to her!
+                <br />
+                soooo looong...
+                <br />
+                Hurry up to say hello to her!
               </Typography>
             </Box>
             <Box className={classes.buttonsContainer}>

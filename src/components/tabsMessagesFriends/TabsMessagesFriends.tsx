@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Tab, Tabs, Box, Typography } from '@mui/material'
+import Messages from './Messages'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -13,7 +14,13 @@ function TabPanel(props: TabPanelProps) {
   return (
     <div>
       {value === index && (
-        <Box sx={{ p: 2 }}>
+        <Box
+          sx={{
+            padding: '30px 0',
+            height: '67vh',
+            overflowY: 'scroll',
+          }}
+        >
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -28,14 +35,13 @@ const TabsMessagesFriends = () => {
     setValue(newValue)
   }
   return (
-    <Box sx={{ width: '50%' }}>
+    <Box>
       <Tabs value={value} onChange={handleChange} variant="fullWidth">
         <Tab label="Messages" />
         <Tab label="Friends" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Item One Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
-        ad.
+        <Messages />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two Lorem ipsum dolor sit amet consectetur adipisicing elit.
