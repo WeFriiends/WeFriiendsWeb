@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
     "lastname": "S.",
@@ -8,6 +9,7 @@
     "messageCount": "1"
   },
   {
+    "id": "2",
     "avatar": "/img/photo_Elena_2.jpg",
     "name": "Elena",
     "lastname": "T.",
@@ -16,6 +18,7 @@
     "messageCount": "3"
   },
   {
+    "id": "3",
     "avatar": "/img/photo_Elena_3.jpg",
     "name": "Elena",
     "lastname": "M.",
@@ -24,6 +27,7 @@
     "messageCount": "0"
   },
   {
+    "id": "4",
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
     "lastname": "Antonova",
@@ -32,6 +36,7 @@
     "messageCount": "1"
   },
   {
+    "id": "5",
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
     "lastname": "Petrova",
@@ -40,6 +45,7 @@
     "messageCount": "1"
   },
   {
+    "id": "6",
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
     "lastname": "S.",
@@ -48,6 +54,7 @@
     "messageCount": "1"
   },
   {
+    "id": "7",
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
     "lastname": "M.",
@@ -56,6 +63,7 @@
     "messageCount": "1"
   },
   {
+    "id": "8",
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
     "lastname": "V.",
@@ -64,6 +72,7 @@
     "messageCount": "1"
   },
   {
+    "id": "9",
     "avatar": "/img/photo_Elena.jpg",
     "name": "Elena",
     "lastname": "W.",
