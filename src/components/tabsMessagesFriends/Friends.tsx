@@ -7,8 +7,8 @@ const Friends = () => {
   const { classes } = useStyles()
   return (
     <Box className={classes.friendsBlock}>
-      {friends.map((element, index) => (
-        <Box key={index} className={classes.friendsPhotos}>
+      {friends.map((element) => (
+        <Box id={element.id} key={element.id} className={classes.friendsPhotos}>
           <img src={element.foto} alt="photo" className={classes.smallPhoto} />
           <Typography className={classes.textOnPhoto}>
             {element.name} {element.lastname}, {element.age}
