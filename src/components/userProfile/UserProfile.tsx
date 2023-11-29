@@ -6,11 +6,14 @@ import {
   Typography,
   Button,
 } from '@mui/material'
-import CircleRoundedIcon from '@mui/icons-material/CircleRounded'
-import { makeStyles } from 'tss-react/mui'
 
-const Card = () => {
+import { makeStyles } from 'tss-react/mui'
+import CircleRoundedIcon from '@mui/icons-material/CircleRounded'
+import FotoCarousel from './FotoCarousel'
+
+const UserProfile = () => {
   const { classes } = useStyles()
+
   return (
     <>
       <Box className={classes.mainGrid}>
@@ -21,12 +24,11 @@ const Card = () => {
           </Box>
           <img src="/img/verified.svg"></img>
         </Box>
-        <Box
-          component="img"
-          src="/img/foto_Elena.jpg"
-          alt="card"
-          className={classes.foto}
-        />
+
+        <div className={classes.carousel}>
+          <FotoCarousel />
+        </div>
+
         <Accordion className={classes.accordion}>
           <AccordionSummary expandIcon={<img src="/img/arrow-down.svg" />}>
             <Box>
@@ -70,20 +72,18 @@ const Card = () => {
     </>
   )
 }
-export default Card
+export default UserProfile
 
 const useStyles = makeStyles()(() => {
   return {
     mainGrid: {
       display: ' grid',
-      gridTemplateRows: 'repeat(9, 1fr)',
-      maxHeight: '65vh',
     },
     iconsAbove: {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'flex-start',
-      zIndex: 1,
+      zIndex: 100,
       padding: '26px 11px 0',
       gridRow: '1/1',
       gridColumn: '1/2',
@@ -97,6 +97,10 @@ const useStyles = makeStyles()(() => {
       alignItems: 'center',
       gap: 4,
       padding: '3px 5px',
+    },
+    carousel: {
+      gridRow: '1/9',
+      gridColumn: '1/2',
     },
     buttonSection: {
       display: 'flex',
@@ -168,17 +172,17 @@ const useStyles = makeStyles()(() => {
       fontSize: 14,
       lineHeight: '22px',
     },
-    foto: {
-      width: '100%',
-      gridRow: '1/9',
-      gridColumn: '1/2',
-    },
     accordion: {
-      paddingTop: 106,
+      zIndex: 100,
+      paddingTop: 100,
+      marginTop: -206,
       background:
         'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 49.79%)',
       '&::before': {
         height: 0,
+      },
+      '&.Mui-expanded': {
+        marginTop: -206,
       },
     },
   }
