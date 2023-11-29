@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Tab, Tabs, Box, Typography } from '@mui/material'
 import Messages from './Messages'
+import Friends from './Friends'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -44,9 +45,7 @@ const TabsMessagesFriends = () => {
         <Messages />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Minima, quaerat recusandae? Iure nesciunt quaerat dolorem. Odit nihil
-        recusandae corporis voluptatum.
+        <Friends />
       </TabPanel>
     </Box>
   )
