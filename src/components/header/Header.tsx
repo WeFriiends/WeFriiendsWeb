@@ -1,18 +1,14 @@
 import React from 'react'
-import {
-  Avatar,
-  BottomNavigation,
-  BottomNavigationAction,
-  Box,
-  Typography,
-} from '@mui/material'
+import { Avatar, BottomNavigation, Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { useActivePage } from '../../context/activePageContext'
-import { Link } from 'react-router-dom'
-
+import { generateNavigationConfig } from '../../helpers/navigationConfigHelper'
+import { renderNavigationItems } from '../../helpers/navigationRenderer'
 const Header = () => {
   const { classes } = useStyles()
   const { activePage, setNewActivePage } = useActivePage()
+  const navigationConfig = generateNavigationConfig('header')
+
   return (
     <Box className={classes.headerStyle}>
       <Box>
@@ -27,94 +23,11 @@ const Header = () => {
         value={activePage}
         onChange={(event, newValue) => setNewActivePage(newValue)}
       >
-        <BottomNavigationAction
-          value="nearme"
-          icon={
-            <Link to="/nearMe" style={{ textDecoration: 'none' }}>
-              {activePage === 'nearme' ? (
-                <img
-                  src="/img/navigationIcons/near_me_red.svg"
-                  width={38}
-                  height={38}
-                  alt="near_me"
-                />
-              ) : (
-                <img
-                  src="/img/navigationIcons/near_me.svg"
-                  width={38}
-                  height={38}
-                  alt="near_me"
-                />
-              )}
-            </Link>
-          }
-        />
-        <BottomNavigationAction
-          value="wholikedyou"
-          icon={
-            <Link to="/whoLikedYou" style={{ textDecoration: 'none' }}>
-              {activePage === 'wholikedyou' ? (
-                <img
-                  src="img/navigationIcons/like_you_red.svg"
-                  width={27}
-                  height={38}
-                  alt="who_liked_you"
-                />
-              ) : (
-                <img
-                  src="img/navigationIcons/like_you.svg"
-                  width={27}
-                  height={38}
-                  alt="who_liked_you"
-                />
-              )}
-            </Link>
-          }
-        />
-        <BottomNavigationAction
-          value="friends"
-          icon={
-            <Link to="/messages" style={{ textDecoration: 'none' }}>
-              {activePage === 'friends' ? (
-                <img
-                  src="img/navigationIcons/ii_red.svg"
-                  width={24}
-                  height={50}
-                  alt="friends"
-                />
-              ) : (
-                <img
-                  src="img/navigationIcons/ii.svg"
-                  width={39}
-                  height={39}
-                  alt="friends"
-                />
-              )}
-            </Link>
-          }
-        />
-        <BottomNavigationAction
-          value="chat"
-          icon={
-            <Link to="/messages" style={{ textDecoration: 'none' }}>
-              {activePage === 'friends' ? (
-                <img
-                  src="img/navigationIcons/chat_red.svg"
-                  width={39}
-                  height={39}
-                  alt="friends"
-                />
-              ) : (
-                <img
-                  src="img/navigationIcons/chat.svg"
-                  width={39}
-                  height={39}
-                  alt="friends"
-                />
-              )}
-            </Link>
-          }
-        />
+        {renderNavigationItems({
+          activePage,
+          setNewActivePage,
+          navigationConfig,
+        })}
       </BottomNavigation>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
         <Avatar
