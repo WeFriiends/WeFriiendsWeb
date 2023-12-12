@@ -1,0 +1,90 @@
+[
+  {
+    "id": "1",
+    "name": "Elena",
+    "lastname": "S",
+    "age": "36",
+    "foto": "/img/friends/friends_photo1.jpg",
+    "city": "Madrid",
+    "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+    "education": "Bachelor degree",
+    "profession": "Freelance Journalist"
+  },
+  {
+    "id": "2",
+    "name": "Valentina",
+    "lastname": "M",
+    "age": "38",
+    "foto": "/img/friends/friends_photo2.jpg",
+    "city": "Berlin",
+    "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+    "education": "Master degree",
+    "profession": "Analyst"
+  },
+  {
+    "id": "3",
+    "name": "Katya",
+    "lastname": "N",
+    "age": "40",
+    "foto": "/img/friends/friends_photo3.jpg",
+    "city": "Roma",
+    "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+    "education": "Bachelor degree",
+    "profession": "Freelance Journalist"
+  },
+  {
+    "id": "4",
+    "name": "Polina",
+    "lastname": "T",
+    "age": "42",
+    "foto": "/img/friends/friends_photo4.jpg",
+    "city": "Madrid",
+    "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+    "education": "Master degree",
+    "profession": "Teacher"
+  },
+  {
+    "id": "5",
+    "name": "Nastya",
+    "lastname": "P",
+    "age": "42",
+    "foto": "/img/friends/friends_photo5.jpg",
+    "city": "Madrid",
+    "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+    "education": "Master degree",
+    "profession": "Dentist"
+  },
+  {
+    "id": "6",
+    "name": "Tanya",
+    "lastname": "Petrova",
+    "age": "40",
+    "foto": "/img/friends/friends_photo1.jpg",
+    "city": "Milan",
+    "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+    "education": "",
+    "profession": "Hairdresser"
+  },
+  {
+    "id": "7",
+    "name": "Sonya",
+    "lastname": "S",
+    "age": "38",
+    "foto": "/img/friends/friends_photo2.jpg",
+    "city": "Paris",
+    "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+    "education": "Master degree",
+    "profession": "Doctor"
+  },
+  {
+    "id": "8",
+    "name": "Katya",
+    "lastname": "L",
+    "age": "36",
+    "foto": "/img/friends/friends_photo3.jpg",
+    "city": "Madrid",
+    "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+    "education": "",
+    "profession": "Hairdresser"
+  }
+]
