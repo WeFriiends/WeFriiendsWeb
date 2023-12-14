@@ -38,7 +38,7 @@ const YourLikesUserListRenderer: React.FC<UserListRendererProps> = ({
             />
             <Lightning />
             <Box sx={{ fontWeight: 'bold', color: '#F46B5D' }}>
-              {user.fName} {user.lName}
+              {user.firstName} {user.lastName}
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'row' }}>
               <LocationOn sx={{ color: 'grey' }} />

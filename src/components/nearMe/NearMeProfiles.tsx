@@ -12,14 +12,14 @@ type IsMobileProps = {
 
 const NearMeProfiles = ({ isMobile }: IsMobileProps) => {
   const { classes } = useStyles()
-  const [list, setList] = useState<Array<UserObjectType>>([])
+  const [profileList, setProfileList] = useState<Array<UserObjectType>>([])
   const columns = getColumns(isMobile)
   const txtAlign = isMobile ? 'center' : 'left'
   useEffect(() => {
     async function fetchData() {
       try {
         const result = await getUsersNearMeData()
-        setList(result)
+        setProfileList(result)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -41,7 +41,7 @@ const NearMeProfiles = ({ isMobile }: IsMobileProps) => {
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <UserListRenderer users={list} classes={classes} columns={columns} />
+        <UserListRenderer users={profileList} classes={classes} columns={columns} />
       </Grid>
     </Grid>
   )

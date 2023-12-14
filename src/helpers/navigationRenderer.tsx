@@ -5,7 +5,11 @@ import RenderIcon from './renderIcon'
 
 interface NavigationItem {
   value: string
-  iconProps: any // Adjust the type according to your needs
+  iconProps: {
+    imagePath: string
+    alt: string
+    size: { width: number; height: number }
+  }
   linkTo: string
   size: { width: number; height: number }
 }
@@ -32,7 +36,11 @@ export const renderNavigationItems = ({
 }
 const renderLinkWithIcon = (
   linkTo: string,
-  iconProps: any,
+  iconProps: {
+    imagePath: string
+    alt: string
+    size: { width: number; height: number }
+  },
   size: any,
   isActive: boolean
 ) => (
