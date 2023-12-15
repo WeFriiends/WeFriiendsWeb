@@ -23,22 +23,22 @@ const NameProfile = () => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    if(!fullName.trim() && currentPage === 0){
+    if(!fullName.trim()){
       setError('Please enter your full name')
-      return;
-    }else{
-      console.log('fullName:', fullName)
-      setCurrentPage((prevPage) => prevPage + 1)
+    } else {
       setFullName('')
-      setError('')
+      setCurrentPage((prevPage) => prevPage + 1)
+      console.log('FULLNAME: ', fullName )
+      // nextPage function
+      // send data to backend
     }
   }
 
   const handleInputChange = (event: { target: { value: any } }) => {
+      setError('')
     if(FULLNAME_REGEX.test(event.target.value) || event.target.value === ''){
       setIsValid(false)
       setFullName(event.target.value)
-      console.log(fullName)
     }else{
       setIsValid(true)
     }
