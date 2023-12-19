@@ -42,7 +42,6 @@ const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
     setValue(newValue)
   }
   const getFriendsData = (user: UserProfileData) => {
-    console.log('id from tabsMessagesFriends', user)
     onClick(user)
   }
   return (
