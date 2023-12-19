@@ -1,17 +1,35 @@
 import * as React from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import friends from './friends.json'
+import friends from './friendsProfile.json'
+import { UserProfileData } from 'components/userProfile/UserProfile'
 
-const Friends = () => {
+interface FriendsProps {
+  onClick: (userProfileData: UserProfileData) => void
+}
+
+const Friends: React.FC<FriendsProps> = ({ onClick }) => {
   const { classes } = useStyles()
+  const handleClick = (id: string) => {
+    const friendsData = friends.find((element) => element.id == id)
+    onClick(friendsData as UserProfileData)
+  }
   return (
     <Box className={classes.friendsBlock}>
       {friends.map((element) => (
-        <Box id={element.id} key={element.id} className={classes.friendsPhotos}>
-          <img src={element.foto} alt="photo" className={classes.smallPhoto} />
+        <Box
+          id={element.id}
+          key={element.id}
+          className={classes.friendsPhotos}
+          onClick={() => handleClick(element.id)}
+        >
+          <img
+            src={element.photo[0].src}
+            alt="photo"
+            className={classes.smallPhoto}
+          />
           <Typography className={classes.textOnPhoto}>
-            {element.name} {element.lastname}, {element.age}
+            {element.firstName} {element.lastName}, {element.age}
           </Typography>
         </Box>
       ))}
