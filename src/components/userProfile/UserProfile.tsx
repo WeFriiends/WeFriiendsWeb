@@ -10,22 +10,7 @@ import {
 import { makeStyles } from 'tss-react/mui'
 import CircleRoundedIcon from '@mui/icons-material/CircleRounded'
 import FotoCarousel from './FotoCarousel'
-
-export interface UserPhoto {
-  src: string
-}
-
-export interface UserProfileData {
-  id: string
-  firstName: string
-  lastName: string
-  age: string
-  photo: UserPhoto[]
-  city: string
-  aboutMe: string
-  education: string
-  profession: string
-}
+import { UserProfileData } from '../../types/UserProfileData'
 
 interface UserProfileProps {
   user: UserProfileData

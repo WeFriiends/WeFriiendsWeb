@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import friends from './friendsProfile.json'
-import { UserProfileData } from 'components/userProfile/UserProfile'
+import { UserProfileData } from '../../types/UserProfileData'
 
 interface FriendsProps {
   onClick: (userProfileData: UserProfileData) => void

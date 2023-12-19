@@ -2,9 +2,8 @@ import { useState } from 'react'
 import { Box } from '@mui/material'
 import Header from 'components/header/Header'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
-import UserProfile, {
-  UserProfileData,
-} from 'components/userProfile/UserProfile'
+import UserProfile from 'components/userProfile/UserProfile'
+import { UserProfileData } from '../types/UserProfileData'
 import dataProfile from '../../src/components/userProfile/userProfile.json'
 
 const MessagesAndFriends = () => {

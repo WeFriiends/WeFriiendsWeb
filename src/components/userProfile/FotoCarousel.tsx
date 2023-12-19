@@ -1,7 +1,7 @@
 import React from 'react'
 import Carousel from 'react-material-ui-carousel'
 import UserPic from './UserPic'
-import { UserPhoto } from './UserProfile'
+import { UserPhoto } from 'types/UserProfileData'
 
 interface FotoCarouselProps {
   items: UserPhoto[]

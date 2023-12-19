@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Tab, Tabs, Box, Typography } from '@mui/material'
 import Messages from './Messages'
 import Friends from './Friends'
-import { UserProfileData } from 'components/userProfile/UserProfile'
+import { UserProfileData } from '../../types/UserProfileData'
 
 interface TabPanelProps {
   children?: React.ReactNode
