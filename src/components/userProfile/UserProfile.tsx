@@ -9,7 +9,7 @@ import {
 
 import { makeStyles } from 'tss-react/mui'
 import CircleRoundedIcon from '@mui/icons-material/CircleRounded'
-import FotoCarousel from './FotoCarousel'
+import PhotoCarousel from './PhotoCarousel'
 import { UserProfileData } from '../../types/UserProfileData'
 
 interface UserProfileProps {
@@ -30,7 +30,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
         </Box>
 
         <div className={classes.carousel}>
-          <FotoCarousel items={user.photo} />
+          <PhotoCarousel items={user.photo} />
         </div>
 
         <Accordion className={classes.accordion}>
