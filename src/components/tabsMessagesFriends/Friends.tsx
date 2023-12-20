@@ -46,8 +46,8 @@ const useStyles = makeStyles()(() => {
     },
     friendsBlock: {
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gridGap: 29,
+      gridTemplateColumns: '190px 190px',
+      gridGap: 35,
     },
     friendsPhotos: {
       justifySelf: 'center',
@@ -55,7 +55,7 @@ const useStyles = makeStyles()(() => {
       gridTemplateRows: '1fr 71px',
     },
     smallPhoto: {
-      width: 162,
+      width: 190,
       gridRow: '1/3',
       gridColumn: '1/2',
       boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',

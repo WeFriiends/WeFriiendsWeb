@@ -22,7 +22,7 @@ function TabPanel(props: TabPanelProps) {
         <Box
           sx={{
             padding: '30px 0',
-            height: '67vh',
+            height: '80vh',
             overflowY: 'scroll',
           }}
         >
