@@ -4,6 +4,7 @@ import { makeStyles } from 'tss-react/mui'
 import { useActivePage } from '../../context/activePageContext'
 import { generateNavigationConfig } from '../../helpers/navigationConfigHelper'
 import { renderNavigationItems } from '../../helpers/navigationRenderer'
+
 const Header = () => {
   const { classes } = useStyles()
   const { activePage, setNewActivePage } = useActivePage()

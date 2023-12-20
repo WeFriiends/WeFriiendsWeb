@@ -4,8 +4,7 @@ import { makeStyles } from 'tss-react/mui'
 import { getUsersNearMeData } from '../../actions/userServices'
 import { getColumns } from '../../helpers/helper'
 import UserListRenderer from './UserListRenderer'
-
-import { UserObjectType } from '../../helpers/userTypes'
+import { UserObjectType } from '../../common/userTypes'
 type IsMobileProps = {
   isMobile: boolean
 }
@@ -41,7 +40,11 @@ const NearMeProfiles = ({ isMobile }: IsMobileProps) => {
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <UserListRenderer users={profileList} classes={classes} columns={columns} />
+        <UserListRenderer
+          users={profileList}
+          classes={classes}
+          columns={columns}
+        />
       </Grid>
     </Grid>
   )

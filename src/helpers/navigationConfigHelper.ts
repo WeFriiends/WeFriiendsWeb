@@ -1,18 +1,4 @@
-interface CommonConfig {
-  isActive: boolean
-  imagePath: string
-  alt: string
-}
-
-interface NavigationConfig {
-  value: string
-  iconProps: CommonConfig
-  linkTo: string
-  size: {
-    width: number
-    height: number
-  }
-}
+import { CommonConfig, NavigationConfig } from '../common/NavigationTypes'
 
 export const generateNavigationConfig = (
   component: 'footer' | 'header'

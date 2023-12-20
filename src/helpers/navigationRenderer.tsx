@@ -2,23 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
 import RenderIcon from './renderIcon'
-
-interface NavigationItem {
-  value: string
-  iconProps: {
-    imagePath: string
-    alt: string
-    size: { width: number; height: number }
-  }
-  linkTo: string
-  size: { width: number; height: number }
-}
-
-interface NavigationProps {
-  activePage: string
-  setNewActivePage: (newValue: string) => void
-  navigationConfig: NavigationItem[]
-}
+import {
+  NavigationProps,
+  RenderIconProps,
+  CommonConfig,
+} from '../common/NavigationTypes'
 
 export const renderNavigationItems = ({
   activePage,
@@ -34,22 +22,27 @@ export const renderNavigationItems = ({
     />
   ))
 }
+
 const renderLinkWithIcon = (
   linkTo: string,
-  iconProps: {
-    imagePath: string
-    alt: string
-    size: { width: number; height: number }
-  },
-  size: any,
+  iconProps: RenderIconProps | CommonConfig,
+  size: { width: number; height: number } | undefined,
   isActive: boolean
-) => (
-  <Link to={linkTo} style={{ textDecoration: 'none' }}>
-    <RenderIcon
-      {...iconProps}
-      width={size.width}
-      height={size.height}
-      isActive={isActive}
-    />
-  </Link>
-)
+) => {
+  const renderProps: RenderIconProps =
+    'width' in iconProps
+      ? (iconProps as RenderIconProps)
+      : {
+          isActive: iconProps.isActive,
+          imagePath: iconProps.imagePath,
+          alt: iconProps.alt,
+          width: size?.width || 0,
+          height: size?.height || 0,
+        }
+
+  return (
+    <Link to={linkTo} style={{ textDecoration: 'none' }}>
+      <RenderIcon {...renderProps} isActive={isActive} />
+    </Link>
+  )
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
 import { LocationOn } from '@mui/icons-material'
-import { UserObjectType } from '../../helpers/userTypes'
+import { UserObjectType } from '../../common/userTypes'
 import Lightning from '../lightning/Lightning'
 
 type UserListRendererProps = {
