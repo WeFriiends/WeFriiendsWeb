@@ -6,7 +6,7 @@ import {
   NavigationProps,
   RenderIconProps,
   CommonConfig,
-} from '../common/NavigationTypes'
+} from '../common/types/navigationTypes'
 
 export const renderNavigationItems = ({
   activePage,

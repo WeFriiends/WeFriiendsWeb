@@ -1,4 +1,4 @@
-import { CommonConfig, NavigationConfig } from '../common/NavigationTypes'
+import { CommonConfig, NavigationConfig } from '../common/types/navigationTypes'
 
 export const generateNavigationConfig = (
   component: 'footer' | 'header'

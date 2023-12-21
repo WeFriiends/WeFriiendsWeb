@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper'
 import { useActivePage } from '../../context/activePageContext'
 import { generateNavigationConfig } from '../../helpers/navigationConfigHelper'
 import { renderNavigationItems } from '../../helpers/navigationRenderer'
-import { NavigationConfig } from '../../common/NavigationTypes'
+import { NavigationConfig } from '../../common/types/navigationTypes'
 
 const FooterAppBar: React.FC = () => {
   const { activePage, setNewActivePage } = useActivePage()

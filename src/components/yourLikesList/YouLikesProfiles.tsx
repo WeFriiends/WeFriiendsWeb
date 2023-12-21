@@ -4,7 +4,7 @@ import { makeStyles } from 'tss-react/mui'
 import { getUsersNearMeData } from '../../actions/userServices'
 import { getColumns } from '../../helpers/helper'
 import UserListRenderer from './YourLikesUserListRenderer'
-import { UserObjectType } from '../../common/userTypes'
+import { UserObjectType } from '../../common/types/userTypes'
 type IsMobileProps = {
   isMobile: boolean
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { RenderIconProps } from '../common/NavigationTypes'
+import { RenderIconProps } from '../common/types/navigationTypes'
 
 const RenderIcon: React.FC<RenderIconProps> = ({
   isActive,
