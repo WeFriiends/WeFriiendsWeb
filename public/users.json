@@ -1,170 +1,194 @@
 [
   {
-    "id": 1,
-    "fName": "Elena",
-    "lName": "Musk",
+    "id": "1",
+    "firstName": "Elena",
+    "lastName": "Musk",
     "location": "Istanbul",
-    "picture": "img/users/1.svg"
+    "picture": "img/users/1.svg",
+    "likedUsers": ["2", "3", "4"]
   },
   {
-    "id": 2,
-    "fName": "Arina",
-    "lName": "Smith",
+    "id": "2",
+    "firstName": "Arina",
+    "lastName": "Smith",
     "location": "Istanbul",
-    "picture": "/img/users/2.svg"
+    "picture": "/img/users/2.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 3,
-    "fName": "Barbara",
-    "lName": "Baley",
+    "id": "3",
+    "firstName": "Barbara",
+    "lastName": "Baley",
     "location": "Istanbul",
-    "picture": "/img/users/3.svg"
+    "picture": "/img/users/3.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 4,
-    "fName": "Irina",
-    "lName": "Lopatko",
+    "id": "4",
+    "firstName": "Irina",
+    "lastName": "Lopatko",
     "location": "Istanbul",
-    "picture": "/img/users/1.svg"
+    "picture": "/img/users/1.svg",
+    "likedUsers": ["1","2", "3"]
   },
   {
-    "id": 5,
-    "fName": "Abigale",
-    "lName": "Lee",
+    "id": "5",
+    "firstName": "Abigale",
+    "lastName": "Lee",
     "location": "Istanbul",
-    "picture": "/img/users/2.svg"
+    "picture": "/img/users/2.svg",
+    "likedUsers": ["1","2", "3"]
   },
   {
-    "id": 6,
-    "fName": "Haley",
-    "lName": "Powers",
+    "id": "6",
+    "firstName": "Haley",
+    "lastName": "Powers",
     "location": "Istanbul",
-    "picture": "/img/users/3.svg"
+    "picture": "/img/users/3.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 7,
-    "fName": "Stacy",
-    "lName": "Matteroli",
+    "id": "7",
+    "firstName": "Stacy",
+    "lastName": "Matteroli",
     "location": "Istanbul",
-    "picture": "/img/users/1.svg"
+    "picture": "/img/users/1.svg",
+    "likedUsers": ["1","2", "3"]
   },
   {
-    "id": 8,
-    "fName": "Jenifer",
-    "lName": "Hoplins",
+    "id": "8",
+    "firstName": "Jenifer",
+    "lastName": "Hoplins",
     "location": "Istanbul",
-    "picture": "/img/users/2.svg"
+    "picture": "/img/users/2.svg",
+    "likedUsers": ["1","2", "3"]
   },
   {
-    "id": 9,
-    "fName": "Marion",
-    "lName": "Davis",
+    "id": "9",
+    "firstName": "Marion",
+    "lastName": "Davis",
     "location": "Istanbul",
-    "picture": "/img/users/3.svg"
+    "picture": "/img/users/3.svg",
+    "likedUsers": ["1","2", "3"]
   },
   {
-    "id": 10,
-    "fName": "Maria",
-    "lName": "Muirhead",
+    "id": "10",
+    "firstName": "Maria",
+    "lastName": "Muirhead",
     "location": "Istanbul",
-    "picture": "/img/users/1.svg"
+    "picture": "/img/users/1.svg",
+    "likedUsers": ["1","2", "3"]
   },
   {
-    "id": 11,
-    "fName": "Kerry",
-    "lName": "Teran",
+    "id": "11",
+    "firstName": "Kerry",
+    "lastName": "Teran",
     "location": "Istanbul",
-    "picture": "/img/users/2.svg"
+    "picture": "/img/users/2.svg",
+    "likedUsers": ["1","2", "3"]
   },
   {
-    "id": 12,
-    "fName": "Marianne",
-    "lName": "Kunche",
+    "id": "12",
+    "firstName": "Marianne",
+    "lastName": "Kunche",
     "location": "Istanbul",
-    "picture": "/img/users/3.svg"
+    "picture": "/img/users/3.svg",
+    "likedUsers": ["1","2", "3"]
   },
   {
-    "id": 13,
-    "fName": "Natasha",
-    "lName": "McGonagle",
+    "id": "13",
+    "firstName": "Natasha",
+    "lastName": "McGonagle",
     "location": "Istanbul",
-    "picture": "/img/users/1.svg"
+    "picture": "/img/users/1.svg",
+    "likedUsers": ["1","2", "3"]
   },
   {
-    "id": 14,
-    "fName": "Kathy",
-    "lName": "Drummond",
+    "id": "14",
+    "firstName": "Kathy",
+    "lastName": "Drummond",
     "location": "Istanbul",
-    "picture": "/img/users/2.svg"
+    "picture": "/img/users/2.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 15,
-    "fName": "Susan",
-    "lName": "Saji",
+    "id": "15",
+    "firstName": "Susan",
+    "lastName": "Saji",
     "location": "Istanbul",
-    "picture": "/img/users/3.svg"
+    "picture": "/img/users/3.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 16,
-    "fName": "Amelie",
-    "lName": "Jain",
+    "id": "16",
+    "firstName": "Amelie",
+    "lastName": "Jain",
     "location": "Istanbul",
-    "picture": "/img/users/1.svg"
+    "picture": "/img/users/1.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 17,
-    "fName": "Rita",
-    "lName": "Qasi",
+    "id": "17",
+    "firstName": "Rita",
+    "lastName": "Qasi",
     "location": "Istanbul",
-    "picture": "/img/users/2.svg"
+    "picture": "/img/users/2.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 18,
-    "fName": "Kelly",
-    "lName": "Reddy",
+    "id": "18",
+    "firstName": "Kelly",
+    "lastName": "Reddy",
     "location": "Istanbul",
-    "picture": "/img/users/3.svg"
+    "picture": "/img/users/3.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 19,
-    "fName": "Vendy",
-    "lName": "Padilla",
+    "id": "19",
+    "firstName": "Vendy",
+    "lastName": "Padilla",
     "location": "Istanbul",
-    "picture": "/img/users/1.svg"
+    "picture": "/img/users/1.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 20,
-    "fName": "Barbie",
-    "lName": "Martinez",
+    "id": "20",
+    "firstName": "Barbie",
+    "lastName": "Martinez",
     "location": "Istanbul",
-    "picture": "/img/users/2.svg"
+    "picture": "/img/users/2.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 21,
-    "fName": "Luna",
-    "lName": "Hall",
+    "id": "21",
+    "firstName": "Luna",
+    "lastName": "Hall",
     "location": "Istanbul",
-    "picture": "/img/users/3.svg"
+    "picture": "/img/users/3.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 22,
-    "fName": "Vera",
-    "lName": "Chan",
+    "id": "22",
+    "firstName": "Vera",
+    "lastName": "Chan",
     "location": "Istanbul",
-    "picture": "/img/users/1.svg"
+    "picture": "/img/users/1.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 23,
-    "fName": "Alyssa",
-    "lName": "Day-Bobb",
+    "id": "23",
+    "firstName": "Alyssa",
+    "lastName": "Day-Bobb",
     "location": "Istanbul",
-    "picture": "/img/users/2.svg"
+    "picture": "/img/users/2.svg",
+    "likedUsers": ["2", "3"]
   },
   {
-    "id": 24,
-    "fName": "Daria",
-    "lName": "Khare",
+    "id": "24",
+    "firstName": "Daria",
+    "lastName": "Khare",
     "location": "Istanbul",
-    "picture": "/img/users/3.svg"
+    "picture": "/img/users/3.svg",
+    "likedUsers": ["2", "3"]
   }
 ]
