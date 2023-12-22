@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Tab, Tabs, Box, Typography } from '@mui/material'
+import { Tab, Tabs, Box } from '@mui/material'
 import Messages from './Messages'
 import Friends from './Friends'
 import { UserProfileData } from '../../types/UserProfileData'
@@ -26,7 +26,7 @@ function TabPanel(props: TabPanelProps) {
             overflowY: 'scroll',
           }}
         >
-          <Typography>{children}</Typography>
+          <Box>{children}</Box>
         </Box>
       )}
     </div>
