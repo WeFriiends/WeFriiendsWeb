@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
 import { LocationOn } from '@mui/icons-material'
-import { UserNearMeObjectType } from './userTypes'
+import { UserNearMeObjectType } from './types'
 
 type UserListRendererProps = {
   users: UserNearMeObjectType[]

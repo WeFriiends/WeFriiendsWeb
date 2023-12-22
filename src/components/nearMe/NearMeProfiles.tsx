@@ -5,7 +5,7 @@ import { getUsersNearMeData } from '../../actions/userServices'
 import { getColumns } from './helper'
 import UserListRenderer from './UserListRenderer'
 
-import { UserNearMeObjectType } from './userTypes'
+import { UserNearMeObjectType } from './types'
 type IsMobileProps = {
   isMobile: boolean
 }
