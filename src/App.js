@@ -14,6 +14,8 @@ import Report from 'components/report/report'
 import ReportComment from 'components/report/reportComment'
 import ReportReceived from 'components/report/reportReceived'
 import CommentInput from 'components/report/commentInput'
+import YourLikesList from './pages/YourLikesList'
+import { ActivePageProvider } from './context/activePageContext'
 
 const theme = createTheme({
   typography: {
@@ -24,32 +26,35 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
-        <div className="App">
-          <Routes>
-            <Route exact path="/" element={<CreateAccount />} />
-            <Route path="/registration" element={<RegistrationForm />} />
-            <Route
-              path="/registration/glad-screen/:confirmationCode"
-              element={<AccountCreated />}
-            />
-            <Route path="/signIn" element={<SignIn />} />
-            <Route path="/mailSignIn" element={<SignInMail />} />
-            <Route path="/test" element={<TestPage />} />
-            <Route path="/messages" element={<MessagesAndFriends />} />
-            <Route path="/nearMe" element={<NearMe />} />
-            <Route path="newMatch" element={<Match />} />
+      <ActivePageProvider>
+        <Router>
+          <div className="App">
+            <Routes>
+              <Route exact path="/" element={<CreateAccount />} />
+              <Route path="/registration" element={<RegistrationForm />} />
+              <Route
+                path="/registration/glad-screen/:confirmationCode"
+                element={<AccountCreated />}
+              />
+              <Route path="/signIn" element={<SignIn />} />
+              <Route path="/mailSignIn" element={<SignInMail />} />
+              <Route path="/test" element={<TestPage />} />
+              <Route path="/messages" element={<MessagesAndFriends />} />
+              <Route path="/nearMe" element={<NearMe />} />
+              <Route path="newMatch" element={<Match />} />
 
-            <Route path="/report" element={<Report />} />
-            <Route
-              path="/reportComment/:buttonName"
-              element={<ReportComment />}
-            />
-            <Route path="/commentInput" component={CommentInput} />
-            <Route path="/reportReceived" element={<ReportReceived />} />
-          </Routes>
-        </div>
-      </Router>
+              <Route path="/report" element={<Report />} />
+              <Route
+                path="/reportComment/:buttonName"
+                element={<ReportComment />}
+              />
+              <Route path="/commentInput" component={CommentInput} />
+              <Route path="/reportReceived" element={<ReportReceived />} />
+              <Route path="/whoLikedYou" element={<YourLikesList />} />
+            </Routes>
+          </div>
+        </Router>
+      </ActivePageProvider>
     </ThemeProvider>
   )
 }

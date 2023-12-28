@@ -3,13 +3,13 @@ import { Grid, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { getUsersNearMeData } from '../../actions/userServices'
 import { getColumns } from '../../helpers/helper'
-import UserListRenderer from './UserListRenderer'
+import UserListRenderer from './YourLikesUserListRenderer'
 import { UserObjectType } from '../../common/types/userTypes'
 type IsMobileProps = {
   isMobile: boolean
 }
 
-const NearMeProfiles = ({ isMobile }: IsMobileProps) => {
+const YouLikesProfiles = ({ isMobile }: IsMobileProps) => {
   const { classes } = useStyles()
   const [profileList, setProfileList] = useState<Array<UserObjectType>>([])
   const columns = getColumns(isMobile)
@@ -30,13 +30,14 @@ const NearMeProfiles = ({ isMobile }: IsMobileProps) => {
     <Grid container spacing={3}>
       <Grid item xs={12}>
         <Typography className={classes.headerNear} sx={{ textAlign: txtAlign }}>
-          Near by
+          Your likes list
         </Typography>
         <Typography
           className={classes.description}
           sx={{ textAlign: txtAlign }}
         >
-          These people near you – just like them and see if it’s a match!
+          These people have already liked you – just like them back and it’s a
+          match!
         </Typography>
       </Grid>
       <Grid item xs={12}>
@@ -49,7 +50,7 @@ const NearMeProfiles = ({ isMobile }: IsMobileProps) => {
     </Grid>
   )
 }
-export default NearMeProfiles
+export default YouLikesProfiles
 const useStyles = makeStyles()(() => {
   return {
     headerNear: {
