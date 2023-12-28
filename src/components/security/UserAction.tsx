@@ -7,7 +7,7 @@ interface UserActionProps {
   handleStepChange: (step: string) => void
   userFriendId: string
   userFriendName: string
-  actionText: string
+  actionText: 'block' | 'delete'
   action: string
 }
 

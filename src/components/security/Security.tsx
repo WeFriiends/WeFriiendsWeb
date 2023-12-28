@@ -95,6 +95,7 @@ const Security: React.FC<SecurityProps> = ({
             closeDialog={closeDialog}
             userFriendName={userFriendName}
             title="User deleted"
+            actionConfirm="deleted"
           />
         )
       case 'blockUser':
@@ -116,6 +117,7 @@ const Security: React.FC<SecurityProps> = ({
             closeDialog={closeDialog}
             userFriendName={userFriendName}
             title="User blocked"
+            actionConfirm="blocked"
           />
         )
       default:

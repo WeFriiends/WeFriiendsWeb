@@ -6,6 +6,7 @@ interface ActionConfirmProps {
   closeDialog: () => void
   userFriendName: string
   title: string
+  actionConfirm: 'deleted' | 'blocked'
 }
 
 const ActionConfirm: React.FC<ActionConfirmProps> = ({
@@ -13,6 +14,7 @@ const ActionConfirm: React.FC<ActionConfirmProps> = ({
   closeDialog,
   userFriendName,
   title,
+  actionConfirm,
 }: ActionConfirmProps) => (
   <>
     <Typography variant="h1" className={classes.titleSecondary}>
@@ -21,7 +23,7 @@ const ActionConfirm: React.FC<ActionConfirmProps> = ({
 
     <Typography className={classes.subTitleSecondary}>
       {userFriendName}{' '}
-      {title === 'User deleted'
+      {actionConfirm === 'deleted'
         ? 'is deleted from your friends.'
         : 'is blocked.'}
     </Typography>
