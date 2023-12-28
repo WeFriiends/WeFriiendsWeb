@@ -41,9 +41,6 @@ const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
-  const getFriendsData = (user: UserProfileData) => {
-    onClick(user)
-  }
   return (
     <Box>
       <Tabs value={value} onChange={handleChange} variant="fullWidth">
@@ -54,7 +51,7 @@ const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
         <Messages />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Friends onClick={getFriendsData} />
+        <Friends onClick={onClick} />
       </TabPanel>
     </Box>
   )
