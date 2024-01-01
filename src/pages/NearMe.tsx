@@ -10,17 +10,22 @@ import {
 import Header from '../components/header/Header'
 import NearMeProfiles from '../components/nearMe/NearMeProfiles'
 import FooterAppBar from '../components/footerAppBar/FooterAppBar'
+import { useSuggestedLocations } from 'hooks/useSuggestedLocations'
 
 export default function NearMe() {
   const isMobile = useMediaQuery<boolean>('(max-width:600px)')
+
+  const [inputLocation, setInputLocation] = React.useState('')
+  const suggestedLocations = useSuggestedLocations(inputLocation)
 
   return (
     <Container component="main" sx={{ flexGrow: 1 }}>
       <Autocomplete
         freeSolo
-        options={['1', '2']}
+        options={suggestedLocations}
         renderInput={(params) => (
           <TextField
+            onChange={(e) => setInputLocation(e.target.value)}
             {...params}
             label="Input your street"
             InputProps={{
