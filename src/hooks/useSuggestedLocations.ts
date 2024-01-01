@@ -2,8 +2,12 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useDebounce } from 'usehooks-ts'
 
-export const useSuggestedLocations = (location: string) => {
-  const debouncedValue = useDebounce<string>(location, 500)
+export const useSuggestedLocations = (
+  location: string,
+  bounceDuration: number,
+  limit: number
+) => {
+  const debouncedValue = useDebounce<string>(location, bounceDuration)
   const [addresses, setAddresses] = useState<string[]>([])
 
   useEffect(() => {
@@ -14,7 +18,7 @@ export const useSuggestedLocations = (location: string) => {
       }
       try {
         const response = await axios.get(
-          `https://nominatim.openstreetmap.org/search?addressdetails=1&q=${debouncedValue}&format=jsonv2&limit=5`
+          `https://nominatim.openstreetmap.org/search?addressdetails=1&q=${debouncedValue}&format=jsonv2&limit=${limit}`
         )
         const suggestions = response.data.map(
           (locationInfo: any) => locationInfo.display_name
