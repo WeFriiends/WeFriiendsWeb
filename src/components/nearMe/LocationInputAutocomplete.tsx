@@ -18,12 +18,12 @@ const LocationInputAutocomplete = () => {
       freeSolo
       filterOptions={(x) => x}
       options={suggestedLocations}
-      renderOption={(props, option) => {
-        return (
-          <li {...props} key={option}>
-            {option}
-          </li>
-        )
+      getOptionLabel={(option) => {
+        if (typeof option === 'string') {
+          return option
+        } else {
+          return option.displayName
+        }
       }}
       renderInput={(params) => (
         <TextField
