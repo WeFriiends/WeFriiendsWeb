@@ -22,7 +22,15 @@ export default function NearMe() {
     <Container component="main" sx={{ flexGrow: 1 }}>
       <Autocomplete
         freeSolo
+        filterOptions={(x) => x}
         options={suggestedLocations}
+        renderOption={(props, option) => {
+          return (
+            <li {...props} key={option}>
+              {option}
+            </li>
+          )
+        }}
         renderInput={(params) => (
           <TextField
             onChange={(e) => setInputLocation(e.target.value)}
