@@ -105,6 +105,17 @@ const useStyles = makeStyles()((theme) => {
       fontSize: 14,
       textAlign: 'center',
     },
+
+    linkBtn: {
+      width: '260px',
+      height: '60px',
+      position: 'absolute',
+      top: '612px',
+      left: '65px',
+      padding: '18px 24px', // top right bottom left
+      borderRadius: '10px',
+      gap: '16px',
+    },
     imgAlert: {
       display: 'block',
       marginTop: '80px',
@@ -116,28 +127,27 @@ const useStyles = makeStyles()((theme) => {
       strokeWidth: '2px',
       stroke: 'var(--red, #F1562A)',
     },
-
-    linkBtn: {
-      display: 'block',
-      borderRadius: 10,
-      fontSize: 14,
-      height: '50px',
-      padding: '0 14px',
-      '&:active, &:hover': {
-        backgroundColor: '#FB8F67',
-        transition: 'background-color 0.5s',
-        color: '#fff',
-      },
-      flexShrink: 0,
-      paddingTop: 10,
-      paddingBottom: 10,
-      background: '#FFF',
-      boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',
-      textAlign: 'left',
-      textTransform: 'none',
-      color: '#000',
-      marginBottom: 5,
+    // display: 'block',
+    // borderRadius: 10,
+    // fontSize: 14,
+    // height: '50px',
+    // padding: '0 14px',
+    '&:active, &:hover': {
+      backgroundColor: '#FB8F67',
+      transition: 'background-color 0.5s',
+      color: '#fff',
     },
+
+    // flexShrink: 0,
+    // paddingTop: 10,
+    // paddingBottom: 10,
+    // background: '#FFF',
+    // boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',
+    // textAlign: 'left',
+    // textTransform: 'none',
+    // color: '#000',
+    // marginBottom: 5,
+
     iconButton: {
       width: '24px',
       height: '24px',
