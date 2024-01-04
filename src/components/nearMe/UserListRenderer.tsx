@@ -5,7 +5,7 @@ import { UserObjectType } from '../../common/types/userTypes'
 import Lightning from '../../common/Lightning'
 
 type UserListRendererProps = {
-  users: UserObjectType[]
+  users?: UserObjectType[]
   classes: any
   columns: number
 }
@@ -16,6 +16,11 @@ const UserListRenderer: React.FC<UserListRendererProps> = ({
   columns,
 }) => {
   const currentUserID = '1' //take it from localStorage
+
+  if (!users?.length) {
+    return 'Ooops, noone nearby'
+  }
+
   return (
     <ImageList cols={columns}>
       {users

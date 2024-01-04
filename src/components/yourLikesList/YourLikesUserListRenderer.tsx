@@ -5,7 +5,7 @@ import Lightning from '../../common/Lightning'
 import { UserObjectType } from '../../common/types/userTypes'
 
 type UserListRendererProps = {
-  users: UserObjectType[]
+  users?: UserObjectType[]
   classes: any
   columns: number
 }
@@ -19,6 +19,11 @@ const YourLikesUserListRenderer: React.FC<UserListRendererProps> = ({
   const likesCurrentUser = users?.filter(
     (user) => currentUserID && user.likedUsers.includes(currentUserID)
   )
+
+  if (!likesCurrentUser?.length) {
+    return 'Ooops, no likes yet'
+  }
+
   return (
     <ImageList cols={columns}>
       {likesCurrentUser?.map((user) => (

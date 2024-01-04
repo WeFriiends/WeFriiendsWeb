@@ -67,7 +67,7 @@ const routes: RouteObject[] = [
         element: <YourLikesList />,
       },
       {
-        path: 'messages',
+        path: 'messages-and-friends',
         element: <MessagesAndFriends />,
       },
       {
