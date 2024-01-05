@@ -1,9 +1,13 @@
 import React from 'react'
 import Carousel from 'react-material-ui-carousel'
 import UserPic from './UserPic'
-import items from './items.json'
+import { UserPhoto } from 'types/UserProfileData'
 
-const FotoCarousel = () => {
+interface PhotoCarouselProps {
+  items: UserPhoto[]
+}
+
+const PhotoCarousel: React.FC<PhotoCarouselProps> = ({ items }) => {
   return (
     <Carousel
       autoPlay={false}
@@ -37,11 +41,11 @@ const FotoCarousel = () => {
         },
       }}
     >
-      {items.map((item, i) => (
-        <UserPic key={i} item={item} />
+      {items.map((item: UserPhoto, i: number) => (
+        <UserPic key={i} src={item.src} />
       ))}
     </Carousel>
   )
 }
 
-export default FotoCarousel
+export default PhotoCarousel

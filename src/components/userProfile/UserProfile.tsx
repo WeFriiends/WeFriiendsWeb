@@ -9,9 +9,13 @@ import {
 
 import { makeStyles } from 'tss-react/mui'
 import CircleRoundedIcon from '@mui/icons-material/CircleRounded'
-import FotoCarousel from './FotoCarousel'
+import PhotoCarousel from './PhotoCarousel'
+import { UserProfileData } from '../../types/UserProfileData'
 
-const UserProfile = () => {
+interface UserProfileProps {
+  user: UserProfileData
+}
+const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const { classes } = useStyles()
 
   return (
@@ -26,14 +30,16 @@ const UserProfile = () => {
         </Box>
 
         <div className={classes.carousel}>
-          <FotoCarousel />
+          <PhotoCarousel items={user.photo} />
         </div>
 
         <Accordion className={classes.accordion}>
           <AccordionSummary expandIcon={<img src="/img/arrow-down.svg" />}>
             <Box>
               <Box sx={{ display: 'flex' }}>
-                <Typography className={classes.name}>Elena S., 36</Typography>
+                <Typography className={classes.name}>
+                  {user.firstName} {user.lastName}, {user.age}
+                </Typography>
                 <CircleRoundedIcon
                   className={classes.roundIcon}
                 ></CircleRoundedIcon>
@@ -41,7 +47,7 @@ const UserProfile = () => {
               <Box className={classes.distanceWithIcon}>
                 <img src="/img/near_me.svg" height={20} width={20} />
                 <Typography className={classes.distance}>
-                  from Roma, 10 km from you
+                  from {user.city}, 10 km from you
                 </Typography>
               </Box>
             </Box>
@@ -50,18 +56,12 @@ const UserProfile = () => {
             <Typography variant="h3" className={classes.title}>
               About Me
             </Typography>
-            <Typography className={classes.text}>
-              I am a talented, ambitious and hardworking individual, with broad
-              skills and experience in digital and printed marketing, social
-              media and leading projects.
-            </Typography>
+            <Typography className={classes.text}>{user.aboutMe}</Typography>
             <Typography variant="h3" className={classes.title}>
               Education and Profession
             </Typography>
-            <Typography className={classes.text}>
-              Freelance Journalist
-            </Typography>
-            <Typography className={classes.text}>Bachelor degree</Typography>
+            <Typography className={classes.text}>{user.profession}</Typography>
+            <Typography className={classes.text}>{user.education}</Typography>
           </AccordionDetails>
         </Accordion>
       </Box>
