@@ -9,31 +9,30 @@ import ToWalkWith from './ToWalkWith'
 import ToLearn from './ToLearn'
 import YouCan from './YouCan'
 
-const components = [
-  {
-    label: 'ToVisit',
-    component: <ToVisit />,
-  },
-  {
-    label: 'ToFind',
-    component: <ToFind />,
-  },
-  {
-    label: 'ToWalkWith',
-    component: <ToWalkWith />,
-  },
-  {
-    label: 'ToLearn',
-    component: <ToLearn />,
-  },
-  {
-    label: 'YouCan',
-    component: <YouCan />,
-  },
-]
-
 const DotsMobileStepper = () => {
   //const theme = useTheme()
+  const components = [
+    {
+      label: 'ToVisit',
+      component: <ToVisit />,
+    },
+    {
+      label: 'ToFind',
+      component: <ToFind />,
+    },
+    {
+      label: 'ToWalkWith',
+      component: <ToWalkWith />,
+    },
+    {
+      label: 'ToLearn',
+      component: <ToLearn />,
+    },
+    {
+      label: 'YouCan',
+      component: <YouCan />,
+    },
+  ]
   const navigate = useNavigate()
   const [activeStep, setActiveStep] = React.useState(0)
   const maxSteps = components.length

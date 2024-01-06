@@ -130,20 +130,9 @@ const useStyles = makeStyles()((theme) => {
     },
 
     linkBtn: {
-      // width: '260px',
-      // height: '60px',
-      // position: 'absolute',
-      // top: '612px',
-      // left: '65px',
       padding: '18px 24px', // top right bottom left
       borderRadius: '10px',
-      // gap: '16px',
 
-      // display: 'block',
-      // borderRadius: 10,
-      // fontSize: 14,
-      // height: '50px',
-      // padding: '0 14px',
       backgroundColor: '#fff',
       color: '#333333',
       '&:active, &:hover': {

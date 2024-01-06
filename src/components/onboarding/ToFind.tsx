@@ -146,7 +146,6 @@ const useStyles = makeStyles()((theme) => {
     linkBtn: {
       padding: '18px 24px',
       borderRadius: '10px',
-
       backgroundColor: '#fff',
       color: '#333333',
       '&:active, &:hover': {
