@@ -1,41 +1,41 @@
 import { RouteObject } from 'react-router'
-import { Suspense, lazy } from 'react'
+import { ComponentType, Suspense, lazy } from 'react'
 import LoadingScreen from 'common/Loader'
-import SignIn from 'components/userAuth/signIn/SignIn'
 import RegistrationForm from 'components/userAuth/registrationForm/RegistrationForm'
 import AccountCreated from 'components/userAuth/accountCreated/AccountCreated'
-import CreateAccount from 'components/userAuth/createAccount/CreateAccount'
 import SignInMail from 'components/userAuth/signInMail/SignInMail'
 import Report from 'components/report/report'
 import ReportComment from 'components/report/reportComment'
 import CommentInput from 'components/report/commentInput'
 import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
-import MessagesAndFriends from 'pages/MessagesAndFriends'
 import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
+import AuthGuard from 'components/userAuth/AuthGuard'
+import GuestGuard from 'components/userAuth/GuestGuard'
 
-const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) =>
-  (
-    <Suspense fallback={<LoadingScreen />}>
-      <Component {...props} />
-    </Suspense>
-  )
+const Loadable =
+  (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
+    (
+      <Suspense fallback={<LoadingScreen />}>
+        <Component {...props} />
+      </Suspense>
+    )
 
-const Login = Loadable(lazy(() => import('components/userAuth/signIn/SignIn')))
 const Register = Loadable(
-  lazy(() => import('components/userAuth/registrationForm/RegistrationForm'))
+  lazy(() => import('components/userAuth/createAccount/CreateAccount'))
 )
+const Login = Loadable(lazy(() => import('components/userAuth/signIn/SignIn')))
 const Home = Loadable(lazy(() => import('pages/MessagesAndFriends')))
 
 const routes: RouteObject[] = [
   {
-    path: '/',
-    element: <CreateAccount />,
-  },
-  {
     path: 'registration',
     children: [
+      {
+        path: 'create-account',
+        element: <Register />,
+      },
       {
         path: 'register-mail',
         element: <RegistrationForm />,
@@ -51,7 +51,11 @@ const routes: RouteObject[] = [
     children: [
       {
         path: 'sign-in',
-        element: <SignIn />,
+        element: (
+          <GuestGuard>
+            <Login />
+          </GuestGuard>
+        ),
       },
       {
         path: 'mail-sign-in',
@@ -63,20 +67,36 @@ const routes: RouteObject[] = [
     path: 'user',
     children: [
       {
-        path: 'who-liked-you',
-        element: <YourLikesList />,
+        path: 'messages-and-friends',
+        element: (
+          <AuthGuard>
+            <Home />
+          </AuthGuard>
+        ),
       },
       {
-        path: 'messages-and-friends',
-        element: <MessagesAndFriends />,
+        path: 'who-liked-you',
+        element: (
+          <AuthGuard>
+            <YourLikesList />
+          </AuthGuard>
+        ),
       },
       {
         path: 'near-me',
-        element: <NearMe />,
+        element: (
+          <AuthGuard>
+            <NearMe />
+          </AuthGuard>
+        ),
       },
       {
         path: 'new-match',
-        element: <Match />,
+        element: (
+          <AuthGuard>
+            <Match />
+          </AuthGuard>
+        ),
       },
     ],
   },

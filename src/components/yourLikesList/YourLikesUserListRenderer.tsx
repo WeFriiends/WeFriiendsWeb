@@ -6,7 +6,7 @@ import { UserObjectType } from '../../common/types/userTypes'
 
 type UserListRendererProps = {
   users?: UserObjectType[]
-  classes: any
+  classes: Record<string, string>
   columns: number
 }
 

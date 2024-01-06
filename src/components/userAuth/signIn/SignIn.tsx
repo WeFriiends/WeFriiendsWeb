@@ -33,7 +33,12 @@ const SignIn = () => {
         <Typography variant="body1" fontSize={22} color="#3B4054">
           Don’t have an account?
         </Typography>
-        <Link href="/" underline="none" fontSize={22} color="#1D878C">
+        <Link
+          href="/registration/create-account"
+          underline="none"
+          fontSize={22}
+          color="#1D878C"
+        >
           Sign Up
         </Link>
       </div>

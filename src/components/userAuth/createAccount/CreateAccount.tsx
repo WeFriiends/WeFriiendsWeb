@@ -46,7 +46,7 @@ const CreateAccount = () => {
         <Typography className={classes.text}>
           Already have an account?
         </Typography>
-        <Link href="authentication/sign-in" className={classes.link}>
+        <Link href="/authentication/sign-in" className={classes.link}>
           Sign In
         </Link>
       </Box>

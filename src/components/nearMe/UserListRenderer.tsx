@@ -6,7 +6,7 @@ import Lightning from '../../common/Lightning'
 
 type UserListRendererProps = {
   users?: UserObjectType[]
-  classes: any
+  classes: Record<string, string>
   columns: number
 }
 

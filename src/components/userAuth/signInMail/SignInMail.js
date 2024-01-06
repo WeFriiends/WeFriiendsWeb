@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Logo from '../../logo/Logo'
 import { useAuthContext } from '../../../hooks/useAuthContext'
 import { Navigate } from 'react-router-dom'
-import LoginEmail from '../../../actions/loginEmail'
+import { loginEmail } from 'actions/loginEmail'
 import {
   Box,
   OutlinedInput,
@@ -38,7 +38,7 @@ const SignInMail = () => {
   const [visible, setVisibility] = useState(false)
 
   const checkAndSignIn = async () => {
-    const result = await LoginEmail(inputEmail, inputPassword)
+    const result = await loginEmail(inputEmail, inputPassword)
     if (result.status === 200) {
       setSuccessSignIn(true)
       let user = { token: result.data.token }
