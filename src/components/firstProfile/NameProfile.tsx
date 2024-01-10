@@ -2,59 +2,45 @@ import Logo from '../logo/Logo'
 import {
   Box,
   Button,
-  FormControl, FormHelperText,
+  FormControl,
+  FormHelperText,
   OutlinedInput,
-  TextField,
-  Typography
-} from "@mui/material";
-import { makeStyles } from "tss-react/mui"
-import { styled } from "@mui/material/styles"
+  Typography,
+} from '@mui/material'
+import { makeStyles } from 'tss-react/mui'
 import { useState } from "react";
 
 const FULLNAME_REGEX = /^[a-zA-Z\s]{2,50}$/
 
 const NameProfile = () => {
-
+  const { classes } = useStyles()
   const [fullName, setFullName] = useState<string>('')
   const [error, setError] = useState<string>('')
   const [isValid, setIsValid] = useState<boolean>(false)
-  const [currentPage, setCurrentPage] = useState<number>(0)
-
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    if(!fullName.trim()){
+    if (!fullName.trim()) {
       setError('Please enter your full name')
     } else {
       setFullName('')
-      setCurrentPage((prevPage) => prevPage + 1)
-      console.log('FULLNAME: ', fullName )
-      // nextPage function
-      // send data to backend
+      const profileData = {
+        fullName,
+      }
+      localStorage.setItem('profileData', JSON.stringify(profileData))
     }
   }
 
-  const handleInputChange = (event: { target: { value: any } }) => {
-      setError('')
-    if(FULLNAME_REGEX.test(event.target.value) || event.target.value === ''){
+  const handleInputChange = (event: { target: { value: string } }) => {
+    setError('')
+    if (FULLNAME_REGEX.test(event.target.value) || event.target.value === '') {
       setIsValid(false)
       setFullName(event.target.value)
-    }else{
+    } else {
       setIsValid(true)
     }
   }
 
-  const { classes } = useStyles()
-  const CssTextField = styled(TextField)({
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        border: 'none',
-      },
-    },
-    '& input': {
-      textAlign: 'center',
-    },
-  })
 
   return (
     <Box className={classes.mainBox}>
@@ -67,26 +53,19 @@ const NameProfile = () => {
       </Typography>
       <form onSubmit={handleSubmit}>
         <FormControl fullWidth>
-          <CssTextField>
-            sx={{ backgroundColor: '#FFF1EC', borderRadius: 2.5 }}
+          <OutlinedInput
+            className={classes.profileInput}
             type="text"
-            id="name"
-          </CssTextField>
-        <OutlinedInput
-          className={classes.profileInput}
-          type="text"
-          id="fullName"
-          onChange={handleInputChange}
-        ></OutlinedInput>
+            id="fullName"
+            onChange={handleInputChange}
+          ></OutlinedInput>
           {isValid && (
             <FormHelperText sx={{ color: '#F1562A' }}>
               Invalid name. Please enter valid full name.
             </FormHelperText>
           )}
           {error && (
-            <FormHelperText sx={{ color: '#F1562A' }}>
-              {error}
-            </FormHelperText>
+            <FormHelperText sx={{ color: '#F1562A' }}>{error}</FormHelperText>
           )}
           <Button
             fullWidth
@@ -97,8 +76,7 @@ const NameProfile = () => {
           >
             Next
           </Button>
-          <Typography variant="h2"
-                      className={classes.dot}>
+          <Typography variant="h2" className={classes.dot}>
             <span className={classes.span}>.</span>....
           </Typography>
         </FormControl>
