@@ -9,7 +9,7 @@ const accountConfirmation = async (confirmationCode) => {
     if (result.status === 200) return true
     else return false
   } catch (err) {
-    console.log('error:', err)
+    console.error('Error account confirmation:', err)
     return false
   }
 }
