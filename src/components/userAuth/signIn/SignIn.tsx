@@ -26,19 +26,14 @@ const SignIn = () => {
       >
         Google
       </Button> */}
-      <Link href="mail-sign-in" className={classes.linkBtn}>
+      <Link href="/authentication/mail-sign-in" className={classes.linkBtn}>
         e-mail
       </Link>
       <div className={classes.textCenter}>
         <Typography variant="body1" fontSize={22} color="#3B4054">
           Don’t have an account?
         </Typography>
-        <Link
-          href="/registration/create-account"
-          underline="none"
-          fontSize={22}
-          color="#1D878C"
-        >
+        <Link href="/" underline="none" fontSize={22} color="#1D878C">
           Sign Up
         </Link>
       </div>

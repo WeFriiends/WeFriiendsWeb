@@ -29,19 +29,16 @@ const Login = Loadable(lazy(() => import('components/userAuth/signIn/SignIn')))
 const Home = Loadable(lazy(() => import('pages/MessagesAndFriends')))
 
 const routes: RouteObject[] = [
+  { path: '/', element: <Register /> },
   {
-    path: 'registration',
+    path: '/registration',
     children: [
-      {
-        path: 'create-account',
-        element: <Register />,
-      },
       {
         path: 'register-mail',
         element: <RegistrationForm />,
       },
       {
-        path: 'glad-screen/:confirmationCode',
+        path: 'glad-screen',
         element: <AccountCreated />,
       },
     ],

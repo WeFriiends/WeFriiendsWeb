@@ -45,6 +45,11 @@ const SignInMail = () => {
       localStorage.setItem('user', user.token)
       dispatch({ type: 'LOGIN', payload: user })
     } else {
+      if (!result.response) {
+        setError(true)
+        setErrorSignIn('No data')
+        return
+      }
       if (
         result.response.data.message ===
         'Pending Account. Please verify your email to gain access to your profile'
