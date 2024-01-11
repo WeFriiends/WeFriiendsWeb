@@ -32,7 +32,7 @@ const CreateAccount = () => {
         >
           Google
         </Button> */}
-        <Link href="/registration/register-mail" className={classes.linkBtn}>
+        <Link href="/registration/register-email" className={classes.linkBtn}>
           e-mail
         </Link>
         <Typography className={classes.p}>

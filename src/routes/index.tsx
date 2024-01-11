@@ -34,7 +34,7 @@ const routes: RouteObject[] = [
     path: '/registration',
     children: [
       {
-        path: 'register-mail',
+        path: 'register-email',
         element: <RegistrationForm />,
       },
       {
@@ -55,7 +55,7 @@ const routes: RouteObject[] = [
         ),
       },
       {
-        path: 'mail-sign-in',
+        path: 'email-sign-in',
         element: <SignInMail />,
       },
     ],
