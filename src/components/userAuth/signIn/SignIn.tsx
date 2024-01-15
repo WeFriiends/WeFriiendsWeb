@@ -26,7 +26,7 @@ const SignIn = () => {
       >
         Google
       </Button> */}
-      <Link href="/mailSignIn" className={classes.linkBtn}>
+      <Link href="/authentication/email-sign-in" className={classes.linkBtn}>
         e-mail
       </Link>
       <div className={classes.textCenter}>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const LoginEmail = async (email, password) => {
+export const loginEmail = async (email, password) => {
   try {
     const result = await axios.post(
       'https://clumsy-glasses-clam.cyclic.app/api/auth/signin',
@@ -15,5 +15,3 @@ const LoginEmail = async (email, password) => {
     return error
   }
 }
-
-export default LoginEmail

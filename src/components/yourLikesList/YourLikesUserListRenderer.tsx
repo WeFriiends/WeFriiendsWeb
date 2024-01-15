@@ -1,12 +1,12 @@
 import React from 'react'
 import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
 import { LocationOn } from '@mui/icons-material'
-import Lightning from '../lightning/Lightning'
+import Lightning from '../../common/Lightning'
 import { UserObjectType } from '../../common/types/userTypes'
 
 type UserListRendererProps = {
-  users: UserObjectType[]
-  classes: any
+  users?: UserObjectType[]
+  classes: Record<string, string>
   columns: number
 }
 
@@ -16,12 +16,17 @@ const YourLikesUserListRenderer: React.FC<UserListRendererProps> = ({
   columns,
 }) => {
   const currentUserID = localStorage.getItem('userId') || '1' //will remove '1'
-  const likesCurrentUser = users.filter(
+  const likesCurrentUser = users?.filter(
     (user) => currentUserID && user.likedUsers.includes(currentUserID)
   )
+
+  if (!likesCurrentUser?.length) {
+    return 'Ooops, no likes yet'
+  }
+
   return (
     <ImageList cols={columns}>
-      {likesCurrentUser.map((user) => (
+      {likesCurrentUser?.map((user) => (
         <ImageListItem key={user.id} sx={{ marginBottom: 2 }}>
           <Box
             sx={{

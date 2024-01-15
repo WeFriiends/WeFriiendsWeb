@@ -1,12 +1,10 @@
 import axios from 'axios'
-export const getUsersNearMeData = async () => {
+import { UserObjectType } from 'common/types/userTypes'
+
+export const getUsersData = async (url: string) => {
   try {
-    const response = await axios.get('users.json')
-    if (response.status === 200) {
-      return response.data
-    } else {
-      throw new Error('Failed to fetch data')
-    }
+    const response = await axios.get(url)
+    return response.data as Array<UserObjectType>
   } catch (error) {
     console.error('Error fetching data:', error)
   }

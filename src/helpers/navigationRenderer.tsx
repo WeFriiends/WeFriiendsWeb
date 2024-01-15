@@ -41,7 +41,7 @@ const renderLinkWithIcon = (
         }
 
   return (
-    <Link to={linkTo} style={{ textDecoration: 'none' }}>
+    <Link to={`/user/${linkTo}`} style={{ textDecoration: 'none' }}>
       <RenderIcon {...renderProps} isActive={isActive} />
     </Link>
   )
