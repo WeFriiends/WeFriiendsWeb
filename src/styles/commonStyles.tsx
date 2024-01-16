@@ -133,5 +133,17 @@ export const commonStyles = makeStyles()((theme) => {
       color: '#3B4054',
       textAlign: 'center',
     },
+    progressCircle: {
+      width: '10px',
+      height: '10px',
+      borderRadius: '50%',
+      margin: '0 5px',
+    },
+    primaryBgColor: {
+      backgroundColor: primaryColor,
+    },
+    secondaryBgColor: {
+      backgroundColor: secondaryColor,
+    },
   }
 })
