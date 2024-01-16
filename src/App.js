@@ -16,6 +16,7 @@ import ReportReceived from 'components/report/reportReceived'
 import CommentInput from 'components/report/commentInput'
 import YourLikesList from './pages/YourLikesList'
 import { ActivePageProvider } from './context/activePageContext'
+import Status from './components/firstProfile/Status'
 
 const theme = createTheme({
   typography: {
@@ -51,6 +52,7 @@ function App() {
               <Route path="/commentInput" component={CommentInput} />
               <Route path="/reportReceived" element={<ReportReceived />} />
               <Route path="/whoLikedYou" element={<YourLikesList />} />
+              <Route path="/status" element={<Status />} />
             </Routes>
           </div>
         </Router>
