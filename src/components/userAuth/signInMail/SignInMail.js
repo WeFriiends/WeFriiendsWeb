@@ -127,6 +127,7 @@ const SignInMail = () => {
         variant="contained"
         disableElevation
         disableRipple
+        disabled={!inputEmail || !inputPassword ? true : false}
         className={classes.loginBtn}
       >
         Sign In
@@ -177,6 +178,11 @@ const useStyles = makeStyles()((theme) => {
         backgroundColor: '#FB8F67',
       },
       marginTop: 45,
+      ':disabled': {
+        backgroundColor: '#FFFFFF',
+        border: '2px solid #FB8F67',
+        color: '#FB8F67',
+      },
     },
   }
 })
