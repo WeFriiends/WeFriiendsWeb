@@ -37,9 +37,23 @@ const CreateAccount = () => {
         </Link>
         <Typography className={classes.p}>
           By creating an account, I agree with
-          <Link className={classes.linkSmall}> The Terms of Service </Link>
+          <Link
+            className={classes.linkSmall}
+            href="https://wefriiends.com/documents/privacy.html"
+            target="_blank"
+            rel="noopener"
+          >
+            {' The Terms of Service '}
+          </Link>
           and
-          <Link className={classes.linkSmall}> Privacy Policy</Link>
+          <Link
+            className={classes.linkSmall}
+            href="https://wefriiends.com/documents/privacy.html"
+            target="_blank"
+            rel="noopener"
+          >
+            {' Privacy Policy'}
+          </Link>
         </Typography>
       </Box>
       <Box>
