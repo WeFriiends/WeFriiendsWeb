@@ -1,14 +1,14 @@
 import { Grid, Typography } from '@mui/material'
-import { makeStyles } from 'tss-react/mui'
 import { getColumns } from '../../helpers/helper'
 import UserListRenderer from './YourLikesUserListRenderer'
 import useUsersData from 'hooks/useUsersData'
+import { nearBy_whoLikedMeStyles } from '../../styles/nearBy_whoLikedMeStyles'
 type IsMobileProps = {
   isMobile: boolean
 }
 
 const YouLikesProfiles = ({ isMobile }: IsMobileProps) => {
-  const { classes } = useStyles()
+  const { classes } = nearBy_whoLikedMeStyles()
   const columns = getColumns(isMobile)
   const txtAlign = isMobile ? 'center' : 'left'
 
@@ -39,26 +39,3 @@ const YouLikesProfiles = ({ isMobile }: IsMobileProps) => {
   )
 }
 export default YouLikesProfiles
-const useStyles = makeStyles()(() => {
-  return {
-    headerNear: {
-      color: '#F1562A',
-      fontSize: 32,
-      fontFamily: 'Inter',
-      fontWeight: '600',
-    },
-    description: {
-      width: '100%',
-      color: 'black',
-      fontSize: 14,
-      fontFamily: 'Inter',
-      fontWeight: '400',
-      wordWrap: 'break-word',
-    },
-    userImages: {
-      borderRadius: '50%',
-      width: '100px',
-      height: '100px',
-    },
-  }
-})
