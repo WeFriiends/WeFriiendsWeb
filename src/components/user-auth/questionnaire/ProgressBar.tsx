@@ -13,20 +13,25 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 }) => {
   const { classes } = commonStyles()
 
-  const indicators = Array.from({ length: totalSteps }, (_, index) => (
-    <Box
-      key={index}
-      className={classes.progressCircle}
-      style={{
-        backgroundColor:
-          index + 1 === currentStep
-            ? classes.primaryBgColor
-            : classes.secondaryBgColor,
-      }}
-    />
-  ))
+  const indicators = Array.from({ length: totalSteps }, (_, index) => {
+    const backgroundColor =
+      index + 1 === currentStep
+        ? classes.secondaryBgColor
+        : classes.primaryBgColor
 
-  return <Box className={classes.flexContainer}>{indicators}</Box>
+    return (
+      <Box
+        key={index}
+        className={`${classes.progressCircle} ${backgroundColor}`}
+      />
+    )
+  })
+
+  return (
+    <Box className={`${classes.flexContainer} ${classes.progressBarContainer}`}>
+      {indicators}
+    </Box>
+  )
 }
 
 export default ProgressBar

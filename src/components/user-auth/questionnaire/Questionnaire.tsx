@@ -47,7 +47,7 @@ const RegistrationForm: React.FC = () => {
     <Box className={classes.gridContainer}>
       <Logo />
 
-      {step > 0 && (
+      {step > 1 && (
         <Box className={classes.buttonPrevContainer}>
           <Button className={classes.buttonPrev} onClick={handlePrevStep}>
             <ArrowBackIcon className={classes.backArrow} />

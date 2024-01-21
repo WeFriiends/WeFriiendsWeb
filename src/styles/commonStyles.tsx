@@ -206,11 +206,11 @@ export const commonStyles = makeStyles()((theme) => {
         backgroundColor: accentBtnBg,
       },
     },
+    progressBarContainer: { margin: '3rem 0 7rem' },
     progressCircle: {
       width: '10px',
-      height: '10px',
+      aspectRatio: 1,
       borderRadius: '50%',
-      margin: '0 5px',
     },
     primaryBgColor: {
       backgroundColor: primaryColor,
