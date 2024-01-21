@@ -4,10 +4,25 @@ export const commonStyles = makeStyles()((theme) => {
   const primaryColor = '#F46B5D'
   const secondaryColor = '#1D878C'
   const primaryBtnBg = '#FB8F67'
+  const secondaryBtnBg = 'rgba(229, 229, 229, 0.4)'
+  const accentBtnBg = '#FEDED2'
   const textColor = '#444444'
+  const textSecondaryColor = '#ADA9A9'
+  const borderColor = '#C5C5C5'
   const boxShadow = '0 0 7px 1px rgba(179, 179, 179, 0.14)'
 
   return {
+    '@global': {
+      '*': {
+        boxSizing: 'border-box',
+      },
+      '*::before': {
+        boxSizing: 'inherit',
+      },
+      '*::after': {
+        boxSizing: 'inherit',
+      },
+    },
     typography: {
       fontFamily: ['Inter', 'sans-serif'].join(','),
     },
@@ -54,6 +69,17 @@ export const commonStyles = makeStyles()((theme) => {
     subTitleSecondary: {
       paddingBottom: 15,
       fontSize: 14,
+      textAlign: 'center',
+    },
+    titleForms: {
+      fontSize: 18,
+      fontWeight: 600,
+      textAlign: 'center',
+      margin: '1rem 0 1rem',
+    },
+    subTitleForms: {
+      fontSize: 14,
+      fontWeight: 600,
       textAlign: 'center',
     },
     textLow: {
@@ -133,6 +159,13 @@ export const commonStyles = makeStyles()((theme) => {
       color: '#3B4054',
       textAlign: 'center',
     },
+    flexContainer: {
+      marginTop: '1rem',
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '1rem',
+      justifyContent: 'center',
+    },
     progressCircle: {
       width: '10px',
       height: '10px',
@@ -144,6 +177,33 @@ export const commonStyles = makeStyles()((theme) => {
     },
     secondaryBgColor: {
       backgroundColor: secondaryColor,
+    },
+    option: {
+      border: 'none',
+      borderRadius: '2rem !important',
+      textTransform: 'none',
+      padding: '5px 10px',
+      width: 'fit-content',
+      maxWidth: '150px',
+      fontSize: '12px',
+      flexGrow: 1,
+      backgroundColor: secondaryBtnBg,
+      justifyContent: 'center',
+      '&:hover, &:active, &.Mui-selected, &.Mui-selected:hover': {
+        backgroundColor: accentBtnBg,
+      },
+    },
+    statusTextarea: {
+      marginTop: '1rem',
+      width: '100%',
+      borderRadius: '2rem !important',
+      padding: '15px',
+      fontSize: '16px',
+      fontWeight: 400,
+      fontStyle: 'italic',
+      color: textSecondaryColor,
+      border: '1px solid',
+      borderColor: borderColor,
     },
   }
 })

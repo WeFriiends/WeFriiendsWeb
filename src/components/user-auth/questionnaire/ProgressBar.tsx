@@ -26,13 +26,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
     />
   ))
 
-  return (
-    <Box
-      style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}
-    >
-      {indicators}
-    </Box>
-  )
+  return <Box className={classes.flexContainer}>{indicators}</Box>
 }
 
 export default ProgressBar
