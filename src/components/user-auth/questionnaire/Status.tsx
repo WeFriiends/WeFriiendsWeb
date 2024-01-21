@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
-import { Box, Typography, ToggleButton, TextareaAutosize } from '@mui/material'
+import { Box, Typography, ToggleButton, TextField } from '@mui/material'
 import { commonStyles } from 'styles/commonStyles'
 
 interface StatusBarProps {
@@ -52,10 +52,12 @@ const Status: React.FC<StatusBarProps> = () => {
         ))}
       </ToggleButtonGroup>
 
-      <TextareaAutosize
-        className={classes.statusTextarea}
+      <TextField
+        fullWidth
+        className={classes.statusTextfield}
         aria-label="Leave a comment"
-        minRows={3}
+        multiline
+        minRows={2}
         placeholder="Is there anything you would like to add?"
       />
     </Box>

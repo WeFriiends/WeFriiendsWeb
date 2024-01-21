@@ -193,16 +193,17 @@ export const commonStyles = makeStyles()((theme) => {
         backgroundColor: accentBtnBg,
       },
     },
-    statusTextarea: {
+    statusTextfield: {
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderRadius: '2rem',
+        },
+      },
       marginTop: '1rem',
-      width: '100%',
-      borderRadius: '2rem !important',
-      padding: '15px',
       fontSize: '16px',
       fontWeight: 400,
       fontStyle: 'italic',
       color: textSecondaryColor,
-      border: '1px solid',
       borderColor: borderColor,
     },
   }
