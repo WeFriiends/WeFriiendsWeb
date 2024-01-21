@@ -186,6 +186,9 @@ export const commonStyles = makeStyles()((theme) => {
       textAlign: 'center',
       aspectRatio: 1,
       backgroundColor: accentBtnBg,
+      '&:hover': {
+        backgroundColor: primaryBtnBg,
+      },
     },
     backArrow: {
       fontSize: '2rem',
@@ -199,6 +202,9 @@ export const commonStyles = makeStyles()((theme) => {
       fontWeight: 600,
       borderRadius: '1rem',
       padding: '1rem',
+      '&:hover': {
+        backgroundColor: accentBtnBg,
+      },
     },
     progressCircle: {
       width: '10px',
