@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import ProgressBar from './ProgressBar'
 import Status from './Status'
 import Logo from '../../logo/Logo'
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { commonStyles } from 'styles/commonStyles'
 
 const RegistrationForm: React.FC = () => {
@@ -43,13 +44,25 @@ const RegistrationForm: React.FC = () => {
   }
 
   return (
-    <Box className={classes.mainBox}>
+    <Box className={classes.gridContainer}>
       <Logo />
+
+      {step > 0 && (
+        <Box className={classes.buttonPrevContainer}>
+          <Button className={classes.buttonPrev} onClick={handlePrevStep}>
+            <ArrowBackIcon className={classes.backArrow} />
+          </Button>
+        </Box>
+      )}
+
       {renderStep()}
-      <Box className={classes.buttonGroup}>
-        {step > 1 && <button onClick={handlePrevStep}>Previous</button>}
-        {step < totalSteps && <button onClick={handleNextStep}>Next</button>}
-      </Box>
+
+      {step < totalSteps && (
+        <Button className={classes.buttonNext} onClick={handleNextStep}>
+          Next
+        </Button>
+      )}
+
       <ProgressBar totalSteps={totalSteps} currentStep={step} />
     </Box>
   )
