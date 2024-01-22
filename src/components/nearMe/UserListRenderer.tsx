@@ -1,12 +1,11 @@
 import React from 'react'
 import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
 import { LocationOn } from '@mui/icons-material'
-import { UserObjectType } from '../../common/types/userTypes'
-import Lightning from '../../common/Lightning'
+import { UserNearMeObjectType } from './userTypes'
 
 type UserListRendererProps = {
-  users?: UserObjectType[]
-  classes: Record<string, string>
+  users: UserNearMeObjectType[]
+  classes: any
   columns: number
 }
 
@@ -15,12 +14,6 @@ const UserListRenderer: React.FC<UserListRendererProps> = ({
   classes,
   columns,
 }) => {
-  const currentUserID = '1' //take it from localStorage
-
-  if (!users?.length) {
-    return 'Ooops, noone nearby'
-  }
-
   return (
     <ImageList cols={columns}>
       {users
@@ -39,9 +32,8 @@ const UserListRenderer: React.FC<UserListRendererProps> = ({
                 className={classes.userImages}
                 alt="user profile"
               />
-              {user.likedUsers.includes(currentUserID) && <Lightning />}
-              <Box sx={{ fontWeight: 'bold', color: '#F46B5D' }}>
-                {user.firstName} {user.lastName}
+              <Box sx={{ fontWeight: 'bold' }}>
+                {user.fName} {user.lName}
               </Box>
               <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                 <LocationOn sx={{ color: 'grey' }} />

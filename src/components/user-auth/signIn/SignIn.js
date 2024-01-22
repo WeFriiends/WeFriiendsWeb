@@ -1,5 +1,5 @@
 import Logo from '../../logo/Logo'
-import { Box, Typography, Link } from '@mui/material'
+import { Box, Typography, Grid, Button, Link } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 
 const SignIn = () => {
@@ -26,7 +26,7 @@ const SignIn = () => {
       >
         Google
       </Button> */}
-      <Link href="/authentication/email-sign-in" className={classes.linkBtn}>
+      <Link href="/mailSignIn" className={classes.linkBtn}>
         e-mail
       </Link>
       <div className={classes.textCenter}>

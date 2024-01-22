@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import DisplayResult from './DisplayResult'
 import accountConfirmation from '../../../actions/accountConfirmation'
+import { Box, CircularProgress } from '@mui/material'
+import { makeStyles } from 'tss-react/mui'
 import { useParams } from 'react-router-dom'
-import Loader from 'common/Loader'
 
 const AccountCreated = () => {
+  const { classes } = useStyles()
   const [success, setSuccess] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const { confirmationCode } = useParams()
@@ -19,7 +21,27 @@ const AccountCreated = () => {
     fetchData()
   }, [confirmationCode])
 
-  return <>{isLoading ? <Loader /> : <DisplayResult state={success} />}</>
+  return (
+    <>
+      {isLoading ? (
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <CircularProgress className={classes.circularProgress} />
+        </Box>
+      ) : (
+        <DisplayResult state={success} />
+      )}
+    </>
+  )
 }
 
 export default AccountCreated
+
+const useStyles = makeStyles()(() => {
+  return {
+    circularProgress: {
+      color: '#FB8F67',
+      position: 'absolute',
+      top: '50%',
+    },
+  }
+})

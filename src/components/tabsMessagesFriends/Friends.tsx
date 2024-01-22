@@ -1,35 +1,17 @@
 import * as React from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import friends from './friendsProfile.json'
-import { UserProfileData } from '../../types/UserProfileData'
+import friends from './friends.json'
 
-interface FriendsProps {
-  onClick: (userProfileData: UserProfileData) => void
-}
-
-const Friends: React.FC<FriendsProps> = ({ onClick }) => {
+const Friends = () => {
   const { classes } = useStyles()
-  const handleClick = (id: string) => {
-    const friendsData = friends.find((element) => element.id == id)
-    onClick(friendsData as UserProfileData)
-  }
   return (
     <Box className={classes.friendsBlock}>
       {friends.map((element) => (
-        <Box
-          id={element.id}
-          key={element.id}
-          className={classes.friendsPhotos}
-          onClick={() => handleClick(element.id)}
-        >
-          <img
-            src={element.photo[0].src}
-            alt="photo"
-            className={classes.smallPhoto}
-          />
+        <Box id={element.id} key={element.id} className={classes.friendsPhotos}>
+          <img src={element.foto} alt="photo" className={classes.smallPhoto} />
           <Typography className={classes.textOnPhoto}>
-            {element.firstName} {element.lastName}, {element.age}
+            {element.name} {element.lastname}, {element.age}
           </Typography>
         </Box>
       ))}
@@ -46,8 +28,8 @@ const useStyles = makeStyles()(() => {
     },
     friendsBlock: {
       display: 'grid',
-      gridTemplateColumns: '190px 190px',
-      gridGap: 35,
+      gridTemplateColumns: '1fr 1fr',
+      gridGap: 29,
     },
     friendsPhotos: {
       justifySelf: 'center',
@@ -55,7 +37,7 @@ const useStyles = makeStyles()(() => {
       gridTemplateRows: '1fr 71px',
     },
     smallPhoto: {
-      width: 190,
+      width: 162,
       gridRow: '1/3',
       gridColumn: '1/2',
       boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',

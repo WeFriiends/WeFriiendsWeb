@@ -21,7 +21,7 @@ const ReportComment = () => {
       </IconButton>
       <Box>
         <img
-          src="/img/report/alert-circle.png"
+          src={require('./Images/alert-circle.png')}
           alt="Alert circle"
           className={classes.imgAlert}
         />
@@ -41,9 +41,10 @@ const ReportComment = () => {
           className={classes.linkBtn}
         >
           <img
-            src="/img/report/check.png"
+            src={require('./Images/check.png')}
             alt="check"
             className={classes.checkImg}
+            // style={{ width: '20px', height: '20px', marginLeft: '10px' }}
           />
 
           {buttonName}
@@ -60,6 +61,8 @@ const useStyles = makeStyles()((theme) => {
   return {
     mainBox: {
       display: 'grid',
+      //gridTemplateRows: '1fr 2fr 2fr 1fr',
+      //rowGap: '0',
       alignItems: 'center',
       marginLeft: 20,
       marginRight: 20,

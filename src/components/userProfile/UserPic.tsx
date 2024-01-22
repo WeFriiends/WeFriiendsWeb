@@ -2,13 +2,9 @@ import React from 'react'
 
 import { makeStyles } from 'tss-react/mui'
 
-interface UserPicProps {
-  src: string
-}
-
-const UserPic: React.FC<UserPicProps> = ({ src }) => {
+const UserPic = (props: { item: { src: string } }) => {
   const { classes } = useStyles()
-  return <img src={src} alt="card" className={classes.foto} />
+  return <img src={props.item.src} alt="card" className={classes.foto} />
 }
 
 export default UserPic

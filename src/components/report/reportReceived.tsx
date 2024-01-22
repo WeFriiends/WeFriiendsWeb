@@ -17,7 +17,7 @@ const ReportReceived = () => {
       </IconButton>
       <Box>
         <img
-          src="/img/report/alert-circle.png"
+          src={require('./Images/alert-circle.png')}
           alt="Alert circle"
           className={classes.imgAlert}
         />

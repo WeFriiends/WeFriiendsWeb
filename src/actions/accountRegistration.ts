@@ -20,7 +20,7 @@ const accountRegistration = async (
     else return false
   } catch (err) {
     const er = err as Error
-    console.error('Message error for account registration', er.message)
+    console.log(er.message)
   }
 }
 

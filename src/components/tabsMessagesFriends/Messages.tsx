@@ -8,8 +8,8 @@ const Messages = () => {
   return (
     <>
       {messages.map((element) => (
-        <Box key={element.id}>
-          <Box className={classes.messageBlock}>
+        <>
+          <Box className={classes.messageBlock} key={element.id}>
             <Avatar
               src={element.avatar}
               sx={{ width: 66, height: 66 }}
@@ -29,7 +29,7 @@ const Messages = () => {
             )}
           </Box>
           <Box className={classes.line}></Box>
-        </Box>
+        </>
       ))}
     </>
   )

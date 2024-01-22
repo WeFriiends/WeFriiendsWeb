@@ -19,7 +19,7 @@ const Report = () => {
         <ClearIcon className={classes.closeIcon} />
       </IconButton>
       <img
-        src="/img/report/alert-circle.png"
+        src={require('./Images/alert-circle.png')}
         alt="Alert circle"
         className={classes.imgAlert}
       />
@@ -33,13 +33,13 @@ const Report = () => {
         </Typography>
       </Box>
       <Box className={classes.shadowBox}>
-        <Link to="report/reportComment/Spam" style={{ textDecoration: 'none' }}>
+        <Link to="/reportComment/Spam" style={{ textDecoration: 'none' }}>
           <Button fullWidth className={classes.linkBtn}>
             Spam
           </Button>
         </Link>
         <Link
-          to="report/reportComment/Report abuse"
+          to="/reportComment/Report abuse"
           style={{ textDecoration: 'none' }}
         >
           <Button fullWidth className={classes.linkBtn}>
@@ -47,7 +47,7 @@ const Report = () => {
           </Button>
         </Link>
         <Link
-          to="report/reportComment/Inappropriate photos"
+          to="/reportComment/Inappropriate photos"
           style={{ textDecoration: 'none' }}
         >
           <Button fullWidth className={classes.linkBtn}>
