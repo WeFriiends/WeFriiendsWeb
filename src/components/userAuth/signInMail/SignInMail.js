@@ -2,14 +2,13 @@ import { useState } from 'react'
 import Logo from '../../logo/Logo'
 import { useAuthContext } from '../../../hooks/useAuthContext'
 import { Navigate } from 'react-router-dom'
-import LoginEmail from '../../../actions/loginEmail'
+import { loginEmail } from 'actions/loginEmail'
 import {
   Box,
   OutlinedInput,
   TextField,
   Typography,
   InputAdornment,
-  Link,
   Button,
   FormControl,
   FormHelperText,
@@ -39,13 +38,18 @@ const SignInMail = () => {
   const [visible, setVisibility] = useState(false)
 
   const checkAndSignIn = async () => {
-    const result = await LoginEmail(inputEmail, inputPassword)
+    const result = await loginEmail(inputEmail, inputPassword)
     if (result.status === 200) {
       setSuccessSignIn(true)
       let user = { token: result.data.token }
       localStorage.setItem('user', user.token)
       dispatch({ type: 'LOGIN', payload: user })
     } else {
+      if (!result.response) {
+        setError(true)
+        setErrorSignIn('No data')
+        return
+      }
       if (
         result.response.data.message ===
         'Pending Account. Please verify your email to gain access to your profile'

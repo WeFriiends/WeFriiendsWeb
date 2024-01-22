@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { Tab, Tabs, Box, Typography } from '@mui/material'
+import { Tab, Tabs, Box } from '@mui/material'
 import Messages from './Messages'
 import Friends from './Friends'
+import { UserProfileData } from '../../types/UserProfileData'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -9,6 +10,9 @@ interface TabPanelProps {
   value: number
 }
 
+interface TabsMessagesFriendsProps {
+  onClick: (userProfileData: UserProfileData) => void
+}
 function TabPanel(props: TabPanelProps) {
   const { children, value, index } = props
 
@@ -18,18 +22,20 @@ function TabPanel(props: TabPanelProps) {
         <Box
           sx={{
             padding: '30px 0',
-            height: '67vh',
+            height: '80vh',
             overflowY: 'scroll',
           }}
         >
-          <Typography>{children}</Typography>
+          <Box>{children}</Box>
         </Box>
       )}
     </div>
   )
 }
 
-const TabsMessagesFriends = () => {
+const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
+  onClick,
+}) => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -45,7 +51,7 @@ const TabsMessagesFriends = () => {
         <Messages />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Friends />
+        <Friends onClick={onClick} />
       </TabPanel>
     </Box>
   )

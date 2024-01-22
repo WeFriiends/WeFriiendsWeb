@@ -70,3 +70,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Folder styles:
+
+#### createTheme.tsx -
+
+customization MUI styles - default font is Inter, primary color
+
+#### commonStyles.tsx -
+
+file with generic/common app styles (Titles, buttons etc.)
