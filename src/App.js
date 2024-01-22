@@ -22,7 +22,7 @@ import DotsMobileStepper from 'components/onboarding/DotsMobileStepper'
 import ToWalkWith from 'components/onboarding/ToWalkWith'
 import ToLearn from 'components/onboarding/ToLearn'
 import YouCan from 'components/onboarding/YouCan'
-
+//import CommonStyles from 'components/onboarding/CommonStyles'
 const theme = createTheme({
   typography: {
     fontFamily: ['Inter'],
@@ -35,19 +35,15 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
-            <Route exact path="/" element={<StartOnboarding />} />
-            <Route exact path="/FindFriends" element={<FindFriends />} />
-            <Route
-              exact
-              path="/DotsMobileStepper"
-              element={<DotsMobileStepper />}
-            />
-            <Route exact path="/ToVisit" element={<ToVisit />} />
-            <Route exact path="/ToFind" element={<ToFind />} />
-            <Route exact path="/ToWalkWith" element={<ToWalkWith />} />
-            <Route exact path="/ToLearn" element={<ToLearn />} />
-            <Route exact path="/YouCan" element={<YouCan />} />
-
+            <Route path="/" element={<StartOnboarding />} />
+            <Route path="/FindFriends" element={<FindFriends />} />
+            <Route path="/DotsMobileStepper" element={<DotsMobileStepper />} />
+            <Route path="/ToVisit" element={<ToVisit />} />
+            <Route path="/ToFind" element={<ToFind />} />
+            <Route path="/ToWalkWith" element={<ToWalkWith />} />
+            <Route path="/ToLearn" element={<ToLearn />} />
+            <Route path="/YouCan" element={<YouCan />} />
+            {/* <Route exact path="/CommonStyles" element={<CommonStyles />} /> */}
             {/* <Route exact path="/" element={<CreateAccount />} />
             <Route path="/registration" element={<RegistrationForm />} />
             <Route

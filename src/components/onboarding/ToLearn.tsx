@@ -3,69 +3,40 @@ import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 //import { Link } from 'react-router-dom'
 import IconButton from '@mui/material/IconButton'
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import Logo from 'components/logo/Logo'
 import DotsMobileStepper from './DotsMobileStepper'
 
-// import FotoCarousel from 'components/userProfile/FotoCarousel'
-// interface ToVisitProps {
-//   onNext: () => void
-// }
-
-// const ToVisit: React.FC<ToVisitProps> = ({ onNext }) => {
 const ToLearn = () => {
-  //const slides = [1, 2, 3, 4]
   const { classes } = useStyles()
   const navigate = useNavigate()
   const handleGoBack = () => {
     navigate(-1)
   }
-  //const navigate = useNavigate()
-  // const handleNext = () => {
-  //   navigate('/ToVisit')
-  // }
-  // const handleSkip = () => {
-  //   navigate('/FindFriends')
-  //   // Ваш код для обработки нажатия на кнопку Skip
-  // }
 
   return (
     <Box className={classes.mainBox}>
       <Box>
         <Logo />
         <IconButton className={classes.iconButton} onClick={handleGoBack}>
-          <img src={require('./Images/back.png')} alt="back" />
+          <img src="/img/back.svg" alt="back" />
         </IconButton>
         <img
-          src={require('./Images/learn-together.png')}
+          src="/img/learn-together.svg"
           alt="learn-together"
           className={classes.img}
-          //className={classes.checkImg}
-          // style={{ width: '20px', height: '20px', marginLeft: '10px' }}
         />
         <Typography className={classes.content}>
           find someone to learn language with
         </Typography>
       </Box>
-      {/* <Button
-        component={Link}
-        to="/ToFind"
-        // fullWidth
-        variant="contained"
-        color="primary"
-        className={classes.linkBtn}
-      >
-        Next
-      </Button> */}
+
       <DotsMobileStepper
-      //steps={4}
-      //slides={slides}
-      // onNext={handleNext}
-      // onSkip={handleSkip}
-      //onNext={handleNext}
+        //basePath="/ToLearn"
+        basePath="/YouCan"
+        pageCount={5}
+        page={4}
       />
-      {/* <MySlider slides={slides} /> */}
-      {/* </Box> */}
     </Box>
   )
 }

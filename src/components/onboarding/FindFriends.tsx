@@ -2,9 +2,7 @@ import React from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { Link } from 'react-router-dom'
-//import { useNavigate } from 'react-router'
 import Logo from 'components/logo/Logo'
-//import StartOnboarding from './StartOnboarding'
 
 const FindFriends = () => {
   const { classes } = useStyles()
@@ -22,7 +20,7 @@ const FindFriends = () => {
           Here you can
         </Typography>
         <img
-          src={require('./Images/vector1.png')}
+          src="/img/vector1.svg"
           alt="Vector 1"
           className={classes.vector1}
         />
@@ -30,7 +28,7 @@ const FindFriends = () => {
           look for friends in your local city
         </Typography>
         <img
-          src={require('./Images/vector2.png')}
+          src="/img/vector2.svg"
           alt="Vector 2"
           className={classes.vector2}
         />
@@ -38,7 +36,7 @@ const FindFriends = () => {
           or all over the world
         </Typography>
         <img
-          src={require('./Images/vector3.png')}
+          src="/img/vector3.svg"
           alt="Vector 3"
           className={classes.vector3}
         />
@@ -55,7 +53,7 @@ const FindFriends = () => {
         // color="primary"
         className={classes.root}
       >
-        <img src={require('./Images/arrow_back.png')} alt="Back Arrow" />
+        <img src="/img/arrow_back.svg" alt="Back Arrow" />
       </Button>
       <Button
         component={Link}
@@ -64,10 +62,10 @@ const FindFriends = () => {
         // variant="contained"
         // color="primary"
         className={classes.root}
+        onClick={() => console.log('Button clicked')}
       >
         Next
       </Button>
-      {/* </Box> */}
     </Box>
   )
 }
