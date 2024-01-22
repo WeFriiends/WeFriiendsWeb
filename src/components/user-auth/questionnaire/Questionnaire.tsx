@@ -5,6 +5,7 @@ import Logo from '../../logo/Logo'
 import { Box, Button } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { commonStyles } from 'styles/commonStyles'
+import Geolocation from './Geolocation'
 
 const RegistrationForm: React.FC = () => {
   const { classes } = commonStyles()
@@ -34,10 +35,8 @@ const RegistrationForm: React.FC = () => {
     switch (step) {
       case 1:
         return <Status formData={formData} onChange={handleFormDataChange} />
-      //   case 2:
-      //     return <Step2 formData={formData} onChange={handleFormDataChange} />
-      //   case 3:
-      //     return <Step3 formData={formData} />
+      case 2:
+        return <Geolocation />
       default:
         return null
     }

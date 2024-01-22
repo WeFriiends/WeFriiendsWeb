@@ -15,6 +15,7 @@ import ReportComment from 'components/report/reportComment'
 import ReportReceived from 'components/report/reportReceived'
 import CommentInput from 'components/report/commentInput'
 import YourLikesList from './pages/YourLikesList'
+import Questionnaire from './components/user-auth/questionnaire/Questionnaire'
 import { ActivePageProvider } from './context/activePageContext'
 
 const theme = createTheme({
@@ -32,6 +33,7 @@ function App() {
             <Routes>
               <Route exact path="/" element={<CreateAccount />} />
               <Route path="/registration" element={<RegistrationForm />} />
+              <Route path="/questionnaire" element={<Questionnaire />} />
               <Route
                 path="/registration/glad-screen/:confirmationCode"
                 element={<AccountCreated />}

@@ -246,5 +246,12 @@ export const commonStyles = makeStyles()((theme) => {
       color: textSecondaryColor,
       borderColor: borderColor,
     },
+    highlightText: {
+      color: primaryColor,
+      fontWeight: 600,
+      fontSize: 26,
+      textAlign: 'center',
+      margin: '1rem',
+    },
   }
 })
