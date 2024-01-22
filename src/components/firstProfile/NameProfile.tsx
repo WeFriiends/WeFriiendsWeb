@@ -8,50 +8,66 @@ import {
   Typography,
 } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { useState } from "react";
+import { useState } from 'react'
+import useLocalStorageState from '../../hooks/useLocalStorageState'
+import axios from 'axios'
+// import { v4 as uuidv4 } from 'uuid'
 
-const FULLNAME_REGEX = /^[a-zA-Z\s]{2,50}$/
+const FULLNAME_REGEX = /^[a-zA-Zа-яА-ЯёЁ\s\p{L}]{2,15}$/u
 
 const NameProfile = () => {
   const { classes } = useStyles()
-  const [fullName, setFullName] = useState<string>('')
+  const [fullName, setFullName] = useLocalStorageState<string>(
+    'profileData.fullName',
+    ''
+  )
   const [error, setError] = useState<string>('')
   const [isValid, setIsValid] = useState<boolean>(false)
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  // const userId = //
+  // const requestBody = {
+  //   id: userId,
+  //   name: fullName,
+  // }
+
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    if (!fullName.trim()) {
+
+    if (fullName.trim() === '') {
       setError('Please enter your full name')
+    } else if (!FULLNAME_REGEX.test(fullName)) {
+      setIsValid(true)
     } else {
-      setFullName('')
-      const profileData = {
-        fullName,
+      try {
+        await axios.post('api/addName', fullName)
+        setError('')
+        setIsValid(false)
+        setFullName('')
+      } catch (error) {
+        console.error('Error saving profile:', error)
       }
-      localStorage.setItem('profileData', JSON.stringify(profileData))
     }
   }
 
   const handleInputChange = (event: { target: { value: string } }) => {
     setError('')
-    if (FULLNAME_REGEX.test(event.target.value) || event.target.value === '') {
-      setIsValid(false)
-      setFullName(event.target.value)
-    } else {
-      setIsValid(true)
-    }
+    setFullName(event.target.value)
+    setIsValid(
+      event.target.value.length >= 2        
+    && !FULLNAME_REGEX.test(event.target.value)
+    )
   }
-
 
   return (
     <Box className={classes.mainBox}>
       <Logo />
       <Typography variant="h1" className={classes.title} pt={10}>
-        Let's get started!
+        Let&apos;s get started!
       </Typography>
       <Typography variant="body1" className={classes.text} pt={5}>
-        What's your name?
+        What&apos;s your name?
       </Typography>
-      <form onSubmit={handleSubmit}>
+      <form>
         <FormControl fullWidth>
           <OutlinedInput
             className={classes.profileInput}
@@ -61,7 +77,7 @@ const NameProfile = () => {
           ></OutlinedInput>
           {isValid && (
             <FormHelperText sx={{ color: '#F1562A' }}>
-              Invalid name. Please enter valid full name.
+              Your name must be 2 to 15 letters, no numbers, symbols or bad words.  
             </FormHelperText>
           )}
           {error && (
