@@ -1,10 +1,6 @@
 import React from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-// import ClearIcon from '@mui/icons-material/Clear'
-// import IconButton from '@mui/material/IconButton'
-//import { Link } from 'react-router-dom'
-// import { useNavigate } from 'react-router'
 import Logo from 'components/logo/Logo'
 import { Link } from 'react-router-dom'
 

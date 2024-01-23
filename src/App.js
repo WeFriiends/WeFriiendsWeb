@@ -22,7 +22,7 @@ import DotsMobileStepper from 'components/onboarding/DotsMobileStepper'
 import ToWalkWith from 'components/onboarding/ToWalkWith'
 import ToLearn from 'components/onboarding/ToLearn'
 import YouCan from 'components/onboarding/YouCan'
-
+//import CommonStyles from 'components/onboarding/CommonStyles'
 const theme = createTheme({
   typography: {
     fontFamily: ['Inter'],
