@@ -12,12 +12,13 @@ export const commonStyles = makeStyles()((theme) => {
       fontFamily: ['Inter', 'sans-serif'].join(','),
     },
     mainBox: {
-      display: 'grid',
-      gridTemplateRows: '1fr 2fr 2fr 1fr',
+      // display: 'grid',
+      // gridTemplateRows: '1fr 2fr 2fr 1fr',
       alignItems: 'center',
       marginLeft: 20,
       marginRight: 20,
       [theme.breakpoints.up('sm')]: {
+        paddingTop: `calc(200px - 5vh)`,
         width: 400,
         margin: '0 auto',
       },
