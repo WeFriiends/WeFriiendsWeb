@@ -1,13 +1,18 @@
 import Logo from '../../logo/Logo'
 import { Box, Typography, Link } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
+import { commonStyles } from 'styles/commonStyles'
 
 const SignIn = () => {
   const { classes } = useStyles()
+  const commonClasses = commonStyles().classes
   return (
-    <Box className={classes.mainBox}>
+    <Box className={commonClasses.mainBox + ' ' + classes.mainGrid}>
       <Logo />
-      <Typography variant="h1" className={classes.title}>
+      <Typography
+        variant="h1"
+        className={commonClasses.title + ' ' + classes.title}
+      >
         Sign In?
       </Typography>
       {/* <Button
@@ -26,7 +31,10 @@ const SignIn = () => {
       >
         Google
       </Button> */}
-      <Link href="/authentication/email-sign-in" className={classes.linkBtn}>
+      <Link
+        href="/authentication/email-sign-in"
+        className={commonClasses.linkBtn}
+      >
         e-mail
       </Link>
       <div className={classes.textCenter}>
@@ -43,37 +51,14 @@ const SignIn = () => {
 
 export default SignIn
 
-const useStyles = makeStyles()((theme) => {
+const useStyles = makeStyles()(() => {
   return {
-    mainBox: {
+    mainGrid: {
       display: 'grid',
       gridTemplateRows: '1fr 2fr 1fr 2fr',
-      alignItems: 'center',
-      marginLeft: 20,
-      marginRight: 20,
-      [theme.breakpoints.up('sm')]: {
-        width: 400,
-        margin: '0 auto',
-      },
     },
     title: {
-      fontSize: 32,
-      fontWeight: 600,
-      lineHeight: '40px',
-      color: '#F46B5D',
-      textAlign: 'center',
-    },
-    linkBtn: {
-      display: 'block',
-      textTransform: 'lowercase',
-      backgroundColor: '#FFF1EC',
-      color: '#444444',
-      paddingTop: 18,
-      paddingBottom: 18,
-      borderRadius: 10,
-      fontSize: 18,
-      textDecoration: 'none',
-      textAlign: 'center',
+      paddingTop: 0,
     },
     fbAndGoogleButton: {
       textTransform: 'capitalize',
