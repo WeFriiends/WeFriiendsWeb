@@ -18,6 +18,7 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import { styled } from '@mui/material/styles'
 import { makeStyles } from 'tss-react/mui'
+import { commonStyles } from 'styles/commonStyles'
 
 const CssTextField = styled(TextField)({
   '& .MuiOutlinedInput-root': {
@@ -29,6 +30,7 @@ const CssTextField = styled(TextField)({
 
 const SignInMail = () => {
   const { classes } = useStyles()
+  const commonClasses = commonStyles().classes
   const [inputEmail, setInputEmail] = useState('')
   const [inputPassword, setInputPassword] = useState('')
   const [successSignIn, setSuccessSignIn] = useState()
@@ -69,10 +71,10 @@ const SignInMail = () => {
     setVisibility(!visible)
   }
   return (
-    <Box className={classes.mainBox}>
+    <Box className={commonClasses.mainBox}>
       {successSignIn && <Navigate to="/test" />}
       <Logo />
-      <Typography variant="h1" className={classes.title} pt={10}>
+      <Typography variant="h1" className={commonClasses.title}>
         Sign In
       </Typography>
       <form>
@@ -128,7 +130,7 @@ const SignInMail = () => {
         disableElevation
         disableRipple
         disabled={!inputEmail || !inputPassword ? true : false}
-        className={classes.loginBtn}
+        className={commonClasses.submitButton}
       >
         Sign In
       </Button>
@@ -138,22 +140,8 @@ const SignInMail = () => {
 
 export default SignInMail
 
-const useStyles = makeStyles()((theme) => {
+const useStyles = makeStyles()(() => {
   return {
-    mainBox: {
-      marginLeft: 20,
-      marginRight: 20,
-      [theme.breakpoints.up('sm')]: {
-        width: 400,
-        margin: '0 auto',
-      },
-    },
-    title: {
-      fontSize: 32,
-      fontWeight: 600,
-      lineHeight: '40px',
-      color: '#F46B5D',
-    },
     loginInput: {
       backgroundColor: '#FFF1EC',
       borderRadius: 2.5,
@@ -165,24 +153,6 @@ const useStyles = makeStyles()((theme) => {
     link: {
       textDecoration: 'none',
       color: '#444444',
-    },
-    loginBtn: {
-      textTransform: 'lowercase',
-      backgroundColor: '#FB8F67',
-      color: '#FFFFFF',
-      height: 56,
-      fontSize: 24,
-      fontWeight: 600,
-      borderRadius: 10,
-      '&: hover': {
-        backgroundColor: '#FB8F67',
-      },
-      marginTop: 45,
-      ':disabled': {
-        backgroundColor: '#FFFFFF',
-        border: '2px solid #FB8F67',
-        color: '#FB8F67',
-      },
     },
   }
 })

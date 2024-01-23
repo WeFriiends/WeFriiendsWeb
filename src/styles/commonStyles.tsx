@@ -116,7 +116,7 @@ export const commonStyles = makeStyles()((theme) => {
       display: 'block',
       textTransform: 'lowercase',
       backgroundColor: '#FFF1EC',
-      color: '#444444',
+      color: textColor,
       paddingTop: 18,
       paddingBottom: 18,
       borderRadius: 10,
@@ -126,7 +126,7 @@ export const commonStyles = makeStyles()((theme) => {
     },
     submitButton: {
       textTransform: 'lowercase',
-      backgroundColor: '#FB8F67',
+      backgroundColor: primaryBtnBg,
       color: '#FFFFFF',
       height: 56,
       fontSize: 18,
@@ -136,10 +136,10 @@ export const commonStyles = makeStyles()((theme) => {
       ':disabled': {
         backgroundColor: '#FFFFFF',
         border: '2px solid #FB8F67',
-        color: '#FB8F67',
+        color: primaryBtnBg,
       },
       '&: hover': {
-        backgroundColor: '#FB8F67',
+        backgroundColor: primaryBtnBg,
       },
     },
     p: {
