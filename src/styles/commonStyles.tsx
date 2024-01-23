@@ -124,6 +124,24 @@ export const commonStyles = makeStyles()((theme) => {
       textDecoration: 'none',
       textAlign: 'center',
     },
+    submitButton: {
+      textTransform: 'lowercase',
+      backgroundColor: '#FB8F67',
+      color: '#FFFFFF',
+      height: 56,
+      fontSize: 18,
+      fontWeight: 600,
+      borderRadius: 10,
+      marginTop: 45,
+      ':disabled': {
+        backgroundColor: '#FFFFFF',
+        border: '2px solid #FB8F67',
+        color: '#FB8F67',
+      },
+      '&: hover': {
+        backgroundColor: '#FB8F67',
+      },
+    },
     p: {
       paddingTop: 14,
       textAlign: 'left',
