@@ -1,5 +1,5 @@
 import { useGeolocation } from '@uidotdev/usehooks'
-import { Box } from '@mui/material'
+import { Box, CircularProgress } from '@mui/material'
 import AccessDenied from './AccessDenied'
 import { commonStyles } from 'styles/commonStyles'
 
@@ -8,7 +8,11 @@ const Geolocation: React.FC = () => {
   const location = useGeolocation()
 
   if (location.loading) {
-    return <p>loading...</p>
+    return (
+      <Box sx={{ display: 'grid', placeItems: 'center', height: '10rem' }}>
+        <CircularProgress />
+      </Box>
+    )
   }
 
   if (location.error) {
