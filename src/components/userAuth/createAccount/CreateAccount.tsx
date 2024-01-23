@@ -7,7 +7,7 @@ const CreateAccount = () => {
   const { classes } = useStyles()
   const commonClasses = commonStyles().classes
   return (
-    <Box className={commonClasses.mainBox + ' ' + classes.mainGrid}>
+    <Box className={`${commonClasses.mainBox} ${classes.mainGrid}`}>
       <Box>
         <Logo />
       </Box>

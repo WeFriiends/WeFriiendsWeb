@@ -7,11 +7,11 @@ const SignIn = () => {
   const { classes } = useStyles()
   const commonClasses = commonStyles().classes
   return (
-    <Box className={commonClasses.mainBox + ' ' + classes.mainGrid}>
+    <Box className={`${commonClasses.mainBox} ${classes.mainGrid}`}>
       <Logo />
       <Typography
         variant="h1"
-        className={commonClasses.title + ' ' + classes.title}
+        className={`${commonClasses.title}  ${classes.title}`}
       >
         Sign In?
       </Typography>
