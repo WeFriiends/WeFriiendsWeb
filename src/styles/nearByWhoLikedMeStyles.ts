@@ -1,5 +1,5 @@
 import { makeStyles } from 'tss-react/mui'
-export const nearBy_whoLikedMeStyles = makeStyles()(() => {
+export const nearByWhoLikedMeStyles = makeStyles()(() => {
   return {
     headerNear: {
       color: '#F1562A',

@@ -2,13 +2,13 @@ import { Grid, Typography } from '@mui/material'
 import { getColumns } from '../../helpers/helper'
 import UserListRenderer from './YourLikesUserListRenderer'
 import useUsersData from 'hooks/useUsersData'
-import { nearBy_whoLikedMeStyles } from '../../styles/nearBy_whoLikedMeStyles'
+import { nearByWhoLikedMeStyles } from '../../styles/nearByWhoLikedMeStyles'
 type IsMobileProps = {
   isMobile: boolean
 }
 
 const YouLikesProfiles = ({ isMobile }: IsMobileProps) => {
-  const { classes } = nearBy_whoLikedMeStyles()
+  const { classes } = nearByWhoLikedMeStyles()
   const columns = getColumns(isMobile)
   const txtAlign = isMobile ? 'center' : 'left'
 
