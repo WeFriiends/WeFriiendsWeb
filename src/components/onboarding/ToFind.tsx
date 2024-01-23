@@ -57,12 +57,12 @@ const ToFind = () => {
         Next
       </Button> */}
       <Box>
-        <DotsMobileStepper
+        {/* <DotsMobileStepper
         // steps={4}
         //slides={slides}
         // onNext={handleNext}
         // onSkip={handleSkip}
-        />
+        /> */}
         {/* <Button
           component={Link}
           to="/FindFriends"

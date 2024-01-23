@@ -47,7 +47,7 @@ const ToVisit = () => {
       >
         Next
       </Button> */}
-      <DotsMobileStepper
+      {/* <DotsMobileStepper
       // sx={{
       //   backgroundColor: classes.dotsMobileStepper.backgroundColor,
       // }}
@@ -59,7 +59,7 @@ const ToVisit = () => {
       // onNext={handleNext}
       // onSkip={handleSkip}
       //onNext={handleNext}
-      />
+      /> */}
       {/* <MySlider slides={slides} /> */}
       {/* </Box> */}
     </Box>

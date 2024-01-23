@@ -35,8 +35,8 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
-            <Route exact path="/" element={<StartOnboarding />} />
-            <Route exact path="/FindFriends" element={<FindFriends />} />
+            <Route exact path="/" element={<DotsMobileStepper />} />
+            {/* <Route exact path="/FindFriends" element={<FindFriends />} />
             <Route
               exact
               path="/DotsMobileStepper"
@@ -46,7 +46,7 @@ function App() {
             <Route exact path="/ToFind" element={<ToFind />} />
             <Route exact path="/ToWalkWith" element={<ToWalkWith />} />
             <Route exact path="/ToLearn" element={<ToLearn />} />
-            <Route exact path="/YouCan" element={<YouCan />} />
+            <Route exact path="/YouCan" element={<YouCan />} /> */}
 
             {/* <Route exact path="/" element={<CreateAccount />} />
             <Route path="/registration" element={<RegistrationForm />} />

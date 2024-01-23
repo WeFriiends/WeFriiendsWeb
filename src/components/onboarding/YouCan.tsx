@@ -51,13 +51,13 @@ const YouCan = () => {
       >
         Next
       </Button> */}
-      <DotsMobileStepper
+      {/* <DotsMobileStepper
       //steps={4}
       //slides={slides}
       // onNext={handleNext}
       // onSkip={handleSkip}
       //onNext={handleNext}
-      />
+      /> */}
       {/* <MySlider slides={slides} /> */}
       {/* </Box> */}
     </Box>
