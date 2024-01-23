@@ -31,7 +31,7 @@ const CssTextField = styled(TextField)({
 const SignInMail = () => {
   const { classes } = useStyles()
   const commonClasses = commonStyles().classes
-  const [inputEmail, setInputEmail] = useState('')
+  const [inputEmail, setInputEmail] = useState('c')
   const [inputPassword, setInputPassword] = useState('')
   const [successSignIn, setSuccessSignIn] = useState()
   const [error, setError] = useState(false)
@@ -129,7 +129,7 @@ const SignInMail = () => {
         variant="contained"
         disableElevation
         disableRipple
-        disabled={!inputEmail || !inputPassword ? true : false}
+        disabled={!inputEmail || !inputPassword}
         className={commonClasses.submitButton}
       >
         Sign In
