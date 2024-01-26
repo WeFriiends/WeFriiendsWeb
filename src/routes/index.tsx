@@ -13,6 +13,7 @@ import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
+import NameProfile from 'components/firstProfile/NameProfile'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -118,6 +119,10 @@ const routes: RouteObject[] = [
         element: <ReportReceived />,
       },
     ],
+  },
+  {
+    path: 'name',
+    element: <NameProfile />,
   },
   //left code underneath as example of using path for common layout
   // {
