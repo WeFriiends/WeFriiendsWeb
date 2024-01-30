@@ -1,13 +1,6 @@
 import React, { useState } from 'react'
 import Logo from '../logo/Logo'
-import {
-  Typography,
-  Box,
-  FormControl,
-  TextField,
-  TextareaAutosize,
-  Link,
-} from '@mui/material'
+import { Typography, Box } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import PrevPageButton from '../../common/buttons/PrevPageButton'
 import NextPageButton from '../../common/buttons/NextPageButton'
@@ -105,8 +98,6 @@ const useStyles = makeStyles()((theme) => {
     mainBox: {
       display: 'flex',
       flexDirection: 'column',
-      // display: 'grid',
-      // gridTemplateRows: '2fr 1fr 2fr 2fr 1fr',
       alignItems: 'center',
       marginLeft: 20,
       marginRight: 20,
@@ -135,38 +126,15 @@ const useStyles = makeStyles()((theme) => {
       textAlign: 'center',
       fontWeight: 600,
     },
-    textareaContainer: {
-      height: 80,
-      display: 'flex',
-      alignItems: 'center',
-    },
-    textarea: {
-      width: 350,
-      height: 75,
-      resize: 'none',
-      margin: '0 auto',
-      padding: '10px 18px',
-      borderRadius: 20,
-      border: '1px solid #C5C5C5',
-      color: '#ADA9A9',
-      fontFamily: 'Inter',
-      fontSize: 16,
-      fontStyle: 'italic',
-      fontWeight: 400,
-      boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',
-      '&:focus': {
-        outline: 'none',
-      },
-      [theme.breakpoints.up('sm')]: {
-        width: 400,
-        paddingLeft: '10%',
-      },
-    },
     titleContainer: {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       marginBottom: 14,
+      // [theme.breakpoints.up('sm')]: {
+      //   width: 400,
+      //   paddingLeft: '10%',
+      // },
     },
     prevPageContainer: {
       display: 'flex',
@@ -201,7 +169,6 @@ const useStyles = makeStyles()((theme) => {
       fontSize: 12,
       fontWeight: 400,
       borderRadius: 20,
-      // background: 'rgba(229, 229, 229, 0.40)',
       display: 'flex',
       alignItems: 'center',
       maxWidth: 190,
@@ -209,23 +176,9 @@ const useStyles = makeStyles()((theme) => {
       '&:hover': {
         cursor: 'pointer',
       },
-      // '& .chosenStatus': {
-      //   backgroundColor: '#faa06d',
-      // },
     },
     text: {
       fontSize: 12,
     },
-    unchosenStatus: {
-      background: 'rgba(229, 229, 229, 0.40)',
-      color: 'red',
-    },
-    chosenStatus: {
-      background: '#faa06d',
-      color: 'blue',
-    },
-    // chosenStatus: {
-    //   backgroundColor: '#faa06d',
-    // },
   }
 })
