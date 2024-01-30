@@ -1,11 +1,15 @@
 import { Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 
-const NextPageButton = ({ nextPageLink }) => {
+const NextPageButton = ({ nextPageLink, onClick }) => {
   const { classes } = useStyles()
 
   return (
-    <Button className={classes.nextPageButton} href={nextPageLink}>
+    <Button
+      className={classes.nextPageButton}
+      href={nextPageLink}
+      onClick={onClick}
+    >
       Next
     </Button>
   )
