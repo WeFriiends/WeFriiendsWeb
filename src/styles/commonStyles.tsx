@@ -159,24 +159,11 @@ export const commonStyles = makeStyles()((theme) => {
       color: '#3B4054',
       textAlign: 'center',
     },
-    gridContainer: {
-      display: 'grid',
-      gap: '1.5rem',
-      gridTemplateRows: 'repeat(auto-fill, minmax(200px, 1fr))',
-      alignItems: 'center',
-      marginLeft: 20,
-      marginRight: 20,
-      [theme.breakpoints.up('sm')]: {
-        width: 400,
-        margin: '0 auto',
-      },
-    },
-    flexContainer: {
+    buttonsContainer: {
       marginTop: '1rem',
       display: 'flex',
       flexWrap: 'wrap',
       gap: '1rem',
-      justifyContent: 'center',
     },
     buttonPrevContainer: {
       margin: '0 auto',
@@ -196,6 +183,7 @@ export const commonStyles = makeStyles()((theme) => {
     },
     buttonNext: {
       backgroundColor: primaryBtnBg,
+      width: '90%',
       textTransform: 'none',
       color: '#FFFFFF',
       fontSize: 18,
@@ -232,19 +220,6 @@ export const commonStyles = makeStyles()((theme) => {
       '&:hover, &:active, &.Mui-selected, &.Mui-selected:hover': {
         backgroundColor: accentBtnBg,
       },
-    },
-    statusTextfield: {
-      '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          borderRadius: '2rem',
-        },
-      },
-      marginTop: '1rem',
-      fontSize: 16,
-      fontWeight: 400,
-      fontStyle: 'italic',
-      color: textSecondaryColor,
-      borderColor: borderColor,
     },
     highlightText: {
       color: primaryColor,

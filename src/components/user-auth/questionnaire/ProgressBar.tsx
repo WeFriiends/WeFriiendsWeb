@@ -28,7 +28,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   })
 
   return (
-    <Box className={`${classes.flexContainer} ${classes.progressBarContainer}`}>
+    <Box
+      className={`${classes.buttonsContainer} ${classes.progressBarContainer}`}
+    >
       {indicators}
     </Box>
   )

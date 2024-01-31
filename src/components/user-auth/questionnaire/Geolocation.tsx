@@ -21,7 +21,7 @@ const Geolocation: React.FC = () => {
 
   return (
     <Box
-      className={classes.flexContainer}
+      className={classes.buttonsContainer}
       sx={{ height: '150px', flexDirection: 'column' }}
     >
       <Box> Your latitude: {location.latitude}</Box>

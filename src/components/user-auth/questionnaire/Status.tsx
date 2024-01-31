@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
-import { Box, Typography, ToggleButton, TextField } from '@mui/material'
+import { Box, Typography, ToggleButton } from '@mui/material'
 import { commonStyles } from 'styles/commonStyles'
+import { makeStyles } from 'tss-react/mui'
 
 interface StatusBarProps {
   formData: object
@@ -10,17 +11,17 @@ interface StatusBarProps {
 
 const options = [
   'Looking for new friends',
-  "I'm a new mom",
-  "Let's take the dogs for a walk",
-  "Let's be friends, I'm new in town",
   "I’m learning a new language. Let's talk!",
-  'My plans are to move abroad',
-  'How do you do it? Share your experience',
+  "Let's be friends, I'm new in town",
   'I look for emotional support',
+  'My plans are to move abroad',
+  "I'm a new mom. Need some help",
+  "Let's take the dogs for a walk",
 ]
 
 const Status: React.FC<StatusBarProps> = () => {
   const { classes } = commonStyles()
+  const { classes: styles } = useStyles()
 
   const [statusOptions, setStatusOptions] = useState<string[]>([])
 
@@ -41,7 +42,8 @@ const Status: React.FC<StatusBarProps> = () => {
       </Typography>
 
       <ToggleButtonGroup
-        className={classes.flexContainer}
+        sx={{ marginLeft: '2rem' }}
+        className={classes.buttonsContainer}
         onChange={handleCheckboxChange}
         value={statusOptions}
       >
@@ -52,16 +54,21 @@ const Status: React.FC<StatusBarProps> = () => {
         ))}
       </ToggleButtonGroup>
 
-      <TextField
-        fullWidth
-        className={classes.statusTextfield}
-        aria-label="Leave a comment"
-        multiline
-        minRows={2}
-        placeholder="Is there anything you would like to add?"
-      />
+      <Typography className={styles.text}>3 statuses max</Typography>
     </Box>
   )
 }
 
 export default Status
+
+const useStyles = makeStyles()(() => {
+  return {
+    text: {
+      textAlign: 'center',
+      color: '#1D878C',
+      fontWeight: 400,
+      fontSize: 12,
+      marginTop: '2rem',
+    },
+  }
+})

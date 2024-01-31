@@ -7,7 +7,7 @@ const AccessDenied = () => {
   return (
     <Box className={classes.highlightText}>
       You have to allow WeFriiends to access your device location.
-      <br /> Overvise, we can’t find a friend for you.
+      <br /> Otherwise, we can’t find a friend for you.
     </Box>
   )
 }
