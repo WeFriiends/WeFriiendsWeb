@@ -17,6 +17,8 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { styled } from '@mui/material/styles'
 import { makeStyles } from 'tss-react/mui'
+import { useNavigate } from 'react-router-dom'
+import { AccountRegistrationResult } from '../../../actions/accountRegistration'
 
 const PWD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%]).{8,24}$/
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
@@ -31,6 +33,7 @@ const CssTextField = styled(TextField)({
 const RegistrationForm = () => {
   const { classes } = useStyles()
   const emailRef = useRef()
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState('')
   const [validEmail, setValidEmail] = useState(false)
@@ -66,7 +69,10 @@ const RegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     let result = await accountRegistration(pwd, matchPwd, email)
-    setSuccess(result)
+    if (result === AccountRegistrationResult.SUCCESS) {
+      setSuccess(true)
+    } else if (result === AccountRegistrationResult.EMAIL_ALREADY_USED)
+      navigate('/registration/email-already-used')
   }
 
   // Need a screen and backend to resend the email

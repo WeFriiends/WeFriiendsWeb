@@ -13,6 +13,7 @@ import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
+import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -40,6 +41,10 @@ const routes: RouteObject[] = [
       {
         path: 'glad-screen',
         element: <AccountCreated />,
+      },
+      {
+        path: 'email-already-used',
+        element: <EmailAlreadyUsed />,
       },
     ],
   },
