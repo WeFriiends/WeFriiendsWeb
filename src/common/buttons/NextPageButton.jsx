@@ -34,6 +34,7 @@ const useStyles = makeStyles()((theme) => {
       fontStyle: 'normal',
       fontWeight: 600,
       lineHeight: 24,
+      width: '90vw',
       [theme.breakpoints.up('sm')]: {
         width: 400,
       },
