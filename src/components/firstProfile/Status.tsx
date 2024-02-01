@@ -47,7 +47,7 @@ const Status = () => {
         <Logo />
       </Box>
       <Box className={classes.prevPageContainer}>
-        <PrevPageButton prevPageLink="/status" />
+        <PrevPageButton prevPageLink="/registration/status" />
       </Box>
       <Box className={classes.titleContainer}>
         <Typography variant="h1" className={classes.title}>
@@ -77,7 +77,10 @@ const Status = () => {
         ))}
       </Box>
       <Box className={classes.nextPageContainer}>
-        <NextPageButton nextPageLink="/status" onClick={nextHandler} />
+        <NextPageButton
+          nextPageLink="/registration/status"
+          onClick={nextHandler}
+        />
       </Box>
     </Box>
   )
