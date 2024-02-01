@@ -10,7 +10,7 @@ const PrevPageButton = ({ prevPageLink }) => {
       startIcon={
         <img
           alt="previous page"
-          src={'./img/navigationIcons/arrow_back.svg'}
+          src={'/img/navigationIcons/arrow_back.svg'}
           style={{ margin: 0 }}
         />
       }
