@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useSuggestedLocations } from 'hooks/useSuggestedLocations'
 import { Autocomplete, TextField } from '@mui/material'
+import { styled } from '@mui/system'
 
 const BOUNCE_DURATION = 500
 const SUGGETIONS_LIMIT = 5

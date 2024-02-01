@@ -48,7 +48,12 @@ export const useSuggestedLocations = (
             longitude: parseCoordinate(lon),
           })
         )
-        setAddresses(suggestions)
+        const uniqueSuggestions = [
+          ...new Map(
+            suggestions.map((item) => [item.displayName, item])
+          ).values(),
+        ]
+        setAddresses(uniqueSuggestions)
       } catch (error) {
         console.error(error)
       }
