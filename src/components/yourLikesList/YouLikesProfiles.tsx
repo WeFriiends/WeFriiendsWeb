@@ -1,30 +1,18 @@
-import React, { useEffect, useState } from 'react'
 import { Grid, Typography } from '@mui/material'
-import { makeStyles } from 'tss-react/mui'
-import { getUsersNearMeData } from '../../actions/userServices'
 import { getColumns } from '../../helpers/helper'
 import UserListRenderer from './YourLikesUserListRenderer'
-import { UserObjectType } from '../../common/types/userTypes'
+import useUsersData from 'hooks/useUsersData'
+import { nearByWhoLikedMeStyles } from '../../styles/nearByWhoLikedMeStyles'
 type IsMobileProps = {
   isMobile: boolean
 }
 
 const YouLikesProfiles = ({ isMobile }: IsMobileProps) => {
-  const { classes } = useStyles()
-  const [profileList, setProfileList] = useState<Array<UserObjectType>>([])
+  const { classes } = nearByWhoLikedMeStyles()
   const columns = getColumns(isMobile)
   const txtAlign = isMobile ? 'center' : 'left'
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const result = await getUsersNearMeData()
-        setProfileList(result)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
-    }
-    fetchData()
-  }, [])
+
+  const { data: profilesList } = useUsersData()
 
   return (
     <Grid container spacing={3}>
@@ -42,7 +30,7 @@ const YouLikesProfiles = ({ isMobile }: IsMobileProps) => {
       </Grid>
       <Grid item xs={12}>
         <UserListRenderer
-          users={profileList}
+          users={profilesList}
           classes={classes}
           columns={columns}
         />
@@ -51,26 +39,3 @@ const YouLikesProfiles = ({ isMobile }: IsMobileProps) => {
   )
 }
 export default YouLikesProfiles
-const useStyles = makeStyles()(() => {
-  return {
-    headerNear: {
-      color: '#F1562A',
-      fontSize: 32,
-      fontFamily: 'Inter',
-      fontWeight: '600',
-    },
-    description: {
-      width: '100%',
-      color: 'black',
-      fontSize: 14,
-      fontFamily: 'Inter',
-      fontWeight: '400',
-      wordWrap: 'break-word',
-    },
-    userImages: {
-      borderRadius: '50%',
-      width: '100px',
-      height: '100px',
-    },
-  }
-})

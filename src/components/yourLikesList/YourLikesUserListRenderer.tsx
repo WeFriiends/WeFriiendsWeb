@@ -1,12 +1,11 @@
 import React from 'react'
 import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
-import { LocationOn } from '@mui/icons-material'
-import Lightning from '../lightning/Lightning'
+import Lightning from '../../common/Lightning'
 import { UserObjectType } from '../../common/types/userTypes'
 
 type UserListRendererProps = {
-  users: UserObjectType[]
-  classes: any
+  users?: UserObjectType[]
+  classes: Record<string, string>
   columns: number
 }
 
@@ -16,33 +15,41 @@ const YourLikesUserListRenderer: React.FC<UserListRendererProps> = ({
   columns,
 }) => {
   const currentUserID = localStorage.getItem('userId') || '1' //will remove '1'
-  const likesCurrentUser = users.filter(
+  const likesCurrentUser = users?.filter(
     (user) => currentUserID && user.likedUsers.includes(currentUserID)
   )
+
+  if (!likesCurrentUser?.length) {
+    return 'Ooops, no likes yet'
+  }
+
   return (
     <ImageList cols={columns}>
-      {likesCurrentUser.map((user) => (
-        <ImageListItem key={user.id} sx={{ marginBottom: 2 }}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              position: 'relative',
-            }}
-          >
+      {likesCurrentUser?.map((user) => (
+        <ImageListItem key={user.id} className={classes.imageListItem}>
+          <Box className={classes.profileBoxPosition}>
             <img
               src={user.picture}
               className={classes.userImages}
               alt="user profile"
             />
-            <Lightning />
-            <Box sx={{ fontWeight: 'bold', color: '#F46B5D' }}>
-              {user.firstName} {user.lastName}
+            <Box className={classes.lightingBoxPosition}>
+              <Lightning />
             </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-              <LocationOn sx={{ color: 'grey' }} />
-              <Typography sx={{ color: 'grey' }}>1 km</Typography>
+            <Box className={classes.usernameBoxPosition}>
+              <Typography className={classes.usernameStyling}>
+                {user.firstName} {user.lastName}
+              </Typography>
+              <Box className={classes.distanceBoxPosition}>
+                <img
+                  src="/img/near_me.svg"
+                  alt="location"
+                  className={classes.locationImageStyle}
+                />
+                <Typography className={classes.locationTextStyle}>
+                  1 km
+                </Typography>
+              </Box>
             </Box>
           </Box>
         </ImageListItem>
