@@ -43,11 +43,11 @@ const Status = () => {
 
   return (
     <Box className={classes.mainBox}>
-      <Box className={classes.logoContainer}>
+      <Box>
         <Logo />
       </Box>
       <Box className={classes.prevPageContainer}>
-        <PrevPageButton prevPageLink="/messages" />
+        <PrevPageButton prevPageLink="/status" />
       </Box>
       <Box className={classes.titleContainer}>
         <Typography variant="h1" className={classes.title}>
@@ -76,14 +76,6 @@ const Status = () => {
           </Box>
         ))}
       </Box>
-      {/* <Box className={classes.textareaContainer}>
-        <TextareaAutosize
-          minRows={4}
-          className={classes.textarea}
-          placeholder="Is there anything you would like to add?"
-          onChange={(e) => setUserStatus(e.target.value)}
-        />
-      </Box> */}
       <Box className={classes.nextPageContainer}>
         <NextPageButton nextPageLink="/status" onClick={nextHandler} />
       </Box>
@@ -96,25 +88,22 @@ export default Status
 const useStyles = makeStyles()((theme) => {
   return {
     mainBox: {
+      width: '100vw',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      marginLeft: 20,
-      marginRight: 20,
-      [theme.breakpoints.up('sm')]: {
+      margin: '0 auto',
+      overflow: 'hidden',
+      [theme.breakpoints.up(420)]: {
         width: 400,
-        margin: '0 auto',
+        margin: 'o auto',
       },
-    },
-    logoContainer: {
-      // height: 138,
     },
     title: {
       fontFamily: 'Inter',
       fontSize: 18,
       fontWeight: 600,
       lineHeight: '40px',
-      // paddingTop: 80,
       color: '#444',
       textAlign: 'center',
     },
@@ -131,10 +120,6 @@ const useStyles = makeStyles()((theme) => {
       flexDirection: 'column',
       justifyContent: 'center',
       marginBottom: 14,
-      // [theme.breakpoints.up('sm')]: {
-      //   width: 400,
-      //   paddingLeft: '10%',
-      // },
     },
     prevPageContainer: {
       display: 'flex',
@@ -160,6 +145,11 @@ const useStyles = makeStyles()((theme) => {
       justifyContent: 'space-between',
       gap: '10px 20px',
       flexWrap: 'wrap',
+      width: '90vw',
+      [theme.breakpoints.up(420)]: {
+        width: 400,
+        margin: 'o auto',
+      },
     },
     phrase: {
       minHeight: 40,
