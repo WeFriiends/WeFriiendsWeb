@@ -168,6 +168,7 @@ const useStyles = makeStyles()((theme) => {
       transition: '0.5s',
       '&:hover': {
         cursor: 'pointer',
+        backgroundColor: '#fba16d',
       },
     },
     text: {
