@@ -35,7 +35,7 @@ const DisplayResult: FC<DisplayResultProps> = ({ state }) => {
             <Typography className={classes.text} sx={{ marginBottom: '50px' }}>
               Hope, you’ll enjoy!
             </Typography>
-            <Link href="/mailSignIn" underline="none">
+            <Link href="/authentication/email-sign-in" underline="none">
               <Button className={classes.startButton} variant="contained">
                 let’s start!
               </Button>
