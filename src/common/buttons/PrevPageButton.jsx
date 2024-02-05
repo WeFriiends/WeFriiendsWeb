@@ -21,7 +21,7 @@ const PrevPageButton = ({ prevPageLink }) => {
 
 export default PrevPageButton
 
-const useStyles = makeStyles()((theme) => {
+const useStyles = makeStyles()(() => {
   return {
     prevPageButton: {
       width: 45,
