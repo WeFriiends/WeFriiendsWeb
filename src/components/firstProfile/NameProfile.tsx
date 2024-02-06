@@ -10,25 +10,18 @@ import {
 import { useState } from 'react'
 import useProfileData from '../../hooks/useProfileData'
 import axios from 'axios'
-// import { v4 as uuidv4 } from 'uuid'
-import { firstProfileStyles } from 'styles/firstProfileStyles'
+import { commonStyles } from 'styles/commonStyles'
 
 const FULLNAME_REGEX = /^[a-zA-Zа-яА-ЯёЁ\s\p{L}]{2,15}$/u
 
 const NameProfile = () => {
-  const { classes } = firstProfileStyles()
+  const { classes } = commonStyles()
   const [fullName, setFullName] = useProfileData<string>(
     'profileData.fullName',
     ''
   )
   const [error, setError] = useState<string>('')
   const [isValid, setIsValid] = useState<boolean>(false)
-
-  // const userId = //
-  // const requestBody = {
-  //   id: userId,
-  //   name: fullName,
-  // }
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
@@ -63,7 +56,7 @@ const NameProfile = () => {
       <Typography variant="h1" className={classes.title} pt={10}>
         Let&apos;s get started!
       </Typography>
-      <Typography variant="body1" className={classes.text} pt={5}>
+      <Typography variant="body1" className={classes.profileText} pt={5}>
         What&apos;s your name?
       </Typography>
       <form>
@@ -75,18 +68,17 @@ const NameProfile = () => {
             onChange={handleInputChange}
           ></OutlinedInput>
           {isValid && (
-            <FormHelperText sx={{ color: '#F1562A' }}>
-              Your name must be 2 to 15 letters, no numbers, symbols or bad
-              words.
+            <FormHelperText sx={{ color: '#1D878C' }}>
+              15 symbols max.
             </FormHelperText>
           )}
           {error && (
-            <FormHelperText sx={{ color: '#F1562A' }}>{error}</FormHelperText>
+            <FormHelperText sx={{ color: '#1D878C' }}>{error}</FormHelperText>
           )}
           <Button
             fullWidth
             variant="outlined"
-            className={classes.nextButton}
+            className={`${classes.submitButton} ${classes.nextButton}`}
             type="submit"
             onClick={handleSubmit}
           >

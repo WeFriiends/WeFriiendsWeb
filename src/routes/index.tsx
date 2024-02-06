@@ -65,6 +65,10 @@ const routes: RouteObject[] = [
     path: 'user',
     children: [
       {
+        path: 'name',
+        element: <NameProfile />,
+      },
+      {
         path: 'messages-and-friends',
         element: (
           <AuthGuard>
@@ -119,10 +123,6 @@ const routes: RouteObject[] = [
         element: <ReportReceived />,
       },
     ],
-  },
-  {
-    path: 'name',
-    element: <NameProfile />,
   },
   //left code underneath as example of using path for common layout
   // {
