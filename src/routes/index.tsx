@@ -39,7 +39,7 @@ const routes: RouteObject[] = [
         element: <RegistrationForm />,
       },
       {
-        path: 'glad-screen',
+        path: 'glad-screen/:confirmationCode',
         element: <AccountCreated />,
       },
       {

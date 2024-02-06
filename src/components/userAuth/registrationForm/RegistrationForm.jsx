@@ -17,6 +17,7 @@ import {
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { styled } from '@mui/material/styles'
 import { makeStyles } from 'tss-react/mui'
+import { commonStyles } from 'styles/commonStyles'
 import { useNavigate } from 'react-router-dom'
 import { AccountRegistrationResult } from '../../../actions/accountRegistration'
 
@@ -32,6 +33,7 @@ const CssTextField = styled(TextField)({
 })
 const RegistrationForm = () => {
   const { classes } = useStyles()
+  const commonClasses = commonStyles().classes
   const emailRef = useRef()
   const navigate = useNavigate()
 
@@ -84,12 +86,12 @@ const RegistrationForm = () => {
     setVisibility(!visible)
   }
   return (
-    <div className="registrationEmail">
+    <div className={commonClasses.mainBox}>
       <Logo />
       {success ? (
         <Box className={classes.mainBox}>
           <Box mr={5} ml={5}>
-            <Typography className={classes.title}>
+            <Typography className={commonClasses.title}>
               Just one more step!
             </Typography>
             <Box mb={5} mt={3}>
@@ -131,11 +133,13 @@ const RegistrationForm = () => {
           </Button> */}
         </Box>
       ) : (
-        <Box className={classes.mainBox}>
-          <Typography className={classes.title}> Enter Email </Typography>
+        <Box>
+          <Typography className={commonClasses.title}> Enter Email </Typography>
           <form>
             <FormControl fullWidth>
-              <Typography align="left">Login</Typography>
+              <Typography align="left" marginTop={3}>
+                Login
+              </Typography>
               <CssTextField
                 sx={{ backgroundColor: '#FFF1EC', borderRadius: 2.5 }}
                 fullWidth
@@ -271,7 +275,7 @@ const RegistrationForm = () => {
                 disabled={
                   !validEmail || !validPwd || !validMatch ? true : false
                 }
-                className={classes.submitButton}
+                className={commonClasses.submitButton}
               >
                 submit
               </Button>
@@ -294,15 +298,6 @@ const useStyles = makeStyles()((theme) => {
         width: 400,
         margin: '0 auto',
       },
-    },
-    title: {
-      fontSize: 32,
-      fontWeight: 600,
-      lineHeight: '40px',
-      paddingTop: 80,
-      paddingBottom: 16,
-      color: '#F46B5D',
-      textAlign: 'center',
     },
     subTitle: {
       fontSize: 22,
@@ -330,24 +325,6 @@ const useStyles = makeStyles()((theme) => {
       outline: 'none',
       '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
         border: 'none',
-      },
-    },
-    submitButton: {
-      textTransform: 'lowercase',
-      backgroundColor: '#FB8F67',
-      color: '#FFFFFF',
-      height: 56,
-      fontSize: 18,
-      fontWeight: 600,
-      borderRadius: 10,
-      marginTop: 45,
-      ':disabled': {
-        backgroundColor: '#FFFFFF',
-        border: '2px solid #FB8F67',
-        color: '#FB8F67',
-      },
-      '&: hover': {
-        backgroundColor: '#FB8F67',
       },
     },
   }
