@@ -14,15 +14,8 @@ import { createTheme, ThemeProvider } from '@mui/material'
 // import ReportComment from 'components/report/reportComment'
 // import ReportReceived from 'components/report/reportReceived'
 // import CommentInput from 'components/report/commentInput'
-import StartOnboarding from 'components/onboarding/StartOnboarding'
-import FindFriends from 'components/onboarding/FindFriends'
-import ToVisit from 'components/onboarding/ToVisit'
-import ToFind from 'components/onboarding/ToFind'
-import DotsMobileStepper from 'components/onboarding/DotsMobileStepper'
-import ToWalkWith from 'components/onboarding/ToWalkWith'
-import ToLearn from 'components/onboarding/ToLearn'
-import YouCan from 'components/onboarding/YouCan'
-//import CommonStyles from 'components/onboarding/CommonStyles'
+import Onboarding from 'pages/OnboardingPage'
+
 const theme = createTheme({
   typography: {
     fontFamily: ['Inter'],
@@ -35,19 +28,6 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
-            <Route exact path="/" element={<DotsMobileStepper />} />
-            {/* <Route exact path="/FindFriends" element={<FindFriends />} />
-            <Route
-              exact
-              path="/DotsMobileStepper"
-              element={<DotsMobileStepper />}
-            />
-            <Route exact path="/ToVisit" element={<ToVisit />} />
-            <Route exact path="/ToFind" element={<ToFind />} />
-            <Route exact path="/ToWalkWith" element={<ToWalkWith />} />
-            <Route exact path="/ToLearn" element={<ToLearn />} />
-            <Route exact path="/YouCan" element={<YouCan />} /> */}
-
             {/* <Route exact path="/" element={<CreateAccount />} />
             <Route path="/registration" element={<RegistrationForm />} />
             <Route
@@ -58,9 +38,8 @@ function App() {
             <Route path="/mailSignIn" element={<SignInMail />} />
             <Route path="/test" element={<TestPage />} />
             <Route path="/messages" element={<MessagesAndFriends />} />
-            <Route path="/nearMe" element={<NearMe />} />
+            // <Route path="/nearMe" element={<NearMe />} />
             <Route path="newMatch" element={<Match />} />
-
             <Route path="/report" element={<Report />} />
             <Route
               path="/reportComment/:buttonName"
@@ -68,6 +47,8 @@ function App() {
             />
             <Route path="/commentInput" component={CommentInput} />
             <Route path="/reportReceived" element={<ReportReceived />} /> */}
+            {/* TODO when in project change path to "/onboarding" */}
+            <Route exact path="/" element={<Onboarding />} />
           </Routes>
         </div>
       </Router>

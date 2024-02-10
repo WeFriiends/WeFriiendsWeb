@@ -1,41 +1,33 @@
-import React from 'react'
-import { Box } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-
 import classnames from 'classnames'
-import { grey, red } from '@mui/material/colors'
-const styles = {
-  root: {
-    position: 'absolute',
-    bottom: 8,
-    right: 8,
-    display: 'flex',
-    flexDirection: 'row',
-  },
-}
+// import { commonStyles } from './CommonStyles'
 
 const PaginationDot = ({ active, index, onClick }: any) => {
   const { classes } = useStyles()
+  // const { classes } = commonStyles()
   const handleClick = (event: any) => {
     onClick(event, index)
   }
 
   return (
-    <Box
+    <Button
       onClick={handleClick}
       className={classnames({
         [classes.progressCircle]: true,
         [classes.active]: active,
         [classes.inActive]: !active,
       })}
-    />
+    >
+      -
+    </Button>
   )
 }
 
-const Pagination = ({ dots, index, onChangeIndex }: any) => {
-  const { classes } = useStyles()
+const Pagination = ({ dots, index, onChangeIndex, toShow }: any) => {
+  // const { classes } = commonStyles()
 
-  const handleClick = (event: any, index: number) => {
+  const handleClick = (index: number) => {
     onChangeIndex(index)
   }
 
@@ -44,37 +36,44 @@ const Pagination = ({ dots, index, onChangeIndex }: any) => {
   for (let i = 0; i < dots; i += 1) {
     children.push(
       <PaginationDot
-        //should have as key smth else
         key={i}
         index={i}
         active={i === index}
-        onClick={handleClick}
+        onClick={() => handleClick(i)}
       />
     )
   }
 
   return (
-    <Box className={`${classes.flexContainer} ${classes.progressBarContainer}`}>
-      {children}
-    </Box>
+    toShow && (
+      <Box
+      // className={`${classes.flexContainer} ${classes.progressBarContainer}`}
+      >
+        {children}
+      </Box>
+    )
   )
 }
 
 export default Pagination
 
 const useStyles = makeStyles()((theme) => ({
-  flexContainer: {},
+  flexContainer: {
+    // display: 'flex',
+    // flexDirection: 'row',
+    margin: 'auto',
+    alignSelf: 'center',
+  },
   progressBarContainer: {},
 
   active: {
-    backgroundColor: red[500],
+    color: '#1D878C',
   },
   inActive: {
-    backgroundColor: grey[500],
+    color: '#F46B5D',
   },
   progressCircle: {
-    width: '10px',
-    aspectRatio: 1,
-    borderRadius: '50%',
+    fontSize: '80px',
+    fontWeight: 'bolder',
   },
 }))
