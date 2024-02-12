@@ -7,7 +7,7 @@ import FirstProfileHeaders from '../components/firstProfile/FirstProfileHeaders'
 import QuestionText from '../components/firstProfile/QuestionText'
 import Steps from '../components/firstProfile/Steps'
 import NextButton from '../components/firstProfile/NextButton'
-import StepperFirstProfile from '../components/firstProfile/StepperFirstProfile'
+import Pagination from '../common/Pagination'
 
 const FirstProfile = () => {
   const [activeStep, setActiveStep] = useState<number>(0)
@@ -21,10 +21,6 @@ const FirstProfile = () => {
   const handleNext = () => {
     setActiveStep((prevStep) => prevStep + 1)
     setNextDisabled(true)
-    if (activeStep === 3) {
-      /* NOTE: This code is a placeholder and will be modified once the user object structure
- and the endpoint for data retrieval are determined.*/
-    }
   }
 
   return (
@@ -35,7 +31,7 @@ const FirstProfile = () => {
       <QuestionText activeStep={activeStep} />
       <Steps setNextDisabled={setNextDisabled} activeStep={activeStep} />
       <NextButton handleNext={handleNext} isNextDisabled={isNextDisabled} />
-      <StepperFirstProfile activeStep={activeStep} />
+      <Pagination activeStep={activeStep} steps={4} dotShape="circle" />
     </Box>
   )
 }

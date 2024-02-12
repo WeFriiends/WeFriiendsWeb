@@ -3,6 +3,7 @@ import GetName from './steps/GetName'
 import GetDateOfBirth from './steps/GetDateOfBirth'
 import GetGender from './steps/GetGender'
 import GetPurpose from './steps/GetPurpose'
+import Carousel from '../../common/Carousel'
 
 interface StepsProps {
   activeStep: number
@@ -43,6 +44,39 @@ const Steps: React.FC<StepsProps> = ({ activeStep, setNextDisabled }) => {
     setLookingFor(event.target.value)
     setNextDisabled(false)
   }
+  const components = [
+    {
+      label: 'GetName',
+      component: <GetName name={name} handleNameChange={handleNameChange} />,
+    },
+    {
+      label: 'GetDateOfBirth',
+      component: <GetDateOfBirth dob={dob} handleDobChange={handleDobChange} />,
+    },
+    {
+      label: 'GetGender',
+      component: (
+        <GetGender
+          handleGenderChange={handleGenderChange}
+          maleHovered={maleHovered}
+          femaleHovered={femaleHovered}
+          setMaleHovered={setMaleHovered}
+          setFemaleHovered={setFemaleHovered}
+          maleClicked={maleClicked}
+          femaleClicked={femaleClicked}
+        />
+      ),
+    },
+    {
+      label: 'GetPurpose',
+      component: (
+        <GetPurpose
+          lookingFor={lookingFor}
+          handleLookingForChange={handleLookingForChange}
+        />
+      ),
+    },
+  ]
   useEffect(() => {
     const storedName = localStorage.getItem('name')
     const storedDob = localStorage.getItem('dob')
@@ -63,30 +97,7 @@ const Steps: React.FC<StepsProps> = ({ activeStep, setNextDisabled }) => {
   }, [name, dob, gender, lookingFor])
   return (
     <>
-      {activeStep === 0 && (
-        <GetName name={name} handleNameChange={handleNameChange} />
-      )}
-
-      {activeStep === 1 && (
-        <GetDateOfBirth dob={dob} handleDobChange={handleDobChange} />
-      )}
-      {activeStep === 2 && (
-        <GetGender
-          handleGenderChange={handleGenderChange}
-          maleHovered={maleHovered}
-          femaleHovered={femaleHovered}
-          setMaleHovered={setMaleHovered}
-          setFemaleHovered={setFemaleHovered}
-          maleClicked={maleClicked}
-          femaleClicked={femaleClicked}
-        />
-      )}
-      {activeStep === 3 && (
-        <GetPurpose
-          lookingFor={lookingFor}
-          handleLookingForChange={handleLookingForChange}
-        />
-      )}
+      <Carousel components={components} activeStep={activeStep} />
     </>
   )
 }

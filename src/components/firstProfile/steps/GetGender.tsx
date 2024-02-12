@@ -38,8 +38,8 @@ const GetGender: React.FC<GetGenderProps> = ({
       <Box className={classes.innerContainerPosition}>
         <IconButton
           onClick={() => handleGenderChange('female')}
-          onMouseEnter={() => setMaleHovered(true)}
-          onMouseLeave={() => setMaleHovered(false)}
+          onMouseEnter={() => setFemaleHovered(true)}
+          onMouseLeave={() => setFemaleHovered(false)}
         >
           <Box component="img" src={getFemaleImage()} alt="female logo" />
         </IconButton>
@@ -48,8 +48,8 @@ const GetGender: React.FC<GetGenderProps> = ({
       <Box className={classes.iconsPosition}>
         <IconButton
           onClick={() => handleGenderChange('male')}
-          onMouseEnter={() => setFemaleHovered(true)}
-          onMouseLeave={() => setFemaleHovered(false)}
+          onMouseEnter={() => setMaleHovered(true)}
+          onMouseLeave={() => setMaleHovered(false)}
         >
           <Box component="img" src={getMaleImage()} alt="male logo" />
         </IconButton>
