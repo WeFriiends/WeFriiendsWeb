@@ -4,6 +4,7 @@ import { Typography, Box } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import PrevPageButton from '../../common/buttons/PrevPageButton'
 import NextPageButton from '../../common/buttons/NextPageButton'
+import { commonStyles } from 'styles/commonStyles'
 
 const STATUSES = [
   'Looking for new friends',
@@ -17,6 +18,7 @@ const STATUSES = [
 
 const Status = () => {
   const { classes } = useStyles()
+  const commonClasses = commonStyles().classes
   const [userStatus, setUserStatus] = useState<number[]>([])
 
   const statusHandler = (event: React.MouseEvent) => {
@@ -39,7 +41,7 @@ const Status = () => {
   const checkStatus = (index: number) => userStatus.some((num) => num === index)
 
   return (
-    <Box className={classes.mainBox}>
+    <Box className={`${commonClasses.mainBox} ${classes.mainBox}`}>
       <Box>
         <Logo />
       </Box>
@@ -47,10 +49,14 @@ const Status = () => {
         <PrevPageButton prevPageLink="/registration/status" />
       </Box>
       <Box className={classes.titleContainer}>
-        <Typography variant="h1" className={classes.title}>
+        <Typography
+          variant="h1"
+          className={`${commonClasses.title} 
+          ${classes.title}`}
+        >
           What are you looking for?
         </Typography>
-        <Typography className={classes.subTitle}>
+        <Typography className={`${commonClasses.subTitle} ${classes.subTitle}`}>
           This will be your status. You can always change it
         </Typography>
       </Box>
@@ -89,32 +95,19 @@ export default Status
 const useStyles = makeStyles()((theme) => {
   return {
     mainBox: {
-      width: '100vw',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      margin: '0 auto',
       overflow: 'hidden',
       [theme.breakpoints.up(420)]: {
         width: 400,
-        margin: 'o auto',
-        // height: 671,
+        margin: '0 auto',
       },
     },
     title: {
-      fontFamily: 'Inter',
       fontSize: 18,
-      fontWeight: 600,
-      lineHeight: '40px',
-      color: '#444',
-      textAlign: 'center',
     },
     subTitle: {
       fontFamily: 'Inter',
       fontSize: 14,
-      lineHeight: '40px',
       color: '#1D878C',
-      textAlign: 'center',
       fontWeight: 600,
     },
     titleContainer: {
@@ -129,7 +122,7 @@ const useStyles = makeStyles()((theme) => {
       lineHeight: '183%',
       textAlign: 'center',
       marginTop: 42,
-      marginBottom: 73,
+      marginBottom: 33,
       color: '#639c9e',
     },
     prevPageContainer: {
@@ -142,13 +135,6 @@ const useStyles = makeStyles()((theme) => {
       display: 'flex',
       justifyContent: 'center',
       marginBottom: 64,
-    },
-    link: {
-      color: '#1D878C',
-      fontSize: 22,
-      textDecoration: 'none',
-      display: 'block',
-      textAlign: 'center',
     },
     phraseWrapper: {
       minHeight: 200,
