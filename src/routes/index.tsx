@@ -13,6 +13,7 @@ import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
+import NewPassword from 'components/userAuth/signInMail/NewPassword'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -57,6 +58,10 @@ const routes: RouteObject[] = [
       {
         path: 'email-sign-in',
         element: <SignInMail />,
+      },
+      {
+        path: 'new-password',
+        element: <NewPassword />,
       },
     ],
   },
