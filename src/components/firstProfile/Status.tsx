@@ -25,11 +25,8 @@ const Status = () => {
     let currentStatusList = [...userStatus]
     if (currentStatusList.includes(phraseId)) {
       currentStatusList = currentStatusList.filter((elem) => elem !== phraseId)
-    } else {
+    } else if (currentStatusList.length < 3) {
       currentStatusList.push(phraseId)
-    }
-    if (currentStatusList.length > 3) {
-      currentStatusList.shift()
     }
     setUserStatus(currentStatusList)
   }
@@ -76,6 +73,7 @@ const Status = () => {
           </Box>
         ))}
       </Box>
+      <Typography className={classes.tip}>3 statuses max</Typography>
       <Box className={classes.nextPageContainer}>
         <NextPageButton
           nextPageLink="/registration/status"
@@ -100,6 +98,7 @@ const useStyles = makeStyles()((theme) => {
       [theme.breakpoints.up(420)]: {
         width: 400,
         margin: 'o auto',
+        // height: 671,
       },
     },
     title: {
@@ -124,6 +123,15 @@ const useStyles = makeStyles()((theme) => {
       justifyContent: 'center',
       marginBottom: 14,
     },
+    tip: {
+      fontWeight: 400,
+      fontSize: 12,
+      lineHeight: '183%',
+      textAlign: 'center',
+      marginTop: 42,
+      marginBottom: 73,
+      color: '#639c9e',
+    },
     prevPageContainer: {
       display: 'flex',
       justifyContent: 'center',
@@ -133,7 +141,7 @@ const useStyles = makeStyles()((theme) => {
     nextPageContainer: {
       display: 'flex',
       justifyContent: 'center',
-      marginTop: 50,
+      marginBottom: 64,
     },
     link: {
       color: '#1D878C',
@@ -145,13 +153,14 @@ const useStyles = makeStyles()((theme) => {
     phraseWrapper: {
       minHeight: 200,
       display: 'flex',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
       gap: '10px 20px',
       flexWrap: 'wrap',
       width: '90vw',
       [theme.breakpoints.up(420)]: {
         width: 400,
         margin: 'o auto',
+        justifyContent: 'space-between',
       },
     },
     phrase: {
