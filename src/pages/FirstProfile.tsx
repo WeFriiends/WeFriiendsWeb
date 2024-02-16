@@ -23,6 +23,11 @@ const FirstProfile = () => {
     setNextDisabled(true)
   }
 
+  //TODO: move logic with setting active step, prev/next, click dot to hook
+  const handleClickPagination = (index: number) => {
+    setActiveStep(index)
+  }
+
   return (
     <Box className={classes.position}>
       <LogoFirstProfile />
@@ -31,7 +36,11 @@ const FirstProfile = () => {
       <QuestionText activeStep={activeStep} />
       <Steps setNextDisabled={setNextDisabled} activeStep={activeStep} />
       <NextButton handleNext={handleNext} isNextDisabled={isNextDisabled} />
-      <Pagination activeStep={activeStep} steps={4} dotShape="circle" />
+      <Pagination
+        activeStep={activeStep}
+        dots={4}
+        onChangeIndex={handleClickPagination}
+      />
     </Box>
   )
 }
