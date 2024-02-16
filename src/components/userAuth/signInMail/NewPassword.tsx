@@ -2,10 +2,20 @@ import { Box, Button, TextField, Typography } from '@mui/material'
 import Logo from 'components/logo/Logo'
 import { commonStyles } from 'styles/commonStyles'
 import { makeStyles } from 'tss-react/mui'
+import { useForm } from 'react-hook-form'
 
 const NewPassword = () => {
   const commonClasses = commonStyles().classes
   const { classes } = useStyles()
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      email: '',
+    },
+  })
+
+  const onSubmit = (data: { email: string }) => {
+    alert(JSON.stringify(data))
+  }
   return (
     <Box className={commonClasses.mainBox}>
       <Logo />
@@ -16,11 +26,10 @@ const NewPassword = () => {
         Enter your login email below. We will send you an email with a link to
         reset your password.
       </Typography>
-      <form className={classes.formStyle}>
+      <form className={classes.formStyle} onSubmit={handleSubmit(onSubmit)}>
         <TextField
+          {...register('email')}
           sx={{ backgroundColor: '#FFF1EC', borderRadius: 2.5 }}
-          type="email"
-          id="email"
           className={classes.inputField}
         />
         <Button
@@ -28,8 +37,8 @@ const NewPassword = () => {
           variant="contained"
           disableElevation
           disableRipple
-          disabled
           className={commonClasses.submitButton}
+          type="submit"
         >
           send
         </Button>
