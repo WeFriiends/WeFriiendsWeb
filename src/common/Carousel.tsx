@@ -6,19 +6,12 @@ interface CarouselProps {
 }
 
 const Carousel: React.FC<CarouselProps> = ({ components, activeStep }) => {
+  //TODO: test cases in IF condition
   if (activeStep < 0 || activeStep >= components.length) {
     return null
   }
 
-  return (
-    <>
-      {components.map((step, index) => (
-        <React.Fragment key={index}>
-          {activeStep === index && step.component}
-        </React.Fragment>
-      ))}
-    </>
-  )
+  return <>{components[activeStep].component}</>
 }
 
 export default Carousel

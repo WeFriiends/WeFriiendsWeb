@@ -6,14 +6,20 @@ import GetPurpose from './steps/GetPurpose'
 import Carousel from '../../common/Carousel'
 import { useLocalStorageState } from '../../hooks/useLocalStorageState'
 import { useLocalStorageEffect } from '../../hooks/useLocalStorageEffect'
+import Pagination from 'common/Pagination'
 
 interface StepsProps {
   activeStep: number
   setNextDisabled: React.Dispatch<React.SetStateAction<boolean>>
+  handleClickPagination: (index: number) => void
 }
 
-const Steps: React.FC<StepsProps> = ({ activeStep, setNextDisabled }) => {
-  const [name, setName] = useState<string>('')
+const Steps: React.FC<StepsProps> = ({
+  activeStep,
+  setNextDisabled,
+  handleClickPagination,
+}) => {
+  const [profileInput, setProfileInput] = useState<string>('')
   const [dob, setDob] = useState<string>('')
   const [gender, setGender] = useState<string>('')
   const [lookingFor, setLookingFor] = useState<string>('')
@@ -22,9 +28,8 @@ const Steps: React.FC<StepsProps> = ({ activeStep, setNextDisabled }) => {
   const [maleClicked, setMaleClicked] = useState<boolean>(false)
   const [femaleClicked, setFemaleClicked] = useState<boolean>(false)
 
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value)
-    setNextDisabled(false)
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setProfileInput(event.target.value)
   }
 
   const handleDobChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -54,7 +59,9 @@ const Steps: React.FC<StepsProps> = ({ activeStep, setNextDisabled }) => {
   const components = [
     {
       label: 'GetName',
-      component: <GetName name={name} handleNameChange={handleNameChange} />,
+      component: (
+        <GetName handleNameChange={handleInputChange} name={profileInput} />
+      ),
     },
     {
       label: 'GetDateOfBirth',
@@ -85,6 +92,7 @@ const Steps: React.FC<StepsProps> = ({ activeStep, setNextDisabled }) => {
     },
   ]
 
+  //TODO: refactor local storage logic
   useLocalStorageState(
     ['name', 'dob', 'gender', 'lookingFor'],
     (key: string, value: string) => {
@@ -115,6 +123,12 @@ const Steps: React.FC<StepsProps> = ({ activeStep, setNextDisabled }) => {
   return (
     <>
       <Carousel components={components} activeStep={activeStep} />
+      <Pagination
+        //TODO: component.label can be passed as key
+        activeStep={activeStep}
+        dots={components.length}
+        onChangeIndex={handleClickPagination}
+      />
     </>
   )
 }
