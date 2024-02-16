@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Box, Typography, Link, Button } from '@mui/material'
-import Logo from 'components/logo/Logo'
+import Logo from 'common/Logo'
 import { makeStyles } from 'tss-react/mui'
 
 type DisplayResultProps = {

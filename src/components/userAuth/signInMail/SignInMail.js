@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Logo from '../../logo/Logo'
+import Logo from '../../../common/Logo'
 import { useAuthContext } from '../../../hooks/useAuthContext'
 import { Navigate } from 'react-router-dom'
 import { loginEmail } from 'actions/loginEmail'

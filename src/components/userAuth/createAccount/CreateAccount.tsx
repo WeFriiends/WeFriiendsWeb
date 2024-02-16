@@ -1,4 +1,4 @@
-import Logo from '../../logo/Logo'
+import Logo from '../../../common/Logo'
 import { Typography, Box, Link } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'

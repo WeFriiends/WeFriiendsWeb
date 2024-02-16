@@ -13,6 +13,7 @@ import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
+import FirstProfile from '../pages/FirstProfile'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -96,6 +97,10 @@ const routes: RouteObject[] = [
         ),
       },
     ],
+  },
+  {
+    path: 'first-profile',
+    element: <FirstProfile />,
   },
 
   {
