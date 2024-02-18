@@ -13,6 +13,7 @@ import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
+import Onboarding from 'pages/OnboardingPage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -118,6 +119,11 @@ const routes: RouteObject[] = [
         element: <ReportReceived />,
       },
     ],
+  },
+
+  {
+    path: '/onboarding',
+    element: <Onboarding />,
   },
   //left code underneath as example of using path for common layout
   // {
