@@ -13,6 +13,7 @@ const NewPassword = () => {
   const { classes } = useStyles()
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
@@ -20,6 +21,8 @@ const NewPassword = () => {
       email: '',
     },
   })
+
+  const inputEmail = watch('email')
 
   const onSubmit = (data: FormData) => {
     alert(JSON.stringify(data))
@@ -56,6 +59,7 @@ const NewPassword = () => {
           variant="contained"
           disableElevation
           disableRipple
+          disabled={!inputEmail}
           className={commonClasses.submitButton}
           type="submit"
         >
