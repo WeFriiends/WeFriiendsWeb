@@ -2,36 +2,31 @@ import { Grid, Typography } from '@mui/material'
 import { getColumns } from '../../helpers/helper'
 import UserListRenderer from './UserListRenderer'
 import useUsersData from 'hooks/useUsersData'
-import { nearByWhoLikedMeStyles } from '../../styles/nearByWhoLikedMeStyles'
+
 type IsMobileProps = {
   isMobile: boolean
 }
 
 const NearMeProfiles = ({ isMobile }: IsMobileProps) => {
-  const { classes } = nearByWhoLikedMeStyles()
   const columns = getColumns(isMobile)
-  const txtAlign = isMobile ? 'center' : 'left'
   const { data: profilesList } = useUsersData()
 
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        <Typography className={classes.headerNear} sx={{ textAlign: txtAlign }}>
+        <Typography variant="h1" color="primary.main">
           Near by
         </Typography>
         <Typography
-          className={classes.description}
-          sx={{ textAlign: txtAlign }}
+          variant="body2"
+          color="common.black"
+          sx={{ textAlign: { xs: 'center', md: 'left' } }}
         >
           These people near you – just like them and see if it’s a match!
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <UserListRenderer
-          users={profilesList}
-          classes={classes}
-          columns={columns}
-        />
+        <UserListRenderer users={profilesList} columns={columns} />
       </Grid>
     </Grid>
   )
