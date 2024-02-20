@@ -4,16 +4,24 @@ import { commonStyles } from 'styles/commonStyles'
 import { makeStyles } from 'tss-react/mui'
 import { useForm } from 'react-hook-form'
 
+type FormData = {
+  email: string
+}
+
 const NewPassword = () => {
   const commonClasses = commonStyles().classes
   const { classes } = useStyles()
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
     defaultValues: {
       email: '',
     },
   })
 
-  const onSubmit = (data: { email: string }) => {
+  const onSubmit = (data: FormData) => {
     alert(JSON.stringify(data))
   }
   return (
@@ -28,10 +36,21 @@ const NewPassword = () => {
       </Typography>
       <form className={classes.formStyle} onSubmit={handleSubmit(onSubmit)}>
         <TextField
-          {...register('email')}
+          {...register('email', {
+            required: 'Email is required',
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: 'Invalid email address',
+            },
+          })}
           sx={{ backgroundColor: '#FFF1EC', borderRadius: 2.5 }}
           className={classes.inputField}
         />
+        {errors.email && (
+          <Typography className={classes.errorMessage}>
+            {errors.email.message}
+          </Typography>
+        )}
         <Button
           fullWidth
           variant="contained"
@@ -65,5 +84,10 @@ const useStyles = makeStyles()({
         border: 'none',
       },
     },
+  },
+  errorMessage: {
+    fontSize: 12,
+    lineHeight: '22px',
+    color: '#1D878C',
   },
 })
