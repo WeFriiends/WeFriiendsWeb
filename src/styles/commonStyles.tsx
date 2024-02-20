@@ -17,7 +17,7 @@ export const commonStyles = makeStyles()((theme) => {
       marginRight: 20,
       [theme.breakpoints.up('sm')]: {
         paddingTop: `calc(200px - 5vh)`,
-        width: 400,
+        width: 350,
         margin: '0 auto',
       },
     },
