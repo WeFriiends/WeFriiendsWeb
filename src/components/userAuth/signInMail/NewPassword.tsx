@@ -26,7 +26,7 @@ const NewPassword = () => {
   const inputEmail = watch('email')
   const [success, setSuccess] = useState(false)
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = () => {
     setSuccess(true)
   }
   return (
