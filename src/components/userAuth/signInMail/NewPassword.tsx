@@ -8,6 +8,7 @@ import { useState } from 'react'
 type FormData = {
   email: string
 }
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const NewPassword = () => {
   const commonClasses = commonStyles().classes
@@ -46,7 +47,7 @@ const NewPassword = () => {
               {...register('email', {
                 required: 'Email is required',
                 pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  value: EMAIL_REGEX,
                   message: 'Invalid email address',
                 },
               })}
@@ -78,7 +79,7 @@ const NewPassword = () => {
           </Typography>
           <Typography className={classes.description}>
             We&#39;ll send you a link to reset your password if this email is
-            registered with us.  
+            registered with us.
           </Typography>
           <Typography className={classes.description}>
             If you did not receive the email, please also check your spam
