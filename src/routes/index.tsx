@@ -14,6 +14,7 @@ import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
 import Onboarding from 'pages/OnboardingPage'
+import OnboardingNew from 'pages/OnboardingNew'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -124,6 +125,10 @@ const routes: RouteObject[] = [
   {
     path: '/onboarding',
     element: <Onboarding />,
+  },
+  {
+    path: '/onboardingNew',
+    element: <OnboardingNew />,
   },
   //left code underneath as example of using path for common layout
   // {
