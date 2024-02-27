@@ -31,19 +31,17 @@ const EmailAlreadyUsed = () => {
 }
 export default EmailAlreadyUsed
 
-const useStyles = makeStyles()(() => {
-  return {
-    headerText: {
-      fontWeight: 600,
-      fontSize: 22,
-      lineHeight: '40px',
-      color: '#F46B5D',
-      textAlign: 'center',
-      paddingTop: 144,
-    },
-    signInBtn: {
-      width: '70%',
-      marginTop: 30,
-    },
-  }
+const useStyles = makeStyles()({
+  headerText: {
+    fontWeight: 600,
+    fontSize: 22,
+    lineHeight: '40px',
+    color: '#F46B5D',
+    textAlign: 'center',
+    paddingTop: 144,
+  },
+  signInBtn: {
+    width: '70%',
+    marginTop: 30,
+  },
 })

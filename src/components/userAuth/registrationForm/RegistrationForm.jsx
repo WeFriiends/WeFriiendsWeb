@@ -289,43 +289,41 @@ const RegistrationForm = () => {
 
 export default RegistrationForm
 
-const useStyles = makeStyles()((theme) => {
-  return {
-    mainBox: {
-      marginLeft: 20,
-      marginRight: 20,
-      [theme.breakpoints.up('sm')]: {
-        width: 400,
-        margin: '0 auto',
-      },
+const useStyles = makeStyles((theme) => ({
+  mainBox: {
+    marginLeft: 20,
+    marginRight: 20,
+    [theme.breakpoints.up('sm')]: {
+      width: 400,
+      margin: '0 auto',
     },
-    subTitle: {
-      fontSize: 22,
-      fontWeight: 600,
-      lineHeight: '40px',
-      paddingTop: 28,
-      paddingBottom: 8,
-      color: '#F46B5D',
-      textAlign: 'center',
+  },
+  subTitle: {
+    fontSize: 22,
+    fontWeight: 600,
+    lineHeight: '40px',
+    paddingTop: 28,
+    paddingBottom: 8,
+    color: '#F46B5D',
+    textAlign: 'center',
+  },
+  text: {
+    fontSize: 18,
+    lineHeight: '22px',
+    textAlign: 'center',
+  },
+  textColor: {
+    fontSize: 18,
+    lineHeight: '22px',
+    textAlign: 'center',
+    color: '#FB8F67',
+  },
+  borderAndBackgroundButton: {
+    backgroundColor: '#FFF1EC',
+    borderRadius: 10,
+    outline: 'none',
+    '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
     },
-    text: {
-      fontSize: 18,
-      lineHeight: '22px',
-      textAlign: 'center',
-    },
-    textColor: {
-      fontSize: 18,
-      lineHeight: '22px',
-      textAlign: 'center',
-      color: '#FB8F67',
-    },
-    borderAndBackgroundButton: {
-      backgroundColor: '#FFF1EC',
-      borderRadius: 10,
-      outline: 'none',
-      '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-        border: 'none',
-      },
-    },
-  }
-})
+  },
+}))
