@@ -1,5 +1,15 @@
-import { Box, Button, FormLabel, TextField, Typography } from '@mui/material'
+import { VisibilityOff, Visibility } from '@mui/icons-material'
+import {
+  Box,
+  Button,
+  FormLabel,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Typography,
+} from '@mui/material'
 import Logo from 'components/logo/Logo'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { commonStyles } from 'styles/commonStyles'
 import { makeStyles } from 'tss-react/mui'
@@ -10,6 +20,11 @@ const ResetPassword = () => {
   const { register, handleSubmit, watch } = useForm()
   const inputPassword = watch('password')
   const inputConfirmPassword = watch('confirmPassword')
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
 
   const onSubmit = (data: any) => {
     alert(JSON.stringify(data))
@@ -26,16 +41,34 @@ const ResetPassword = () => {
         </FormLabel>
         <TextField
           className={commonClasses.inputField}
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           {...register('password')}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={handleTogglePasswordVisibility}>
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
         <FormLabel className={classes.labelStyle} sx={{ marginTop: 4 }}>
           One more time
         </FormLabel>
         <TextField
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           className={commonClasses.inputField}
           {...register('confirmPassword')}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton onClick={handleTogglePasswordVisibility}>
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
         <Button
           fullWidth
