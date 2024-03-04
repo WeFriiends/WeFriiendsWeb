@@ -124,9 +124,8 @@ export const commonStyles = makeStyles()((theme) => {
     },
     submitButton: {
       textTransform: 'lowercase',
-      backgroundColor: '#FFFFFF',
-      color: primaryBtnBg,
-      border: '2px solid #FB8F67',
+      backgroundColor: primaryBtnBg,
+      color: '#FFFFFF',
       height: 56,
       fontSize: 18,
       fontWeight: 600,
@@ -136,16 +135,10 @@ export const commonStyles = makeStyles()((theme) => {
         backgroundColor: '#FFFFFF',
         border: '2px solid #FB8F67',
         color: primaryBtnBg,
-        cursor: 'not-allowed',
       },
-      '&:hover:not(:disabled)': {
+      '&: hover': {
         backgroundColor: primaryBtnBg,
-        color: '#FFFFFF',
-        border: '2px solid #FB8F67',
       },
-    },
-    nextButton: {
-      textTransform: 'capitalize',
     },
     p: {
       paddingTop: 14,
@@ -156,32 +149,6 @@ export const commonStyles = makeStyles()((theme) => {
       fontSize: 22,
       color: '#3B4054',
       textAlign: 'center',
-    },
-    profileText: {
-      fontSize: 18,
-      lineHeight: '27px',
-      color: '#444444',
-      textAlign: 'center',
-      paddingBottom: '50px',
-    },
-    profileInput: {
-      backgroundColor: '#FFF1EC',
-      borderRadius: 10,
-      outline: 'none',
-      '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-        border: 'none',
-      },
-    },
-    dot: {
-      margin: 'auto 0',
-      color: '#f46b5d',
-      fontFamily: 'Inter',
-      fontWeight: 500,
-      fontSize: '100px',
-      textAlign: 'center',
-    },
-    span: {
-      color: '#1D878C',
     },
   }
 })
