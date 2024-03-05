@@ -13,6 +13,7 @@ import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
+import Invite from '../components/invite/Invite'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -119,6 +120,7 @@ const routes: RouteObject[] = [
       },
     ],
   },
+  { path: 'invite', element: <Invite /> },
   //left code underneath as example of using path for common layout
   // {
   //   path: '*',

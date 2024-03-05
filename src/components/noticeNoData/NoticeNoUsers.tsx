@@ -3,6 +3,7 @@ import { Box, Typography, Button } from '@mui/material'
 import { commonStyles } from '../../styles/commonStyles'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
+import { Link } from 'react-router-dom'
 
 const NoticeNoUsers = () => {
   const commonClasses = commonStyles().classes
@@ -25,6 +26,8 @@ const NoticeNoUsers = () => {
         <Button
           href="#invite"
           className={commonClasses.noticeButton}
+          component={Link}
+          to="/invite"
           disableElevation
           disableRipple
         >
