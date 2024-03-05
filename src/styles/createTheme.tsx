@@ -55,14 +55,10 @@ theme.typography.h1 = {
   fontSize: 32,
   lineHeight: 1.25,
   fontWeight: 600,
-  paddingTop: 50,
-  paddingBottom: 20,
-  textAlign: 'center',
 
   [theme.breakpoints.up('md')]: {
     fontSize: 24,
     lineHeight: 1.5,
-    textAlign: 'left',
   },
 }
 

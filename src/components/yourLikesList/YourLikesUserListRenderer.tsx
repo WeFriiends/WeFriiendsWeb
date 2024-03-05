@@ -3,6 +3,7 @@ import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
 import Lightning from '../../common/Lightning'
 import { UserObjectType } from '../../common/types/userTypes'
 import { nearByWhoLikedMeStyles } from '../../styles/nearByWhoLikedMeStyles'
+import NoticeNoLikes from '../noticeNoData/NoticeNoLikes'
 
 type UserListRendererProps = {
   users?: UserObjectType[]
@@ -22,15 +23,7 @@ const YourLikesUserListRenderer: React.FC<UserListRendererProps> = ({
   const isErrorScreen = new URLSearchParams(window.location.search).get('error') // will remove - to show Error Screen by path http://localhost:3000/user/near-me?error=1
 
   if (!likesCurrentUser?.length || isErrorScreen) {
-    return (
-      <>
-        <Typography variant="h2" color="primary.main" sx={{ pt: 5 }}>
-          Sorry!
-          <br />
-          There are no likes yet
-        </Typography>
-      </>
-    )
+    return <NoticeNoLikes />
   }
 
   return (
