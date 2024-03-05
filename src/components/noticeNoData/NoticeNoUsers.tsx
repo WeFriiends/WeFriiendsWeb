@@ -1,26 +1,33 @@
 import React from 'react'
 import { Box, Typography, Button } from '@mui/material'
+import { commonStyles } from '../../styles/commonStyles'
+import { makeStyles } from 'tss-react/mui'
+import theme from '../../styles/createTheme'
 
 const NoticeNoUsers = () => {
+  const commonClasses = commonStyles().classes
+  const { classes } = useStyles()
+
   return (
     <>
-      <Typography variant="h2" color="primary.main" sx={{ pb: 6, pt: 5 }}>
+      <Typography variant="h2" className={classes.title}>
         Sorry!
         <br />
         There are no registered users in your area.
         <br />
         Try again later.
       </Typography>
-      <Typography
-        variant="h2"
-        color="primary.main"
-        sx={{ p: 0, pb: 4, fontSize: 20, lineHeight: 1.5 }}
-      >
+      <Typography variant="h3" className={classes.subtitle}>
         You can invite someone to WeFriiends in order to help women find friends
         faster
       </Typography>
       <Box textAlign="center">
-        <Button href="#invite" variant="large" disableElevation disableRipple>
+        <Button
+          href="#invite"
+          className={commonClasses.noticeButton}
+          disableElevation
+          disableRipple
+        >
           go!
         </Button>
       </Box>
@@ -29,3 +36,27 @@ const NoticeNoUsers = () => {
 }
 
 export default NoticeNoUsers
+
+const useStyles = makeStyles()(() => {
+  return {
+    title: {
+      textAlign: 'center',
+      paddingBottom: '80px',
+      paddingTop: '50px',
+      [theme.breakpoints.down('sm')]: {
+        maxWidth: '290px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
+    },
+    subtitle: {
+      textAlign: 'center',
+      paddingBottom: '35px',
+      [theme.breakpoints.down('sm')]: {
+        maxWidth: '290px',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
+    },
+  }
+})

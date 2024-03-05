@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material/styles'
 
 const theme: Record<string, any> = createTheme({
+  spacing: 5,
   typography: {
     fontFamily: ['Inter', 'sans-serif'].join(','),
   },
@@ -17,56 +18,36 @@ const theme: Record<string, any> = createTheme({
   },
 })
 
-declare module '@mui/material/Button' {
-  interface ButtonPropsVariantOverrides {
-    large: true // adds variant=large for Button MUI - naming?
-  }
-}
-
-theme.components.MuiButton = {
-  variants: [
-    {
-      props: {
-        variant: 'large',
-      },
-      style: {
-        textTransform: 'lowercase',
-        backgroundColor: theme.palette.primary.light,
-        color: theme.palette.common.white,
-        height: 60,
-        width: 180,
-        fontSize: 18,
-        fontWeight: 600,
-        borderRadius: 10,
-        '&: hover': {
-          backgroundColor: theme.palette.primary.main,
-        },
-      },
-    },
-  ],
-}
-
 theme.typography.body2 = {
   fontSize: 14,
-  lineHeight: 1.57,
+  lineHeight: 1.57, // 22px
+  fontWeight: 400,
 }
 
 theme.typography.h1 = {
   fontSize: 32,
-  lineHeight: 1.25,
+  lineHeight: 1.25, // 40px
   fontWeight: 600,
+  color: theme.palette.primary.main,
 
   [theme.breakpoints.up('md')]: {
     fontSize: 24,
-    lineHeight: 1.5,
+    lineHeight: 1.5, // 36px
   },
 }
 
 theme.typography.h2 = {
   fontSize: 24,
-  lineHeight: 1.46,
+  lineHeight: 1.3, // 31.2px
   fontWeight: 600,
-  textAlign: 'center',
+  color: theme.palette.primary.main,
+}
+
+theme.typography.h3 = {
+  fontSize: 20,
+  lineHeight: 1.3, // 26px
+  fontWeight: 600,
+  color: theme.palette.primary.main,
 }
 
 export default theme

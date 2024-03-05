@@ -125,14 +125,14 @@ export const commonStyles = makeStyles()((theme) => {
     submitButton: {
       textTransform: 'lowercase',
       backgroundColor: primaryBtnBg,
-      color: '#FFFFFF',
+      color: theme.palette.common.white,
       height: 56,
       fontSize: 18,
       fontWeight: 600,
       borderRadius: 10,
       marginTop: 45,
       ':disabled': {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: theme.palette.common.white,
         border: '2px solid #FB8F67',
         color: primaryBtnBg,
       },
@@ -140,6 +140,21 @@ export const commonStyles = makeStyles()((theme) => {
         backgroundColor: primaryBtnBg,
       },
     },
+
+    noticeButton: {
+      textTransform: 'lowercase',
+      backgroundColor: theme.palette.primary.light,
+      color: theme.palette.common.white,
+      height: 60,
+      width: 180,
+      fontSize: 18,
+      fontWeight: 600,
+      borderRadius: 10,
+      '&: hover': {
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
+
     p: {
       paddingTop: 14,
       textAlign: 'left',
