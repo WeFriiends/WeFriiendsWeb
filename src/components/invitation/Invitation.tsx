@@ -3,7 +3,7 @@ import { Box, Grid, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 
-const Invite = () => {
+const Invitation = () => {
   const { classes } = useStyles()
 
   return (
@@ -25,7 +25,7 @@ const Invite = () => {
   )
 }
 
-export default Invite
+export default Invitation
 
 const useStyles = makeStyles()(() => {
   return {
@@ -42,11 +42,10 @@ const useStyles = makeStyles()(() => {
     description: {
       textAlign: 'center',
       paddingTop: '60px',
-      [theme.breakpoints.up('md')]: {
-        textAlign: 'left',
-      },
+      paddingRight: '20px',
+      paddingLeft: '20px',
       [theme.breakpoints.down('sm')]: {
-        maxWidth: '320px',
+        maxWidth: '360px',
         marginLeft: 'auto',
         marginRight: 'auto',
       },
@@ -55,7 +54,7 @@ const useStyles = makeStyles()(() => {
       display: 'block',
       margin: '0 auto',
       width: '220px',
-      height: '220px',
+      maxWidth: '100%',
       boxSizing: 'border-box',
       borderRadius: '25px',
       borderWidth: 1,

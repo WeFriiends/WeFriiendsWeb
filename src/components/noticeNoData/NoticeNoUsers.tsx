@@ -25,7 +25,7 @@ const NoticeNoUsers = () => {
       <Box textAlign="center">
         <Button
           href="#invite"
-          className={commonClasses.noticeButton}
+          className={`${commonClasses.submitButton} ${classes.noticeButton}`}
           component={Link}
           to="/invite"
           disableElevation
@@ -60,6 +60,10 @@ const useStyles = makeStyles()(() => {
         marginLeft: 'auto',
         marginRight: 'auto',
       },
+    },
+    noticeButton: {
+      height: '60px',
+      width: '180px',
     },
   }
 })
