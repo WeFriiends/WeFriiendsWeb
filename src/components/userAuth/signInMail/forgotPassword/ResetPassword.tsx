@@ -2,9 +2,12 @@ import { VisibilityOff, Visibility } from '@mui/icons-material'
 import {
   Box,
   Button,
+  FormHelperText,
   FormLabel,
   IconButton,
   InputAdornment,
+  List,
+  ListItem,
   TextField,
   Typography,
 } from '@mui/material'
@@ -17,10 +20,17 @@ import { makeStyles } from 'tss-react/mui'
 const ResetPassword = () => {
   const commonClasses = commonStyles().classes
   const { classes } = useStyles()
-  const { register, handleSubmit, watch } = useForm()
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
   const inputPassword = watch('password')
   const inputConfirmPassword = watch('confirmPassword')
   const [showPassword, setShowPassword] = useState(false)
+  const RegExpSpecialCharacter =
+    /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword)
@@ -42,7 +52,13 @@ const ResetPassword = () => {
         <TextField
           className={commonClasses.inputField}
           type={showPassword ? 'text' : 'password'}
-          {...register('password')}
+          {...register('password', {
+            pattern: {
+              value: RegExpSpecialCharacter,
+              message:
+                'Password must contain at least one special character, one number, and one letter',
+            },
+          })}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -53,6 +69,45 @@ const ResetPassword = () => {
             ),
           }}
         />
+        {errors.password && (
+          <FormHelperText component="div">
+            Your Password must have:
+            <List>
+              {/.{8,}/.test(watch('password')) ? (
+                <ListItem>
+                  <Box component="img" src="/img/check.svg"></Box>8 or more
+                  symbols
+                </ListItem>
+              ) : (
+                <ListItem> - 8 or more symbols</ListItem>
+              )}
+              {/[0-9]/.test(watch('password')) ? (
+                <ListItem>
+                  <Box component="img" src="/img/check.svg"></Box>1 or more
+                  numbers
+                </ListItem>
+              ) : (
+                <ListItem> - 1 or more numbers</ListItem>
+              )}
+              {/[a-zA-Z]/.test(watch('password')) ? (
+                <ListItem>
+                  <Box component="img" src="/img/check.svg"></Box>1 or more
+                  Latin letterss
+                </ListItem>
+              ) : (
+                <ListItem> - 1 or more Latin letters</ListItem>
+              )}
+              {/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(watch('password')) ? (
+                <ListItem>
+                  <Box component="img" src="/img/check.svg"></Box>1 or more
+                  special characters
+                </ListItem>
+              ) : (
+                <ListItem> - 1 or more special characters</ListItem>
+              )}
+            </List>
+          </FormHelperText>
+        )}
         <FormLabel className={classes.labelStyle} sx={{ marginTop: 4 }}>
           One more time
         </FormLabel>
