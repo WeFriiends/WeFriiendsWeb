@@ -54,7 +54,7 @@ const useStyles = makeStyles()(() => {
     },
     subtitle: {
       textAlign: 'center',
-      paddingBottom: '35px',
+      paddingBottom: '40px',
       [theme.breakpoints.down('sm')]: {
         maxWidth: '290px',
         marginLeft: 'auto',
@@ -64,6 +64,7 @@ const useStyles = makeStyles()(() => {
     noticeButton: {
       height: '60px',
       width: '180px',
+      marginTop: 0, // should be 0 rather in common styles?
     },
   }
 })
