@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   auth:
-    image: node:latest
+    image: node:18-alpine
     working_dir: /app
     volumes:
       - ../WeFriiendsAuth:/app
