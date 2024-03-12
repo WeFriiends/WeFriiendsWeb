@@ -12,6 +12,9 @@ export const commonStyles = makeStyles()((theme) => {
       fontFamily: ['Inter', 'sans-serif'].join(','),
     },
     mainBox: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
       marginLeft: 20,
       marginRight: 20,
       [theme.breakpoints.up('sm')]: {
