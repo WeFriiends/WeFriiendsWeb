@@ -11,6 +11,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
+
 import Logo from 'components/logo/Logo'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -31,6 +32,7 @@ const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false)
   const RegExpSpecialCharacter =
     /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/
+  const confirmFieldValue = watch('confirmPassword', '')
 
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword)
@@ -125,6 +127,12 @@ const ResetPassword = () => {
             ),
           }}
         />
+        {confirmFieldValue.length > 0 &&
+          watch('password') !== watch('confirmPassword') && (
+            <Typography color="error">
+              Must match the first password input field.
+            </Typography>
+          )}
         <Button
           fullWidth
           variant="contained"
