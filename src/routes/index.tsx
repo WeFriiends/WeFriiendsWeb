@@ -11,9 +11,10 @@ import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
-import AuthGuard from 'components/userAuth/AuthGuard'
+//import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
 import Invitation from '../components/invitation/Invitation'
+import PageSampleResponsive from '../components/pageSampleResponsive/PageSampleResponsive'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -67,33 +68,33 @@ const routes: RouteObject[] = [
       {
         path: 'messages-and-friends',
         element: (
-          <AuthGuard>
-            <Home />
-          </AuthGuard>
+          // <AuthGuard>
+          <Home />
+          // </AuthGuard>
         ),
       },
       {
         path: 'who-liked-you',
         element: (
-          <AuthGuard>
-            <YourLikesList />
-          </AuthGuard>
+          // <AuthGuard>
+          <YourLikesList />
+          // </AuthGuard>
         ),
       },
       {
         path: 'near-me',
         element: (
-          <AuthGuard>
-            <NearMe />
-          </AuthGuard>
+          // <AuthGuard>
+          <NearMe />
+          // </AuthGuard>
         ),
       },
       {
         path: 'new-match',
         element: (
-          <AuthGuard>
-            <Match />
-          </AuthGuard>
+          // <AuthGuard>
+          <Match />
+          // </AuthGuard>
         ),
       },
     ],
@@ -121,6 +122,7 @@ const routes: RouteObject[] = [
     ],
   },
   { path: 'invite', element: <Invitation /> },
+  { path: 'sample-responsive', element: <PageSampleResponsive /> },
   //left code underneath as example of using path for common layout
   // {
   //   path: '*',

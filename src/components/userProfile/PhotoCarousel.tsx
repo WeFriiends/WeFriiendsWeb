@@ -12,32 +12,47 @@ const PhotoCarousel: React.FC<PhotoCarouselProps> = ({ items }) => {
     <Carousel
       autoPlay={false}
       navButtonsAlwaysVisible={true}
-      IndicatorIcon={<img src="/img/indicator.svg" />}
+      IndicatorIcon={false}
       activeIndicatorIconButtonProps={{
         style: {
-          backgroundColor: 'white',
+          background:
+            'linear-gradient(0deg, rgba(255, 255, 255, 0) 2px, rgb(255, 255, 255) 2px, rgb(255, 255, 255) 5px, rgba(255, 255, 255, 0) 5px)',
           borderRadius: 0,
           height: '3px',
         },
       }}
       indicatorIconButtonProps={{
         style: {
-          marginRight: '3px',
+          background:
+            'linear-gradient(0deg, rgba(255, 255, 255, 0) 2px, rgb(255, 255, 255, .6) 2px, rgb(255, 255, 255, .6) 5px, rgba(255, 255, 255, 0) 5px)', //'#E0E0E0',
+          padding: '6px 0',
+          flex: '1 0 auto',
+          borderRadius: 0,
+          //border: '6px solid transparent',
         },
       }}
       indicatorContainerProps={{
         style: {
           position: 'absolute',
-          marginTop: 'calc(-14px - 50vh)',
+          top: 0,
+          left: 0,
+          right: 0,
+          width: 'auto',
           zIndex: 200,
+          margin: '0 9px',
+          display: 'flex',
+          flexWrap: 'nowrap',
+          gap: '3px',
         },
       }}
       navButtonsProps={{
         style: {
           padding: '12px',
-          color: '#444444',
+          color: '#444',
           background: 'white',
           opacity: '0.5',
+          // width: '55px',
+          // height: '55px',
         },
       }}
     >
