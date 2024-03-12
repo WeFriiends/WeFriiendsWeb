@@ -14,6 +14,7 @@ import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
 import Invitation from '../components/invitation/Invitation'
+import ErrorPage from '../components/errorPage/ErrorPage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -121,6 +122,9 @@ const routes: RouteObject[] = [
     ],
   },
   { path: 'invite', element: <Invitation /> },
+  { path: 'error-400', element: <ErrorPage code={400} /> },
+  { path: 'error-500', element: <ErrorPage code={500} /> },
+  { path: 'error', element: <ErrorPage /> },
   //left code underneath as example of using path for common layout
   // {
   //   path: '*',
