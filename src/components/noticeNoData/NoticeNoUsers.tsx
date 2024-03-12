@@ -11,17 +11,21 @@ const NoticeNoUsers = () => {
 
   return (
     <>
-      <Typography variant="h2" className={classes.title}>
-        Sorry!
-        <br />
-        There are no registered users in your area.
-        <br />
-        Try again later.
-      </Typography>
-      <Typography variant="h3" className={classes.subtitle}>
-        You can invite someone to WeFriiends in order to help women find friends
-        faster
-      </Typography>
+      <Box
+        className={`${commonClasses.centeredContainer} ${classes.textWrapper}`}
+      >
+        <Typography variant="h2" className={classes.title}>
+          Sorry!
+          <br />
+          There are no registered users in your area.
+          <br />
+          Try again later.
+        </Typography>
+        <Typography variant="h3" className={classes.subtitle}>
+          You can invite someone to WeFriiends in order to help women find
+          friends faster
+        </Typography>
+      </Box>
       <Box textAlign="center">
         <Button
           href="#invite"
@@ -42,24 +46,20 @@ export default NoticeNoUsers
 
 const useStyles = makeStyles()(() => {
   return {
+    textWrapper: {
+      maxWidth: '290px',
+      [theme.breakpoints.up('lg')]: {
+        maxWidth: '530px',
+      },
+    },
     title: {
       textAlign: 'center',
       paddingBottom: '80px',
       paddingTop: '50px',
-      [theme.breakpoints.down('sm')]: {
-        maxWidth: '290px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-      },
     },
     subtitle: {
       textAlign: 'center',
-      paddingBottom: '40px',
-      [theme.breakpoints.down('sm')]: {
-        maxWidth: '290px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-      },
+      paddingBottom: '30px',
     },
     noticeButton: {
       height: '60px',

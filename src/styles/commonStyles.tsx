@@ -146,5 +146,9 @@ export const commonStyles = makeStyles()((theme) => {
       color: '#3B4054',
       textAlign: 'center',
     },
+    centeredContainer: {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
   }
 })
