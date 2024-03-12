@@ -176,14 +176,13 @@ const useStyles = makeStyles()(() => {
       border: '1px solid #C5C5C5',
       borderRadius: '20px',
       padding: '20px',
-      marginBottom: '70px',
+      margin: '0 0 70px',
     },
     photosWrapper: {
       display: 'flex',
       flexWrap: 'wrap',
       gap: '30px',
-      marginTop: '15px',
-      marginBottom: '70px',
+      margin: '15px 0 70px',
     },
     photo: {
       width: 'calc((100% - 60px) / 3)',
