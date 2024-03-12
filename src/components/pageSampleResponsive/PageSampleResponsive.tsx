@@ -43,7 +43,7 @@ const PageSampleResponsive = () => {
             <PhotoCarousel items={user.photo} />
           </div>
 
-          <Accordion className={classes.accordion}>
+          <Accordion className={classes.accordion} defaultExpanded={true}>
             <AccordionSummary
               expandIcon={<img src="/img/arrow-down.svg" alt="expand" />}
             >
@@ -70,15 +70,81 @@ const PageSampleResponsive = () => {
               </Box>
             </AccordionSummary>
             <AccordionDetails>
+              <Typography variant="h2">Photos</Typography>
+              <Box className={classes.photosWrapper}>
+                <img
+                  className={classes.photo}
+                  src="https://placehold.co/158x214"
+                  alt="photo"
+                />
+                <img
+                  className={classes.photo}
+                  src="https://placehold.co/158x214"
+                  alt="photo"
+                />
+                <img
+                  className={classes.photo}
+                  src="https://placehold.co/158x214"
+                  alt="photo"
+                />
+                <img
+                  className={classes.photo}
+                  src="https://placehold.co/158x214"
+                  alt="photo"
+                />
+                <img
+                  className={classes.photo}
+                  src="https://placehold.co/158x214"
+                  alt="photo"
+                />
+                <img
+                  className={classes.photo}
+                  src="https://placehold.co/158x214"
+                  alt="photo"
+                />
+              </Box>
+
+              <Typography variant="h5" className={classes.boxInfoTitle}>
+                About me
+              </Typography>
+              <Box className={classes.aboutMeTextbox}>
+                <Typography variant="body2">
+                  I am sorry my profile is just in German, but you can see our
+                  journey on my Instagram Profil @freilerner_mama or here in
+                  Facebook.
+                </Typography>
+                <Typography variant="body2">
+                  I hope there is somebody who could help us. You are allowed to
+                  share this or I sent you an extra text, we want to reach as
+                  much people as possible to have a save place on our way back
+                  home to Cyprus!
+                </Typography>
+                <Typography variant="body2">
+                  We also could help with animals, feed them, have a walk with a
+                  dog, clean their places, help in the household or garden. We
+                  want to connect with new people, see how other cultures are
+                  living but the most important thing is, that my fresh heart
+                  operated son will come home safety!
+                </Typography>
+              </Box>
+
+              <Typography variant="h5" className={classes.boxInfoTitle}>
+                Lifestyle
+              </Typography>
+
               <Typography variant="h3" className={classes.title}>
                 About Me
               </Typography>
-              <Typography className={classes.text}>{user.aboutMe}</Typography>
+              <Typography className={classes.text}>
+                I am a talented, ambitious and hardworking individual, with
+                broad skills and experience in digital and printed marketing,
+                social media and leading projects.
+              </Typography>
               <Typography variant="h3" className={classes.title}>
                 Education and Profession
               </Typography>
               <Typography className={classes.text}>
-                {user.profession}
+                Freelance Journalist
               </Typography>
               <Typography className={classes.text}>{user.education}</Typography>
             </AccordionDetails>
@@ -97,6 +163,33 @@ export default PageSampleResponsive
 
 const useStyles = makeStyles()(() => {
   return {
+    boxInfoTitle: {
+      fontSize: '18px',
+      lineHeight: '42px',
+      maxWidth: '350px',
+      background: '#FEDED2',
+      borderRadius: '20px',
+      textAlign: 'center',
+      margin: '0 auto 25px',
+    },
+    aboutMeTextbox: {
+      border: '1px solid #C5C5C5',
+      borderRadius: '20px',
+      padding: '20px',
+      marginBottom: '70px',
+    },
+    photosWrapper: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '30px',
+      marginTop: '15px',
+      marginBottom: '70px',
+    },
+    photo: {
+      width: 'calc((100% - 60px) / 3)',
+      borderRadius: '10px',
+    },
+
     // Sample's styles
     cardWrapper: {
       maxWidth: '542px',
