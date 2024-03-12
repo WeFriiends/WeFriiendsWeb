@@ -25,8 +25,6 @@ const NoticeNoUsers = () => {
           You can invite someone to WeFriiends in order to help women find
           friends faster
         </Typography>
-      </Box>
-      <Box textAlign="center">
         <Button
           href="#invite"
           className={`${commonClasses.submitButton} ${classes.noticeButton}`}
@@ -47,18 +45,17 @@ export default NoticeNoUsers
 const useStyles = makeStyles()(() => {
   return {
     textWrapper: {
+      textAlign: 'center',
       maxWidth: '290px',
       [theme.breakpoints.up('lg')]: {
         maxWidth: '530px',
       },
     },
     title: {
-      textAlign: 'center',
       paddingBottom: '80px',
       paddingTop: '50px',
     },
     subtitle: {
-      textAlign: 'center',
       paddingBottom: '30px',
     },
     noticeButton: {

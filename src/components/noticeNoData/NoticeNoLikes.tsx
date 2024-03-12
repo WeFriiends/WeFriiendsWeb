@@ -26,13 +26,13 @@ export default NoticeNoLikes
 const useStyles = makeStyles()(() => {
   return {
     textWrapper: {
+      textAlign: 'center',
       maxWidth: '290px',
       [theme.breakpoints.up('lg')]: {
         maxWidth: '530px',
       },
     },
     title: {
-      textAlign: 'center',
       paddingBottom: '80px',
       paddingTop: '50px',
     },
