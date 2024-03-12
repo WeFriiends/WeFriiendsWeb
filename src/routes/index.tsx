@@ -124,7 +124,7 @@ const routes: RouteObject[] = [
   { path: 'invite', element: <Invitation /> },
   { path: 'error-400', element: <ErrorPage code={400} /> },
   { path: 'error-500', element: <ErrorPage code={500} /> },
-  { path: 'error', element: <ErrorPage /> },
+  { path: '*', element: <ErrorPage /> },
   //left code underneath as example of using path for common layout
   // {
   //   path: '*',
