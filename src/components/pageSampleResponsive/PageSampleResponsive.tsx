@@ -17,14 +17,9 @@ import useFriendsData from '../../hooks/useFriendsData'
 const PageSampleResponsive = () => {
   //const commonClasses = commonStyles().classes
   const { classes } = useStyles()
-  const { friendsData, selectFriend } = useFriendsData()
+  const { friendsData } = useFriendsData()
   const user = friendsData
-  user.photo[3] = user.photo[0]
-  user.photo[4] = user.photo[0]
-  user.photo[5] = user.photo[0]
-
-  console.log(user)
-  console.log(selectFriend)
+  user.photo.push(user.photo[0], user.photo[0], user.photo[0])
 
   return (
     <>
