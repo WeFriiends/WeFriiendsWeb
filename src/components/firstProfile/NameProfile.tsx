@@ -1,7 +1,6 @@
 import Logo from '../logo/Logo'
 import {
   Box,
-  Button,
   FormControl,
   FormHelperText,
   OutlinedInput,
@@ -19,17 +18,6 @@ const NameProfile = () => {
   const [fullName, setFullName] = useState('')
   const [error, setError] = useState<string>('')
   const [isValid, setIsValid] = useState<boolean>(false)
-
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
-    e.preventDefault()
-    if (fullName.trim() === '') {
-      setError('Please enter your full name')
-    } else {
-      setError('')
-      setIsValid(false)
-      setFullName('')
-    }
-  }
 
   const handleInputChange = (event: { target: { value: string } }) => {
     setError('')
@@ -52,36 +40,23 @@ const NameProfile = () => {
       >
         What&apos;s your name?
       </Typography>
-      <form onSubmit={handleSubmit}>
-        <FormControl fullWidth>
-          <OutlinedInput
-            className={classes.profileInput}
-            type="text"
-            id="fullName"
-            onChange={handleInputChange}
-          ></OutlinedInput>
-          {isValid && (
-            <FormHelperText sx={{ color: '#1D878C' }}>
-              15 symbols max.
-            </FormHelperText>
-          )}
-          {error && (
-            <FormHelperText sx={{ color: '#1D878C' }}>{error}</FormHelperText>
-          )}
-          <Button
-            fullWidth
-            variant="outlined"
-            className={`${commonClasses.submitButton} ${classes.nextButton}`}
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Next
-          </Button>
-          <Typography variant="h2" className={classes.dot}>
-            <span className={classes.span}>.</span>....
-          </Typography>
-        </FormControl>
-      </form>
+
+      <FormControl fullWidth>
+        <OutlinedInput
+          className={classes.profileInput}
+          type="text"
+          id="fullName"
+          onChange={handleInputChange}
+        ></OutlinedInput>
+        {isValid && (
+          <FormHelperText sx={{ color: '#1D878C' }}>
+            15 symbols max.
+          </FormHelperText>
+        )}
+        {error && (
+          <FormHelperText sx={{ color: '#1D878C' }}>{error}</FormHelperText>
+        )}
+      </FormControl>
     </Box>
   )
 }
@@ -102,33 +77,6 @@ const useStyles = makeStyles()(() => {
       '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
         border: 'none',
       },
-    },
-    nextButton: {
-      textTransform: 'capitalize',
-      backgroundColor: '#FFFFFF',
-      color: '#F46B5D',
-      border: '2px solid #FB8F67',
-      ':disabled': {
-        backgroundColor: '#FFFFFF',
-        border: '2px solid #FB8F67',
-        color: '#F46B5D',
-      },
-      '&:hover:not(:disabled)': {
-        backgroundColor: '#F46B5D',
-        color: '#FFFFFF',
-        border: '2px solid #FB8F67',
-      },
-    },
-    dot: {
-      margin: 'auto 0',
-      color: '#f46b5d',
-      fontFamily: 'Inter',
-      fontWeight: 500,
-      fontSize: '100px',
-      textAlign: 'center',
-    },
-    span: {
-      color: '#1D878C',
     },
   }
 })
