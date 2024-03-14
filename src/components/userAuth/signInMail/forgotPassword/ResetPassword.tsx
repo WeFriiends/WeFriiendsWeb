@@ -30,6 +30,7 @@ const ResetPassword = () => {
   const inputPassword = watch('password')
   const inputConfirmPassword = watch('confirmPassword')
   const [showPassword, setShowPassword] = useState(false)
+  const [passwordFocus, setPasswordFocus] = useState(false)
   const RegExpSpecialCharacter =
     /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/
   const confirmFieldValue = watch('confirmPassword', '')
@@ -70,42 +71,51 @@ const ResetPassword = () => {
               </InputAdornment>
             ),
           }}
+          onBlur={() => setPasswordFocus(true)}
         />
-        {errors.password && (
-          <FormHelperText component="div">
+        {passwordFocus && errors.password && (
+          <FormHelperText component="div" className={classes.errorBox}>
             Your Password must have:
             <List>
               {/.{8,}/.test(watch('password')) ? (
-                <ListItem>
-                  <Box component="img" src="/img/check.svg"></Box>8 or more
-                  symbols
+                <ListItem sx={{ color: '#1D878C', padding: 0 }}>
+                  <Box component="img" src="/img/check.svg"></Box>&nbsp;8 or
+                  more symbols
                 </ListItem>
               ) : (
-                <ListItem> - 8 or more symbols</ListItem>
+                <ListItem sx={{ color: '#F46B5D', padding: 0 }}>
+                  - &nbsp;8 or more symbols
+                </ListItem>
               )}
               {/[0-9]/.test(watch('password')) ? (
-                <ListItem>
-                  <Box component="img" src="/img/check.svg"></Box>1 or more
-                  numbers
+                <ListItem sx={{ color: '#1D878C', padding: 0 }}>
+                  <Box component="img" src="/img/check.svg"></Box>&nbsp;1 or
+                  more numbers
                 </ListItem>
               ) : (
-                <ListItem> - 1 or more numbers</ListItem>
+                <ListItem sx={{ color: '#F46B5D', padding: 0 }}>
+                  - &nbsp;1 or more numbers
+                </ListItem>
               )}
               {/[a-zA-Z]/.test(watch('password')) ? (
-                <ListItem>
-                  <Box component="img" src="/img/check.svg"></Box>1 or more
-                  Latin letterss
+                <ListItem sx={{ color: '#1D878C', padding: 0 }}>
+                  <Box component="img" src="/img/check.svg"></Box>&nbsp;1 or
+                  more Latin letterss
                 </ListItem>
               ) : (
-                <ListItem> - 1 or more Latin letters</ListItem>
+                <ListItem sx={{ color: '#F46B5D', padding: 0 }}>
+                  - &nbsp;1 or more Latin letters
+                </ListItem>
               )}
               {/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(watch('password')) ? (
-                <ListItem>
-                  <Box component="img" src="/img/check.svg"></Box>1 or more
-                  special characters
+                <ListItem sx={{ color: '#1D878C', padding: 0 }}>
+                  <Box component="img" src="/img/check.svg"></Box>&nbsp;1 or
+                  more special characters
                 </ListItem>
               ) : (
-                <ListItem> - 1 or more special characters</ListItem>
+                <ListItem sx={{ color: '#F46B5D', padding: 0 }}>
+                  - &nbsp;1 or more special characters
+                </ListItem>
               )}
             </List>
           </FormHelperText>
@@ -129,7 +139,9 @@ const ResetPassword = () => {
         />
         {confirmFieldValue.length > 0 &&
           watch('password') !== watch('confirmPassword') && (
-            <Typography color="error">
+            <Typography
+              sx={{ color: '#F46B5D', fontSize: '12px', lineHeight: '22px' }}
+            >
               Must match the first password input field.
             </Typography>
           )}
@@ -159,5 +171,11 @@ const useStyles = makeStyles()({
     fontSize: 14,
     lineHeight: '22px',
     color: ' #444444',
+  },
+  errorBox: {
+    boxShadow: '0px 0px 5px 0px #D9D9D9',
+    borderRadius: 10,
+    padding: '17px 0 20px 23px',
+    marginTop: 20,
   },
 })
