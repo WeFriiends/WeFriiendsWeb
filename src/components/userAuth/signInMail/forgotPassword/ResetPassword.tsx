@@ -150,7 +150,11 @@ const ResetPassword = () => {
           variant="contained"
           disableElevation
           disableRipple
-          disabled={!inputPassword || !inputConfirmPassword}
+          disabled={
+            !inputPassword ||
+            !inputConfirmPassword ||
+            watch('password') !== watch('confirmPassword')
+          }
           className={commonClasses.submitButton}
           type="submit"
         >
