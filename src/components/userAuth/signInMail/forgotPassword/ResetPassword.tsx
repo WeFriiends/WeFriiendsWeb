@@ -21,17 +21,13 @@ import { makeStyles } from 'tss-react/mui'
 const ResetPassword = () => {
   const commonClasses = commonStyles().classes
   const { classes } = useStyles()
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm()
-  const inputPassword = watch('password')
-  const inputConfirmPassword = watch('confirmPassword')
+  const { register, handleSubmit, watch } = useForm()
+  const password = watch('password')
+  const confirmPassword = watch('confirmPassword')
   const [showPassword, setShowPassword] = useState(false)
   const [passwordFocus, setPasswordFocus] = useState(false)
-  const RegExpSpecialCharacter =
+
+  const passwordRegex =
     /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/
   const confirmFieldValue = watch('confirmPassword', '')
 
@@ -55,13 +51,7 @@ const ResetPassword = () => {
         <TextField
           className={commonClasses.inputField}
           type={showPassword ? 'text' : 'password'}
-          {...register('password', {
-            pattern: {
-              value: RegExpSpecialCharacter,
-              message:
-                'Password must contain at least one special character, one number, and one letter',
-            },
-          })}
+          {...register('password')}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -71,9 +61,11 @@ const ResetPassword = () => {
               </InputAdornment>
             ),
           }}
-          onBlur={() => setPasswordFocus(true)}
+          onBlur={() => {
+            setPasswordFocus(true)
+          }}
         />
-        {passwordFocus && errors.password && (
+        {passwordFocus && !passwordRegex.test(password) && (
           <FormHelperText component="div" className={classes.errorBox}>
             Your Password must have:
             <List>
@@ -151,9 +143,7 @@ const ResetPassword = () => {
           disableElevation
           disableRipple
           disabled={
-            !inputPassword ||
-            !inputConfirmPassword ||
-            watch('password') !== watch('confirmPassword')
+            !password || !confirmPassword || password !== confirmPassword
           }
           className={commonClasses.submitButton}
           type="submit"
