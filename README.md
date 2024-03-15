@@ -98,3 +98,7 @@ In `docker-compose.yml`:
 ```
     - STORAGE_CONNECTION_STRING=mongodb+srv://wefriiends-backup:wefriiends2023@cluster0.wir50id.mongodb.net/authorization?retryWrites=true&w=majority
 ```
+To run the project use command:
+```
+docker-compose up
+```
