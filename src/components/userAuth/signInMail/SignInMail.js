@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Logo from '../../logo/Logo'
 import { useAuthContext } from '../../../hooks/useAuthContext'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { loginEmail } from 'actions/loginEmail'
 import {
   Box,
@@ -12,6 +12,7 @@ import {
   Button,
   FormControl,
   FormHelperText,
+  Link,
 } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
 import Visibility from '@mui/icons-material/Visibility'
@@ -38,6 +39,7 @@ const SignInMail = () => {
   const [errorSignIn, setErrorSignIn] = useState('')
   const { dispatch } = useAuthContext()
   const [visible, setVisibility] = useState(false)
+  const navigate = useNavigate()
 
   const checkAndSignIn = async () => {
     const result = await loginEmail(inputEmail, inputPassword)
@@ -114,15 +116,14 @@ const SignInMail = () => {
           )}
         </FormControl>
       </form>
-      {/* <Link
-        display="block"
-        marginTop={3}
-        marginBottom={6}
-        href="#"
+      <Link
+        onClick={() => {
+          navigate('/authentication/new-password')
+        }}
         className={classes.link}
       >
         Forgot Password?
-      </Link> */}
+      </Link>
       <Button
         onClick={checkAndSignIn}
         fullWidth
@@ -151,8 +152,12 @@ const useStyles = makeStyles()(() => {
       },
     },
     link: {
+      display: 'block',
+      marginTop: 54,
       textDecoration: 'none',
       color: '#444444',
+      textAlign: 'center',
+      cursor: 'pointer',
     },
   }
 })
