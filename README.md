@@ -1,5 +1,8 @@
 # WeFriendsWeb
 
+Link to Google documents with details regards of FE part of the project
+https://docs.google.com/document/d/12zr1Wf1MPXYctld1Y8OM7DMsp8ccZ3rKfsOJpFiewhs/edit?usp=sharing
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -71,7 +74,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### Folder styles:
+### Project Styling and Responsiveness Guide:
+https://docs.google.com/document/d/1kmg58tRs60JY3sIdIc6ey8EG2T7_GVg3PHcSl8J0lZg/edit?usp=sharing
 
 #### createTheme.tsx -
 
