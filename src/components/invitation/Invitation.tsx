@@ -27,39 +27,37 @@ const Invitation = () => {
 
 export default Invitation
 
-const useStyles = makeStyles()(() => {
-  return {
-    title: {
-      textAlign: 'center',
-      paddingBottom: '50px',
-      paddingTop: '60px',
-      [theme.breakpoints.down('sm')]: {
-        maxWidth: '290px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-      },
+const useStyles = makeStyles()(() => ({
+  title: {
+    textAlign: 'center',
+    paddingBottom: '50px',
+    paddingTop: '60px',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '290px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
-    description: {
-      textAlign: 'center',
-      paddingTop: '60px',
-      paddingRight: '20px',
-      paddingLeft: '20px',
-      [theme.breakpoints.down('sm')]: {
-        maxWidth: '360px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-      },
+  },
+  description: {
+    textAlign: 'center',
+    paddingTop: '60px',
+    paddingRight: '20px',
+    paddingLeft: '20px',
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '360px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
-    imageWrapper: {
-      display: 'block',
-      margin: '0 auto',
-      width: '220px',
-      maxWidth: '100%',
-      boxSizing: 'border-box',
-      borderRadius: '25px',
-      borderWidth: 1,
-      borderStyle: 'solid',
-      borderColor: theme.palette.primary.light,
-    },
-  }
-})
+  },
+  imageWrapper: {
+    display: 'block',
+    margin: '0 auto',
+    width: '220px',
+    maxWidth: '100%',
+    boxSizing: 'border-box',
+    borderRadius: '25px',
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: theme.palette.primary.light,
+  },
+}))
