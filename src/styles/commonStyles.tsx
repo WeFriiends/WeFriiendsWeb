@@ -142,6 +142,7 @@ export const commonStyles = makeStyles()((theme) => {
       fontWeight: 600,
       borderRadius: 10,
       marginTop: 45,
+      boxShadow: 'none',
       ':disabled': {
         backgroundColor: '#FFFFFF',
         border: '2px solid #FB8F67',
