@@ -30,8 +30,7 @@ const PasswordForm = ({
     setShowPassword(!showPassword)
   }
 
-  const onSubmit = (data: any) => {
-    alert(JSON.stringify(data))
+  const onSubmit = () => {
     onSuccessInput(true)
   }
 

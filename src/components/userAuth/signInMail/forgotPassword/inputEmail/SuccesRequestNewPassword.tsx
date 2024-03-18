@@ -2,7 +2,7 @@ import { Button, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
 
-const Result = () => {
+const SuccessRequestNewPassword = () => {
   const { classes } = useStyles()
   const commonClasses = commonStyles().classes
   return (
@@ -30,7 +30,7 @@ const Result = () => {
   )
 }
 
-export default Result
+export default SuccessRequestNewPassword
 
 const useStyles = makeStyles()({
   description: {

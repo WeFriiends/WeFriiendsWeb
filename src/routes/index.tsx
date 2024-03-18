@@ -13,8 +13,8 @@ import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
-import ResetPassword from 'components/userAuth/signInMail/forgotPassword/ResetPassword'
-import NewPassword from 'components/userAuth/signInMail/forgotPassword/NewPassword'
+import ResetPassword from 'components/userAuth/signInMail/forgotPassword/resetPassword/ResetPassword'
+import RequestNewPassword from 'components/userAuth/signInMail/forgotPassword/inputEmail/RequestNewPassword'
 import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
 
 const Loadable =
@@ -67,7 +67,7 @@ const routes: RouteObject[] = [
       },
       {
         path: 'new-password',
-        element: <NewPassword />,
+        element: <RequestNewPassword />,
       },
       {
         path: 'reset-password/:confirmationCode',
