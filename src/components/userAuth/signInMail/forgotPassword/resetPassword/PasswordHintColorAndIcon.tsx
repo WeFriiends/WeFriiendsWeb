@@ -1,4 +1,4 @@
-import { Box, FormHelperText, List, ListItem } from '@mui/material'
+import { Box, FormHelperText, List, ListItem, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 
 const PasswordHintColorAndIcon = ({ password }: { password: string }) => {
@@ -11,7 +11,7 @@ const PasswordHintColorAndIcon = ({ password }: { password: string }) => {
       }
       return '#F46B5D'
     }
-    return '#000000'
+    return '#444444'
   }
 
   const passwordHintIcon = (pattern: RegExp, password: string) => {
@@ -23,7 +23,11 @@ const PasswordHintColorAndIcon = ({ password }: { password: string }) => {
 
   return (
     <FormHelperText component="div" className={classes.errorBox}>
-      Your Password must have:
+      <Typography
+        sx={{ color: '#444444', fontSize: '14px', lineHeight: '22px' }}
+      >
+        Your Password must have:
+      </Typography>
       <List>
         <ListItem
           sx={{
