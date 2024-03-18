@@ -6,9 +6,9 @@ services:
     working_dir: /app
     volumes:
       - ../WeFriiendsAuth:/app
-    command: npm run start:dev
+    command: npm run start
     ports:
-      - "3001:8080" # Map the port to access the service if needed
+      - '3001:8080' # Map the port to access the service if needed
     environment:
       - GOOGLE_AUTH_CLIENT_ID=replace-me
       - GMAIL_USER=replace-me
@@ -27,14 +27,14 @@ services:
       - ./:/app
     command: npm start
     ports:
-      - "3000:3000" # Map the port to access the frontend
+      - '3000:3000' # Map the port to access the frontend
     environment:
       - REACT_APP_AUTH_SERVICE_HOST=http://localhost:3001
 
   storage:
     image: mongo:latest
     ports:
-      - "27017:27017" # Default MongoDB port
+      - '27017:27017' # Default MongoDB port
     volumes:
       - mongodb_data:/data/db
     environment:
