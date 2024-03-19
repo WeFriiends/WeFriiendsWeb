@@ -47,6 +47,15 @@ const theme: Record<string, any> = createTheme({
       fontWeight: 400,
     },
   },
+  components: {
+    MuiAccordion: {
+      defaultProps: {
+        style: {
+          boxShadow: 'none',
+        },
+      },
+    },
+  },
 })
 
 export default theme

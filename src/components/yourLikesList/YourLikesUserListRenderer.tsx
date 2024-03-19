@@ -20,7 +20,9 @@ const YourLikesUserListRenderer: React.FC<UserListRendererProps> = ({
     (user) => currentUserID && user.likedUsers.includes(currentUserID)
   )
 
-  if (!likesCurrentUser?.length) {
+  const isErrorScreen = new URLSearchParams(window.location.search).get('error') // will remove - to show Error Screen by path http://localhost:3000/user/near-me?error=1
+
+  if (!likesCurrentUser?.length || isErrorScreen) {
     return <NoticeNoLikes />
   }
 
