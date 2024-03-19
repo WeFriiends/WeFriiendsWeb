@@ -17,10 +17,7 @@ const UserListRenderer: React.FC<UserListRendererProps> = ({
   const { classes } = nearByWhoLikedMeStyles()
   const currentUserID = '1' //take it from localStorage
 
-  const isErrorScreen = new URLSearchParams(window.location.search).get('error') // will remove - to show Error Screen by path http://localhost:3000/user/near-me?error=1
-
-  if (!users?.length || isErrorScreen) {
-    // will remove isErrorScreen
+  if (!users?.length) {
     return <NoticeNoUsers />
   }
 
