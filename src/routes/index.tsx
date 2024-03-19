@@ -11,8 +11,8 @@ import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
-import AuthGuard from 'components/userAuth/AuthGuard'
-import GuestGuard from 'components/userAuth/GuestGuard'
+// import AuthGuard from 'components/userAuth/AuthGuard'
+// import GuestGuard from 'components/userAuth/GuestGuard'
 import Invitation from '../components/invitation/Invitation'
 import PageSampleResponsive from '../components/pageSampleResponsive/PageSampleResponsive'
 import ErrorPage from '../components/errorPage/ErrorPage'
@@ -58,9 +58,9 @@ const routes: RouteObject[] = [
       {
         path: 'sign-in',
         element: (
-          <GuestGuard>
-            <Login />
-          </GuestGuard>
+          // <GuestGuard>
+          <Login />
+          // </GuestGuard>
         ),
       },
       {
@@ -79,33 +79,33 @@ const routes: RouteObject[] = [
       {
         path: 'messages-and-friends',
         element: (
-          <AuthGuard>
-            <Home />
-          </AuthGuard>
+          // <AuthGuard>
+          <Home />
+          // </AuthGuard>
         ),
       },
       {
         path: 'who-liked-you',
         element: (
-          <AuthGuard>
-            <YourLikesList />
-          </AuthGuard>
+          // <AuthGuard>
+          <YourLikesList />
+          // </AuthGuard>
         ),
       },
       {
         path: 'near-me',
         element: (
-          <AuthGuard>
-            <NearMe />
-          </AuthGuard>
+          // <AuthGuard>
+          <NearMe />
+          // </AuthGuard>
         ),
       },
       {
         path: 'new-match',
         element: (
-          <AuthGuard>
-            <Match />
-          </AuthGuard>
+          // <AuthGuard>
+          <Match />
+          // </AuthGuard>
         ),
       },
     ],
