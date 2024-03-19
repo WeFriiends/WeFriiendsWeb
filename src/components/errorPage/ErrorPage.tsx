@@ -73,43 +73,41 @@ const ErrorPage: FC<ErrorPageProps> = ({ code }) => {
 
 export default ErrorPage
 
-const useStyles = makeStyles()(() => {
-  return {
-    textWrapper: {
-      textAlign: 'center',
-      maxWidth: 274,
-      [theme.breakpoints.up('lg')]: {
-        maxWidth: 530,
-      },
+const useStyles = makeStyles()(() => ({
+  textWrapper: {
+    textAlign: 'center',
+    maxWidth: 274,
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: 530,
     },
-    title: {
-      lineHeight: 1,
-      paddingTop: 150,
-      paddingBottom: 0,
-      color: theme.palette.primary.light,
-    },
-    errorCode: {
-      fontSize: 60,
-      display: 'block',
-      color: theme.palette.primary.main,
-      paddingTop: 10,
-    },
-    errorDescription: {
-      lineHeight: '26px',
-      margin: '10px 0 70px',
-      color: theme.palette.primary.light,
-    },
-    errorDescriptionNoCode: {
-      fontSize: 24,
-      lineHeight: '30px',
-      color: theme.palette.primary.light,
-      margin: '46px 0 70px',
-    },
-    text1: {
-      marginBottom: 15,
-    },
-    text2: {
-      marginTop: 15,
-    },
-  }
-})
+  },
+  title: {
+    lineHeight: 1,
+    paddingTop: 150,
+    paddingBottom: 0,
+    color: theme.palette.primary.light,
+  },
+  errorCode: {
+    fontSize: 60,
+    display: 'block',
+    color: theme.palette.primary.main,
+    paddingTop: 10,
+  },
+  errorDescription: {
+    lineHeight: '26px',
+    margin: '10px 0 70px',
+    color: theme.palette.primary.light,
+  },
+  errorDescriptionNoCode: {
+    fontSize: 24,
+    lineHeight: '30px',
+    color: theme.palette.primary.light,
+    margin: '46px 0 70px',
+  },
+  text1: {
+    marginBottom: 15,
+  },
+  text2: {
+    marginTop: 15,
+  },
+}))
