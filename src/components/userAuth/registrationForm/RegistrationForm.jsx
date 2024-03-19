@@ -18,6 +18,8 @@ import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { styled } from '@mui/material/styles'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
+import { useNavigate } from 'react-router-dom'
+import { AccountRegistrationResult } from '../../../actions/accountRegistration'
 
 const PWD_REGEX = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[~!@#$%]).{8,24}$/
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
@@ -33,6 +35,7 @@ const RegistrationForm = () => {
   const { classes } = useStyles()
   const commonClasses = commonStyles().classes
   const emailRef = useRef()
+  const navigate = useNavigate()
 
   const [email, setEmail] = useState('')
   const [validEmail, setValidEmail] = useState(false)
@@ -68,7 +71,10 @@ const RegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     let result = await accountRegistration(pwd, matchPwd, email)
-    setSuccess(result)
+    if (result === AccountRegistrationResult.SUCCESS) {
+      setSuccess(true)
+    } else if (result === AccountRegistrationResult.EMAIL_ALREADY_USED)
+      navigate('/registration/email-already-used')
   }
 
   // Need a screen and backend to resend the email
@@ -283,43 +289,41 @@ const RegistrationForm = () => {
 
 export default RegistrationForm
 
-const useStyles = makeStyles()((theme) => {
-  return {
-    mainBox: {
-      marginLeft: 20,
-      marginRight: 20,
-      [theme.breakpoints.up('sm')]: {
-        width: 400,
-        margin: '0 auto',
-      },
+const useStyles = makeStyles((theme) => ({
+  mainBox: {
+    marginLeft: 20,
+    marginRight: 20,
+    [theme.breakpoints.up('sm')]: {
+      width: 400,
+      margin: '0 auto',
     },
-    subTitle: {
-      fontSize: 22,
-      fontWeight: 600,
-      lineHeight: '40px',
-      paddingTop: 28,
-      paddingBottom: 8,
-      color: '#F46B5D',
-      textAlign: 'center',
+  },
+  subTitle: {
+    fontSize: 22,
+    fontWeight: 600,
+    lineHeight: '40px',
+    paddingTop: 28,
+    paddingBottom: 8,
+    color: '#F46B5D',
+    textAlign: 'center',
+  },
+  text: {
+    fontSize: 18,
+    lineHeight: '22px',
+    textAlign: 'center',
+  },
+  textColor: {
+    fontSize: 18,
+    lineHeight: '22px',
+    textAlign: 'center',
+    color: '#FB8F67',
+  },
+  borderAndBackgroundButton: {
+    backgroundColor: '#FFF1EC',
+    borderRadius: 10,
+    outline: 'none',
+    '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+      border: 'none',
     },
-    text: {
-      fontSize: 18,
-      lineHeight: '22px',
-      textAlign: 'center',
-    },
-    textColor: {
-      fontSize: 18,
-      lineHeight: '22px',
-      textAlign: 'center',
-      color: '#FB8F67',
-    },
-    borderAndBackgroundButton: {
-      backgroundColor: '#FFF1EC',
-      borderRadius: 10,
-      outline: 'none',
-      '&.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-        border: 'none',
-      },
-    },
-  }
-})
+  },
+}))

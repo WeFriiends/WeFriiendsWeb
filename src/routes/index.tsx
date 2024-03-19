@@ -11,10 +11,13 @@ import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
-//import AuthGuard from 'components/userAuth/AuthGuard'
+import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
 import Invitation from '../components/invitation/Invitation'
 import PageSampleResponsive from '../components/pageSampleResponsive/PageSampleResponsive'
+import ErrorPage from '../components/errorPage/ErrorPage'
+import NewPassword from 'components/userAuth/signInMail/forgotPassword/NewPassword'
+import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -43,6 +46,10 @@ const routes: RouteObject[] = [
         path: 'glad-screen/:confirmationCode',
         element: <AccountCreated />,
       },
+      {
+        path: 'email-already-used',
+        element: <EmailAlreadyUsed />,
+      },
     ],
   },
   {
@@ -60,6 +67,10 @@ const routes: RouteObject[] = [
         path: 'email-sign-in',
         element: <SignInMail />,
       },
+      {
+        path: 'new-password',
+        element: <NewPassword />,
+      },
     ],
   },
   {
@@ -68,33 +79,33 @@ const routes: RouteObject[] = [
       {
         path: 'messages-and-friends',
         element: (
-          // <AuthGuard>
-          <Home />
-          // </AuthGuard>
+          <AuthGuard>
+            <Home />
+          </AuthGuard>
         ),
       },
       {
         path: 'who-liked-you',
         element: (
-          // <AuthGuard>
-          <YourLikesList />
-          // </AuthGuard>
+          <AuthGuard>
+            <YourLikesList />
+          </AuthGuard>
         ),
       },
       {
         path: 'near-me',
         element: (
-          // <AuthGuard>
-          <NearMe />
-          // </AuthGuard>
+          <AuthGuard>
+            <NearMe />
+          </AuthGuard>
         ),
       },
       {
         path: 'new-match',
         element: (
-          // <AuthGuard>
-          <Match />
-          // </AuthGuard>
+          <AuthGuard>
+            <Match />
+          </AuthGuard>
         ),
       },
     ],
@@ -121,7 +132,11 @@ const routes: RouteObject[] = [
       },
     ],
   },
+  // todo: The error processing, Axios/API integration, and refactoring needed after backend is working. (We need to do more with Axios to handle errors better. Right now, error handling is spread out in different files of action directory, which makes it hard to manage. I believe we should create an API to handle backend communication and error processing in a centralized manner.)
   { path: 'invite', element: <Invitation /> },
+  { path: 'error-400', element: <ErrorPage code={400} /> },
+  { path: 'error-500', element: <ErrorPage code={500} /> },
+  { path: '*', element: <ErrorPage /> },
   { path: 'sample-responsive', element: <PageSampleResponsive /> },
   //left code underneath as example of using path for common layout
   // {

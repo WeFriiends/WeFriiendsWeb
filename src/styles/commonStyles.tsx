@@ -8,12 +8,14 @@ export const commonStyles = makeStyles()((theme) => {
       fontFamily: ['Inter', 'sans-serif'].join(','),
     },
     mainBox: {
+      display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       marginLeft: 20,
       marginRight: 20,
       [theme.breakpoints.up('sm')]: {
         paddingTop: `calc(200px - 5vh)`,
-        width: 400,
+        width: 350,
         margin: '0 auto',
       },
     },
