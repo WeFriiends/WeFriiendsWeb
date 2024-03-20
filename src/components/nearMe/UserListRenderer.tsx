@@ -2,22 +2,23 @@ import React from 'react'
 import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
 import { UserObjectType } from '../../common/types/userTypes'
 import Lightning from '../../common/Lightning'
+import { nearByWhoLikedMeStyles } from '../../styles/nearByWhoLikedMeStyles'
+import NoticeNoUsers from '../noticeNoData/NoticeNoUsers'
 
 type UserListRendererProps = {
   users?: UserObjectType[]
-  classes: Record<string, string>
   columns: number
 }
 
 const UserListRenderer: React.FC<UserListRendererProps> = ({
   users,
-  classes,
   columns,
 }) => {
+  const { classes } = nearByWhoLikedMeStyles()
   const currentUserID = '1' //take it from localStorage
 
   if (!users?.length) {
-    return 'Ooops, noone nearby'
+    return <NoticeNoUsers />
   }
 
   return (

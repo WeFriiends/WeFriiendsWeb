@@ -2,25 +2,26 @@ import React from 'react'
 import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
 import Lightning from '../../common/Lightning'
 import { UserObjectType } from '../../common/types/userTypes'
+import { nearByWhoLikedMeStyles } from '../../styles/nearByWhoLikedMeStyles'
+import NoticeNoLikes from '../noticeNoData/NoticeNoLikes'
 
 type UserListRendererProps = {
   users?: UserObjectType[]
-  classes: Record<string, string>
   columns: number
 }
 
 const YourLikesUserListRenderer: React.FC<UserListRendererProps> = ({
   users,
-  classes,
   columns,
 }) => {
+  const { classes } = nearByWhoLikedMeStyles()
   const currentUserID = localStorage.getItem('userId') || '1' //will remove '1'
   const likesCurrentUser = users?.filter(
     (user) => currentUserID && user.likedUsers.includes(currentUserID)
   )
 
   if (!likesCurrentUser?.length) {
-    return 'Ooops, no likes yet'
+    return <NoticeNoLikes />
   }
 
   return (
@@ -57,5 +58,4 @@ const YourLikesUserListRenderer: React.FC<UserListRendererProps> = ({
     </ImageList>
   )
 }
-
 export default YourLikesUserListRenderer
