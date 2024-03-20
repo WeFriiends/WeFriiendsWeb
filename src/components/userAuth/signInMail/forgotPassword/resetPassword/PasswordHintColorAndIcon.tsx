@@ -4,7 +4,7 @@ import { makeStyles } from 'tss-react/mui'
 const PasswordHintColorAndIcon = ({ password }: { password: string }) => {
   const { classes } = useStyles()
   const RegExpSpecialCharacter = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/
-  const RegExpLatinLetters = /a-zA-Z/
+  const RegExpLatinLetters = /[a-zA-Z]/
 
   const passwordHintColor = (pattern: RegExp, password: string) => {
     if (password) {
