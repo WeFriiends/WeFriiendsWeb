@@ -3,6 +3,8 @@ import { makeStyles } from 'tss-react/mui'
 
 const PasswordHintColorAndIcon = ({ password }: { password: string }) => {
   const { classes } = useStyles()
+  const RegExpSpecialCharacter = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/
+  const RegExpLatinLetters = /a-zA-Z/
 
   const passwordHintColor = (pattern: RegExp, password: string) => {
     if (password) {
@@ -49,31 +51,25 @@ const PasswordHintColorAndIcon = ({ password }: { password: string }) => {
         </ListItem>
         <ListItem
           sx={{
-            color: passwordHintColor(/[a-zA-Z]/, password),
+            color: passwordHintColor(RegExpLatinLetters, password),
             padding: 0,
           }}
         >
           <Box
             component="img"
-            src={passwordHintIcon(/[a-zA-Z]/, password)}
+            src={passwordHintIcon(RegExpLatinLetters, password)}
           ></Box>
           &nbsp;1 or more Latin letters
         </ListItem>
         <ListItem
           sx={{
-            color: passwordHintColor(
-              /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/,
-              password
-            ),
+            color: passwordHintColor(RegExpSpecialCharacter, password),
             padding: 0,
           }}
         >
           <Box
             component="img"
-            src={passwordHintIcon(
-              /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/,
-              password
-            )}
+            src={passwordHintIcon(RegExpSpecialCharacter, password)}
           ></Box>
           &nbsp;1 or more special characters
         </ListItem>
