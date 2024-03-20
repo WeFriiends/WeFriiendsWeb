@@ -14,7 +14,7 @@ import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
 import Invitation from '../components/invitation/Invitation'
-import ErrorPage from '../components/errorPage/ErrorPage'
+import ErrorPage from 'pages/ErrorPage'
 import NewPassword from 'components/userAuth/signInMail/forgotPassword/NewPassword'
 import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
 
