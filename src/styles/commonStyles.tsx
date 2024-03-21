@@ -19,6 +19,15 @@ export const commonStyles = makeStyles()((theme) => {
         margin: '0 auto',
       },
     },
+    inputField: {
+      backgroundColor: '#FFF1EC',
+      borderRadius: 10,
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          border: 'none',
+        },
+      },
+    },
     shadowBox: {
       borderRadius: 10,
       boxShadow: boxShadow,
@@ -129,6 +138,7 @@ export const commonStyles = makeStyles()((theme) => {
       fontWeight: 600,
       borderRadius: 10,
       marginTop: 45,
+      boxShadow: 'none',
       ':disabled': {
         backgroundColor: theme.palette.common.white,
         border: '2px solid #FB8F67',

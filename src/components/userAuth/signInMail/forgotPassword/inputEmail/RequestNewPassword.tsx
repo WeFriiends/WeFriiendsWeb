@@ -3,9 +3,9 @@ import Logo from 'components/logo/Logo'
 import { commonStyles } from 'styles/commonStyles'
 import { useState } from 'react'
 import InputEmail from './InputEmail'
-import Result from './Result'
+import SuccessReuquestNewPassword from './SuccesRequestNewPassword'
 
-const NewPassword = () => {
+const RequestNewPassword = () => {
   const commonClasses = commonStyles().classes
 
   const [success, setSuccess] = useState(false)
@@ -20,10 +20,10 @@ const NewPassword = () => {
       {!success ? (
         <InputEmail onSuccessInput={handleSuccessInput} />
       ) : (
-        <Result />
+        <SuccessReuquestNewPassword />
       )}
     </Box>
   )
 }
 
-export default NewPassword
+export default RequestNewPassword
