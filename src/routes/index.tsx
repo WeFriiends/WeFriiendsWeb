@@ -131,11 +131,10 @@ const routes: RouteObject[] = [
       },
     ],
   },
-  // todo: The error processing, Axios/API integration, and refactoring needed after backend is working. (We need to do more with Axios to handle errors better. Right now, error handling is spread out in different files of action directory, which makes it hard to manage. I believe we should create an API to handle backend communication and error processing in a centralized manner.)
   { path: 'invite', element: <Invitation /> },
-  { path: 'error-400', element: <ErrorPage code={400} /> },
-  { path: 'error-500', element: <ErrorPage code={500} /> },
-  { path: '*', element: <ErrorPage /> },
+  { path: 'error-400', element: <ErrorPage code={400} /> }, // Route is working for demonstration
+  { path: 'error-500', element: <ErrorPage code={500} /> }, // Route is working for demonstration
+  { path: '*', element: <ErrorPage /> }, // Route is working for demonstration
   //left code underneath as example of using path for common layout
   // {
   //   path: '*',

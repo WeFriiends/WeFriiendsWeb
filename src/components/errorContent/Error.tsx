@@ -3,54 +3,26 @@ import { Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 
-type ErrorMessageProps = {
-  errorHeading: string
-  errorCode?: number
-  errorDescription: string
-  errorImgPath: string
-  errorImgAlt: string
-  errorText1: string
-  errorText2?: React.ReactNode
-}
-const ErrorMessage: React.FC<ErrorMessageProps> = ({
-  errorHeading,
-  errorCode,
-  errorDescription,
-  errorImgPath,
-  errorImgAlt,
-  errorText1,
-  errorText2,
-}) => {
+const Error400 = () => {
   const { classes } = useStyles()
 
   return (
     <>
       <Typography variant="h1" className={classes.title}>
-        {errorHeading}
-        <span className={classes.errorCode}>{errorCode}</span>
+        Error
       </Typography>
-      <Typography
-        variant="h3"
-        className={
-          errorCode ? classes.errorDescription : classes.errorDescriptionNoCode
-        }
-      >
-        {errorDescription}
+      <Typography variant="h3" className={classes.errorDescriptionNoCode}>
+        Unable to access the network
       </Typography>
       <Typography variant="h3" className={classes.text1}>
-        {errorText1}
+        Please, check internet connection
       </Typography>
-      <img src={errorImgPath} alt={errorImgAlt} />
-      {errorText2 && (
-        <Typography variant="h3" className={classes.text2}>
-          {errorText2}
-        </Typography>
-      )}
+      <img src="/img/error/error.svg" alt="Error cartoon" />
     </>
   )
 }
 
-export default ErrorMessage
+export default Error400
 
 const useStyles = makeStyles()(() => ({
   textWrapper: {
@@ -71,11 +43,6 @@ const useStyles = makeStyles()(() => ({
     display: 'block',
     color: theme.palette.primary.main,
     paddingTop: 10,
-  },
-  errorDescription: {
-    lineHeight: '26px',
-    margin: '10px 0 70px',
-    color: theme.palette.primary.light,
   },
   errorDescriptionNoCode: {
     fontSize: 24,
