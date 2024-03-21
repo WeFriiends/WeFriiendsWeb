@@ -1,10 +1,16 @@
 import { Button, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
+import { useNavigate } from 'react-router-dom'
 
 const SuccessRequestNewPassword = () => {
   const { classes } = useStyles()
   const commonClasses = commonStyles().classes
+  const navigate = useNavigate()
+
+  const goToScreenCheckEmail = () => {
+    navigate('/authentication/check-email')
+  }
   return (
     <>
       <Typography variant="h1" className={commonClasses.title}>
@@ -23,6 +29,7 @@ const SuccessRequestNewPassword = () => {
         disableElevation
         disableRipple
         className={commonClasses.submitButton}
+        onClick={goToScreenCheckEmail}
       >
         ok
       </Button>
