@@ -42,26 +42,24 @@ const NoticeNoUsers = () => {
 
 export default NoticeNoUsers
 
-const useStyles = makeStyles()(() => {
-  return {
-    textWrapper: {
-      textAlign: 'center',
-      maxWidth: '290px',
-      [theme.breakpoints.up('lg')]: {
-        maxWidth: '530px',
-      },
+const useStyles = makeStyles()(() => ({
+  textWrapper: {
+    textAlign: 'center',
+    maxWidth: 290,
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: 530,
     },
-    title: {
-      paddingBottom: '80px',
-      paddingTop: '50px',
-    },
-    subtitle: {
-      paddingBottom: '30px',
-    },
-    noticeButton: {
-      height: '60px',
-      width: '180px',
-      marginTop: 0, // should be 0 rather in common styles?
-    },
-  }
-})
+  },
+  title: {
+    paddingBottom: 80,
+    paddingTop: 50,
+  },
+  subtitle: {
+    paddingBottom: 30,
+  },
+  noticeButton: {
+    height: 60,
+    width: 180,
+    marginTop: 0, // should be 0 rather in common styles?
+  },
+}))

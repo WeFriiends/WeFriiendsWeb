@@ -30,21 +30,21 @@ export default Invitation
 const useStyles = makeStyles()(() => ({
   title: {
     textAlign: 'center',
-    paddingBottom: '50px',
-    paddingTop: '60px',
+    paddingBottom: 50,
+    paddingTop: 60,
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '290px',
+      maxWidth: 290,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
   },
   description: {
     textAlign: 'center',
-    paddingTop: '60px',
-    paddingRight: '20px',
-    paddingLeft: '20px',
+    paddingTop: 60,
+    paddingRight: 20,
+    paddingLeft: 20,
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '360px',
+      maxWidth: 360,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -52,10 +52,11 @@ const useStyles = makeStyles()(() => ({
   imageWrapper: {
     display: 'block',
     margin: '0 auto',
-    width: '220px',
+    padding: 20,
+    width: 220,
     maxWidth: '100%',
     boxSizing: 'border-box',
-    borderRadius: '25px',
+    borderRadius: 25,
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: theme.palette.primary.light,
