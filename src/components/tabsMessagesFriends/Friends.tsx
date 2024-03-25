@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-// import friends from './friendsProfile.json'
-import friends from './friendsProfileEmpty.json'
+import friends from './friendsProfile.json'
+// import friends from './friendsProfileEmpty.json'
 import { UserProfileData } from '../../types/UserProfileData'
 import theme from 'styles/createTheme'
 
@@ -69,10 +69,7 @@ const useStyles = makeStyles()({
     fontWeight: 500,
     marginBottom: 6,
   },
-  line: {
-    borderTop: '1px solid #EEE',
-    paddingBottom: 30,
-  },
+
   friendsBlock: {
     display: 'grid',
     gridTemplateColumns: '190px 190px',
