@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import friends from './friendsProfile.json'
-// import friends from './friendsProfileEmpty.json'
+// import friends from './friendsProfile.json'
+import friends from './friendsProfileEmpty.json'
 import { UserProfileData } from '../../types/UserProfileData'
-import theme from 'styles/createTheme'
+import NoNewMatches from './NoNewMatches'
 
 interface FriendsProps {
   onClick: (userProfileData: UserProfileData) => void
@@ -22,20 +22,7 @@ const Friends: React.FC<FriendsProps> = ({ onClick }) => {
   return (
     <>
       {userFriends.length == 0 ? (
-        <>
-          <Typography className={classes.textOnEmptyTabs}>
-            You don’t have new matches. Start searching!{' '}
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              marginRight: '30px',
-            }}
-          >
-            <img src="/img/friends/arrow.svg" alt="arrow" />
-          </Box>
-        </>
+        <NoNewMatches />
       ) : (
         <Box className={classes.friendsBlock}>
           {userFriends.map((element) => (
@@ -63,13 +50,6 @@ const Friends: React.FC<FriendsProps> = ({ onClick }) => {
 export default Friends
 
 const useStyles = makeStyles()({
-  textOnEmptyTabs: {
-    color: theme.palette.primary.main,
-    fontSize: 24,
-    fontWeight: 500,
-    marginBottom: 6,
-  },
-
   friendsBlock: {
     display: 'grid',
     gridTemplateColumns: '190px 190px',
