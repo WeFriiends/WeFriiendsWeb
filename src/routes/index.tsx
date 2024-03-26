@@ -17,6 +17,8 @@ import Invitation from '../components/invitation/Invitation'
 import ResetPassword from 'components/userAuth/signInMail/forgotPassword/resetPassword/ResetPassword'
 import RequestNewPassword from 'components/userAuth/signInMail/forgotPassword/inputEmail/RequestNewPassword'
 import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
+import Onboarding from 'pages/Onboarding'
+import Presentation from 'components/onboarding3/Presentation'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -136,6 +138,14 @@ const routes: RouteObject[] = [
     ],
   },
   { path: 'invite', element: <Invitation /> },
+  {
+    path: 'onboarding',
+    element: <Onboarding />,
+  },
+  {
+    path: 'presentation',
+    element: <Presentation />,
+  },
   //left code underneath as example of using path for common layout
   // {
   //   path: '*',
