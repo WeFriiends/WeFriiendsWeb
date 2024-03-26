@@ -12,12 +12,12 @@ export const nearByWhoLikedMeStyles = makeStyles()((theme) => {
       },
     },
     imageList: {
-      gridTemplateColumns: 'repeat(auto-fill, minmax(105px, 1fr))!important',
+      gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))!important',
       maxWidth: 700,
       marginLeft: 'auto',
       marginRight: 'auto',
       [theme.breakpoints.up('lg')]: {
-        gridTemplateColumns: 'repeat(6, 1fr) !important',
+        gridTemplateColumns: 'repeat(5, 1fr) !important',
         maxWidth: '100vw',
       },
     },
