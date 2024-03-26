@@ -8,7 +8,11 @@ interface BackArrowProps {
 
 const BackArrow: React.FC<BackArrowProps> = ({ handleBack, activeStep }) => {
   return (
-    <IconButton onClick={handleBack} disabled={activeStep === 0}>
+    <IconButton onClick={handleBack} disabled={activeStep === 0}  sx={{
+      '&:hover': {
+        backgroundColor: 'transparent',
+      }
+    }} >
       <Box
         component="img"
         src="/img/firstProfile/back.svg"
@@ -17,6 +21,8 @@ const BackArrow: React.FC<BackArrowProps> = ({ handleBack, activeStep }) => {
           width: '2.8125rem',
           height: '2.8125rem',
           marginTop: '1rem',
+          // backgroundColor: 'transparent',
+          // border: 'none',
         }}
       ></Box>
     </IconButton>

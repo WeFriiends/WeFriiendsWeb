@@ -77,9 +77,11 @@ const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
             position: 'absolute',
             left: '10%',
             bottom: 0,
+            color: 'grey',
+            textTransform: 'none',
           }}
         >
-          skip
+          Skip
         </Button>
       )}
 
@@ -91,9 +93,11 @@ const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
             position: 'absolute',
             right: '10%',
             bottom: 0,
+            color: 'grey',
+            textTransform: 'none',
           }}
         >
-          next
+          Next
         </Button>
       )}
     </>

@@ -183,7 +183,7 @@ export const commonStyles = makeStyles()((theme) => {
       fontSize: 13,
     },
     text: {
-      fontSize: 22,
+      fontSize: 30,
       color: '#3B4054',
       textAlign: 'center',
     },
@@ -205,11 +205,12 @@ export const commonStyles = makeStyles()((theme) => {
     leftButton: { position: 'relative', left: 0 },
     contentContainer: {
       // flexGrow: 1,
-      height: 600,
-      width: 400,
+      height: 550,
+      width: 350,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-around',
+      alignItems: 'center',
     },
     multiRowContainer: {
       display: 'flex',
@@ -218,20 +219,20 @@ export const commonStyles = makeStyles()((theme) => {
     },
 
     //???
-    insideCarousel: {
-      backgroundColor: '#FFF1EC',
-      display: 'grid',
-      // gridTemplateRows: '0.5fr 2fr 0.5fr',
-      width: '100%',
-      height: '100vh',
-      alignItems: 'center',
-      overflow: 'hidden',
-      // position: 'relative',
-      margin: 'auto',
-      [theme.breakpoints.up('sm')]: {
-        width: 960,
-        margin: 'auto',
-      },
-    },
+    // insideCarousel: {
+    //   backgroundColor: '#FFF1EC',
+    //   display: 'grid',
+    //   // gridTemplateRows: '0.5fr 2fr 0.5fr',
+    //   width: '100%',
+    //   height: '100vh',
+    //   alignItems: 'center',
+    //   //overflow: 'hidden',
+    //   // position: 'relative',
+    //   margin: 'auto',
+    //   [theme.breakpoints.up('sm')]: {
+    //     width: 960,
+    //     margin: 'auto',
+    //   },
+    // },
   }
 })

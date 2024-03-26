@@ -23,7 +23,7 @@ const startOnboarding: React.FC = () => {
       }}
     >
       <OnboardingHeader show={false} />
-      <Typography marginBlock={20} className={classes.text}>
+      <Typography marginBlock={15} className={classes.text}>
         Hello, dear! Let us help you to find new friends here!
       </Typography>
       <Button
@@ -32,9 +32,9 @@ const startOnboarding: React.FC = () => {
         className={`${classes.linkBtnSecondary} ${classes.textLow} `}
         sx={{
           padding: '0 0.5rem',
-          fontSize: '30px',
-          width: '80%',
-          maxWidth: '60%',
+          fontSize: '20px',
+          width: '90%',
+          maxWidth: '100%',
           flexShrink: 0,
           flexGrow: 0,
         }}

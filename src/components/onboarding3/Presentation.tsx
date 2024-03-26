@@ -43,16 +43,16 @@ const Presentation: React.FC = () => {
       className="presentationPage"
       sx={{
         margin: 'auto',
-        width: '940px',
-        height: '70%',
-        minHeight: '960px',
+        width: '100%',
+        //height: '70%',
+        minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: '#FFF1EC',
       }}
     >
       <Box
-        className="presentationContrainer"
+        className="presentationContainer"
         sx={{
           position: 'relative',
           display: 'flex',
@@ -86,7 +86,7 @@ const Presentation: React.FC = () => {
               bottom: 0,
             }}
           >
-            previous
+            <img src="/img/arrow_back.svg" alt="arrow_back" />
           </Button>
         )}
       </Box>

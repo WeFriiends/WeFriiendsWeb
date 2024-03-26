@@ -10,7 +10,6 @@ const PresentationText: React.FC<PresentationTextProps> = ({ activeStep }) => {
     <Typography
       sx={{
         paddingTop: '2.2rem',
-
         fontSize: '1.125rem',
         fontFamily: 'Inter',
         fontWeight: '500',
