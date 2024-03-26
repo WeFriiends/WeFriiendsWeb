@@ -59,12 +59,12 @@ export const nearByWhoLikedMeStyles = makeStyles()((theme) => {
     lightingIconPosition: {
       position: 'absolute',
       top: 10,
-      right: 18,
+      right: 'calc(50% - 40px)',
       width: 18,
       height: 20,
       [theme.breakpoints.up('lg')]: {
         top: 3,
-        right: 15,
+        right: 30,
         width: 30,
         height: 33,
       },

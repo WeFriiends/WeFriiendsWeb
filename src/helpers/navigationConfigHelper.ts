@@ -23,7 +23,7 @@ export const generateNavigationConfig = (
           'near_me'
         ),
         linkTo: 'near-me',
-        size: { width: 24, height: 24 },
+        size: { width: 18, height: 22 },
       },
       {
         value: 'wholikedyou',
@@ -45,7 +45,7 @@ export const generateNavigationConfig = (
         value: 'chat',
         iconProps: commonConfig(true, '/img/navigationIcons/chat', 'chat'),
         linkTo: 'messages-and-friends',
-        size: { width: 24, height: 24 },
+        size: { width: 18, height: 18 },
       },
       {
         value: 'profile',
@@ -68,7 +68,7 @@ export const generateNavigationConfig = (
           'near_me'
         ),
         linkTo: 'near-me',
-        size: { width: 38, height: 38 },
+        size: { width: 30, height: 35 },
       },
       {
         value: 'wholikedyou',
@@ -78,19 +78,19 @@ export const generateNavigationConfig = (
           'who_liked_me'
         ),
         linkTo: 'who-liked-you',
-        size: { width: 27, height: 38 },
+        size: { width: 28, height: 38 },
       },
       {
         value: 'friends',
         iconProps: commonConfig(true, '/img/navigationIcons/ii', 'friends'),
         linkTo: 'messages-and-friends',
-        size: { width: 24, height: 50 },
+        size: { width: 25, height: 50 },
       },
       {
         value: 'chat',
         iconProps: commonConfig(true, '/img/navigationIcons/chat', 'chat'),
         linkTo: 'messages-and-friends',
-        size: { width: 39, height: 39 },
+        size: { width: 30, height: 29 },
       },
     ]
   }
