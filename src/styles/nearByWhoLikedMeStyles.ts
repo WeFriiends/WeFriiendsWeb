@@ -1,58 +1,100 @@
 import { makeStyles } from 'tss-react/mui'
-export const nearByWhoLikedMeStyles = makeStyles()(() => {
+
+export const nearByWhoLikedMeStyles = makeStyles()((theme) => {
   return {
     userImages: {
       borderRadius: '50%',
-      width: '100px',
-      height: '100px',
+      width: 81,
+      height: 81,
+      [theme.breakpoints.up('lg')]: {
+        width: 135,
+        height: 135,
+      },
+    },
+    imageList: {
+      gridTemplateColumns: 'repeat(auto-fill, minmax(105px, 1fr))!important',
+      maxWidth: 700,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      [theme.breakpoints.up('lg')]: {
+        gridTemplateColumns: 'repeat(6, 1fr) !important',
+        maxWidth: '100vw',
+      },
     },
     imageListItem: {
-      marginBottom: 2,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      margin: '0 auto 30px',
+      cursor: 'pointer',
+      width: '100%',
+      '& path': {
+        // lightning icon color mobile
+        stroke: theme.palette.primary.main,
+      },
+      [theme.breakpoints.up('lg')]: {
+        margin: '0 auto 45px',
+        '& path': {
+          // lightning icon color desktop
+          stroke: '#AFB1B6',
+        },
+      },
+      '&:hover path': {
+        // lightning icon hover color desktop
+        stroke: theme.palette.primary.main,
+      },
+      '& p path': {
+        stroke: theme.palette.text.primary,
+      },
+      '&:hover p path': {
+        stroke: theme.palette.text.primary,
+      },
+      '&:hover h4': {
+        color: theme.palette.primary.main,
+      },
     },
     profileBoxPosition: {
-      position: 'relative',
-      width: 'fit-content',
       textAlign: 'center',
     },
-    lightingBoxPosition: {
+    lightingIconPosition: {
       position: 'absolute',
-      top: 0,
-      right: '30%',
-    },
-    usernameBoxPosition: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
+      top: 10,
+      right: 18,
+      width: 18,
+      height: 20,
+      [theme.breakpoints.up('lg')]: {
+        top: 3,
+        right: 15,
+        width: 30,
+        height: 33,
+      },
     },
     usernameStyling: {
-      fontWeight: '500',
-      color: '#000000',
-      fontSize: '1rem',
+      fontWeight: 500,
+      color: theme.palette.common.black,
+      fontSize: 12,
+      lineHeight: '20px',
+      padding: '5px 5px 0',
       '&:hover': {
-        color: '#F46B5D',
-        fontWeight: '600',
+        color: theme.palette.primary.main,
       },
-      paddingTop: '.5rem',
+      [theme.breakpoints.up('lg')]: {
+        fontSize: 16,
+        paddingTop: 15,
+      },
     },
     distanceBoxPosition: {
       display: 'flex',
-      flexDirection: 'row',
       justifyContent: 'center',
-      paddingTop: '0.1rem',
-    },
-    locationImageStyle: {
-      height: '0.8125rem',
-      width: '0.63838rem',
-      strokeWidth: '1px',
+      alignItems: 'center',
+      paddingTop: 3,
     },
     locationTextStyle: {
-      color: 'rgba(0, 0, 0, 0.50)',
-      fontSize: '0.75rem',
+      color: theme.palette.text.primary,
+      fontSize: 12,
+      lineHeight: '20px',
       fontWeight: '500',
-      paddingLeft: '.3rem',
+      paddingLeft: 4,
     },
   }
 })

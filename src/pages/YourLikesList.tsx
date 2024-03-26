@@ -5,19 +5,19 @@ import FooterAppBar from '../components/footerAppBar/FooterAppBar'
 import YouLikesProfiles from '../components/yourLikesList/YouLikesProfiles'
 
 export default function YourLikesList() {
-  const isMobile = useMediaQuery<boolean>('(max-width:600px)')
+  const isMobile = useMediaQuery<boolean>('(max-width:1023px)')
 
   return (
     <Container component="main" sx={{ flexGrow: 1 }}>
       {isMobile ? (
-        <Box sx={{ pb: 7 }}>
-          <YouLikesProfiles isMobile={isMobile} />
+        <Box>
+          <YouLikesProfiles />
           <FooterAppBar />
         </Box>
       ) : (
         <Box>
           <Header />
-          <YouLikesProfiles isMobile={isMobile} />
+          <YouLikesProfiles />
         </Box>
       )}
     </Container>

@@ -1,18 +1,17 @@
 import React from 'react'
 import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
-import Lightning from '../../common/Lightning'
 import { UserObjectType } from '../../common/types/userTypes'
 import { nearByWhoLikedMeStyles } from '../../styles/nearByWhoLikedMeStyles'
 import NoticeNoLikes from '../noticeNoData/NoticeNoLikes'
+import IconLightning from '../../common/IconLightning'
+import IconLocation from '../../common/IconLocation'
 
 type UserListRendererProps = {
   users?: UserObjectType[]
-  columns: number
 }
 
 const YourLikesUserListRenderer: React.FC<UserListRendererProps> = ({
   users,
-  columns,
 }) => {
   const { classes } = nearByWhoLikedMeStyles()
   const currentUserID = localStorage.getItem('userId') || '1' //will remove '1'
@@ -25,28 +24,24 @@ const YourLikesUserListRenderer: React.FC<UserListRendererProps> = ({
   }
 
   return (
-    <ImageList cols={columns}>
+    <ImageList gap={0} className={classes.imageList}>
       {likesCurrentUser?.map((user) => (
         <ImageListItem key={user.id} className={classes.imageListItem}>
           <Box className={classes.profileBoxPosition}>
             <img
               src={user.picture}
               className={classes.userImages}
-              alt="user profile"
+              alt="Profile photo"
             />
-            <Box className={classes.lightingBoxPosition}>
-              <Lightning />
+            <Box className={classes.lightingIconPosition}>
+              <IconLightning />
             </Box>
-            <Box className={classes.usernameBoxPosition}>
-              <Typography className={classes.usernameStyling}>
+            <Box component="p">
+              <h4 className={classes.usernameStyling}>
                 {user.firstName} {user.lastName}
-              </Typography>
+              </h4>
               <Box className={classes.distanceBoxPosition}>
-                <img
-                  src="/img/near_me.svg"
-                  alt="location"
-                  className={classes.locationImageStyle}
-                />
+                <IconLocation />
                 <Typography className={classes.locationTextStyle}>
                   1 km
                 </Typography>

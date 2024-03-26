@@ -13,13 +13,13 @@ export default function NearMe() {
     <Container component="main" sx={{ flexGrow: 1 }}>
       {isMobile ? (
         <Box sx={{ pb: 7 }}>
-          <NearMeProfiles isMobile={isMobile} />
+          <NearMeProfiles />
           <FooterAppBar />
         </Box>
       ) : (
         <Box>
           <Header />
-          <NearMeProfiles isMobile={isMobile} />
+          <NearMeProfiles />
         </Box>
       )}
     </Container>
