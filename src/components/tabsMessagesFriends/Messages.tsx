@@ -4,7 +4,7 @@ import { makeStyles } from 'tss-react/mui'
 // import messages from './messages.json'
 import messages from './messagesEmpty.json'
 import { UserMessage } from 'types/Message'
-import NoNewMatches from './NoNewMatches'
+import NoNewMatches from './NoNewMatchesOrMessages'
 
 const Messages = () => {
   const { classes } = useStyles()

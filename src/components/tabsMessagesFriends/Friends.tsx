@@ -4,7 +4,7 @@ import { makeStyles } from 'tss-react/mui'
 // import friends from './friendsProfile.json'
 import friends from './friendsProfileEmpty.json'
 import { UserProfileData } from '../../types/UserProfileData'
-import NoNewMatches from './NoNewMatches'
+import NoNewMatches from './NoNewMatchesOrMessages'
 
 interface FriendsProps {
   onClick: (userProfileData: UserProfileData) => void

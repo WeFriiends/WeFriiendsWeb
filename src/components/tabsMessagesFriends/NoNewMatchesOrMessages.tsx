@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material'
 import theme from 'styles/createTheme'
 import { makeStyles } from 'tss-react/mui'
 
-const NoNewMatches = ({ text }: { text: string }) => {
+const NoNewMatchesOrMessages = ({ text }: { text: string }) => {
   const { classes } = useStyles()
   return (
     <>
@@ -22,7 +22,7 @@ const NoNewMatches = ({ text }: { text: string }) => {
     </>
   )
 }
-export default NoNewMatches
+export default NoNewMatchesOrMessages
 
 const useStyles = makeStyles()({
   textOnEmptyTabs: {
