@@ -13,10 +13,11 @@ import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
-// import Onboarding from 'pages/OnboardingPage'
-import OnboardingNew from 'pages/OnboardingNew'
-import Onboarding from 'pages/Onboarding'
-import Presentation from 'components/onboarding3/Presentation'
+import Invitation from '../components/invitation/Invitation'
+import ResetPassword from 'components/userAuth/signInMail/forgotPassword/resetPassword/ResetPassword'
+import RequestNewPassword from 'components/userAuth/signInMail/forgotPassword/inputEmail/RequestNewPassword'
+import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
+
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
     (
@@ -44,6 +45,10 @@ const routes: RouteObject[] = [
         path: 'glad-screen/:confirmationCode',
         element: <AccountCreated />,
       },
+      {
+        path: 'email-already-used',
+        element: <EmailAlreadyUsed />,
+      },
     ],
   },
   {
@@ -60,6 +65,14 @@ const routes: RouteObject[] = [
       {
         path: 'email-sign-in',
         element: <SignInMail />,
+      },
+      {
+        path: 'new-password',
+        element: <RequestNewPassword />,
+      },
+      {
+        path: 'reset-password/:confirmationCode',
+        element: <ResetPassword />,
       },
     ],
   },
@@ -122,20 +135,7 @@ const routes: RouteObject[] = [
       },
     ],
   },
-
-  // {
-  //   path: '/onboarding',
-  //   element: <Onboarding />,
-  // },
-  {
-    path: '/onboardingNew',
-    element: <OnboardingNew />,
-  },
-  {
-    path: '/onboarding',
-    element: <Onboarding />,
-  },
-  { path: '/presentation', element: <Presentation /> },
+  { path: 'invite', element: <Invitation /> },
   //left code underneath as example of using path for common layout
   // {
   //   path: '*',

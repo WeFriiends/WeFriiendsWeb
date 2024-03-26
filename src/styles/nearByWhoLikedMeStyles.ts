@@ -1,20 +1,6 @@
 import { makeStyles } from 'tss-react/mui'
 export const nearByWhoLikedMeStyles = makeStyles()(() => {
   return {
-    headerNear: {
-      color: '#F1562A',
-      fontSize: 32,
-      fontFamily: 'Inter',
-      fontWeight: '600',
-    },
-    description: {
-      width: '100%',
-      color: 'black',
-      fontSize: 14,
-      fontFamily: 'Inter',
-      fontWeight: '400',
-      wordWrap: 'break-word',
-    },
     userImages: {
       borderRadius: '50%',
       width: '100px',
