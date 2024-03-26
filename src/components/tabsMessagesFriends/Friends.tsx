@@ -22,7 +22,7 @@ const Friends: React.FC<FriendsProps> = ({ onClick }) => {
   return (
     <>
       {userFriends.length == 0 ? (
-        <NoNewMatches />
+        <NoNewMatches text="You don’t have new matches." />
       ) : (
         <Box className={classes.friendsBlock}>
           {userFriends.map((element) => (

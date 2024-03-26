@@ -2,12 +2,13 @@ import { Box, Typography } from '@mui/material'
 import theme from 'styles/createTheme'
 import { makeStyles } from 'tss-react/mui'
 
-const NoNewMatches = () => {
+const NoNewMatches = ({ text }: { text: string }) => {
   const { classes } = useStyles()
   return (
     <>
+      <Typography className={classes.textOnEmptyTabs}>{text}</Typography>
       <Typography className={classes.textOnEmptyTabs}>
-        You don’t have new matches. Start searching!{' '}
+        Start searching!
       </Typography>
       <Box
         sx={{
@@ -28,6 +29,5 @@ const useStyles = makeStyles()({
     color: theme.palette.primary.main,
     fontSize: 24,
     fontWeight: 500,
-    marginBottom: 6,
   },
 })
