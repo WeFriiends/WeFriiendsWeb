@@ -90,25 +90,25 @@ const routes: RouteObject[] = [
       {
         path: 'who-liked-you',
         element: (
-          <AuthGuard>
-            <YourLikesList />
-          </AuthGuard>
+          // <AuthGuard>
+          <YourLikesList />
+          // </AuthGuard>
         ),
       },
       {
         path: 'near-me',
         element: (
-          <AuthGuard>
-            <NearMe />
-          </AuthGuard>
+          // <AuthGuard>
+          <NearMe />
+          // </AuthGuard>
         ),
       },
       {
         path: 'new-match',
         element: (
-          <AuthGuard>
-            <Match />
-          </AuthGuard>
+          // <AuthGuard>
+          <Match />
+          // </AuthGuard>
         ),
       },
     ],

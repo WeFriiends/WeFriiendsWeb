@@ -1,16 +1,10 @@
 import { Grid, Typography } from '@mui/material'
-import { getColumns } from '../../helpers/helper'
 import UserListRenderer from './YourLikesUserListRenderer'
 import useUsersData from 'hooks/useUsersData'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 
-type IsMobileProps = {
-  isMobile: boolean
-}
-
-const YouLikesProfiles = ({ isMobile }: IsMobileProps) => {
-  const columns = getColumns(isMobile)
+const YouLikesProfiles = () => {
   const { data: profilesList } = useUsersData()
   const { classes } = useStyles()
 
@@ -26,7 +20,7 @@ const YouLikesProfiles = ({ isMobile }: IsMobileProps) => {
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <UserListRenderer users={profilesList} columns={columns} />
+        <UserListRenderer users={profilesList} />
       </Grid>
     </Grid>
   )
@@ -36,16 +30,22 @@ export default YouLikesProfiles
 const useStyles = makeStyles()(() => {
   return {
     title: {
-      paddingTop: '60px',
-      paddingBottom: '10px',
+      paddingTop: 60,
+      paddingBottom: 10,
       textAlign: 'center',
-      [theme.breakpoints.up('md')]: {
+      fontSize: 32,
+      fontWeight: 600,
+      [theme.breakpoints.up('lg')]: {
+        paddingBottom: 20,
         textAlign: 'left',
+        fontSize: 24,
+        fontWeight: 500,
       },
     },
     description: {
       textAlign: 'center',
-      [theme.breakpoints.up('md')]: {
+      marginBottom: 30,
+      [theme.breakpoints.up('lg')]: {
         textAlign: 'left',
       },
       [theme.breakpoints.down('sm')]: {

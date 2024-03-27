@@ -1,19 +1,16 @@
 import React from 'react'
 import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
 import { UserObjectType } from '../../common/types/userTypes'
-import Lightning from '../../common/Lightning'
 import { nearByWhoLikedMeStyles } from '../../styles/nearByWhoLikedMeStyles'
 import NoticeNoUsers from '../noticeNoData/NoticeNoUsers'
+import IconLightning from '../../common/IconLightning'
+import IconLocation from '../../common/IconLocation'
 
 type UserListRendererProps = {
   users?: UserObjectType[]
-  columns: number
 }
 
-const UserListRenderer: React.FC<UserListRendererProps> = ({
-  users,
-  columns,
-}) => {
+const UserListRenderer: React.FC<UserListRendererProps> = ({ users }) => {
   const { classes } = nearByWhoLikedMeStyles()
   const currentUserID = '1' //take it from localStorage
 
@@ -22,7 +19,7 @@ const UserListRenderer: React.FC<UserListRendererProps> = ({
   }
 
   return (
-    <ImageList cols={columns}>
+    <ImageList gap={0} className={classes.imageList}>
       {users
         .filter((user) => user.location === 'Istanbul')
         .map((user) => (
@@ -31,23 +28,19 @@ const UserListRenderer: React.FC<UserListRendererProps> = ({
               <img
                 src={user.picture}
                 className={classes.userImages}
-                alt="user profile"
+                alt="Profile photo"
               />
               {user.likedUsers.includes(currentUserID) && (
-                <Box className={classes.lightingBoxPosition}>
-                  <Lightning />
+                <Box className={classes.lightingIconPosition}>
+                  <IconLightning />
                 </Box>
               )}
-              <Box className={classes.usernameBoxPosition}>
-                <Typography className={classes.usernameStyling}>
+              <Box component="aside">
+                <h4 className={classes.usernameStyling}>
                   {user.firstName} {user.lastName}
-                </Typography>
+                </h4>
                 <Box className={classes.distanceBoxPosition}>
-                  <img
-                    src="/img/near_me.svg"
-                    alt="location"
-                    className={classes.locationImageStyle}
-                  />
+                  <IconLocation />
                   <Typography className={classes.locationTextStyle}>
                     1 km
                   </Typography>

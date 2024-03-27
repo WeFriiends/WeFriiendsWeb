@@ -8,6 +8,15 @@ const green = '#1D878C'
 
 const theme: Record<string, any> = createTheme({
   spacing: 5,
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1024,
+      xl: 1536,
+    },
+  },
   palette: {
     primary: {
       main: rose,

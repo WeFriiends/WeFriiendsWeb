@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
 import RenderIcon from './renderIcon'
+import { Link } from 'react-router-dom'
 import {
   NavigationProps,
   RenderIconProps,
@@ -17,8 +17,12 @@ export const renderNavigationItems = ({
     <BottomNavigationAction
       key={value}
       value={value}
+      component={Link}
+      to={linkTo}
       icon={renderLinkWithIcon(linkTo, iconProps, size, activePage === value)}
       onClick={() => setNewActivePage(value)}
+      disableRipple={true}
+      disableTouchRipple={true}
     />
   ))
 }
@@ -40,9 +44,5 @@ const renderLinkWithIcon = (
           height: size?.height || 0,
         }
 
-  return (
-    <Link to={`/user/${linkTo}`} style={{ textDecoration: 'none' }}>
-      <RenderIcon {...renderProps} isActive={isActive} />
-    </Link>
-  )
+  return <RenderIcon {...renderProps} isActive={isActive} />
 }

@@ -13,7 +13,6 @@ const RenderIcon: React.FC<RenderIconProps> = ({
     alt={alt}
     width={width}
     height={height}
-    style={{ filter: isActive ? 'brightness(1.2)' : 'brightness(1)' }}
   />
 )
 
