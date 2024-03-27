@@ -8,26 +8,19 @@ type OnboardingHeaderProps = {
   heading2?: string
 }
 const OnboardingHeader: React.FC<OnboardingHeaderProps> = ({
-  // show,
   heading1,
   heading2,
 }) => {
   return (
     <>
-      <Typography variant="h3" className="heading">
+      <Typography variant="h2" className="heading" sx={{ color: '#333333' }}>
         {heading1 || ''}
       </Typography>
 
       <Logo />
 
-      <Typography variant="h4">{heading2 || ''}</Typography>
+      <Typography variant="h5">{heading2 || ''}</Typography>
     </>
-    // ) : (
-    // <>
-    //   <Typography variant="h3" className="heading"></Typography>
-    // <Logo />
-    //   <Typography variant="h4"></Typography>
-    // </>
   )
 }
 export default OnboardingHeader

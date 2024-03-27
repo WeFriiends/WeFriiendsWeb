@@ -75,8 +75,8 @@ const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
           sx={{
             padding: '0 3rem',
             position: 'absolute',
-            left: '10%',
-            bottom: 0,
+            left: '5vw',
+            bottom: 58,
             color: 'grey',
             textTransform: 'none',
           }}
@@ -91,8 +91,8 @@ const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
           sx={{
             padding: '0 3rem',
             position: 'absolute',
-            right: '10%',
-            bottom: 0,
+            right: '5vw',
+            bottom: 58,
             color: 'grey',
             textTransform: 'none',
           }}

@@ -5,21 +5,10 @@ import ButtonToGo from './ButtonNav'
 import { commonStyles } from './CommonStyles'
 import OnboardingSteps from './OnboardingSteps'
 import OnboardingHeader from './OnboardingHeader'
-// import withProfileComponentHOC from '../OnboardingHOC'
 
 const Presentation: React.FC = () => {
   const [activeStep, setActiveStep] = useState<number>(0)
 
-  //   const handleMove = (dir: string) => {
-  //     if (dir === 'back') {
-  //       setActiveStep((prevStep) => prevStep - 1)
-  //     } else if (dir === 'next') {
-  //       setActiveStep((prevStep) => prevStep + 1)
-  //     } else if (dir === 'skip') {
-  //       setActiveStep(elements.length - 1)
-  //       console.log('last step')
-  //     }
-  //   }
   const handleBack = () => {
     setActiveStep((prevStep) => prevStep - 1)
   }
@@ -44,7 +33,7 @@ const Presentation: React.FC = () => {
       sx={{
         margin: 'auto',
         width: '100%',
-        //height: '70%',
+        // height: '70%',
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
@@ -67,7 +56,7 @@ const Presentation: React.FC = () => {
 
         <ButtonToGo iconButton show={activeStep > 0} handleGo={handleBack} />
 
-        <Box sx={{ marginBlock: '25px' }}>
+        <Box sx={{ marginBlock: '50px' }}>
           <OnboardingSteps
             activeStep={activeStep}
             handlClickPagination={handleClickPagination}
@@ -83,7 +72,7 @@ const Presentation: React.FC = () => {
               padding: '0 3rem',
               position: 'absolute',
               left: '10%',
-              bottom: 0,
+              bottom: 58,
             }}
           >
             <img src="/img/arrow_back.svg" alt="arrow_back" />

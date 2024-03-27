@@ -38,7 +38,7 @@ const FindFriends: React.FC = () => {
           sx={{
             position: 'relative',
             right: '15%',
-            top: '15%',
+            top: '10%',
           }}
         >
           ready to relocate? great! find a friend in a city of relocation

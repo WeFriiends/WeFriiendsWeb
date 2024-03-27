@@ -107,44 +107,9 @@ export const commonStyles = makeStyles()((theme) => {
       width: '40%',
     },
     iconButton: {
-      // position: 'relative',
       width: '45px',
       height: '45px',
       margin: '15px auto',
-      // top: '-145px',
-      // left: '173px',
-    },
-    vector1: {
-      width: '98.21px',
-      height: '97.06px',
-      position: 'absolute',
-      // top: '100px',
-      // left: '350px',
-      transform: 'rotate(7.62deg)',
-      marginTop: '60px',
-    },
-    vector2: {
-      width: '116px',
-      height: '115px',
-      position: 'absolute',
-      // top: '661px',
-      // left: '73px',
-      transform: 'rotate(1.62deg)',
-    },
-    vector3: {
-      width: '122.64px',
-      height: '121.21px',
-      position: 'absolute',
-      // left: '34px',
-      marginTop: '73px',
-      transform: 'rotate(359deg)',
-    },
-    img: {
-      // position: 'relative',
-      // width: '272.9px',
-      // height: '354px',
-      // top: '165px',
-      // left: '59px',
     },
     buttonGroup: {
       display: 'flex',
@@ -183,14 +148,13 @@ export const commonStyles = makeStyles()((theme) => {
       fontSize: 13,
     },
     text: {
-      fontSize: 30,
+      fontSize: 25,
       color: '#3B4054',
       textAlign: 'center',
     },
     linkBtnSecondary: {
       height: '60px',
       margin: 'auto',
-      // padding: '18px 24px',
       borderRadius: '10px',
       gap: '16px',
       backgroundColor: '#FB8F67',
@@ -200,11 +164,7 @@ export const commonStyles = makeStyles()((theme) => {
         transition: 'background-color 0.5s',
       },
     },
-    rightButton: { position: 'relative', right: 0 },
-    //NEW ONBOARDING STYLES
-    leftButton: { position: 'relative', left: 0 },
     contentContainer: {
-      // flexGrow: 1,
       height: 550,
       width: 350,
       display: 'flex',
@@ -217,22 +177,5 @@ export const commonStyles = makeStyles()((theme) => {
       flexDirection: 'row',
       position: 'relative',
     },
-
-    //???
-    // insideCarousel: {
-    //   backgroundColor: '#FFF1EC',
-    //   display: 'grid',
-    //   // gridTemplateRows: '0.5fr 2fr 0.5fr',
-    //   width: '100%',
-    //   height: '100vh',
-    //   alignItems: 'center',
-    //   //overflow: 'hidden',
-    //   // position: 'relative',
-    //   margin: 'auto',
-    //   [theme.breakpoints.up('sm')]: {
-    //     width: 960,
-    //     margin: 'auto',
-    //   },
-    // },
   }
 })

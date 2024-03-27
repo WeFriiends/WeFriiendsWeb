@@ -3,7 +3,6 @@ import { Box, Typography, Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 import OnboardingHeader from './OnboardingHeader'
 import { commonStyles } from './CommonStyles'
-// import withProfileComponentHOC from '../OnboardingHOC'
 
 const startOnboarding: React.FC = () => {
   const { classes } = commonStyles()
