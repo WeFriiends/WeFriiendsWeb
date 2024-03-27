@@ -13,6 +13,8 @@ export const generateNavigationConfig = (
     alt,
   })
 
+  // can be optimized by using only one config, common for footer and header (needed: changes in canvas for icons, making the images of one size, hiding user's icon on desktop - by ?class )
+
   if (component === 'footer') {
     return [
       {
@@ -22,7 +24,7 @@ export const generateNavigationConfig = (
           '/img/navigationIcons/near_me',
           'near_me'
         ),
-        linkTo: 'near-me',
+        linkTo: '/user/near-me',
         size: { width: 18, height: 22 },
       },
       {
@@ -32,13 +34,13 @@ export const generateNavigationConfig = (
           '/img/navigationIcons/like_you',
           'who_liked_me'
         ),
-        linkTo: 'who-liked-you',
+        linkTo: '/user/who-liked-you',
         size: { width: 18, height: 24 },
       },
       {
         value: 'friends',
         iconProps: commonConfig(true, '/img/navigationIcons/ii', 'friends'),
-        linkTo: 'messages-and-friends',
+        linkTo: '/user/messages-and-friends',
         size: { width: 15, height: 32 },
       },
       {
@@ -54,7 +56,7 @@ export const generateNavigationConfig = (
           '/img/navigationIcons/profile',
           'profile'
         ),
-        linkTo: 'messages-and-friends',
+        linkTo: '/user/messages-and-friends',
         size: { width: 24, height: 24 },
       },
     ]
@@ -67,7 +69,7 @@ export const generateNavigationConfig = (
           '/img/navigationIcons/near_me',
           'near_me'
         ),
-        linkTo: 'near-me',
+        linkTo: '/user/near-me',
         size: { width: 30, height: 35 },
       },
       {
@@ -77,19 +79,19 @@ export const generateNavigationConfig = (
           '/img/navigationIcons/like_you',
           'who_liked_me'
         ),
-        linkTo: 'who-liked-you',
+        linkTo: '/user/who-liked-you',
         size: { width: 28, height: 38 },
       },
       {
         value: 'friends',
         iconProps: commonConfig(true, '/img/navigationIcons/ii', 'friends'),
-        linkTo: 'messages-and-friends',
+        linkTo: '/user/messages-and-friends',
         size: { width: 25, height: 50 },
       },
       {
         value: 'chat',
         iconProps: commonConfig(true, '/img/navigationIcons/chat', 'chat'),
-        linkTo: 'messages-and-friends',
+        linkTo: '/user/messages-and-friends',
         size: { width: 30, height: 29 },
       },
     ]
