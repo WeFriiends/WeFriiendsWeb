@@ -6,12 +6,14 @@ import {
   Modal,
   IconButton,
 } from '@mui/material'
-import CancelPresentationIcon from '@mui/icons-material/CancelPresentation'
+import IconCloseModal from '../../common/IconCloseModal'
 import { makeStyles } from 'tss-react/mui'
 import { useState } from 'react'
+import IconChat from '../../common/IconChat'
+import theme from '../../styles/createTheme'
 
 const Match = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const { classes } = useStyles()
@@ -28,11 +30,13 @@ const Match = () => {
       >
         <Box className={classes.wrapper}>
           <IconButton
+            disableRipple={true}
+            disableFocusRipple={true}
             aria-label="close modal"
             className={classes.closeButton}
             onClick={handleClose}
           >
-            <CancelPresentationIcon />
+            <IconCloseModal />
           </IconButton>
           <Box className={classes.matchContainer}>
             <Box className={classes.matchedAvatarsContainer}>
@@ -61,13 +65,17 @@ const Match = () => {
               <Button
                 className={`${classes.button} ${classes.laterButton}`}
                 onClick={handleClose}
+                disableFocusRipple={true}
+                disableRipple={true}
               >
                 Later
               </Button>
               <Button
                 className={`${classes.button} ${classes.chatButton}`}
-                startIcon={<img alt="fb" src={'/img/chatIcon.png'} />}
+                startIcon={<IconChat color={theme.palette.common.white} />}
                 href="/messages"
+                disableFocusRipple={true}
+                disableRipple={true}
               >
                 Chat
               </Button>
@@ -81,15 +89,17 @@ const Match = () => {
 
 export default Match
 
-const useStyles = makeStyles()(() => {
+const useStyles = makeStyles()((theme) => {
   return {
     closeButton: {
       height: 24,
       width: 24,
+      padding: 0,
       position: 'absolute',
-      transition: '0.5s',
-      right: 23,
-      top: 23,
+      transition: '0.3s',
+      right: 25,
+      top: 25,
+      minWidth: 0,
       '&: hover': {
         transform: 'scale(105%)',
         cursor: 'pointer',
@@ -102,6 +112,9 @@ const useStyles = makeStyles()(() => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      '& :focus': {
+        outline: 'none',
+      },
     },
     wrapper: {
       position: 'relative',
@@ -116,16 +129,16 @@ const useStyles = makeStyles()(() => {
       fontSize: 28,
       fontWeight: 500,
       lineHeight: '20px',
-      color: '#FB8F67',
+      color: theme.palette.primary.main,
       textAlign: 'center',
     },
     subTitle: {
       height: 49,
       fontSize: 14,
       lineHeight: '20px',
-      color: '#000000',
+      color: theme.palette.common.black,
       textAlign: 'center',
-      fontWeight: 500,
+      fontWeight: 400,
     },
     matchContainer: {
       height: 350,
@@ -148,6 +161,7 @@ const useStyles = makeStyles()(() => {
     matchedAvatar: {
       width: 81,
       height: 81,
+      border: '2px solid ' + theme.palette.common.white,
     },
     info: {
       height: 91,
@@ -161,20 +175,24 @@ const useStyles = makeStyles()(() => {
       justifyContent: 'space-between',
     },
     button: {
-      border: '1px solid #F1562A',
       borderRadius: 10,
-      fontFamily: 'Inter',
       fontSize: 12,
       textTransform: 'none',
+      fontWeight: 700,
+      boxShadow: '0 0 7px 1px rgba(179, 179, 179, 0.14)',
     },
     laterButton: {
       width: 124,
       height: 38,
-      color: '#F1562A',
+      color: theme.palette.primary.main,
       fontWeight: 500,
       textDecoration: 'none',
       display: 'block',
       textAlign: 'center',
+      border: '1px solid ' + theme.palette.primary.main,
+      '&:hover': {
+        background: theme.palette.common.white,
+      },
     },
     chatButton: {
       width: 124,
@@ -183,8 +201,8 @@ const useStyles = makeStyles()(() => {
       backgroundColor: '#F46B5D',
       textDecoration: 'none',
       display: 'flex',
-      '&: hover': {
-        backgroundColor: '#FB8F67',
+      '&:hover': {
+        background: theme.palette.primary.main,
       },
     },
   }

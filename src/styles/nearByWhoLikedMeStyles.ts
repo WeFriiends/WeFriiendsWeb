@@ -37,6 +37,7 @@ export const nearByWhoLikedMeStyles = makeStyles()((theme) => {
         '& path': {
           // lightning icon color desktop
           stroke: '#AFB1B6',
+          transition: 'stroke 0.3s',
         },
       },
       '&:hover path': {
@@ -75,6 +76,7 @@ export const nearByWhoLikedMeStyles = makeStyles()((theme) => {
       fontSize: 12,
       lineHeight: '20px',
       padding: '5px 5px 0',
+      transition: 'color 0.3s',
       '&:hover': {
         color: theme.palette.primary.main,
       },
