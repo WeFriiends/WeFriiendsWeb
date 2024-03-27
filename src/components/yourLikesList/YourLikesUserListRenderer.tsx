@@ -36,7 +36,7 @@ const YourLikesUserListRenderer: React.FC<UserListRendererProps> = ({
             <Box className={classes.lightingIconPosition}>
               <IconLightning />
             </Box>
-            <Box component="p">
+            <Box component="aside">
               <h4 className={classes.usernameStyling}>
                 {user.firstName} {user.lastName}
               </h4>

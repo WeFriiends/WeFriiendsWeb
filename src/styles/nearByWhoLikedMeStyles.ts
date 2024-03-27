@@ -43,10 +43,10 @@ export const nearByWhoLikedMeStyles = makeStyles()((theme) => {
         // lightning icon hover color desktop
         stroke: theme.palette.primary.main,
       },
-      '& p path': {
+      '& aside path': {
         stroke: theme.palette.text.primary,
       },
-      '&:hover p path': {
+      '&:hover aside path': {
         stroke: theme.palette.text.primary,
       },
       '&:hover h4': {
