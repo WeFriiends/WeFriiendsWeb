@@ -1,10 +1,9 @@
 import type { FC, ReactNode } from 'react'
 import { useState } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 import PropTypes from 'prop-types'
-// import useAuth from '../hooks/useAuth'
 import SignIn from './signIn/SignIn'
-import { useAuthContext } from 'hooks/useAuthContext'
 
 interface AuthGuardProps {
   children: ReactNode
@@ -12,11 +11,12 @@ interface AuthGuardProps {
 
 const AuthGuard: FC<AuthGuardProps> = (props) => {
   const { children } = props
-  const auth = useAuthContext()
+
+  const { isAuthenticated } = useAuth0()
   const location = useLocation()
   const [requestedLocation, setRequestedLocation] = useState<string | null>()
 
-  if (!auth.user) {
+  if (!isAuthenticated) {
     if (location.pathname !== requestedLocation) {
       setRequestedLocation(location.pathname)
     }

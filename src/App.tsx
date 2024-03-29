@@ -3,20 +3,20 @@ import './App.css'
 import { ThemeProvider } from '@mui/material'
 import { ActivePageProvider } from './context/activePageContext'
 import theme from 'styles/createTheme'
-import { AuthContextProvider } from 'context/authContext'
 import { DialogProvider } from 'context/dialogContext'
 import routes from 'routes'
+import { Auth0ProviderWithNavigate } from 'provider/Auth0ProviderWithNavigate'
 
 const App = () => {
   const content = useRoutes(routes)
   return (
-    <ThemeProvider theme={theme}>
-      <AuthContextProvider>
+    <Auth0ProviderWithNavigate>
+      <ThemeProvider theme={theme}>
         <DialogProvider>
           <ActivePageProvider>{content}</ActivePageProvider>
         </DialogProvider>
-      </AuthContextProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Auth0ProviderWithNavigate>
   )
 }
 

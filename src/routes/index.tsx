@@ -15,6 +15,7 @@ import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
 import NewPassword from 'components/userAuth/signInMail/forgotPassword/NewPassword'
 import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
+import AuthCallbackPage from 'pages/AuthCallbackPage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -60,15 +61,19 @@ const routes: RouteObject[] = [
           </GuestGuard>
         ),
       },
-      {
-        path: 'email-sign-in',
-        element: <SignInMail />,
-      },
-      {
-        path: 'new-password',
-        element: <NewPassword />,
-      },
+      // {
+      //   path: 'email-sign-in',
+      //   element: <SignInMail />,
+      // },
+      // {
+      //   path: 'new-password',
+      //   element: <NewPassword />,
+      // },
     ],
+  },
+  {
+    path: 'callback',
+    element: <AuthCallbackPage />,
   },
   {
     path: 'user',

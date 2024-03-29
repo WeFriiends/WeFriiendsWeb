@@ -1,11 +1,71 @@
-import Logo from '../../logo/Logo'
 import { Typography, Box, Link } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
+import { useAuth0 } from '@auth0/auth0-react'
+
+import Logo from '../../logo/Logo'
 import { commonStyles } from 'styles/commonStyles'
+import Loader from 'common/Loader'
+
+const LoginButton = () => {
+  const { loginWithRedirect } = useAuth0()
+
+  const handleLogin = async () => {
+    await loginWithRedirect({
+      appState: {
+        returnTo: 'user/messages-and-friends',
+      },
+    })
+  }
+
+  return <button onClick={handleLogin}>Sign In</button>
+}
+const SignupButton = () => {
+  const { loginWithRedirect } = useAuth0()
+
+  const handleSignUp = async () => {
+    await loginWithRedirect({
+      appState: {
+        returnTo: 'user/messages-and-friends',
+      },
+      authorizationParams: {
+        screen_hint: 'signup',
+      },
+    })
+  }
+
+  return (
+    <button className="button__sign-up" onClick={handleSignUp}>
+      Sign Up
+    </button>
+  )
+}
+
+export const LogoutButton = () => {
+  const { logout } = useAuth0()
+
+  const handleLogout = () => {
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin,
+      },
+    })
+  }
+
+  return (
+    <button className="button__logout" onClick={handleLogout}>
+      Log Out
+    </button>
+  )
+}
 
 const CreateAccount = () => {
   const { classes } = useStyles()
   const commonClasses = commonStyles().classes
+  const { isAuthenticated, isLoading } = useAuth0()
+
+  if (isLoading) {
+    return <Loader />
+  }
   return (
     <Box className={`${commonClasses.mainBox} ${classes.mainGrid}`}>
       <Box>
@@ -18,6 +78,17 @@ const CreateAccount = () => {
         <Typography className={commonClasses.subTitle}>
           Create an account
         </Typography>
+        {!isAuthenticated && (
+          <>
+            <SignupButton />
+            <LoginButton />
+          </>
+        )}
+        {isAuthenticated && (
+          <>
+            <LogoutButton />
+          </>
+        )}
       </Box>
       <Box>
         {/* <Button
@@ -67,9 +138,10 @@ const CreateAccount = () => {
         <Typography className={commonClasses.text}>
           Already have an account?
         </Typography>
-        <Link href="/authentication/sign-in" className={commonClasses.link}>
+
+        {/* <Link href="/authentication/sign-in" className={commonClasses.link}>
           Sign In
-        </Link>
+        </Link> */}
       </Box>
     </Box>
   )

@@ -1,16 +1,16 @@
 import type { FC, ReactNode } from 'react'
 import { Navigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { useAuthContext } from 'hooks/useAuthContext'
+import { useAuth0 } from '@auth0/auth0-react'
 
 interface GuestGuardProps {
   children: ReactNode
 }
 
 const GuestGuard: FC<GuestGuardProps> = ({ children }) => {
-  const auth = useAuthContext()
+  const { isAuthenticated } = useAuth0()
 
-  if (auth.user) {
+  if (isAuthenticated) {
     return <Navigate to="user/messages-and-friends" />
   }
 
