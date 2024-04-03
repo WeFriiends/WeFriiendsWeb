@@ -9,6 +9,7 @@ import {
 import { useState } from 'react'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
+import theme from 'styles/createTheme'
 
 const FULLNAME_REGEX = /^[a-zA-Zа-яА-ЯёЁ\s\p{L}]{2,15}$/u
 
@@ -67,7 +68,7 @@ const useStyles = makeStyles()(() => {
     profileText: {
       fontSize: 18,
       lineHeight: '27px',
-      color: '#444444',
+      color: theme.palette.text.primary,
       paddingBottom: '50px',
     },
     profileInput: {
