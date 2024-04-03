@@ -1,17 +1,20 @@
-import React from 'react'
-
-interface CarouselProps {
-  components: { label: string; component: React.ReactElement }[]
+interface CarouselProps<T> {
+  items: T[]
+  renderItem: (item: T) => JSX.Element
   activeStep: number
 }
 
-const Carousel: React.FC<CarouselProps> = ({ components, activeStep }) => {
+const GenericCarousel = <T extends object>({
+  items,
+  renderItem,
+  activeStep,
+}: CarouselProps<T>) => {
   //TODO: test cases in IF condition
-  if (activeStep < 0 || activeStep >= components.length) {
+  if (activeStep < 0 || activeStep >= items.length) {
     return null
   }
 
-  return <>{components[activeStep].component}</>
+  return <>{renderItem(items[activeStep])}</>
 }
 
-export default Carousel
+export default GenericCarousel

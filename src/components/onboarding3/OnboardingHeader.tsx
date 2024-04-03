@@ -3,7 +3,6 @@ import { Typography } from '@mui/material'
 import Logo from 'common/Logo'
 
 type OnboardingHeaderProps = {
-  show: boolean
   heading1?: string
   heading2?: string
 }
@@ -16,9 +15,7 @@ const OnboardingHeader: React.FC<OnboardingHeaderProps> = ({
       <Typography variant="h2" className="heading" sx={{ color: '#333333' }}>
         {heading1 || ''}
       </Typography>
-
       <Logo />
-
       <Typography variant="h5">{heading2 || ''}</Typography>
     </>
   )

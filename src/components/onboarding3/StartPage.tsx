@@ -21,13 +21,13 @@ const startOnboarding: React.FC = () => {
         padding: '0 15%',
       }}
     >
-      <OnboardingHeader show={false} />
+      <OnboardingHeader />
       <Typography marginBlock={15} className={classes.text}>
         Hello, dear! Let us help you to find new friends here!
       </Typography>
       <Button
         component={Link}
-        to="../presentation"
+        to="/onboarding/overview"
         className={`${classes.linkBtnSecondary} ${classes.textLow} `}
         sx={{
           padding: '0 0.5rem',

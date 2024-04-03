@@ -1,17 +1,6 @@
 import { Box } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import classnames from 'classnames'
-import { grey, red } from '@mui/material/colors'
-
-const styles = {
-  root: {
-    position: 'absolute',
-    bottom: 8,
-    right: 8,
-    display: 'flex',
-    flexDirection: 'row',
-  },
-}
 
 const PaginationDot = ({ active, index, onClick }: any) => {
   const { classes } = useStyles()

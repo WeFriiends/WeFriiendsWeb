@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import { commonStyles } from '../CommonStyles'
+import { commonStyles } from './CommonStyles'
 
 const FindFriends: React.FC = () => {
   const { classes } = commonStyles()
