@@ -1,10 +1,6 @@
 import { makeStyles } from 'tss-react/mui'
 
 export const commonStyles = makeStyles()((theme) => {
-  const primaryColor = '#F46B5D'
-  const secondaryColor = '#1D878C'
-  const primaryBtnBg = '#FB8F67'
-  const textColor = '#444444'
   const boxShadow = '0 0 7px 1px rgba(179, 179, 179, 0.14)'
 
   return {
@@ -12,13 +8,24 @@ export const commonStyles = makeStyles()((theme) => {
       fontFamily: ['Inter', 'sans-serif'].join(','),
     },
     mainBox: {
+      display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       marginLeft: 20,
       marginRight: 20,
       [theme.breakpoints.up('sm')]: {
         paddingTop: `calc(200px - 5vh)`,
-        width: 400,
+        width: 350,
         margin: '0 auto',
+      },
+    },
+    inputField: {
+      backgroundColor: '#FFF1EC',
+      borderRadius: 10,
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          border: 'none',
+        },
       },
     },
     shadowBox: {
@@ -32,13 +39,13 @@ export const commonStyles = makeStyles()((theme) => {
       fontWeight: 600,
       lineHeight: '40px',
       paddingTop: 80,
-      color: primaryColor,
+      color: theme.palette.primary.main,
       textAlign: 'center',
     },
     subTitle: {
       fontSize: 26,
       lineHeight: '40px',
-      color: textColor,
+      color: theme.palette.text.primary,
       textAlign: 'center',
     },
     titleSecondary: {
@@ -47,7 +54,7 @@ export const commonStyles = makeStyles()((theme) => {
       lineHeight: '40px',
       paddingTop: 80,
       paddingBottom: 14,
-      color: primaryColor,
+      color: theme.palette.primary.main,
       textAlign: 'center',
     },
     subTitleSecondary: {
@@ -76,7 +83,7 @@ export const commonStyles = makeStyles()((theme) => {
       textTransform: 'none',
       transition: '0.3s backgroundColor, 0.3s color',
       '&:hover, &:active': {
-        backgroundColor: primaryBtnBg,
+        backgroundColor: theme.palette.primary.light,
         color: '#fff',
       },
     },
@@ -99,7 +106,7 @@ export const commonStyles = makeStyles()((theme) => {
       margin: '70px auto',
     },
     link: {
-      color: secondaryColor,
+      color: theme.palette.secondary.main,
       fontSize: 22,
       textDecoration: 'none',
       display: 'block',
@@ -107,14 +114,14 @@ export const commonStyles = makeStyles()((theme) => {
     },
     linkSmall: {
       textDecoration: 'none',
-      color: secondaryColor,
+      color: theme.palette.secondary.main,
       fontSize: 13,
     },
     linkBtn: {
       display: 'block',
       textTransform: 'lowercase',
       backgroundColor: '#FFF1EC',
-      color: textColor,
+      color: theme.palette.text.primary,
       paddingTop: 18,
       paddingBottom: 18,
       borderRadius: 10,
@@ -124,20 +131,21 @@ export const commonStyles = makeStyles()((theme) => {
     },
     submitButton: {
       textTransform: 'lowercase',
-      backgroundColor: primaryBtnBg,
-      color: '#FFFFFF',
+      backgroundColor: theme.palette.primary.light,
+      color: theme.palette.common.white,
       height: 56,
       fontSize: 18,
       fontWeight: 600,
       borderRadius: 10,
       marginTop: 45,
+      boxShadow: 'none',
       ':disabled': {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: theme.palette.common.white,
         border: '2px solid #FB8F67',
-        color: primaryBtnBg,
+        color: theme.palette.primary.light,
       },
       '&: hover': {
-        backgroundColor: primaryBtnBg,
+        backgroundColor: theme.palette.primary.light,
       },
     },
     p: {
@@ -149,6 +157,10 @@ export const commonStyles = makeStyles()((theme) => {
       fontSize: 22,
       color: '#3B4054',
       textAlign: 'center',
+    },
+    centeredContainer: {
+      marginLeft: 'auto',
+      marginRight: 'auto',
     },
   }
 })

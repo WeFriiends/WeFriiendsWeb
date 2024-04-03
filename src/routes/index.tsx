@@ -13,6 +13,10 @@ import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
+import Invitation from '../components/invitation/Invitation'
+import ResetPassword from 'components/userAuth/signInMail/forgotPassword/resetPassword/ResetPassword'
+import RequestNewPassword from 'components/userAuth/signInMail/forgotPassword/inputEmail/RequestNewPassword'
+import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -41,6 +45,10 @@ const routes: RouteObject[] = [
         path: 'glad-screen/:confirmationCode',
         element: <AccountCreated />,
       },
+      {
+        path: 'email-already-used',
+        element: <EmailAlreadyUsed />,
+      },
     ],
   },
   {
@@ -57,6 +65,14 @@ const routes: RouteObject[] = [
       {
         path: 'email-sign-in',
         element: <SignInMail />,
+      },
+      {
+        path: 'new-password',
+        element: <RequestNewPassword />,
+      },
+      {
+        path: 'reset-password/:confirmationCode',
+        element: <ResetPassword />,
       },
     ],
   },
@@ -119,6 +135,7 @@ const routes: RouteObject[] = [
       },
     ],
   },
+  { path: 'invite', element: <Invitation /> },
   //left code underneath as example of using path for common layout
   // {
   //   path: '*',
