@@ -27,32 +27,30 @@ const YouLikesProfiles = () => {
 }
 export default YouLikesProfiles
 
-const useStyles = makeStyles()(() => {
-  return {
-    title: {
-      paddingTop: 60,
-      paddingBottom: 10,
-      textAlign: 'center',
-      fontSize: 32,
-      fontWeight: 600,
-      [theme.breakpoints.up('lg')]: {
-        paddingBottom: 20,
-        textAlign: 'left',
-        fontSize: 24,
-        fontWeight: 500,
-      },
+const useStyles = makeStyles()({
+  title: {
+    paddingTop: 60,
+    paddingBottom: 10,
+    textAlign: 'center',
+    fontSize: 32,
+    fontWeight: 600,
+    [theme.breakpoints.up('lg')]: {
+      paddingBottom: 20,
+      textAlign: 'left',
+      fontSize: 24,
+      fontWeight: 500,
     },
-    description: {
-      textAlign: 'center',
-      marginBottom: 30,
-      [theme.breakpoints.up('lg')]: {
-        textAlign: 'left',
-      },
-      [theme.breakpoints.down('sm')]: {
-        maxWidth: '320px',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-      },
+  },
+  description: {
+    textAlign: 'center',
+    marginBottom: 30,
+    [theme.breakpoints.up('lg')]: {
+      textAlign: 'left',
     },
-  }
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '320px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
 })
