@@ -13,7 +13,6 @@ import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
-import Status from 'components/firstProfile/Status'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -41,10 +40,6 @@ const routes: RouteObject[] = [
       {
         path: 'glad-screen/:confirmationCode',
         element: <AccountCreated />,
-      },
-      {
-        path: 'status',
-        element: <Status />,
       },
     ],
   },
