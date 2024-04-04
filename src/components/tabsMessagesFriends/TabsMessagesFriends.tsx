@@ -24,7 +24,7 @@ function TabPanel(props: TabPanelProps) {
           sx={{
             padding: '30px 0',
             height: '80vh',
-            overflowY: 'scroll',
+            overflow: 'auto',
           }}
         >
           <Box>{children}</Box>
@@ -75,6 +75,8 @@ const useStyles = makeStyles()({
     fontSize: 24,
     lineHeight: 1.5,
     borderBottom: 'none',
+    alignItems: 'flex-start',
+    paddingLeft: 0,
   },
   removeIndicator: {
     display: 'none',
