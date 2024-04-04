@@ -94,6 +94,9 @@ const useStyles = makeStyles()({
       maxWidth: 420,
       margin: '0 40px',
     },
+    '& a': {
+      minWidth: 60,
+    },
   },
   userDetails: {
     display: 'none',
