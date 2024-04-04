@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import Logo from '../logo/Logo'
-import { Typography, Box } from '@mui/material'
+import { Typography, Box, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import PrevPageButton from '../../common/buttons/PrevPageButton'
-import NextPageButton from '../../common/buttons/NextPageButton'
 import { commonStyles } from 'styles/commonStyles'
 
 const STATUSES = [
@@ -46,7 +44,16 @@ const Status = () => {
         <Logo />
       </Box>
       <Box className={classes.prevPageContainer}>
-        <PrevPageButton prevPageLink="/registration/status" />
+        <Button
+          className={classes.prevPageButton}
+          startIcon={
+            <img
+              alt="previous page"
+              src={'/img/navigationIcons/arrow_back.svg'}
+              style={{ margin: 0 }}
+            />
+          }
+        />
       </Box>
       <Box className={classes.titleContainer}>
         <Typography
@@ -81,10 +88,12 @@ const Status = () => {
       </Box>
       <Typography className={classes.tip}>3 statuses max</Typography>
       <Box className={classes.nextPageContainer}>
-        <NextPageButton
-          nextPageLink="/registration/status"
+        <Button
+          className={`${commonClasses.submitButton} ${classes.nextPageButton}`}
           onClick={nextHandler}
-        />
+        >
+          Next
+        </Button>
       </Box>
     </Box>
   )
@@ -130,6 +139,25 @@ const useStyles = makeStyles()((theme) => {
       justifyContent: 'center',
       marginTop: 54,
       marginBottom: 30,
+    },
+    prevPageButton: {
+      width: 45,
+      minWidth: 45,
+      height: 45,
+      paddingLeft: 18,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: '50%',
+      background: '#FEDED2',
+    },
+    nextPageButton: {
+      height: 60,
+      padding: '18px 24px',
+      textTransform: 'none',
+      width: '90vw',
+      [theme.breakpoints.up('sm')]: {
+        width: 400,
+      },
     },
     nextPageContainer: {
       display: 'flex',
