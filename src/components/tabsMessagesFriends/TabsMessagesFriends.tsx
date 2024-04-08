@@ -4,6 +4,7 @@ import Messages from './Messages'
 import Friends from './Friends'
 import { UserProfileData } from '../../types/UserProfileData'
 import { makeStyles } from 'tss-react/mui'
+import useFriendsList from 'hooks/useFriendsList'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -44,6 +45,8 @@ const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
     setValue(newValue)
   }
 
+  const { data: friendsList } = useFriendsList()
+
   return (
     <Box>
       <Tabs
@@ -55,7 +58,10 @@ const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
         variant="fullWidth"
       >
         <Tab label="Messages" className={classes.labelStyle} />
-        <Tab label="New Friends" className={classes.labelStyle} />
+        <Tab
+          label={`New friends (${friendsList?.length})`}
+          className={classes.labelStyle}
+        />
       </Tabs>
       <TabPanel value={value} index={0}>
         <Messages />

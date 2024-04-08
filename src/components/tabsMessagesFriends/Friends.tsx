@@ -1,10 +1,11 @@
-import * as React from 'react'
+import React from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 // import friends from './friendsProfile.json'
-import friends from './friendsProfileEmpty.json'
+// import friends from './friendsProfileEmpty.json'
 import { UserProfileData } from '../../types/UserProfileData'
 import NoNewMatches from './NoNewMatchesOrMessages'
+import useFriendsList from 'hooks/useFriendsList'
 
 interface FriendsProps {
   onClick: (userProfileData: UserProfileData) => void
@@ -12,20 +13,19 @@ interface FriendsProps {
 
 const Friends: React.FC<FriendsProps> = ({ onClick }) => {
   const { classes } = useStyles()
-  const userFriends: UserProfileData[] = friends
-
+  const { data: userFriends } = useFriendsList()
   const handleClick = (id: string) => {
-    const friendsData = userFriends.find((element) => element.id == id)
+    const friendsData = userFriends?.find((element) => element.id == id)
     onClick(friendsData as UserProfileData)
   }
 
   return (
     <>
-      {userFriends.length == 0 ? (
+      {userFriends?.length == 0 ? (
         <NoNewMatches text="You don’t have new matches." />
       ) : (
         <Box className={classes.friendsBlock}>
-          {userFriends.map((element) => (
+          {userFriends?.map((element) => (
             <Box
               id={element.id}
               key={element.id}
@@ -77,5 +77,8 @@ const useStyles = makeStyles()({
     paddingLeft: 5,
     background:
       'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 49.79%)',
+  },
+  fotoBorder: {
+    border: '1px solid red',
   },
 })
