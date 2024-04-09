@@ -6,8 +6,17 @@ const red = '#F1562A'
 const grey = '#444444'
 const green = '#1D878C'
 
-const theme: Record<string, any> = createTheme({
+const theme = {
   spacing: 5,
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1024,
+      xl: 1536,
+    },
+  },
   palette: {
     primary: {
       main: rose,
@@ -47,6 +56,16 @@ const theme: Record<string, any> = createTheme({
       fontWeight: 400,
     },
   },
-})
+} as const
 
-export default theme
+type CustomTheme = {
+  [Key in keyof typeof theme]: (typeof theme)[Key]
+}
+
+declare module '@mui/material/styles' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface Theme extends CustomTheme {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface ThemeOptions extends CustomTheme {}
+}
+export default createTheme(theme)
