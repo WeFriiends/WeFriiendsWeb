@@ -14,6 +14,7 @@ interface TabPanelProps {
 
 interface TabsMessagesFriendsProps {
   onClick: (userProfileData: UserProfileData) => void
+  selectedFriend: UserProfileData
 }
 function TabPanel(props: TabPanelProps) {
   const { children, value, index } = props
@@ -23,7 +24,7 @@ function TabPanel(props: TabPanelProps) {
       {value === index && (
         <Box
           sx={{
-            padding: '30px 0',
+            padding: '30px 2px',
             height: '80vh',
             overflow: 'auto',
           }}
@@ -37,6 +38,7 @@ function TabPanel(props: TabPanelProps) {
 
 const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
   onClick,
+  selectedFriend,
 }) => {
   const [value, setValue] = React.useState(0)
   const { classes } = useStyles()
@@ -67,7 +69,7 @@ const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
         <Messages />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Friends onClick={onClick} />
+        <Friends onClick={onClick} selectedFriend={selectedFriend} />
       </TabPanel>
     </Box>
   )

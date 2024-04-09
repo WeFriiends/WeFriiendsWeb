@@ -6,12 +6,14 @@ import { makeStyles } from 'tss-react/mui'
 import { UserProfileData } from '../../types/UserProfileData'
 import NoNewMatches from './NoNewMatchesOrMessages'
 import useFriendsList from 'hooks/useFriendsList'
+import theme from 'styles/createTheme'
 
 interface FriendsProps {
   onClick: (userProfileData: UserProfileData) => void
+  selectedFriend: UserProfileData
 }
 
-const Friends: React.FC<FriendsProps> = ({ onClick }) => {
+const Friends: React.FC<FriendsProps> = ({ onClick, selectedFriend }) => {
   const { classes } = useStyles()
   const { data: userFriends } = useFriendsList()
   const handleClick = (id: string) => {
@@ -29,7 +31,9 @@ const Friends: React.FC<FriendsProps> = ({ onClick }) => {
             <Box
               id={element.id}
               key={element.id}
-              className={classes.friendsPhotos}
+              className={`${classes.friendsPhotos}  ${
+                element.id === selectedFriend.id ? classes.fotoBorder : ''
+              }`}
               onClick={() => handleClick(element.id)}
             >
               <img
@@ -79,6 +83,9 @@ const useStyles = makeStyles()({
       'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 49.79%)',
   },
   fotoBorder: {
-    border: '1px solid red',
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderColor: theme.palette.primary.light,
+    overflow: 'hidden',
   },
 })

@@ -10,7 +10,10 @@ const MessagesAndFriends = () => {
     <Box sx={{ width: '1043px', margin: '0 auto' }}>
       <Header />
       <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-        <TabsMessagesFriends onClick={selectFriend} />
+        <TabsMessagesFriends
+          onClick={selectFriend}
+          selectedFriend={friendsData}
+        />
         <Box sx={{ paddingLeft: '53px', paddingTop: '36px' }}>
           <UserProfile user={friendsData} />
         </Box>
