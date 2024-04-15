@@ -1,8 +1,8 @@
 import useSWR from 'swr'
 import { getNewFriends as fetcher } from 'actions/getNewFriends'
 
-const useFriendsList = () => {
-  const { data, error } = useSWR('../data/friendsProfile.json', fetcher)
+const useFriendsList = (link: string) => {
+  const { data, error } = useSWR(link, fetcher)
   return {
     data,
     error,

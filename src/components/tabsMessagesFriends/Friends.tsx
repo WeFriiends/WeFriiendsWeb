@@ -1,8 +1,6 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-// import friends from './friendsProfile.json'
-// import friends from './friendsProfileEmpty.json'
 import { UserProfileData } from '../../types/UserProfileData'
 import NoNewMatches from './NoNewMatchesOrMessages'
 import useFriendsList from 'hooks/useFriendsList'
@@ -15,7 +13,7 @@ interface FriendsProps {
 
 const Friends: React.FC<FriendsProps> = ({ onClick, selectedFriend }) => {
   const { classes } = useStyles()
-  const { data: userFriends } = useFriendsList()
+  const { data: userFriends } = useFriendsList('../data/friendsProfile.json')
   const handleClick = (id: string) => {
     const friendsData = userFriends?.find((element) => element.id == id)
     onClick(friendsData as UserProfileData)

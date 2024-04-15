@@ -1,15 +1,23 @@
 import { Box, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 
-const UserProfileButton = ({ isStartChat = true }) => {
+const UserProfileButton = ({
+  isFriend = false,
+  skip,
+}: {
+  isFriend: boolean
+  skip: () => void
+}) => {
   const { classes } = useStyles()
-  return isStartChat ? (
+  return isFriend ? (
     <Box className={classes.buttonSection}>
       <Button className={classes.whiteButton}> Start chat </Button>
     </Box>
   ) : (
     <Box className={classes.buttonSection}>
-      <Button className={classes.whiteButton}> Skip </Button>
+      <Button className={classes.whiteButton} onClick={skip}>
+        Skip
+      </Button>
       <Button className={classes.orangeButton}>Be friend</Button>
     </Box>
   )
