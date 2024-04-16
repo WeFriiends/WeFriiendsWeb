@@ -24,7 +24,7 @@ function TabPanel(props: TabPanelProps) {
       {value === index && (
         <Box
           sx={{
-            padding: '30px 2px',
+            padding: '20px 2px',
             height: '80vh',
             overflow: 'auto',
           }}
@@ -81,7 +81,7 @@ const useStyles = makeStyles()({
   labelStyle: {
     textTransform: 'capitalize',
     fontSize: 24,
-    lineHeight: 1.5,
+    lineHeight: 1.3,
     borderBottom: 'none',
     alignItems: 'flex-start',
     paddingLeft: 0,

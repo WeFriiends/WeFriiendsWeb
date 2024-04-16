@@ -56,9 +56,9 @@ const MessagesAndFriends = () => {
   }
 
   return (
-    <Box sx={{ width: '1043px', margin: '0 auto' }}>
+    <Box sx={{ width: '1024px', margin: '0 auto', padding: '0 30px' }}>
       <Header />
-      <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: '5.5fr 6.5fr' }}>
         <TabsMessagesFriends
           onClick={selectFriend}
           selectedFriend={friendsData}
@@ -72,7 +72,7 @@ const MessagesAndFriends = () => {
             <Button className={classes.whiteButton}>Go</Button>
           </Box>
         ) : (
-          <Box sx={{ paddingLeft: '53px', paddingTop: '36px' }}>
+          <Box sx={{ padding: '76px 17px 0 55px' }}>
             <UserProfile user={friendsData} />
             <UserProfileButton isFriend={isFriend} skip={onSkip} />
           </Box>
