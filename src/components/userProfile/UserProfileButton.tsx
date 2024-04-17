@@ -4,9 +4,11 @@ import { makeStyles } from 'tss-react/mui'
 const UserProfileButton = ({
   isFriend = false,
   skip,
+  beFriend,
 }: {
   isFriend: boolean
   skip: () => void
+  beFriend: () => void
 }) => {
   const { classes } = useStyles()
   return isFriend ? (
@@ -18,7 +20,9 @@ const UserProfileButton = ({
       <Button className={classes.whiteButton} onClick={skip}>
         Skip
       </Button>
-      <Button className={classes.orangeButton}>Be friend</Button>
+      <Button className={classes.orangeButton} onClick={beFriend}>
+        Be friend
+      </Button>
     </Box>
   )
 }

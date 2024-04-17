@@ -55,6 +55,10 @@ const MessagesAndFriends = () => {
     }
   }
 
+  const onBeFriend = () => {
+    alert(JSON.stringify(friendsData))
+  }
+
   return (
     <Box sx={{ width: '1024px', margin: '0 auto', padding: '0 30px' }}>
       <Header />
@@ -74,7 +78,11 @@ const MessagesAndFriends = () => {
         ) : (
           <Box sx={{ padding: '76px 17px 0 55px' }}>
             <UserProfile user={friendsData} />
-            <UserProfileButton isFriend={isFriend} skip={onSkip} />
+            <UserProfileButton
+              isFriend={isFriend}
+              skip={onSkip}
+              beFriend={onBeFriend}
+            />
           </Box>
         )}
       </Box>
