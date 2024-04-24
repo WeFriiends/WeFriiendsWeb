@@ -1,5 +1,5 @@
 import useSWR from 'swr'
-import { getNewFriends as fetcher } from 'actions/getNewFriends'
+import { getNewFriends as fetcher } from 'actions/newFriendsServices'
 
 const useFriendsList = (link: string) => {
   const { data, error } = useSWR(link, fetcher)
