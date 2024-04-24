@@ -7,6 +7,7 @@ import UserProfile from 'components/userProfile/UserProfile'
 import UserProfileButton from 'components/userProfile/UserProfileButton'
 import useFriendsList from 'hooks/useFriendsList'
 import { UserProfileData } from 'types/UserProfileData'
+import { addNewFriend } from 'actions/getNewFriends'
 
 const MessagesAndFriends = () => {
   const emptyProfile: UserProfileData = {
@@ -26,7 +27,9 @@ const MessagesAndFriends = () => {
   const [friendsData, setFriendsData] = useState<UserProfileData>(emptyProfile)
   const [currentPotentialFriend, setCurrentPotentialFriend] =
     useState<UserProfileData>(emptyProfile)
-  const { data: potentialFriends } = useFriendsList('../data/userProfile.json')
+  const { data: potentialFriends } = useFriendsList(
+    '../data/potentialFriends.json'
+  )
 
   useEffect(() => {
     if (potentialFriends && potentialFriends.length > 0) {
@@ -40,10 +43,10 @@ const MessagesAndFriends = () => {
     setIsFriend(true)
   }
 
-  const onSkip = () => {
+  const goToNextPotentialFriend = (currentUserProfile: UserProfileData) => {
     if (potentialFriends) {
       const currentIndex = potentialFriends.findIndex(
-        (element) => element.id === currentPotentialFriend.id
+        (element) => element.id === currentUserProfile.id
       )
       const lastIndex = potentialFriends.length - 1
       if (currentIndex < lastIndex) {
@@ -55,8 +58,13 @@ const MessagesAndFriends = () => {
     }
   }
 
+  const onSkip = () => {
+    goToNextPotentialFriend(currentPotentialFriend)
+  }
+
   const onBeFriend = () => {
-    alert(JSON.stringify(friendsData))
+    addNewFriend('http://localhost:3005/newFriends', currentPotentialFriend)
+    goToNextPotentialFriend(currentPotentialFriend)
   }
 
   return (
