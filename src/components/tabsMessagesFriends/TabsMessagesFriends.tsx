@@ -47,8 +47,10 @@ const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
     setValue(newValue)
   }
 
-  const { data: friendsList } = useFriendsList('../data/friendsProfile.json')
-
+  // const { data: friendsList } = useFriendsList('../data/friendsProfile.json')
+  const { data: friendsList } = useFriendsList(
+    'http://localhost:3005/newFriends' //use json-server for testing
+  )
   return (
     <Box>
       <Tabs

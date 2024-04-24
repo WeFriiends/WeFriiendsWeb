@@ -7,7 +7,7 @@ import UserProfile from 'components/userProfile/UserProfile'
 import UserProfileButton from 'components/userProfile/UserProfileButton'
 import useFriendsList from 'hooks/useFriendsList'
 import { UserProfileData } from 'types/UserProfileData'
-import { addNewFriend } from 'actions/getNewFriends'
+import { addNewFriend } from 'actions/newFriendsServices'
 
 const MessagesAndFriends = () => {
   const emptyProfile: UserProfileData = {
@@ -63,7 +63,7 @@ const MessagesAndFriends = () => {
   }
 
   const onBeFriend = () => {
-    addNewFriend('http://localhost:3005/newFriends', currentPotentialFriend)
+    addNewFriend('http://localhost:3005/newFriends', currentPotentialFriend) //use json-server for testing
     goToNextPotentialFriend(currentPotentialFriend)
   }
 

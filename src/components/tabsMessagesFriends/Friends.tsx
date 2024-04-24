@@ -13,7 +13,10 @@ interface FriendsProps {
 
 const Friends: React.FC<FriendsProps> = ({ onClick, selectedFriend }) => {
   const { classes } = useStyles()
-  const { data: userFriends } = useFriendsList('../data/friendsProfile.json')
+  // const { data: userFriends } = useFriendsList('../data/friendsProfile.json')
+  const { data: userFriends } = useFriendsList(
+    'http://localhost:3005/newFriends' //use json-server for testing
+  )
   const handleClick = (id: string) => {
     const friendsData = userFriends?.find((element) => element.id == id)
     onClick(friendsData as UserProfileData)
