@@ -76,13 +76,24 @@ const MessagesAndFriends = () => {
           selectedFriend={friendsData}
         />
         {noPotentialFriends ? (
-          <Box className={classes.mainBlock}>
-            <Typography className={classes.messageStyle}>
-              You’re running out of people.
-              <br /> Please, change search settings
-            </Typography>
-            <Button className={classes.whiteButton}>Go</Button>
-          </Box>
+          !isFriend ? (
+            <Box className={classes.mainBlock}>
+              <Typography className={classes.messageStyle}>
+                You’re running out of people.
+                <br /> Please, change search settings
+              </Typography>
+              <Button className={classes.whiteButton}>Go</Button>
+            </Box>
+          ) : (
+            <Box sx={{ padding: '76px 17px 0 55px' }}>
+              <UserProfile user={friendsData} />
+              <UserProfileButton
+                isFriend={isFriend}
+                skip={onSkip}
+                beFriend={onBeFriend}
+              />
+            </Box>
+          )
         ) : (
           <Box sx={{ padding: '76px 17px 0 55px' }}>
             <UserProfile user={friendsData} />
