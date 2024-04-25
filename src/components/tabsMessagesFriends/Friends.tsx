@@ -67,6 +67,8 @@ const useStyles = makeStyles()({
   },
   smallPhoto: {
     width: 190,
+    height: 230,
+    objectFit: 'cover',
     gridRow: '1/3',
     gridColumn: '1/2',
     boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',
