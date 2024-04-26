@@ -7,7 +7,7 @@ import UserProfile from 'components/userProfile/UserProfile'
 import UserProfileButton from 'components/userProfile/UserProfileButton'
 import useFriendsList from 'hooks/useFriendsList'
 import { UserProfileData } from 'types/UserProfileData'
-import { addNewFriend } from 'actions/newFriendsServices'
+import { addNewFriend, deletePotentialFriend } from 'actions/newFriendsServices'
 
 const MessagesAndFriends = () => {
   const emptyProfile: UserProfileData = {
@@ -27,14 +27,19 @@ const MessagesAndFriends = () => {
   const [friendsData, setFriendsData] = useState<UserProfileData>(emptyProfile)
   const [currentPotentialFriend, setCurrentPotentialFriend] =
     useState<UserProfileData>(emptyProfile)
+  // const { data: potentialFriends } = useFriendsList(
+  //   '../data/potentialFriends.json'
+  // )
   const { data: potentialFriends } = useFriendsList(
-    '../data/potentialFriends.json'
+    'http://localhost:3005/potentialFriends' //use json-server for testing
   )
 
   useEffect(() => {
     if (potentialFriends && potentialFriends.length > 0) {
       setFriendsData(potentialFriends[0])
       setCurrentPotentialFriend(potentialFriends[0])
+    } else if (!potentialFriends?.length) {
+      // setNoPotentialFriends(true)
     }
   }, [potentialFriends])
 
@@ -52,8 +57,16 @@ const MessagesAndFriends = () => {
       if (currentIndex < lastIndex) {
         setFriendsData(potentialFriends[currentIndex + 1])
         setCurrentPotentialFriend(potentialFriends[currentIndex + 1])
+        deletePotentialFriend(
+          'http://localhost:3005/potentialFriends',
+          currentUserProfile.id
+        )
       } else {
         setNoPotentialFriends(true)
+        deletePotentialFriend(
+          'http://localhost:3005/potentialFriends',
+          currentUserProfile.id
+        )
       }
     }
   }
@@ -75,26 +88,26 @@ const MessagesAndFriends = () => {
           onClick={selectFriend}
           selectedFriend={friendsData}
         />
-        {noPotentialFriends ? (
-          !isFriend ? (
-            <Box className={classes.mainBlock}>
-              <Typography className={classes.messageStyle}>
-                You’re running out of people.
-                <br /> Please, change search settings
-              </Typography>
-              <Button className={classes.whiteButton}>Go</Button>
-            </Box>
-          ) : (
-            <Box sx={{ padding: '76px 17px 0 55px' }}>
-              <UserProfile user={friendsData} />
-              <UserProfileButton
-                isFriend={isFriend}
-                skip={onSkip}
-                beFriend={onBeFriend}
-              />
-            </Box>
-          )
-        ) : (
+        {noPotentialFriends && !isFriend && (
+          <Box className={classes.mainBlock}>
+            <Typography className={classes.messageStyle}>
+              You’re running out of people.
+              <br /> Please, change search settings
+            </Typography>
+            <Button className={classes.whiteButton}>Go</Button>
+          </Box>
+        )}
+        {!noPotentialFriends && (
+          <Box sx={{ padding: '76px 17px 0 55px' }}>
+            <UserProfile user={friendsData} />
+            <UserProfileButton
+              isFriend={isFriend}
+              skip={onSkip}
+              beFriend={onBeFriend}
+            />
+          </Box>
+        )}
+        {isFriend && (
           <Box sx={{ padding: '76px 17px 0 55px' }}>
             <UserProfile user={friendsData} />
             <UserProfileButton
