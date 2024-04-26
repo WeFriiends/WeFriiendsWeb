@@ -22,3 +22,12 @@ export const addNewFriend = async (
     console.error('Error posting data:', error)
   }
 }
+
+export const deletePotentialFriend = async (url: string, id: string) => {
+  try {
+    const response = await axiosInstance.delete(`${url}/${id}`)
+    return response.status
+  } catch (error) {
+    console.error('Error deleting data:', error)
+  }
+}
