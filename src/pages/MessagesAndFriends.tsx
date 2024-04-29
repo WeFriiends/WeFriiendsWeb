@@ -8,6 +8,7 @@ import UserProfileButton from 'components/userProfile/UserProfileButton'
 import useFriendsList from 'hooks/useFriendsList'
 import { UserProfileData } from 'types/UserProfileData'
 import { addNewFriend, deletePotentialFriend } from 'actions/newFriendsServices'
+import Match from 'components/findMatch/Match'
 
 const MessagesAndFriends = () => {
   const emptyProfile: UserProfileData = {
@@ -24,6 +25,7 @@ const MessagesAndFriends = () => {
   const { classes } = useStyles()
   const [noPotentialFriends, setNoPotentialFriends] = useState(true)
   const [isFriend, setIsFriend] = useState(false)
+  const [isMatchModalOpen, setIsMatchModalOpen] = useState(false)
   const [friendsData, setFriendsData] = useState<UserProfileData>(emptyProfile)
   const [currentPotentialFriend, setCurrentPotentialFriend] =
     useState<UserProfileData>(emptyProfile)
@@ -79,6 +81,11 @@ const MessagesAndFriends = () => {
   const onBeFriend = () => {
     addNewFriend('http://localhost:3005/newFriends', currentPotentialFriend) //use json-server for testing
     goToNextPotentialFriend(currentPotentialFriend)
+    setIsMatchModalOpen(true)
+  }
+
+  const handleMatchClose = () => {
+    setIsMatchModalOpen(false)
   }
 
   return (
@@ -118,6 +125,7 @@ const MessagesAndFriends = () => {
             />
           </Box>
         )}
+        {isMatchModalOpen && <Match onClose={handleMatchClose} />}
       </Box>
     </Box>
   )

@@ -8,21 +8,16 @@ import {
 } from '@mui/material'
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation'
 import { makeStyles } from 'tss-react/mui'
-import { useState } from 'react'
 
-const Match = () => {
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+const Match = ({ onClose }: { onClose: () => void }) => {
   const { classes } = useStyles()
 
   return (
     <>
-      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         className={classes.modal}
-        open={open}
-        onClose={handleClose}
+        open={true}
+        onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -30,7 +25,7 @@ const Match = () => {
           <IconButton
             aria-label="close modal"
             className={classes.closeButton}
-            onClick={handleClose}
+            onClick={onClose}
           >
             <CancelPresentationIcon />
           </IconButton>
@@ -60,7 +55,7 @@ const Match = () => {
             <Box className={classes.buttonsContainer}>
               <Button
                 className={`${classes.button} ${classes.laterButton}`}
-                onClick={handleClose}
+                onClick={onClose}
               >
                 Later
               </Button>

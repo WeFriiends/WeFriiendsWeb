@@ -10,7 +10,7 @@ import CommentInput from 'components/report/commentInput'
 import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
-import Match from 'components/findMatch/Match'
+// import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
 import Invitation from '../components/invitation/Invitation'
@@ -103,14 +103,14 @@ const routes: RouteObject[] = [
           </AuthGuard>
         ),
       },
-      {
-        path: 'new-match',
-        element: (
-          <AuthGuard>
-            <Match />
-          </AuthGuard>
-        ),
-      },
+      // {
+      //   path: 'new-match',
+      //   element: (
+      //     <AuthGuard>
+      //       <Match />
+      //     </AuthGuard>
+      //   ),
+      // },
     ],
   },
 
