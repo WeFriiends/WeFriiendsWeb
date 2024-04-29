@@ -22,7 +22,7 @@ const MessagesAndFriends = () => {
     profession: '',
   }
   const { classes } = useStyles()
-  const [noPotentialFriends, setNoPotentialFriends] = useState(false)
+  const [noPotentialFriends, setNoPotentialFriends] = useState(true)
   const [isFriend, setIsFriend] = useState(false)
   const [friendsData, setFriendsData] = useState<UserProfileData>(emptyProfile)
   const [currentPotentialFriend, setCurrentPotentialFriend] =
@@ -36,6 +36,7 @@ const MessagesAndFriends = () => {
 
   useEffect(() => {
     if (potentialFriends && potentialFriends.length > 0) {
+      setNoPotentialFriends(false)
       setFriendsData(potentialFriends[0])
       setCurrentPotentialFriend(potentialFriends[0])
     } else if (!potentialFriends?.length) {
