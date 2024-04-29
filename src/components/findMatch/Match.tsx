@@ -9,7 +9,12 @@ import {
 import CancelPresentationIcon from '@mui/icons-material/CancelPresentation'
 import { makeStyles } from 'tss-react/mui'
 
-const Match = ({ onClose }: { onClose: () => void }) => {
+interface MatchProps {
+  onClose: () => void
+  friendsAvatar: string
+}
+
+const Match: React.FC<MatchProps> = ({ onClose, friendsAvatar }) => {
   const { classes } = useStyles()
 
   return (
@@ -37,7 +42,7 @@ const Match = ({ onClose }: { onClose: () => void }) => {
               />
               <Avatar
                 className={`${classes.matchedAvatar} ${classes.newMatchAvatar}`}
-                src="/img/avatar_stacy.jpg"
+                src={friendsAvatar}
               />
             </Box>
             <Box className={classes.info}>

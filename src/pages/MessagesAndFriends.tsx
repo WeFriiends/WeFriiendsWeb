@@ -125,7 +125,12 @@ const MessagesAndFriends = () => {
             />
           </Box>
         )}
-        {isMatchModalOpen && <Match onClose={handleMatchClose} />}
+        {isMatchModalOpen && (
+          <Match
+            onClose={handleMatchClose}
+            friendsAvatar={friendsData.photo[0].src}
+          />
+        )}
       </Box>
     </Box>
   )
