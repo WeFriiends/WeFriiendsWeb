@@ -7,7 +7,6 @@ import {
 } from '@mui/material'
 
 import { makeStyles } from 'tss-react/mui'
-import CircleRoundedIcon from '@mui/icons-material/CircleRounded'
 import PhotoCarousel from './PhotoCarousel'
 import { UserProfileData } from '../../types/UserProfileData'
 
