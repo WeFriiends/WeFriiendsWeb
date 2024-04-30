@@ -25,7 +25,8 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
             <img src="/img/likes_me.svg" alt="likes me" />
             <Typography>Likes you</Typography>
           </Box>
-          <img src="/img/verified.svg"></img>
+          {/* <img src="/img/verified.svg"></img> */}
+          {/* We don't use it in MVP1 */}
         </Box>
 
         <div className={classes.carousel}>
@@ -39,9 +40,10 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                 <Typography className={classes.name}>
                   {user.firstName} {user.lastName}, {user.age}
                 </Typography>
-                <CircleRoundedIcon
+                {/* <CircleRoundedIcon
                   className={classes.roundIcon}
-                ></CircleRoundedIcon>
+                ></CircleRoundedIcon> */}
+                {/* We don't use it in MVP1 */}
               </Box>
               <Box className={classes.distanceWithIcon}>
                 <img src="/img/near_me.svg" height={20} width={20} />
