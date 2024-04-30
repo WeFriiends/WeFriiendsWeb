@@ -53,7 +53,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
               </Box>
             </Box>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails
+            sx={{ overflow: 'auto', maxHeight: 'calc(49vh - 340px)' }}
+          >
             <Typography variant="h3" className={classes.title}>
               About Me
             </Typography>
