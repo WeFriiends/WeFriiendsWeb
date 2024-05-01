@@ -17,6 +17,7 @@ import Invitation from '../components/invitation/Invitation'
 import ResetPassword from 'components/userAuth/signInMail/forgotPassword/resetPassword/ResetPassword'
 import RequestNewPassword from 'components/userAuth/signInMail/forgotPassword/inputEmail/RequestNewPassword'
 import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
+import Messages from 'pages/Messages'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -84,6 +85,14 @@ const routes: RouteObject[] = [
         element: (
           // <AuthGuard>
           <Home />
+          // </AuthGuard>
+        ),
+      },
+      {
+        path: 'messages',
+        element: (
+          // <AuthGuard>
+          <Messages />
           // </AuthGuard>
         ),
       },

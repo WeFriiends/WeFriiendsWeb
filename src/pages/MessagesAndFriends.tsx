@@ -9,6 +9,7 @@ import useFriendsList from 'hooks/useFriendsList'
 import { UserProfileData } from 'types/UserProfileData'
 import { addNewFriend, deletePotentialFriend } from 'actions/newFriendsServices'
 import Match from 'components/findMatch/Match'
+import { useNavigate } from 'react-router-dom'
 
 const MessagesAndFriends = () => {
   const emptyProfile: UserProfileData = {
@@ -29,6 +30,7 @@ const MessagesAndFriends = () => {
   const [friendsData, setFriendsData] = useState<UserProfileData>(emptyProfile)
   const [currentPotentialFriend, setCurrentPotentialFriend] =
     useState<UserProfileData>(emptyProfile)
+  const navigate = useNavigate()
   // const { data: potentialFriends } = useFriendsList(
   //   '../data/potentialFriends.json'
   // )
@@ -88,6 +90,10 @@ const MessagesAndFriends = () => {
     setIsMatchModalOpen(false)
   }
 
+  const startChat = () => {
+    navigate('/user/messages')
+  }
+
   return (
     <Box sx={{ width: '1024px', margin: '0 auto', padding: '0 30px' }}>
       <Header />
@@ -112,6 +118,7 @@ const MessagesAndFriends = () => {
               isFriend={isFriend}
               skip={onSkip}
               beFriend={onBeFriend}
+              startChat={startChat}
             />
           </Box>
         )}
@@ -122,6 +129,7 @@ const MessagesAndFriends = () => {
               isFriend={isFriend}
               skip={onSkip}
               beFriend={onBeFriend}
+              startChat={startChat}
             />
           </Box>
         )}
