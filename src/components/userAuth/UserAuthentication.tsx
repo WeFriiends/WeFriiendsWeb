@@ -1,15 +1,14 @@
 import { Typography, Box, Link, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { useAuth0 } from '@auth0/auth0-react'
-
-import Logo from '../../logo/Logo'
+import Logo from '../logo/Logo'
 import { commonStyles } from 'styles/commonStyles'
 import Loader from 'common/Loader'
 
-const CreateAccount = () => {
+const UserAuthentication = () => {
   const { classes } = useStyles()
   const commonClasses = commonStyles().classes
-  const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0()
+  const { isLoading, loginWithRedirect } = useAuth0()
 
   if (isLoading) {
     return <Loader />
@@ -26,7 +25,7 @@ const CreateAccount = () => {
   const handleSignUp = async () => {
     await loginWithRedirect({
       appState: {
-        returnTo: 'user/messages-and-friends',
+        returnTo: 'user/fill-profile',
       },
       authorizationParams: {
         screen_hint: 'signup',
@@ -112,7 +111,7 @@ const CreateAccount = () => {
   )
 }
 
-export default CreateAccount
+export default UserAuthentication
 
 const useStyles = makeStyles()(() => {
   return {

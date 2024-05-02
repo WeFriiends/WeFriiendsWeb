@@ -1,9 +1,7 @@
 import { RouteObject } from 'react-router'
 import { ComponentType, Suspense, lazy } from 'react'
 import LoadingScreen from 'common/Loader'
-import RegistrationForm from 'components/userAuth/registrationForm/RegistrationForm'
-import AccountCreated from 'components/userAuth/accountCreated/AccountCreated'
-import SignInMail from 'components/userAuth/signInMail/SignInMail'
+import AuthGuard from 'components/userAuth/AuthGuard'
 import Report from 'components/report/report'
 import ReportComment from 'components/report/reportComment'
 import CommentInput from 'components/report/commentInput'
@@ -11,11 +9,10 @@ import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import Match from 'components/findMatch/Match'
-import AuthGuard from 'components/userAuth/AuthGuard'
-import GuestGuard from 'components/userAuth/GuestGuard'
-import NewPassword from 'components/userAuth/signInMail/forgotPassword/NewPassword'
-import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
+import Invitation from '../components/invitation/Invitation'
 import AuthCallbackPage from 'pages/AuthCallbackPage'
+import NameProfile from 'components/firstProfile/NameProfile'
+import MessagesAndFriends from 'pages/MessagesAndFriends'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -26,51 +23,62 @@ const Loadable =
     )
 
 const Register = Loadable(
-  lazy(() => import('components/userAuth/createAccount/CreateAccount'))
+  lazy(() => import('components/userAuth/UserAuthentication'))
 )
-const Login = Loadable(lazy(() => import('components/userAuth/signIn/SignIn')))
-const Home = Loadable(lazy(() => import('pages/MessagesAndFriends')))
 
 const routes: RouteObject[] = [
   { path: '/', element: <Register /> },
-  {
-    path: '/registration',
-    children: [
-      {
-        path: 'register-email',
-        element: <RegistrationForm />,
-      },
-      {
-        path: 'glad-screen/:confirmationCode',
-        element: <AccountCreated />,
-      },
-      {
-        path: 'email-already-used',
-        element: <EmailAlreadyUsed />,
-      },
-    ],
-  },
-  {
-    path: 'authentication',
-    children: [
-      {
-        path: 'sign-in',
-        element: (
-          <GuestGuard>
-            <Login />
-          </GuestGuard>
-        ),
-      },
-      // {
-      //   path: 'email-sign-in',
-      //   element: <SignInMail />,
-      // },
-      // {
-      //   path: 'new-password',
-      //   element: <NewPassword />,
-      // },
-    ],
-  },
+  // {
+  //   path: '/registration',
+  //   children: [
+  //     {
+  //       path: 'register-email',
+  //       element: <RegistrationForm />,
+  //     },
+  //     {
+  //       path: 'glad-screen/:confirmationCode',
+  //       element: <AccountCreated />,
+  //     },
+  //     {
+  //       path: 'email-already-used',
+  //       element: <EmailAlreadyUsed />,
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: 'authentication',
+  //   children: [
+  //     {
+  //       path: 'sign-in',
+  //       element: (
+  //         <GuestGuard>
+  //           <Login />
+  //         </GuestGuard>
+  //       ),
+  //     },
+  //     // {
+  //     //   path: 'email-sign-in',
+  //     //   element: <SignInMail />,
+  //     // },
+  //     // {
+  //     //   path: 'new-password',
+  //     //   element: <NewPassword />,
+  //     // },
+  //     {
+  //       path: 'email-sign-in',
+  //       element: <SignInMail />,
+  //     },
+  //     {
+  //       path: 'new-password',
+  //       element: <RequestNewPassword />,
+  //     },
+  //     { path: 'check-email', element: <CheckEmail /> },
+  //     {
+  //       path: 'reset-password/:confirmationCode',
+  //       element: <ResetPassword />,
+  //     },
+  //   ],
+  // },
   {
     path: 'callback',
     element: <AuthCallbackPage />,
@@ -79,36 +87,24 @@ const routes: RouteObject[] = [
     path: 'user',
     children: [
       {
+        path: 'fill-profile',
+        element: <AuthGuard component={NameProfile} />,
+      },
+      {
         path: 'messages-and-friends',
-        element: (
-          <AuthGuard>
-            <Home />
-          </AuthGuard>
-        ),
+        element: <AuthGuard component={MessagesAndFriends} />,
       },
       {
         path: 'who-liked-you',
-        element: (
-          <AuthGuard>
-            <YourLikesList />
-          </AuthGuard>
-        ),
+        element: <AuthGuard component={YourLikesList} />,
       },
       {
         path: 'near-me',
-        element: (
-          <AuthGuard>
-            <NearMe />
-          </AuthGuard>
-        ),
+        element: <AuthGuard component={NearMe} />,
       },
       {
         path: 'new-match',
-        element: (
-          <AuthGuard>
-            <Match />
-          </AuthGuard>
-        ),
+        element: <AuthGuard component={Match} />,
       },
     ],
   },
@@ -134,6 +130,7 @@ const routes: RouteObject[] = [
       },
     ],
   },
+  { path: 'invite', element: <AuthGuard component={Invitation} /> },
   //left code underneath as example of using path for common layout
   // {
   //   path: '*',
