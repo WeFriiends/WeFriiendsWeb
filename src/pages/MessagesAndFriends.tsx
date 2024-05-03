@@ -102,7 +102,7 @@ const MessagesAndFriends = () => {
           onClick={selectFriend}
           selectedFriend={friendsData}
         />
-        {noPotentialFriends && !isFriend && (
+        {noPotentialFriends && !isFriend ? (
           <Box className={classes.mainBlock}>
             <Typography className={classes.messageStyle}>
               You’re running out of people.
@@ -110,19 +110,7 @@ const MessagesAndFriends = () => {
             </Typography>
             <Button className={classes.whiteButton}>Go</Button>
           </Box>
-        )}
-        {!noPotentialFriends && (
-          <Box sx={{ padding: '76px 17px 0 55px' }}>
-            <UserProfile user={friendsData} />
-            <UserProfileButton
-              isFriend={isFriend}
-              skip={onSkip}
-              beFriend={onBeFriend}
-              startChat={startChat}
-            />
-          </Box>
-        )}
-        {isFriend && (
+        ) : (
           <Box sx={{ padding: '76px 17px 0 55px' }}>
             <UserProfile user={friendsData} />
             <UserProfileButton
