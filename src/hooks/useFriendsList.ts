@@ -1,12 +1,19 @@
 import useSWR from 'swr'
-import { getNewFriends as fetcher } from 'actions/newFriendsServices'
+import { getFriends as fetcher } from 'actions/friendsServices'
 
-const useFriendsList = (link: string) => {
-  const { data, error } = useSWR(link, fetcher)
+export const useNewFriendsList = () => {
+  const { data, error } = useSWR('newFriends', fetcher)
   return {
     data,
     error,
     isLoading: !data && !error,
   }
 }
-export default useFriendsList
+export const usePotentialFriendsList = () => {
+  const { data, error } = useSWR('/potentialFriends', fetcher)
+  return {
+    data,
+    error,
+    isLoading: !data && !error,
+  }
+}

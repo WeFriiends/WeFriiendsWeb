@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { UserProfileData } from '../../types/UserProfileData'
 import NoNewMatches from './NoNewMatchesOrMessages'
-import useFriendsList from 'hooks/useFriendsList'
+import { useNewFriendsList } from 'hooks/useFriendsList'
 import theme from 'styles/createTheme'
 
 interface FriendsProps {
@@ -14,11 +14,12 @@ interface FriendsProps {
 const Friends: React.FC<FriendsProps> = ({ onClick, selectedFriend }) => {
   const { classes } = useStyles()
   // const { data: userFriends } = useFriendsList('../data/friendsProfile.json')
-  const { data: userFriends } = useFriendsList(
-    'http://localhost:3005/newFriends' //use json-server for testing
-  )
+  const { data: userFriends } = useNewFriendsList()
+
   const handleClick = (id: string) => {
-    const friendsData = userFriends?.find((element) => element.id == id)
+    const friendsData = userFriends?.find(
+      (element: UserProfileData) => element.id == id
+    )
     onClick(friendsData as UserProfileData)
   }
 
@@ -28,7 +29,7 @@ const Friends: React.FC<FriendsProps> = ({ onClick, selectedFriend }) => {
         <NoNewMatches text="You don’t have new matches." />
       ) : (
         <Box className={classes.friendsBlock}>
-          {userFriends?.map((element) => (
+          {userFriends?.map((element: UserProfileData) => (
             <Box
               id={element.id}
               key={element.id}

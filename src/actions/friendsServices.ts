@@ -1,7 +1,7 @@
 import { UserProfileData } from 'types/UserProfileData'
 import axiosInstance from './axiosInstance'
 
-export const getNewFriends = async (url: string) => {
+export const getFriends = async (url: string) => {
   try {
     const response = await axiosInstance.get(url)
     return response.data as Array<UserProfileData>
@@ -10,12 +10,9 @@ export const getNewFriends = async (url: string) => {
   }
 }
 
-export const addNewFriend = async (
-  url: string,
-  friendData: UserProfileData
-) => {
+export const addNewFriend = async (friendData: UserProfileData) => {
   try {
-    const response = await axiosInstance.post(url, friendData)
+    const response = await axiosInstance.post('newFriends', friendData)
 
     return response.data
   } catch (error) {
@@ -23,9 +20,9 @@ export const addNewFriend = async (
   }
 }
 
-export const deletePotentialFriend = async (url: string, id: string) => {
+export const deletePotentialFriend = async (id: string) => {
   try {
-    const response = await axiosInstance.delete(`${url}/${id}`)
+    const response = await axiosInstance.delete(`potentialFriends/${id}`)
     return response.status
   } catch (error) {
     console.error('Error deleting data:', error)

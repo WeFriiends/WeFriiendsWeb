@@ -4,7 +4,7 @@ import Messages from './Messages'
 import Friends from './Friends'
 import { UserProfileData } from '../../types/UserProfileData'
 import { makeStyles } from 'tss-react/mui'
-import useFriendsList from 'hooks/useFriendsList'
+import { useNewFriendsList } from 'hooks/useFriendsList'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -47,10 +47,8 @@ const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
     setValue(newValue)
   }
 
-  // const { data: friendsList } = useFriendsList('../data/friendsProfile.json')
-  const { data: friendsList } = useFriendsList(
-    'http://localhost:3005/newFriends' //use json-server for testing
-  )
+  const { data: friendsList } = useNewFriendsList()
+
   return (
     <Box>
       <Tabs

@@ -5,9 +5,9 @@ import Header from 'components/header/Header'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 import UserProfile from 'components/userProfile/UserProfile'
 import UserProfileButton from 'components/userProfile/UserProfileButton'
-import useFriendsList from 'hooks/useFriendsList'
+import { usePotentialFriendsList } from 'hooks/useFriendsList'
 import { UserProfileData } from 'types/UserProfileData'
-import { addNewFriend, deletePotentialFriend } from 'actions/newFriendsServices'
+import { addNewFriend, deletePotentialFriend } from 'actions/friendsServices'
 import Match from 'components/findMatch/Match'
 import { useNavigate } from 'react-router-dom'
 
@@ -31,20 +31,14 @@ const MessagesAndFriends = () => {
   const [currentPotentialFriend, setCurrentPotentialFriend] =
     useState<UserProfileData>(emptyProfile)
   const navigate = useNavigate()
-  // const { data: potentialFriends } = useFriendsList(
-  //   '../data/potentialFriends.json'
-  // )
-  const { data: potentialFriends } = useFriendsList(
-    'http://localhost:3005/potentialFriends' //use json-server for testing
-  )
+
+  const { data: potentialFriends } = usePotentialFriendsList()
 
   useEffect(() => {
     if (potentialFriends && potentialFriends.length > 0) {
       setNoPotentialFriends(false)
       setFriendsData(potentialFriends[0])
       setCurrentPotentialFriend(potentialFriends[0])
-    } else if (!potentialFriends?.length) {
-      // setNoPotentialFriends(true)
     }
   }, [potentialFriends])
 
@@ -56,22 +50,16 @@ const MessagesAndFriends = () => {
   const goToNextPotentialFriend = (currentUserProfile: UserProfileData) => {
     if (potentialFriends) {
       const currentIndex = potentialFriends.findIndex(
-        (element) => element.id === currentUserProfile.id
+        (element: UserProfileData) => element.id === currentUserProfile.id
       )
       const lastIndex = potentialFriends.length - 1
       if (currentIndex < lastIndex) {
         setFriendsData(potentialFriends[currentIndex + 1])
         setCurrentPotentialFriend(potentialFriends[currentIndex + 1])
-        deletePotentialFriend(
-          'http://localhost:3005/potentialFriends',
-          currentUserProfile.id
-        )
+        deletePotentialFriend(currentUserProfile.id)
       } else {
         setNoPotentialFriends(true)
-        deletePotentialFriend(
-          'http://localhost:3005/potentialFriends',
-          currentUserProfile.id
-        )
+        deletePotentialFriend(currentUserProfile.id)
       }
     }
   }
@@ -81,7 +69,7 @@ const MessagesAndFriends = () => {
   }
 
   const onBeFriend = () => {
-    addNewFriend('http://localhost:3005/newFriends', currentPotentialFriend) //use json-server for testing
+    addNewFriend(currentPotentialFriend)
     goToNextPotentialFriend(currentPotentialFriend)
     setIsMatchModalOpen(true)
   }
