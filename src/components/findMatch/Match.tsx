@@ -11,10 +11,11 @@ import { makeStyles } from 'tss-react/mui'
 
 interface MatchProps {
   onClose: () => void
+  onChat: () => void
   friendsAvatar: string
 }
 
-const Match: React.FC<MatchProps> = ({ onClose, friendsAvatar }) => {
+const Match: React.FC<MatchProps> = ({ onClose, onChat, friendsAvatar }) => {
   const { classes } = useStyles()
 
   return (
@@ -68,6 +69,7 @@ const Match: React.FC<MatchProps> = ({ onClose, friendsAvatar }) => {
                 className={`${classes.button} ${classes.chatButton}`}
                 startIcon={<img alt="fb" src={'/img/chatIcon.png'} />}
                 href="/messages"
+                onClick={onChat}
               >
                 Chat
               </Button>

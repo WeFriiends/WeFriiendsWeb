@@ -124,6 +124,7 @@ const MessagesAndFriends = () => {
         {isMatchModalOpen && (
           <Match
             onClose={handleMatchClose}
+            onChat={startChat}
             friendsAvatar={friendsData.photo[0].src}
           />
         )}
