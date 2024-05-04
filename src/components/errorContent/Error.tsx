@@ -3,7 +3,7 @@ import { Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 
-const Error400 = () => {
+const Error = () => {
   const { classes } = useStyles()
 
   return (
@@ -22,7 +22,7 @@ const Error400 = () => {
   )
 }
 
-export default Error400
+export default Error
 
 const useStyles = makeStyles()(() => ({
   textWrapper: {
