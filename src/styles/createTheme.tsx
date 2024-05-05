@@ -41,7 +41,7 @@ const theme: Record<string, any> = createTheme({
     h2: {
       fontSize: 24,
       lineHeight: 1.3, // 31.2px
-      fontWeight: 600,
+      fontWeight: 500,
       color: rose,
     },
     h3: {
