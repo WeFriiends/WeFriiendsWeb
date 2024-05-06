@@ -4,7 +4,7 @@ import { Typography, Box, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
 
-const STATUSES = [
+const STATUSES: Array<string> = [
   'Looking for new friends',
   "I’m learning a new language. Let's talk!",
   "Let's be friends, I'm new in town",
@@ -17,27 +17,31 @@ const STATUSES = [
 const Status = () => {
   const { classes } = useStyles()
   const commonClasses = commonStyles().classes
-  const [userStatus, setUserStatus] = useState<number[]>([])
 
-  const statusHandler = (event: React.MouseEvent) => {
-    const target = event.target as HTMLElement
-    const phraseId = Number(target.id.slice(-1))
-    let currentStatusList = [...userStatus]
-    if (currentStatusList.includes(phraseId)) {
-      currentStatusList = currentStatusList.filter((elem) => elem !== phraseId)
-    } else if (currentStatusList.length < 3) {
-      currentStatusList.push(phraseId)
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>([])
+
+  const toggleStatus = (status: string) => {
+    if (selectedStatuses.includes(status)) {
+      setSelectedStatuses(selectedStatuses.filter((s) => s !== status))
+    } else {
+      if (selectedStatuses.length < 3) {
+        setSelectedStatuses([...selectedStatuses, status])
+      } else {
+        alert('You can only select up to 3 statuses.')
+      }
     }
-    setUserStatus(currentStatusList)
   }
 
   const nextHandler = () => {
-    const userStatusPhrases = userStatus.map((index) => STATUSES[index])
-    localStorage.setItem('userStatus', JSON.stringify(userStatusPhrases))
+    console.log('selectedStatuses', selectedStatuses)
+    const selectedStatusesPhrases = selectedStatuses.map(
+      (index: string) => STATUSES[Number(index.slice(6))]
+    )
+    localStorage.setItem(
+      'selectedStatuses',
+      JSON.stringify(selectedStatusesPhrases)
+    )
   }
-
-  const checkStatus = (index: number) => userStatus.some((num) => num === index)
-
   return (
     <Box className={`${commonClasses.mainBox} ${classes.mainBox}`}>
       <Box>
@@ -58,7 +62,7 @@ const Status = () => {
       <Box className={classes.titleContainer}>
         <Typography
           variant="h1"
-          className={`${commonClasses.title} 
+          className={`${commonClasses.title}
           ${classes.title}`}
         >
           What are you looking for?
@@ -72,10 +76,16 @@ const Status = () => {
           <Box
             key={phrase}
             className={classes.phrase}
-            onClick={statusHandler}
+            onClick={(event) => {
+              // const target = event.target as HTMLElement
+              const targetEvent = event.target as Element
+              const target = targetEvent.closest('[id*=phrase]') as HTMLElement
+              toggleStatus(target.id)
+              console.log('event target id', target.id)
+            }}
             id={`phrase${index}`}
             sx={{
-              backgroundColor: checkStatus(index)
+              backgroundColor: selectedStatuses.includes(`phrase${index}`)
                 ? '#faa06d'
                 : 'rgba(229, 229, 229, 0.40)',
             }}
