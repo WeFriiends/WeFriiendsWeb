@@ -33,7 +33,6 @@ const Status = () => {
   }
 
   const nextHandler = () => {
-    console.log('selectedStatuses', selectedStatuses)
     const selectedStatusesPhrases = selectedStatuses.map(
       (index: string) => STATUSES[Number(index.slice(6))]
     )
@@ -77,11 +76,9 @@ const Status = () => {
             key={phrase}
             className={classes.phrase}
             onClick={(event) => {
-              // const target = event.target as HTMLElement
               const targetEvent = event.target as Element
               const target = targetEvent.closest('[id*=phrase]') as HTMLElement
               toggleStatus(target.id)
-              console.log('event target id', target.id)
             }}
             id={`phrase${index}`}
             sx={{
