@@ -17,6 +17,7 @@ import Invitation from '../components/invitation/Invitation'
 import ResetPassword from 'components/userAuth/signInMail/forgotPassword/resetPassword/ResetPassword'
 import RequestNewPassword from 'components/userAuth/signInMail/forgotPassword/inputEmail/RequestNewPassword'
 import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
+import CheckEmail from 'components/userAuth/signInMail/forgotPassword/inputEmail/CheckEmail'
 import Messages from 'pages/Messages'
 
 const Loadable =
@@ -71,6 +72,7 @@ const routes: RouteObject[] = [
         path: 'new-password',
         element: <RequestNewPassword />,
       },
+      { path: 'check-email', element: <CheckEmail /> },
       {
         path: 'reset-password/:confirmationCode',
         element: <ResetPassword />,
