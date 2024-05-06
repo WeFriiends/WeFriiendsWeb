@@ -13,7 +13,7 @@ interface FriendsProps {
 
 const Friends: React.FC<FriendsProps> = ({ onClick, selectedFriend }) => {
   const { classes } = useStyles()
-  // const { data: userFriends } = useFriendsList('../data/friendsProfile.json')
+
   const { data: userFriends } = useNewFriendsList()
 
   const handleClick = (id: string) => {
