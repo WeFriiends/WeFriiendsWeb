@@ -18,7 +18,7 @@
         }
       ],
       "city": "Madrid",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+      "aboutMe": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque esse natus, voluptatum minus cumque dolorum dignissimos? Fuga reprehenderit non rerum ex eos enim iure quod doloremque, repellat minus. Totam reiciendis quas ut soluta sint dolor praesentium ipsam quaerat, commodi dolores nisi similique. Commodi esse unde provident animi? Quaerat ipsam laudantium cupiditate fugiat? Quidem, necessitatibus voluptatem. Fugit, magni? Dicta dolore asperiores a voluptatum dolorem? Facilis in dolorem provident. Odio, soluta voluptatem! Eum aliquid ipsam provident numquam voluptas impedit natus! Facere sed expedita odit quasi eaque repellat minus recusandae voluptate excepturi, reiciendis adipisci aperiam soluta sint ullam harum ipsa sequi culpa consequuntur, quas vero amet consectetur! Laborum dolores magnam doloremque totam rerum inventore corporis odit eum, dicta quae voluptate dolorem recusandae quisquam dolor perferendis pariatur ab vitae excepturi reprehenderit suscipit cumque ipsa nobis? Distinctio numquam provident officiis tempore fugit! A nesciunt nihil libero optio recusandae eveniet facilis, fugiat sed molestiae. Quo nulla explicabo incidunt nihil suscipit? Nemo rerum doloremque ab totam, facere animi nam aliquam corrupti alias obcaecati fugiat dolores in est id incidunt commodi delectus, quibusdam itaque. Quam id dolorem ipsa repudiandae iste commodi rerum eius veniam voluptatibus, obcaecati maiores aperiam aut et vel ex ea nesciunt ipsum possimus velit aspernatur?",
       "education": "Bachelor degree",
       "profession": "Freelance Journalist"
     },
@@ -63,6 +63,139 @@
       "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
       "education": "Bachelor degree",
       "profession": "Freelance Journalist"
+    },
+    {
+      "id": "2",
+      "firstName": "Valentina",
+      "lastName": "M",
+      "age": "38",
+      "photo": [
+        { "src": "/img/friends/friends_photo2.jpg" },
+        {
+          "src": "/img/photo_Elena_3.jpg"
+        },
+        {
+          "src": "/img/photo_Elena.jpg"
+        }
+      ],
+      "city": "Berlin",
+      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+      "education": "Master degree",
+      "profession": "Analyst"
+    },
+    {
+      "id": "3",
+      "firstName": "Katya",
+      "lastName": "N",
+      "age": "40",
+      "photo": [
+        { "src": "/img/friends/friends_photo3.jpg" },
+        {
+          "src": "/img/photo_Elena_3.jpg"
+        },
+        {
+          "src": "/img/photo_Elena.jpg"
+        }
+      ],
+      "city": "Roma",
+      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
+      "education": "Bachelor degree",
+      "profession": "Freelance Journalist"
+    },
+    {
+      "id": "4",
+      "firstName": "Polina",
+      "lastName": "T",
+      "age": "42",
+      "photo": [
+        { "src": "/img/friends/friends_photo4.jpg" },
+        {
+          "src": "/img/photo_Elena_3.jpg"
+        },
+        {
+          "src": "/img/photo_Elena.jpg"
+        }
+      ],
+      "city": "Madrid",
+      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+      "education": "Master degree",
+      "profession": "Teacher"
+    },
+    {
+      "id": "5",
+      "firstName": "Nastya",
+      "lastName": "P",
+      "age": "42",
+      "photo": [
+        { "src": "/img/friends/friends_photo5.jpg" },
+        {
+          "src": "/img/photo_Elena_3.jpg"
+        },
+        {
+          "src": "/img/photo_Elena.jpg"
+        }
+      ],
+      "city": "Madrid",
+      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+      "education": "Master degree",
+      "profession": "Dentist"
+    },
+    {
+      "id": "6",
+      "firstName": "Tanya",
+      "lastName": "Petrova",
+      "age": "40",
+      "photo": [
+        { "src": "/img/friends/friends_photo1.jpg" },
+        {
+          "src": "/img/photo_Elena_3.jpg"
+        },
+        {
+          "src": "/img/photo_Elena.jpg"
+        }
+      ],
+      "city": "Milan",
+      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+      "education": "",
+      "profession": "Hairdresser"
+    },
+    {
+      "id": "7",
+      "firstName": "Sonya",
+      "lastName": "S",
+      "age": "38",
+      "photo": [
+        { "src": "/img/friends/friends_photo2.jpg" },
+        {
+          "src": "/img/photo_Elena_3.jpg"
+        },
+        {
+          "src": "/img/photo_Elena.jpg"
+        }
+      ],
+      "city": "Paris",
+      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
+      "education": "Master degree",
+      "profession": "Doctor"
+    },
+    {
+      "id": "8",
+      "firstName": "Katya",
+      "lastName": "L",
+      "age": "36",
+      "photo": [
+        { "src": "/img/friends/friends_photo3.jpg" },
+        {
+          "src": "/img/photo_Elena_3.jpg"
+        },
+        {
+          "src": "/img/photo_Elena.jpg"
+        }
+      ],
+      "city": "Madrid",
+      "aboutMe": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque esse natus, voluptatum minus cumque dolorum dignissimos? Fuga reprehenderit non rerum ex eos enim iure quod doloremque, repellat minus. Totam reiciendis quas ut soluta sint dolor praesentium ipsam quaerat, commodi dolores nisi similique. Commodi esse unde provident animi? Quaerat ipsam laudantium cupiditate fugiat? Quidem, necessitatibus voluptatem. Fugit, magni? Dicta dolore asperiores a voluptatum dolorem? Facilis in dolorem provident. Odio, soluta voluptatem! Eum aliquid ipsam provident numquam voluptas impedit natus! Facere sed expedita odit quasi eaque repellat minus recusandae voluptate excepturi, reiciendis adipisci aperiam soluta sint ullam harum ipsa sequi culpa consequuntur, quas vero amet consectetur! Laborum dolores magnam doloremque totam rerum inventore corporis odit eum, dicta quae voluptate dolorem recusandae quisquam dolor perferendis pariatur ab vitae excepturi reprehenderit suscipit cumque ipsa nobis? Distinctio numquam provident officiis tempore fugit! A nesciunt nihil libero optio recusandae eveniet facilis, fugiat sed molestiae. Quo nulla explicabo incidunt nihil suscipit? Nemo rerum doloremque ab totam, facere animi nam aliquam corrupti alias obcaecati fugiat dolores in est id incidunt commodi delectus, quibusdam itaque. Quam id dolorem ipsa repudiandae iste commodi rerum eius veniam voluptatibus, obcaecati maiores aperiam aut et vel ex ea nesciunt ipsum possimus velit aspernatur?",
+      "education": "",
+      "profession": "Hairdresser"
     }
   ]
 }
