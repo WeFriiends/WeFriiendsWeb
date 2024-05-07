@@ -10,7 +10,6 @@ import { makeStyles } from 'tss-react/mui'
 import { useActivePage } from '../../context/activePageContext'
 import { generateNavigationConfig } from '../../helpers/navigationConfigHelper'
 import { renderNavigationItems } from '../../helpers/navigationRenderer'
-import Logo from '../../common/Logo'
 import theme from '../../styles/createTheme'
 
 const NavBar = () => {
@@ -26,7 +25,7 @@ const NavBar = () => {
   return (
     <Box className={classes.header}>
       <Box className={classes.logo}>
-        <Logo />
+        <Box component="img" src="/img/logo.svg" alt="logo"></Box>
       </Box>
       <BottomNavigation
         value={activePage}
