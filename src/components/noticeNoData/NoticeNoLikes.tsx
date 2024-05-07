@@ -23,18 +23,16 @@ const NoticeNoLikes = () => {
 
 export default NoticeNoLikes
 
-const useStyles = makeStyles()(() => {
-  return {
-    textWrapper: {
-      textAlign: 'center',
-      maxWidth: '290px',
-      [theme.breakpoints.up('lg')]: {
-        maxWidth: '530px',
-      },
+const useStyles = makeStyles()(() => ({
+  textWrapper: {
+    textAlign: 'center',
+    maxWidth: 290,
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: 530,
     },
-    title: {
-      paddingBottom: '80px',
-      paddingTop: '50px',
-    },
-  }
-})
+  },
+  title: {
+    paddingBottom: 80,
+    paddingTop: 50,
+  },
+}))
