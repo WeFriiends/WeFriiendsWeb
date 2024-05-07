@@ -5,6 +5,7 @@ import { UserProfileData } from '../../types/UserProfileData'
 import NoNewMatches from './NoNewMatchesOrMessages'
 import { useNewFriendsList } from 'hooks/useFriendsList'
 import theme from 'styles/createTheme'
+import classnames from 'classnames'
 
 interface FriendsProps {
   onClick: (userProfileData: UserProfileData) => void
@@ -33,9 +34,10 @@ const Friends: React.FC<FriendsProps> = ({ onClick, selectedFriend }) => {
             <Box
               id={element.id}
               key={element.id}
-              className={`${classes.friendsPhotos}  ${
-                element.id === selectedFriend.id ? classes.fotoBorder : ''
-              }`}
+              className={classnames([
+                { [classes.friendsPhotos]: true },
+                { [classes.fotoBorder]: element.id === selectedFriend.id },
+              ])}
               onClick={() => handleClick(element.id)}
             >
               <img
