@@ -1,6 +1,5 @@
 import { Box, Typography } from '@mui/material'
 import Header from 'components/header/Header'
-// import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 
 const Messages = () => {
   return (
