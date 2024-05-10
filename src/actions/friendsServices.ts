@@ -1,26 +1,30 @@
 import { UserProfileData } from 'types/UserProfileData'
 import axiosInstance from './axiosInstance'
 
-export const getFriends = async (url: string) => {
+export const getFriends = async (url: string): Promise<UserProfileData[]> => {
   try {
     const response = await axiosInstance.get(url)
-    return response.data as Array<UserProfileData>
-  } catch (error) {
-    console.error('Error fetching data:', error)
-  }
-}
-
-export const addNewFriend = async (friendData: UserProfileData) => {
-  try {
-    const response = await axiosInstance.post('newFriends', friendData)
-
     return response.data
   } catch (error) {
-    console.error('Error posting data:', error)
+    console.error('Error fetching data:', error)
+    return []
   }
 }
 
-export const deletePotentialFriend = async (id: string) => {
+export const addNewFriend = async (
+  friendData: UserProfileData
+): Promise<number | undefined> => {
+  try {
+    const response = await axiosInstance.post('newFriends', friendData)
+    return response.status
+  } catch (error) {
+    console.error('Error by adding new friend:', error)
+  }
+}
+
+export const deletePotentialFriend = async (
+  id: string
+): Promise<number | undefined> => {
   try {
     const response = await axiosInstance.delete(`potentialFriends/${id}`)
     return response.status
