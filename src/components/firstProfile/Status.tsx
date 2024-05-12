@@ -66,8 +66,13 @@ const Status = () => {
         >
           What are you looking for?
         </Typography>
+      </Box>
+      <Box className={classes.tipContainer}>
         <Typography className={`${commonClasses.subTitle} ${classes.subTitle}`}>
           This will be your status. You can always change it
+        </Typography>
+        <Typography className={classes.subTitle}>
+          Please, choose 3 statuses maximum
         </Typography>
       </Box>
       <Box className={classes.phraseWrapper}>
@@ -93,7 +98,6 @@ const Status = () => {
           </Box>
         ))}
       </Box>
-      <Typography className={classes.tip}>3 statuses max</Typography>
       <Box className={classes.nextPageContainer}>
         <Button
           className={`${commonClasses.submitButton} ${classes.nextPageButton}`}
@@ -118,19 +122,28 @@ const useStyles = makeStyles()((theme) => {
       },
     },
     title: {
-      fontSize: 18,
+      fontSize: 32,
+      fontWeight: 600,
+      lineHeight: '119%',
+      paddingTop: 0,
     },
     subTitle: {
       fontFamily: 'Inter',
       fontSize: 14,
       color: '#1D878C',
       fontWeight: 600,
+      lineHeight: 'normal',
     },
     titleContainer: {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
       marginBottom: 14,
+    },
+    tipContainer: {
+      marginTop: 20,
+      marginBottom: 50,
+      textAlign: 'center',
     },
     tip: {
       fontWeight: 400,
@@ -144,8 +157,8 @@ const useStyles = makeStyles()((theme) => {
     prevPageContainer: {
       display: 'flex',
       justifyContent: 'center',
-      marginTop: 54,
-      marginBottom: 30,
+      marginTop: 80,
+      marginBottom: 45,
     },
     prevPageButton: {
       width: 45,
