@@ -1,5 +1,8 @@
 # WeFriendsWeb
 
+Link to Google documents with details regards of FE part of the project
+https://docs.google.com/document/d/12zr1Wf1MPXYctld1Y8OM7DMsp8ccZ3rKfsOJpFiewhs/edit?usp=sharing
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -71,7 +74,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### Folder styles:
+### Project Styling and Responsiveness Guide:
+https://docs.google.com/document/d/1kmg58tRs60JY3sIdIc6ey8EG2T7_GVg3PHcSl8J0lZg/edit?usp=sharing
 
 #### createTheme.tsx -
 
@@ -80,3 +84,25 @@ customization MUI styles - default font is Inter, primary color
 #### commonStyles.tsx -
 
 file with generic/common app styles (Titles, buttons etc.)
+
+### `Local development`
+
+For convinient development locally was created and set up docker compose file. It's a solution also to avoid CORS error.
+
+#### Important! 
+Repos Web FE and Auth should be located in the same directory, otherwise you need to adapt values `volumes` in docker-compose file accordingly.
+
+`docker-compose up` is command to run the project using docker-compose file.
+
+# Connection to cloud DB
+
+Connection Mongo DB string to use for production purposes
+To connect to the cloud database change value of env variable STORAGE_CONNECTION_STRING. 
+In `docker-compose.yml`:
+```
+    - STORAGE_CONNECTION_STRING=mongodb+srv://wefriiends-backup:wefriiends2023@cluster0.wir50id.mongodb.net/authorization?retryWrites=true&w=majority
+```
+To run the project use command:
+```
+docker-compose up
+```
