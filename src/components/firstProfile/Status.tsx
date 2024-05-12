@@ -163,6 +163,7 @@ const useStyles = makeStyles()((theme) => {
       gap: '10px 20px',
       flexWrap: 'wrap',
       width: '90vw',
+      marginBottom: 70,
       [theme.breakpoints.up(420)]: {
         width: 400,
         margin: 'o auto',
