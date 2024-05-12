@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Logo from '../logo/Logo'
 import { Typography, Box, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
@@ -26,8 +25,6 @@ const Status = () => {
     } else {
       if (selectedStatuses.length < 3) {
         setSelectedStatuses([...selectedStatuses, status])
-      } else {
-        alert('You can only select up to 3 statuses.')
       }
     }
   }
@@ -43,9 +40,6 @@ const Status = () => {
   }
   return (
     <Box className={`${commonClasses.mainBox} ${classes.mainBox}`}>
-      <Box>
-        <Logo />
-      </Box>
       <Box className={classes.prevPageContainer}>
         <Button
           className={classes.prevPageButton}
@@ -97,14 +91,6 @@ const Status = () => {
             </Typography>
           </Box>
         ))}
-      </Box>
-      <Box className={classes.nextPageContainer}>
-        <Button
-          className={`${commonClasses.submitButton} ${classes.nextPageButton}`}
-          onClick={nextHandler}
-        >
-          Next
-        </Button>
       </Box>
     </Box>
   )
@@ -169,20 +155,6 @@ const useStyles = makeStyles()((theme) => {
       alignItems: 'center',
       borderRadius: '50%',
       background: '#FEDED2',
-    },
-    nextPageButton: {
-      height: 60,
-      padding: '18px 24px',
-      textTransform: 'none',
-      width: '90vw',
-      [theme.breakpoints.up('sm')]: {
-        width: 400,
-      },
-    },
-    nextPageContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      marginBottom: 64,
     },
     phraseWrapper: {
       minHeight: 200,
