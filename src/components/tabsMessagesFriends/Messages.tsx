@@ -9,38 +9,38 @@ import NoNewMatches from './NoNewMatchesOrMessages'
 const Messages = () => {
   const { classes } = useStyles()
   const userMessages: UserMessage[] = messages
+
+  if (userMessages.length == 0) {
+    return (
+      <NoNewMatches text="You don’t have any messages. You need to find friends first!" />
+    )
+  }
   return (
     <>
-      {userMessages.length == 0 ? (
-        <NoNewMatches text="You don’t have any messages. You need to find friends first!" />
-      ) : (
-        <>
-          {userMessages.map((element) => (
-            <Box key={element.id}>
-              <Box className={classes.messageBlock}>
-                <Avatar
-                  src={element.avatar}
-                  sx={{ width: 66, height: 66 }}
-                ></Avatar>
-                <Box className={classes.message}>
-                  <Typography className={classes.name}>
-                    {element.firstName} {element.lastName}, {element.age}
-                  </Typography>
-                  <Typography className={classes.textMessage}>
-                    {element.message}
-                  </Typography>
-                </Box>
-                {element.messageCount === '0' ? null : (
-                  <Box className={classes.messageQuantity}>
-                    {element.messageCount}
-                  </Box>
-                )}
-              </Box>
-              <Box className={classes.line}></Box>
+      {userMessages.map((element) => (
+        <Box key={element.id}>
+          <Box className={classes.messageBlock}>
+            <Avatar
+              src={element.avatar}
+              sx={{ width: 66, height: 66 }}
+            ></Avatar>
+            <Box className={classes.message}>
+              <Typography className={classes.name}>
+                {element.firstName} {element.lastName}, {element.age}
+              </Typography>
+              <Typography className={classes.textMessage}>
+                {element.message}
+              </Typography>
             </Box>
-          ))}
-        </>
-      )}
+            {element.messageCount === '0' ? null : (
+              <Box className={classes.messageQuantity}>
+                {element.messageCount}
+              </Box>
+            )}
+          </Box>
+          <Box className={classes.line}></Box>
+        </Box>
+      ))}
     </>
   )
 }

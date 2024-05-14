@@ -24,35 +24,33 @@ const Friends: React.FC<FriendsProps> = ({ onClick, selectedFriend }) => {
     onClick(friendsData as UserProfileData)
   }
 
+  if (userFriends?.length == 0) {
+    return <NoNewMatches text="You don’t have new matches." />
+  }
+
   return (
-    <>
-      {userFriends?.length == 0 ? (
-        <NoNewMatches text="You don’t have new matches." />
-      ) : (
-        <Box className={classes.friendsBlock}>
-          {userFriends?.map((element: UserProfileData) => (
-            <Box
-              id={element.id}
-              key={element.id}
-              className={classnames([
-                { [classes.friendsPhotos]: true },
-                { [classes.fotoBorder]: element.id === selectedFriend.id },
-              ])}
-              onClick={() => handleClick(element.id)}
-            >
-              <img
-                src={element.photo[0].src}
-                alt="photo"
-                className={classes.smallPhoto}
-              />
-              <Typography className={classes.textOnPhoto}>
-                {element.firstName} {element.lastName}, {element.age}
-              </Typography>
-            </Box>
-          ))}
+    <Box className={classes.friendsBlock}>
+      {userFriends?.map((element: UserProfileData) => (
+        <Box
+          id={element.id}
+          key={element.id}
+          className={classnames([
+            { [classes.friendsPhotos]: true },
+            { [classes.fotoBorder]: element.id === selectedFriend.id },
+          ])}
+          onClick={() => handleClick(element.id)}
+        >
+          <img
+            src={element.photo[0].src}
+            alt="photo"
+            className={classes.smallPhoto}
+          />
+          <Typography className={classes.textOnPhoto}>
+            {element.firstName} {element.lastName}, {element.age}
+          </Typography>
         </Box>
-      )}
-    </>
+      ))}
+    </Box>
   )
 }
 export default Friends
