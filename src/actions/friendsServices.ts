@@ -1,13 +1,14 @@
 import { UserProfileData } from 'types/UserProfileData'
 import axiosInstance from './axiosInstance'
 
-export const getFriends = async (url: string): Promise<UserProfileData[]> => {
+export const getFriends = async (
+  url: string
+): Promise<UserProfileData[] | undefined> => {
   try {
     const response = await axiosInstance.get(url)
     return response.data
   } catch (error) {
     console.error('Error fetching data:', error)
-    return []
   }
 }
 

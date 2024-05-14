@@ -32,10 +32,10 @@ const MessagesAndFriends = () => {
     useState<UserProfileData>(emptyProfile)
   const navigate = useNavigate()
 
-  const { data: potentialFriends } = usePotentialFriendsList()
+  const { data: potentialFriends = [] } = usePotentialFriendsList()
 
   useEffect(() => {
-    if (potentialFriends && potentialFriends.length > 0) {
+    if (potentialFriends.length) {
       setNoPotentialFriends(false)
       setFriendsData(potentialFriends[0])
       setCurrentPotentialFriend(potentialFriends[0])
@@ -48,19 +48,17 @@ const MessagesAndFriends = () => {
   }
 
   const goToNextPotentialFriend = (currentUserProfile: UserProfileData) => {
-    if (potentialFriends) {
-      const currentIndex = potentialFriends.findIndex(
-        (element: UserProfileData) => element.id === currentUserProfile.id
-      )
-      const lastIndex = potentialFriends.length - 1
-      if (currentIndex < lastIndex) {
-        setFriendsData(potentialFriends[currentIndex + 1])
-        setCurrentPotentialFriend(potentialFriends[currentIndex + 1])
-        deletePotentialFriend(currentUserProfile.id)
-      } else {
-        setNoPotentialFriends(true)
-        deletePotentialFriend(currentUserProfile.id)
-      }
+    const currentIndex = potentialFriends.findIndex(
+      (element: UserProfileData) => element.id === currentUserProfile.id
+    )
+    const lastIndex = potentialFriends.length - 1
+    if (currentIndex < lastIndex) {
+      setFriendsData(potentialFriends[currentIndex + 1])
+      setCurrentPotentialFriend(potentialFriends[currentIndex + 1])
+      deletePotentialFriend(currentUserProfile.id)
+    } else {
+      setNoPotentialFriends(true)
+      deletePotentialFriend(currentUserProfile.id)
     }
   }
 
