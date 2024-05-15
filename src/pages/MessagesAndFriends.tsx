@@ -32,14 +32,15 @@ const MessagesAndFriends = () => {
     useState<UserProfileData>(emptyProfile)
   const navigate = useNavigate()
 
-  const { data: potentialFriends = [] } = usePotentialFriendsList()
+  const { data: potentialFriends } = usePotentialFriendsList()
 
   useEffect(() => {
-    if (potentialFriends.length) {
-      setNoPotentialFriends(false)
-      setFriendsData(potentialFriends[0])
-      setCurrentPotentialFriend(potentialFriends[0])
+    if (!potentialFriends?.length) {
+      return
     }
+    setNoPotentialFriends(false)
+    setFriendsData(potentialFriends[0])
+    setCurrentPotentialFriend(potentialFriends[0])
   }, [potentialFriends])
 
   const selectFriend = (user: UserProfileData) => {
@@ -48,6 +49,9 @@ const MessagesAndFriends = () => {
   }
 
   const goToNextPotentialFriend = (currentUserProfile: UserProfileData) => {
+    if (!potentialFriends?.length) {
+      return
+    }
     const currentIndex = potentialFriends.findIndex(
       (element: UserProfileData) => element.id === currentUserProfile.id
     )
