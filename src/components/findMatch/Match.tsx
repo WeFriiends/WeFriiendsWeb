@@ -13,16 +13,22 @@ interface MatchProps {
   onClose: () => void
   onChat: () => void
   friendsAvatar: string
+  isMatchModalOpen: boolean
 }
 
-const Match: React.FC<MatchProps> = ({ onClose, onChat, friendsAvatar }) => {
+const Match: React.FC<MatchProps> = ({
+  onClose,
+  onChat,
+  friendsAvatar,
+  isMatchModalOpen,
+}) => {
   const { classes } = useStyles()
 
   return (
     <>
       <Modal
         className={classes.modal}
-        open={true}
+        open={isMatchModalOpen}
         onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -68,7 +74,6 @@ const Match: React.FC<MatchProps> = ({ onClose, onChat, friendsAvatar }) => {
               <Button
                 className={`${classes.button} ${classes.chatButton}`}
                 startIcon={<img alt="fb" src={'/img/chatIcon.png'} />}
-                href="/messages"
                 onClick={onChat}
               >
                 Chat
