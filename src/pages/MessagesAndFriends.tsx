@@ -22,6 +22,7 @@ const MessagesAndFriends = () => {
     aboutMe: '',
     education: '',
     profession: '',
+    likedUsers: [],
   }
   const { classes } = useStyles()
   const [noPotentialFriends, setNoPotentialFriends] = useState(true)
