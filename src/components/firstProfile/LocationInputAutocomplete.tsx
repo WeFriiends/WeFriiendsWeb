@@ -45,7 +45,12 @@ const LocationInputAutocomplete = () => {
             startAdornment: (
               <InputAdornment position="start">
                 <SearchIcon />
-                <span style={{ display: isFocused ? 'none' : 'inline' }}>
+                <span
+                  style={{
+                    display:
+                      isFocused || inputLocation.length ? 'none' : 'inline',
+                  }}
+                >
                   Search city
                 </span>
               </InputAdornment>
