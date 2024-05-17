@@ -29,6 +29,11 @@ const LocationInputAutocomplete = () => {
       }}
       renderInput={(params) => (
         <TextField
+          sx={{
+            "input[type='search']::-webkit-search-cancel-button": {
+              display: 'none',
+            },
+          }}
           onChange={(e) => setInputLocation(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
