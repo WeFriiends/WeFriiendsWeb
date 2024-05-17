@@ -51,7 +51,7 @@ const LocationInputAutocomplete = () => {
                       isFocused || inputLocation.length ? 'none' : 'inline',
                   }}
                 >
-                  Search city
+                  &nbsp;Search city
                 </span>
               </InputAdornment>
             ),
