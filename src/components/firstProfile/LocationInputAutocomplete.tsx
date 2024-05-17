@@ -1,12 +1,14 @@
 import * as React from 'react'
 import { useSuggestedLocations } from 'hooks/useSuggestedLocations'
-import { Autocomplete, TextField } from '@mui/material'
+import { Autocomplete, TextField, InputAdornment } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
 
 const BOUNCE_DURATION = 500
 const SUGGETIONS_LIMIT = 5
 
 const LocationInputAutocomplete = () => {
   const [inputLocation, setInputLocation] = React.useState('')
+  const [isFocused, setIsFocused] = React.useState(false)
   const suggestedLocations = useSuggestedLocations(
     inputLocation,
     BOUNCE_DURATION,
@@ -28,11 +30,21 @@ const LocationInputAutocomplete = () => {
       renderInput={(params) => (
         <TextField
           onChange={(e) => setInputLocation(e.target.value)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           {...params}
-          label="Input your street"
+          variant="standard"
           InputProps={{
             ...params.InputProps,
             type: 'search',
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+                <span style={{ display: isFocused ? 'none' : 'inline' }}>
+                  Search city
+                </span>
+              </InputAdornment>
+            ),
           }}
         />
       )}

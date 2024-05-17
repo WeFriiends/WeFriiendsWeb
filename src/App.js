@@ -10,6 +10,7 @@ import TestPage from './components/user-auth/testPage/TestPage'
 import MessagesAndFriends from './pages/MessagesAndFriends'
 import NearMe from './pages/NearMe'
 import Match from './components/findMatch/Match'
+import LocationManual from './components/firstProfile/LocationManual'
 import Report from 'components/report/report'
 import ReportComment from 'components/report/reportComment'
 import ReportReceived from 'components/report/reportReceived'
@@ -37,6 +38,7 @@ function App() {
                 element={<AccountCreated />}
               />
               <Route path="/signIn" element={<SignIn />} />
+              <Route path="/locationManual" element={<LocationManual />} />
               <Route path="/mailSignIn" element={<SignInMail />} />
               <Route path="/test" element={<TestPage />} />
               <Route path="/messages" element={<MessagesAndFriends />} />
