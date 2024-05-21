@@ -32,6 +32,7 @@ const MessagesAndFriends = () => {
   const [currentPotentialFriend, setCurrentPotentialFriend] =
     useState<UserProfileData>(emptyProfile)
   const navigate = useNavigate()
+  const accountId = '1'
 
   const { data: potentialFriends } = usePotentialFriendsList()
 
@@ -71,10 +72,26 @@ const MessagesAndFriends = () => {
     goToNextPotentialFriend(currentPotentialFriend)
   }
 
+  const isLiked = (accountId: string, likedUsersArray: string[]): boolean => {
+    const likedMe = likedUsersArray.includes(accountId)
+    console.log('isLiked')
+    if (likedMe) {
+      console.log('true')
+      return true
+    } else {
+      console.log(false)
+      return false
+    }
+  }
+
   const onBeFriend = () => {
-    addNewFriend(currentPotentialFriend)
+    if (isLiked(accountId, currentPotentialFriend.likedUsers)) {
+      addNewFriend(currentPotentialFriend)
+      setIsMatchModalOpen(true)
+    } else {
+      console.log(currentPotentialFriend.likedUsers)
+    }
     goToNextPotentialFriend(currentPotentialFriend)
-    setIsMatchModalOpen(true)
   }
 
   const handleMatchClose = () => {
