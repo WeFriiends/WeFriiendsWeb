@@ -24,7 +24,7 @@ const Friends: React.FC<FriendsProps> = ({ onClick, selectedFriend }) => {
     onClick(friendsData as UserProfileData)
   }
 
-  if (userFriends?.length == 0) {
+  if (userFriends?.length === 0) {
     return <NoNewMatches text="You don’t have new matches." />
   }
 
