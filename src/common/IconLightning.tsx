@@ -23,6 +23,7 @@ const IconLightning: React.FC<LightningProps> = ({ color }) => {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
+        className={classes.IconTransition}
       />
     </svg>
   )
@@ -33,6 +34,9 @@ const useStyles = makeStyles()(() => {
     IconLightning: {
       maxWidth: '100%',
       maxHeight: '100%',
+    },
+    IconTransition: {
+      transition: 'color 0.3s',
     },
   }
 })
