@@ -16,15 +16,19 @@ export const NavigationItems = ({
       to={linkTo}
       icon={
         <Icon
-          color={activePage === value ? theme.palette.primary.main : '#AFB1B6'}
+          color={
+            activePage === value
+              ? theme.palette.primary.main
+              : theme.colorNavIcon
+          }
         />
       }
       sx={{
         width: { xs: size.xs.width, lg: size.lg.width },
         height: { xs: size.xs.height, lg: size.lg.height },
       }}
-      disableRipple={true}
-      disableTouchRipple={true}
+      disableRipple
+      disableTouchRipple
     />
   ))
 }

@@ -56,6 +56,7 @@ const theme = {
       fontWeight: 400,
     },
   },
+  colorNavIcon: '#AFB1B6', // Better to add it to 'palette'? but it causes errors
 } as const
 
 type CustomTheme = {
