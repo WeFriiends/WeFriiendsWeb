@@ -12,7 +12,7 @@ const IconLocation = () => {
       viewBox="0 0 10 11"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={classes.IconLocation}
+      className={classes.iconLocation}
     >
       <path
         d="M8.93806 4.88895C8.93806 7.86812 5.1077 10.4217 5.1077 10.4217C5.1077 10.4217 1.27734 7.86812 1.27734 4.88895C1.27734 3.87308 1.6809 2.89881 2.39923 2.18048C3.11756 1.46215 4.09183 1.05859 5.1077 1.05859C6.12357 1.05859 7.09784 1.46215 7.81617 2.18048C8.5345 2.89881 8.93806 3.87308 8.93806 4.88895Z"
@@ -32,7 +32,7 @@ const IconLocation = () => {
 export default IconLocation
 const useStyles = makeStyles()(() => {
   return {
-    IconLocation: {
+    iconLocation: {
       maxWidth: '100%',
       maxHeight: '100%',
     },

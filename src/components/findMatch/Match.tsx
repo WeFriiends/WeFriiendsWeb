@@ -72,7 +72,13 @@ const Match = () => {
               </Button>
               <Button
                 className={`${classes.button} ${classes.chatButton}`}
-                startIcon={<IconChat color={theme.palette.common.white} />}
+                startIcon={
+                  <IconChat
+                    color={theme.palette.common.white}
+                    width={22}
+                    height={22}
+                  />
+                }
                 href="/messages"
                 disableFocusRipple={true}
                 disableRipple={true}

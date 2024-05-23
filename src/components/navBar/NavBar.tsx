@@ -1,26 +1,24 @@
-import React from 'react'
-import {
-  Avatar,
-  BottomNavigation,
-  Box,
-  Typography,
-  useMediaQuery,
-} from '@mui/material'
+import React, { useEffect } from 'react'
+import { Avatar, BottomNavigation, Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { useActivePage } from '../../context/activePageContext'
 import { generateNavigationConfig } from '../../helpers/navigationConfigHelper'
-import { renderNavigationItems } from '../../helpers/navigationRenderer'
+import { NavigationItems } from '../navigationItems/NavigationItems'
 import theme from '../../styles/createTheme'
 
 const NavBar = () => {
   const { classes } = useStyles()
   const { activePage, setNewActivePage } = useActivePage()
-  const isMobile = useMediaQuery<boolean>('(max-width:1023px)')
-  const navigationConfig = isMobile
-    ? generateNavigationConfig('footer')
-    : generateNavigationConfig('header')
+  const navigationConfig = generateNavigationConfig()
 
-  // We need to show active menu item from the first render of the app: to check the location path and to setActivePage
+  // Set current active menu item if we open the corresponding link
+  useEffect(() => {
+    const currentNavigationItem = navigationConfig.filter(
+      (NavigationItem) => NavigationItem.linkTo === window.location.pathname
+    )
+    currentNavigationItem.length > 0 &&
+      setNewActivePage(currentNavigationItem[0].value)
+  }, [navigationConfig, setNewActivePage])
 
   return (
     <Box className={classes.header}>
@@ -32,9 +30,8 @@ const NavBar = () => {
         onChange={(event, newValue) => setNewActivePage(newValue)}
         className={classes.navList}
       >
-        {renderNavigationItems({
+        {NavigationItems({
           activePage,
-          setNewActivePage,
           navigationConfig,
         })}
       </BottomNavigation>
@@ -95,6 +92,14 @@ const useStyles = makeStyles()({
     },
     '& a': {
       minWidth: 60,
+    },
+    '& a:hover svg path': {
+      stroke: theme.palette.primary.main,
+    },
+    '& a:last-child': {
+      [theme.breakpoints.up('lg')]: {
+        display: 'none',
+      },
     },
   },
   userDetails: {

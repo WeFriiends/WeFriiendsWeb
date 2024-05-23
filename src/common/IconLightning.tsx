@@ -2,28 +2,28 @@ import React from 'react'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../styles/createTheme'
 
-type LightningProps = {
+type IconLightningProps = {
   color?: string
 }
-const IconLightning: React.FC<LightningProps> = ({ color }) => {
+const IconLightning: React.FC<IconLightningProps> = ({ color }) => {
   const { classes } = useStyles()
   color ??= theme.palette.primary.main
 
   return (
     <svg
       preserveAspectRatio="none"
-      viewBox="0 0 32 36"
+      viewBox="0 0 32 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={classes.IconLightning}
+      className={classes.iconLightning}
     >
       <path
-        d="M17.6667 1.32422L1 21.1242H16L14.3333 34.3242L31 14.5242H16L17.6667 1.32422Z"
+        d="M17.537 1L1.89453 23.8H15.9727L14.4085 39.0001L30.051 16.2H15.9727L17.537 1Z"
         stroke={color}
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={classes.IconTransition}
+        className={classes.iconTransition}
       />
     </svg>
   )
@@ -31,12 +31,12 @@ const IconLightning: React.FC<LightningProps> = ({ color }) => {
 export default IconLightning
 const useStyles = makeStyles()(() => {
   return {
-    IconLightning: {
+    iconLightning: {
       maxWidth: '100%',
       maxHeight: '100%',
     },
-    IconTransition: {
-      transition: 'color 0.3s',
+    iconTransition: {
+      transition: 'color 0.3s, stroke 0.3s',
     },
   }
 })
