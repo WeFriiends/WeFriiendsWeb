@@ -7,9 +7,12 @@ type IconChatProps = {
   width?: number
   height?: number
 }
-const IconChat: React.FC<IconChatProps> = ({ color, width, height }) => {
+const IconChat: React.FC<IconChatProps> = ({
+  color = theme.palette.primary.main,
+  width,
+  height,
+}) => {
   const { classes } = useStyles()
-  color ??= theme.palette.primary.main
 
   return (
     <svg
