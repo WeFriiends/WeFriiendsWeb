@@ -14,6 +14,7 @@ import NearMe from 'pages/NearMe'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
 import Invitation from '../components/invitation/Invitation'
+import ErrorPage from 'pages/ErrorPage'
 import ResetPassword from 'components/userAuth/signInMail/forgotPassword/resetPassword/ResetPassword'
 import RequestNewPassword from 'components/userAuth/signInMail/forgotPassword/inputEmail/RequestNewPassword'
 import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
@@ -101,27 +102,19 @@ const routes: RouteObject[] = [
       {
         path: 'who-liked-you',
         element: (
-          <AuthGuard>
-            <YourLikesList />
-          </AuthGuard>
+          // <AuthGuard>
+          <YourLikesList />
+          // </AuthGuard>
         ),
       },
       {
         path: 'near-me',
         element: (
-          <AuthGuard>
-            <NearMe />
-          </AuthGuard>
+          // <AuthGuard>
+          <NearMe />
+          // </AuthGuard>
         ),
       },
-      // {
-      //   path: 'new-match',
-      //   element: (
-      //     <AuthGuard>
-      //       <Match />
-      //     </AuthGuard>
-      //   ),
-      // },
     ],
   },
 
@@ -147,6 +140,9 @@ const routes: RouteObject[] = [
     ],
   },
   { path: 'invite', element: <Invitation /> },
+  { path: 'error-400', element: <ErrorPage code={400} /> }, // Route is working for demonstration
+  { path: 'error-500', element: <ErrorPage code={500} /> }, // Route is working for demonstration
+  { path: '*', element: <ErrorPage /> }, // Route is working for demonstration
   //left code underneath as example of using path for common layout
   // {
   //   path: '*',
