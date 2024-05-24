@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import Header from 'components/header/Header'
+import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 import UserProfile from 'components/userProfile/UserProfile'
 import UserProfileButton from 'components/userProfile/UserProfileButton'
@@ -86,7 +86,7 @@ const MessagesAndFriends = () => {
 
   return (
     <Box sx={{ width: '1024px', margin: '0 auto', padding: '0 30px' }}>
-      <Header />
+      <NavBar />
       <Box sx={{ display: 'grid', gridTemplateColumns: '5.5fr 6.5fr' }}>
         <TabsMessagesFriends
           onClick={selectFriend}
