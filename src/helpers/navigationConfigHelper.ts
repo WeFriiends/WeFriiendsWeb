@@ -91,7 +91,7 @@ export const generateNavigationConfig = (
       {
         value: 'chat',
         iconProps: commonConfig(true, '/img/navigationIcons/chat', 'chat'),
-        linkTo: '/user/messages-and-friends',
+        linkTo: '/user/messages',
         size: { width: 30, height: 29 },
       },
     ]
