@@ -100,14 +100,6 @@ const routes: RouteObject[] = [
         ),
       },
       {
-        path: 'messages',
-        element: (
-          <AuthGuard>
-            <Messages />
-          </AuthGuard>
-        ),
-      },
-      {
         path: 'who-liked-you',
         element: (
           // <AuthGuard>
@@ -123,14 +115,6 @@ const routes: RouteObject[] = [
           // </AuthGuard>
         ),
       },
-      // {
-      //   path: 'new-match',
-      //   element: (
-      //     <AuthGuard>
-      //       <Match />
-      //     </AuthGuard>
-      //   ),
-      // },
     ],
   },
 
