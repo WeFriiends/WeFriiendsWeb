@@ -1,13 +1,23 @@
 import * as React from 'react'
 import { Box, Typography, Avatar } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import messages from './messages.json'
+// import messages from './messages.json'
+import messages from './messagesEmpty.json'
+import { UserMessage } from 'types/Message'
+import NoNewMatches from './NoNewMatchesOrMessages'
 
 const Messages = () => {
   const { classes } = useStyles()
+  const userMessages: UserMessage[] = messages
+
+  if (userMessages.length == 0) {
+    return (
+      <NoNewMatches text="You don’t have any messages. You need to find friends first!" />
+    )
+  }
   return (
     <>
-      {messages.map((element) => (
+      {userMessages.map((element) => (
         <Box key={element.id}>
           <Box className={classes.messageBlock}>
             <Avatar
@@ -16,7 +26,7 @@ const Messages = () => {
             ></Avatar>
             <Box className={classes.message}>
               <Typography className={classes.name}>
-                {element.name} {element.lastname}, {element.age}
+                {element.firstName} {element.lastName}, {element.age}
               </Typography>
               <Typography className={classes.textMessage}>
                 {element.message}

@@ -8,23 +8,30 @@ import {
   Icon,
 } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { useState } from 'react'
 import IconChat from '../../common/svg/IconChat'
 import theme from '../../styles/createTheme'
 
-const Match = () => {
-  const [open, setOpen] = useState(true)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+interface MatchProps {
+  onClose: () => void
+  onChat: () => void
+  friendsAvatar: string
+  isMatchModalOpen: boolean
+}
+
+const Match: React.FC<MatchProps> = ({
+  onClose,
+  onChat,
+  friendsAvatar,
+  isMatchModalOpen,
+}) => {
   const { classes } = useStyles()
 
   return (
     <>
-      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         className={classes.modal}
-        open={open}
-        onClose={handleClose}
+        open={isMatchModalOpen}
+        onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -34,7 +41,7 @@ const Match = () => {
             disableFocusRipple={true}
             aria-label="close modal"
             className={classes.closeButton}
-            onClick={handleClose}
+            onClick={onClose}
           >
             <Icon>
               <img src="/img/icon-close-modal.svg" alt="Close" />
@@ -48,7 +55,7 @@ const Match = () => {
               />
               <Avatar
                 className={`${classes.matchedAvatar} ${classes.newMatchAvatar}`}
-                src="/img/avatar_stacy.jpg"
+                src={friendsAvatar}
               />
             </Box>
             <Box className={classes.info}>
@@ -66,7 +73,7 @@ const Match = () => {
             <Box className={classes.buttonsContainer}>
               <Button
                 className={`${classes.button} ${classes.laterButton}`}
-                onClick={handleClose}
+                onClick={onClose}
                 disableFocusRipple={true}
                 disableRipple={true}
               >
@@ -81,9 +88,9 @@ const Match = () => {
                     height={22}
                   />
                 }
-                href="/messages"
-                disableFocusRipple={true}
-                disableRipple={true}
+                disableFocusRipple
+                disableRipple
+                onClick={onChat}
               >
                 Chat
               </Button>

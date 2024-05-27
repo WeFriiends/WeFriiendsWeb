@@ -4,11 +4,9 @@ import {
   AccordionSummary,
   Box,
   Typography,
-  Button,
 } from '@mui/material'
 
 import { makeStyles } from 'tss-react/mui'
-import CircleRoundedIcon from '@mui/icons-material/CircleRounded'
 import PhotoCarousel from './PhotoCarousel'
 import { UserProfileData } from '../../types/UserProfileData'
 
@@ -26,7 +24,8 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
             <img src="/img/likes_me.svg" alt="likes me" />
             <Typography>Likes you</Typography>
           </Box>
-          <img src="/img/verified.svg"></img>
+          {/* <img src="/img/verified.svg"></img> */}
+          {/* We don't use it in MVP1 */}
         </Box>
 
         <div className={classes.carousel}>
@@ -40,9 +39,10 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                 <Typography className={classes.name}>
                   {user.firstName} {user.lastName}, {user.age}
                 </Typography>
-                <CircleRoundedIcon
+                {/* <CircleRoundedIcon
                   className={classes.roundIcon}
-                ></CircleRoundedIcon>
+                ></CircleRoundedIcon> */}
+                {/* We don't use it in MVP1 */}
               </Box>
               <Box className={classes.distanceWithIcon}>
                 <img src="/img/near_me.svg" height={20} width={20} />
@@ -52,7 +52,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
               </Box>
             </Box>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails
+            sx={{ overflow: 'auto', maxHeight: 'calc(49vh - 340px)' }}
+          >
             <Typography variant="h3" className={classes.title}>
               About Me
             </Typography>
@@ -64,10 +66,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
             <Typography className={classes.text}>{user.education}</Typography>
           </AccordionDetails>
         </Accordion>
-      </Box>
-      <Box className={classes.buttonSection}>
-        <Button className={classes.whiteButton}> Skip </Button>
-        <Button className={classes.orangeButton}>Be friend</Button>
       </Box>
     </>
   )
@@ -102,41 +100,7 @@ const useStyles = makeStyles()(() => {
       gridRow: '1/9',
       gridColumn: '1/2',
     },
-    buttonSection: {
-      display: 'flex',
-      justifyContent: 'center',
-      gap: 19,
-      background:
-        'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FEDED2 100%)',
-      paddingTop: 27,
-      paddingBottom: 24,
-    },
-    orangeButton: {
-      backgroundColor: '#FB8F67',
-      color: '#FFFFFF',
-      fontSize: 22,
-      fontWeight: 700,
-      lineHeight: '20px',
-      borderRadius: 10,
-      width: 141,
-      height: 58,
-      textTransform: 'capitalize',
-      '&: hover': {
-        backgroundColor: '#FB8F67',
-      },
-    },
-    whiteButton: {
-      backgroundColor: '#FFFFFF',
-      border: '2px solid #FB8F67',
-      color: '#FB8F67',
-      borderRadius: 10,
-      fontSize: 22,
-      fontWeight: 600,
-      lineHeight: '20px',
-      width: 141,
-      height: 58,
-      textTransform: 'capitalize',
-    },
+
     name: {
       color: '#F46B5D',
       fontSize: 44,
