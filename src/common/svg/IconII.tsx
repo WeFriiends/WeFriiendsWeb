@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from 'tss-react/mui'
-import theme from '../styles/createTheme'
+import theme from '../../styles/createTheme'
 
 type IconIIProps = {
   color?: string
@@ -48,7 +48,7 @@ const useStyles = makeStyles()(() => {
       maxHeight: '100%',
     },
     iconTransition: {
-      transition: 'color 0.3s, stroke 0.3s',
+      transition: 'color .3s, stroke .3s, fill .3s',
     },
   }
 })

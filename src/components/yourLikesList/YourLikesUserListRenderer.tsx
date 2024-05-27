@@ -3,8 +3,8 @@ import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
 import { UserObjectType } from '../../common/types/userTypes'
 import { nearByWhoLikedMeStyles } from '../../styles/nearByWhoLikedMeStyles'
 import NoticeNoLikes from '../noticeNoData/NoticeNoLikes'
-import IconLightning from '../../common/IconLightning'
-import IconLocation from '../../common/IconLocation'
+import IconLightning from '../../common/svg/IconLightning'
+import IconLocation from '../../common/svg/IconLocation'
 
 type UserListRendererProps = {
   users?: UserObjectType[]

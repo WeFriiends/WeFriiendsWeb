@@ -94,7 +94,7 @@ const useStyles = makeStyles()({
       minWidth: 60,
     },
     '& a:hover svg path': {
-      stroke: theme.palette.primary.main,
+      fill: theme.palette.primary.main,
     },
     '& a:last-child': {
       [theme.breakpoints.up('lg')]: {

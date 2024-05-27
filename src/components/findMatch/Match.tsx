@@ -5,11 +5,11 @@ import {
   Button,
   Modal,
   IconButton,
+  Icon,
 } from '@mui/material'
-import IconCloseModal from '../../common/IconCloseModal'
 import { makeStyles } from 'tss-react/mui'
 import { useState } from 'react'
-import IconChat from '../../common/IconChat'
+import IconChat from '../../common/svg/IconChat'
 import theme from '../../styles/createTheme'
 
 const Match = () => {
@@ -36,7 +36,9 @@ const Match = () => {
             className={classes.closeButton}
             onClick={handleClose}
           >
-            <IconCloseModal />
+            <Icon>
+              <img src="/img/icon-close-modal.svg" alt="Close" />
+            </Icon>
           </IconButton>
           <Box className={classes.matchContainer}>
             <Box className={classes.matchedAvatarsContainer}>
