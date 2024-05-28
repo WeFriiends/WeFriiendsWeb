@@ -36,7 +36,7 @@ export const nearByWhoLikedMeStyles = makeStyles()(() => ({
       margin: '0 auto 45px',
       '& path': {
         // lightning icon color desktop
-        fill: theme.colorNavIcon,
+        fill: theme.customPalette.colorNavIcon,
       },
     },
     '&:hover path': {

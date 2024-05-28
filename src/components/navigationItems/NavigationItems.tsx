@@ -19,7 +19,7 @@ export const NavigationItems = ({
           color={
             activePage === value
               ? theme.palette.primary.main
-              : theme.colorNavIcon
+              : theme.customPalette.colorNavIcon
           }
         />
       }
