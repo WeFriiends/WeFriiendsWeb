@@ -56,7 +56,16 @@ const theme = {
       fontWeight: 400,
     },
   },
-  colorNavIcon: '#AFB1B6', // Better to add it to 'palette'? but it causes errors
+  colorNavIcon: '#AFB1B6', // Better to add it to 'theme.palette'? but it causes errors
+  components: {
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(13, 13, 13, 0.72)',
+        },
+      },
+    },
+  },
 } as const
 
 type CustomTheme = {
@@ -66,6 +75,7 @@ type CustomTheme = {
 declare module '@mui/material/styles' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface Theme extends CustomTheme {}
+
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface ThemeOptions extends CustomTheme {}
 }

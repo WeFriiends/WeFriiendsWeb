@@ -1,7 +1,6 @@
 import React from 'react'
-import { Box, Typography, Button } from '@mui/material'
+import { Box, Typography, Button, Modal, Icon } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import ClearIcon from '@mui/icons-material/Clear'
 import IconButton from '@mui/material/IconButton'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router'
@@ -14,75 +13,116 @@ const Report = () => {
   }
 
   return (
-    <Box className={classes.mainBox}>
-      <IconButton className={classes.iconButton} onClick={handleGoBack}>
-        <ClearIcon className={classes.closeIcon} />
-      </IconButton>
-      <img
-        src="/img/report/alert-circle.png"
-        alt="Alert circle"
-        className={classes.imgAlert}
-      />
-
-      <Box>
-        <Typography variant="h1" className={classes.title}>
-          Report
-        </Typography>
-        <Typography className={classes.content}>
-          Select the reason for the complaint – we will definitely take action
-        </Typography>
-      </Box>
-      <Box className={classes.shadowBox}>
-        <Link to="report/reportComment/Spam" style={{ textDecoration: 'none' }}>
-          <Button fullWidth className={classes.linkBtn}>
-            Spam
-          </Button>
-        </Link>
-        <Link
-          to="report/reportComment/Report abuse"
-          style={{ textDecoration: 'none' }}
+    <Modal
+      className={classes.modal}
+      open={true}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box className={classes.wrapper}>
+        <IconButton
+          disableRipple={true}
+          disableFocusRipple={true}
+          aria-label="close modal"
+          className={classes.closeButton}
+          onClick={handleGoBack}
         >
-          <Button fullWidth className={classes.linkBtn}>
-            Report abuse
-          </Button>
-        </Link>
-        <Link
-          to="report/reportComment/Inappropriate photos"
-          style={{ textDecoration: 'none' }}
-        >
-          <Button fullWidth className={classes.linkBtn}>
-            Inappropriate photos
-          </Button>
-        </Link>
-        <Link to="/reportComment/Other" style={{ textDecoration: 'none' }}>
-          <Button fullWidth className={classes.linkBtn}>
-            Other
-          </Button>
-        </Link>
+          <Icon>
+            <img src="/img/icon-close-modal.svg" alt="Close" />
+          </Icon>
+        </IconButton>
+        <Box className={classes.reportContainer}>
+          <img
+            src="/img/report/alert-circle.png"
+            alt="Alert circle"
+            className={classes.imgAlert}
+          />
+          <Box>
+            <Typography variant="h1" className={classes.title}>
+              Report
+            </Typography>
+            <Typography className={classes.content}>
+              Select the reason for the complaint – we will definitely take
+              action
+            </Typography>
+          </Box>
+          <Box className={classes.shadowBox}>
+            <Link
+              to="report/reportComment/Spam"
+              style={{ textDecoration: 'none' }}
+            >
+              <Button fullWidth className={classes.linkBtn}>
+                Spam
+              </Button>
+            </Link>
+            <Link
+              to="report/reportComment/Report abuse"
+              style={{ textDecoration: 'none' }}
+            >
+              <Button fullWidth className={classes.linkBtn}>
+                Report abuse
+              </Button>
+            </Link>
+            <Link
+              to="report/reportComment/Inappropriate photos"
+              style={{ textDecoration: 'none' }}
+            >
+              <Button fullWidth className={classes.linkBtn}>
+                Inappropriate photos
+              </Button>
+            </Link>
+            <Link to="/reportComment/Other" style={{ textDecoration: 'none' }}>
+              <Button fullWidth className={classes.linkBtn}>
+                Other
+              </Button>
+            </Link>
+          </Box>
+        </Box>
       </Box>
-    </Box>
+    </Modal>
   )
 }
 
 export default Report
 
-const useStyles = makeStyles()((theme) => {
+const useStyles = makeStyles()(() => {
   return {
-    // body: {
-    //   overflow: 'hidden',
-    // },
-    mainBox: {
-      display: 'grid',
-      //gridTemplateRows: '1fr 2fr 2fr 1fr',
-      alignItems: 'center',
-      marginLeft: 20,
-      marginRight: 20,
-      overflow: 'hidden',
-      position: 'relative',
-      [theme.breakpoints.up('sm')]: {
-        width: 400,
-        margin: '0 auto',
+    closeButton: {
+      height: 24,
+      width: 24,
+      padding: 0,
+      position: 'absolute',
+      transition: '0.3s',
+      right: 15,
+      top: 15,
+      minWidth: 0,
+      '&: hover': {
+        transform: 'scale(105%)',
+        cursor: 'pointer',
       },
+    },
+    modal: {
+      height: '100vh',
+      width: '100vw',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      '& :focus': {
+        outline: 'none',
+      },
+    },
+    wrapper: {
+      position: 'relative',
+      width: 390,
+      height: 606,
+      display: 'flex',
+      alignItems: 'center',
+      backgroundColor: '#fff',
+      borderRadius: '10px',
+    },
+    reportContainer: {
+      padding: 15,
+      display: 'grid',
     },
     shadowBox: {
       borderRadius: 10,
@@ -95,8 +135,6 @@ const useStyles = makeStyles()((theme) => {
       fontSize: 24,
       fontWeight: 500,
       lineHeight: '40px',
-      paddingTop: 70,
-      paddingBottom: 14,
       color: '#F46B5D',
       textAlign: 'center',
     },
@@ -107,7 +145,6 @@ const useStyles = makeStyles()((theme) => {
     },
     imgAlert: {
       display: 'block',
-      marginTop: '80px',
       marginLeft: 'auto',
       marginRight: 'auto',
       width: '31px',
@@ -137,19 +174,6 @@ const useStyles = makeStyles()((theme) => {
       textTransform: 'none',
       color: '#000',
       marginBottom: 5,
-    },
-    iconButton: {
-      width: '24px',
-      height: '24px',
-      flexShrink: 0,
-      position: 'absolute',
-      top: '30px',
-      right: '0',
-      borderRadius: '0',
-      border: '1px solid #ccc',
-    },
-    closeIcon: {
-      fontSize: '16px',
     },
   }
 })

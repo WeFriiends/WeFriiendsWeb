@@ -34,6 +34,16 @@ const Match: React.FC<MatchProps> = ({
         onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        /* Another way to change Overlay's color without theme overrides (for code review)
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            sx: {
+              backgroundColor: theme.colorOverlay,
+            },
+          },
+        }}
+         */
       >
         <Box className={classes.wrapper}>
           <IconButton
@@ -111,8 +121,8 @@ const useStyles = makeStyles()({
     padding: 0,
     position: 'absolute',
     transition: '0.3s',
-    right: 25,
-    top: 25,
+    right: 15,
+    top: 15,
     minWidth: 0,
     '&: hover': {
       transform: 'scale(105%)',
@@ -122,7 +132,6 @@ const useStyles = makeStyles()({
   modal: {
     height: '100vh',
     width: '100vw',
-    backgroundColor: '#fff',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -132,11 +141,12 @@ const useStyles = makeStyles()({
   },
   wrapper: {
     position: 'relative',
-    Width: 390,
+    width: 390,
     height: 606,
     display: 'flex',
     alignItems: 'center',
     backgroundColor: '#fff',
+    borderRadius: '10px',
   },
   title: {
     fontFamily: 'Inter',

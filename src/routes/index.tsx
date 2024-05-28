@@ -10,7 +10,6 @@ import CommentInput from 'components/report/commentInput'
 import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
-// import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
 import Invitation from '../components/invitation/Invitation'
@@ -20,6 +19,8 @@ import RequestNewPassword from 'components/userAuth/signInMail/forgotPassword/in
 import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
 import CheckEmail from 'components/userAuth/signInMail/forgotPassword/inputEmail/CheckEmail'
 import Messages from 'pages/Messages'
+import Match from '../components/findMatch/Match'
+import ModalDialog from '../common/ModalDialog'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -115,6 +116,20 @@ const routes: RouteObject[] = [
           // </AuthGuard>
         ),
       },
+      {
+        path: 'new-match',
+        element: (
+          <>
+            Hello World!
+            <Match
+              isMatchModalOpen={true}
+              onClose={() => void {}}
+              onChat={() => void {}}
+              friendsAvatar={'test.jpg'}
+            />
+          </>
+        ),
+      },
     ],
   },
 
@@ -138,6 +153,20 @@ const routes: RouteObject[] = [
         element: <ReportReceived />,
       },
     ],
+  },
+  {
+    path: 'modal-dialog',
+    element: (
+      <ModalDialog>
+        <div>Text example</div>
+        <br />
+        <div>Text example. Text example. Text example.</div>
+        <div>Text example</div>
+        <div>Text example</div>
+        <div>Text example</div>
+        Hello World.
+      </ModalDialog>
+    ),
   },
   { path: 'invite', element: <Invitation /> },
   { path: 'error-400', element: <ErrorPage code={400} /> }, // Route is working for demonstration
