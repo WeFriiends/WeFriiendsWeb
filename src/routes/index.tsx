@@ -10,7 +10,7 @@ import CommentInput from 'components/report/commentInput'
 import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
-// import Match from 'components/findMatch/Match'
+import Match from 'components/findMatch/Match'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
 import Invitation from '../components/invitation/Invitation'
@@ -86,17 +86,17 @@ const routes: RouteObject[] = [
       {
         path: 'messages-and-friends',
         element: (
-          <AuthGuard>
-            <Home />
-          </AuthGuard>
+          // <AuthGuard>
+          <Home />
+          // </AuthGuard>
         ),
       },
       {
         path: 'messages',
         element: (
-          <AuthGuard>
-            <Messages />
-          </AuthGuard>
+          // <AuthGuard>
+          <Messages />
+          // </AuthGuard>
         ),
       },
       {
@@ -113,6 +113,20 @@ const routes: RouteObject[] = [
           // <AuthGuard>
           <NearMe />
           // </AuthGuard>
+        ),
+      },
+      {
+        path: 'new-match',
+        element: (
+          <>
+            Hello World!
+            <Match
+              isMatchModalOpen={true}
+              onClose={() => void {}}
+              onChat={() => void {}}
+              friendsAvatar={'test.jpg'}
+            />
+          </>
         ),
       },
     ],
