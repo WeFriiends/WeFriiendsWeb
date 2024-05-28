@@ -4,7 +4,6 @@ import { UserObjectType } from '../../common/types/userTypes'
 import { nearByWhoLikedMeStyles } from '../../styles/nearByWhoLikedMeStyles'
 import NoticeNoUsers from '../noticeNoData/NoticeNoUsers'
 import IconLightning from '../../common/svg/IconLightning'
-import IconLocation from '../../common/svg/IconLocation'
 
 type UserListRendererProps = {
   users?: UserObjectType[]
@@ -40,7 +39,7 @@ const UserListRenderer: React.FC<UserListRendererProps> = ({ users }) => {
                   {user.firstName} {user.lastName}
                 </h4>
                 <Box className={classes.distanceBoxPosition}>
-                  <IconLocation />
+                  <img src="/img/icon-location.svg" alt="distance" />
                   <Typography className={classes.locationTextStyle}>
                     1 km
                   </Typography>
