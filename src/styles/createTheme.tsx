@@ -58,7 +58,7 @@ const theme = {
   },
   customPalette: {
     colorNavIcon: '#AFB1B6', // Better to add it to 'palette'? but it causes errors
-  }
+  },
 } as const
 
 type CustomTheme = {
@@ -68,6 +68,7 @@ type CustomTheme = {
 declare module '@mui/material/styles' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface Theme extends CustomTheme {}
+
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface ThemeOptions extends CustomTheme {}
 }
