@@ -7,7 +7,11 @@ import UserProfile from 'components/userProfile/UserProfile'
 import UserProfileButton from 'components/userProfile/UserProfileButton'
 import { usePotentialFriendsList } from 'hooks/useFriendsList'
 import { UserProfileData } from 'types/UserProfileData'
-import { addNewFriend, deletePotentialFriend } from 'actions/friendsServices'
+import {
+  addLike,
+  addNewFriend,
+  deletePotentialFriend,
+} from 'actions/friendsServices'
 import Match from 'components/findMatch/Match'
 import { useNavigate } from 'react-router-dom'
 
@@ -31,6 +35,7 @@ const MessagesAndFriends = () => {
   const [friendsData, setFriendsData] = useState<UserProfileData>(emptyProfile)
   const [currentPotentialFriend, setCurrentPotentialFriend] =
     useState<UserProfileData>(emptyProfile)
+  const [modalNewFriendAvatar, setModalNewFriendAvatar] = useState<string>('')
   const navigate = useNavigate()
   const accountId = '1'
 
@@ -74,12 +79,9 @@ const MessagesAndFriends = () => {
 
   const isLiked = (accountId: string, likedUsersArray: string[]): boolean => {
     const likedMe = likedUsersArray.includes(accountId)
-    console.log('isLiked')
     if (likedMe) {
-      console.log('true')
       return true
     } else {
-      console.log(false)
       return false
     }
   }
@@ -87,9 +89,10 @@ const MessagesAndFriends = () => {
   const onBeFriend = () => {
     if (isLiked(accountId, currentPotentialFriend.likedUsers)) {
       addNewFriend(currentPotentialFriend)
+      setModalNewFriendAvatar(currentPotentialFriend.photo[0].src)
       setIsMatchModalOpen(true)
     } else {
-      console.log(currentPotentialFriend.likedUsers)
+      addLike(accountId, currentPotentialFriend.id)
     }
     goToNextPotentialFriend(currentPotentialFriend)
   }
@@ -134,7 +137,7 @@ const MessagesAndFriends = () => {
             isMatchModalOpen={isMatchModalOpen}
             onClose={handleMatchClose}
             onChat={startChat}
-            friendsAvatar={friendsData.photo[0].src}
+            friendsAvatar={modalNewFriendAvatar}
           />
         )}
       </Box>
