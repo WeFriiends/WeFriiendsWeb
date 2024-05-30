@@ -33,3 +33,18 @@ export const deletePotentialFriend = async (
     console.error('Error deleting data:', error)
   }
 }
+
+export const addLike = async (
+  userId: string,
+  idPotentialFriend: string
+): Promise<number | undefined> => {
+  try {
+    const response = await axiosInstance.post(
+      `users/${userId}/likedUsers`,
+      idPotentialFriend
+    )
+    return response.status
+  } catch (error) {
+    console.error('Error by adding like for potential friend')
+  }
+}
