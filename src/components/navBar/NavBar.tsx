@@ -11,6 +11,7 @@ import { useActivePage } from '../../context/activePageContext'
 import { generateNavigationConfig } from '../../helpers/navigationConfigHelper'
 import { renderNavigationItems } from '../../helpers/navigationRenderer'
 import theme from '../../styles/createTheme'
+import { Outlet } from 'react-router-dom'
 
 const NavBar = () => {
   const { classes } = useStyles()
@@ -23,29 +24,32 @@ const NavBar = () => {
   // We need to show active menu item from the first render of the app: to check the location path and to setActivePage
 
   return (
-    <Box className={classes.header}>
-      <Box className={classes.logo}>
-        <Box component="img" src="/img/logo.svg" alt="logo"></Box>
+    <>
+      <Box className={classes.header}>
+        <Box className={classes.logo}>
+          <Box component="img" src="/img/logo.svg" alt="logo"></Box>
+        </Box>
+        <BottomNavigation
+          value={activePage}
+          onChange={(event, newValue) => setNewActivePage(newValue)}
+          className={classes.navList}
+        >
+          {renderNavigationItems({
+            activePage,
+            setNewActivePage,
+            navigationConfig,
+          })}
+        </BottomNavigation>
+        <Box className={classes.userDetails}>
+          <Avatar
+            src="/img/avatar_elena.jpg"
+            sx={{ width: 56, height: 56 }}
+          ></Avatar>
+          <Typography className={classes.name}>Elena S</Typography>
+        </Box>
       </Box>
-      <BottomNavigation
-        value={activePage}
-        onChange={(event, newValue) => setNewActivePage(newValue)}
-        className={classes.navList}
-      >
-        {renderNavigationItems({
-          activePage,
-          setNewActivePage,
-          navigationConfig,
-        })}
-      </BottomNavigation>
-      <Box className={classes.userDetails}>
-        <Avatar
-          src="/img/avatar_elena.jpg"
-          sx={{ width: 56, height: 56 }}
-        ></Avatar>
-        <Typography className={classes.name}>Elena S</Typography>
-      </Box>
-    </Box>
+      <Outlet />
+    </>
   )
 }
 
@@ -73,7 +77,9 @@ const useStyles = makeStyles()({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      margin: '60px 0 40px',
+      padding: '60px 0 40px',
+      margin: '0 auto',
+      maxWidth: 1024,
     },
   },
   name: {

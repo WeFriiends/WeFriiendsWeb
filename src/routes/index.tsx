@@ -19,6 +19,7 @@ import RequestNewPassword from 'components/userAuth/signInMail/forgotPassword/in
 import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
 import CheckEmail from 'components/userAuth/signInMail/forgotPassword/inputEmail/CheckEmail'
 import Messages from 'pages/Messages'
+import NavBar from 'components/navBar/NavBar'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -81,6 +82,7 @@ const routes: RouteObject[] = [
   },
   {
     path: 'user',
+    element: <NavBar />,
     children: [
       {
         path: 'messages-and-friends',
