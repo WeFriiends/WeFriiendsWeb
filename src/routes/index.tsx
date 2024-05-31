@@ -14,6 +14,7 @@ import MessagesAndFriends from 'pages/MessagesAndFriends'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
 import Messages from 'pages/Messages'
+import NavBar from 'components/navBar/NavBar'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -35,6 +36,7 @@ const routes: RouteObject[] = [
   },
   {
     path: 'user',
+    element: <NavBar />,
     children: [
       {
         path: 'fill-profile',

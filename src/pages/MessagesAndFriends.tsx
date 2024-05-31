@@ -101,7 +101,7 @@ const MessagesAndFriends = () => {
   }
 
   return (
-    <PageWrapper>
+    <Box sx={{ width: '1024px', margin: '0 auto', padding: '0 30px' }}>
       <Box sx={{ display: 'grid', gridTemplateColumns: '5.5fr 6.5fr' }}>
         <TabsMessagesFriends
           onClick={selectFriend}
@@ -133,7 +133,7 @@ const MessagesAndFriends = () => {
           friendsAvatar={modalNewFriendAvatar}
         />
       </Box>
-    </PageWrapper>
+    </Box>
   )
 }
 

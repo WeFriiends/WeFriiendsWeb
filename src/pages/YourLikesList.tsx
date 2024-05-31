@@ -1,10 +1,13 @@
+import { Container, Box } from '@mui/material'
+
 import YouLikesProfiles from '../components/yourLikesList/YouLikesProfiles'
-import PageWrapper from './PageWrapper'
 
 export default function YourLikesList() {
   return (
-    <PageWrapper>
-      <YouLikesProfiles />
-    </PageWrapper>
+    <Container component="main" sx={{ flexGrow: 1 }}>
+      <Box>
+        <YouLikesProfiles />
+      </Box>
+    </Container>
   )
 }

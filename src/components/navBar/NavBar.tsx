@@ -5,6 +5,7 @@ import { useActivePage } from '../../context/activePageContext'
 import { generateNavigationConfig } from '../../helpers/navigationConfigHelper'
 import { NavigationItems } from '../navigationItems/NavigationItems'
 import theme from '../../styles/createTheme'
+import { Outlet } from 'react-router-dom'
 
 const NavBar = () => {
   const { classes } = useStyles()
@@ -21,28 +22,31 @@ const NavBar = () => {
   }, [navigationConfig, setNewActivePage])
 
   return (
-    <Box className={classes.header}>
-      <Box className={classes.logo}>
-        <Box component="img" src="/img/logo.svg" alt="logo"></Box>
+    <>
+      <Box className={classes.header}>
+        <Box className={classes.logo}>
+          <Box component="img" src="/img/logo.svg" alt="logo"></Box>
+        </Box>
+        <BottomNavigation
+          value={activePage}
+          onChange={(event, newValue) => setNewActivePage(newValue)}
+          className={classes.navList}
+        >
+          {NavigationItems({
+            activePage,
+            navigationConfig,
+          })}
+        </BottomNavigation>
+        <Box className={classes.userDetails}>
+          <Avatar
+            src="/img/avatar_elena.jpg"
+            sx={{ width: 56, height: 56 }}
+          ></Avatar>
+          <Typography className={classes.name}>Elena S</Typography>
+        </Box>
       </Box>
-      <BottomNavigation
-        value={activePage}
-        onChange={(event, newValue) => setNewActivePage(newValue)}
-        className={classes.navList}
-      >
-        {NavigationItems({
-          activePage,
-          navigationConfig,
-        })}
-      </BottomNavigation>
-      <Box className={classes.userDetails}>
-        <Avatar
-          src="/img/avatar_elena.jpg"
-          sx={{ width: 56, height: 56 }}
-        ></Avatar>
-        <Typography className={classes.name}>Elena S</Typography>
-      </Box>
-    </Box>
+      <Outlet />
+    </>
   )
 }
 
@@ -70,7 +74,9 @@ const useStyles = makeStyles()({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      margin: '60px 0 40px',
+      padding: '60px 0 40px',
+      margin: '0 auto',
+      maxWidth: 1024,
     },
   },
   name: {
