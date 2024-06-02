@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Typography, Box, Button } from '@mui/material'
+import { Typography, Box } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
 
@@ -29,29 +29,8 @@ const Status = () => {
     }
   }
 
-  const nextHandler = () => {
-    const selectedStatusesPhrases = selectedStatuses.map(
-      (index: string) => STATUSES[Number(index.slice(6))]
-    )
-    localStorage.setItem(
-      'selectedStatuses',
-      JSON.stringify(selectedStatusesPhrases)
-    )
-  }
   return (
     <Box className={`${commonClasses.mainBox} ${classes.mainBox}`}>
-      <Box className={classes.prevPageContainer}>
-        <Button
-          className={classes.prevPageButton}
-          startIcon={
-            <img
-              alt="previous page"
-              src={'/img/navigationIcons/arrow_back.svg'}
-              style={{ margin: 0 }}
-            />
-          }
-        />
-      </Box>
       <Box className={classes.titleContainer}>
         <Typography
           variant="h1"
@@ -139,22 +118,6 @@ const useStyles = makeStyles()((theme) => {
       marginTop: 42,
       marginBottom: 33,
       color: '#639c9e',
-    },
-    prevPageContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      marginTop: 80,
-      marginBottom: 45,
-    },
-    prevPageButton: {
-      width: 45,
-      minWidth: 45,
-      height: 45,
-      paddingLeft: 18,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: '50%',
-      background: '#FEDED2',
     },
     phraseWrapper: {
       minHeight: 200,
