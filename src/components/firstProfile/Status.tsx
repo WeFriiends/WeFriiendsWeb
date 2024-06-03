@@ -52,10 +52,9 @@ const Status = () => {
         {STATUSES.map((phrase, index) => (
           <Box
             key={phrase}
-            className={classes.phrase}
+            className={`${classes.phrase} ${classes.text}`}
             onClick={(event) => {
-              const targetEvent = event.target as Element
-              const target = targetEvent.closest('[id*=phrase]') as HTMLElement
+              const target = event.target as Element
               toggleStatus(target.id)
             }}
             id={`phrase${index}`}
@@ -65,9 +64,7 @@ const Status = () => {
                 : 'rgba(229, 229, 229, 0.40)',
             }}
           >
-            <Typography className={classes.text} id={`text${index}`}>
-              {phrase}
-            </Typography>
+            {phrase}
           </Box>
         ))}
       </Box>
