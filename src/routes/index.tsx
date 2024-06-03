@@ -10,7 +10,6 @@ import CommentInput from 'components/report/commentInput'
 import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
-import AuthGuard from 'components/userAuth/AuthGuard'
 import GuestGuard from 'components/userAuth/GuestGuard'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
@@ -87,17 +86,17 @@ const routes: RouteObject[] = [
       {
         path: 'messages-and-friends',
         element: (
-          <AuthGuard>
-            <Home />
-          </AuthGuard>
+          // <AuthGuard>
+          <Home />
+          // </AuthGuard>
         ),
       },
       {
         path: 'messages',
         element: (
-          <AuthGuard>
-            <Messages />
-          </AuthGuard>
+          // <AuthGuard>
+          <Messages />
+          // </AuthGuard>
         ),
       },
       {

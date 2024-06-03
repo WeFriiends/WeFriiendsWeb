@@ -88,7 +88,7 @@ const useStyles = makeStyles()({
     margin: '0 20px',
     [theme.breakpoints.up('lg')]: {
       maxWidth: 420,
-      margin: '0 40px',
+      margin: '0 50px',
     },
     '& a': {
       minWidth: 60,

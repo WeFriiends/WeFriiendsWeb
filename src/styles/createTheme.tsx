@@ -56,6 +56,9 @@ const theme = {
       fontWeight: 400,
     },
   },
+  customPalette: {
+    colorNavIcon: '#AFB1B6', // Better to add it to 'palette'? but it causes errors
+  },
   colorNavIcon: '#AFB1B6', // Better to add it to 'theme.palette'? but it causes errors
   components: {
     MuiBackdrop: {

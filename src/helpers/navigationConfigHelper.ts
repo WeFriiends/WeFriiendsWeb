@@ -6,20 +6,18 @@ import IconProfile from '../common/svg/IconProfile'
 import IconNearMe from '../common/svg/IconNearMe'
 
 export const generateNavigationConfig = (): NavigationConfig[] => {
-  // can be optimized by using only one config, common for footer and header (needed: changes in canvas for icons, making the images of one size, hiding user's icon on desktop - by ?class )
-
   return [
     {
       value: 'nearme',
       Icon: IconNearMe,
       linkTo: '/user/near-me',
-      size: { xs: { width: 18, height: 22 }, lg: { width: 30, height: 37 } },
+      size: { xs: { width: 20, height: 24 }, lg: { width: 31, height: 37 } },
     },
     {
       value: 'wholikedyou',
       Icon: iconLightning,
       linkTo: '/user/who-liked-you',
-      size: { xs: { width: 18, height: 24 }, lg: { width: 29, height: 40 } },
+      size: { xs: { width: 20, height: 26 }, lg: { width: 27, height: 38 } },
     },
     {
       value: 'friends',
@@ -30,14 +28,14 @@ export const generateNavigationConfig = (): NavigationConfig[] => {
     {
       value: 'chat',
       Icon: IconChat,
-      linkTo: 'messages-and-friends',
-      size: { xs: { width: 18, height: 18 }, lg: { width: 29, height: 29 } },
+      linkTo: '/user/messages',
+      size: { xs: { width: 25, height: 25 }, lg: { width: 30, height: 30 } },
     },
     {
       value: 'profile',
       Icon: IconProfile,
-      linkTo: '/user/messages-and-friends',
-      size: { xs: { width: 24, height: 24 }, lg: { width: 24, height: 24 } },
+      linkTo: '/report/messages-and-friends',
+      size: { xs: { width: 24, height: 26 }, lg: { width: 24, height: 26 } },
     },
   ]
 }
