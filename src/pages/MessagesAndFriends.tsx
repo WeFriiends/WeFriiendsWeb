@@ -78,12 +78,7 @@ const MessagesAndFriends = () => {
   }
 
   const isLiked = (accountId: string, likedUsersArray: string[]): boolean => {
-    const likedMe = likedUsersArray.includes(accountId)
-    if (likedMe) {
-      return true
-    } else {
-      return false
-    }
+    return likedUsersArray.includes(accountId)
   }
 
   const onBeFriend = () => {
@@ -132,14 +127,12 @@ const MessagesAndFriends = () => {
             />
           </Box>
         )}
-        {isMatchModalOpen && (
-          <Match
-            isMatchModalOpen={isMatchModalOpen}
-            onClose={handleMatchClose}
-            onChat={startChat}
-            friendsAvatar={modalNewFriendAvatar}
-          />
-        )}
+        <Match
+          isMatchModalOpen={isMatchModalOpen}
+          onClose={handleMatchClose}
+          onChat={startChat}
+          friendsAvatar={modalNewFriendAvatar}
+        />
       </Box>
     </Box>
   )
