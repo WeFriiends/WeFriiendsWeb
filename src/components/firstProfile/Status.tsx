@@ -22,10 +22,8 @@ const Status = () => {
   const toggleStatus = (status: string) => {
     if (selectedStatuses.includes(status)) {
       setSelectedStatuses(selectedStatuses.filter((s) => s !== status))
-    } else {
-      if (selectedStatuses.length < 3) {
-        setSelectedStatuses([...selectedStatuses, status])
-      }
+    } else if (selectedStatuses.length < 3) {
+      setSelectedStatuses([...selectedStatuses, status])
     }
   }
 
