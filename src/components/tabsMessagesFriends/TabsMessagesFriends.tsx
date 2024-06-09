@@ -5,6 +5,7 @@ import Friends from './Friends'
 import { UserProfileData } from '../../types/UserProfileData'
 import { makeStyles } from 'tss-react/mui'
 import { useNewFriendsList } from 'hooks/useFriendsList'
+import { useState } from 'react'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -12,10 +13,10 @@ interface TabPanelProps {
   value: number
 }
 
-interface TabsMessagesFriendsProps {
-  onClick: (userProfileData: UserProfileData) => void
-  selectedFriend: UserProfileData
-}
+// interface TabsMessagesFriendsProps {
+//   onClick: (userProfileData: UserProfileData) => void
+//   selectedFriend: UserProfileData
+// }
 function TabPanel(props: TabPanelProps) {
   const { children, value, index } = props
 
@@ -36,11 +37,22 @@ function TabPanel(props: TabPanelProps) {
   )
 }
 
-const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
-  onClick,
-  selectedFriend,
-}) => {
+const TabsMessagesFriends: React.FC = () => {
+  const emptyProfile: UserProfileData = {
+    id: '-1',
+    firstName: '',
+    lastName: '',
+    age: '',
+    photo: [],
+    city: '',
+    aboutMe: '',
+    education: '',
+    profession: '',
+    likedUsers: [],
+  }
   const [value, setValue] = React.useState(0)
+  const [friendsData, setFriendsData] = useState<UserProfileData>(emptyProfile)
+  // const [isFriend, setIsFriend] = useState(false)
   const { classes } = useStyles()
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -48,6 +60,11 @@ const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
   }
 
   const { data: friendsList } = useNewFriendsList()
+
+  const selectFriend = (user: UserProfileData) => {
+    setFriendsData(user)
+    // setIsFriend(true)
+  }
 
   return (
     <Box>
@@ -69,7 +86,7 @@ const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
         <Messages />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Friends onClick={onClick} selectedFriend={selectedFriend} />
+        <Friends onClick={selectFriend} selectedFriend={friendsData} />
       </TabPanel>
     </Box>
   )

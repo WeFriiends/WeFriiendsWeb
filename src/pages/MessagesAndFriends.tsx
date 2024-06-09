@@ -29,7 +29,8 @@ const MessagesAndFriends = () => {
   }
   const { classes } = useStyles()
   const [noPotentialFriends, setNoPotentialFriends] = useState(true)
-  const [isFriend, setIsFriend] = useState(false)
+  // const [isFriend, setIsFriend] = useState(false)
+  const isFriend = false
   const [isMatchModalOpen, setIsMatchModalOpen] = useState(false)
   const [friendsData, setFriendsData] = useState<UserProfileData>(emptyProfile)
   const [currentPotentialFriend, setCurrentPotentialFriend] =
@@ -49,10 +50,10 @@ const MessagesAndFriends = () => {
     setCurrentPotentialFriend(potentialFriends[0])
   }, [potentialFriends])
 
-  const selectFriend = (user: UserProfileData) => {
-    setFriendsData(user)
-    setIsFriend(true)
-  }
+  // const selectFriend = (user: UserProfileData) => {
+  //   setFriendsData(user)
+  //   setIsFriend(true)
+  // }
 
   const goToNextPotentialFriend = (currentUserProfile: UserProfileData) => {
     if (!potentialFriends?.length) {
@@ -103,8 +104,8 @@ const MessagesAndFriends = () => {
     <Box sx={{ width: '1024px', margin: '0 auto', padding: '0 30px' }}>
       <Box sx={{ display: 'grid', gridTemplateColumns: '5.5fr 6.5fr' }}>
         <TabsMessagesFriends
-          onClick={selectFriend}
-          selectedFriend={friendsData}
+        // onClick={selectFriend}
+        // selectedFriend={friendsData}
         />
         {noPotentialFriends && !isFriend ? (
           <Box className={classes.mainBlock}>
