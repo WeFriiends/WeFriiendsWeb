@@ -40,13 +40,13 @@ export const generateNavigationConfig = (
       {
         value: 'friends',
         iconProps: commonConfig(true, '/img/navigationIcons/ii', 'friends'),
-        linkTo: '/user/messages-and-friends',
+        linkTo: '/user/friends',
         size: { width: 15, height: 32 },
       },
       {
         value: 'chat',
         iconProps: commonConfig(true, '/img/navigationIcons/chat', 'chat'),
-        linkTo: 'messages-and-friends',
+        linkTo: '/user/messages',
         size: { width: 18, height: 18 },
       },
       {
@@ -85,7 +85,7 @@ export const generateNavigationConfig = (
       {
         value: 'friends',
         iconProps: commonConfig(true, '/img/navigationIcons/ii', 'friends'),
-        linkTo: '/user/messages-and-friends',
+        linkTo: '/user/friends',
         size: { width: 25, height: 50 },
       },
       {
