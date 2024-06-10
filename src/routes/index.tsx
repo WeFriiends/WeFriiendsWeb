@@ -18,7 +18,7 @@ import ResetPassword from 'components/userAuth/signInMail/forgotPassword/resetPa
 import RequestNewPassword from 'components/userAuth/signInMail/forgotPassword/inputEmail/RequestNewPassword'
 import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
 import CheckEmail from 'components/userAuth/signInMail/forgotPassword/inputEmail/CheckEmail'
-import Messages from 'pages/Messages'
+import Messages from 'pages/MessagesPage'
 import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 
