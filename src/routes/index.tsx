@@ -13,7 +13,7 @@ import NameProfile from 'components/firstProfile/NameProfile'
 import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
-import Messages from 'pages/Messages'
+import Messages from 'pages/MessagesPage'
 import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 
