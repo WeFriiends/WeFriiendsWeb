@@ -15,6 +15,7 @@ import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
 import Messages from 'pages/Messages'
 import NavBar from 'components/navBar/NavBar'
+import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -36,7 +37,6 @@ const routes: RouteObject[] = [
   },
   {
     path: 'user',
-    element: <NavBar />,
     children: [
       {
         path: 'fill-profile',
@@ -44,24 +44,34 @@ const routes: RouteObject[] = [
         element: <AuthGuard component={NameProfile} />,
       },
       {
-        path: 'messages-and-friends',
-        // element: <MessagesAndFriends />,
-        element: <AuthGuard component={MessagesAndFriends} />,
-      },
-      {
-        path: 'messages',
-        element: <Messages />,
-        // element: <AuthGuard component={Messages} />,
-      },
-      {
-        path: 'who-liked-you',
-        element: <YourLikesList />,
-        // element: <AuthGuard component={YourLikesList} />,
-      },
-      {
-        path: 'near-me',
-        element: <NearMe />,
-        // element: <AuthGuard component={NearMe} />,
+        element: <NavBar />,
+        children: [
+          {
+            element: <TabsMessagesFriends />,
+            children: [
+              {
+                path: 'messages-and-friends',
+                // element: <MessagesAndFriends />,
+                element: <AuthGuard component={MessagesAndFriends} />,
+              },
+              {
+                path: 'messages',
+                element: <Messages />,
+                // element: <AuthGuard component={Messages} />,
+              },
+            ],
+          },
+          {
+            path: 'who-liked-you',
+            element: <YourLikesList />,
+            // element: <AuthGuard component={YourLikesList} />,
+          },
+          {
+            path: 'near-me',
+            element: <NearMe />,
+            // element: <AuthGuard component={NearMe} />,
+          },
+        ],
       },
     ],
   },
