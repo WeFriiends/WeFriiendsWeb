@@ -1,11 +1,8 @@
 import * as React from 'react'
 import { Tab, Tabs, Box } from '@mui/material'
-import Messages from './Messages'
-import { UserProfileData } from '../../types/UserProfileData'
 import { makeStyles } from 'tss-react/mui'
 import { useNewFriendsList } from 'hooks/useFriendsList'
-
-import { Link, Outlet, useOutletContext } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 const TabsMessagesFriends: React.FC = () => {
   const [value, setValue] = React.useState(0)
@@ -20,7 +17,7 @@ const TabsMessagesFriends: React.FC = () => {
 
   return (
     <Box sx={{ maxWidth: '1024px', margin: '0 auto', padding: '0 30px' }}>
-      <Box sx={{ maxWidth: '419px', paddingBottom: '38px' }}>
+      <Box sx={{ maxWidth: '419px', paddingBottom: '14px' }}>
         <Tabs
           value={value}
           classes={{
