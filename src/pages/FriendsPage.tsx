@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 import UserProfile from 'components/userProfile/UserProfile'
 import UserProfileButton from 'components/userProfile/UserProfileButton'
 import { usePotentialFriendsList } from 'hooks/useFriendsList'
@@ -101,9 +100,9 @@ const FriendsPage = () => {
   }
 
   return (
-    <Box className={classes.friendsSection}>
+    <Box className={classes.friendsPage}>
       <Friends onClick={selectFriend} selectedFriend={friendsData} />
-      <Box sx={{ display: 'grid', gridTemplateColumns: '5.5fr 6.5fr' }}>
+      <Box>
         {noPotentialFriends && !isFriend ? (
           <Box className={classes.mainBlock}>
             <Typography className={classes.messageStyle}>
@@ -113,7 +112,7 @@ const FriendsPage = () => {
             <Button className={classes.whiteButton}>Go</Button>
           </Box>
         ) : (
-          <Box sx={{ padding: '76px 17px 0 55px' }}>
+          <Box sx={{ paddingLeft: '30px' }}>
             <UserProfile user={friendsData} />
             <UserProfileButton
               isFriend={isFriend}
@@ -161,11 +160,9 @@ const useStyles = makeStyles()({
     textAlign: 'center',
     lineHeight: 1.2,
   },
-  friendsSection: {
-    width: '1024px',
-    margin: '0 auto',
-    padding: '0 30px',
+  friendsPage: {
     display: 'grid',
-    gridTemplateColumns: '5.5fr 6.5fr',
+    gridTemplateColumns: '5.6fr 6.4fr',
+    height: '71vh',
   },
 })
