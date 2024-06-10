@@ -39,7 +39,7 @@ const TabsMessagesFriends: React.FC = () => {
             label={`New friends (${friendsList?.length})`}
             className={classes.labelStyle}
             component={Link}
-            to="/user/messages-and-friends"
+            to="/user/friends"
           />
         </Tabs>
       </Box>
