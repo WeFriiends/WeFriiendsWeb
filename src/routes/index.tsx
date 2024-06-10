@@ -20,6 +20,7 @@ import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyU
 import CheckEmail from 'components/userAuth/signInMail/forgotPassword/inputEmail/CheckEmail'
 import Messages from 'pages/Messages'
 import NavBar from 'components/navBar/NavBar'
+import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -33,7 +34,7 @@ const Register = Loadable(
   lazy(() => import('components/userAuth/createAccount/CreateAccount'))
 )
 const Login = Loadable(lazy(() => import('components/userAuth/signIn/SignIn')))
-const Home = Loadable(lazy(() => import('pages/MessagesAndFriends')))
+const Home = Loadable(lazy(() => import('pages/FriendsPage')))
 
 const routes: RouteObject[] = [
   { path: '/', element: <Register /> },
@@ -85,20 +86,26 @@ const routes: RouteObject[] = [
     element: <NavBar />,
     children: [
       {
-        path: 'messages-and-friends',
-        element: (
-          <AuthGuard>
-            <Home />
-          </AuthGuard>
-        ),
-      },
-      {
-        path: 'messages',
-        element: (
-          <AuthGuard>
-            <Messages />
-          </AuthGuard>
-        ),
+        path: '',
+        element: <TabsMessagesFriends />,
+        children: [
+          {
+            path: 'messages-and-friends',
+            element: (
+              <AuthGuard>
+                <Home />
+              </AuthGuard>
+            ),
+          },
+          {
+            path: 'messages',
+            element: (
+              <AuthGuard>
+                <Messages />
+              </AuthGuard>
+            ),
+          },
+        ],
       },
       {
         path: 'who-liked-you',
