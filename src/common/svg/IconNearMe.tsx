@@ -2,10 +2,7 @@ import React from 'react'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 
-type IconNearMeProps = {
-  color?: string
-}
-const IconNearMe: React.FC<IconNearMeProps> = ({ color }) => {
+const IconNearMe: React.FC<IconProps> = ({ color }) => {
   const { classes } = useStyles()
   color ??= theme.palette.primary.main
 
