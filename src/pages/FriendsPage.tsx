@@ -12,10 +12,11 @@ import {
   deletePotentialFriend,
 } from 'actions/friendsServices'
 import Match from 'components/findMatch/Match'
+import Friends from 'components/tabsMessagesFriends/Friends'
 import { useNavigate } from 'react-router-dom'
 import PageWrapper from './PageWrapper'
 
-const MessagesAndFriends = () => {
+const FriendsPage = () => {
   const emptyProfile: UserProfileData = {
     id: '-1',
     firstName: '',
@@ -30,8 +31,7 @@ const MessagesAndFriends = () => {
   }
   const { classes } = useStyles()
   const [noPotentialFriends, setNoPotentialFriends] = useState(true)
-  // const [isFriend, setIsFriend] = useState(false)
-  const isFriend = false
+  const [isFriend, setIsFriend] = useState(false)
   const [isMatchModalOpen, setIsMatchModalOpen] = useState(false)
   const [friendsData, setFriendsData] = useState<UserProfileData>(emptyProfile)
   const [currentPotentialFriend, setCurrentPotentialFriend] =
@@ -51,10 +51,10 @@ const MessagesAndFriends = () => {
     setCurrentPotentialFriend(potentialFriends[0])
   }, [potentialFriends])
 
-  // const selectFriend = (user: UserProfileData) => {
-  //   setFriendsData(user)
-  //   setIsFriend(true)
-  // }
+  const selectFriend = (user: UserProfileData) => {
+    setFriendsData(user)
+    setIsFriend(true)
+  }
 
   const goToNextPotentialFriend = (currentUserProfile: UserProfileData) => {
     if (!potentialFriends?.length) {
@@ -102,12 +102,9 @@ const MessagesAndFriends = () => {
   }
 
   return (
-    <Box sx={{ width: '1024px', margin: '0 auto', padding: '0 30px' }}>
+    <Box className={classes.friendsSection}>
+      <Friends onClick={selectFriend} selectedFriend={friendsData} />
       <Box sx={{ display: 'grid', gridTemplateColumns: '5.5fr 6.5fr' }}>
-        <TabsMessagesFriends
-        // onClick={selectFriend}
-        // selectedFriend={friendsData}
-        />
         {noPotentialFriends && !isFriend ? (
           <Box className={classes.mainBlock}>
             <Typography className={classes.messageStyle}>
@@ -138,7 +135,7 @@ const MessagesAndFriends = () => {
   )
 }
 
-export default MessagesAndFriends
+export default FriendsPage
 
 const useStyles = makeStyles()({
   whiteButton: {
@@ -164,5 +161,12 @@ const useStyles = makeStyles()({
     fontSize: 24,
     textAlign: 'center',
     lineHeight: 1.2,
+  },
+  friendsSection: {
+    width: '1024px',
+    margin: '0 auto',
+    padding: '0 30px',
+    display: 'grid',
+    gridTemplateColumns: '5.5fr 6.5fr',
   },
 })

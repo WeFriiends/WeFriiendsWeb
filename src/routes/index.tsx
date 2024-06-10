@@ -10,7 +10,7 @@ import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import AuthCallbackPage from 'pages/AuthCallbackPage'
 import NameProfile from 'components/firstProfile/NameProfile'
-import MessagesAndFriends from 'pages/MessagesAndFriends'
+import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
 import Messages from 'pages/Messages'
@@ -50,9 +50,9 @@ const routes: RouteObject[] = [
             element: <TabsMessagesFriends />,
             children: [
               {
-                path: 'messages-and-friends',
-                // element: <MessagesAndFriends />,
-                element: <AuthGuard component={MessagesAndFriends} />,
+                path: 'friends',
+                //element: <Friends />,
+                element: <AuthGuard component={Friends} />,
               },
               {
                 path: 'messages',
