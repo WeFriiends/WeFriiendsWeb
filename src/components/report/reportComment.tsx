@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton'
 import { makeStyles } from 'tss-react/mui'
 import { useNavigate, useParams } from 'react-router'
 import CommentInput from './commentInput'
+import { CommonModal } from '../commonModal/CommonModal'
 
 const ReportComment = () => {
   const { classes } = useStyles()
@@ -15,60 +16,58 @@ const ReportComment = () => {
   const { buttonName } = useParams()
 
   return (
-    <Box className={classes.mainBox}>
-      <IconButton className={classes.iconButton} onClick={handleGoBack}>
-        <ClearIcon className={classes.closeIcon} />
-      </IconButton>
-      <Box>
-        <img
-          src="/img/report/alert-circle.png"
-          alt="Alert circle"
-          className={classes.imgAlert}
-        />
-
-        <Typography variant="h1" className={classes.title}>
-          Report
-        </Typography>
-        <Typography className={classes.content}>
-          Select the reason for the complaint – we will definitely take action
-        </Typography>
-      </Box>
-      <Box className={classes.shadowBox}>
-        <Button
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={classes.linkBtn}
-        >
+    <CommonModal
+      isOpened={true}
+      modalTitle={'modal-modal-title'}
+      modalDescription={'modal-modal-description'}
+      onClose={handleGoBack}
+    >
+      <Box className={classes.mainBox}>
+        <IconButton className={classes.iconButton} onClick={handleGoBack}>
+          <ClearIcon className={classes.closeIcon} />
+        </IconButton>
+        <Box>
           <img
-            src="/img/report/check.png"
-            alt="check"
-            className={classes.checkImg}
+            src="/img/report/icon-alert.svg"
+            alt="Alert circle"
+            className={classes.imgAlert}
           />
 
-          {buttonName}
-        </Button>
-        <CommentInput />
+          <Typography variant="h1" className={classes.title}>
+            Report
+          </Typography>
+          <Typography className={classes.content}>
+            Select the reason for the complaint – we will definitely take action
+          </Typography>
+        </Box>
+        <Box className={classes.shadowBox}>
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.linkBtn}
+          >
+            <img
+              src="/img/report/check.png"
+              alt="check"
+              className={classes.checkImg}
+            />
+
+            {buttonName}
+          </Button>
+          <CommentInput />
+        </Box>
       </Box>
-    </Box>
+    </CommonModal>
   )
 }
 
 export default ReportComment
 
-const useStyles = makeStyles()((theme) => {
+const useStyles = makeStyles()(() => {
   return {
     mainBox: {
       display: 'grid',
-      alignItems: 'center',
-      marginLeft: 20,
-      marginRight: 20,
-      overflow: 'hidden',
-      position: 'relative',
-      [theme.breakpoints.up('sm')]: {
-        width: 400,
-        margin: '0 auto',
-      },
     },
     shadowBox: {
       borderRadius: 10,
