@@ -90,7 +90,7 @@ const routes: RouteObject[] = [
         element: <TabsMessagesFriends />,
         children: [
           {
-            path: 'messages-and-friends',
+            path: 'friends',
             element: (
               <AuthGuard>
                 <Home />
