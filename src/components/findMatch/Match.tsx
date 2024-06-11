@@ -5,10 +5,10 @@ import {
   Button,
   Modal,
   IconButton,
+  Icon,
 } from '@mui/material'
-import IconCloseModal from '../../common/IconCloseModal'
 import { makeStyles } from 'tss-react/mui'
-import IconChat from '../../common/IconChat'
+import IconChat from '../../common/svg/IconChat'
 import theme from '../../styles/createTheme'
 
 interface MatchProps {
@@ -43,7 +43,9 @@ const Match: React.FC<MatchProps> = ({
             className={classes.closeButton}
             onClick={onClose}
           >
-            <IconCloseModal />
+            <Icon>
+              <img src="/img/icon-close-modal.svg" alt="Close" />
+            </Icon>
           </IconButton>
           <Box className={classes.matchContainer}>
             <Box className={classes.matchedAvatarsContainer}>
@@ -79,10 +81,16 @@ const Match: React.FC<MatchProps> = ({
               </Button>
               <Button
                 className={`${classes.button} ${classes.chatButton}`}
-                startIcon={<IconChat color={theme.palette.common.white} />}
+                startIcon={
+                  <IconChat
+                    color={theme.palette.common.white}
+                    width={22}
+                    height={22}
+                  />
+                }
+                disableFocusRipple
+                disableRipple
                 onClick={onChat}
-                disableFocusRipple={true}
-                disableRipple={true}
               >
                 Chat
               </Button>

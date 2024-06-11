@@ -30,25 +30,29 @@ export const nearByWhoLikedMeStyles = makeStyles()(() => ({
     width: '100%',
     '& path': {
       // lightning icon color mobile
-      stroke: theme.palette.primary.main,
+      fill: theme.palette.primary.main,
     },
     [theme.breakpoints.up('lg')]: {
       margin: '0 auto 45px',
       '& path': {
         // lightning icon color desktop
-        stroke: '#AFB1B6',
-        transition: 'stroke 0.3s',
+        fill: theme.customPalette.colorNavIcon,
       },
     },
     '&:hover path': {
       // lightning icon hover color desktop
-      stroke: theme.palette.primary.main,
+      fill: theme.palette.primary.main,
     },
     '& aside path': {
+      fill: 'transparent',
       stroke: theme.palette.text.primary,
     },
     '&:hover aside path': {
+      fill: 'transparent',
       stroke: theme.palette.text.primary,
+    },
+    '& h4': {
+      transition: 'color .3s',
     },
     '&:hover h4': {
       color: theme.palette.primary.main,

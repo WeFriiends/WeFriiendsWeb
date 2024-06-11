@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 import UserProfile from 'components/userProfile/UserProfile'
 import UserProfileButton from 'components/userProfile/UserProfileButton'
@@ -14,6 +13,7 @@ import {
 } from 'actions/friendsServices'
 import Match from 'components/findMatch/Match'
 import { useNavigate } from 'react-router-dom'
+import PageWrapper from './PageWrapper'
 
 const MessagesAndFriends = () => {
   const emptyProfile: UserProfileData = {
@@ -101,8 +101,7 @@ const MessagesAndFriends = () => {
   }
 
   return (
-    <Box sx={{ width: '1024px', margin: '0 auto', padding: '0 30px' }}>
-      <NavBar />
+    <PageWrapper>
       <Box sx={{ display: 'grid', gridTemplateColumns: '5.5fr 6.5fr' }}>
         <TabsMessagesFriends
           onClick={selectFriend}
@@ -134,7 +133,7 @@ const MessagesAndFriends = () => {
           friendsAvatar={modalNewFriendAvatar}
         />
       </Box>
-    </Box>
+    </PageWrapper>
   )
 }
 
