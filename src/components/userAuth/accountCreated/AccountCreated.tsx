@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import DisplayResult from './DisplayResult'
 import accountConfirmation from '../../../actions/accountConfirmation'
 import { useParams } from 'react-router-dom'
-import Loader from 'common/Loader'
+import Loader from 'common/svg/Loader'
 
 const AccountCreated = () => {
   const [success, setSuccess] = useState(false)

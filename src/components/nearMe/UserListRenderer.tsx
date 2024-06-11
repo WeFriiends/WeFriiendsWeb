@@ -3,8 +3,7 @@ import { Box, ImageList, ImageListItem, Typography } from '@mui/material'
 import { UserObjectType } from '../../common/types/userTypes'
 import { nearByWhoLikedMeStyles } from '../../styles/nearByWhoLikedMeStyles'
 import NoticeNoUsers from '../noticeNoData/NoticeNoUsers'
-import IconLightning from '../../common/IconLightning'
-import IconLocation from '../../common/IconLocation'
+import IconLightning from '../../common/svg/IconLightning'
 
 type UserListRendererProps = {
   users?: UserObjectType[]
@@ -40,7 +39,7 @@ const UserListRenderer: React.FC<UserListRendererProps> = ({ users }) => {
                   {user.firstName} {user.lastName}
                 </h4>
                 <Box className={classes.distanceBoxPosition}>
-                  <IconLocation />
+                  <img src="/img/icon-location.svg" alt="distance" />
                   <Typography className={classes.locationTextStyle}>
                     1 km
                   </Typography>

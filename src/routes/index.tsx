@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router'
 import { ComponentType, Suspense, lazy } from 'react'
-import LoadingScreen from 'common/Loader'
+import LoadingScreen from 'common/svg/Loader'
 import RegistrationForm from 'components/userAuth/registrationForm/RegistrationForm'
 import AccountCreated from 'components/userAuth/accountCreated/AccountCreated'
 import SignInMail from 'components/userAuth/signInMail/SignInMail'
