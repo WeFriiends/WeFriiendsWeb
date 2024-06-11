@@ -85,17 +85,17 @@ const routes: RouteObject[] = [
       {
         path: 'messages-and-friends',
         element: (
-          <AuthGuard>
-            <Home />
-          </AuthGuard>
+          // <AuthGuard>
+          <Home />
+          // </AuthGuard>
         ),
       },
       {
         path: 'messages',
         element: (
-          <AuthGuard>
-            <Messages />
-          </AuthGuard>
+          // <AuthGuard>
+          <Messages />
+          // </AuthGuard>
         ),
       },
       {
