@@ -61,7 +61,7 @@ const useStyles = makeStyles()({
     gridTemplateColumns: '190px 190px',
     gridAutoRows: 225,
     gridGap: 35,
-    height: '71 vh',
+    maxHeight: '71vh',
     overflow: 'auto',
     paddingLeft: 2,
   },
