@@ -5,7 +5,7 @@ import { makeStyles } from 'tss-react/mui'
 const NoNewMatchesOrMessages = ({ text }: { text: string }) => {
   const { classes } = useStyles()
   return (
-    <>
+    <Box>
       <Typography className={classes.textOnEmptyTabs}>{text}</Typography>
       <Typography className={classes.textOnEmptyTabs}>
         Start searching!
@@ -19,7 +19,7 @@ const NoNewMatchesOrMessages = ({ text }: { text: string }) => {
       >
         <img src="/img/friends/arrow.svg" alt="arrow" />
       </Box>
-    </>
+    </Box>
   )
 }
 export default NoNewMatchesOrMessages
