@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { Box, Typography, Avatar } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-// import messages from './messages.json'
-import messages from './messagesEmpty.json'
+import messages from './messages.json'
+// import messages from './messagesEmpty.json'
 import { UserMessage } from 'types/Message'
 import NoNewMatches from './NoNewMatchesOrMessages'
 
@@ -16,7 +16,7 @@ const Messages = () => {
     )
   }
   return (
-    <>
+    <Box sx={{ maxHeight: '71vh', overflow: 'auto' }}>
       {userMessages.map((element) => (
         <Box key={element.id}>
           <Box className={classes.messageBlock}>
@@ -41,7 +41,7 @@ const Messages = () => {
           <Box className={classes.line}></Box>
         </Box>
       ))}
-    </>
+    </Box>
   )
 }
 
