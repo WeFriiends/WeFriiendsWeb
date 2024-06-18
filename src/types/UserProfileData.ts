@@ -12,4 +12,5 @@ export interface UserProfileData {
   aboutMe: string
   education: string
   profession: string
+  likedUsers: string[]
 }

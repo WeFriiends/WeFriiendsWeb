@@ -1,9 +1,4 @@
-import {
-  Box,
-  Avatar,
-  Typography,
-  Button,
-} from '@mui/material'
+import { Box, Avatar, Typography, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import IconChat from '../../common/svg/IconChat'
 import theme from '../../styles/createTheme'

@@ -9,21 +9,19 @@ import {
 import { makeStyles } from 'tss-react/mui'
 import PhotoCarousel from './PhotoCarousel'
 import { UserProfileData } from '../../types/UserProfileData'
+import LikeDispay from './LikedDisplay'
 
 interface UserProfileProps {
   user: UserProfileData
 }
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const { classes } = useStyles()
-
+  const accountId = '1'
   return (
     <>
       <Box className={classes.mainGrid}>
         <Box className={classes.iconsAbove}>
-          <Box className={classes.likesYou}>
-            <img src="/img/likes_me.svg" alt="likes me" />
-            <Typography>Likes you</Typography>
-          </Box>
+          <LikeDispay accountId={accountId} likedUsersArray={user.likedUsers} />
           {/* <img src="/img/verified.svg"></img> */}
           {/* We don't use it in MVP1 */}
         </Box>
@@ -86,16 +84,7 @@ const useStyles = makeStyles()(() => {
       gridRow: '1/1',
       gridColumn: '1/2',
     },
-    likesYou: {
-      display: 'flex',
-      borderRadius: 4,
-      background: 'rgba(255, 241, 236, 0.80)',
-      width: 111,
-      height: 37,
-      alignItems: 'center',
-      gap: 4,
-      padding: '3px 5px',
-    },
+
     carousel: {
       gridRow: '1/9',
       gridColumn: '1/2',

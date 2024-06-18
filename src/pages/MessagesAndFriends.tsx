@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 import UserProfile from 'components/userProfile/UserProfile'
 import UserProfileButton from 'components/userProfile/UserProfileButton'
 import { usePotentialFriendsList } from 'hooks/useFriendsList'
 import { UserProfileData } from 'types/UserProfileData'
-import { addNewFriend, deletePotentialFriend } from 'actions/friendsServices'
+import {
+  addLike,
+  addNewFriend,
+  deletePotentialFriend,
+} from 'actions/friendsServices'
 import Match from 'components/findMatch/Match'
 import { useNavigate } from 'react-router-dom'
+import PageWrapper from './PageWrapper'
 
 const MessagesAndFriends = () => {
   const emptyProfile: UserProfileData = {
@@ -22,6 +26,7 @@ const MessagesAndFriends = () => {
     aboutMe: '',
     education: '',
     profession: '',
+    likedUsers: [],
   }
   const { classes } = useStyles()
   const [noPotentialFriends, setNoPotentialFriends] = useState(true)
@@ -30,7 +35,9 @@ const MessagesAndFriends = () => {
   const [friendsData, setFriendsData] = useState<UserProfileData>(emptyProfile)
   const [currentPotentialFriend, setCurrentPotentialFriend] =
     useState<UserProfileData>(emptyProfile)
+  const [modalNewFriendAvatar, setModalNewFriendAvatar] = useState<string>('')
   const navigate = useNavigate()
+  const accountId = '1'
 
   const { data: potentialFriends } = usePotentialFriendsList()
 
@@ -70,10 +77,19 @@ const MessagesAndFriends = () => {
     goToNextPotentialFriend(currentPotentialFriend)
   }
 
+  const isLiked = (accountId: string, likedUsersArray: string[]): boolean => {
+    return likedUsersArray.includes(accountId)
+  }
+
   const onBeFriend = () => {
-    addNewFriend(currentPotentialFriend)
+    if (isLiked(accountId, currentPotentialFriend.likedUsers)) {
+      addNewFriend(currentPotentialFriend)
+      setModalNewFriendAvatar(currentPotentialFriend.photo[0].src)
+      setIsMatchModalOpen(true)
+    } else {
+      addLike(accountId, currentPotentialFriend.id)
+    }
     goToNextPotentialFriend(currentPotentialFriend)
-    setIsMatchModalOpen(true)
   }
 
   const handleMatchClose = () => {
@@ -85,8 +101,7 @@ const MessagesAndFriends = () => {
   }
 
   return (
-    <Box sx={{ width: '1024px', margin: '0 auto', padding: '0 30px' }}>
-      <NavBar />
+    <PageWrapper>
       <Box sx={{ display: 'grid', gridTemplateColumns: '5.5fr 6.5fr' }}>
         <TabsMessagesFriends
           onClick={selectFriend}
@@ -115,10 +130,10 @@ const MessagesAndFriends = () => {
           isMatchModalOpen={isMatchModalOpen}
           onClose={handleMatchClose}
           onChat={startChat}
-          friendsAvatar={friendsData.photo[0]?.src}
+          friendsAvatar={modalNewFriendAvatar}
         />
       </Box>
-    </Box>
+    </PageWrapper>
   )
 }
 

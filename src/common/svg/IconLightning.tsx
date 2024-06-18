@@ -2,10 +2,7 @@ import React from 'react'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 
-type IconLightningProps = {
-  color?: string
-}
-const IconLightning: React.FC<IconLightningProps> = ({ color }) => {
+const IconLightning: React.FC<IconProps> = ({ color }) => {
   const { classes } = useStyles()
   color ??= theme.palette.primary.main
 

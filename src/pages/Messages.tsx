@@ -1,10 +1,9 @@
 import { Box, Typography } from '@mui/material'
-import NavBar from 'components/navBar/NavBar'
+import PageWrapper from './PageWrapper'
 
 const Messages = () => {
   return (
-    <Box sx={{ width: '1024px', margin: '0 auto', padding: '0 30px' }}>
-      <NavBar />
+    <PageWrapper>
       <Box sx={{ display: 'grid', gridTemplateColumns: '5.5fr 6.5fr' }}>
         {/* <TabsMessagesFriends /> */}
 
@@ -14,7 +13,7 @@ const Messages = () => {
           </Typography>
         </Box>
       </Box>
-    </Box>
+    </PageWrapper>
   )
 }
 export default Messages

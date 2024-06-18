@@ -1,6 +1,6 @@
 export interface NavigationConfig {
   value: string
-  Icon: React.FC<any>
+  Icon: React.FC<IconProps>
   linkTo: string
   size: {
     xs: {
@@ -16,7 +16,7 @@ export interface NavigationConfig {
 
 export interface NavigationItem {
   value: string
-  Icon: React.FC<any>
+  Icon: React.FC<IconProps>
   linkTo: string
   size: {
     xs: {
