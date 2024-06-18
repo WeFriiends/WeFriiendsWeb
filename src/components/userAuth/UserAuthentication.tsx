@@ -3,7 +3,7 @@ import { makeStyles } from 'tss-react/mui'
 import { useAuth0 } from '@auth0/auth0-react'
 import Logo from '../logo/Logo'
 import { commonStyles } from 'styles/commonStyles'
-import Loader from 'common/Loader'
+import LoadingScreen from 'common/svg/Loader'
 
 const UserAuthentication = () => {
   const { classes } = useStyles()
@@ -11,7 +11,7 @@ const UserAuthentication = () => {
   const { isLoading, loginWithRedirect } = useAuth0()
 
   if (isLoading) {
-    return <Loader />
+    return <LoadingScreen />
   }
 
   const handleLogin = async () => {

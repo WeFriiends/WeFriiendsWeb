@@ -1,99 +1,41 @@
-import { CommonConfig, NavigationConfig } from '../common/types/navigationTypes'
+import { NavigationConfig } from '../common/types/navigationTypes'
+import IconChat from '../common/svg/IconChat'
+import iconLightning from '../common/svg/IconLightning'
+import iconII from '../common/svg/IconII'
+import IconProfile from '../common/svg/IconProfile'
+import IconNearMe from '../common/svg/IconNearMe'
 
-export const generateNavigationConfig = (
-  component: 'footer' | 'header'
-): NavigationConfig[] => {
-  const commonConfig = (
-    isActive: boolean,
-    imagePath: string,
-    alt: string
-  ): CommonConfig => ({
-    isActive,
-    imagePath,
-    alt,
-  })
-
-  if (component === 'footer') {
-    return [
-      {
-        value: 'nearme',
-        iconProps: commonConfig(
-          true,
-          '/img/navigationIcons/near_me',
-          'near_me'
-        ),
-        linkTo: 'near-me',
-        size: { width: 24, height: 24 },
-      },
-      {
-        value: 'wholikedyou',
-        iconProps: commonConfig(
-          true,
-          '/img/navigationIcons/like_you',
-          'who_liked_me'
-        ),
-        linkTo: 'who-liked-you',
-        size: { width: 18, height: 24 },
-      },
-      {
-        value: 'friends',
-        iconProps: commonConfig(true, '/img/navigationIcons/ii', 'friends'),
-        linkTo: 'messages-and-friends',
-        size: { width: 15, height: 32 },
-      },
-      {
-        value: 'chat',
-        iconProps: commonConfig(true, '/img/navigationIcons/chat', 'chat'),
-        linkTo: 'messages-and-friends',
-        size: { width: 24, height: 24 },
-      },
-      {
-        value: 'profile',
-        iconProps: commonConfig(
-          true,
-          '/img/navigationIcons/profile',
-          'profile'
-        ),
-        linkTo: 'messages-and-friends',
-        size: { width: 24, height: 24 },
-      },
-    ]
-  } else if (component === 'header') {
-    return [
-      {
-        value: 'nearme',
-        iconProps: commonConfig(
-          true,
-          '/img/navigationIcons/near_me',
-          'near_me'
-        ),
-        linkTo: 'near-me',
-        size: { width: 38, height: 38 },
-      },
-      {
-        value: 'wholikedyou',
-        iconProps: commonConfig(
-          true,
-          '/img/navigationIcons/like_you',
-          'who_liked_me'
-        ),
-        linkTo: 'who-liked-you',
-        size: { width: 27, height: 38 },
-      },
-      {
-        value: 'friends',
-        iconProps: commonConfig(true, '/img/navigationIcons/ii', 'friends'),
-        linkTo: 'messages-and-friends',
-        size: { width: 24, height: 50 },
-      },
-      {
-        value: 'chat',
-        iconProps: commonConfig(true, '/img/navigationIcons/chat', 'chat'),
-        linkTo: 'messages-and-friends',
-        size: { width: 39, height: 39 },
-      },
-    ]
-  }
-
-  return []
+export const generateNavigationConfig = (): NavigationConfig[] => {
+  return [
+    {
+      value: 'nearme',
+      Icon: IconNearMe,
+      linkTo: '/user/near-me',
+      size: { xs: { width: 20, height: 24 }, lg: { width: 31, height: 37 } },
+    },
+    {
+      value: 'wholikedyou',
+      Icon: iconLightning,
+      linkTo: '/user/who-liked-you',
+      size: { xs: { width: 20, height: 26 }, lg: { width: 27, height: 38 } },
+    },
+    {
+      value: 'friends',
+      Icon: iconII,
+      linkTo: '/user/messages-and-friends',
+      size: { xs: { width: 15, height: 32 }, lg: { width: 25, height: 50 } },
+    },
+    {
+      value: 'chat',
+      Icon: IconChat,
+      linkTo: '/user/messages',
+      size: { xs: { width: 25, height: 25 }, lg: { width: 30, height: 30 } },
+    },
+    {
+      value: 'profile',
+      Icon: IconProfile,
+      linkTo: '/report/messages-and-friends',
+      size: { xs: { width: 24, height: 26 }, lg: { width: 24, height: 26 } },
+    },
+  ]
 }

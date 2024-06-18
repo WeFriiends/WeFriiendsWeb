@@ -1,18 +1,19 @@
 import { RouteObject } from 'react-router'
 import { ComponentType, Suspense, lazy } from 'react'
-import LoadingScreen from 'common/Loader'
-import AuthGuard from 'components/userAuth/AuthGuard'
+// import AuthGuard from 'components/userAuth/AuthGuard'
+import LoadingScreen from 'common/svg/Loader'
 import Report from 'components/report/report'
 import ReportComment from 'components/report/reportComment'
 import CommentInput from 'components/report/commentInput'
 import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
-import Match from 'components/findMatch/Match'
-import Invitation from '../components/invitation/Invitation'
 import AuthCallbackPage from 'pages/AuthCallbackPage'
 import NameProfile from 'components/firstProfile/NameProfile'
 import MessagesAndFriends from 'pages/MessagesAndFriends'
+import Invitation from '../components/invitation/Invitation'
+import ErrorPage from 'pages/ErrorPage'
+import Messages from 'pages/Messages'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -46,6 +47,11 @@ const routes: RouteObject[] = [
         // element: <AuthGuard component={MessagesAndFriends} />,
       },
       {
+        path: 'messages',
+        element: <Messages />,
+        // element: <AuthGuard component={Messages} />,
+      },
+      {
         path: 'who-liked-you',
         element: <YourLikesList />,
         // element: <AuthGuard component={YourLikesList} />,
@@ -54,11 +60,6 @@ const routes: RouteObject[] = [
         path: 'near-me',
         element: <NearMe />,
         // element: <AuthGuard component={NearMe} />,
-      },
-      {
-        path: 'new-match',
-        element: <Match />,
-        // element: <AuthGuard component={Match} />,
       },
     ],
   },
@@ -84,7 +85,10 @@ const routes: RouteObject[] = [
       },
     ],
   },
-  { path: 'invite', element: <AuthGuard component={Invitation} /> },
+  { path: 'invite', element: <Invitation /> },
+  { path: 'error-400', element: <ErrorPage code={400} /> }, // Route is working for demonstration
+  { path: 'error-500', element: <ErrorPage code={500} /> }, // Route is working for demonstration
+  { path: '*', element: <ErrorPage /> }, // Route is working for demonstration
   //left code underneath as example of using path for common layout
   // {
   //   path: '*',
