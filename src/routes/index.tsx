@@ -28,57 +28,6 @@ const Register = Loadable(
 
 const routes: RouteObject[] = [
   { path: '/', element: <Register /> },
-  // {
-  //   path: '/registration',
-  //   children: [
-  //     {
-  //       path: 'register-email',
-  //       element: <RegistrationForm />,
-  //     },
-  //     {
-  //       path: 'glad-screen/:confirmationCode',
-  //       element: <AccountCreated />,
-  //     },
-  //     {
-  //       path: 'email-already-used',
-  //       element: <EmailAlreadyUsed />,
-  //     },
-  //   ],
-  // },
-  // {
-  //   path: 'authentication',
-  //   children: [
-  //     {
-  //       path: 'sign-in',
-  //       element: (
-  //         <GuestGuard>
-  //           <Login />
-  //         </GuestGuard>
-  //       ),
-  //     },
-  //     // {
-  //     //   path: 'email-sign-in',
-  //     //   element: <SignInMail />,
-  //     // },
-  //     // {
-  //     //   path: 'new-password',
-  //     //   element: <NewPassword />,
-  //     // },
-  //     {
-  //       path: 'email-sign-in',
-  //       element: <SignInMail />,
-  //     },
-  //     {
-  //       path: 'new-password',
-  //       element: <RequestNewPassword />,
-  //     },
-  //     { path: 'check-email', element: <CheckEmail /> },
-  //     {
-  //       path: 'reset-password/:confirmationCode',
-  //       element: <ResetPassword />,
-  //     },
-  //   ],
-  // },
   {
     path: 'callback',
     element: <AuthCallbackPage />,
@@ -88,23 +37,28 @@ const routes: RouteObject[] = [
     children: [
       {
         path: 'fill-profile',
-        element: <AuthGuard component={NameProfile} />,
+        element: <NameProfile />,
+        // element: <AuthGuard component={NameProfile} />,
       },
       {
         path: 'messages-and-friends',
-        element: <AuthGuard component={MessagesAndFriends} />,
+        element: <MessagesAndFriends />,
+        // element: <AuthGuard component={MessagesAndFriends} />,
       },
       {
         path: 'who-liked-you',
-        element: <AuthGuard component={YourLikesList} />,
+        element: <YourLikesList />,
+        // element: <AuthGuard component={YourLikesList} />,
       },
       {
         path: 'near-me',
-        element: <AuthGuard component={NearMe} />,
+        element: <NearMe />,
+        // element: <AuthGuard component={NearMe} />,
       },
       {
         path: 'new-match',
-        element: <AuthGuard component={Match} />,
+        element: <Match />,
+        // element: <AuthGuard component={Match} />,
       },
     ],
   },
