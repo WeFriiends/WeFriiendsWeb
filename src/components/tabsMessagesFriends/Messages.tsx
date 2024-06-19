@@ -16,7 +16,7 @@ const Messages = () => {
     )
   }
   return (
-    <Box sx={{ maxHeight: '71vh', overflow: 'auto' }}>
+    <Box sx={{ maxHeight: 'calc(100vh - 233px)', overflow: 'auto' }}>
       {userMessages.map((element) => (
         <Box key={element.id}>
           <Box className={classes.messageBlock}>
@@ -53,8 +53,8 @@ const useStyles = makeStyles()(() => {
       display: 'grid',
       gridTemplateColumns: '0.5fr 5fr 0.5fr',
       alignItems: 'center',
-      paddingBottom: 30,
-      paddingRight: 30,
+      paddingBottom: 18,
+      paddingRight: 18,
     },
     message: {
       paddingLeft: 16,
