@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Tab, Tabs, Box, Button } from '@mui/material'
+import { Box } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { useNewFriendsList } from 'hooks/useFriendsList'
 import { Link, Outlet, useLocation } from 'react-router-dom'
@@ -11,34 +11,32 @@ const TabsMessagesFriends: React.FC = () => {
 
   const { data: friendsList } = useNewFriendsList()
 
+  const getColor = (path: string): string => {
+    return path === location
+      ? theme.palette.primary.dark
+      : theme.palette.text.primary
+  }
+
   return (
     <Box sx={{ maxWidth: '1024px', margin: '0 auto' }}>
       <Box sx={{ maxWidth: '419px', paddingBottom: '38px' }}>
-        <Button
-          component={Link}
+        <Link
           to="/user/messages"
-          sx={{
-            color:
-              location === '/user/messages'
-                ? theme.palette.primary.dark
-                : theme.palette.text.primary,
+          style={{
+            color: getColor('/user/messages'),
             paddingRight: '74px',
           }}
           className={classes.labelStyle}
         >
           Messages
-        </Button>
-        <Button
-          component={Link}
+        </Link>
+        <Link
           to="/user/friends"
-          sx={{
-            color:
-              location === '/user/friends'
-                ? theme.palette.primary.dark
-                : theme.palette.text.primary,
+          style={{
+            color: getColor('/user/friends'),
           }}
           className={classes.labelStyle}
-        >{`New friends (${friendsList?.length})`}</Button>
+        >{`New friends (${friendsList?.length})`}</Link>
       </Box>
       <Outlet />
     </Box>
@@ -52,6 +50,7 @@ const useStyles = makeStyles()({
     textTransform: 'capitalize',
     fontSize: 24,
     lineHeight: 1.3,
+    textDecoration: 'none',
   },
   removeIndicator: {
     display: 'none',
