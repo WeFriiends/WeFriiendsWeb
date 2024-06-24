@@ -23,7 +23,7 @@ const NavBar = () => {
 
   return (
     <>
-      <Box className={classes.header}>
+      <Box component="header" className={classes.header}>
         <Box className={classes.logo}>
           <Box component="img" src="/img/logo.svg" alt="logo"></Box>
         </Box>
@@ -45,7 +45,9 @@ const NavBar = () => {
           <Typography className={classes.name}>Elena S</Typography>
         </Box>
       </Box>
-      <Outlet />
+      <Box component="main" className={classes.main}>
+        <Outlet />
+      </Box>
     </>
   )
 }
@@ -74,9 +76,17 @@ const useStyles = makeStyles()({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '60px 0 40px',
+      padding: '60px 30px 80px',
       margin: '0 auto',
       maxWidth: 1024,
+    },
+  },
+  main: {
+    margin: '0 auto',
+    maxWidth: 1024,
+    padding: '0 30px',
+    [theme.breakpoints.down('lg')]: {
+      padding: '0 10px',
     },
   },
   name: {

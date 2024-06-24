@@ -13,7 +13,6 @@ import {
 import Match from 'components/findMatch/Match'
 import Friends from 'components/tabsMessagesFriends/Friends'
 import { useNavigate } from 'react-router-dom'
-import PageWrapper from './PageWrapper'
 
 const FriendsPage = () => {
   const emptyProfile: UserProfileData = {

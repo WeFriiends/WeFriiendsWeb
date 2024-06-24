@@ -16,7 +16,7 @@ const Messages = () => {
     )
   }
   return (
-    <Box sx={{ maxHeight: 'calc(100vh - 233px)', overflow: 'auto' }}>
+    <Box sx={{ maxHeight: 'calc(100vh - 273px)', overflow: 'auto' }}>
       {userMessages.map((element) => (
         <Box key={element.id}>
           <Box className={classes.messageBlock}>
