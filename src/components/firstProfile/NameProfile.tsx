@@ -16,7 +16,7 @@ const FULLNAME_REGEX = /^[a-zA-Zа-яА-ЯёЁ\s\p{L}]{2,15}$/u
 const NameProfile = () => {
   const { classes } = useStyles()
   const commonClasses = commonStyles().classes
-  const [fullName, setFullName] = useState('')
+  const [, setFullName] = useState('')
   const [error, setError] = useState<string>('')
   const [isValid, setIsValid] = useState<boolean>(false)
 
