@@ -77,7 +77,7 @@ const useStyles = makeStyles()({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '60px 0 40px',
+      padding: '60px 30px 40px',
       margin: '0 auto',
       maxWidth: 1024,
     },
