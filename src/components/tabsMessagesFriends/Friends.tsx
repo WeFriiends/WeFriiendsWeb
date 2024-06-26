@@ -58,9 +58,9 @@ export default Friends
 const useStyles = makeStyles()({
   friendsBlock: {
     display: 'grid',
-    gridTemplateColumns: '190px 190px',
-    gridAutoRows: 225,
-    gridGap: 35,
+    gridTemplateColumns: '153px 153px',
+    gridAutoRows: 184,
+    gridGap: 25,
     maxHeight: '71vh',
     overflow: 'auto',
     paddingLeft: 2,
@@ -68,11 +68,11 @@ const useStyles = makeStyles()({
   friendsPhotos: {
     justifySelf: 'center',
     display: 'grid',
-    gridTemplateRows: '1fr 71px',
+    gridTemplateRows: '1fr 67px',
   },
   smallPhoto: {
-    width: 190,
-    height: 230,
+    width: 153,
+    height: 184,
     objectFit: 'cover',
     gridRow: '1/3',
     gridColumn: '1/2',
