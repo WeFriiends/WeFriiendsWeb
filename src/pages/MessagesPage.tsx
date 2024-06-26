@@ -7,7 +7,12 @@ const MessagesPage = () => {
   const { classes } = useStyles()
   return (
     <Box>
-      <Box sx={{ display: 'grid', gridTemplateColumns: '4.75fr 7.25fr' }}>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: '389px 575px',
+        }}
+      >
         <Messages />
         <Box>
           <Box>
@@ -64,15 +69,17 @@ const useStyles = makeStyles()({
     gap: 20,
     position: 'fixed',
     bottom: 0,
-    padding: '0 0 40px 18px',
+    padding: '0 0 40px 15px',
     alignItems: 'end',
   },
   textArea: {
-    width: 350,
+    width: 328,
     backgroundColor: ' #EEEEEE',
+    fontFamily: 'Inter',
     fontSize: 14,
     lineHeight: 1.3,
-    padding: '11px 14px',
+    fontWeight: 400,
+    padding: '15px 18px',
     border: 'none',
     borderRadius: 10,
     outline: 'none',
@@ -80,7 +87,7 @@ const useStyles = makeStyles()({
   sendBtn: {
     border: '2px solid  #F1562A',
     borderRadius: 10,
-    padding: '6px 60.5px',
+    padding: '6px 55px',
     textTransform: 'lowercase',
     fontSize: 16,
     lineHeight: 1.5,
