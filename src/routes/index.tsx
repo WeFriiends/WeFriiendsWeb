@@ -14,6 +14,7 @@ import MessagesAndFriends from 'pages/MessagesAndFriends'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
 import Messages from 'pages/Messages'
+import BirthdayForm from 'components/firstProfile/BirthdayForm'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -60,6 +61,11 @@ const routes: RouteObject[] = [
         path: 'near-me',
         element: <NearMe />,
         // element: <AuthGuard component={NearMe} />,
+      },
+      {
+        path: 'birthday-form',
+        element: <BirthdayForm />,
+        // element: <AuthGuard component={BirthdayForm} />,
       },
     ],
   },
