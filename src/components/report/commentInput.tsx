@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Box, Typography, Button, TextareaAutosize } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { useNavigate } from 'react-router-dom'
+import theme from '../../styles/createTheme'
 
 const CommentInput = () => {
   const { classes } = useStyles()
@@ -24,7 +25,6 @@ const CommentInput = () => {
       <Typography className={classes.comment}>
         Please, leave a comment. We will better understand what has happened.
       </Typography>
-
       <TextareaAutosize
         value={comment}
         onChange={(e) => setComment(e.target.value)}
@@ -32,18 +32,20 @@ const CommentInput = () => {
       />
       <Box className={classes.groupBtn}>
         <Button
-          variant="outlined"
-          className={classes.dialogBtn}
+          className={`${classes.button} ${classes.laterButton}`}
           onClick={handleCancel}
+          disableFocusRipple
+          disableRipple
         >
-          Cancel
+          cancel
         </Button>
         <Button
-          variant="outlined"
-          className={classes.dialogBtn}
+          className={`${classes.button} ${classes.chatButton}`}
           onClick={handleSend}
+          disableFocusRipple
+          disableRipple
         >
-          Send
+          send
         </Button>
       </Box>
     </Box>
@@ -63,45 +65,59 @@ const useStyles = makeStyles()(() => {
       display: 'flex',
       gap: 15,
       justifyContent: 'center',
-      width: '90%',
-      margin: '70px auto',
+      margin: '35px 0 25px',
     },
     textarea: {
       width: '100%',
       height: '100%',
-      minHeight: '135px',
+      minHeight: '115px',
       flexShrink: 0,
       borderRadius: '10px',
-      background: '#FFF',
+      background: theme.palette.common.white,
       boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',
-      border: 'none',
+      border: '1px solid #eee',
+      fontFamily: 'inherit',
+      padding: 10,
+      boxSizing: 'border-box',
       '&:focus': {
         outline: 'none',
       },
     },
-    dialogBtn: {
-      border: '1px solid #FB8F67',
-      marginBottom: 8,
-      boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',
-      height: 38,
-      lineHeight: '36px',
+    comment: {
+      fontSize: 14,
+      textAlign: 'left',
+      margin: '30px 0 10px',
+    },
+    button: {
       borderRadius: 10,
       fontSize: 12,
-      fontWeight: 500,
       textTransform: 'none',
-      width: '40%',
-      color: 'var(--red, #F1562A)',
-      '&:active, &:hover': {
-        border: 'none',
-        backgroundColor: '#FB8F67',
-        transition: 'background-color 0.5s',
-        color: '#fff',
+      fontWeight: 700,
+      boxShadow: '0 0 7px 1px rgba(179, 179, 179, 0.14)',
+    },
+    laterButton: {
+      width: 124,
+      height: 38,
+      color: theme.palette.primary.main,
+      fontWeight: 500,
+      textDecoration: 'none',
+      display: 'block',
+      textAlign: 'center',
+      border: '1px solid ' + theme.palette.primary.main,
+      '&:hover': {
+        background: theme.palette.common.white,
       },
     },
-    comment: {
-      paddingBottom: 15,
-      fontSize: 14,
-      textAlign: 'center',
+    chatButton: {
+      width: 124,
+      height: 38,
+      color: '#fff',
+      backgroundColor: '#F46B5D',
+      textDecoration: 'none',
+      display: 'flex',
+      '&:hover': {
+        background: theme.palette.primary.main,
+      },
     },
   }
 })

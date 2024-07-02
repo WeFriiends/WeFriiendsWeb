@@ -1,10 +1,9 @@
 import { Box, Typography, Button } from '@mui/material'
-import ClearIcon from '@mui/icons-material/Clear'
-import IconButton from '@mui/material/IconButton'
 import { makeStyles } from 'tss-react/mui'
 import { useNavigate, useParams } from 'react-router'
 import CommentInput from './commentInput'
 import { CommonModal } from '../commonModal/CommonModal'
+import React from 'react'
 
 const ReportComment = () => {
   const { classes } = useStyles()
@@ -22,18 +21,14 @@ const ReportComment = () => {
       modalDescription={'modal-modal-description'}
       onClose={handleGoBack}
     >
-      <Box className={classes.mainBox}>
-        <IconButton className={classes.iconButton} onClick={handleGoBack}>
-          <ClearIcon className={classes.closeIcon} />
-        </IconButton>
+      <Box className={classes.reportContainer}>
+        <img
+          src="/img/report/icon-alert.svg"
+          alt="Alert circle"
+          className={classes.imgAlert}
+        />
         <Box>
-          <img
-            src="/img/report/icon-alert.svg"
-            alt="Alert circle"
-            className={classes.imgAlert}
-          />
-
-          <Typography variant="h1" className={classes.title}>
+          <Typography variant="h2" className={classes.title}>
             Report
           </Typography>
           <Typography className={classes.content}>
@@ -44,16 +39,17 @@ const ReportComment = () => {
           <Button
             fullWidth
             variant="contained"
-            color="primary"
             className={classes.linkBtn}
+            disableFocusRipple
+            disableRipple
+            disableElevation
           >
+            {buttonName}
             <img
-              src="/img/report/check.png"
+              src="/img/report/check.svg"
               alt="check"
               className={classes.checkImg}
             />
-
-            {buttonName}
           </Button>
           <CommentInput />
         </Box>
@@ -64,62 +60,51 @@ const ReportComment = () => {
 
 export default ReportComment
 
-const useStyles = makeStyles()(() => {
+const useStyles = makeStyles()((theme) => {
   return {
-    mainBox: {
+    reportContainer: {
       display: 'grid',
     },
-    shadowBox: {
-      borderRadius: 10,
-      boxShadow: '0 0 7px 1px rgba(179, 179, 179, 0.14)',
-      padding: '30px 20px',
-      background: '#fff',
-    },
     title: {
-      fontSize: 24,
-      fontWeight: 500,
-      lineHeight: '40px',
-      paddingTop: 70,
-      paddingBottom: 14,
-      color: '#F46B5D',
       textAlign: 'center',
+      paddingTop: 15,
+      paddingBottom: 15,
     },
     content: {
-      paddingBottom: 15,
       fontSize: 14,
       textAlign: 'center',
+      paddingBottom: 20,
+    },
+    shadowBox: {
+      [theme.breakpoints.down(370)]: {
+        borderRadius: 10,
+        boxShadow: '0 0 7px 1px rgba(179, 179, 179, 0.14)',
+        padding: '30px 20px',
+        marginBottom: 10,
+      },
     },
     linkBtn: {
       display: 'flex',
       justifyContent: 'space-between',
-      flexDirection: 'row-reverse',
       alignItems: 'center',
-      background: 'var(--fish, #FB8F67)',
-      boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',
+      background: theme.palette.primary.light,
       borderRadius: 10,
       fontSize: 14,
+      fontWeight: 600,
       padding: '0 14px',
-      '&:hover': {
-        backgroundColor: 'var(--fish, #FB8F67)',
-      },
       flexShrink: 0,
       paddingTop: 10,
       paddingBottom: 10,
       textAlign: 'left',
       textTransform: 'none',
-      color: '#FFF',
-      marginBottom: 5,
+      color: theme.palette.common.white,
+      height: 50,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.light,
+      },
     },
     imgAlert: {
-      display: 'block',
-      marginTop: '80px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      width: '31px',
-      height: '31px',
-      flexShrink: 0,
-      strokeWidth: '2px',
-      stroke: 'var(--red, #F1562A)',
+      margin: '0 auto',
     },
 
     iconButton: {

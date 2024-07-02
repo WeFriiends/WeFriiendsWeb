@@ -10,6 +10,15 @@ const Report = () => {
   const handleGoBack = () => {
     navigate(-1)
   }
+  const reportReasons = [
+    { text: 'Spam', href: 'report/reportComment/Spam' },
+    { text: 'Report abuse', href: 'report/reportComment/Report abuse' },
+    {
+      text: 'Inappropriate photos',
+      href: '/reportComment/Inappropriate photos',
+    },
+    { text: 'Other', href: '/reportComment/Other' },
+  ]
 
   return (
     <CommonModal
@@ -33,34 +42,24 @@ const Report = () => {
           </Typography>
         </Box>
         <Box>
-          <Button
-            href="report/reportComment/Spam"
-            fullWidth
-            className={classes.linkBtn}
-          >
-            Spam
-          </Button>
-          <Button
-            href="report/reportComment/Report abuse"
-            fullWidth
-            className={classes.linkBtn}
-          >
-            Report abuse
-          </Button>
-          <Button
-            href="/reportComment/Inappropriate photos"
-            fullWidth
-            className={classes.linkBtn}
-          >
-            Inappropriate photos
-          </Button>
-          <Button
-            href="/reportComment/Other"
-            fullWidth
-            className={classes.linkBtn}
-          >
-            Other
-          </Button>
+          {reportReasons.map((reason) => (
+            <Button
+              key={reason.text} // Add a unique key for each item
+              href={reason.href}
+              fullWidth
+              className={classes.linkBtn}
+              disableFocusRipple
+              disableRipple
+              disableElevation
+            >
+              {reason.text}
+              <img
+                src="/img/report/check.svg"
+                alt="check"
+                className={classes.checkImg}
+              />
+            </Button>
+          ))}
         </Box>
       </Box>
     </CommonModal>
@@ -88,20 +87,29 @@ const useStyles = makeStyles()((theme) => {
       margin: '0 auto',
     },
     linkBtn: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
       borderRadius: 10,
-      padding: 15,
+      padding: '0 14px',
       boxShadow: '0 0 7px 1px rgba(179, 179, 179, 0.35)',
       textAlign: 'left',
       textTransform: 'none',
-      lineHeight: '20px',
       color: theme.palette.text.primary,
       marginBottom: 10,
-      fontWeight: 400,
+      fontSize: 14,
+      flexShrink: 0,
       transition: 'color .3s, background-color .3s',
+      height: 50,
+      fontWeight: 500,
       '&:active, &:hover': {
-        backgroundColor: theme.palette.primary.light,
+        fontWeight: 500,
+        background: theme.palette.primary.light,
         color: theme.palette.common.white,
       },
+    },
+    checkImg: {
+      fontSize: '16px',
     },
   }
 })

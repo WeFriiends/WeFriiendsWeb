@@ -53,8 +53,8 @@ const Match: React.FC<MatchProps> = ({
           <Button
             className={`${classes.button} ${classes.laterButton}`}
             onClick={onClose}
-            disableFocusRipple={true}
-            disableRipple={true}
+            disableFocusRipple
+            disableRipple
           >
             Later
           </Button>
