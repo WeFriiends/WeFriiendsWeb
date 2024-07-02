@@ -59,6 +59,15 @@ const theme = {
   customPalette: {
     colorNavIcon: '#AFB1B6', // Better to add it to 'palette'? but it causes errors
   },
+  components: {
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(13, 13, 13, 0.72)',
+        },
+      },
+    },
+  },
 } as const
 
 type CustomTheme = {

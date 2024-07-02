@@ -19,6 +19,7 @@ import RequestNewPassword from 'components/userAuth/signInMail/forgotPassword/in
 import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
 import CheckEmail from 'components/userAuth/signInMail/forgotPassword/inputEmail/CheckEmail'
 import Messages from 'pages/Messages'
+import Match from '../components/findMatch/Match'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -112,6 +113,20 @@ const routes: RouteObject[] = [
           // <AuthGuard>
           <NearMe />
           // </AuthGuard>
+        ),
+      },
+      {
+        path: 'new-match',
+        element: (
+          <>
+            Hello World!
+            <Match
+              isMatchModalOpen={true}
+              onClose={() => void {}}
+              onChat={() => void {}}
+              friendsAvatar={'test.jpg'}
+            />
+          </>
         ),
       },
     ],
