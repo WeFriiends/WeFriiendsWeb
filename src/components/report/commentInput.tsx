@@ -40,7 +40,7 @@ const CommentInput = () => {
           cancel
         </Button>
         <Button
-          className={`${classes.button} ${classes.chatButton}`}
+          className={`${classes.button} ${classes.sendButton}`}
           onClick={handleSend}
           disableFocusRipple
           disableRipple
@@ -91,33 +91,24 @@ const useStyles = makeStyles()(() => {
     button: {
       borderRadius: 10,
       fontSize: 12,
+      width: 124,
+      height: 38,
+      textDecoration: 'none',
       textTransform: 'none',
       fontWeight: 700,
       boxShadow: '0 0 7px 1px rgba(179, 179, 179, 0.14)',
-    },
-    laterButton: {
-      width: 124,
-      height: 38,
       color: theme.palette.primary.main,
-      fontWeight: 500,
-      textDecoration: 'none',
-      display: 'block',
-      textAlign: 'center',
       border: '1px solid ' + theme.palette.primary.main,
       '&:hover': {
-        background: theme.palette.common.white,
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.common.white,
       },
     },
-    chatButton: {
-      width: 124,
-      height: 38,
-      color: '#fff',
-      backgroundColor: '#F46B5D',
-      textDecoration: 'none',
-      display: 'flex',
-      '&:hover': {
-        background: theme.palette.primary.main,
-      },
+    laterButton: {
+      fontWeight: 500,
+    },
+    sendButton: {
+      fontWeight: 600,
     },
   }
 })

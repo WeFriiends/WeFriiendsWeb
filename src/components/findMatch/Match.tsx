@@ -140,7 +140,7 @@ const useStyles = makeStyles()({
     width: 124,
     height: 38,
     color: theme.palette.primary.main,
-    fontWeight: 500,
+    fontWeight: 600,
     textDecoration: 'none',
     display: 'block',
     textAlign: 'center',
