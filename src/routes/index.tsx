@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router'
 import { ComponentType, Suspense, lazy } from 'react'
-// import AuthGuard from 'components/userAuth/AuthGuard'
+import AuthGuard from 'components/userAuth/AuthGuard'
 import LoadingScreen from 'common/svg/Loader'
 import Report from 'components/report/report'
 import ReportComment from 'components/report/reportComment'
@@ -38,13 +38,13 @@ const routes: RouteObject[] = [
     children: [
       {
         path: 'fill-profile',
-        element: <NameProfile />,
-        // element: <AuthGuard component={NameProfile} />,
+        // element: <NameProfile />,
+        element: <AuthGuard component={NameProfile} />,
       },
       {
         path: 'messages-and-friends',
-        element: <MessagesAndFriends />,
-        // element: <AuthGuard component={MessagesAndFriends} />,
+        // element: <MessagesAndFriends />,
+        element: <AuthGuard component={MessagesAndFriends} />,
       },
       {
         path: 'messages',
