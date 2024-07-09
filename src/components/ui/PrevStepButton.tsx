@@ -2,11 +2,11 @@ import { Box, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 
 type PreviousStepButtonProps = {
-  onSubmit: (action: string) => void
+  stepBackHandler: (action: string) => void
 }
 
 const PrevStepButton = (props: PreviousStepButtonProps) => {
-  const { onSubmit } = props
+  const { stepBackHandler } = props
   const { classes } = useStyles()
 
   return (
@@ -20,7 +20,7 @@ const PrevStepButton = (props: PreviousStepButtonProps) => {
             style={{ margin: 0 }}
           />
         }
-        // onClick={onSubmit}
+        // onClick={stepBackHandler}
       />
     </Box>
   )
