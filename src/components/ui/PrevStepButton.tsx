@@ -20,7 +20,7 @@ const PrevStepButton = (props: PreviousStepButtonProps) => {
             style={{ margin: 0 }}
           />
         }
-        // onClick={stepBackHandler}
+        onClick={stepBackHandler}
       />
     </Box>
   )
