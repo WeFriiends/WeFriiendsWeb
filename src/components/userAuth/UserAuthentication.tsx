@@ -1,11 +1,38 @@
-import Logo from '../../logo/Logo'
-import { Typography, Box, Link } from '@mui/material'
+import { Typography, Box, Link, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
+import { useAuth0 } from '@auth0/auth0-react'
+import Logo from '../logo/Logo'
 import { commonStyles } from 'styles/commonStyles'
+import LoadingScreen from 'common/svg/Loader'
 
-const CreateAccount = () => {
+const UserAuthentication = () => {
   const { classes } = useStyles()
   const commonClasses = commonStyles().classes
+  const { isLoading, loginWithRedirect } = useAuth0()
+
+  if (isLoading) {
+    return <LoadingScreen />
+  }
+
+  const handleLogin = async () => {
+    await loginWithRedirect({
+      appState: {
+        returnTo: 'user/messages-and-friends',
+      },
+    })
+  }
+
+  const handleSignUp = async () => {
+    await loginWithRedirect({
+      appState: {
+        returnTo: 'user/fill-profile',
+      },
+      authorizationParams: {
+        screen_hint: 'signup',
+      },
+    })
+  }
+
   return (
     <Box className={`${commonClasses.mainBox} ${classes.mainGrid}`}>
       <Box>
@@ -20,11 +47,12 @@ const CreateAccount = () => {
         </Typography>
       </Box>
       <Box>
-        {/* <Button
+        <Button
           fullWidth
           variant="contained"
           className={classes.fbAndGoogleButton}
           startIcon={<img alt="fb" src={'/img/fb.svg'} />}
+          onClick={handleSignUp}
         >
           Facebook
         </Button>
@@ -33,15 +61,18 @@ const CreateAccount = () => {
           variant="contained"
           className={classes.fbAndGoogleButton}
           startIcon={<img alt="google" src={'/img/google.svg'} />}
+          onClick={handleSignUp}
         >
           Google
-        </Button> */}
-        <Link
-          href="/registration/register-email"
+        </Button>
+        <Button
+          fullWidth
+          variant="contained"
           className={commonClasses.linkBtn}
+          onClick={handleSignUp}
         >
           e-mail
-        </Link>
+        </Button>
         <Typography className={commonClasses.p}>
           By creating an account, I agree with
           <Link
@@ -67,15 +98,20 @@ const CreateAccount = () => {
         <Typography className={commonClasses.text}>
           Already have an account?
         </Typography>
-        <Link href="/authentication/sign-in" className={commonClasses.link}>
+        <Button
+          fullWidth
+          variant="contained"
+          className={commonClasses.linkSmall}
+          onClick={handleLogin}
+        >
           Sign In
-        </Link>
+        </Button>
       </Box>
     </Box>
   )
 }
 
-export default CreateAccount
+export default UserAuthentication
 
 const useStyles = makeStyles()(() => {
   return {
