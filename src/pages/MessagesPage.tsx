@@ -80,7 +80,7 @@ const useStyles = makeStyles()({
   sendBtn: {
     border: '2px solid  #F1562A',
     borderRadius: 10,
-    padding: '6px 60.5px',
+    padding: '6px 40.5px',
     textTransform: 'lowercase',
     fontSize: 16,
     lineHeight: 1.5,
