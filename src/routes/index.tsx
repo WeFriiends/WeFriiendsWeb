@@ -4,10 +4,7 @@ import LoadingScreen from 'common/svg/Loader'
 import RegistrationForm from 'components/userAuth/registrationForm/RegistrationForm'
 import AccountCreated from 'components/userAuth/accountCreated/AccountCreated'
 import SignInMail from 'components/userAuth/signInMail/SignInMail'
-import Report from 'components/report/report'
-import ReportComment from 'components/report/reportComment'
-import CommentInput from 'components/report/commentInput'
-import ReportReceived from 'components/report/reportReceived'
+import ReportReceived from 'components/report/ReportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 // import AuthGuard from 'components/userAuth/AuthGuard'
@@ -20,6 +17,9 @@ import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyU
 import CheckEmail from 'components/userAuth/signInMail/forgotPassword/inputEmail/CheckEmail'
 import Messages from 'pages/Messages'
 import Match from '../components/findMatch/Match'
+import ReportAction from '../components/report/ReportAction'
+import ReportForm from '../components/report/ReportForm'
+import UserIsBlocked from '../components/report/UserIsBlocked'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -136,20 +136,20 @@ const routes: RouteObject[] = [
     path: 'report',
     children: [
       {
-        path: 'main-form',
-        element: <Report />,
+        path: 'choose-action',
+        element: <ReportAction />,
       },
       {
-        path: 'reportComment/:buttonName',
-        element: <ReportComment />,
+        path: 'report-form',
+        element: <ReportForm />,
       },
       {
-        path: 'commentInput',
-        element: <CommentInput />,
-      },
-      {
-        path: 'reportReceived',
+        path: 'report-received',
         element: <ReportReceived />,
+      },
+      {
+        path: 'user-is-blocked',
+        element: <UserIsBlocked />,
       },
     ],
   },

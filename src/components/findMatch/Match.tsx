@@ -25,6 +25,7 @@ const Match: React.FC<MatchProps> = ({
       onClose={onClose}
       modalTitle={'modal-modal-title'}
       modalDescription={'modal-modal-description'}
+      height={605}
     >
       <Box className={classes.matchContainer}>
         <Box className={classes.matchedAvatarsContainer}>
@@ -83,11 +84,9 @@ export default Match
 
 const useStyles = makeStyles()({
   title: {
-    fontFamily: 'Inter',
     fontSize: 28,
     fontWeight: 500,
     lineHeight: '20px',
-    color: theme.palette.primary.main,
     textAlign: 'center',
   },
   subTitle: {
@@ -103,6 +102,7 @@ const useStyles = makeStyles()({
     alignItems: 'center',
     justifyContent: 'space-around',
     gap: 40,
+    marginTop: 55,
   },
   newMatchAvatar: {
     marginLeft: -15,
@@ -130,30 +130,28 @@ const useStyles = makeStyles()({
     justifyContent: 'space-between',
   },
   button: {
+    height: 50,
+    width: 125,
     borderRadius: 10,
-    fontSize: 12,
+    fontSize: 14,
     textTransform: 'none',
-    fontWeight: 700,
-    boxShadow: '0 0 7px 1px rgba(179, 179, 179, 0.14)',
   },
   laterButton: {
-    width: 124,
-    height: 38,
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.dark,
     fontWeight: 600,
     textDecoration: 'none',
     display: 'block',
     textAlign: 'center',
-    border: '1px solid ' + theme.palette.primary.main,
+    border: '1px solid ' + theme.palette.primary.dark,
+    boxShadow: '0 0 7px 1px rgba(179, 179, 179, 0.14)',
     '&:hover': {
       background: theme.palette.common.white,
     },
   },
   chatButton: {
-    width: 124,
-    height: 38,
-    color: '#fff',
-    backgroundColor: '#F46B5D',
+    fontWeight: 700,
+    color: theme.palette.common.white,
+    backgroundColor: theme.palette.primary.light,
     textDecoration: 'none',
     display: 'flex',
     '&:hover': {
