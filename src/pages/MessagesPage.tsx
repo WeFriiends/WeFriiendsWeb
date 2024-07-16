@@ -1,7 +1,14 @@
-import { Box, Typography, Button, TextareaAutosize } from '@mui/material'
+import {
+  Box,
+  Typography,
+  Button,
+  TextareaAutosize,
+  Avatar,
+} from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import Messages from 'components/tabsMessagesFriends/Messages'
 import theme from './../styles/createTheme'
+import ChatMenu from 'components/chat/ChatMenu'
 
 const MessagesPage = () => {
   const { classes } = useStyles()
@@ -15,8 +22,33 @@ const MessagesPage = () => {
       >
         <Messages />
         <Box>
+          <Box className={classes.headerSection}>
+            <Box className={classes.userHeaderSection}>
+              <Avatar
+                src="/img/avatar_stacy.jpg"
+                sx={{ width: 50, height: 50 }}
+              />
+              <Typography
+                sx={{
+                  color: theme.palette.primary.main,
+                  fontWeight: 600,
+                  fontSize: 20,
+                }}
+              >
+                Elena S., 36
+              </Typography>
+            </Box>
+            <ChatMenu />
+          </Box>
           <Box>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                paddingTop: '44px',
+              }}
+            >
               <Typography className={classes.startChattingText}>
                 Connect with others by sharing your thoughts or experiences.
               </Typography>
@@ -49,6 +81,18 @@ const MessagesPage = () => {
 export default MessagesPage
 
 const useStyles = makeStyles()({
+  headerSection: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: -78,
+    paddingLeft: 22,
+  },
+  userHeaderSection: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 15,
+  },
   startChattingText: {
     maxWidth: '315px',
     margin: '0 auto',

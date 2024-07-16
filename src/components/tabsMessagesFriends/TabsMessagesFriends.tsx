@@ -19,7 +19,9 @@ const TabsMessagesFriends: React.FC = () => {
 
   return (
     <Box sx={{ maxWidth: '1024px', margin: '0 auto', padding: '0 30px' }}>
-      <Box sx={{ maxWidth: '419px', paddingBottom: '38px' }}>
+      <Box
+        sx={{ maxWidth: '419px', paddingBottom: '38px', paddingTop: '10px' }}
+      >
         <Link
           to="/user/messages"
           style={{
