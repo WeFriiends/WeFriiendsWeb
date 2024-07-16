@@ -1,6 +1,5 @@
 import { Box, Avatar, Typography, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import IconChat from '../../common/svg/IconChat'
 import theme from '../../styles/createTheme'
 import { CommonModal } from '../commonModal/CommonModal'
 
@@ -61,13 +60,7 @@ const Match: React.FC<MatchProps> = ({
           </Button>
           <Button
             className={`${classes.button} ${classes.chatButton}`}
-            startIcon={
-              <IconChat
-                color={theme.palette.common.white}
-                width={21.5}
-                height={20.75}
-              />
-            }
+            startIcon={<img alt='Chat' src='/img/icon-chat.svg' />}
             disableFocusRipple
             disableRipple
             onClick={onChat}
