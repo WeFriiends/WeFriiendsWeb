@@ -1,20 +1,15 @@
 import { RouteObject } from 'react-router'
 import { ComponentType, Suspense, lazy } from 'react'
+import AuthGuard from 'components/userAuth/AuthGuard'
 import LoadingScreen from 'common/svg/Loader'
-import RegistrationForm from 'components/userAuth/registrationForm/RegistrationForm'
-import AccountCreated from 'components/userAuth/accountCreated/AccountCreated'
-import SignInMail from 'components/userAuth/signInMail/SignInMail'
 import ReportReceived from 'components/report/ReportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
-// import AuthGuard from 'components/userAuth/AuthGuard'
-import GuestGuard from 'components/userAuth/GuestGuard'
+import AuthCallbackPage from 'pages/AuthCallbackPage'
+import NameProfile from 'components/firstProfile/NameProfile'
+import MessagesAndFriends from 'pages/MessagesAndFriends'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
-import ResetPassword from 'components/userAuth/signInMail/forgotPassword/resetPassword/ResetPassword'
-import RequestNewPassword from 'components/userAuth/signInMail/forgotPassword/inputEmail/RequestNewPassword'
-import EmailAlreadyUsed from 'components/userAuth/registrationForm/EmailAlreadyUsed'
-import CheckEmail from 'components/userAuth/signInMail/forgotPassword/inputEmail/CheckEmail'
 import Messages from 'pages/Messages'
 import Match from '../components/findMatch/Match'
 import ReportAction from '../components/report/ReportAction'
@@ -30,90 +25,42 @@ const Loadable =
     )
 
 const Register = Loadable(
-  lazy(() => import('components/userAuth/createAccount/CreateAccount'))
+  lazy(() => import('components/userAuth/UserAuthentication'))
 )
-const Login = Loadable(lazy(() => import('components/userAuth/signIn/SignIn')))
-const Home = Loadable(lazy(() => import('pages/MessagesAndFriends')))
 
 const routes: RouteObject[] = [
   { path: '/', element: <Register /> },
   {
-    path: '/registration',
-    children: [
-      {
-        path: 'register-email',
-        element: <RegistrationForm />,
-      },
-      {
-        path: 'glad-screen/:confirmationCode',
-        element: <AccountCreated />,
-      },
-      {
-        path: 'email-already-used',
-        element: <EmailAlreadyUsed />,
-      },
-    ],
-  },
-  {
-    path: 'authentication',
-    children: [
-      {
-        path: 'sign-in',
-        element: (
-          <GuestGuard>
-            <Login />
-          </GuestGuard>
-        ),
-      },
-      {
-        path: 'email-sign-in',
-        element: <SignInMail />,
-      },
-      {
-        path: 'new-password',
-        element: <RequestNewPassword />,
-      },
-      { path: 'check-email', element: <CheckEmail /> },
-      {
-        path: 'reset-password/:confirmationCode',
-        element: <ResetPassword />,
-      },
-    ],
+    path: 'callback',
+    element: <AuthCallbackPage />,
   },
   {
     path: 'user',
     children: [
       {
+        path: 'fill-profile',
+        // element: <NameProfile />,
+        element: <AuthGuard component={NameProfile} />,
+      },
+      {
         path: 'messages-and-friends',
-        element: (
-          // <AuthGuard>
-          <Home />
-          // </AuthGuard>
-        ),
+        // element: <MessagesAndFriends />,
+        element: <AuthGuard component={MessagesAndFriends} />,
       },
       {
         path: 'messages',
-        element: (
-          // <AuthGuard>
-          <Messages />
-          // </AuthGuard>
-        ),
+        element: <Messages />,
+        // element: <AuthGuard component={Messages} />,
       },
       {
         path: 'who-liked-you',
-        element: (
-          // <AuthGuard>
-          <YourLikesList />
-          // </AuthGuard>
-        ),
+        element: <YourLikesList />,
+        // element: <AuthGuard component={YourLikesList} />,
       },
       {
         path: 'near-me',
-        element: (
-          // <AuthGuard>
-          <NearMe />
-          // </AuthGuard>
-        ),
+        element: <NearMe />,
+        // element: <AuthGuard component={NearMe} />,
       },
       {
         path: 'new-match',
