@@ -33,8 +33,8 @@ const ReportReceived = () => {
             Report Received
           </Typography>
           <Typography className={classes.content}>
-            Thank you for your message. We will review it as soon as possible
-            and take care about this problem.
+            Thank you for your message. We will review <br />
+            it as soon as possible and take care about this problem.
           </Typography>
         </Box>
 

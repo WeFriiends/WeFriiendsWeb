@@ -64,8 +64,8 @@ const Match: React.FC<MatchProps> = ({
             startIcon={
               <IconChat
                 color={theme.palette.common.white}
-                width={22}
-                height={22}
+                width={21.5}
+                height={20.75}
               />
             }
             disableFocusRipple

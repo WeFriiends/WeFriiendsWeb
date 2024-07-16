@@ -88,7 +88,7 @@ const ReportForm = () => {
         />
         <Box className={classes.groupBtn}>
           <Button
-            className={`${classes.button} ${classes.laterButton}`}
+            className={classes.button}
             disableFocusRipple
             disableRipple
             onClick={handleGoBack}
@@ -96,7 +96,7 @@ const ReportForm = () => {
             cancel
           </Button>
           <Button
-            className={`${classes.button} ${classes.sendButton}`}
+            className={classes.button}
             disableFocusRipple
             disableRipple
             onClick={handleSendReport}
@@ -167,7 +167,7 @@ const useStyles = makeStyles()({
     height: 38,
     textDecoration: 'none',
     textTransform: 'none',
-    fontWeight: 700,
+    fontWeight: 500,
     boxShadow: '0 0 7px 1px rgba(179, 179, 179, 0.14)',
     color: theme.palette.primary.main,
     border: '1px solid ' + theme.palette.primary.main,
@@ -175,11 +175,5 @@ const useStyles = makeStyles()({
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
     },
-  },
-  laterButton: {
-    fontWeight: 500,
-  },
-  sendButton: {
-    fontWeight: 600,
   },
 })
