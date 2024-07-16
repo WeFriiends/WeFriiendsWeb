@@ -60,7 +60,7 @@ const Match: React.FC<MatchProps> = ({
           </Button>
           <Button
             className={`${classes.button} ${classes.chatButton}`}
-            startIcon={<img alt='Chat' src='/img/icon-chat.svg' />}
+            startIcon={<img alt="Chat" src="/img/icon-chat.svg" />}
             disableFocusRipple
             disableRipple
             onClick={onChat}
