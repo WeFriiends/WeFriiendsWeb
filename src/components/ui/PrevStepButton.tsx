@@ -2,7 +2,7 @@ import { Box, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 
 type PreviousStepButtonProps = {
-  stepBackHandler: (action: string) => void
+  stepBackHandler: () => void
 }
 
 const PrevStepButton = (props: PreviousStepButtonProps) => {
@@ -45,6 +45,9 @@ const useStyles = makeStyles()(() => {
       alignItems: 'center',
       borderRadius: '50%',
       background: '#FEDED2',
+      '&:hover': {
+        backgroundColor: 'salmon',
+      },
     },
   }
 })
