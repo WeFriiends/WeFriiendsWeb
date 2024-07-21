@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Typography, Box } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
+import NextStepButton from 'components/ui/NextStepButton'
 
 const STATUSES: Array<string> = [
   'Looking for new friends',
@@ -25,6 +26,10 @@ const Status = () => {
     } else if (selectedStatuses.length < 3) {
       setSelectedStatuses([...selectedStatuses, status])
     }
+  }
+
+  const stepForwardHandler = () => {
+    console.log('here will be function with action')
   }
 
   return (
@@ -66,6 +71,10 @@ const Status = () => {
           </Box>
         ))}
       </Box>
+      <NextStepButton
+        stepForwardHandler={stepForwardHandler}
+        disabled={false}
+      />
     </Box>
   )
 }
