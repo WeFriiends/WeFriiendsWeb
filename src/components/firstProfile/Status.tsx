@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Typography, Box } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
-import PrevStepButton from 'components/ui/PrevStepButton'
 
 const STATUSES: Array<string> = [
   'Looking for new friends',
@@ -28,13 +27,8 @@ const Status = () => {
     }
   }
 
-  const stepBackHandler = () => {
-    console.log('Here will be action function')
-  }
-
   return (
     <Box className={`${commonClasses.mainBox} ${classes.mainBox}`}>
-      <PrevStepButton stepBackHandler={stepBackHandler} />
       <Box className={classes.titleContainer}>
         <Typography
           variant="h1"
