@@ -9,11 +9,11 @@ import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import AuthCallbackPage from 'pages/AuthCallbackPage'
-import NameProfile from 'components/firstProfile/NameProfile'
 import MessagesAndFriends from 'pages/MessagesAndFriends'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
 import Messages from 'pages/Messages'
+import FirstProfile from 'pages/FirstProfile'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -38,8 +38,8 @@ const routes: RouteObject[] = [
     children: [
       {
         path: 'fill-profile',
-        // element: <NameProfile />,
-        element: <AuthGuard component={NameProfile} />,
+        element: <FirstProfile />,
+        // element: <AuthGuard component={NameProfile} />,
       },
       {
         path: 'messages-and-friends',
