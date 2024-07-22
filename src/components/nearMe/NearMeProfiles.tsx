@@ -34,6 +34,7 @@ const useStyles = makeStyles()({
     fontSize: 32,
     fontWeight: 600,
     [theme.breakpoints.up('lg')]: {
+      paddingTop: 0,
       paddingBottom: 20,
       textAlign: 'left',
       fontSize: 24,

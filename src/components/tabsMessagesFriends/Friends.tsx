@@ -59,7 +59,11 @@ const useStyles = makeStyles()({
   friendsBlock: {
     display: 'grid',
     gridTemplateColumns: '190px 190px',
+    gridAutoRows: 225,
     gridGap: 35,
+    maxHeight: '71vh',
+    overflow: 'auto',
+    paddingLeft: 2,
   },
   friendsPhotos: {
     justifySelf: 'center',

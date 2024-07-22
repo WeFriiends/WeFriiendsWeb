@@ -1,76 +1,44 @@
 import * as React from 'react'
-import { Tab, Tabs, Box } from '@mui/material'
-import Messages from './Messages'
-import Friends from './Friends'
-import { UserProfileData } from '../../types/UserProfileData'
+import { Box } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { useNewFriendsList } from 'hooks/useFriendsList'
+import { Link, Outlet, useLocation } from 'react-router-dom'
+import theme from '../../styles/createTheme'
 
-interface TabPanelProps {
-  children?: React.ReactNode
-  index: number
-  value: number
-}
-
-interface TabsMessagesFriendsProps {
-  onClick: (userProfileData: UserProfileData) => void
-  selectedFriend: UserProfileData
-}
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index } = props
-
-  return (
-    <div>
-      {value === index && (
-        <Box
-          sx={{
-            padding: '20px 2px',
-            height: '80vh',
-            overflow: 'auto',
-          }}
-        >
-          <Box>{children}</Box>
-        </Box>
-      )}
-    </div>
-  )
-}
-
-const TabsMessagesFriends: React.FC<TabsMessagesFriendsProps> = ({
-  onClick,
-  selectedFriend,
-}) => {
-  const [value, setValue] = React.useState(0)
+const TabsMessagesFriends: React.FC = () => {
   const { classes } = useStyles()
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue)
-  }
+  const location = useLocation().pathname
 
   const { data: friendsList } = useNewFriendsList()
 
+  const getColor = (path: string): string => {
+    return path === location
+      ? theme.palette.primary.dark
+      : theme.palette.text.primary
+  }
+
   return (
-    <Box>
-      <Tabs
-        value={value}
-        classes={{
-          indicator: classes.removeIndicator,
-        }}
-        onChange={handleChange}
-        variant="fullWidth"
-      >
-        <Tab label="Messages" className={classes.labelStyle} />
-        <Tab
-          label={`New friends (${friendsList?.length})`}
+    <Box sx={{ maxWidth: '1024px', margin: '0 auto' }}>
+      <Box sx={{ maxWidth: '419px', paddingBottom: '38px' }}>
+        <Link
+          to="/user/messages"
+          style={{
+            color: getColor('/user/messages'),
+            paddingRight: '74px',
+          }}
           className={classes.labelStyle}
-        />
-      </Tabs>
-      <TabPanel value={value} index={0}>
-        <Messages />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Friends onClick={onClick} selectedFriend={selectedFriend} />
-      </TabPanel>
+        >
+          Messages
+        </Link>
+        <Link
+          to="/user/friends"
+          style={{
+            color: getColor('/user/friends'),
+          }}
+          className={classes.labelStyle}
+        >{`New friends (${friendsList?.length})`}</Link>
+      </Box>
+      <Outlet />
     </Box>
   )
 }
@@ -82,9 +50,7 @@ const useStyles = makeStyles()({
     textTransform: 'capitalize',
     fontSize: 24,
     lineHeight: 1.3,
-    borderBottom: 'none',
-    alignItems: 'flex-start',
-    paddingLeft: 0,
+    textDecoration: 'none',
   },
   removeIndicator: {
     display: 'none',
