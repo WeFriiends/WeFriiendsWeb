@@ -1,25 +1,23 @@
 import { Box, Typography, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
-import { useNavigate } from 'react-router'
-import React from 'react'
+import React, { useState } from 'react'
 import { CommonModal } from '../commonModal/CommonModal'
 import { commonStyles } from '../../styles/commonStyles'
 
 const ReportReceived = () => {
   const { classes } = useStyles()
-  const navigate = useNavigate()
-  const handleGoBack = () => {
-    navigate(-1)
-  }
+  const [isModalVisible, setIsModalVisible] = useState(true)
+  const hideModal = () => setIsModalVisible(false)
+
   const commonClasses = commonStyles().classes
 
   return (
     <CommonModal
-      isOpened={true}
+      isOpened={isModalVisible}
       modalTitle={'modal-modal-title'}
       modalDescription={'modal-modal-description'}
-      onClose={handleGoBack}
+      onClose={hideModal}
       height={370}
     >
       <Box className={classes.reportContainer}>
@@ -41,7 +39,9 @@ const ReportReceived = () => {
         <Button
           variant="contained"
           fullWidth
+          disableRipple
           className={`${commonClasses.submitButton} ${classes.okBtn}`}
+          onClick={hideModal}
         >
           OK, thanks!
         </Button>
@@ -75,5 +75,9 @@ const useStyles = makeStyles()({
     maxWidth: 260,
     height: 60,
     margin: '40px auto 0',
+    '&:hover': {
+      boxShadow: 'none',
+      backgroundColor: theme.palette.primary.main,
+    },
   },
 })
