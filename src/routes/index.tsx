@@ -10,10 +10,12 @@ import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import AuthCallbackPage from 'pages/AuthCallbackPage'
 import NameProfile from 'components/firstProfile/NameProfile'
-import MessagesAndFriends from 'pages/MessagesAndFriends'
+import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
-import Messages from 'pages/Messages'
+import Messages from 'pages/MessagesPage'
+import NavBar from 'components/navBar/NavBar'
+import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -42,24 +44,34 @@ const routes: RouteObject[] = [
         element: <AuthGuard component={NameProfile} />,
       },
       {
-        path: 'messages-and-friends',
-        // element: <MessagesAndFriends />,
-        element: <AuthGuard component={MessagesAndFriends} />,
-      },
-      {
-        path: 'messages',
-        element: <Messages />,
-        // element: <AuthGuard component={Messages} />,
-      },
-      {
-        path: 'who-liked-you',
-        element: <YourLikesList />,
-        // element: <AuthGuard component={YourLikesList} />,
-      },
-      {
-        path: 'near-me',
-        element: <NearMe />,
-        // element: <AuthGuard component={NearMe} />,
+        element: <NavBar />,
+        children: [
+          {
+            element: <TabsMessagesFriends />,
+            children: [
+              {
+                path: 'friends',
+                element: <Friends />,
+                // element: <AuthGuard component={Friends} />,
+              },
+              {
+                path: 'messages',
+                element: <Messages />,
+                // element: <AuthGuard component={Messages} />,
+              },
+            ],
+          },
+          {
+            path: 'who-liked-you',
+            element: <YourLikesList />,
+            // element: <AuthGuard component={YourLikesList} />,
+          },
+          {
+            path: 'near-me',
+            element: <NearMe />,
+            // element: <AuthGuard component={NearMe} />,
+          },
+        ],
       },
     ],
   },
