@@ -24,7 +24,7 @@ const ReportForm = () => {
   const [comment, setComment] = useState('')
 
   const handleSendReport = () => {
-    alert('handle send report')
+    // TODO: Add API and code for sending a report
     navigate('/report/report-received')
   }
 

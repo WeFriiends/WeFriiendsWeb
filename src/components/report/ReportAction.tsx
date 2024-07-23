@@ -13,7 +13,7 @@ const ReportAction = () => {
   }
 
   const handleBlock = () => {
-    alert('handle block')
+    // TODO: Add API and code for user blocking
     navigate('/report/user-is-blocked')
   }
 
