@@ -11,11 +11,11 @@ const App = () => {
   const content = useRoutes(routes)
   return (
     <Auth0ProviderWithNavigate>
-    <ThemeProvider theme={theme}>
-      <DialogProvider>
-        <ActivePageProvider>{content}</ActivePageProvider>
-      </DialogProvider>
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <DialogProvider>
+          <ActivePageProvider>{content}</ActivePageProvider>
+        </DialogProvider>
+      </ThemeProvider>
     </Auth0ProviderWithNavigate>
   )
 }
