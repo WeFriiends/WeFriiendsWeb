@@ -5,6 +5,7 @@ import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
 import theme from 'styles/createTheme'
 import ProfileCarousel from 'components/firstProfile/ProfileCarousel'
+import useBearerToken from 'hooks/useBearToken'
 
 const FirstProfile = () => {
   const commonClasses = commonStyles().classes

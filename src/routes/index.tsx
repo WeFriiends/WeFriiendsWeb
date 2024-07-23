@@ -9,11 +9,18 @@ import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import AuthCallbackPage from 'pages/AuthCallbackPage'
-import MessagesAndFriends from 'pages/MessagesAndFriends'
+// import MessagesAndFriends from 'pages/MessagesAndFriends'
+// import Invitation from '../components/invitation/Invitation'
+// import ErrorPage from 'pages/ErrorPage'
+// import Messages from 'pages/Messages'
+import FirstProfile from 'pages/FirstProfile'
+// import NameProfile from 'components/firstProfile/NameProfile'
+import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
-import Messages from 'pages/Messages'
-import FirstProfile from 'pages/FirstProfile'
+import Messages from 'pages/MessagesPage'
+import NavBar from 'components/navBar/NavBar'
+import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -38,28 +45,38 @@ const routes: RouteObject[] = [
     children: [
       {
         path: 'fill-profile',
-        element: <FirstProfile />,
-        // element: <AuthGuard component={NameProfile} />,
+        // element: <FirstProfile />,
+        element: <AuthGuard component={FirstProfile} />,
       },
       {
-        path: 'messages-and-friends',
-        // element: <MessagesAndFriends />,
-        element: <AuthGuard component={MessagesAndFriends} />,
-      },
-      {
-        path: 'messages',
-        element: <Messages />,
-        // element: <AuthGuard component={Messages} />,
-      },
-      {
-        path: 'who-liked-you',
-        element: <YourLikesList />,
-        // element: <AuthGuard component={YourLikesList} />,
-      },
-      {
-        path: 'near-me',
-        element: <NearMe />,
-        // element: <AuthGuard component={NearMe} />,
+        element: <NavBar />,
+        children: [
+          {
+            element: <TabsMessagesFriends />,
+            children: [
+              {
+                path: 'friends',
+                element: <Friends />,
+                // element: <AuthGuard component={Friends} />,
+              },
+              {
+                path: 'messages',
+                element: <Messages />,
+                // element: <AuthGuard component={Messages} />,
+              },
+            ],
+          },
+          {
+            path: 'who-liked-you',
+            element: <YourLikesList />,
+            // element: <AuthGuard component={YourLikesList} />,
+          },
+          {
+            path: 'near-me',
+            element: <NearMe />,
+            // element: <AuthGuard component={NearMe} />,
+          },
+        ],
       },
     ],
   },

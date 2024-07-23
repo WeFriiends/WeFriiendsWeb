@@ -1,10 +1,11 @@
+import { Box } from '@mui/material'
+
 import YouLikesProfiles from '../components/yourLikesList/YouLikesProfiles'
-import PageWrapper from './PageWrapper'
 
 export default function YourLikesList() {
   return (
-    <PageWrapper>
+    <Box>
       <YouLikesProfiles />
-    </PageWrapper>
+    </Box>
   )
 }

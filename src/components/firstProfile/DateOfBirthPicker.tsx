@@ -5,6 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { Dayjs } from 'dayjs'
+import { setItemToLocalStorage } from 'utils/localStorage'
 
 const DateOfBirthPicker = () => {
   const [value, setValue] = React.useState<Dayjs | null>(null)
@@ -23,15 +24,17 @@ const DateOfBirthPicker = () => {
     setError(null)
     return true
   }
+  const onChangePicker = (newValue: Dayjs | null) => {
+    setValue(newValue)
+    validateDate()
+    setItemToLocalStorage('dob', newValue)
+  }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
-        label="Basic example"
         value={value}
-        onChange={(newValue) => {
-          setValue(newValue)
-        }}
+        onChange={(newValue) => onChangePicker(newValue)}
         // renderInput={(params) => (
         //   <TextField
         //     {...params}

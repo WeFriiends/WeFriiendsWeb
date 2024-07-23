@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField'
 import { makeStyles } from 'tss-react/mui'
 import theme from 'styles/createTheme'
 import { FormHelperText } from '@mui/material'
+import { setItemToLocalStorage } from 'utils/localStorage'
 
 const NameInput = () => {
   const { classes } = useStyles()
@@ -25,6 +26,7 @@ const NameInput = () => {
     // setError(null)
     setFullName(value)
     validateName(value)
+    setItemToLocalStorage('name', value)
   }
 
   const helperText = error || '15 symbols max.'
