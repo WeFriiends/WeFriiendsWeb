@@ -2,10 +2,7 @@ import { RouteObject } from 'react-router'
 import { ComponentType, Suspense, lazy } from 'react'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import LoadingScreen from 'common/svg/Loader'
-import Report from 'components/report/report'
-import ReportComment from 'components/report/reportComment'
-import CommentInput from 'components/report/commentInput'
-import ReportReceived from 'components/report/reportReceived'
+import ReportReceived from 'components/report/ReportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import AuthCallbackPage from 'pages/AuthCallbackPage'
@@ -13,6 +10,10 @@ import NameProfile from 'components/firstProfile/NameProfile'
 import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
+import Match from '../components/findMatch/Match'
+import ReportAction from '../components/report/ReportAction'
+import ReportForm from '../components/report/ReportForm'
+import UserIsBlocked from '../components/report/UserIsBlocked'
 import Messages from 'pages/MessagesPage'
 import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
@@ -71,6 +72,20 @@ const routes: RouteObject[] = [
             element: <NearMe />,
             // element: <AuthGuard component={NearMe} />,
           },
+          {
+            path: 'new-match',
+            element: (
+              <>
+                Hello World!
+                <Match
+                  isMatchModalOpen={true}
+                  onClose={() => void {}}
+                  onChat={() => void {}}
+                  friendsAvatar={'test.jpg'}
+                />
+              </>
+            ),
+          },
         ],
       },
     ],
@@ -80,20 +95,20 @@ const routes: RouteObject[] = [
     path: 'report',
     children: [
       {
-        path: 'main-form',
-        element: <Report />,
+        path: 'choose-action',
+        element: <ReportAction />,
       },
       {
-        path: 'reportComment/:buttonName',
-        element: <ReportComment />,
+        path: 'report-form',
+        element: <ReportForm />,
       },
       {
-        path: 'commentInput',
-        element: <CommentInput />,
-      },
-      {
-        path: 'reportReceived',
+        path: 'report-received',
         element: <ReportReceived />,
+      },
+      {
+        path: 'user-is-blocked',
+        element: <UserIsBlocked />,
       },
     ],
   },
