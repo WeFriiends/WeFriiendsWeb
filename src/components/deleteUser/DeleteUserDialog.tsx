@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  forwardRef,
-  Ref,
-  useImperativeHandle,
-} from 'react'
+import React, { useState, forwardRef, Ref, useImperativeHandle } from 'react'
 import { CommonModal } from '../commonModal/CommonModal'
 import DeleteConfirm from './DeleteConfirm'
 import UserIsDeleted from './UserIsDeleted'
