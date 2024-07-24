@@ -14,6 +14,7 @@ import Messages from 'pages/MessagesPage'
 import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 import ReportDialogExamplePage from '../components/report/ReportDialogExamplePage'
+import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -91,6 +92,10 @@ const routes: RouteObject[] = [
   {
     path: 'report',
     element: <ReportDialogExamplePage />,
+  },
+  {
+    path: 'delete',
+    element: <DeleteUserDialogExamplePage />,
   },
   { path: 'invite', element: <Invitation /> },
   { path: 'error-400', element: <ErrorPage code={400} /> }, // Route is working for demonstration
