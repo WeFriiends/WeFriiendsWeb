@@ -13,7 +13,7 @@ import Match from '../components/findMatch/Match'
 import Messages from 'pages/MessagesPage'
 import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
-import ReportDialogExample from '../components/report/ReportDialogExample'
+import ReportDialogExamplePage from '../components/report/ReportDialogExamplePage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -90,7 +90,7 @@ const routes: RouteObject[] = [
 
   {
     path: 'report',
-    element: <ReportDialogExample />,
+    element: <ReportDialogExamplePage />,
   },
   { path: 'invite', element: <Invitation /> },
   { path: 'error-400', element: <ErrorPage code={400} /> }, // Route is working for demonstration
