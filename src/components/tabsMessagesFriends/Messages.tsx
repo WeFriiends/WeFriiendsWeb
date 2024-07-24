@@ -5,10 +5,16 @@ import messages from './messages.json'
 // import messages from './messagesEmpty.json'
 import { UserMessage } from 'types/Message'
 import NoNewMatches from './NoNewMatchesOrMessages'
+import { UserChatProfile } from 'types/UserProfileData'
 
-const Messages = () => {
+const Messages = ({ onClick }: any) => {
   const { classes } = useStyles()
   const userMessages: UserMessage[] = messages
+
+  const handleClick = (user: UserMessage) => {
+    const userChatProfile: UserChatProfile = { ...user }
+    onClick(userChatProfile)
+  }
 
   if (userMessages.length == 0) {
     return (
@@ -18,7 +24,7 @@ const Messages = () => {
   return (
     <Box sx={{ maxHeight: 'calc(100vh - 273px)', overflow: 'auto' }}>
       {userMessages.map((element) => (
-        <Box key={element.id}>
+        <Box key={element.id} onClick={() => handleClick(element)}>
           <Box className={classes.messageBlock}>
             <Avatar
               src={element.avatar}

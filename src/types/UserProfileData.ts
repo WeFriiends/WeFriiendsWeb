@@ -14,3 +14,10 @@ export interface UserProfileData {
   profession: string
   likedUsers: string[]
 }
+
+export interface UserChatProfile {
+  avatar: string
+  firstName: string
+  lastName: string
+  age: string
+}

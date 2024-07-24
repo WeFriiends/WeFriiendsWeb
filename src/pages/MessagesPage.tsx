@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Box,
   Typography,
@@ -9,9 +10,15 @@ import { makeStyles } from 'tss-react/mui'
 import Messages from 'components/tabsMessagesFriends/Messages'
 import theme from './../styles/createTheme'
 import ChatMenu from 'components/chat/ChatMenu'
+import { UserChatProfile } from 'types/UserProfileData'
 
 const MessagesPage = () => {
   const { classes } = useStyles()
+  const [selectedChat, setSelectedChat] = useState<UserChatProfile | null>(null)
+
+  const handleClick = (user: UserChatProfile) => {
+    setSelectedChat(user)
+  }
   return (
     <Box>
       <Box
@@ -20,26 +27,30 @@ const MessagesPage = () => {
           gridTemplateColumns: '389px 575px',
         }}
       >
-        <Messages />
+        <Messages onClick={handleClick} />
         <Box>
-          <Box className={classes.headerSection}>
-            <Box className={classes.userHeaderSection}>
-              <Avatar
-                src="/img/avatar_stacy.jpg"
-                sx={{ width: 50, height: 50 }}
-              />
-              <Typography
-                sx={{
-                  color: theme.palette.primary.main,
-                  fontWeight: 600,
-                  fontSize: 20,
-                }}
-              >
-                Elena S., 36
-              </Typography>
+          {selectedChat && (
+            <Box className={classes.header}>
+              <Box className={classes.userInHeader}>
+                <Avatar
+                  src={selectedChat.avatar}
+                  sx={{ width: 50, height: 50 }}
+                />
+                <Typography
+                  sx={{
+                    color: theme.palette.primary.main,
+                    fontWeight: 600,
+                    fontSize: 20,
+                  }}
+                >
+                  {selectedChat.firstName} {selectedChat.lastName},{' '}
+                  {selectedChat.age}
+                </Typography>
+              </Box>
+
+              <ChatMenu />
             </Box>
-            <ChatMenu />
-          </Box>
+          )}
           <Box>
             <Box
               sx={{
@@ -81,14 +92,14 @@ const MessagesPage = () => {
 export default MessagesPage
 
 const useStyles = makeStyles()({
-  headerSection: {
+  header: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: -78,
     paddingLeft: 22,
   },
-  userHeaderSection: {
+  userInHeader: {
     display: 'flex',
     alignItems: 'center',
     gap: 15,
