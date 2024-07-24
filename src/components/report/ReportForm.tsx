@@ -138,6 +138,7 @@ const useStyles = makeStyles()({
     boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',
     border: '1px solid #eee',
     fontFamily: 'inherit',
+    fontSize: 14,
     padding: 10,
     '&:focus': {
       outline: 'none',

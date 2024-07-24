@@ -36,7 +36,7 @@ const ReportDialogExample = () => {
   return (
     <>
       <Button onClick={handleOpenReportDialog} variant="text" disableRipple>
-        Report user?
+        Click to Report User
       </Button>
       <CommonModal
         isOpened={isModalVisible}
