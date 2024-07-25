@@ -16,7 +16,6 @@ const useBearerToken = () => {
             scope: 'read:current_user',
           },
         })
-        console.log({ accessToken })
         setToken(accessToken)
       } catch (e) {
         console.log(e)

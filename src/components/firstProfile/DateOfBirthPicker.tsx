@@ -6,8 +6,12 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { Dayjs } from 'dayjs'
 import { setItemToLocalStorage } from 'utils/localStorage'
+import { Typography } from '@mui/material'
+import { commonStyles } from 'styles/commonStyles'
 
 const DateOfBirthPicker = () => {
+  const commonClasses = commonStyles().classes
+
   const [value, setValue] = React.useState<Dayjs | null>(null)
   const [error, setError] = useState<string | null>(null)
 
@@ -31,22 +35,27 @@ const DateOfBirthPicker = () => {
   }
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker
-        value={value}
-        onChange={(newValue) => onChangePicker(newValue)}
-        // renderInput={(params) => (
-        //   <TextField
-        //     {...params}
-        //     fullWidth
-        //     variant="outlined"
-        //     error={!!error}
-        //     helperText={error}
-        //     onBlur={validateDate}
-        //   />
-        // )}
-      />
-    </LocalizationProvider>
+    <>
+      <Typography variant="h1" className={commonClasses.title} pt={10}>
+        {`Let's get started!`}
+      </Typography>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DatePicker
+          value={value}
+          onChange={(newValue) => onChangePicker(newValue)}
+          // renderInput={(params) => (
+          //   <TextField
+          //     {...params}
+          //     fullWidth
+          //     variant="outlined"
+          //     error={!!error}
+          //     helperText={error}
+          //     onBlur={validateDate}
+          //   />
+          // )}
+        />
+      </LocalizationProvider>
+    </>
   )
 }
 

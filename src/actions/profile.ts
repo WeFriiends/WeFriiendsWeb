@@ -14,8 +14,6 @@ export const createProfile = async (
   },
   token: string | null
 ) => {
-  // const token = await getBearerToken()
-
   const response = await axios.post(API_BASE_URL, profileData, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -29,11 +27,7 @@ export const createProfile = async (
 }
 
 // Function to get the current profile
-export const getProfile = async (
-  getBearerToken: () => Promise<string | null>
-) => {
-  const token = await getBearerToken()
-
+export const getProfile = async (token: string | null) => {
   const response = await axios.get(API_BASE_URL, {
     headers: {
       Authorization: `${token}`,
@@ -52,10 +46,8 @@ export const updateProfile = async (
     country?: string
     city?: string
   },
-  getBearerToken: () => Promise<string | null>
+  token: string | null
 ) => {
-  const token = await getBearerToken()
-
   const response = await axios.put(API_BASE_URL, profileData, {
     headers: {
       Authorization: `${token}`,

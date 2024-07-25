@@ -13,9 +13,6 @@ const FirstProfile = () => {
   return (
     <Box className={commonClasses.mainBox}>
       <Logo />
-      <Typography variant="h1" className={commonClasses.title} pt={10}>
-        Let&apos;s get started!
-      </Typography>
       <ProfileCarousel />
     </Box>
   )

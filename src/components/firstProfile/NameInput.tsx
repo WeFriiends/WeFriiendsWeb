@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import TextField from '@mui/material/TextField'
 import { makeStyles } from 'tss-react/mui'
 import theme from 'styles/createTheme'
-import { FormHelperText } from '@mui/material'
+import { FormHelperText, Typography } from '@mui/material'
 import { setItemToLocalStorage } from 'utils/localStorage'
+import { commonStyles } from 'styles/commonStyles'
 
 const NameInput = () => {
   const { classes } = useStyles()
+  const commonClasses = commonStyles().classes
 
   const [fullName, setFullName] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -33,6 +35,9 @@ const NameInput = () => {
 
   return (
     <>
+      <Typography variant="h1" className={commonClasses.title} pt={10}>
+        {`Let's get started!`}
+      </Typography>
       <TextField
         className={classes.profileInput}
         value={fullName}
