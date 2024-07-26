@@ -215,7 +215,7 @@
       "firstName": "Elena",
       "lastName": "S.",
       "age": "38",
-      "message": "Hello! Nice to meet you! I’m Elena",
+      "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
     },
     {
@@ -224,7 +224,7 @@
       "firstName": "Elena",
       "lastName": "T.",
       "age": "40",
-      "message": "Hello! Nice to meet you! I’m Elena. Can...",
+      "lastMessage": "Hello! Nice to meet you! I’m Elena. Can...",
       "messageCount": "3"
     },
     {
@@ -233,7 +233,7 @@
       "firstName": "Elena",
       "lastName": "M.",
       "age": "36",
-      "message": "Hello! Nice to meet you! I’m Elena",
+      "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "0"
     },
     {
@@ -242,7 +242,7 @@
       "firstName": "Elena",
       "lastName": "Antonova",
       "age": "42",
-      "message": "Hello! Nice to meet you! I’m Elena",
+      "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
     },
     {
@@ -251,7 +251,7 @@
       "firstName": "Elena",
       "lastName": "Petrova",
       "age": "35",
-      "message": "Hello! Nice to meet you! I’m Elena",
+      "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
     },
     {
@@ -260,7 +260,7 @@
       "firstName": "Elena",
       "lastName": "S.",
       "age": "38",
-      "message": "Hello! Nice to meet you! I’m Elena",
+      "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
     },
     {
@@ -269,7 +269,7 @@
       "firstName": "Elena",
       "lastName": "M.",
       "age": "37",
-      "message": "Hello! Nice to meet you! I’m Elena",
+      "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
     },
     {
@@ -278,7 +278,7 @@
       "firstName": "Elena",
       "lastName": "V.",
       "age": "39",
-      "message": "Hello! Nice to meet you! I’m Elena",
+      "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
     },
     {
@@ -287,7 +287,7 @@
       "firstName": "Elena",
       "lastName": "W.",
       "age": "38",
-      "message": "Hello! Nice to meet you! I’m Elena",
+      "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
     }
   ]

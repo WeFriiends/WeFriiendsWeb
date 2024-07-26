@@ -47,7 +47,7 @@ const Messages = ({ onClick }: any) => {
                 {element.firstName} {element.lastName}, {element.age}
               </Typography>
               <Typography className={classes.textMessage}>
-                {element.message}
+                {element.lastMessage}
               </Typography>
             </Box>
             {element.messageCount === '0' ? null : (

@@ -4,6 +4,6 @@ export interface UserLastMessage {
   firstName: string
   lastName: string
   age: string
-  message: string
+  lastMessage: string
   messageCount: string
 }
