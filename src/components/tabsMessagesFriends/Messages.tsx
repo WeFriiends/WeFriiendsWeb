@@ -31,7 +31,7 @@ const Messages = ({ onClick }: any) => {
     )
   }
   return (
-    <Box sx={{ maxHeight: 'calc(100vh - 273px)', overflow: 'auto' }}>
+    <Box sx={{ maxHeight: 'calc(100vh - 290px)', overflow: 'auto' }}>
       {userMessages?.map((element) => (
         <Box key={element.id} onClick={() => handleClick(element)}>
           <Box
