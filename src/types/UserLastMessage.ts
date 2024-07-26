@@ -1,4 +1,4 @@
-export interface UserMessage {
+export interface UserLastMessage {
   id: string
   avatar: string
   firstName: string

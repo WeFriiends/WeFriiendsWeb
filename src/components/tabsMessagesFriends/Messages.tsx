@@ -2,15 +2,15 @@ import * as React from 'react'
 import { useState } from 'react'
 import { Box, Typography, Avatar } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import messages from './messages.json'
-// import messages from './messagesEmpty.json'
-import { UserMessage } from 'types/Message'
+import { UserLastMessage } from 'types/UserLastMessage'
 import NoNewMatches from './NoNewMatchesOrMessages'
 import { UserChatProfile } from 'types/UserProfileData'
+import { useLastMessagesList } from 'hooks/useLastMessagesList'
 
 const Messages = ({ onClick }: any) => {
   const { classes } = useStyles()
-  const userMessages: UserMessage[] = messages
+  // const userMessages: UserLastMessage[] = messages
+  const { data: userMessages } = useLastMessagesList()
   const [userChatProfile, setUserChatProfile] = useState<UserChatProfile>({
     id: '-1',
     firstName: '',
@@ -19,20 +19,20 @@ const Messages = ({ onClick }: any) => {
     avatar: '',
   })
 
-  const handleClick = (user: UserMessage) => {
+  const handleClick = (user: UserLastMessage) => {
     const userChatProfile = { ...user }
     setUserChatProfile(userChatProfile)
     onClick(userChatProfile)
   }
 
-  if (userMessages.length == 0) {
+  if (userMessages?.length == 0) {
     return (
       <NoNewMatches text="You don’t have any messages. You need to find friends first!" />
     )
   }
   return (
     <Box sx={{ maxHeight: 'calc(100vh - 273px)', overflow: 'auto' }}>
-      {userMessages.map((element) => (
+      {userMessages?.map((element) => (
         <Box key={element.id} onClick={() => handleClick(element)}>
           <Box
             className={` ${classes.messageBlock} ${
