@@ -16,6 +16,7 @@ export interface UserProfileData {
 }
 
 export interface UserChatProfile {
+  id: string
   avatar: string
   firstName: string
   lastName: string

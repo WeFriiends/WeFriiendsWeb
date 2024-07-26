@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useState } from 'react'
 import { Box, Typography, Avatar } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import messages from './messages.json'
@@ -10,9 +11,17 @@ import { UserChatProfile } from 'types/UserProfileData'
 const Messages = ({ onClick }: any) => {
   const { classes } = useStyles()
   const userMessages: UserMessage[] = messages
+  const [userChatProfile, setUserChatProfile] = useState<UserChatProfile>({
+    id: '-1',
+    firstName: '',
+    lastName: '',
+    age: '',
+    avatar: '',
+  })
 
   const handleClick = (user: UserMessage) => {
-    const userChatProfile: UserChatProfile = { ...user }
+    const userChatProfile = { ...user }
+    setUserChatProfile(userChatProfile)
     onClick(userChatProfile)
   }
 
@@ -25,7 +34,11 @@ const Messages = ({ onClick }: any) => {
     <Box sx={{ maxHeight: 'calc(100vh - 273px)', overflow: 'auto' }}>
       {userMessages.map((element) => (
         <Box key={element.id} onClick={() => handleClick(element)}>
-          <Box className={classes.messageBlock}>
+          <Box
+            className={` ${classes.messageBlock} ${
+              userChatProfile.id === element.id ? classes.selected : ''
+            }`}
+          >
             <Avatar
               src={element.avatar}
               sx={{ width: 66, height: 66 }}
@@ -59,8 +72,10 @@ const useStyles = makeStyles()(() => {
       display: 'grid',
       gridTemplateColumns: '0.5fr 5fr 0.5fr',
       alignItems: 'center',
-      paddingBottom: 26,
-      paddingRight: 20,
+      padding: '30px 21px 20px 0',
+    },
+    selected: {
+      backgroundColor: '#FFF1EC',
     },
     message: {
       paddingLeft: 15,
@@ -94,7 +109,6 @@ const useStyles = makeStyles()(() => {
     },
     line: {
       borderTop: '1px solid #EEE',
-      paddingBottom: 30,
     },
   }
 })
