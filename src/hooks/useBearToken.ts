@@ -7,15 +7,8 @@ const useBearerToken = () => {
 
   useEffect(() => {
     const getToken = async () => {
-      const domain = process.env.REACT_APP_AUTH0_DOMAIN
-
       try {
-        const accessToken = await getAccessTokenSilently({
-          authorizationParams: {
-            audience: `https://${domain}/api/v2/`,
-            scope: 'read:current_user',
-          },
-        })
+        const accessToken = await getAccessTokenSilently()
         setToken(accessToken)
       } catch (e) {
         console.log(e)
@@ -24,8 +17,6 @@ const useBearerToken = () => {
 
     getToken()
   }, [getAccessTokenSilently, user?.sub])
-  console.log({ user })
-  console.log({ token })
 
   return token
 }

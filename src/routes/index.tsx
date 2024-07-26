@@ -19,6 +19,7 @@ import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
 import Messages from 'pages/MessagesPage'
+import UserAccount from 'pages/UserAccount'
 import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 
@@ -51,6 +52,11 @@ const routes: RouteObject[] = [
       {
         element: <NavBar />,
         children: [
+          {
+            path: 'account',
+            element: <UserAccount />,
+            // element: <AuthGuard component={YourLikesList} />,
+          },
           {
             element: <TabsMessagesFriends />,
             children: [

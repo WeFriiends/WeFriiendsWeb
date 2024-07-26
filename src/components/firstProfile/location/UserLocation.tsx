@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { reverseGeocode } from '../../../actions/geocoding'
 import { useGeolocation } from '@uidotdev/usehooks'
 import LocationInput from './LocationInput'
+import { setItemToLocalStorage } from 'utils/localStorage'
 
 export const checkGeolocationPermission = async () => {
   if (!navigator.permissions) {
@@ -21,26 +22,15 @@ export const checkGeolocationPermission = async () => {
 
 const UserLocation: React.FC = () => {
   const { latitude, longitude, error } = useGeolocation()
-  const state = useGeolocation()
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
     null
   )
   const [address, setAddress] = useState<string | null>(null)
   const [showInput, setShowInput] = useState(false)
-  const [permissionStatus, setPermissionStatus] = useState<string | null>(null)
-  useEffect(() => {
-    const getPermissionStatus = async () => {
-      const status = await checkGeolocationPermission()
-      setPermissionStatus(status)
-    }
 
-    getPermissionStatus()
-  }, [])
-  console.log({ permissionStatus })
   useEffect(() => {
     console.log('Latitude:', latitude)
     console.log('Longitude:', longitude)
-    console.log({ state })
     if (latitude && longitude) {
       setLocation({ lat: latitude, lng: longitude })
       const fetchAddress = async () => {
@@ -53,6 +43,10 @@ const UserLocation: React.FC = () => {
   }, [latitude, longitude])
 
   const handleLocationChange = (location: { city: string; street: string }) => {
+    setItemToLocalStorage('city', location.city)
+    setItemToLocalStorage('street', location.street)
+    setItemToLocalStorage('lat', latitude)
+    setItemToLocalStorage('lng', longitude)
     // Handle the location data as needed
     console.log('User location:', location)
   }

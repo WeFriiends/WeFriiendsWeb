@@ -12,28 +12,36 @@ import { useNavigate } from 'react-router-dom'
 import GenderPick from './GenderPick'
 import ArrowBackButton from 'common/components/ArrowBackButton'
 import UserLocation from './location/UserLocation'
+import { useAuth0 } from '@auth0/auth0-react'
+import Status from './Status'
 
 const carouselData = [
   // {
   //   component: <NameInput />,
-  //   label: 'NameInput',
+  //   label: 'nameInput',
   // },
   // {
   //   component: <DateOfBirthPicker />,
-  //   label: 'DateOfBirthPicker',
+  //   label: 'dateOfBirthPicker',
   // },
   // {
   //   component: <GenderPick />,
-  //   label: 'GenderPick',
+  //   label: 'genderPick',
   // },
   {
     component: <UserLocation />,
-    label: 'UserLocation',
+    label: 'userLocation',
+  },
+  {
+    component: <Status />,
+    label: 'status',
   },
 ]
 const ProfileCarousel = () => {
   const { classes } = commonStyles()
   const token = useBearerToken()
+  const { user } = useAuth0()
+  console.log({ user })
   const { activeStep, handleBack, handleNext, handleClickPagination } =
     useHandleCarousel()
 

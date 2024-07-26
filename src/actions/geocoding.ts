@@ -1,4 +1,3 @@
-// utils/geocoding.ts
 import axios from 'axios'
 
 export const reverseGeocode = async (lat: number, lng: number) => {

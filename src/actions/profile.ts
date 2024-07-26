@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 
 // Define the base URL for your API
 const API_BASE_URL = 'http://localhost:8080/api/profile'
@@ -27,13 +27,12 @@ export const createProfile = async (
 }
 
 // Function to get the current profile
-export const getProfile = async (token: string | null) => {
-  const response = await axios.get(API_BASE_URL, {
+export const getProfile = async (token: string | null): Promise<Profile> => {
+  const response: AxiosResponse<Profile> = await axios.get(API_BASE_URL, {
     headers: {
-      Authorization: `${token}`,
+      Authorization: `Bearer ${token}`,
     },
   })
-
   return response.data
 }
 
@@ -50,7 +49,17 @@ export const updateProfile = async (
 ) => {
   const response = await axios.put(API_BASE_URL, profileData, {
     headers: {
-      Authorization: `${token}`,
+      Authorization: `Bearer ${token}`,
+    },
+  })
+
+  return response.data
+}
+
+export const deleteProfile = async (token: string | null) => {
+  const response = await axios.delete(API_BASE_URL, {
+    headers: {
+      Authorization: `Bearer ${token}`,
     },
   })
 

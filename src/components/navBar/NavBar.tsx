@@ -5,13 +5,16 @@ import { useActivePage } from '../../context/activePageContext'
 import { generateNavigationConfig } from '../../helpers/navigationConfigHelper'
 import { NavigationItems } from '../navigationItems/NavigationItems'
 import theme from '../../styles/createTheme'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
+import useProfileData from 'hooks/useProfileData'
 
 const NavBar = () => {
   const { classes } = useStyles()
+  const navigate = useNavigate()
+
   const { activePage, setNewActivePage } = useActivePage()
   const navigationConfig = generateNavigationConfig()
-
+  const { profile } = useProfileData()
   // Set current active menu item if we open the corresponding link
   useEffect(() => {
     const currentNavigationItem = navigationConfig.filter(
@@ -20,6 +23,10 @@ const NavBar = () => {
     currentNavigationItem.length > 0 &&
       setNewActivePage(currentNavigationItem[0].value)
   }, [navigationConfig, setNewActivePage])
+
+  const navigateToAccount = () => {
+    navigate('/user/account')
+  }
 
   return (
     <>
@@ -39,10 +46,13 @@ const NavBar = () => {
         </BottomNavigation>
         <Box className={classes.userDetails}>
           <Avatar
-            src="/img/avatar_elena.jpg"
+            src={profile?.photos[0]}
             sx={{ width: 56, height: 56 }}
-          ></Avatar>
-          <Typography className={classes.name}>Elena S</Typography>
+            onClick={navigateToAccount}
+          />
+          <Typography onClick={navigateToAccount} className={classes.name}>
+            {profile?.name}
+          </Typography>
         </Box>
       </Box>
       <Box component="main" className={classes.main}>
