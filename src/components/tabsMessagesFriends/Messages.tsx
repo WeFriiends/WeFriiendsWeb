@@ -9,7 +9,6 @@ import { useLastMessagesList } from 'hooks/useLastMessagesList'
 
 const Messages = ({ onClick }: any) => {
   const { classes } = useStyles()
-  // const userMessages: UserLastMessage[] = messages
   const { data: userMessages } = useLastMessagesList()
   const [userChatProfile, setUserChatProfile] = useState<UserChatProfile>({
     id: '-1',
