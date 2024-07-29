@@ -2,10 +2,6 @@ import { RouteObject } from 'react-router'
 import { ComponentType, Suspense, lazy } from 'react'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import LoadingScreen from 'common/svg/Loader'
-import Report from 'components/report/report'
-import ReportComment from 'components/report/reportComment'
-import CommentInput from 'components/report/commentInput'
-import ReportReceived from 'components/report/reportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import AuthCallbackPage from 'pages/AuthCallbackPage'
@@ -18,10 +14,13 @@ import FirstProfile from 'pages/FirstProfile'
 import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
+import Match from '../components/findMatch/Match'
 import Messages from 'pages/MessagesPage'
 import UserAccount from 'pages/UserAccount'
 import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
+import ReportDialogExamplePage from '../components/report/ReportDialogExamplePage'
+import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -82,6 +81,20 @@ const routes: RouteObject[] = [
             element: <NearMe />,
             // element: <AuthGuard component={NearMe} />,
           },
+          {
+            path: 'new-match',
+            element: (
+              <>
+                Hello World!
+                <Match
+                  isMatchModalOpen={true}
+                  onClose={() => void {}}
+                  onChat={() => void {}}
+                  friendsAvatar={'test.jpg'}
+                />
+              </>
+            ),
+          },
         ],
       },
     ],
@@ -89,24 +102,11 @@ const routes: RouteObject[] = [
 
   {
     path: 'report',
-    children: [
-      {
-        path: 'main-form',
-        element: <Report />,
-      },
-      {
-        path: 'reportComment/:buttonName',
-        element: <ReportComment />,
-      },
-      {
-        path: 'commentInput',
-        element: <CommentInput />,
-      },
-      {
-        path: 'reportReceived',
-        element: <ReportReceived />,
-      },
-    ],
+    element: <ReportDialogExamplePage />,
+  },
+  {
+    path: 'delete',
+    element: <DeleteUserDialogExamplePage />,
   },
   { path: 'invite', element: <Invitation /> },
   { path: 'error-400', element: <ErrorPage code={400} /> }, // Route is working for demonstration
