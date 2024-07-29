@@ -54,8 +54,12 @@ const MessagesPage = () => {
               <ChatMenu />
             </Box>
           )}
-          <StartChatting />
-          <DisplayingChat data={messages} />
+          {messages.length > 0 && selectedChat?.id === messages[0].friend_id ? (
+            <DisplayingChat data={messages} />
+          ) : (
+            <StartChatting />
+          )}
+
           <Box className={classes.sendMessageSection}>
             <TextareaAutosize
               placeholder="Type a message"
