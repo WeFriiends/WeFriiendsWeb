@@ -1,45 +1,39 @@
+import React from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
-import React, { useState } from 'react'
-import { CommonModal } from '../commonModal/CommonModal'
 import { commonStyles } from '../../styles/commonStyles'
 
-const ReportReceived = () => {
+type UserIsBlockedProps = {
+  closeModal: () => void
+}
+
+const UserIsBlocked: React.FC<UserIsBlockedProps> = ({ closeModal }) => {
   const { classes } = useStyles()
-  const [isModalVisible, setIsModalVisible] = useState(true)
-  const hideModal = () => setIsModalVisible(false)
+  const handleCloseModal = () => closeModal()
 
   const commonClasses = commonStyles().classes
 
   return (
-    <CommonModal
-      isOpened={isModalVisible}
-      modalTitle={'modal-modal-title'}
-      modalDescription={'modal-modal-description'}
-      onClose={hideModal}
-      height={320}
-    >
-      <Box className={classes.reportContainer}>
-        <Typography variant="h2" className={classes.title}>
-          User is blocked
-        </Typography>
+    <Box className={classes.reportContainer}>
+      <Typography variant="h2" className={classes.title}>
+        User is blocked
+      </Typography>
 
-        <Button
-          variant="contained"
-          fullWidth
-          disableRipple
-          className={`${commonClasses.submitButton} ${classes.okBtn}`}
-          onClick={hideModal}
-        >
-          OK, thanks!
-        </Button>
-      </Box>
-    </CommonModal>
+      <Button
+        variant="contained"
+        fullWidth
+        disableRipple
+        className={`${commonClasses.submitButton} ${classes.okBtn}`}
+        onClick={handleCloseModal}
+      >
+        OK, thanks!
+      </Button>
+    </Box>
   )
 }
 
-export default ReportReceived
+export default UserIsBlocked
 
 const useStyles = makeStyles()({
   reportContainer: {

@@ -1,61 +1,59 @@
 import React from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { useNavigate } from 'react-router'
-import { CommonModal } from '../commonModal/CommonModal'
 import theme from '../../styles/createTheme'
 
-const ReportAction = () => {
+type ReportActionProps = {
+  chooseBlock: () => void
+  chooseReport: () => void
+}
+
+const ReportAction: React.FC<ReportActionProps> = ({
+  chooseBlock,
+  chooseReport,
+}) => {
   const { classes } = useStyles()
-  const navigate = useNavigate()
-  const handleGoBack = () => {
-    navigate(-1)
-  }
 
   const handleBlock = () => {
     // TODO: Add API and code for user blocking
-    navigate('/report/user-is-blocked')
+    chooseBlock()
+  }
+
+  const handleReport = () => {
+    chooseReport()
   }
 
   return (
-    <CommonModal
-      isOpened={true}
-      modalTitle={'modal-modal-title'}
-      modalDescription={'modal-modal-description'}
-      onClose={handleGoBack}
-      height={320}
-    >
-      <Box className={classes.reportContainer}>
-        <img
-          src="/img/report/icon-alert.svg"
-          alt="Alert circle"
-          className={classes.imgAlert}
-        />
-        <Typography variant="h2" className={classes.title}>
-          Report user
-        </Typography>
-        <Box className={classes.btnContainer}>
-          <Button
-            onClick={handleBlock}
-            className={classes.linkBtn}
-            disableFocusRipple
-            disableRipple
-            disableElevation
-          >
-            Block
-          </Button>
-          <Button
-            href={'/report/report-form'}
-            className={classes.linkBtn}
-            disableFocusRipple
-            disableRipple
-            disableElevation
-          >
-            Report
-          </Button>
-        </Box>
+    <Box className={classes.reportContainer}>
+      <img
+        src="/img/report/icon-alert.svg"
+        alt="Alert circle"
+        className={classes.imgAlert}
+      />
+      <Typography variant="h2" className={classes.title}>
+        Report user
+      </Typography>
+      <Box className={classes.btnContainer}>
+        <Button
+          onClick={handleBlock}
+          className={classes.linkBtn}
+          disableFocusRipple
+          disableRipple
+          disableElevation
+        >
+          Block
+        </Button>
+        <Button
+          onClick={handleReport}
+          className={classes.linkBtn}
+          disableFocusRipple
+          disableRipple
+          disableElevation
+        >
+          Report
+        </Button>
       </Box>
-    </CommonModal>
+    </Box>
   )
 }
 
