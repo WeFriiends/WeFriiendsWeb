@@ -12,6 +12,8 @@ import theme from './../styles/createTheme'
 import ChatMenu from 'components/chat/ChatMenu'
 import { UserChatProfile } from 'types/UserProfileData'
 import StartChatting from 'components/chat/StartChatting'
+import DisplayingChat from 'components/chat/DisplayingChat'
+import messages from '../components/chat/chat.json'
 
 const MessagesPage = () => {
   const { classes } = useStyles()
@@ -53,6 +55,7 @@ const MessagesPage = () => {
             </Box>
           )}
           <StartChatting />
+          <DisplayingChat data={messages} />
           <Box className={classes.sendMessageSection}>
             <TextareaAutosize
               placeholder="Type a message"
