@@ -22,7 +22,7 @@ export const generateNavigationConfig = (): NavigationConfig[] => {
     {
       value: 'friends',
       Icon: iconII,
-      linkTo: '/user/messages-and-friends',
+      linkTo: '/user/friends',
       size: { xs: { width: 15, height: 32 }, lg: { width: 25, height: 50 } },
     },
     {

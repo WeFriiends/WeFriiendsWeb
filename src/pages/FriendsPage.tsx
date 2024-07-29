@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 import UserProfile from 'components/userProfile/UserProfile'
 import UserProfileButton from 'components/userProfile/UserProfileButton'
 import { usePotentialFriendsList } from 'hooks/useFriendsList'
@@ -12,10 +11,10 @@ import {
   deletePotentialFriend,
 } from 'actions/friendsServices'
 import Match from 'components/findMatch/Match'
+import Friends from 'components/tabsMessagesFriends/Friends'
 import { useNavigate } from 'react-router-dom'
-import PageWrapper from './PageWrapper'
 
-const MessagesAndFriends = () => {
+const FriendsPage = () => {
   const emptyProfile: UserProfileData = {
     id: '-1',
     firstName: '',
@@ -101,12 +100,9 @@ const MessagesAndFriends = () => {
   }
 
   return (
-    <PageWrapper>
-      <Box sx={{ display: 'grid', gridTemplateColumns: '5.5fr 6.5fr' }}>
-        <TabsMessagesFriends
-          onClick={selectFriend}
-          selectedFriend={friendsData}
-        />
+    <Box className={classes.friendsPage}>
+      <Friends onClick={selectFriend} selectedFriend={friendsData} />
+      <Box>
         {noPotentialFriends && !isFriend ? (
           <Box className={classes.mainBlock}>
             <Typography className={classes.messageStyle}>
@@ -116,7 +112,7 @@ const MessagesAndFriends = () => {
             <Button className={classes.whiteButton}>Go</Button>
           </Box>
         ) : (
-          <Box sx={{ padding: '76px 17px 0 55px' }}>
+          <Box sx={{ paddingLeft: '30px' }}>
             <UserProfile user={friendsData} />
             <UserProfileButton
               isFriend={isFriend}
@@ -133,11 +129,11 @@ const MessagesAndFriends = () => {
           friendsAvatar={modalNewFriendAvatar}
         />
       </Box>
-    </PageWrapper>
+    </Box>
   )
 }
 
-export default MessagesAndFriends
+export default FriendsPage
 
 const useStyles = makeStyles()({
   whiteButton: {
@@ -163,5 +159,10 @@ const useStyles = makeStyles()({
     fontSize: 24,
     textAlign: 'center',
     lineHeight: 1.2,
+  },
+  friendsPage: {
+    display: 'grid',
+    gridTemplateColumns: '5.6fr 6.4fr',
+    height: '71vh',
   },
 })
