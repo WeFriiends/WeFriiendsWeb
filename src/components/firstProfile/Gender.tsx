@@ -86,7 +86,6 @@ const useStyles = makeStyles()(() => {
       display: 'flex',
       flexDirection: 'row',
       margin: 'o auto',
-      marginTop: '2rem',
     },
     innerContainerPosition: {
       display: 'flex',
@@ -112,8 +111,8 @@ const useStyles = makeStyles()(() => {
       lineHeight: 'normal',
     },
     tipContainer: {
-      marginTop: 20,
-      marginBottom: 50,
+      marginTop: 62,
+      marginBottom: 40,
       textAlign: 'center',
     },
     iconsPosition: {
