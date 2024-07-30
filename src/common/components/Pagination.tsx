@@ -2,10 +2,22 @@ import { Box } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import classnames from 'classnames'
 
-const PaginationDot = ({ active, index, onClick }: any) => {
+type PaginationPropsType = {
+  dots: number
+  activeStep: number
+  onChangeIndex: (step: number) => void
+}
+
+type PaginationDotPropsType = {
+  active: boolean
+  index: number
+  onClick: (index: number) => void
+}
+
+const PaginationDot = ({ active, index, onClick }: PaginationDotPropsType) => {
   const { classes } = useStyles()
-  const handleClick = (event: any) => {
-    onClick(event, index)
+  const handleClick = () => {
+    onClick(index)
   }
 
   return (
@@ -20,20 +32,22 @@ const PaginationDot = ({ active, index, onClick }: any) => {
   )
 }
 
-const Pagination = ({ dots, activeStep, onChangeIndex }: any) => {
+const Pagination = ({
+  dots,
+  activeStep,
+  onChangeIndex,
+}: PaginationPropsType) => {
   const { classes } = useStyles()
 
-  const handleClick = (event: any, index: number) => {
+  const handleClick = (index: number) => {
     onChangeIndex(index)
   }
 
   const children = []
-
   for (let i = 0; i < dots; i += 1) {
     children.push(
       <PaginationDot
-        //should have as key smth else
-        key={i}
+        key={`${i + activeStep}`}
         index={i}
         active={i === activeStep}
         onClick={handleClick}
@@ -50,24 +64,7 @@ const Pagination = ({ dots, activeStep, onChangeIndex }: any) => {
 
 export default Pagination
 
-// const useStyles = makeStyles()((theme) => ({
-//   flexContainer: { display: 'flex', justifyContent: 'space-between' },
-//   progressBarContainer: {},
-
-//   active: {
-//     backgroundColor: red[500],
-//   },
-//   inActive: {
-//     backgroundColor: grey[500],
-//   },
-//   progressCircle: {
-//     width: '10px',
-//     aspectRatio: 1,
-//     borderRadius: '50%',
-//   },
-// }))
-
-const useStyles = makeStyles()((theme) => ({
+const useStyles = makeStyles()(() => ({
   flexContainer: {
     display: 'flex',
     justifyContent: 'space-between',

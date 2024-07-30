@@ -1,4 +1,3 @@
-// DatePicker.tsx
 import React, { useState } from 'react'
 import TextField from '@mui/material/TextField'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -43,6 +42,18 @@ const DateOfBirthPicker = () => {
         <DatePicker
           value={value}
           onChange={(newValue) => onChangePicker(newValue)}
+          slots={{
+            textField: (textFieldProps) => (
+              <TextField
+                {...textFieldProps}
+                fullWidth
+                variant="outlined"
+                error={!!error}
+                helperText={error}
+                onBlur={validateDate}
+              />
+            ),
+          }}
         />
         <FormHelperText sx={{ color: '#1D878C' }}>
           {`15 symbols max.`}

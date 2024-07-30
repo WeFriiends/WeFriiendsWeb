@@ -1,5 +1,5 @@
 import GenericCarousel from '../../common/components/Carousel'
-import { commonStyles } from 'styles/commonStyles'
+// import { commonStyles } from 'styles/commonStyles'
 import Pagination from 'common/components/Pagination'
 import useHandleCarousel from 'hooks/useHandleCarousel'
 import NameInput from './name/NameInput'
@@ -11,9 +11,8 @@ import useBearerToken from 'hooks/useBearToken'
 import { useNavigate } from 'react-router-dom'
 import GenderPick from './GenderPick'
 import ArrowBackButton from 'common/components/ArrowBackButton'
-import UserLocation from './location/UserLocation'
-import { useAuth0 } from '@auth0/auth0-react'
 import Status from './Status'
+import LocationManual from './location/LocationManual'
 
 const carouselData = [
   {
@@ -38,10 +37,7 @@ const carouselData = [
   // },
 ]
 const ProfileCarousel = () => {
-  const { classes } = commonStyles()
   const token = useBearerToken()
-  const { user } = useAuth0()
-  console.log({ user })
   const { activeStep, handleBack, handleNext, handleClickPagination } =
     useHandleCarousel()
 
@@ -63,7 +59,6 @@ const ProfileCarousel = () => {
       />
 
       <Pagination
-        key={carouselData.map((c) => c.label)}
         activeStep={activeStep}
         dots={carouselData.length}
         onChangeIndex={handleClickPagination}

@@ -1,5 +1,5 @@
 import React, { useState, forwardRef, Ref, useImperativeHandle } from 'react'
-import { CommonModal } from '../commonModal/CommonModal'
+import { CommonModal } from 'common/components/CommonModal'
 import DeleteConfirm from './DeleteConfirm'
 import UserIsDeleted from './UserIsDeleted'
 
