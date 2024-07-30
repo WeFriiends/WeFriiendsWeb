@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 const DisplayingChat = (data: any) => {
   return (
@@ -6,7 +6,10 @@ const DisplayingChat = (data: any) => {
       {data.data.map((element: any) => (
         <Box key={element.chat_id}>
           {element.messages.map((message: any) => (
-            <Box key={message.message_id}> {message.message}</Box>
+            <Box key={message.message_id}>
+              <Typography>{message.timestamp} </Typography>
+              <Typography> {message.message}</Typography>
+            </Box>
           ))}
         </Box>
       ))}
