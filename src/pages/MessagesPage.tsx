@@ -54,7 +54,8 @@ const MessagesPage = () => {
               <ChatMenu />
             </Box>
           )}
-          {messages.length > 0 && selectedChat?.id === messages[0].friend_id ? (
+          {messages[0].messages.length > 0 &&
+          selectedChat?.id === messages[0].friend_id ? (
             <DisplayingChat data={messages} />
           ) : (
             <StartChatting />
