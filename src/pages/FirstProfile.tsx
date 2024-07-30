@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import NameInput from 'components/firstProfile/NameInput'
+import NameInput from 'components/firstProfile/name/NameInput'
 import Logo from 'components/logo/Logo'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'

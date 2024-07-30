@@ -6,7 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { Dayjs } from 'dayjs'
 import { setItemToLocalStorage } from 'utils/localStorage'
-import { Typography } from '@mui/material'
+import { FormHelperText, Typography } from '@mui/material'
 import { commonStyles } from 'styles/commonStyles'
 
 const DateOfBirthPicker = () => {
@@ -18,10 +18,10 @@ const DateOfBirthPicker = () => {
   const validateDate = () => {
     if (!value) {
       setError('Date of birth is required.')
-      return false
+    } else {
     }
     // const age = new Date().getFullYear() - value.getFullYear()
-    // if (age < 0 || age > 150) {
+    // if (age < 18 || age > 150) {
     //   setError('Please enter a valid date of birth.')
     //   return false
     // }
@@ -43,17 +43,10 @@ const DateOfBirthPicker = () => {
         <DatePicker
           value={value}
           onChange={(newValue) => onChangePicker(newValue)}
-          // renderInput={(params) => (
-          //   <TextField
-          //     {...params}
-          //     fullWidth
-          //     variant="outlined"
-          //     error={!!error}
-          //     helperText={error}
-          //     onBlur={validateDate}
-          //   />
-          // )}
         />
+        <FormHelperText sx={{ color: '#1D878C' }}>
+          {`15 symbols max.`}
+        </FormHelperText>
       </LocalizationProvider>
     </>
   )
