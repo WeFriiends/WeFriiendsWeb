@@ -42,16 +42,18 @@ const DateOfBirthPicker = () => {
         <DatePicker
           value={value}
           onChange={(newValue) => onChangePicker(newValue)}
-          // renderInput={(params) => (
-          //   <TextField
-          //     {...params}
-          //     fullWidth
-          //     variant="outlined"
-          //     error={!!error}
-          //     helperText={error}
-          //     onBlur={validateDate}
-          //   />
-          // )}
+          slots={{
+            textField: (textFieldProps) => (
+              <TextField
+                {...textFieldProps}
+                fullWidth
+                variant="outlined"
+                error={!!error}
+                helperText={error}
+                onBlur={validateDate}
+              />
+            ),
+          }}
         />
       </LocalizationProvider>
     </>

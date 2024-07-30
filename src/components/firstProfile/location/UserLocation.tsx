@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { reverseGeocode } from '../../../actions/geocoding'
 import { useGeolocation } from '@uidotdev/usehooks'
-import LocationInput from './LocationInput'
 import { setItemToLocalStorage } from 'utils/localStorage'
 
 export const checkGeolocationPermission = async () => {
@@ -53,9 +52,6 @@ const UserLocation: React.FC = () => {
         <div>
           <h3>Your location: {address}</h3>
         </div>
-      )}
-      {(location || showInput) && (
-        <LocationInput onLocationChange={handleLocationChange} />
       )}
     </div>
   )
