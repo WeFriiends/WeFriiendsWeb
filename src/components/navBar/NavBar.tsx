@@ -26,7 +26,6 @@ const NavBar = () => {
     )
     currentNavigationItem.length > 0 &&
       setNewActivePage(currentNavigationItem[0].value)
-    console.log('useEffect')
   }, [navigationConfig, setNewActivePage])
 
   return (
