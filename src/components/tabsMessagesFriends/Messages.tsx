@@ -1,25 +1,43 @@
 import * as React from 'react'
+import { useState } from 'react'
 import { Box, Typography, Avatar } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import messages from './messages.json'
-// import messages from './messagesEmpty.json'
-import { UserMessage } from 'types/Message'
+import { UserLastMessage } from 'types/UserLastMessage'
 import NoNewMatches from './NoNewMatchesOrMessages'
+import { UserChatProfile } from 'types/UserProfileData'
+import { useLastMessagesList } from 'hooks/useLastMessagesList'
 
-const Messages = () => {
+const Messages = ({ onClick }: any) => {
   const { classes } = useStyles()
-  const userMessages: UserMessage[] = messages
+  const { data: userMessages } = useLastMessagesList()
+  const [userChatProfile, setUserChatProfile] = useState<UserChatProfile>({
+    id: '-1',
+    firstName: '',
+    lastName: '',
+    age: '',
+    avatar: '',
+  })
 
-  if (userMessages.length == 0) {
+  const handleClick = (user: UserLastMessage) => {
+    const userChatProfile = { ...user }
+    setUserChatProfile(userChatProfile)
+    onClick(userChatProfile)
+  }
+
+  if (userMessages?.length == 0) {
     return (
       <NoNewMatches text="You don’t have any messages. You need to find friends first!" />
     )
   }
   return (
-    <Box sx={{ maxHeight: 'calc(100vh - 273px)', overflow: 'auto' }}>
-      {userMessages.map((element) => (
-        <Box key={element.id}>
-          <Box className={classes.messageBlock}>
+    <Box sx={{ maxHeight: 'calc(100vh - 290px)', overflow: 'auto' }}>
+      {userMessages?.map((element) => (
+        <Box key={element.id} onClick={() => handleClick(element)}>
+          <Box
+            className={` ${classes.messageBlock} ${
+              userChatProfile.id === element.id ? classes.selected : ''
+            }`}
+          >
             <Avatar
               src={element.avatar}
               sx={{ width: 66, height: 66 }}
@@ -29,7 +47,7 @@ const Messages = () => {
                 {element.firstName} {element.lastName}, {element.age}
               </Typography>
               <Typography className={classes.textMessage}>
-                {element.message}
+                {element.lastMessage}
               </Typography>
             </Box>
             {element.messageCount === '0' ? null : (
@@ -53,18 +71,20 @@ const useStyles = makeStyles()(() => {
       display: 'grid',
       gridTemplateColumns: '0.5fr 5fr 0.5fr',
       alignItems: 'center',
-      paddingBottom: 18,
-      paddingRight: 18,
+      padding: '30px 21px 20px 0',
+    },
+    selected: {
+      backgroundColor: '#FFF1EC',
     },
     message: {
-      paddingLeft: 16,
-      paddingRight: 31,
+      paddingLeft: 15,
+      paddingRight: 19,
     },
     messageQuantity: {
       borderRadius: '50%',
       background: '#FB8F67',
-      width: 35,
-      height: 35,
+      width: 30,
+      height: 30,
       color: '#FFFFFF',
       fontSize: 16,
       lineHeight: '22px',
@@ -81,10 +101,13 @@ const useStyles = makeStyles()(() => {
     textMessage: {
       fontSize: 14,
       lineHeight: '22px',
+      width: 220,
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
     },
     line: {
       borderTop: '1px solid #EEE',
-      paddingBottom: 30,
     },
   }
 })

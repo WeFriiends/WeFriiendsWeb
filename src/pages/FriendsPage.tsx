@@ -162,7 +162,7 @@ const useStyles = makeStyles()({
   },
   friendsPage: {
     display: 'grid',
-    gridTemplateColumns: '5.6fr 6.4fr',
+    gridTemplateColumns: '376px 575px',
     height: '71vh',
   },
 })
