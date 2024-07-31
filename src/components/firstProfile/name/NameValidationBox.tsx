@@ -1,4 +1,5 @@
 import { Box, Typography } from '@mui/material'
+import theme from 'styles/createTheme'
 
 const NameValidationBox = () => {
   return (
@@ -16,13 +17,17 @@ const NameValidationBox = () => {
       >
         Your name
       </Typography>
-      <Typography sx={{ color: '#F1543F', marginBottom: '4px' }}>
+      <Typography
+        sx={{ color: theme.palette.primary.dark, marginBottom: '4px' }}
+      >
         - shouldn’t contain numbers
       </Typography>
-      <Typography sx={{ color: '#F1543F', marginBottom: '4px' }}>
+      <Typography
+        sx={{ color: theme.palette.primary.dark, marginBottom: '4px' }}
+      >
         - has 2-15 symbols
       </Typography>
-      <Typography sx={{ color: '#F1543F' }}>
+      <Typography sx={{ color: theme.palette.primary.dark }}>
         - has no special characters
       </Typography>
     </Box>

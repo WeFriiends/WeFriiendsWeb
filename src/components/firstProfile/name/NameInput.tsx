@@ -2,7 +2,7 @@ import { useState } from 'react'
 import TextField from '@mui/material/TextField'
 import { makeStyles } from 'tss-react/mui'
 import theme from 'styles/createTheme'
-import { FormHelperText, Typography, Box } from '@mui/material'
+import { FormHelperText, Typography } from '@mui/material'
 import { setItemToLocalStorage } from 'utils/localStorage'
 import { commonStyles } from 'styles/commonStyles'
 import NameValidationBox from './NameValidationBox'
@@ -45,16 +45,15 @@ const NameInput = () => {
         value={fullName}
         onChange={(e) => handleInputChange(e.target.value)}
         error={!!error}
-        // helperText={hasTyped && (error || '15 symbols max.')}
         fullWidth
       />
       {!hasTyped && (
-        <FormHelperText sx={{ color: '#1D878C' }}>
+        <FormHelperText sx={{ color: theme.palette.secondary.main }}>
           {`Please, note - you won’t be able to change this field later`}
         </FormHelperText>
       )}
       {hasTyped && !error && (
-        <FormHelperText sx={{ color: '#1D878C' }}>
+        <FormHelperText sx={{ color: theme.palette.secondary.main }}>
           {`15 symbols max.`}
         </FormHelperText>
       )}

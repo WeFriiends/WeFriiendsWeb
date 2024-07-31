@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Typography, Box } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
+import { setItemToLocalStorage } from 'utils/localStorage'
 
 const STATUSES: Array<string> = [
   'Looking for new friends',
@@ -19,11 +20,15 @@ const Status = () => {
 
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([])
 
-  const toggleStatus = (status: string) => {
-    if (selectedStatuses.includes(status)) {
-      setSelectedStatuses(selectedStatuses.filter((s) => s !== status))
+  useEffect(() => {
+    setItemToLocalStorage('selectedStatuses', JSON.stringify(selectedStatuses))
+  }, [selectedStatuses])
+
+  const toggleStatus = (statusId: string) => {
+    if (selectedStatuses.includes(statusId)) {
+      setSelectedStatuses(selectedStatuses.filter((s) => s !== statusId))
     } else if (selectedStatuses.length < 3) {
-      setSelectedStatuses([...selectedStatuses, status])
+      setSelectedStatuses([...selectedStatuses, statusId])
     }
   }
 
@@ -47,17 +52,13 @@ const Status = () => {
         </Typography>
       </Box>
       <Box className={classes.phraseWrapper}>
-        {STATUSES.map((phrase, index) => (
+        {STATUSES.map((phrase) => (
           <Box
             key={phrase}
             className={`${classes.phrase} ${classes.text}`}
-            onClick={(event) => {
-              const target = event.target as Element
-              toggleStatus(target.id)
-            }}
-            id={`phrase${index}`}
+            onClick={() => toggleStatus(phrase)}
             sx={{
-              backgroundColor: selectedStatuses.includes(`phrase${index}`)
+              backgroundColor: selectedStatuses.includes(phrase)
                 ? '#faa06d'
                 : 'rgba(229, 229, 229, 0.40)',
             }}
