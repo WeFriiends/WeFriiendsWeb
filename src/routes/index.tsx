@@ -15,6 +15,7 @@ import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 import ReportDialogExamplePage from '../components/report/ReportDialogExamplePage'
 import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
+import MyAccount from '../components/myAccount/MyAccount'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -68,6 +69,11 @@ const routes: RouteObject[] = [
           {
             path: 'near-me',
             element: <NearMe />,
+            // element: <AuthGuard component={NearMe} />,
+          },
+          {
+            path: 'my-account',
+            element: <MyAccount />,
             // element: <AuthGuard component={NearMe} />,
           },
           {
