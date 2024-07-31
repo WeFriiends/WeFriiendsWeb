@@ -51,10 +51,7 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
   },
 }))
 
-const RangeSlider: React.FC<RangeSliderProps> = ({
-  value,
-  onChange,
-}) => {
+const RangeSlider: React.FC<RangeSliderProps> = ({ value, onChange }) => {
   return (
     <CustomSlider
       aria-label="ios slider"
