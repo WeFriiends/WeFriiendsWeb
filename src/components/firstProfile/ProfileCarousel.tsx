@@ -2,7 +2,7 @@ import GenericCarousel from '../../common/components/Carousel'
 // import { commonStyles } from 'styles/commonStyles'
 import Pagination from 'common/components/Pagination'
 import useHandleCarousel from 'hooks/useHandleCarousel'
-import NameInput from './NameInput'
+import NameInput from './name/NameInput'
 import DateOfBirthPicker from './DateOfBirthPicker'
 import PrimaryButton from 'common/components/PrimaryButton'
 import { getItemsFromLocalStorage } from 'utils/localStorage'
@@ -23,18 +23,18 @@ const carouselData = [
     component: <DateOfBirthPicker />,
     label: 'dateOfBirthPicker',
   },
-  {
-    component: <GenderPick />,
-    label: 'genderPick',
-  },
-  {
-    component: <LocationManual />,
-    label: 'userLocation',
-  },
-  {
-    component: <Status />,
-    label: 'status',
-  },
+  // {
+  //   component: <GenderPick />,
+  //   label: 'genderPick',
+  // },
+  // {
+  //   component: <UserLocation />,
+  //   label: 'userLocation',
+  // },
+  // {
+  //   component: <Status />,
+  //   label: 'status',
+  // },
 ]
 const ProfileCarousel = () => {
   const token = useBearerToken()
