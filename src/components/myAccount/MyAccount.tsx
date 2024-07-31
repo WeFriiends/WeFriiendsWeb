@@ -4,7 +4,7 @@ import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 import RangeSlider from './RangeSlider'
 
-const minDistance = 10
+const minDistance = 1
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
@@ -72,7 +72,7 @@ const MyAccount: React.FC = () => {
           <Typography variant="h2" className={classes.subtitle}>
             Location
           </Typography>
-          <IconButton className={classes.btnLocation}>
+          <IconButton className={classes.btnLocation} disableRipple>
             My Current Location (Warsaw)
             <Icon>
               <img
@@ -107,7 +107,7 @@ const MyAccount: React.FC = () => {
           />*/}
           <RangeSlider value={value1} onChange={handleChange1}></RangeSlider>
           <Typography variant="h2" className={classes.subtitle}>
-            Age range
+            Age range (с 18 до 75, сделать движение каждлого по отдельности)
           </Typography>
           <RangeSlider value={value2} onChange={handleChange2}></RangeSlider>
           <hr className={classes.separator} />
@@ -219,7 +219,7 @@ const useStyles = makeStyles()({
   twoColumnLayoutColRight: {
     width: 450,
     //width: 450,
-    // outline: '1px solid pink',
+    outline: '1px solid pink',
     [theme.breakpoints.up(850)]: {
       width: 450,
     },
