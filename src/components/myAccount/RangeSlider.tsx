@@ -9,6 +9,8 @@ type RangeSliderProps = {
     newValue: number | number[],
     activeThumb: number
   ) => void
+  disableSwap?: boolean
+  getAriaValueText?: ((value: number, index: number) => string) | undefined
 }
 
 const CustomSlider = styled(Slider)(({ theme }) => ({
@@ -51,7 +53,12 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
   },
 }))
 
-const RangeSlider: React.FC<RangeSliderProps> = ({ value, onChange }) => {
+const RangeSlider: React.FC<RangeSliderProps> = ({
+  value,
+  onChange,
+  disableSwap,
+  getAriaValueText,
+}) => {
   return (
     <CustomSlider
       aria-label="ios slider"
@@ -59,6 +66,8 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ value, onChange }) => {
       value={value}
       valueLabelDisplay="on"
       onChange={onChange}
+      disableSwap={disableSwap}
+      getAriaValueText={getAriaValueText}
     />
   )
 }

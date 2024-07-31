@@ -9,7 +9,11 @@ const minDistance = 1
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
 
-  const [value1, setValue1] = React.useState<number[]>([20, 37])
+  function valuetext(value: number) {
+    return `${value}°C`
+  }
+
+  const [value1, setValue1] = React.useState<number[]>([18, 75])
 
   const handleChange1 = (
     event: Event,
@@ -85,7 +89,11 @@ const MyAccount: React.FC = () => {
           <Typography variant="body2" className={classes.description}>
             Distance from location (100 km max)
           </Typography>
-          <RangeSlider value={value3} onChange={handleChange3}></RangeSlider>
+          <RangeSlider
+            getAriaValueText={valuetext}
+            value={value3}
+            onChange={handleChange3}
+          ></RangeSlider>
           <Typography variant="h2" className={classes.subtitle}>
             Age range
           </Typography>
@@ -105,7 +113,11 @@ const MyAccount: React.FC = () => {
             getAriaValueText={valuetext}
             disableSwap
           />*/}
-          <RangeSlider value={value1} onChange={handleChange1}></RangeSlider>
+          <RangeSlider
+            disableSwap
+            value={value1}
+            onChange={handleChange1}
+          ></RangeSlider>
           <Typography variant="h2" className={classes.subtitle}>
             Age range (с 18 до 75, сделать движение каждлого по отдельности)
           </Typography>
