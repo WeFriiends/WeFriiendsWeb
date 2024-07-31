@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { FC, useState, useEffect } from 'react'
 import { reverseGeocode } from '../../../actions/geocoding'
 import { useGeolocation } from '@uidotdev/usehooks'
 import { setItemToLocalStorage } from 'utils/localStorage'
+import { InputAdornment, TextField } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search'
+import Loader from 'common/svg/Loader'
 
 export const checkGeolocationPermission = async () => {
   if (!navigator.permissions) {
@@ -16,42 +19,71 @@ export const checkGeolocationPermission = async () => {
     return 'error'
   }
 }
+type Address = {
+  country: string
+  city: string
+  street: string
+  houseNumber: string
+}
 
-const UserLocation: React.FC = () => {
+const UserLocation: FC = () => {
   const { latitude, longitude, error } = useGeolocation()
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
     null
   )
-  const [address, setAddress] = useState<string | null>(null)
-  const [showInput, setShowInput] = useState(false)
+  const [address, setAddress] = useState<Address | null>(null)
+  const [_, setIsFocused] = useState(false)
 
   useEffect(() => {
     if (latitude && longitude) {
       setLocation({ lat: latitude, lng: longitude })
       const fetchAddress = async () => {
         const response = await reverseGeocode(latitude, longitude)
-        setAddress(response.display_name || 'Address not found')
+        const { country, city, town, village, road, house_number } =
+          response.address
+        setAddress({
+          country: country || '',
+          city: city || town || village || '',
+          street: road || '',
+          houseNumber: house_number || '',
+        })
+
+        setItemToLocalStorage('lat', latitude)
+        setItemToLocalStorage('lng', longitude)
       }
       fetchAddress()
-      setShowInput(true)
     }
   }, [latitude, longitude])
 
-  const handleLocationChange = (location: { city: string; street: string }) => {
-    setItemToLocalStorage('city', location.city)
-    setItemToLocalStorage('street', location.street)
-    setItemToLocalStorage('lat', latitude)
-    setItemToLocalStorage('lng', longitude)
-  }
-
+  useEffect(() => {
+    setItemToLocalStorage('country', address?.country)
+    setItemToLocalStorage('city', address?.city)
+    setItemToLocalStorage('street', address?.street)
+    setItemToLocalStorage('houseNumber', address?.houseNumber)
+  }, [address?.country, address?.city, address?.street, address?.houseNumber])
   return (
     <div>
       {error && <div>Error: {error.message}</div>}
-      {!location && !showInput && <div>Fetching your location...</div>}
-      {address && (
-        <div>
-          <h3>Your location: {address}</h3>
-        </div>
+      {!location && <Loader />}
+      {location && address && (
+        <TextField
+          sx={{
+            "input[type='search']::-webkit-search-cancel-button": {
+              display: 'none',
+            },
+          }}
+          value={`${address.city}, ${address.street}, ${address.houseNumber}`}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          variant="standard"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
       )}
     </div>
   )
