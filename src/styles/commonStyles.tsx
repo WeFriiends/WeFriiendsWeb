@@ -4,9 +4,6 @@ export const commonStyles = makeStyles()((theme) => {
   const boxShadow = '0 0 7px 1px rgba(179, 179, 179, 0.14)'
 
   return {
-    typography: {
-      fontFamily: ['Inter', 'sans-serif'].join(','),
-    },
     mainBox: {
       display: 'flex',
       flexDirection: 'column',
@@ -17,15 +14,6 @@ export const commonStyles = makeStyles()((theme) => {
         paddingTop: `calc(200px - 5vh)`,
         width: 350,
         margin: '0 auto',
-      },
-    },
-    inputField: {
-      backgroundColor: '#FFF1EC',
-      borderRadius: 10,
-      '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          border: 'none',
-        },
       },
     },
     shadowBox: {
