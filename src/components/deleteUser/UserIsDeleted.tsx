@@ -4,20 +4,20 @@ import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 import { commonStyles } from '../../styles/commonStyles'
 
-type UserIsBlockedProps = {
+type UserIsDeletedProps = {
   closeModal: () => void
 }
 
-const UserIsBlocked: React.FC<UserIsBlockedProps> = ({ closeModal }) => {
+const UserIsDeleted: React.FC<UserIsDeletedProps> = ({ closeModal }) => {
   const { classes } = useStyles()
   const handleCloseModal = () => closeModal()
 
   const commonClasses = commonStyles().classes
 
   return (
-    <Box className={classes.reportContainer}>
+    <Box className={classes.deleteContainer}>
       <Typography variant="h2" className={classes.title}>
-        User is blocked
+        User is deleted
       </Typography>
 
       <Button
@@ -33,10 +33,10 @@ const UserIsBlocked: React.FC<UserIsBlockedProps> = ({ closeModal }) => {
   )
 }
 
-export default UserIsBlocked
+export default UserIsDeleted
 
 const useStyles = makeStyles()({
-  reportContainer: {
+  deleteContainer: {
     display: 'grid',
     alignItems: 'center',
   },

@@ -3,64 +3,64 @@ import { Box, Typography, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 
-type ReportActionProps = {
-  chooseBlock: () => void
-  chooseReport: () => void
+type DeleteConfirmProps = {
+  chooseClose: () => void
+  chooseDelete: () => void
 }
 
-const ReportAction: React.FC<ReportActionProps> = ({
-  chooseBlock,
-  chooseReport,
+const DeleteConfirm: React.FC<DeleteConfirmProps> = ({
+  chooseClose,
+  chooseDelete,
 }) => {
   const { classes } = useStyles()
 
-  const handleBlock = () => {
-    // TODO: Add API and code for user blocking
-    chooseBlock()
+  const handleCancel = () => {
+    chooseClose()
   }
 
-  const handleReport = () => {
-    chooseReport()
+  const handleDelete = () => {
+    // TODO: Add API and code for user deleting
+    chooseDelete()
   }
 
   return (
-    <Box className={classes.reportContainer}>
+    <Box className={classes.deleteContainer}>
       <img
         src="/img/report/icon-alert.svg"
         alt="Alert circle"
         className={classes.imgAlert}
       />
       <Typography variant="h2" className={classes.title}>
-        Report user
+        Delete user
       </Typography>
       <Box className={classes.btnContainer}>
         <Button
-          onClick={handleBlock}
+          onClick={handleCancel}
           className={classes.linkBtn}
           disableFocusRipple
           disableRipple
           disableElevation
         >
-          Block
+          Cancel
         </Button>
         <Button
-          onClick={handleReport}
+          onClick={handleDelete}
           className={classes.linkBtn}
           disableFocusRipple
           disableRipple
           disableElevation
         >
-          Report
+          Delete
         </Button>
       </Box>
     </Box>
   )
 }
 
-export default ReportAction
+export default DeleteConfirm
 
 const useStyles = makeStyles()({
-  reportContainer: {
+  deleteContainer: {
     display: 'grid',
   },
   title: {

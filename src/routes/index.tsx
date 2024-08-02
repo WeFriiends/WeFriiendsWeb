@@ -2,7 +2,6 @@ import { RouteObject } from 'react-router'
 import { ComponentType, Suspense, lazy } from 'react'
 import AuthGuard from 'components/userAuth/AuthGuard'
 import LoadingScreen from 'common/svg/Loader'
-import ReportReceived from 'components/report/ReportReceived'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import AuthCallbackPage from 'pages/AuthCallbackPage'
@@ -11,12 +10,11 @@ import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
 import Match from '../components/findMatch/Match'
-import ReportAction from '../components/report/ReportAction'
-import ReportForm from '../components/report/ReportForm'
-import UserIsBlocked from '../components/report/UserIsBlocked'
 import Messages from 'pages/MessagesPage'
 import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
+import ReportDialogExamplePage from '../components/report/ReportDialogExamplePage'
+import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -93,24 +91,11 @@ const routes: RouteObject[] = [
 
   {
     path: 'report',
-    children: [
-      {
-        path: 'choose-action',
-        element: <ReportAction />,
-      },
-      {
-        path: 'report-form',
-        element: <ReportForm />,
-      },
-      {
-        path: 'report-received',
-        element: <ReportReceived />,
-      },
-      {
-        path: 'user-is-blocked',
-        element: <UserIsBlocked />,
-      },
-    ],
+    element: <ReportDialogExamplePage />,
+  },
+  {
+    path: 'delete',
+    element: <DeleteUserDialogExamplePage />,
   },
   { path: 'invite', element: <Invitation /> },
   { path: 'error-400', element: <ErrorPage code={400} /> }, // Route is working for demonstration

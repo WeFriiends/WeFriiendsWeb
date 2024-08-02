@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import {
   Box,
   Typography,
@@ -9,23 +10,24 @@ import {
 } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
-import { useNavigate } from 'react-router'
-import { CommonModal } from '../commonModal/CommonModal'
-import React, { useState } from 'react'
 import ReportInputRadio from './ReportInputRadio'
 
-const ReportForm = () => {
+type ReportFormProps = {
+  sendReport: () => void
+  goBack: () => void
+}
+
+const ReportForm: React.FC<ReportFormProps> = ({ sendReport, goBack }) => {
   const { classes } = useStyles()
-  const navigate = useNavigate()
   const handleGoBack = () => {
-    navigate(-1)
+    goBack()
   }
 
   const [comment, setComment] = useState('')
 
   const handleSendReport = () => {
     // TODO: Add API and code for sending a report
-    navigate('/report/report-received')
+    sendReport()
   }
 
   const reportReasons = [
@@ -39,73 +41,66 @@ const ReportForm = () => {
   ]
 
   return (
-    <CommonModal
-      isOpened={true}
-      modalTitle={'modal-modal-title'}
-      modalDescription={'modal-modal-description'}
-      onClose={handleGoBack}
-    >
-      <Box className={classes.reportContainer}>
-        <img
-          src="/img/report/icon-alert.svg"
-          alt="Alert circle"
-          className={classes.imgAlert}
-        />
-        <Box>
-          <Typography variant="h2" className={classes.title}>
-            Report
-          </Typography>
-          <Typography className={classes.content}>
-            Select the reason for the complaint – <br /> we will definitely take
-            action
-          </Typography>
-        </Box>
-        <FormControl>
-          <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="spam"
-            name="radio-buttons-group"
-          >
-            {reportReasons.map((reason) => (
-              <FormControlLabel
-                key={reason.value}
-                value={reason.value}
-                control={<ReportInputRadio />}
-                label={reason.text}
-                className={classes.formControlLabel}
-              />
-            ))}
-          </RadioGroup>
-        </FormControl>
-        <Typography className={classes.comment}>
-          Also you can leave a comment. <br />
-          We will better understand what has happened.
+    <Box className={classes.reportContainer}>
+      <img
+        src="/img/report/icon-alert.svg"
+        alt="Alert circle"
+        className={classes.imgAlert}
+      />
+      <Box>
+        <Typography variant="h2" className={classes.title}>
+          Report
         </Typography>
-        <TextareaAutosize
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          className={classes.textarea}
-        />
-        <Box className={classes.groupBtn}>
-          <Button
-            className={classes.button}
-            disableFocusRipple
-            disableRipple
-            onClick={handleGoBack}
-          >
-            cancel
-          </Button>
-          <Button
-            className={classes.button}
-            disableFocusRipple
-            disableRipple
-            onClick={handleSendReport}
-          >
-            send
-          </Button>
-        </Box>
+        <Typography className={classes.content}>
+          Select the reason for the complaint – <br /> we will definitely take
+          action
+        </Typography>
       </Box>
-    </CommonModal>
+      <FormControl>
+        <RadioGroup
+          aria-labelledby="demo-radio-buttons-group-label"
+          defaultValue="spam"
+          name="radio-buttons-group"
+        >
+          {reportReasons.map((reason) => (
+            <FormControlLabel
+              key={reason.value}
+              value={reason.value}
+              control={<ReportInputRadio />}
+              label={reason.text}
+              className={classes.formControlLabel}
+            />
+          ))}
+        </RadioGroup>
+      </FormControl>
+      <Typography className={classes.comment}>
+        Also you can leave a comment. <br />
+        We will better understand what has happened.
+      </Typography>
+      <TextareaAutosize
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+        className={classes.textarea}
+      />
+      <Box className={classes.groupBtn}>
+        <Button
+          className={classes.button}
+          disableFocusRipple
+          disableRipple
+          onClick={handleGoBack}
+        >
+          cancel
+        </Button>
+        <Button
+          className={classes.button}
+          disableFocusRipple
+          disableRipple
+          onClick={handleSendReport}
+        >
+          send
+        </Button>
+      </Box>
+    </Box>
   )
 }
 
@@ -143,6 +138,7 @@ const useStyles = makeStyles()({
     boxShadow: '0px 0px 7px 1px rgba(179, 179, 179, 0.14)',
     border: '1px solid #eee',
     fontFamily: 'inherit',
+    fontSize: 14,
     padding: 10,
     '&:focus': {
       outline: 'none',

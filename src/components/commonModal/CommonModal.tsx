@@ -69,6 +69,7 @@ const useStyles = makeStyles()(() => ({
     padding: '75px 0 40px',
     boxSizing: 'border-box',
     color: theme.palette.text.primary,
+    transition: 'height .3s',
     [theme.breakpoints.down(370)]: {
       width: '100vw',
       height: '100vh',
