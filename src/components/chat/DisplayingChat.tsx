@@ -1,22 +1,21 @@
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from './../../styles/createTheme'
+import { Chat, Message } from 'types/Chat'
 
-const DisplayingChat = (data: any) => {
+const DisplayingChat = ({ data }: { data: Chat }) => {
   const { classes } = useStyles()
 
   return (
     <Box className={classes.messagesArea}>
-      {data.data.messages.map((message: any) => (
+      {data.messages.map((message: Message) => (
         <Box
           key={message.message_id}
           sx={{
             alignSelf:
-              message.sender_id === data.data.user_id
-                ? 'flex-end'
-                : 'flex-start',
+              message.sender_id === data.user_id ? 'flex-end' : 'flex-start',
             backgroundColor:
-              message.sender_id === data.data.user_id ? '#FEDED2' : '#EEEEEE',
+              message.sender_id === data.user_id ? '#FEDED2' : '#EEEEEE',
           }}
           className={classes.message}
         >
@@ -26,8 +25,7 @@ const DisplayingChat = (data: any) => {
           <Typography
             className={classes.messageDate}
             sx={{
-              textAlign:
-                message.sender_id === data.data.user_id ? 'right' : 'left',
+              textAlign: message.sender_id === data.user_id ? 'right' : 'left',
             }}
           >
             {new Date(message.timestamp).toLocaleString([], {
