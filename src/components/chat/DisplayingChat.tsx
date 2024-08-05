@@ -24,7 +24,13 @@ const DisplayingChat = (data: any) => {
               <Typography className={classes.messageText}>
                 {message.message}
               </Typography>
-              <Typography className={classes.messageDate}>
+              <Typography
+                className={classes.messageDate}
+                sx={{
+                  textAlign:
+                    message.sender_id === element.user_id ? 'right' : 'left',
+                }}
+              >
                 {new Date(message.timestamp).toLocaleString([], {
                   year: 'numeric',
                   month: 'numeric',
@@ -55,7 +61,6 @@ const useStyles = makeStyles()({
   },
   message: {
     maxWidth: '85%',
-    minWidth: '55%',
     padding: '10px',
     borderRadius: '10px',
   },
@@ -65,9 +70,9 @@ const useStyles = makeStyles()({
     color: theme.palette.text.primary,
   },
   messageDate: {
-    textAlign: 'right',
-    fontSize: '10px',
-    lineHeight: '22px',
+    fontSize: '12px',
+    lineHeight: '15.6px',
     color: theme.palette.text.primary,
+    marginTop: 5,
   },
 })
