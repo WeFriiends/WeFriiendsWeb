@@ -5,7 +5,7 @@ import React, {
   Ref,
   useImperativeHandle,
 } from 'react'
-import { CommonModal } from '../commonModal/CommonModal'
+import { CommonModal } from 'common/components/CommonModal'
 import ReportAction from './ReportAction'
 import UserIsBlocked from './UserIsBlocked'
 import ReportForm from './ReportForm'

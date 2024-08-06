@@ -1,7 +1,7 @@
 import { Box, Avatar, Typography, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
-import { CommonModal } from '../commonModal/CommonModal'
+import { CommonModal } from 'common/components/CommonModal'
 
 interface MatchProps {
   onClose: () => void

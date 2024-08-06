@@ -5,12 +5,18 @@ import LoadingScreen from 'common/svg/Loader'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import AuthCallbackPage from 'pages/AuthCallbackPage'
-import NameProfile from 'components/firstProfile/NameProfile'
+// import MessagesAndFriends from 'pages/MessagesAndFriends'
+// import Invitation from '../components/invitation/Invitation'
+// import ErrorPage from 'pages/ErrorPage'
+// import Messages from 'pages/Messages'
+import FirstProfile from 'pages/FirstProfile'
+// import NameProfile from 'components/firstProfile/NameProfile'
 import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
 import Match from '../components/findMatch/Match'
 import Messages from 'pages/MessagesPage'
+import UserAccount from 'pages/UserAccount'
 import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 import ReportDialogExamplePage from '../components/report/ReportDialogExamplePage'
@@ -39,12 +45,17 @@ const routes: RouteObject[] = [
     children: [
       {
         path: 'fill-profile',
-        // element: <NameProfile />,
-        element: <AuthGuard component={NameProfile} />,
+        // element: <FirstProfile />,
+        element: <AuthGuard component={FirstProfile} />,
       },
       {
         element: <NavBar />,
         children: [
+          {
+            path: 'account',
+            element: <UserAccount />,
+            // element: <AuthGuard component={YourLikesList} />,
+          },
           {
             element: <TabsMessagesFriends />,
             children: [

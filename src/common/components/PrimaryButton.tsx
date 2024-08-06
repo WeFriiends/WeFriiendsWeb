@@ -1,32 +1,34 @@
-import { backdropClasses, Box, Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 
 type NextStepButtonProps = {
-  stepForwardHandler: () => void
-  disabled: boolean
+  onClickHandler: () => void
+  disabled?: boolean
+  label: string
 }
 
-const NextStepButton: React.FC<NextStepButtonProps> = ({
-  stepForwardHandler,
+const PrimaryButton: React.FC<NextStepButtonProps> = ({
+  onClickHandler,
   disabled,
+  label,
 }) => {
   const { classes } = useStyles()
   return (
     <Box className={classes.nextPageContainer}>
       <Button
-        onClick={stepForwardHandler}
+        onClick={onClickHandler}
         className={`${classes.button} ${
           disabled ? classes.disabledButton : classes.activeButton
         }`}
         disabled={disabled}
       >
-        Next
+        {label}
       </Button>
     </Box>
   )
 }
 
-export default NextStepButton
+export default PrimaryButton
 
 const useStyles = makeStyles()(() => {
   return {
