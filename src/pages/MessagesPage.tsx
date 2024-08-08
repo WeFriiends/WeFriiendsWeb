@@ -18,6 +18,9 @@ import messages from '../components/chat/chat.json'
 const MessagesPage = () => {
   const { classes } = useStyles()
   const [selectedChat, setSelectedChat] = useState<UserChatProfile | null>(null)
+  const userId = '1'
+
+  const frienId = messages.participants.find((el) => el !== userId)
 
   const handleClick = (user: UserChatProfile) => {
     setSelectedChat(user)
@@ -54,9 +57,8 @@ const MessagesPage = () => {
               <ChatMenu />
             </Box>
           )}
-          {Object.keys(messages).length != 0 &&
-          selectedChat?.id === messages.friend_id ? (
-            <DisplayingChat data={messages} />
+          {Object.keys(messages).length != 0 && selectedChat?.id === frienId ? (
+            <DisplayingChat data={messages} userId={userId} />
           ) : (
             <StartChatting />
           )}

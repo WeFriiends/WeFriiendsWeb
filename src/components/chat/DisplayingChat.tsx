@@ -3,7 +3,7 @@ import { makeStyles } from 'tss-react/mui'
 import theme from './../../styles/createTheme'
 import { Chat, Message } from 'types/Chat'
 
-const DisplayingChat = ({ data }: { data: Chat }) => {
+const DisplayingChat = ({ data, userId }: { data: Chat; userId: string }) => {
   const { classes } = useStyles()
 
   return (
@@ -12,10 +12,9 @@ const DisplayingChat = ({ data }: { data: Chat }) => {
         <Box
           key={message.message_id}
           sx={{
-            alignSelf:
-              message.sender_id === data.user_id ? 'flex-end' : 'flex-start',
+            alignSelf: message.sender_id === userId ? 'flex-end' : 'flex-start',
             backgroundColor:
-              message.sender_id === data.user_id ? '#FEDED2' : '#EEEEEE',
+              message.sender_id === userId ? '#FEDED2' : '#EEEEEE',
           }}
           className={classes.message}
         >
@@ -25,7 +24,7 @@ const DisplayingChat = ({ data }: { data: Chat }) => {
           <Typography
             className={classes.messageDate}
             sx={{
-              textAlign: message.sender_id === data.user_id ? 'right' : 'left',
+              textAlign: message.sender_id === userId ? 'right' : 'left',
             }}
           >
             {new Date(message.timestamp).toLocaleString([], {

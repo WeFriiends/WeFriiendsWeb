@@ -1,7 +1,6 @@
 export interface Chat {
   chat_id: string
-  user_id: string
-  friend_id: string
+  participants: string[]
   messages: Message[]
 }
 
