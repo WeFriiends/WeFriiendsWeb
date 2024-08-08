@@ -48,9 +48,9 @@ const useStyles = makeStyles()({
     display: 'flex',
     flexDirection: 'column',
     gap: '12px',
-    marginTop: 44,
-    padding: '0 0 12px 22px',
-    maxHeight: '60vh',
+    marginTop: 31,
+    padding: '13px 22px 12px',
+    maxHeight: 'calc(100vh - 378px)',
     overflow: 'auto',
   },
   message: {
