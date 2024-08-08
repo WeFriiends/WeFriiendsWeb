@@ -65,6 +65,8 @@ const MessagesPage = () => {
 
           <Box className={classes.sendMessageSection}>
             <TextareaAutosize
+              minRows={1}
+              maxRows={10}
               placeholder="Type a message"
               className={classes.textArea}
             />
