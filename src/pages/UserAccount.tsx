@@ -30,7 +30,15 @@ const UserAccount = () => {
       <div>
         <h2>Name: {profile?.name}</h2>
         <h2>Date of Birth: {profile?.dateOfBirth.toString()}</h2>
-        <h2>City: {profile?.location?.city}</h2>
+        <h2>Gender: {profile?.gender}</h2>
+        <h2>Gender: {location?.city}</h2>
+        <h2>Gender: {location?.street}</h2>
+        <h2>
+          Reasons:
+          {profile?.reasons?.map((r) => (
+            <p key={r}>{r}</p>
+          ))}
+        </h2>
       </div>
       <button
         onClick={() =>

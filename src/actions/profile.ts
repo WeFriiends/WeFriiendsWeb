@@ -8,9 +8,17 @@ export const createProfile = async (
   profileData: {
     name: string
     dateOfBirth: string
-    coordinates?: { lat: number; lng: number }
-    country?: string
-    city?: string
+    location: {
+      lat: number
+      lng: number
+      country?: string
+      city?: string
+      street?: string
+      houseNumber?: string
+    }
+    photos?: string[]
+    gender: string
+    reasons: string[]
   },
   token: string | null
 ) => {

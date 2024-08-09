@@ -90,6 +90,8 @@ file with generic/common app styles (Titles, buttons etc.)
 For convinient development locally was created and set up docker compose file. It's a solution also to avoid CORS error.
 
 #### Important! 
+To run the project .env file should be created based on the file .env.sample. Keys ask on the FE slack channel
+
 Repos Web FE and Auth should be located in the same directory, otherwise you need to adapt values `volumes` in docker-compose file accordingly.
 
 `docker-compose up` is command to run the project using docker-compose file.

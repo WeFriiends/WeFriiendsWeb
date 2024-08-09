@@ -21,7 +21,7 @@ const Status = () => {
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([])
 
   useEffect(() => {
-    setItemToLocalStorage('selectedStatuses', JSON.stringify(selectedStatuses))
+    setItemToLocalStorage('selectedStatuses', selectedStatuses)
   }, [selectedStatuses])
 
   const toggleStatus = (statusId: string) => {

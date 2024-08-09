@@ -24,18 +24,18 @@ const carouselData = [
     component: <DateOfBirthPicker />,
     label: 'dateOfBirthPicker',
   },
-  // {
-  //   component: <GenderPick />,
-  //   label: 'genderPick',
-  // },
-  // {
-  //   component: <UserLocation />,
-  //   label: 'userLocation',
-  // },
-  // {
-  //   component: <Status />,
-  //   label: 'status',
-  // },
+  {
+    component: <GenderPick />,
+    label: 'genderPick',
+  },
+  {
+    component: <UserLocation />,
+    label: 'userLocation',
+  },
+  {
+    component: <Status />,
+    label: 'status',
+  },
 ]
 const ProfileCarousel = () => {
   const token = useBearerToken()
@@ -46,8 +46,39 @@ const ProfileCarousel = () => {
   const navigate = useNavigate()
 
   const onSubmit = async () => {
-    const { name, dob } = getItemsFromLocalStorage(['name', 'dob'])
-    await createProfile({ name, dateOfBirth: dob }, token)
+    const {
+      name,
+      dob,
+      gender,
+      lat,
+      lng,
+      country,
+      city,
+      street,
+      houseNumber,
+      selectedStatuses,
+    } = getItemsFromLocalStorage([
+      'name',
+      'dob',
+      'gender',
+      'lat',
+      'lng',
+      'country',
+      'city',
+      'street',
+      'houseNumber',
+      'selectedStatuses',
+    ])
+    await createProfile(
+      {
+        name,
+        dateOfBirth: dob,
+        gender,
+        location: { lat, lng, country, city, street, houseNumber },
+        reasons: selectedStatuses,
+      },
+      token
+    )
     navigate('/user/friends')
   }
   return (

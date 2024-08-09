@@ -3,6 +3,8 @@ interface Location {
   lng: number
   country: string
   city: string
+  street: string
+  houseNumber: string
 }
 
 interface Profile {
@@ -10,8 +12,8 @@ interface Profile {
   name: string
   dateOfBirth: Date
   zodiacSign?: string
-  location?: Location
-  gender?: string
-  reasons?: string[]
+  location: Location
+  gender: string
+  reasons: string[]
   photos: string[]
 }
