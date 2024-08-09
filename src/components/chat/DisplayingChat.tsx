@@ -50,7 +50,6 @@ const useStyles = makeStyles()({
     gap: '12px',
     marginTop: 31,
     padding: '13px 22px 12px',
-    maxHeight: 'calc(100vh - 378px)',
     overflow: 'auto',
   },
   message: {

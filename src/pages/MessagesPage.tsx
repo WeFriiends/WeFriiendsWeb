@@ -57,23 +57,33 @@ const MessagesPage = () => {
               <ChatMenu />
             </Box>
           )}
-          {Object.keys(messages).length != 0 && selectedChat?.id === frienId ? (
-            <DisplayingChat data={messages} userId={userId} />
-          ) : (
-            <StartChatting />
-          )}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              height: 'calc(100vh - 257px)',
+              justifyContent: 'space-between',
+            }}
+          >
+            {Object.keys(messages).length != 0 &&
+            selectedChat?.id === frienId ? (
+              <DisplayingChat data={messages} userId={userId} />
+            ) : (
+              <StartChatting />
+            )}
 
-          <Box className={classes.sendMessageSection}>
-            <TextareaAutosize
-              minRows={1}
-              maxRows={10}
-              placeholder="Type a message"
-              className={classes.textArea}
-            />
-            <img src="/img/messages/lol.svg" alt="lol" />
-            <Button className={classes.sendBtn} variant="outlined">
-              Send
-            </Button>
+            <Box className={classes.sendMessageSection}>
+              <TextareaAutosize
+                minRows={1}
+                maxRows={10}
+                placeholder="Type a message"
+                className={classes.textArea}
+              />
+              <img src="/img/messages/lol.svg" alt="lol" />
+              <Button className={classes.sendBtn} variant="outlined">
+                Send
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -98,7 +108,6 @@ const useStyles = makeStyles()({
   sendMessageSection: {
     display: 'flex',
     gap: 20,
-    position: 'fixed',
     bottom: 0,
     padding: '0 0 40px 15px',
     alignItems: 'end',
@@ -106,6 +115,7 @@ const useStyles = makeStyles()({
   textArea: {
     width: 328,
     backgroundColor: ' #EEEEEE',
+    color: theme.palette.text.primary,
     fontFamily: 'Inter',
     fontSize: 14,
     lineHeight: 1.3,
