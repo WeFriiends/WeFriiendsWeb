@@ -10,11 +10,11 @@ const DisplayingChat = ({ data, userId }: { data: Chat; userId: string }) => {
     <Box className={classes.messagesArea}>
       {data.messages.map((message: Message) => (
         <Box
-          key={message.message_id}
+          key={message.messageId}
           sx={{
-            alignSelf: message.sender_id === userId ? 'flex-end' : 'flex-start',
+            alignSelf: message.senderId === userId ? 'flex-end' : 'flex-start',
             backgroundColor:
-              message.sender_id === userId ? '#FEDED2' : '#EEEEEE',
+              message.senderId === userId ? '#FEDED2' : '#EEEEEE',
           }}
           className={classes.message}
         >
@@ -24,7 +24,7 @@ const DisplayingChat = ({ data, userId }: { data: Chat; userId: string }) => {
           <Typography
             className={classes.messageDate}
             sx={{
-              textAlign: message.sender_id === userId ? 'right' : 'left',
+              textAlign: message.senderId === userId ? 'right' : 'left',
             }}
           >
             {new Date(message.timestamp).toLocaleString([], {

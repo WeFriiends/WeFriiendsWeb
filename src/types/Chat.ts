@@ -1,13 +1,13 @@
 export interface Chat {
-  chat_id: string
+  chatId: string
   participants: string[]
   messages: Message[]
 }
 
 export interface Message {
-  message_id: string
-  sender_id: string
+  messageId: string
+  senderId: string
   timestamp: string
   message: string
-  read_status: boolean
+  readStatus: boolean
 }

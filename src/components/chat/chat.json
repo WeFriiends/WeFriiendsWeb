@@ -1,146 +1,146 @@
 {
-  "chat_id": "1",
+  "chatId": "1",
   "participants": ["1", "2"],
   "messages": [
     {
-      "message_id": "1",
-      "sender_id": "1",
+      "messageId": "1",
+      "senderId": "1",
       "timestamp": "2024-07-25T14:30:00Z",
       "message": "Hey, how are you?",
-      "read_status": true
+      "readStatus": true
     },
     {
-      "message_id": "2",
-      "sender_id": "2",
+      "messageId": "2",
+      "senderId": "2",
       "timestamp": "2024-07-25T14:32:00Z",
       "message": "I'm good, thanks! How about you?",
-      "read_status": true
+      "readStatus": true
     },
     {
-      "message_id": "3",
-      "sender_id": "1",
+      "messageId": "3",
+      "senderId": "1",
       "timestamp": "2024-07-25T14:35:00Z",
       "message": "I'm doing well, thanks for asking!",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "4",
-      "sender_id": "2",
+      "messageId": "4",
+      "senderId": "2",
       "timestamp": "2024-07-25T14:40:00Z",
       "message": "Have you been to Spain before?",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "5",
-      "sender_id": "1",
+      "messageId": "5",
+      "senderId": "1",
       "timestamp": "2024-07-25T14:45:00Z",
       "message": "Hey! Nice to meet you! I’m Elena!",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "6",
-      "sender_id": "2",
+      "messageId": "6",
+      "senderId": "2",
       "timestamp": "2024-07-25T14:50:00Z",
       "message": "But in Spain, salary is quite decent and it's easy to travel to other countries",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "7",
-      "sender_id": "1",
+      "messageId": "7",
+      "senderId": "1",
       "timestamp": "2024-07-25T14:55:00Z",
       "message": "Considering Barcelona has one of the most international airport",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "8",
-      "sender_id": "2",
+      "messageId": "8",
+      "senderId": "2",
       "timestamp": "2024-07-25T15:00:00Z",
       "message": "Also it's a country that have 350 days of sun every year",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "9",
-      "sender_id": "1",
+      "messageId": "9",
+      "senderId": "1",
       "timestamp": "2024-07-25T15:05:00Z",
       "message": "I do not have personal Instagram, only for my projects. May be you use some messengers - telegram, whatsapp?",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "10",
-      "sender_id": "2",
+      "messageId": "10",
+      "senderId": "2",
       "timestamp": "2024-07-25T15:10:00Z",
       "message": "I know that you enjoy sun every day! Lucky you! 😍 Yep, it's almost all about the job. Salary, taxes, but also language - I don't speak Spanish, and it’s obvious to learn it if you want to live in Spain (in Portugal English is ok as far as I know).",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "11",
-      "sender_id": "1",
+      "messageId": "11",
+      "senderId": "1",
       "timestamp": "2024-07-25T15:15:00Z",
       "message": "I agree, language is crucial. Do you have any plans to learn Spanish?",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "12",
-      "sender_id": "2",
+      "messageId": "12",
+      "senderId": "2",
       "timestamp": "2024-07-25T15:20:00Z",
       "message": "Yes, I’ve started some online courses. How about you?",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "13",
-      "sender_id": "1",
+      "messageId": "13",
+      "senderId": "1",
       "timestamp": "2024-07-25T15:25:00Z",
       "message": "I'm planning to take a class soon. Which course are you taking?",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "14",
-      "sender_id": "2",
+      "messageId": "14",
+      "senderId": "2",
       "timestamp": "2024-07-25T15:30:00Z",
       "message": "It's called Spanish Made Easy. It's really helpful so far.",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "15",
-      "sender_id": "1",
+      "messageId": "15",
+      "senderId": "1",
       "timestamp": "2024-07-25T15:35:00Z",
       "message": "That's great! I'll check it out. How long have you been learning?",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "16",
-      "sender_id": "2",
+      "messageId": "16",
+      "senderId": "2",
       "timestamp": "2024-07-25T15:40:00Z",
       "message": "Just a couple of weeks, but I'm making progress.",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "17",
-      "sender_id": "1",
+      "messageId": "17",
+      "senderId": "1",
       "timestamp": "2024-07-25T15:45:00Z",
       "message": "Good to hear! Let's practice together sometime.",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "18",
-      "sender_id": "2",
+      "messageId": "18",
+      "senderId": "2",
       "timestamp": "2024-07-25T15:50:00Z",
       "message": "I'd love that! It would be fun.",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "19",
-      "sender_id": "1",
+      "messageId": "19",
+      "senderId": "1",
       "timestamp": "2024-07-25T15:55:00Z",
       "message": "Great! Let's set up a time soon.",
-      "read_status": false
+      "readStatus": false
     },
     {
-      "message_id": "20",
-      "sender_id": "2",
+      "messageId": "20",
+      "senderId": "2",
       "timestamp": "2024-07-25T16:00:00Z",
       "message": "Sure thing! I'll message you later with some options.",
-      "read_status": false
+      "readStatus": false
     }
   ]
 }
