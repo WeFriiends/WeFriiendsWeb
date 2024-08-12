@@ -63,6 +63,7 @@ const MessagesPage = () => {
               flexDirection: 'column',
               height: 'calc(100vh - 257px)',
               justifyContent: 'space-between',
+              gap: '20px',
             }}
           >
             {Object.keys(messages).length != 0 &&

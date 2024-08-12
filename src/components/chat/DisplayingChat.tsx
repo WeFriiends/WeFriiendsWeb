@@ -54,7 +54,7 @@ const useStyles = makeStyles()({
   },
   message: {
     maxWidth: '85%',
-    padding: '10px',
+    padding: '12px',
     borderRadius: '10px',
   },
   messageText: {
@@ -65,7 +65,7 @@ const useStyles = makeStyles()({
   messageDate: {
     fontSize: '12px',
     lineHeight: '15.6px',
-    color: theme.palette.text.primary,
+    color: 'rgba(68, 68, 68, 0.8)',
     marginTop: 5,
   },
 })
