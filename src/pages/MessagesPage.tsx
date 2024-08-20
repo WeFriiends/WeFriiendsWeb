@@ -14,6 +14,7 @@ import { UserChatProfile } from 'types/UserProfileData'
 import StartChatting from 'components/chat/StartChatting'
 import DisplayingChat from 'components/chat/DisplayingChat'
 import messages from '../components/chat/chat.json'
+import Swipes from 'components/swipes/Swipes'
 
 const MessagesPage = () => {
   const { classes } = useStyles()
@@ -34,59 +35,63 @@ const MessagesPage = () => {
         }}
       >
         <Messages onClick={handleClick} />
-        <Box>
-          {selectedChat && (
-            <Box className={classes.header}>
-              <Box className={classes.userInHeader}>
-                <Avatar
-                  src={selectedChat.avatar}
-                  sx={{ width: 50, height: 50 }}
-                />
-                <Typography
-                  sx={{
-                    color: theme.palette.primary.main,
-                    fontWeight: 600,
-                    fontSize: 20,
-                  }}
-                >
-                  {selectedChat.firstName} {selectedChat.lastName},{' '}
-                  {selectedChat.age}
-                </Typography>
+        {selectedChat ? (
+          <Box>
+            {selectedChat && (
+              <Box className={classes.header}>
+                <Box className={classes.userInHeader}>
+                  <Avatar
+                    src={selectedChat.avatar}
+                    sx={{ width: 50, height: 50 }}
+                  />
+                  <Typography
+                    sx={{
+                      color: theme.palette.primary.main,
+                      fontWeight: 600,
+                      fontSize: 20,
+                    }}
+                  >
+                    {selectedChat.firstName} {selectedChat.lastName},{' '}
+                    {selectedChat.age}
+                  </Typography>
+                </Box>
+
+                <ChatMenu />
               </Box>
-
-              <ChatMenu />
-            </Box>
-          )}
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              height: 'calc(100vh - 257px)',
-              justifyContent: 'space-between',
-              gap: '20px',
-            }}
-          >
-            {Object.keys(messages).length != 0 &&
-            selectedChat?.id === frienId ? (
-              <DisplayingChat data={messages} userId={userId} />
-            ) : (
-              <StartChatting />
             )}
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                height: 'calc(100vh - 257px)',
+                justifyContent: 'space-between',
+                gap: '20px',
+              }}
+            >
+              {Object.keys(messages).length != 0 &&
+              selectedChat?.id === frienId ? (
+                <DisplayingChat data={messages} userId={userId} />
+              ) : (
+                <StartChatting />
+              )}
 
-            <Box className={classes.sendMessageSection}>
-              <TextareaAutosize
-                minRows={1}
-                maxRows={10}
-                placeholder="Type a message"
-                className={classes.textArea}
-              />
-              <img src="/img/messages/lol.svg" alt="lol" />
-              <Button className={classes.sendBtn} variant="outlined">
-                Send
-              </Button>
+              <Box className={classes.sendMessageSection}>
+                <TextareaAutosize
+                  minRows={1}
+                  maxRows={10}
+                  placeholder="Type a message"
+                  className={classes.textArea}
+                />
+                <img src="/img/messages/lol.svg" alt="lol" />
+                <Button className={classes.sendBtn} variant="outlined">
+                  Send
+                </Button>
+              </Box>
             </Box>
           </Box>
-        </Box>
+        ) : (
+          <Swipes />
+        )}
       </Box>
     </Box>
   )
