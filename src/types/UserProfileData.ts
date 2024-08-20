@@ -15,6 +15,19 @@ export interface UserProfileData {
   likedUsers: string[]
 }
 
+export const emptyProfile: UserProfileData = {
+  id: '-1',
+  firstName: '',
+  lastName: '',
+  age: '',
+  photo: [],
+  city: '',
+  aboutMe: '',
+  education: '',
+  profession: '',
+  likedUsers: [],
+}
+
 export interface UserChatProfile {
   id: string
   avatar: string
