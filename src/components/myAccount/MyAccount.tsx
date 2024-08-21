@@ -1,19 +1,28 @@
 import * as React from 'react'
-import { Box, IconButton, Grid, Icon, Typography, Switch } from '@mui/material'
+import {
+  Box,
+  Grid,
+  Icon,
+  Typography,
+  TextField,
+  Autocomplete,
+  Link,
+} from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 import RangeSlider from './RangeSlider'
+import IconNewTab from '../../common/svg/IconNewTab'
 
 const minDistance = 1
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
 
-  function valuetext(value: number) {
-    return `${value}°C`
+  function addUnitInKm(value: number) {
+    return `${value} km`
   }
 
-  const [value1, setValue1] = React.useState<number[]>([18, 75])
+  const [ageRange, setAgeRange] = React.useState<number[]>([18, 75])
 
   const handleChange1 = (
     event: Event,
@@ -25,137 +34,99 @@ const MyAccount: React.FC = () => {
     }
 
     if (activeThumb === 0) {
-      setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]])
+      setAgeRange([
+        Math.min(newValue[0], ageRange[1] - minDistance),
+        ageRange[1],
+      ])
     } else {
-      setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)])
+      setAgeRange([
+        ageRange[0],
+        Math.max(newValue[1], ageRange[0] + minDistance),
+      ])
     }
   }
 
-  const [value2, setValue2] = React.useState<number[]>([20, 37])
-
-  const handleChange2 = (
-    event: Event,
-    newValue: number | number[],
-    activeThumb: number
-  ) => {
-    if (!Array.isArray(newValue)) {
-      return
-    }
-
-    if (newValue[1] - newValue[0] < minDistance) {
-      if (activeThumb === 0) {
-        const clamped = Math.min(newValue[0], 100 - minDistance)
-        setValue2([clamped, clamped + minDistance])
-      } else {
-        const clamped = Math.max(newValue[1], minDistance)
-        setValue2([clamped - minDistance, clamped])
-      }
-    } else {
-      setValue2(newValue as number[])
-    }
-  }
-
-  const [value3, setValue3] = React.useState<number>(20)
+  const [distanceMatch, setDistanceMatch] = React.useState<number>(20)
   const handleChange3 = (event: Event, newValue: number | number[]) => {
-    setValue3(newValue as number)
+    setDistanceMatch(newValue as number)
   }
+
+  const locationNamesTempList = [
+    { label: 'New York' },
+    { label: 'Seoul' },
+    { label: 'Istanbul' },
+    { label: 'Beijing' },
+    { label: 'São Paulo' },
+    { label: 'Buenos Aires' },
+    { label: 'Tokyo' },
+  ]
 
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} className={classes.twoColumnLayoutWrapper}>
         <Box className={classes.twoColumnLayoutColLeft}>
           <Typography variant="h1" className={classes.title}>
-            My Account
+            My account
           </Typography>
-          <Typography variant="h2" className={classes.subtitle}>
-            Settings
-          </Typography>
-          <Typography variant="body2" className={classes.description}>
-            These people near you – just like them and see if it’s a match!
-          </Typography>
-          <Typography variant="h2" className={classes.subtitle}>
-            Location
-          </Typography>
-          <IconButton className={classes.btnLocation} disableRipple>
-            My Current Location (Warsaw)
-            <Icon>
-              <img
-                className={classes.btnLocationIcon}
-                src="/img/icon-location-arrow.svg"
-                alt="Change location"
+          <Box className={classes.settingsDescription}>
+            <Typography variant="h2" className={classes.subtitle}>
+              Settings
+            </Typography>
+            <Typography variant="body2" className={classes.description}>
+              Indicate what is important to you <br />
+              and we will show you the best options.
+            </Typography>
+          </Box>
+          <Box className={classes.settingsItem}>
+            <Typography variant="h2" className={classes.subtitle}>
+              Location
+            </Typography>
+            <Box className={classes.btnLocation}>
+              <Autocomplete
+                className={classes.inputLocation}
+                disablePortal
+                id="location"
+                options={locationNamesTempList}
+                sx={{ width: 300 }}
+                renderInput={(params) => <TextField {...params} label="" />}
               />
-            </Icon>
-          </IconButton>
-          <Typography variant="body2" className={classes.description}>
-            Distance from location (100 km max)
-          </Typography>
-          <RangeSlider
-            getAriaValueText={valuetext}
-            value={value3}
-            onChange={handleChange3}
-          ></RangeSlider>
-          <Typography variant="h2" className={classes.subtitle}>
-            Age range
-          </Typography>
-          {/*<Slider
-            getAriaLabel={() => 'Minimum distance'}
-            value={value1}
-            onChange={handleChange1}
-            valueLabelDisplay="on"
-            getAriaValueText={valuetext}
-            disableSwap
-          />*/}
-          {/*<Slider
-            aria-label="Minimum distance shift"
-            value={value2}
-            onChange={handleChange2}
-            valueLabelDisplay="on"
-            getAriaValueText={valuetext}
-            disableSwap
-          />*/}
-          <RangeSlider
-            disableSwap
-            value={value1}
-            onChange={handleChange1}
-          ></RangeSlider>
-          <Typography variant="h2" className={classes.subtitle}>
-            Age range (с 18 до 75, сделать движение каждлого по отдельности)
-          </Typography>
-          <RangeSlider value={value2} onChange={handleChange2}></RangeSlider>
-          <hr className={classes.separator} />
-          <Typography variant="h2" className={classes.subtitle}>
-            Global <Switch />
-          </Typography>
-          <Typography variant="body2" className={classes.description}>
-            When you run out of local profiles, you can switch to global mode to
-            search for people around the world
-          </Typography>
-          <hr className={classes.separator} />
-          <Typography variant="h2" className={classes.subtitle}>
-            Swipes rendition
-          </Typography>
-          <Typography variant="body2" className={classes.description}>
-            <strong>Recommendations first</strong>
-            <br />
-            Search through the most suitable people first (default setting)
-          </Typography>
-          <Typography variant="body2" className={classes.description}>
-            <strong>Recently active</strong>
-            <br />
-            Browse the most active users first
-          </Typography>
-          <hr className={classes.separator} />
-          <Typography variant="h2" className={classes.subtitle}>
-            Search for friends <Switch />
-          </Typography>
-          <Typography variant="body2" className={classes.description}>
-            If this option is off, your profile won’t be shown to other users.
-            <br />
-            Users, who already got a friendship request for you, will see your
-            profile and can make friends with you.
-          </Typography>
-          <hr className={classes.separator} />
-          <Typography variant="h2" className={classes.subtitle}>
+              <Icon>
+                <img
+                  className={classes.btnLocationIcon}
+                  src="/img/icon-location-arrow.svg"
+                  alt="Change location"
+                />
+              </Icon>
+            </Box>
+            <Typography variant="body2" className={classes.descriptionSlider}>
+              Distance from location (100 km max)
+            </Typography>
+            <RangeSlider
+              ariaLabel="Distance from location"
+              getAriaValueText={addUnitInKm}
+              valueLabelFormat={addUnitInKm}
+              value={distanceMatch}
+              onChange={handleChange3}
+            ></RangeSlider>
+          </Box>
+          <Box className={classes.settingsItem}>
+            <Typography
+              variant="h2"
+              className={`${classes.subtitle} ${classes.noBottomMargin}`}
+            >
+              Age range
+            </Typography>
+            <RangeSlider
+              ariaLabel="Age range"
+              disableSwap
+              value={ageRange}
+              onChange={handleChange1}
+              getAriaValueText={addUnitInKm}
+              min={18}
+              max={75}
+            ></RangeSlider>
+          </Box>
+          <Typography variant="h1" className={classes.helpTitle}>
             Help & support
           </Typography>
           <hr className={classes.separator} />
@@ -163,41 +134,98 @@ const MyAccount: React.FC = () => {
             Security tips
           </Typography>
           <Typography variant="body2" className={classes.description}>
-            <strong>
+            <Link
+              className={classes.linkGrey}
+              href="https://wefriiends.com/documents/privacy.html"
+              target="_blank"
+              rel="noopener"
+            >
               Rules of community
-              <br />
+              <IconNewTab />
+            </Link>
+            <Link
+              className={classes.linkGrey}
+              href="https://wefriiends.com/documents/privacy.html"
+              target="_blank"
+              rel="noopener"
+            >
               Security tips
-            </strong>
+              <IconNewTab />
+            </Link>
           </Typography>
           <hr className={classes.separator} />
           <Typography variant="h2" className={classes.subtitle}>
-            Security tips
+            Legal data
           </Typography>
           <Typography variant="body2" className={classes.description}>
-            <strong>
+            <Link
+              className={classes.linkGrey}
+              href="https://wefriiends.com/documents/privacy.html"
+              target="_blank"
+              rel="noopener"
+            >
               Privacy settings
-              <br />
+              <IconNewTab />
+            </Link>
+            <Link
+              className={classes.linkGrey}
+              href="https://wefriiends.com/documents/privacy.html"
+              target="_blank"
+              rel="noopener"
+            >
               Cookies
-              <br />
+              <IconNewTab />
+            </Link>
+            <Link
+              className={classes.linkGrey}
+              href="https://wefriiends.com/documents/privacy.html"
+              target="_blank"
+              rel="noopener"
+            >
               Privacy policy
-              <br />
+              <IconNewTab />
+            </Link>
+            <Link
+              className={classes.linkGrey}
+              href="https://wefriiends.com/documents/privacy.html"
+              target="_blank"
+              rel="noopener"
+            >
               Terms of use
-            </strong>
+              <IconNewTab />
+            </Link>
           </Typography>
           <hr className={classes.separator} />
-          <Typography variant="h2" className={classes.subtitle}>
+          <Link
+            className={classes.linkOrange}
+            href="https://wefriiends.com/documents/privacy.html"
+            target="_blank"
+            rel="noopener"
+          >
             Share WeFriiends
-          </Typography>
+          </Link>
           <hr className={classes.separator} />
-          <Typography variant="h2" className={classes.subtitle}>
+          <Link
+            className={classes.linkOrange}
+            href="https://wefriiends.com/documents/privacy.html"
+            target="_blank"
+            rel="noopener"
+          >
             Log out
-          </Typography>
+          </Link>
           <hr className={classes.separator} />
-          <Typography variant="h2" className={classes.subtitle}>
+          <Link
+            className={classes.linkOrange}
+            href="https://wefriiends.com/documents/privacy.html"
+            target="_blank"
+            rel="noopener"
+          >
             Delete account
-          </Typography>
+          </Link>
           <hr className={classes.separator} />
-          version 2.33
+          <Typography variant="body2" className={classes.version}>
+            version 2.33
+          </Typography>
         </Box>
         <Box className={classes.twoColumnLayoutColRight}>Right column</Box>
       </Grid>
@@ -211,26 +239,24 @@ const useStyles = makeStyles()({
   twoColumnLayoutWrapper: {
     display: 'flex',
     justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'center',
     flexWrap: 'wrap',
     flexDirection: 'column',
     [theme.breakpoints.up(850)]: {
-      alignContent: 'start',
+      alignItems: 'start',
       justifyContent: 'space-between',
       flexDirection: 'row',
     },
   },
   twoColumnLayoutColLeft: {
-    // outline: '1px solid red',
     width: 350,
-    //width: '100%',
+    marginBottom: 50,
     [theme.breakpoints.up(850)]: {
       width: 350,
     },
   },
   twoColumnLayoutColRight: {
     width: 450,
-    //width: 450,
     outline: '1px solid pink',
     [theme.breakpoints.up(850)]: {
       width: 450,
@@ -250,13 +276,33 @@ const useStyles = makeStyles()({
       fontWeight: 500,
     },
   },
+  helpTitle: {
+    fontSize: 20,
+    fontWeight: 500,
+    lineHeight: '20px',
+    marginTop: 200,
+    paddingBottom: 20,
+  },
   subtitle: {
     fontSize: 16,
     lineHeight: '22px',
+    marginTop: 15,
     marginBottom: 20,
+  },
+  noBottomMargin: {
+    marginBottom: 0,
   },
   description: {
     lineHeight: 1.3,
+    marginBottom: 30,
+  },
+  descriptionSlider: {
+    lineHeight: 1.3,
+  },
+  settingsDescription: {
+    marginBottom: 50,
+  },
+  settingsItem: {
     marginBottom: 30,
   },
   btnLocation: {
@@ -264,25 +310,82 @@ const useStyles = makeStyles()({
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: theme.palette.common.white,
     boxShadow: '0 0 7px 1px rgba(217, 217, 217, 0.5)',
     borderRadius: 8,
     fontWeight: 500,
     fontSize: 12,
     marginBottom: 20,
+    paddingRight: 10,
     color: theme.palette.common.black,
     textTransform: 'none',
+    '& .MuiInputBase-root.MuiAutocomplete-inputRoot': {
+      padding: 0,
+    },
+    '& .MuiOutlinedInput-root .MuiAutocomplete-endAdornment': {
+      display: 'none',
+    },
+    '& .MuiInputBase-input.MuiOutlinedInput-input': {
+      padding: '8.5px 15px',
+      fontWeight: 500,
+      fontSize: 12,
+      color: theme.palette.common.black,
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: 'transparent',
+    },
+    '& .MuiAutocomplete-hasPopupIcon .MuiOutlinedInput-root': {
+      padding: 0,
+    },
+    '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline, & .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+      {
+        border: 0,
+      },
   },
   btnLocationIcon: {
     width: 15,
     height: 14,
     margin: '5px 0',
   },
+  inputLocation: {
+    border: 0,
+  },
   separator: {
     height: 1.5,
     lineHeight: 0,
     border: 0,
-    backgroundColor: '#C5C5C5',
-    marginBottom: 30,
+    backgroundColor: theme.customPalette.colorInputGrey,
+    marginBottom: 25,
+  },
+  linkGrey: {
+    fontSize: 16,
+    lineHeight: '22px',
+    color: theme.customPalette.colorActiveGrey,
+    textDecoration: 'none',
+    display: 'flex',
+    maxWidth: '190px',
+    justifyContent: 'space-between',
+    marginBottom: 5,
+    '&:hover': {
+      fontWeight: 600,
+      '& svg path': {
+        fill: theme.palette.primary.main,
+      },
+    },
+  },
+  linkOrange: {
+    fontWeight: 500,
+    fontSize: 16,
+    lineHeight: '20px',
+    color: theme.palette.primary.dark,
+    textDecoration: 'none',
+    margin: '15px 0 20px',
+    display: 'block',
+  },
+  version: {
+    fontSize: 14,
+    lineHeight: '22px',
+    color: theme.customPalette.colorActiveGrey,
   },
 })

@@ -11,14 +11,21 @@ type RangeSliderProps = {
   ) => void
   disableSwap?: boolean
   getAriaValueText?: ((value: number, index: number) => string) | undefined
+  ariaLabel?: string
+  min?: number
+  max?: number
+  valueLabelFormat?:
+    | string
+    | ((value: number, index: number) => string)
+    | undefined
 }
 
 const CustomSlider = styled(Slider)(({ theme }) => ({
-  color: '#C5C5C5',
+  color: theme.customPalette.colorInputGrey,
   opacity: 1,
   height: 1.5,
-  padding: 0,
-  margin: '0px 0 70px',
+  margin: 0,
+  padding: '0 0 40px',
   '& .MuiSlider-thumb': {
     height: 20,
     width: 20,
@@ -33,7 +40,7 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
   '& .MuiSlider-valueLabel': {
     fontSize: 12,
     fontWeight: '500',
-    top: 50,
+    top: 45,
     backgroundColor: 'unset',
     color: theme.palette.text.primary,
     '&::before': {
@@ -48,7 +55,7 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
     height: 1.5,
   },
   '& .MuiSlider-rail': {
-    backgroundColor: '#C5C5C5',
+    backgroundColor: theme.customPalette.colorInputGrey,
     opacity: 1,
   },
 }))
@@ -58,16 +65,23 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   onChange,
   disableSwap,
   getAriaValueText,
+  ariaLabel,
+  min,
+  max,
+  valueLabelFormat,
 }) => {
   return (
     <CustomSlider
-      aria-label="ios slider"
+      aria-label={ariaLabel}
       defaultValue={60}
       value={value}
       valueLabelDisplay="on"
       onChange={onChange}
       disableSwap={disableSwap}
       getAriaValueText={getAriaValueText}
+      min={min}
+      max={max}
+      valueLabelFormat={valueLabelFormat}
     />
   )
 }
