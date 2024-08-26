@@ -28,6 +28,7 @@ const UserAuthentication = () => {
       appState: {
         returnTo: 'user/fill-profile',
       },
+
       authorizationParams: {
         screen_hint: 'signup',
       },
