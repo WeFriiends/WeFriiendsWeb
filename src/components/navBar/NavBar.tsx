@@ -6,6 +6,7 @@ import { generateNavigationConfig } from '../../helpers/navigationConfigHelper'
 import { NavigationItems } from '../navigationItems/NavigationItems'
 import theme from '../../styles/createTheme'
 import { Outlet } from 'react-router-dom'
+import Logo from '../logo/Logo'
 
 const NavBar = () => {
   const { classes } = useStyles()
@@ -25,7 +26,7 @@ const NavBar = () => {
     <>
       <Box component="header" className={classes.header}>
         <Box className={classes.logo}>
-          <Box component="img" src="/img/logo.svg" alt="logo"></Box>
+          <Logo />
         </Box>
         <BottomNavigation
           value={activePage}
@@ -59,6 +60,9 @@ const useStyles = makeStyles()({
     display: 'none',
     [theme.breakpoints.up('lg')]: {
       display: 'block',
+    },
+    '& img': {
+      maxWidth: 260,
     },
   },
   header: {

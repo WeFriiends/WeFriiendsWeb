@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { Box, IconButton, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
+import theme from 'styles/createTheme'
 
 const Gender = () => {
   const { classes } = useStyles()
-  const { mainBox, title, subTitle } = commonStyles().classes
+  const { title, subTitle } = commonStyles().classes
   const [chosenGender, setChosenGender] = useState<string>('female')
   const [hoveredGender, setHoveredGender] = useState<string | null>(null)
 
@@ -23,7 +24,7 @@ const Gender = () => {
   }
 
   return (
-    <Box className={mainBox}>
+    <Box className={classes.mainBox}>
       <Box className={classes.titleContainer}>
         <Typography variant="h1" className={`${title} ${classes.title}`}>
           More about you
@@ -61,6 +62,20 @@ const Gender = () => {
 export default Gender
 
 const useStyles = makeStyles()(() => ({
+  mainBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginLeft: 20,
+    marginRight: 20,
+    paddingTop: 50,
+    overflow: 'hidden',
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: 200,
+      width: 350,
+      margin: '0 auto',
+    },
+  },
   genderText: {
     display: 'flex',
     justifyContent: 'center',
