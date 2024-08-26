@@ -5,18 +5,18 @@ import { ActivePageProvider } from './context/activePageContext'
 import theme from 'styles/createTheme'
 import { DialogProvider } from 'context/dialogContext'
 import routes from 'routes'
-//import { Auth0ProviderWithNavigate } from 'provider/Auth0ProviderWithNavigate'
+import { Auth0ProviderWithNavigate } from 'provider/Auth0ProviderWithNavigate'
 
 const App = () => {
   const content = useRoutes(routes)
   return (
-    // <Auth0ProviderWithNavigate>
-    <ThemeProvider theme={theme}>
-      <DialogProvider>
-        <ActivePageProvider>{content}</ActivePageProvider>
-      </DialogProvider>
-    </ThemeProvider>
-    // </Auth0ProviderWithNavigate>
+    <Auth0ProviderWithNavigate>
+      <ThemeProvider theme={theme}>
+        <DialogProvider>
+          <ActivePageProvider>{content}</ActivePageProvider>
+        </DialogProvider>
+      </ThemeProvider>
+    </Auth0ProviderWithNavigate>
   )
 }
 
