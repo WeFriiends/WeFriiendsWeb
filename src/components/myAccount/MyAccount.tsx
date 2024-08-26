@@ -10,51 +10,12 @@ import {
 } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
-import RangeSlider from './RangeSlider'
 import IconNewTab from '../../common/svg/IconNewTab'
-
-const minDistance = 1
-const ageRangeMin = 18
-const ageRangeMax = 65
+import AgeRangeControl from './AgeRangeControl'
+import DistanceControl from './DistanceControl'
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
-
-  function addUnitInKm(value: number) {
-    return `${value} km`
-  }
-
-  const [ageRange, setAgeRange] = React.useState<number[]>([
-    ageRangeMin,
-    ageRangeMax,
-  ])
-
-  const handleChange1 = (
-    event: Event,
-    newValue: number | number[],
-    activeThumb: number
-  ) => {
-    if (!Array.isArray(newValue)) {
-      return
-    }
-
-    if (activeThumb === 0) {
-      setAgeRange([
-        Math.min(newValue[0], ageRange[1] - minDistance),
-        ageRange[1],
-      ])
-    } else {
-      setAgeRange([
-        ageRange[0],
-        Math.max(newValue[1], ageRange[0] + minDistance),
-      ])
-    }
-  }
-
-  const [distanceMatch, setDistanceMatch] = React.useState<number>(20)
-  const handleChange3 = (event: Event, newValue: number | number[]) => {
-    setDistanceMatch(newValue as number)
-  }
 
   const locationNamesTempList = [
     { label: 'New York' },
@@ -103,38 +64,14 @@ const MyAccount: React.FC = () => {
                 />
               </Icon>
             </Box>
-            <Typography variant="body2" className={classes.descriptionSlider}>
-              Distance from location (100 km max)
-            </Typography>
-            <RangeSlider
-              ariaLabel="Distance from location"
-              getAriaValueText={addUnitInKm}
-              valueLabelFormat={addUnitInKm}
-              value={distanceMatch}
-              onChange={handleChange3}
-              valueLabelDisplay="on"
-            ></RangeSlider>
+            <DistanceControl>
+              <Typography variant="body2" className={classes.descriptionSlider}>
+                Distance from location (100 km max)
+              </Typography>
+            </DistanceControl>
           </Box>
           <Box className={classes.settingsItem}>
-            <Typography
-              variant="h2"
-              className={`${classes.subtitle} ${classes.noBottomMargin}`}
-            >
-              Age range
-              <Box component="span" className={classes.settingsAgeRange}>
-                {ageRange[0]} &ndash; {ageRange[1]}
-              </Box>
-            </Typography>
-            <RangeSlider
-              ariaLabel="Age range"
-              disableSwap
-              value={ageRange}
-              onChange={handleChange1}
-              getAriaValueText={addUnitInKm}
-              min={ageRangeMin}
-              max={ageRangeMax}
-              valueLabelDisplay="auto"
-            ></RangeSlider>
+            <AgeRangeControl />
           </Box>
           <Typography variant="h1" className={classes.helpTitle}>
             Help & support
@@ -320,11 +257,6 @@ const useStyles = makeStyles()({
   },
   settingsItem: {
     marginBottom: 30,
-  },
-  settingsAgeRange: {
-    float: 'right',
-    fontSize: 14,
-    color: theme.palette.text.primary,
   },
   btnLocation: {
     height: 34,
