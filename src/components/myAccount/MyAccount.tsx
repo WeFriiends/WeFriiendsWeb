@@ -14,6 +14,8 @@ import RangeSlider from './RangeSlider'
 import IconNewTab from '../../common/svg/IconNewTab'
 
 const minDistance = 1
+const ageRangeMin = 18
+const ageRangeMax = 65
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
@@ -22,7 +24,10 @@ const MyAccount: React.FC = () => {
     return `${value} km`
   }
 
-  const [ageRange, setAgeRange] = React.useState<number[]>([18, 75])
+  const [ageRange, setAgeRange] = React.useState<number[]>([
+    ageRangeMin,
+    ageRangeMax,
+  ])
 
   const handleChange1 = (
     event: Event,
@@ -107,6 +112,7 @@ const MyAccount: React.FC = () => {
               valueLabelFormat={addUnitInKm}
               value={distanceMatch}
               onChange={handleChange3}
+              valueLabelDisplay="on"
             ></RangeSlider>
           </Box>
           <Box className={classes.settingsItem}>
@@ -115,6 +121,9 @@ const MyAccount: React.FC = () => {
               className={`${classes.subtitle} ${classes.noBottomMargin}`}
             >
               Age range
+              <Box component="span" className={classes.settingsAgeRange}>
+                {ageRange[0]} &ndash; {ageRange[1]}
+              </Box>
             </Typography>
             <RangeSlider
               ariaLabel="Age range"
@@ -122,8 +131,9 @@ const MyAccount: React.FC = () => {
               value={ageRange}
               onChange={handleChange1}
               getAriaValueText={addUnitInKm}
-              min={18}
-              max={75}
+              min={ageRangeMin}
+              max={ageRangeMax}
+              valueLabelDisplay="auto"
             ></RangeSlider>
           </Box>
           <Typography variant="h1" className={classes.helpTitle}>
@@ -242,15 +252,20 @@ const useStyles = makeStyles()({
     alignItems: 'center',
     flexWrap: 'wrap',
     flexDirection: 'column',
+    paddingBottom: 100,
     [theme.breakpoints.up(850)]: {
       alignItems: 'start',
       justifyContent: 'space-between',
       flexDirection: 'row',
     },
+    [theme.breakpoints.up('lg')]: {
+      paddingBottom: 0,
+    },
   },
   twoColumnLayoutColLeft: {
     width: 350,
     marginBottom: 50,
+    maxWidth: '100%',
     [theme.breakpoints.up(850)]: {
       width: 350,
     },
@@ -258,6 +273,7 @@ const useStyles = makeStyles()({
   twoColumnLayoutColRight: {
     width: 450,
     outline: '1px solid pink',
+    maxWidth: '100%',
     [theme.breakpoints.up(850)]: {
       width: 450,
     },
@@ -304,6 +320,11 @@ const useStyles = makeStyles()({
   },
   settingsItem: {
     marginBottom: 30,
+  },
+  settingsAgeRange: {
+    float: 'right',
+    fontSize: 14,
+    color: theme.palette.text.primary,
   },
   btnLocation: {
     height: 34,

@@ -18,14 +18,16 @@ type RangeSliderProps = {
     | string
     | ((value: number, index: number) => string)
     | undefined
+  valueLabelDisplay?: 'auto' | 'off' | 'on'
 }
 
 const CustomSlider = styled(Slider)(({ theme }) => ({
   color: theme.customPalette.colorInputGrey,
   opacity: 1,
   height: 1.5,
-  margin: 0,
+  margin: '0 7px',
   padding: '0 0 40px',
+  width: 'calc(100% - 14px)',
   '& .MuiSlider-thumb': {
     height: 20,
     width: 20,
@@ -69,13 +71,14 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   min,
   max,
   valueLabelFormat,
+  valueLabelDisplay,
 }) => {
   return (
     <CustomSlider
       aria-label={ariaLabel}
       defaultValue={60}
       value={value}
-      valueLabelDisplay="on"
+      valueLabelDisplay={valueLabelDisplay}
       onChange={onChange}
       disableSwap={disableSwap}
       getAriaValueText={getAriaValueText}
