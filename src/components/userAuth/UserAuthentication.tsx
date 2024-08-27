@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { commonStyles } from 'styles/commonStyles'
 import LoadingScreen from 'common/svg/Loader'
 import theme from '../../styles/createTheme'
-import AuthWrapper from '../authWrapper/AuthWrapper'
+import AuthPagesWrapper from '../authPagesWrapper/AuthPagesWrapper'
 
 const UserAuthentication = () => {
   const { classes } = useStyles()
@@ -36,7 +36,7 @@ const UserAuthentication = () => {
   }
 
   return (
-    <AuthWrapper>
+    <AuthPagesWrapper>
       <Typography
         variant="h1"
         className={`${commonClasses.title} ${classes.title}`}
@@ -119,7 +119,7 @@ const UserAuthentication = () => {
           Sign In
         </Button>
       </Typography>
-    </AuthWrapper>
+    </AuthPagesWrapper>
   )
 }
 

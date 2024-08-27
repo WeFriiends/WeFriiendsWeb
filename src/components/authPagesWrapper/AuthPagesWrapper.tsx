@@ -8,7 +8,7 @@ type AuthWrapperProps = {
   children: ReactNode
 }
 
-const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
+const AuthPagesWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
   const { classes } = useStyles()
   return (
     <Box className={classes.authWrapper}>
@@ -19,7 +19,7 @@ const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
     </Box>
   )
 }
-export default AuthWrapper
+export default AuthPagesWrapper
 
 const useStyles = makeStyles()({
   authWrapper: {
