@@ -41,6 +41,7 @@ const AgeRangeControl = () => {
       ])
     }
   }
+
   return (
     <>
       <Typography
