@@ -49,7 +49,7 @@ const AgeRangeControl = () => {
       >
         Age range
         <Box component="span" className={classes.settingsAgeRange}>
-          {ageRange[0]} &ndash; {ageRange[1]}
+          {ageRange[0]}&ndash;{ageRange[1]}
         </Box>
       </Typography>
       <RangeSlider
