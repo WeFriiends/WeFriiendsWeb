@@ -169,7 +169,7 @@ const useStyles = makeStyles()({
     fontSize: 18,
     fontWeight: 400,
     borderRadius: 10,
-    marginBottom: 20,
+    marginBottom: 15,
     '&:hover, &:active': {
       backgroundColor: theme.customPalette.authBtnBgHover,
     },
