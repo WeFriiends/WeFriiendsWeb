@@ -110,7 +110,6 @@ const UserAuthentication = () => {
     </Box>
   )
 }
-
 export default UserAuthentication
 
 const useStyles = makeStyles()(() => {

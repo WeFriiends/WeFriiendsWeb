@@ -29,7 +29,7 @@ const useStyles = makeStyles()({
     width: 22,
     height: 22,
     backgroundColor: theme.palette.common.white,
-    border: '1px solid #C5C5C5',
+    border: '1px solid ' + theme.customPalette.colorInputGrey,
     '&:hover': {
       backgroundColor: theme.palette.common.white,
     },
