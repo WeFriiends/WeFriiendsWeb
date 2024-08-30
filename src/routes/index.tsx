@@ -1,11 +1,12 @@
 import { RouteObject } from 'react-router'
 import { ComponentType, Suspense, lazy } from 'react'
-import AuthGuard from 'components/userAuth/AuthGuard'
 import LoadingScreen from 'common/svg/Loader'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import AuthCallbackPage from 'pages/AuthCallbackPage'
 import NameProfile from 'components/firstProfile/NameProfile'
+import Status from 'components/firstProfile/Status'
+import Gender from 'components/firstProfile/Gender'
 import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
@@ -40,8 +41,18 @@ const routes: RouteObject[] = [
     children: [
       {
         path: 'fill-profile',
-        // element: <NameProfile />,
-        element: <AuthGuard component={NameProfile} />,
+        element: <NameProfile />,
+        //element: <AuthGuard component={NameProfile} />,
+      },
+      {
+        path: 'status',
+        element: <Status />,
+        //element: <AuthGuard component={NameProfile} />,
+      },
+      {
+        path: 'gender',
+        element: <Gender />,
+        //element: <AuthGuard component={NameProfile} />,
       },
       {
         element: <NavBar />,

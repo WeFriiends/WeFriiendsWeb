@@ -4,16 +4,16 @@ export const commonStyles = makeStyles()((theme) => {
   const boxShadow = '0 0 7px 1px rgba(179, 179, 179, 0.14)'
 
   return {
-    mainBox: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      marginLeft: 20,
-      marginRight: 20,
-      [theme.breakpoints.up('sm')]: {
-        paddingTop: `calc(200px - 5vh)`,
-        width: 350,
-        margin: '0 auto',
+    typography: {
+      fontFamily: ['Inter', 'sans-serif'].join(','),
+    },
+    inputField: {
+      backgroundColor: '#FFF1EC',
+      borderRadius: 10,
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          border: 'none',
+        },
       },
     },
     shadowBox: {
@@ -100,11 +100,6 @@ export const commonStyles = makeStyles()((theme) => {
       display: 'block',
       textAlign: 'center',
     },
-    linkSmall: {
-      textDecoration: 'none',
-      color: theme.palette.secondary.main,
-      fontSize: 13,
-    },
     linkBtn: {
       display: 'block',
       textTransform: 'lowercase',
@@ -135,16 +130,6 @@ export const commonStyles = makeStyles()((theme) => {
       '&: hover': {
         backgroundColor: theme.palette.primary.light,
       },
-    },
-    p: {
-      paddingTop: 14,
-      textAlign: 'left',
-      fontSize: 13,
-    },
-    text: {
-      fontSize: 22,
-      color: '#3B4054',
-      textAlign: 'center',
     },
     centeredContainer: {
       marginLeft: 'auto',

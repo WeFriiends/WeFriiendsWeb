@@ -1,6 +1,4 @@
-import Logo from '../logo/Logo'
 import {
-  Box,
   FormControl,
   FormHelperText,
   OutlinedInput,
@@ -10,6 +8,7 @@ import { useState } from 'react'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
 import theme from 'styles/createTheme'
+import AuthPagesWrapper from '../authPagesWrapper/AuthPagesWrapper'
 
 const FULLNAME_REGEX = /^[a-zA-Zа-яА-ЯёЁ\s\p{L}]{2,15}$/u
 
@@ -29,16 +28,11 @@ const NameProfile = () => {
   }
 
   return (
-    <Box className={commonClasses.mainBox}>
-      <Logo />
+    <AuthPagesWrapper>
       <Typography variant="h1" className={commonClasses.title} pt={10}>
         Let&apos;s get started!
       </Typography>
-      <Typography
-        variant="body1"
-        className={`${commonClasses.text} ${classes.profileText}`}
-        pt={5}
-      >
+      <Typography variant="body1" className={classes.profileText} pt={5}>
         What&apos;s your name?
       </Typography>
 
@@ -58,7 +52,7 @@ const NameProfile = () => {
           <FormHelperText sx={{ color: '#1D878C' }}>{error}</FormHelperText>
         )}
       </FormControl>
-    </Box>
+    </AuthPagesWrapper>
   )
 }
 export default NameProfile
@@ -66,6 +60,7 @@ export default NameProfile
 const useStyles = makeStyles()(() => {
   return {
     profileText: {
+      textAlign: 'center',
       fontSize: 18,
       lineHeight: '27px',
       color: theme.palette.text.primary,
