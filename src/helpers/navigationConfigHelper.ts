@@ -34,7 +34,7 @@ export const generateNavigationConfig = (): NavigationConfig[] => {
     {
       value: 'profile',
       Icon: IconProfile,
-      linkTo: '/report/messages-and-friends',
+      linkTo: '/user/my-account',
       size: { xs: { width: 24, height: 26 }, lg: { width: 24, height: 26 } },
     },
   ]

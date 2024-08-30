@@ -122,7 +122,6 @@ const UserAuthentication = () => {
     </AuthPagesWrapper>
   )
 }
-
 export default UserAuthentication
 
 const useStyles = makeStyles()({

@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
 import theme from 'styles/createTheme'
-import AuthWrapper from '../authWrapper/AuthWrapper'
+import AuthPagesWrapper from '../authPagesWrapper/AuthPagesWrapper'
 
 const FULLNAME_REGEX = /^[a-zA-Zа-яА-ЯёЁ\s\p{L}]{2,15}$/u
 
@@ -28,7 +28,7 @@ const NameProfile = () => {
   }
 
   return (
-    <AuthWrapper>
+    <AuthPagesWrapper>
       <Typography variant="h1" className={commonClasses.title} pt={10}>
         Let&apos;s get started!
       </Typography>
@@ -52,7 +52,7 @@ const NameProfile = () => {
           <FormHelperText sx={{ color: '#1D878C' }}>{error}</FormHelperText>
         )}
       </FormControl>
-    </AuthWrapper>
+    </AuthPagesWrapper>
   )
 }
 export default NameProfile
