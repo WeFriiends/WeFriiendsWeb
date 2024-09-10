@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Box, IconButton, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { commonStyles } from 'styles/commonStyles'
-import { setItemToLocalStorage } from 'utils/localStorage'
+import theme from 'styles/createTheme'
 
 const Gender = () => {
   const { classes } = useStyles()
@@ -21,7 +21,6 @@ const Gender = () => {
   }
   const genderPick = (gender: string) => {
     setChosenGender(gender)
-    setItemToLocalStorage('gender', gender)
   }
 
   return (
@@ -62,7 +61,7 @@ const Gender = () => {
 
 export default Gender
 
-const useStyles = makeStyles()((theme) => ({
+const useStyles = makeStyles()(() => ({
   mainBox: {
     display: 'flex',
     flexDirection: 'column',
@@ -74,10 +73,6 @@ const useStyles = makeStyles()((theme) => ({
     [theme.breakpoints.up('sm')]: {
       paddingTop: 200,
       width: 350,
-      margin: '0 auto',
-    },
-    [theme.breakpoints.up(420)]: {
-      width: 400,
       margin: '0 auto',
     },
   },

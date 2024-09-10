@@ -9,7 +9,7 @@ const Logo = () => {
       src="/img/logo.svg"
       alt="logo"
       className={classes.logo}
-    ></Box>
+    />
   )
 }
 
@@ -18,9 +18,8 @@ export default Logo
 const useStyles = makeStyles()(() => {
   return {
     logo: {
-      marginTop: '5vh',
-      width: '15.58925rem',
-      height: '2.875rem',
+      maxWidth: 250,
+      width: '100%',
     },
   }
 })

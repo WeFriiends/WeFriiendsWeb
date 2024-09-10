@@ -1,12 +1,10 @@
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { commonStyles } from 'styles/commonStyles'
 import theme from 'styles/createTheme'
 import LocationInputAutocomplete from './LocationAutocomplete'
 
 const LocationManual = () => {
   const { classes } = useStyles()
-  const commonClasses = commonStyles().classes
   return (
     <Box
       className={classes.locationBox}
@@ -14,7 +12,7 @@ const LocationManual = () => {
     >
       <Typography
         variant="h3"
-        className={`${commonClasses.text} ${classes.messageText}`}
+        className={`${classes.text} ${classes.messageText}`}
         pt={15}
       >
         Please, note! This location will be used as a permanent one
@@ -55,6 +53,9 @@ const useStyles = makeStyles()(() => {
       lineHeight: '27px',
       color: theme.palette.text.primary,
       textAlign: 'center',
+    },
+    text: {
+      fontSize: 12,
     },
   }
 })

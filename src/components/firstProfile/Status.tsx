@@ -33,7 +33,7 @@ const Status = () => {
   }
 
   return (
-    <Box className={`${commonClasses.mainBox} ${classes.mainBox}`}>
+    <Box className={classes.mainBox}>
       <Box className={classes.titleContainer}>
         <Typography
           variant="h1"
@@ -76,7 +76,18 @@ export default Status
 const useStyles = makeStyles()((theme) => {
   return {
     mainBox: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      marginLeft: 20,
+      marginRight: 20,
+      paddingTop: 50,
       overflow: 'hidden',
+      [theme.breakpoints.up('sm')]: {
+        paddingTop: 200,
+        width: 350,
+        margin: '0 auto',
+      },
       [theme.breakpoints.up(420)]: {
         width: 400,
         margin: '0 auto',

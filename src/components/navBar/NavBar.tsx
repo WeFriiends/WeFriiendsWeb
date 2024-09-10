@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react'
-import { Avatar, BottomNavigation, Box, Typography } from '@mui/material'
+import {
+  Avatar,
+  BottomNavigation,
+  Box,
+  Typography,
+  Button,
+} from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { useActivePage } from '../../context/activePageContext'
 import { generateNavigationConfig } from '../../helpers/navigationConfigHelper'
@@ -10,11 +16,11 @@ import useProfileData from 'hooks/useProfileData'
 
 const NavBar = () => {
   const { classes } = useStyles()
-  const navigate = useNavigate()
-
   const { activePage, setNewActivePage } = useActivePage()
   const navigationConfig = generateNavigationConfig()
+  const navigate = useNavigate()
   const { profile } = useProfileData()
+
   // Set current active menu item if we open the corresponding link
   useEffect(() => {
     const currentNavigationItem = navigationConfig.filter(
@@ -23,10 +29,6 @@ const NavBar = () => {
     currentNavigationItem.length > 0 &&
       setNewActivePage(currentNavigationItem[0].value)
   }, [navigationConfig, setNewActivePage])
-
-  const navigateToAccount = () => {
-    navigate('/user/account')
-  }
 
   return (
     <>
@@ -44,16 +46,25 @@ const NavBar = () => {
             navigationConfig,
           })}
         </BottomNavigation>
-        <Box className={classes.userDetails}>
+        <Button
+          variant="text"
+          disableRipple
+          onClick={() => navigate('/user/my-account')}
+          className={`${classes.userDetails} ${
+            activePage === 'profile' && classes.userDetailsActive
+          }`}
+        >
           <Avatar
-            src={profile?.photos[0]}
+            src={
+              profile?.photos[0] ? profile?.photos[0] : '/img/avatar_elena.jpg'
+            }
             sx={{ width: 56, height: 56 }}
-            onClick={navigateToAccount}
-          />
-          <Typography onClick={navigateToAccount} className={classes.name}>
-            {profile?.name}
+          ></Avatar>
+          <Typography className={classes.name}>
+            {' '}
+            {profile?.name ? profile?.name : 'Elena S'}
           </Typography>
-        </Box>
+        </Button>
       </Box>
       <Box component="main" className={classes.main}>
         <Outlet />
@@ -86,7 +97,7 @@ const useStyles = makeStyles()({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '60px 30px 80px',
+      padding: '30px 30px 80px',
       margin: '0 auto',
       maxWidth: 1024,
     },
@@ -104,7 +115,8 @@ const useStyles = makeStyles()({
     fontWeight: 600,
     lineHeight: '40px',
     color: '#F1562A',
-    paddingLeft: 35,
+    paddingLeft: 25,
+    position: 'relative',
   },
   navList: {
     display: 'flex',
@@ -130,9 +142,36 @@ const useStyles = makeStyles()({
   },
   userDetails: {
     display: 'none',
+    textDecoration: 'none',
+    maxWidth: 285,
+    textTransform: 'none',
+    textAlign: 'left',
     [theme.breakpoints.up('lg')]: {
       display: 'flex',
       alignItems: 'center',
+    },
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+    '&:before': {
+      content: '""',
+      position: 'absolute',
+      top: -35,
+      left: -20,
+      right: 0,
+      bottom: -40,
+      zIndex: 0,
+      borderRadius: '0 0 10px 10px',
+      transition: '0.3s background-color',
+    },
+    '&:hover:before': {
+      backgroundColor: '#FFF1EC',
+    },
+  },
+  userDetailsActive: {
+    position: 'relative',
+    '&:before': {
+      backgroundColor: '#FFF1EC',
     },
   },
 })

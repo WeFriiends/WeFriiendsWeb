@@ -58,6 +58,10 @@ const theme = {
   },
   customPalette: {
     colorNavIcon: '#AFB1B6', // Better to add it to 'palette'? but it causes errors
+    colorInputGrey: '#c5c5c5',
+    colorActiveGrey: '#262626',
+    authBtnBg: '#FFF1EC',
+    authBtnBgHover: '#FECAB7',
   },
   components: {
     MuiBackdrop: {

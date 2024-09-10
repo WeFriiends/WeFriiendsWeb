@@ -1,13 +1,13 @@
 import { Box } from '@mui/material'
 import Logo from 'components/logo/Logo'
-import { commonStyles } from 'styles/commonStyles'
 import ProfileCarousel from 'components/firstProfile/ProfileCarousel'
+import { makeStyles } from 'tss-react/mui'
 
 const FirstProfile = () => {
-  const commonClasses = commonStyles().classes
+  const { classes } = useStyles()
 
   return (
-    <Box className={commonClasses.mainBox}>
+    <Box className={classes.mainBox}>
       <Logo />
       <ProfileCarousel />
     </Box>
@@ -15,3 +15,24 @@ const FirstProfile = () => {
 }
 
 export default FirstProfile
+
+const useStyles = makeStyles()((theme) => ({
+  mainBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginLeft: 20,
+    marginRight: 20,
+    paddingTop: 50,
+    overflow: 'hidden',
+    [theme.breakpoints.up('sm')]: {
+      paddingTop: 200,
+      width: 350,
+      margin: '0 auto',
+    },
+    [theme.breakpoints.up(420)]: {
+      width: 400,
+      margin: '0 auto',
+    },
+  },
+}))
