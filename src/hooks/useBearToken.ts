@@ -11,7 +11,7 @@ const useBearerToken = () => {
         const accessToken = await getAccessTokenSilently()
         setToken(accessToken)
       } catch (e) {
-        console.log(e)
+        console.error(e)
       }
     }
 

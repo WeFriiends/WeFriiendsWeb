@@ -22,8 +22,6 @@ export const createProfile = async (
   },
   token: string | null
 ) => {
-  console.log(profileData)
-  console.log(token)
   const response = await axios.post(API_BASE_URL, profileData, {
     headers: {
       Authorization: `Bearer ${token}`,
