@@ -27,7 +27,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "shx cp json-server/db.json json-server/workingdb.json && concurrently 'react-scripts start' 'npx json-server --watch json-server/workingdb.json --port 3005'",
+    "start": "shx cp json-server/db.json json-server/workingdb.json && concurrently \"npx react-scripts start\" \"npx json-server --watch json-server/workingdb.json --port 3005\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
