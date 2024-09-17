@@ -3,6 +3,9 @@
 Link to Google documents with details regards of FE part of the project
 https://docs.google.com/document/d/12zr1Wf1MPXYctld1Y8OM7DMsp8ccZ3rKfsOJpFiewhs/edit?usp=sharing
 
+To get the First Profile Carousel functioning, you will need to run the *WeFriiendsProfile* project:
+https://github.com/WeFriiends/WeFriiendsProfile
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
