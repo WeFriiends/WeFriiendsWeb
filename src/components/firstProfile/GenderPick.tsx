@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import { Box, IconButton, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { commonStyles } from 'styles/commonStyles'
 import { setItemToLocalStorage } from 'utils/localStorage'
 
 const Gender = () => {
   const { classes } = useStyles()
-  const { title, subTitle } = commonStyles().classes
   const [chosenGender, setChosenGender] = useState<string>('female')
   const [hoveredGender, setHoveredGender] = useState<string | null>(null)
 
@@ -25,21 +23,20 @@ const Gender = () => {
   }
 
   return (
-    <Box className={classes.mainBox}>
-      <Box className={classes.titleContainer}>
-        <Typography variant="h1" className={`${title} ${classes.title}`}>
-          More about you
-        </Typography>
-      </Box>
-      <Box className={classes.tipContainer}>
-        <Typography className={`${subTitle} ${classes.subTitle}`}>
-          What is your gender?
-        </Typography>
-      </Box>
+    <>
+      <Typography variant="h1" className={classes.title}>
+        More about you
+      </Typography>
+      <Typography variant="body1" className={classes.description}>
+        What is your gender?
+      </Typography>
+
       <Box className={classes.containerPosition}>
         {['female', 'male'].map((gender) => (
           <Box key={gender} className={classes.innerContainerPosition}>
             <IconButton
+              disableRipple
+              className={classes.genderIcon}
               onClick={() => genderPick(gender)}
               onMouseEnter={() => setHoveredGender(gender)}
               onMouseLeave={() => setHoveredGender(null)}
@@ -56,30 +53,25 @@ const Gender = () => {
           </Box>
         ))}
       </Box>
-    </Box>
+    </>
   )
 }
 
 export default Gender
 
 const useStyles = makeStyles()((theme) => ({
-  mainBox: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    marginLeft: 20,
-    marginRight: 20,
-    paddingTop: 50,
-    overflow: 'hidden',
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: 200,
-      width: 350,
-      margin: '0 auto',
-    },
-    [theme.breakpoints.up(420)]: {
-      width: 400,
-      margin: '0 auto',
-    },
+  title: {
+    marginBottom: 60,
+    padding: 0,
+    textAlign: 'center',
+  },
+  description: {
+    fontSize: 18,
+    lineHeight: 1.5,
+    fontWeight: 500,
+    marginBottom: 30,
+    color: theme.palette.text.primary,
+    textAlign: 'center',
   },
   genderText: {
     display: 'flex',
@@ -94,37 +86,15 @@ const useStyles = makeStyles()((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     margin: '0 auto',
+    gap: 24,
+  },
+  genderIcon: {
+    padding: 0,
   },
   innerContainerPosition: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  },
-  titleContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginBottom: 14,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 600,
-    lineHeight: '119%',
-    paddingTop: 0,
-  },
-  subTitle: {
-    fontFamily: 'Inter',
-    fontSize: '1.125rem',
-    color: '#444',
-    fontWeight: 600,
-    lineHeight: 'normal',
-  },
-  tipContainer: {
-    marginTop: 62,
-    marginBottom: 40,
-    textAlign: 'center',
-  },
-  iconsPosition: {
-    paddingLeft: '1rem',
+    gap: 10,
   },
 }))

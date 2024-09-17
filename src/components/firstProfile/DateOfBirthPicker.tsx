@@ -4,12 +4,12 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { Dayjs } from 'dayjs'
 import { setItemToLocalStorage } from 'utils/localStorage'
-import { FormHelperText, Typography } from '@mui/material'
-import { commonStyles } from 'styles/commonStyles'
+import { FormHelperText, Typography, Box } from '@mui/material'
 import theme from 'styles/createTheme'
+import { makeStyles } from 'tss-react/mui'
 
 const DateOfBirthPicker = () => {
-  const commonClasses = commonStyles().classes
+  const { classes } = useStyles()
 
   const [dob, setDob] = React.useState<Dayjs | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -34,25 +34,62 @@ const DateOfBirthPicker = () => {
 
   return (
     <>
-      <Typography variant="h1" className={commonClasses.title} pt={10}>
+      <Typography variant="h1" className={classes.title} pt={10}>
         {`Let's get started!`}
       </Typography>
+      <Typography variant="body1" className={classes.description}>
+        {"What's your date of birth?"}
+      </Typography>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker
-          value={dob}
-          onChange={(newValue) => onChangePicker(newValue)}
-        />
-        {!dob && !error && (
-          <FormHelperText
-            sx={{ color: theme.palette.secondary.main }}
-          >{`Please, note - you won’t be able to change this field later`}</FormHelperText>
-        )}
-        <FormHelperText sx={{ color: theme.palette.primary.dark }}>
-          {error}
-        </FormHelperText>
+        <Box className={classes.dateWrapper}>
+          <DatePicker
+            className={classes.dateInput}
+            value={dob}
+            onChange={(newValue) => onChangePicker(newValue)}
+          />
+          {!dob && !error && (
+            <FormHelperText>{`Please, note - you won’t be able to change this field later`}</FormHelperText>
+          )}
+          <FormHelperText>{error}</FormHelperText>
+        </Box>
       </LocalizationProvider>
     </>
   )
 }
 
 export default DateOfBirthPicker
+
+const useStyles = makeStyles()(() => ({
+  title: {
+    marginBottom: 60,
+    padding: 0,
+    textAlign: 'center',
+  },
+  description: {
+    fontSize: 18,
+    lineHeight: 1.5,
+    fontWeight: 500,
+    marginBottom: 45,
+    color: theme.palette.text.primary,
+    textAlign: 'center',
+  },
+  dateWrapper: {
+    maxWidth: 220,
+    margin: '0 auto',
+  },
+  dateInput: {
+    backgroundColor: '#FFF1EC',
+    borderRadius: 10,
+    '& .MuiInputBase-input.MuiOutlinedInput-input': {
+      height: 60,
+      padding: 0,
+      textAlign: 'center',
+    },
+    '& .MuiButtonBase-root.MuiIconButton-root': {
+      padding: '0 20px 0 0',
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: 0,
+    },
+  },
+}))

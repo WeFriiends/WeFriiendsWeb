@@ -1,5 +1,4 @@
 import GenericCarousel from '../../common/components/Carousel'
-// import { commonStyles } from 'styles/commonStyles'
 import Pagination from 'common/components/Pagination'
 import useHandleCarousel from 'hooks/useHandleCarousel'
 import NameInput from './name/NameInput'
@@ -12,7 +11,6 @@ import { useNavigate } from 'react-router-dom'
 import GenderPick from './GenderPick'
 import ArrowBackButton from 'common/components/ArrowBackButton'
 import Status from './Status'
-import LocationManual from './location/LocationManual'
 import UserLocation from './location/UserLocation'
 
 const carouselData = [
@@ -90,18 +88,18 @@ const ProfileCarousel = () => {
         activeStep={activeStep}
       />
 
-      <Pagination
-        activeStep={activeStep}
-        dots={carouselData.length}
-        onChangeIndex={handleClickPagination}
-      />
-
       {activeStep < carouselDataLength - 1 && (
         <PrimaryButton onClickHandler={handleNext} label="Next" />
       )}
       {activeStep === carouselDataLength - 1 && (
         <PrimaryButton onClickHandler={onSubmit} label="Submit" />
       )}
+
+      <Pagination
+        activeStep={activeStep}
+        dots={carouselData.length}
+        onChangeIndex={handleClickPagination}
+      />
     </>
   )
 }

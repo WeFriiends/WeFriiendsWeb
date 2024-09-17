@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material'
+import { Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 
 type PreviousStepButtonProps = {
@@ -10,19 +10,17 @@ const ArrowBackButton = (props: PreviousStepButtonProps) => {
   const { classes } = useStyles()
 
   return (
-    <Box className={classes.prevPageContainer}>
-      <Button
-        className={classes.prevPageButton}
-        startIcon={
-          <img
-            alt="previous page"
-            src={'/img/navigationIcons/arrow_back.svg'}
-            style={{ margin: 0 }}
-          />
-        }
-        onClick={stepBackHandler}
-      />
-    </Box>
+    <Button
+      className={classes.prevPageButton}
+      startIcon={
+        <img
+          alt="previous page"
+          src={'/img/navigationIcons/arrow_back.svg'}
+          style={{ margin: 0 }}
+        />
+      }
+      onClick={stepBackHandler}
+    />
   )
 }
 
@@ -30,13 +28,8 @@ export default ArrowBackButton
 
 const useStyles = makeStyles()(() => {
   return {
-    prevPageContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      marginTop: 80,
-      marginBottom: 45,
-    },
     prevPageButton: {
+      margin: '80px auto 35px',
       width: 45,
       minWidth: 45,
       height: 45,
@@ -45,6 +38,7 @@ const useStyles = makeStyles()(() => {
       alignItems: 'center',
       borderRadius: '50%',
       background: '#FEDED2',
+      flexShrink: 0,
       '&:hover': {
         backgroundColor: 'salmon',
       },

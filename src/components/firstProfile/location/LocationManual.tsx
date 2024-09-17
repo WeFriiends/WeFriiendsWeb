@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, FormHelperText } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from 'styles/createTheme'
 import LocationInputAutocomplete from './LocationAutocomplete'
@@ -6,17 +6,10 @@ import LocationInputAutocomplete from './LocationAutocomplete'
 const LocationManual = () => {
   const { classes } = useStyles()
   return (
-    <Box
-      className={classes.locationBox}
-      sx={{ gridTemplateRows: '1fr 1fr 1fr 1fr' }}
-    >
-      <Typography
-        variant="h3"
-        className={`${classes.text} ${classes.messageText}`}
-        pt={15}
-      >
+    <Box>
+      <FormHelperText className={classes.helperText}>
         Please, note! This location will be used as a permanent one
-      </Typography>
+      </FormHelperText>
 
       <Typography variant="h1" className={classes.headingText}>
         Select your location
@@ -31,17 +24,6 @@ export default LocationManual
 
 const useStyles = makeStyles()(() => {
   return {
-    locationBox: {
-      display: 'grid',
-      gridTemplateRows: '1fr 2fr 0.5fr',
-      alignItems: 'center',
-      marginLeft: 20,
-      marginRight: 20,
-      [theme.breakpoints.up('sm')]: {
-        width: 400,
-        margin: '0 auto',
-      },
-    },
     messageText: {
       fontSize: 12,
       lineHeight: '22px',
@@ -53,6 +35,10 @@ const useStyles = makeStyles()(() => {
       lineHeight: '27px',
       color: theme.palette.text.primary,
       textAlign: 'center',
+    },
+    helperText: {
+      marginTop: 0,
+      marginBottom: 30,
     },
     text: {
       fontSize: 12,

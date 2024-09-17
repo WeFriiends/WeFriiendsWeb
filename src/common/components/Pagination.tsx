@@ -71,7 +71,9 @@ const useStyles = makeStyles()(() => ({
     margin: '15px auto',
     height: '25px',
   },
-  progressBarContainer: { height: '8px' },
+  progressBarContainer: {
+    height: 10,
+  },
 
   active: {
     // backgroundColor: red[500],
@@ -82,11 +84,9 @@ const useStyles = makeStyles()(() => ({
     backgroundColor: '#F46B5D',
   },
   progressCircle: {
-    // width: '10px',
-    width: '26px',
-    // aspectRatio: 1,
-    // borderRadius: '50%',
-    marginInline: '8px',
+    width: 10,
+    borderRadius: 5,
+    marginInline: 6,
   },
   // TODO: Create styles for dashed stile
   progressDash: {

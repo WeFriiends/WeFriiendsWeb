@@ -5,6 +5,8 @@ import { setItemToLocalStorage } from 'utils/localStorage'
 import { InputAdornment, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import Loader from 'common/svg/Loader'
+import LocationManual from './LocationManual'
+import { makeStyles } from 'tss-react/mui'
 
 export const checkGeolocationPermission = async () => {
   if (!navigator.permissions) {
@@ -27,6 +29,7 @@ type Address = {
 }
 
 const UserLocation: FC = () => {
+  const { classes } = useStyles()
   const { latitude, longitude, error } = useGeolocation()
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
     null
@@ -64,14 +67,11 @@ const UserLocation: FC = () => {
   return (
     <div>
       {error && <div>Error: {error.message}</div>}
+      <LocationManual />
       {!location && <Loader />}
       {location && address && (
         <TextField
-          sx={{
-            "input[type='search']::-webkit-search-cancel-button": {
-              display: 'none',
-            },
-          }}
+          className={classes.inputAddressAutocomplete}
           value={`${address.city}, ${address.street}, ${address.houseNumber}`}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
@@ -90,3 +90,12 @@ const UserLocation: FC = () => {
 }
 
 export default UserLocation
+
+const useStyles = makeStyles()(() => ({
+  inputAddressAutocomplete: {
+    width: '100%',
+    "& input[type='search']::-webkit-search-cancel-button": {
+      display: 'none',
+    },
+  },
+}))

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Typography, Box } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { commonStyles } from 'styles/commonStyles'
 import { setItemToLocalStorage } from 'utils/localStorage'
 
 const STATUSES: Array<string> = [
@@ -16,7 +15,6 @@ const STATUSES: Array<string> = [
 
 const Status = () => {
   const { classes } = useStyles()
-  const commonClasses = commonStyles().classes
 
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([])
 
@@ -33,24 +31,16 @@ const Status = () => {
   }
 
   return (
-    <Box className={classes.mainBox}>
-      <Box className={classes.titleContainer}>
-        <Typography
-          variant="h1"
-          className={`${commonClasses.title}
-          ${classes.title}`}
-        >
-          What are you looking for?
-        </Typography>
-      </Box>
-      <Box className={classes.tipContainer}>
-        <Typography className={`${commonClasses.subTitle} ${classes.subTitle}`}>
-          This will be your status. You can always change it
-        </Typography>
-        <Typography className={classes.subTitle}>
-          Please, choose 3 statuses maximum
-        </Typography>
-      </Box>
+    <>
+      <Typography variant="h1" className={classes.title}>
+        What are you looking for?
+      </Typography>
+      <Typography variant="body1" className={classes.description}>
+        This will be your status. You can always change it
+        <br />
+        Please, choose 3 statuses maximum
+      </Typography>
+
       <Box className={classes.phraseWrapper}>
         {STATUSES.map((phrase) => (
           <Box
@@ -67,7 +57,7 @@ const Status = () => {
           </Box>
         ))}
       </Box>
-    </Box>
+    </>
   )
 }
 
@@ -75,42 +65,18 @@ export default Status
 
 const useStyles = makeStyles()((theme) => {
   return {
-    mainBox: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      marginLeft: 20,
-      marginRight: 20,
-      paddingTop: 50,
-      overflow: 'hidden',
-      [theme.breakpoints.up('sm')]: {
-        paddingTop: 200,
-        width: 350,
-        margin: '0 auto',
-      },
-      [theme.breakpoints.up(420)]: {
-        width: 400,
-        margin: '0 auto',
-      },
-    },
     title: {
-      fontSize: 32,
-      fontWeight: 600,
-      lineHeight: '119%',
-      paddingTop: 0,
+      marginBottom: 60,
+      padding: 0,
+      textAlign: 'center',
     },
-    subTitle: {
-      fontFamily: 'Inter',
-      fontSize: 14,
-      color: '#1D878C',
-      fontWeight: 600,
-      lineHeight: 'normal',
-    },
-    titleContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      marginBottom: 14,
+    description: {
+      fontSize: 18,
+      lineHeight: 1.5,
+      fontWeight: 500,
+      marginBottom: 45,
+      color: theme.palette.text.primary,
+      textAlign: 'center',
     },
     tipContainer: {
       marginTop: 20,
