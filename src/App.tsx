@@ -9,6 +9,7 @@ import { Auth0ProviderWithNavigate } from 'provider/Auth0ProviderWithNavigate'
 
 const App = () => {
   const content = useRoutes(routes)
+
   return (
     <Auth0ProviderWithNavigate>
       <ThemeProvider theme={theme}>
