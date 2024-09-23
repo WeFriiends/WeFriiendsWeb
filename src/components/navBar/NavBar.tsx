@@ -11,14 +11,15 @@ import { useActivePage } from '../../context/activePageContext'
 import { generateNavigationConfig } from '../../helpers/navigationConfigHelper'
 import { NavigationItems } from '../navigationItems/NavigationItems'
 import theme from '../../styles/createTheme'
-import Logo from '../logo/Logo'
 import { Outlet, useNavigate } from 'react-router-dom'
+import useProfileData from 'hooks/useProfileData'
 
 const NavBar = () => {
   const { classes } = useStyles()
   const { activePage, setNewActivePage } = useActivePage()
   const navigationConfig = generateNavigationConfig()
   const navigate = useNavigate()
+  const { profile } = useProfileData()
 
   // Set current active menu item if we open the corresponding link
   useEffect(() => {
@@ -33,7 +34,7 @@ const NavBar = () => {
     <>
       <Box component="header" className={classes.header}>
         <Box className={classes.logo}>
-          <Logo />
+          <Box component="img" src="/img/logo.svg" alt="logo"></Box>
         </Box>
         <BottomNavigation
           value={activePage}
@@ -54,10 +55,15 @@ const NavBar = () => {
           }`}
         >
           <Avatar
-            src="/img/avatar_elena.jpg"
+            src={
+              profile?.photos[0] ? profile?.photos[0] : '/img/avatar_elena.jpg'
+            }
             sx={{ width: 56, height: 56 }}
           ></Avatar>
-          <Typography className={classes.name}>Elena S</Typography>
+          <Typography className={classes.name}>
+            {' '}
+            {profile?.name ? profile?.name : 'Elena S'}
+          </Typography>
         </Button>
       </Box>
       <Box component="main" className={classes.main}>
@@ -75,9 +81,6 @@ const useStyles = makeStyles()({
     [theme.breakpoints.up('lg')]: {
       display: 'block',
     },
-    '& img': {
-      maxWidth: 260,
-    },
   },
   header: {
     bottom: 0,
@@ -94,7 +97,7 @@ const useStyles = makeStyles()({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '60px 30px 80px',
+      padding: '30px 30px 80px',
       margin: '0 auto',
       maxWidth: 1024,
     },

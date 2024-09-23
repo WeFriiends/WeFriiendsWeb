@@ -71,6 +71,16 @@ const theme = {
         },
       },
     },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          color: green,
+          lineHeight: '13px',
+          textAlign: 'center',
+          marginTop: 15,
+        },
+      },
+    },
   },
 } as const
 
