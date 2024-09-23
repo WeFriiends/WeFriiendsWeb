@@ -7,6 +7,7 @@ import AuthCallbackPage from 'pages/AuthCallbackPage'
 import NameProfile from 'components/firstProfile/NameProfile'
 import Status from 'components/firstProfile/Status'
 import Gender from 'components/firstProfile/Gender'
+import Interests from 'components/firstProfile/Interests'
 import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
@@ -52,6 +53,11 @@ const routes: RouteObject[] = [
       {
         path: 'gender',
         element: <Gender />,
+        //element: <AuthGuard component={NameProfile} />,
+      },
+      {
+        path: 'fill-interests',
+        element: <Interests />,
         //element: <AuthGuard component={NameProfile} />,
       },
       {
