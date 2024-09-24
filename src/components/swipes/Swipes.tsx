@@ -8,10 +8,12 @@ import Match from 'components/findMatch/Match'
 import UserProfile from 'components/userProfile/UserProfile'
 import UserProfileButton from 'components/userProfile/UserProfileButton'
 import { usePotentialFriendsList } from 'hooks/useFriendsList'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { makeStyles } from 'tss-react/mui'
 import { emptyProfile, UserProfileData } from 'types/UserProfileData'
+import NoMoreMatchesDialog from 'pages/NoMoreMatchesDialog'
+import theme from '../../styles/createTheme'
 
 const Swipes = () => {
   const { classes } = useStyles()
@@ -79,45 +81,68 @@ const Swipes = () => {
   const startChat = () => {
     navigate('/user/messages')
   }
+
+  const NoMoreMatchesDialogRef = useRef<{
+    handleOpenNoMoreMatchesDialog: () => void
+  }>(null)
+  const handleOpenNoMoreMatchesDialog = () => {
+    NoMoreMatchesDialogRef.current?.handleOpenNoMoreMatchesDialog()
+  }
   return (
-    <Box>
-      {noPotentialFriends ? (
-        <Box className={classes.mainBlock}>
-          <Typography className={classes.messageStyle}>
-            You’re running out of people.
-            <br /> Please, change search settings
-          </Typography>
-          <Button className={classes.whiteButton}>Go</Button>
-        </Box>
-      ) : (
-        <Box sx={{ paddingLeft: '30px' }}>
-          <UserProfile user={friendsData} />
-          <UserProfileButton skip={onSkip} beFriend={onBeFriend} />
-        </Box>
-      )}
-      <Match
-        isMatchModalOpen={isMatchModalOpen}
-        onClose={handleMatchClose}
-        onChat={startChat}
-        friendsAvatar={modalNewFriendAvatar}
-      />
-    </Box>
+    <>
+      <Box>
+        {noPotentialFriends ? (
+          <Box className={classes.mainBlock}>
+            <Typography className={classes.messageStyle}>
+              You’re running out of people.
+              <br /> Please, change search settings
+            </Typography>
+            <Button
+              disableFocusRipple
+              disableRipple
+              disableElevation
+              onClick={handleOpenNoMoreMatchesDialog}
+              className={classes.whiteButton}
+            >
+              Go
+            </Button>
+          </Box>
+        ) : (
+          <Box sx={{ paddingLeft: '30px' }}>
+            <UserProfile user={friendsData} />
+            <UserProfileButton skip={onSkip} beFriend={onBeFriend} />
+          </Box>
+        )}
+        <Match
+          isMatchModalOpen={isMatchModalOpen}
+          onClose={handleMatchClose}
+          onChat={startChat}
+          friendsAvatar={modalNewFriendAvatar}
+        />
+      </Box>
+      <NoMoreMatchesDialog ref={NoMoreMatchesDialogRef} />
+    </>
   )
 }
 export default Swipes
 
 const useStyles = makeStyles()({
   whiteButton: {
-    backgroundColor: '#FFFFFF',
-    border: '2px solid #F46B5D',
-    color: '#F46B5D',
+    border: '2px solid ' + theme.palette.primary.light,
+    color: theme.palette.primary.light,
     borderRadius: 10,
     fontSize: 18,
+    transition: 'color .3s, background-color .3s',
     fontWeight: 600,
-    lineHeight: '20px',
-    width: 262.5,
-    height: 55,
-    textTransform: 'none',
+    width: 260,
+    height: 60,
+    lineHeight: '56px',
+    boxSizing: 'border-box',
+    '&:active, &:hover': {
+      fontWeight: 600,
+      background: theme.palette.primary.light,
+      color: theme.palette.common.white,
+    },
   },
   messageStyle: {
     fontSize: 24,
