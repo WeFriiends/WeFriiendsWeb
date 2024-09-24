@@ -5,9 +5,16 @@ import { commonStyles } from '../../styles/commonStyles'
 import { makeStyles } from 'tss-react/mui'
 import UploadSlot from './UploadSlot'
 import theme from 'styles/createTheme'
+import DeleteModal from './DeleteModal'
+import NextStepButton from 'common/NextStepButton'
+import PhotoModal from './PhotoModal'
 
 const UploadPhotos = () => {
   const { classes } = useStyles()
+  const [isDeleteModalOpened, setIsDeleteModalOpened] = useState<boolean>(false)
+  const [isPhotoModalOpened, setIsPhotoModalOpened] = useState<boolean>(false)
+  const [chosenId, setChosenId] = useState<string>('')
+  const [chosenUrl, setChosenUrl] = useState<string>('')
 
   interface UserPicsType {
     id: string
@@ -30,10 +37,44 @@ const UploadPhotos = () => {
 
   const [userPics, setUserPics] = useState<UserPicsType[]>(initialPics)
 
+  const stepForwardHandler = () => {
+    console.log('step forward function/send pics array to backend')
+  }
+
+  const deleteChosenPic = () => {
+    const updatedPicArray: UserPicsType[] = userPics.map((pic) => {
+      if (pic.id === chosenId) {
+        return { ...pic, url: null }
+      } else return pic
+    })
+    setUserPics(updatedPicArray)
+    setIsDeleteModalOpened(false)
+    localStorage.setItem('userPicsStorage', JSON.stringify(updatedPicArray))
+  }
+
+  const hasAnyPics = (array: UserPicsType[]): boolean => {
+    return array.some((pic) => pic.url !== null && pic.url.trim() !== '')
+  }
+
   return (
     <Box className={classes.mainBox}>
       <Logo />
-      <Typography className={classes.title}>Upload at least 1 photo</Typography>
+      {!hasAnyPics(userPics) && (
+        <Typography className={classes.title}>
+          Upload at least 1 photo
+        </Typography>
+      )}
+      <PhotoModal
+        setIsPhotoModalOpened={setIsPhotoModalOpened}
+        isOpened={isPhotoModalOpened}
+        url={chosenUrl}
+      />
+      <DeleteModal
+        isOpened={isDeleteModalOpened}
+        setIsDeleteModalOpened={setIsDeleteModalOpened}
+        deleteChosenPic={deleteChosenPic}
+        setChosenId={setChosenId}
+      />
       <Box className={classes.picContainer}>
         {userPics.map((pic) => (
           <UploadSlot
@@ -42,9 +83,19 @@ const UploadPhotos = () => {
             bgPic={pic.url}
             userPics={userPics}
             setUserPics={setUserPics}
+            setIsDeleteModalOpened={setIsDeleteModalOpened}
+            setChosenId={setChosenId}
+            setIsPhotoModalOpened={setIsPhotoModalOpened}
+            setChosenUrl={setChosenUrl}
           />
         ))}
       </Box>
+      {hasAnyPics(userPics) && (
+        <NextStepButton
+          disabled={false}
+          stepForwardHandler={stepForwardHandler}
+        />
+      )}
     </Box>
   )
 }
@@ -72,6 +123,7 @@ const useStyles = makeStyles()(() => ({
     margin: 20,
   },
   title: {
+    marginTop: 54,
     marginBottom: 29,
     fontWeight: 600,
     fontSize: 18,
