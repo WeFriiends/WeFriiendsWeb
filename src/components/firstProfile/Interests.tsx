@@ -87,10 +87,11 @@ const Interests = () => {
             placeholder="Add about me..."
             value={aboutMe}
             onChange={onChange}
+            multiline
+            rows={6}
             InputProps={{
               classes: {
                 root: classes.textareaRoot,
-                input: classes.textarea,
               },
               inputProps: {
                 maxLength: 1000,
@@ -228,6 +229,7 @@ const useStyles = makeStyles()(() => {
     },
     textareaRoot: {
       border: 'none',
+      borderRadius: '20px',
       outline: 'none',
       backgroundColor: 'transparent',
     },
