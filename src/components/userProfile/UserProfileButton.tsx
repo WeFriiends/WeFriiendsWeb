@@ -13,27 +13,23 @@ const UserProfileButton = ({
   const { classes } = useStyles()
   return (
     <>
-      {startChat && (
-        <Box className={classes.buttonSection}>
+      <Box className={classes.buttonSection}>
+        {startChat && (
           <Button className={classes.whiteButton} onClick={startChat}>
             Start chat
           </Button>
-        </Box>
-      )}
-      {(skip || beFriend) && (
-        <Box className={classes.buttonSection}>
-          {skip && (
-            <Button className={classes.whiteButton} onClick={skip}>
-              Skip
-            </Button>
-          )}
-          {beFriend && (
-            <Button className={classes.orangeButton} onClick={beFriend}>
-              Be friend
-            </Button>
-          )}
-        </Box>
-      )}
+        )}
+        {skip && (
+          <Button className={classes.whiteButton} onClick={skip}>
+            Skip
+          </Button>
+        )}
+        {beFriend && (
+          <Button className={classes.orangeButton} onClick={beFriend}>
+            Be friend
+          </Button>
+        )}
+      </Box>
     </>
   )
 }
