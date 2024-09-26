@@ -37,28 +37,27 @@ const MessagesPage = () => {
         <Messages onClick={handleClick} />
         {selectedChat ? (
           <Box>
-            {selectedChat && (
-              <Box className={classes.header}>
-                <Box className={classes.userInHeader}>
-                  <Avatar
-                    src={selectedChat.avatar}
-                    sx={{ width: 50, height: 50 }}
-                  />
-                  <Typography
-                    sx={{
-                      color: theme.palette.primary.main,
-                      fontWeight: 600,
-                      fontSize: 20,
-                    }}
-                  >
-                    {selectedChat.firstName} {selectedChat.lastName},{' '}
-                    {selectedChat.age}
-                  </Typography>
-                </Box>
-
-                <ChatMenu />
+            <Box className={classes.header}>
+              <Box className={classes.userInHeader}>
+                <Avatar
+                  src={selectedChat.avatar}
+                  sx={{ width: 50, height: 50 }}
+                />
+                <Typography
+                  sx={{
+                    color: theme.palette.primary.main,
+                    fontWeight: 600,
+                    fontSize: 20,
+                  }}
+                >
+                  {selectedChat.firstName} {selectedChat.lastName},{' '}
+                  {selectedChat.age}
+                </Typography>
               </Box>
-            )}
+
+              <ChatMenu />
+            </Box>
+
             <Box
               sx={{
                 display: 'flex',
@@ -74,7 +73,6 @@ const MessagesPage = () => {
               ) : (
                 <StartChatting />
               )}
-
               <Box className={classes.sendMessageSection}>
                 <TextareaAutosize
                   minRows={1}
