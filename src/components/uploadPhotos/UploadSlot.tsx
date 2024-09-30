@@ -74,7 +74,6 @@ const UploadSlot: React.FC<SlotType> = ({
   }
 
   const displayModalPic = () => {
-    console.log('bgPic', bgPic)
     setIsPhotoModalOpened(true)
     setChosenUrl(bgPic!)
   }
@@ -98,7 +97,6 @@ const UploadSlot: React.FC<SlotType> = ({
         backgroundImage: `url(${bgPic})`,
       }}
       onClick={() => {
-        console.log('bgPic in click', bgPic)
         bgPic ? displayModalPic() : initiateInputClick()
       }}
     >
