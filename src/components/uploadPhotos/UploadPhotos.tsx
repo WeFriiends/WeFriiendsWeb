@@ -7,7 +7,7 @@ import UploadSlot from './UploadSlot'
 import theme from 'styles/createTheme'
 import DeleteModal from './DeleteModal'
 import NextStepButton from 'common/NextStepButton'
-import PhotoModal from './PhotoModal'
+import { PhotoModal } from './PhotoModal'
 
 const UploadPhotos = () => {
   const { classes } = useStyles()

@@ -1,51 +1,71 @@
-import React, { useState, useRef } from 'react'
-import { Box, Typography, Button } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { Box, Modal } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { CommonModal } from 'components/commonModal/CommonModal'
 
-interface PhotoModalProps {
-  setIsPhotoModalOpened: (isOpened: boolean) => void
+type PhotoModalProps = {
   isOpened: boolean
+  setIsPhotoModalOpened: (isOpened: boolean) => void
   url: string
 }
 
-const PhotoModal: React.FC<PhotoModalProps> = ({
-  setIsPhotoModalOpened,
+export const PhotoModal = ({
   isOpened,
   url,
-}) => {
+  setIsPhotoModalOpened,
+}: PhotoModalProps) => {
   const { classes } = useStyles()
 
-  const deleteModalClose = () => {
-    setIsPhotoModalOpened(false)
-    console.log('url', url)
-  }
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   const style = {
     backgroundImage: `url(${url})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: 500,
+    width: dimensions.width,
+    height: dimensions.height,
   }
 
+  useEffect(() => {
+    const img = new Image()
+    img.src = url
+
+    img.onload = () => {
+      setDimensions({ width: img.width, height: img.height })
+    }
+  }, [url])
+
   return (
-    <CommonModal
-      isOpened={isOpened}
-      onClose={deleteModalClose}
-      modalTitle={'modal-modal-title'}
-      modalDescription={'modal-modal-description'}
-      height={870}
-    >
-      <Box className={classes.photoWrapper} style={style}></Box>
-    </CommonModal>
+    <Modal className={classes.modal} open={isOpened}>
+      <Box style={style} className={classes.box}>
+        <img
+          src={'/img/x-square.png'}
+          alt="close photo"
+          className={classes.closeIcon}
+          onClick={() => setIsPhotoModalOpened(false)}
+        />
+      </Box>
+    </Modal>
   )
 }
 
-export default PhotoModal
-
 const useStyles = makeStyles()(() => ({
-  photoWrapper: {
-    width: '100%',
-    height: '100%',
+  modal: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    '& :focus': {
+      outline: 'none',
+    },
+  },
+  box: {
+    position: 'relative',
+  },
+  closeIcon: {
+    position: 'absolute',
+    top: '-21px',
+    right: '-21px',
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
 }))

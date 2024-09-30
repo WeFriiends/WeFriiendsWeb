@@ -13,6 +13,10 @@ interface SlotType {
   bgPic: string | null
   userPics: UserPicsType[]
   setUserPics: (newPics: UserPicsType[]) => void
+  setIsDeleteModalOpened(isOpened: boolean): void
+  setChosenId: (chosenId: string) => void
+  setIsPhotoModalOpened: (isPhotoModalOpened: boolean) => void
+  setChosenUrl: (chosenUrl: string) => void
 }
 
 const UploadSlot: React.FC<SlotType> = ({
@@ -20,6 +24,10 @@ const UploadSlot: React.FC<SlotType> = ({
   bgPic,
   setUserPics,
   userPics,
+  setIsDeleteModalOpened,
+  setChosenId,
+  setIsPhotoModalOpened,
+  setChosenUrl,
 }) => {
   const { classes } = useStyles()
 
@@ -34,20 +42,31 @@ const UploadSlot: React.FC<SlotType> = ({
 
       reader.onloadend = () => {
         const base64data = reader.result
-        const newPic = {
-          id: id,
-          url: base64data as string,
+
+        // Создаем новый объект Image
+        const img = new Image()
+        img.src = base64data as string
+
+        // Ждем, пока изображение загрузится, и получаем его размеры
+        img.onload = () => {
+          const newPic = {
+            id: id,
+            url: base64data as string,
+            width: img.width, // ширина изображения
+            height: img.height, // высота изображения
+          }
+
+          const newUserPicsStorage = userPics.map((elem: UserPicsType) =>
+            elem.id === id ? newPic : elem
+          )
+
+          localStorage.setItem(
+            'userPicsStorage',
+            JSON.stringify(newUserPicsStorage)
+          )
+
+          setUserPics(newUserPicsStorage)
         }
-
-        const newUserPicsStorage = userPics.map((elem: UserPicsType) =>
-          elem.id === id ? newPic : elem
-        )
-        localStorage.setItem(
-          'userPicsStorage',
-          JSON.stringify(newUserPicsStorage)
-        )
-
-        setUserPics(newUserPicsStorage)
       }
     } else {
       console.log('Файл не выбран')
@@ -55,27 +74,21 @@ const UploadSlot: React.FC<SlotType> = ({
   }
 
   const displayModalPic = () => {
-    console.log('показать фото крупно как модалка')
+    console.log('bgPic', bgPic)
+    setIsPhotoModalOpened(true)
+    setChosenUrl(bgPic!)
   }
 
   const initiateInputClick = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.click() // инициируем клик по input при клике на контейнер
+      fileInputRef.current.click()
     }
   }
 
   const handleDeletePic = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation()
-    console.log('delete clicked!')
-    //modal - are you sure you want to delete?  yes/no
-    console.log('state', userPics)
-    const updatedPicArray: UserPicsType[] = userPics.map((pic) => {
-      if (pic.id === id) {
-        return { ...pic, url: null }
-      } else return pic
-    })
-    setUserPics(updatedPicArray)
-    localStorage.setItem('userPicsStorage', JSON.stringify(updatedPicArray))
+    setChosenId(id)
+    setIsDeleteModalOpened(true)
   }
 
   return (
@@ -106,7 +119,6 @@ const UploadSlot: React.FC<SlotType> = ({
       <input
         className={classes.hiddenInput}
         type="file"
-        // accept="image/*"
         accept=".png, .jpg, .jpeg"
         ref={fileInputRef}
         onChange={handleChange}
