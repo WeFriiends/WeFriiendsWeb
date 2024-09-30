@@ -4,11 +4,11 @@ import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 import React, { ReactNode } from 'react'
 
-type AuthWrapperProps = {
+type AuthPagesWrapperProps = {
   children: ReactNode
 }
 
-const AuthPagesWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
+const AuthPagesWrapper: React.FC<AuthPagesWrapperProps> = ({ children }) => {
   const { classes } = useStyles()
   return (
     <Box className={classes.authWrapper}>

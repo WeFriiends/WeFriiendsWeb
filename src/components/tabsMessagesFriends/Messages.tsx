@@ -71,7 +71,7 @@ const useStyles = makeStyles()(() => {
       display: 'grid',
       gridTemplateColumns: '0.5fr 5fr 0.5fr',
       alignItems: 'center',
-      padding: '30px 21px 20px 0',
+      padding: '30px 21px 20px 10px',
     },
     selected: {
       backgroundColor: '#FFF1EC',
@@ -101,7 +101,7 @@ const useStyles = makeStyles()(() => {
     textMessage: {
       fontSize: 14,
       lineHeight: '22px',
-      width: 220,
+      width: 210,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
