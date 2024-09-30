@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { CommonModal } from 'components/commonModal/CommonModal'
-
+import { CommonModal } from 'common/components/CommonModal'
 interface DeleteModalProps {
   setIsDeleteModalOpened: (isOpened: boolean) => void
   isOpened: boolean
