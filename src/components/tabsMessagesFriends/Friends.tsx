@@ -44,7 +44,7 @@ const Friends: React.FC<FriendsProps> = ({ onClick }) => {
             className={classes.smallPhoto}
           />
           <Typography className={classes.textOnPhoto}>
-            {element.firstName} {element.lastName}, {element.age}
+            {element.name}, {element.age}
           </Typography>
         </Box>
       ))}
