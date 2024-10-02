@@ -3,8 +3,7 @@
   "potentialFriends": [
     {
       "id": "11",
-      "firstName": "Elena",
-      "lastName": "S",
+      "name": "Elena S",
       "age": "36",
       "photo": [
         {
@@ -25,8 +24,7 @@
     },
     {
       "id": "12",
-      "firstName": "Polina",
-      "lastName": "T",
+      "name": "Polina T",
       "age": "32",
       "photo": [
         {
@@ -47,8 +45,7 @@
     },
     {
       "id": "13",
-      "firstName": "Maria",
-      "lastName": "M",
+      "name": "Maria M",
       "age": "28",
       "photo": [
         {
@@ -69,8 +66,7 @@
     },
     {
       "id": "2",
-      "firstName": "Valentina",
-      "lastName": "M",
+      "name": "Valentina M",
       "age": "38",
       "photo": [
         { "src": "/img/friends/friends_photo2.jpg" },
@@ -89,8 +85,7 @@
     },
     {
       "id": "3",
-      "firstName": "Katya",
-      "lastName": "N",
+      "name": "Katya N",
       "age": "40",
       "photo": [
         { "src": "/img/friends/friends_photo3.jpg" },
@@ -109,8 +104,7 @@
     },
     {
       "id": "4",
-      "firstName": "Polina",
-      "lastName": "T",
+      "name": "Polina T",
       "age": "42",
       "photo": [
         { "src": "/img/friends/friends_photo4.jpg" },
@@ -129,8 +123,7 @@
     },
     {
       "id": "5",
-      "firstName": "Nastya",
-      "lastName": "P",
+      "name": "Nastya P",
       "age": "42",
       "photo": [
         { "src": "/img/friends/friends_photo5.jpg" },
@@ -149,8 +142,7 @@
     },
     {
       "id": "6",
-      "firstName": "Tanya",
-      "lastName": "Petrova",
+      "name": "Tanya Petrova",
       "age": "40",
       "photo": [
         { "src": "/img/friends/friends_photo1.jpg" },
@@ -169,8 +161,7 @@
     },
     {
       "id": "7",
-      "firstName": "Sonya",
-      "lastName": "S",
+      "name": "Sonya S",
       "age": "38",
       "photo": [
         { "src": "/img/friends/friends_photo2.jpg" },
@@ -189,8 +180,7 @@
     },
     {
       "id": "8",
-      "firstName": "Katya",
-      "lastName": "L",
+      "name": "Katya L",
       "age": "36",
       "photo": [
         { "src": "/img/friends/friends_photo3.jpg" },
@@ -212,8 +202,7 @@
     {
       "id": "1",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "S.",
+      "name": "Elena S",
       "age": "38",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
@@ -221,8 +210,7 @@
     {
       "id": "2",
       "avatar": "/img/photo_Elena_2.jpg",
-      "firstName": "Elena",
-      "lastName": "T.",
+      "name": "Elena T",
       "age": "40",
       "lastMessage": "Hello! Nice to meet you! I’m Elena. Can...",
       "messageCount": "3"
@@ -230,8 +218,7 @@
     {
       "id": "3",
       "avatar": "/img/photo_Elena_3.jpg",
-      "firstName": "Elena",
-      "lastName": "M.",
+      "name": "Elena M",
       "age": "36",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "0"
@@ -239,8 +226,7 @@
     {
       "id": "4",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "Antonova",
+      "name": "Elena Antonova",
       "age": "42",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
@@ -248,8 +234,7 @@
     {
       "id": "5",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "Petrova",
+      "name": "Elena Petrova",
       "age": "35",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
@@ -257,8 +242,7 @@
     {
       "id": "6",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "S.",
+      "name": "Elena S.",
       "age": "38",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
@@ -266,8 +250,7 @@
     {
       "id": "7",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "M.",
+      "name": "Elena M.",
       "age": "37",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
@@ -275,8 +258,7 @@
     {
       "id": "8",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "V.",
+      "name": "Elena V.",
       "age": "39",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
@@ -284,8 +266,7 @@
     {
       "id": "9",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "W.",
+      "name": "Elena W.",
       "age": "38",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"

@@ -4,8 +4,7 @@ export interface UserPhoto {
 
 export interface UserProfileData {
   id: string
-  firstName: string
-  lastName: string
+  name: string
   age: string
   photo: UserPhoto[]
   city: string
@@ -17,8 +16,7 @@ export interface UserProfileData {
 
 export const emptyProfile: UserProfileData = {
   id: '-1',
-  firstName: '',
-  lastName: '',
+  name: '',
   age: '',
   photo: [],
   city: '',
@@ -31,7 +29,6 @@ export const emptyProfile: UserProfileData = {
 export interface UserChatProfile {
   id: string
   avatar: string
-  firstName: string
-  lastName: string
+  name: string
   age: string
 }

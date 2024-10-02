@@ -50,8 +50,7 @@ const MessagesPage = () => {
                     fontSize: 20,
                   }}
                 >
-                  {selectedChat.firstName} {selectedChat.lastName},{' '}
-                  {selectedChat.age}
+                  {selectedChat.name}, {selectedChat.age}
                 </Typography>
               </Box>
 
