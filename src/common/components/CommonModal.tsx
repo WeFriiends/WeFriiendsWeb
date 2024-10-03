@@ -10,7 +10,7 @@ type CommonModalProps = {
   modalTitle: string
   modalDescription: string
   onClose: () => void
-  height?: 370 | 320 | 605
+  height?: 370 | 320 | 605 | 240
 }
 
 export const CommonModal = ({
