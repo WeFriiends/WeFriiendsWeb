@@ -13,6 +13,7 @@ export interface UserProfileData {
   education: string
   profession: string
   likedUsers: string[]
+  reasons: string[]
 }
 
 export const emptyProfile: UserProfileData = {
@@ -26,6 +27,7 @@ export const emptyProfile: UserProfileData = {
   education: '',
   profession: '',
   likedUsers: [],
+  reasons: [],
 }
 
 export interface UserChatProfile {

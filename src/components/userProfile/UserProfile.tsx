@@ -4,6 +4,8 @@ import {
   AccordionSummary,
   Box,
   Typography,
+  List,
+  ListItem,
 } from '@mui/material'
 
 import { makeStyles } from 'tss-react/mui'
@@ -53,6 +55,13 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
           <AccordionDetails
             sx={{ overflow: 'auto', maxHeight: 'calc(49vh - 340px)' }}
           >
+            <List className={classes.reasons}>
+              {user.reasons.map((reason) => (
+                <ListItem key={reason} className={classes.reason}>
+                  {reason}
+                </ListItem>
+              ))}
+            </List>
             <Typography variant="h3" className={classes.title}>
               About Me
             </Typography>
@@ -136,6 +145,20 @@ const useStyles = makeStyles()(() => {
       },
       '&.Mui-expanded': {
         marginTop: -206,
+      },
+    },
+    reasons: {
+      display: 'grid',
+      gridTemplateColumns: '185px 185px ',
+      gap: 15,
+    },
+    reason: {
+      backgroundColor: 'rgba(254, 222, 210, 1)',
+      borderRadius: 10,
+
+      '&.MuiListItem-root': {
+        paddingTop: 16,
+        paddingBottom: 16,
       },
     },
   }
