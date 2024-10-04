@@ -24,12 +24,11 @@ export const Auth0ProviderWithNavigate = ({
 
   return (
     <>
-      <div>{redirectUri}</div>
       <Auth0Provider
         domain={domain}
         clientId={clientId}
         authorizationParams={{
-          redirect_uri: redirectUri,
+          redirect_uri: window.location.origin,
           audience: `https://${domain}/api/v2/`,
           scope: 'read:current_user',
         }}
