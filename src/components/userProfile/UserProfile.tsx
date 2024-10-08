@@ -149,7 +149,7 @@ const useStyles = makeStyles()(() => {
     },
     reasons: {
       display: 'grid',
-      gridTemplateColumns: '185px 185px ',
+      gridTemplateColumns: '180px 180px ',
       gap: 15,
     },
     reason: {
@@ -157,8 +157,9 @@ const useStyles = makeStyles()(() => {
       borderRadius: 10,
 
       '&.MuiListItem-root': {
-        paddingTop: 16,
-        paddingBottom: 16,
+        padding: '10px 20px',
+        fontSize: 14,
+        lineHeight: '16.8px',
       },
     },
   }
