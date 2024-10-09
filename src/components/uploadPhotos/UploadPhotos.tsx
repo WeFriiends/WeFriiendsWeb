@@ -1,11 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Box, Typography } from '@mui/material'
-import Logo from '../logo/Logo'
 import { makeStyles } from 'tss-react/mui'
 import UploadSlot from './UploadSlot'
 import DeleteModal from './DeleteModal'
-import ArrowBackButton from 'common/components/ArrowBackButton'
-import PrimaryButton from 'common/components/PrimaryButton'
 import { PhotoModal } from './PhotoModal'
 
 const UploadPhotos = () => {
@@ -35,10 +32,6 @@ const UploadPhotos = () => {
 
   const [userPics, setUserPics] = useState<UserPicsType[]>(initialPics)
 
-  const stepForwardHandler = () => {
-    console.log('step forward function/send pics array to backend')
-  }
-
   const deleteChosenPic = () => {
     const updatedPicArray: UserPicsType[] = userPics.map((pic) => {
       if (pic.id === chosenId) {
@@ -57,9 +50,14 @@ const UploadPhotos = () => {
   return (
     <Box className={classes.mainBox}>
       {!hasAnyPics(userPics) && (
-        <Typography className={classes.title}>
-          Upload at least 1 photo
-        </Typography>
+        <Box className={classes.hintContainer}>
+          <Typography className={classes.title}>
+            Upload at least 1 photo
+          </Typography>
+          <Typography className={classes.hint}>
+            Your first uploaded photo will be used as your avatar
+          </Typography>
+        </Box>
       )}
       <PhotoModal
         setIsPhotoModalOpened={setIsPhotoModalOpened}
@@ -112,13 +110,20 @@ const useStyles = makeStyles()(() => ({
     gap: 20,
     margin: 20,
   },
+  hintContainer: {
+    height: 43,
+  },
   title: {
-    marginTop: 54,
-    marginBottom: 29,
     fontWeight: 600,
     fontSize: 18,
     lineHeight: '132%',
     textAlign: 'center',
     color: '#444',
+  },
+  hint: {
+    textAlign: 'center',
+    color: '#444',
+    fontWeight: 400,
+    fontSize: 13,
   },
 }))
