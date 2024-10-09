@@ -12,6 +12,7 @@ import GenderPick from './GenderPick'
 import ArrowBackButton from 'common/components/ArrowBackButton'
 import Status from './Status'
 import UserLocation from './location/UserLocation'
+import UploadPhotos from 'components/uploadPhotos/UploadPhotos'
 
 const carouselData = [
   {
@@ -34,6 +35,10 @@ const carouselData = [
     component: <Status />,
     label: 'status',
   },
+  {
+    component: <UploadPhotos />,
+    label: 'uploadPhotos',
+  },
 ]
 const ProfileCarousel = () => {
   const token = useBearerToken()
@@ -55,6 +60,7 @@ const ProfileCarousel = () => {
       street,
       houseNumber,
       selectedStatuses,
+      userPhotos,
     } = getItemsFromLocalStorage([
       'name',
       'dob',
@@ -66,6 +72,7 @@ const ProfileCarousel = () => {
       'street',
       'houseNumber',
       'selectedStatuses',
+      'userPhotos',
     ])
     await createProfile(
       {
@@ -74,6 +81,7 @@ const ProfileCarousel = () => {
         gender,
         location: { lat, lng, country, city, street, houseNumber },
         reasons: selectedStatuses,
+        // userPhotos,
       },
       token
     )

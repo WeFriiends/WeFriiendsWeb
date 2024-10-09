@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import Logo from '../logo/Logo'
-import { commonStyles } from '../../styles/commonStyles'
 import { makeStyles } from 'tss-react/mui'
 import UploadSlot from './UploadSlot'
-import theme from 'styles/createTheme'
 import DeleteModal from './DeleteModal'
 import ArrowBackButton from 'common/components/ArrowBackButton'
 import PrimaryButton from 'common/components/PrimaryButton'
@@ -22,7 +20,6 @@ const UploadPhotos = () => {
     url: string | null
   }
 
-  // Попытка получить данные из local storage
   const storedPicsString = localStorage.getItem('userPicsStorage')
   const emptyPicArray: UserPicsType[] = Array.from(
     { length: 6 },
@@ -57,16 +54,8 @@ const UploadPhotos = () => {
     return array.some((pic) => pic.url !== null && pic.url.trim() !== '')
   }
 
-  const stepBackHandler = () => {
-    console.log('step back')
-  }
-
   return (
     <Box className={classes.mainBox}>
-      <Logo />
-      <Box>
-        <ArrowBackButton stepBackHandler={stepBackHandler} />
-      </Box>
       {!hasAnyPics(userPics) && (
         <Typography className={classes.title}>
           Upload at least 1 photo
@@ -98,13 +87,6 @@ const UploadPhotos = () => {
           />
         ))}
       </Box>
-      {hasAnyPics(userPics) && (
-        <PrimaryButton
-          disabled={false}
-          onClickHandler={stepForwardHandler}
-          label={'Next'}
-        />
-      )}
     </Box>
   )
 }
@@ -119,7 +101,6 @@ const useStyles = makeStyles()(() => ({
     marginLeft: 20,
     marginRight: 20,
     paddingTop: 50,
-    overflow: 'hidden',
   },
   picContainer: {
     width: 349,

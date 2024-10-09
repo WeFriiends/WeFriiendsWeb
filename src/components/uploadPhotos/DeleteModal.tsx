@@ -36,7 +36,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
       height={240}
     >
       <Box className={classes.deleteWrapper}>
-        <Typography variant="h1">Delete file?</Typography>
+        <Typography className={classes.title}>Delete file?</Typography>
         <Box className={classes.buttonsWrapper}>
           <Button className={classes.button} onClick={cancelHandler}>
             Cancel
@@ -56,13 +56,21 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
 export default DeleteModal
 
 const useStyles = makeStyles()(() => ({
+  title: {
+    fontFamily: 'Inter',
+    fontWeight: 500,
+    fontSize: 24,
+    lineHeight: '83%',
+    textAlign: 'center',
+    color: '#f46b5d',
+  },
   deleteWrapper: {
-    width: 320,
+    width: 300,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
     rowGap: 25,
+    justifyContent: 'space- around',
+    alignItems: 'self - start',
   },
   button: {
     border: '2px solid #f46b5d',
@@ -70,10 +78,12 @@ const useStyles = makeStyles()(() => ({
     padding: '16px 47px',
     width: 142,
     height: 50,
+    textTransform: 'none',
   },
   buttonDelete: {
     color: '#fff',
     background: '#fb8f67',
+    border: 'none',
     '&:hover': {
       backgroundColor: '#F1562A',
     },

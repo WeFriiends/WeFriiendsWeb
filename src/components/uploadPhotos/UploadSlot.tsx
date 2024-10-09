@@ -68,8 +68,6 @@ const UploadSlot: React.FC<SlotType> = ({
           setUserPics(newUserPicsStorage)
         }
       }
-    } else {
-      console.log('Файл не выбран')
     }
   }
 
