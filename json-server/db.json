@@ -18,9 +18,6 @@
         }
       ],
       "city": "Madrid",
-      "aboutMe": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque esse natus, voluptatum minus cumque dolorum dignissimos? Fuga reprehenderit non rerum ex eos enim iure quod doloremque, repellat minus. Totam reiciendis quas ut soluta sint dolor praesentium ipsam quaerat, commodi dolores nisi similique. Commodi esse unde provident animi? Quaerat ipsam laudantium cupiditate fugiat? Quidem, necessitatibus voluptatem. Fugit, magni? Dicta dolore asperiores a voluptatum dolorem? Facilis in dolorem provident. Odio, soluta voluptatem! Eum aliquid ipsam provident numquam voluptas impedit natus! Facere sed expedita odit quasi eaque repellat minus recusandae voluptate excepturi, reiciendis adipisci aperiam soluta sint ullam harum ipsa sequi culpa consequuntur, quas vero amet consectetur! Laborum dolores magnam doloremque totam rerum inventore corporis odit eum, dicta quae voluptate dolorem recusandae quisquam dolor perferendis pariatur ab vitae excepturi reprehenderit suscipit cumque ipsa nobis? Distinctio numquam provident officiis tempore fugit! A nesciunt nihil libero optio recusandae eveniet facilis, fugiat sed molestiae. Quo nulla explicabo incidunt nihil suscipit? Nemo rerum doloremque ab totam, facere animi nam aliquam corrupti alias obcaecati fugiat dolores in est id incidunt commodi delectus, quibusdam itaque. Quam id dolorem ipsa repudiandae iste commodi rerum eius veniam voluptatibus, obcaecati maiores aperiam aut et vel ex ea nesciunt ipsum possimus velit aspernatur?",
-      "education": "Bachelor degree",
-      "profession": "Freelance Journalist",
       "likedUsers": ["1", "2", "3"],
       "reasons": [
         "Looking for new friends",
@@ -51,15 +48,21 @@
         }
       ],
       "city": "Paris",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
-      "education": "Bachelor degree",
-      "profession": "Freelance Journalist",
       "likedUsers": ["1", "5", "7"],
       "reasons": [
         "My plans are to move abroad",
         "I'm a new mom. Need some help",
         "Let's take the dogs for a walk"
-      ]
+      ],
+      "lifeStyle": {
+        "smoking": "Non-Smoker",
+        "education": "bachelor's degrees",
+        "children": "None",
+        "drink": "Less than monthly",
+        "pets": ["dog"],
+        "interest": ["#travel", "#psychology"],
+        "language": ["english"]
+      }
     },
     {
       "id": "13",
@@ -78,14 +81,21 @@
         }
       ],
       "city": "Wien",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
-      "education": "Bachelor degree",
-      "profession": "Freelance Journalist",
       "likedUsers": ["3", "7", "9"],
       "reasons": [
         "My plans are to move abroad",
         "I'm a new mom. Need some help"
-      ]
+      ],
+      "lifeStyle": {
+        "smoking": "Non-Smoker",
+        "education": "bachelor's degrees",
+        "children": "None",
+        "drink": "Less than monthly",
+        "pets": ["dog"],
+        "interest": ["#travel", "#psychology"],
+        "language": ["english"],
+        "aboutMe": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis eligendi ducimus est illo reprehenderit, commodi fugiat tempore qui dolor natus minima quidem, optio nulla ipsum voluptates quis soluta, alias totam."
+      }
     },
     {
       "id": "2",
@@ -102,9 +112,6 @@
         }
       ],
       "city": "Berlin",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
-      "education": "Master degree",
-      "profession": "Analyst",
       "likedUsers": ["1", "8", "12"],
       "reasons": [
         "I’m learning a new language. Let's talk!",
@@ -126,9 +133,6 @@
         }
       ],
       "city": "Roma",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
-      "education": "Bachelor degree",
-      "profession": "Freelance Journalist",
       "likedUsers": ["5", "9", "15"],
       "reasons": [
         "I’m learning a new language. Let's talk!",
@@ -150,9 +154,6 @@
         }
       ],
       "city": "Madrid",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-      "education": "Master degree",
-      "profession": "Teacher",
       "likedUsers": ["1", "8", "10"],
       "reasons": [
         "I’m learning a new language. Let's talk!",
@@ -174,9 +175,6 @@
         }
       ],
       "city": "Madrid",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-      "education": "Master degree",
-      "profession": "Dentist",
       "likedUsers": ["4", "6", "8"],
       "reasons": [
         "I’m learning a new language. Let's talk!",
@@ -197,9 +195,6 @@
           "src": "/img/photo_Elena.jpg"
         }
       ],
-      "city": "Milan",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-      "education": "",
       "profession": "Hairdresser",
       "likedUsers": ["6", "10", "11"],
       "reasons": [
@@ -222,9 +217,6 @@
         }
       ],
       "city": "Paris",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-      "education": "Master degree",
-      "profession": "Doctor",
       "likedUsers": ["1", "7", "9"],
       "reasons": [
         "I’m learning a new language. Let's talk!",
@@ -246,9 +238,6 @@
         }
       ],
       "city": "Madrid",
-      "aboutMe": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque esse natus, voluptatum minus cumque dolorum dignissimos? Fuga reprehenderit non rerum ex eos enim iure quod doloremque, repellat minus. Totam reiciendis quas ut soluta sint dolor praesentium ipsam quaerat, commodi dolores nisi similique. Commodi esse unde provident animi? Quaerat ipsam laudantium cupiditate fugiat? Quidem, necessitatibus voluptatem. Fugit, magni? Dicta dolore asperiores a voluptatum dolorem? Facilis in dolorem provident. Odio, soluta voluptatem! Eum aliquid ipsam provident numquam voluptas impedit natus! Facere sed expedita odit quasi eaque repellat minus recusandae voluptate excepturi, reiciendis adipisci aperiam soluta sint ullam harum ipsa sequi culpa consequuntur, quas vero amet consectetur! Laborum dolores magnam doloremque totam rerum inventore corporis odit eum, dicta quae voluptate dolorem recusandae quisquam dolor perferendis pariatur ab vitae excepturi reprehenderit suscipit cumque ipsa nobis? Distinctio numquam provident officiis tempore fugit! A nesciunt nihil libero optio recusandae eveniet facilis, fugiat sed molestiae. Quo nulla explicabo incidunt nihil suscipit? Nemo rerum doloremque ab totam, facere animi nam aliquam corrupti alias obcaecati fugiat dolores in est id incidunt commodi delectus, quibusdam itaque. Quam id dolorem ipsa repudiandae iste commodi rerum eius veniam voluptatibus, obcaecati maiores aperiam aut et vel ex ea nesciunt ipsum possimus velit aspernatur?",
-      "education": "",
-      "profession": "Hairdresser",
       "likedUsers": ["1", "4", "8"],
       "reasons": [
         "I’m learning a new language. Let's talk!",

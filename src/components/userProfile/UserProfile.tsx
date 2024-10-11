@@ -84,16 +84,6 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                   </ListItem>
                 ))}
             </List>
-
-            <Typography variant="h3" className={classes.title}>
-              About Me
-            </Typography>
-            <Typography className={classes.text}>{user.aboutMe}</Typography>
-            <Typography variant="h3" className={classes.title}>
-              Education and Profession
-            </Typography>
-            <Typography className={classes.text}>{user.profession}</Typography>
-            <Typography className={classes.text}>{user.education}</Typography>
           </AccordionDetails>
         </Accordion>
       </Box>
