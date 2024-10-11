@@ -2,6 +2,16 @@ export interface UserPhoto {
   src: string
 }
 
+interface LifeStyle {
+  [key: string]: string | string[]
+  // smoking?: string
+  // education?: string
+  // children?: string
+  // interests?: string[]
+  // pets?: string[]
+  // language?: string[]
+}
+
 export interface UserProfileData {
   id: string
   firstName: string
@@ -14,6 +24,7 @@ export interface UserProfileData {
   profession: string
   likedUsers: string[]
   reasons: string[]
+  lifeStyle?: LifeStyle
 }
 
 export const emptyProfile: UserProfileData = {
@@ -28,6 +39,7 @@ export const emptyProfile: UserProfileData = {
   profession: '',
   likedUsers: [],
   reasons: [],
+  lifeStyle: {},
 }
 
 export interface UserChatProfile {

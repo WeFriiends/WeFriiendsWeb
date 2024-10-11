@@ -19,6 +19,15 @@ interface UserProfileProps {
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const { classes } = useStyles()
   const accountId = '1'
+
+  const printInterest = (value: string | string[]) => {
+    if (typeof value === 'string') {
+      return value
+    } else {
+      return value.join(', ')
+    }
+  }
+
   return (
     <>
       <Box className={classes.mainGrid}>
@@ -62,6 +71,20 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                 </ListItem>
               ))}
             </List>
+            <List>
+              {user.lifeStyle &&
+                Object.entries(user.lifeStyle).map(([interest, value]) => (
+                  <ListItem key={interest}>
+                    <Typography variant="h3" className={classes.title}>
+                      {interest}
+                    </Typography>
+                    <Typography className={classes.text}>
+                      {printInterest(value)}
+                    </Typography>
+                  </ListItem>
+                ))}
+            </List>
+
             <Typography variant="h3" className={classes.title}>
               About Me
             </Typography>
