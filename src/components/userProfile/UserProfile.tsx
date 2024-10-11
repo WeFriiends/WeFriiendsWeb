@@ -74,9 +74,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
             <List>
               {user.lifeStyle &&
                 Object.entries(user.lifeStyle).map(([interest, value]) => (
-                  <ListItem key={interest}>
+                  <ListItem key={interest} className={classes.titleAndText}>
                     <Typography variant="h3" className={classes.title}>
-                      {interest}
+                      {interest.charAt(0).toUpperCase() + interest.slice(1)}
                     </Typography>
                     <Typography className={classes.text}>
                       {printInterest(value)}
@@ -146,6 +146,9 @@ const useStyles = makeStyles()(() => {
     text: {
       fontSize: 14,
       lineHeight: '22px',
+      background: '#FEDED2',
+      borderRadius: 20,
+      padding: '7px 15px',
     },
     accordion: {
       zIndex: 100,
@@ -164,6 +167,10 @@ const useStyles = makeStyles()(() => {
       display: 'grid',
       gridTemplateColumns: '180px 180px ',
       gap: 15,
+
+      '&MuiList-root': {
+        paddingBottom: 0,
+      },
     },
     reason: {
       backgroundColor: 'rgba(254, 222, 210, 1)',
@@ -174,6 +181,12 @@ const useStyles = makeStyles()(() => {
         fontSize: 14,
         lineHeight: '16.8px',
       },
+    },
+    titleAndText: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      padding: 0,
     },
   }
 })
