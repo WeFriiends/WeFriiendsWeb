@@ -12,8 +12,7 @@ const Messages = ({ onClick }: any) => {
   const { data: userMessages } = useLastMessagesList()
   const [userChatProfile, setUserChatProfile] = useState<UserChatProfile>({
     id: '-1',
-    firstName: '',
-    lastName: '',
+    name: '',
     age: '',
     avatar: '',
   })
@@ -44,7 +43,7 @@ const Messages = ({ onClick }: any) => {
             ></Avatar>
             <Box className={classes.message}>
               <Typography className={classes.name}>
-                {element.firstName} {element.lastName}, {element.age}
+                {element.name}, {element.age}
               </Typography>
               <Typography className={classes.textMessage}>
                 {element.lastMessage}

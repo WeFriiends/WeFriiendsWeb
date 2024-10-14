@@ -46,7 +46,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
             <Box>
               <Box sx={{ display: 'flex' }}>
                 <Typography className={classes.name}>
-                  {user.firstName} {user.lastName}, {user.age}
+                  {user.name}, {user.age}
                 </Typography>
                 {/* <CircleRoundedIcon
                   className={classes.roundIcon}
