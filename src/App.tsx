@@ -6,7 +6,6 @@ import theme from 'styles/createTheme'
 import { DialogProvider } from 'context/dialogContext'
 import routes from 'routes'
 import { Auth0ProviderWithNavigate } from 'provider/Auth0ProviderWithNavigate'
-import UploadPhotos from 'components/uploadPhotos/UploadPhotos'
 
 const App = () => {
   const content = useRoutes(routes)
