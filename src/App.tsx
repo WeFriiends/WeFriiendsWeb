@@ -14,8 +14,7 @@ const App = () => {
     <Auth0ProviderWithNavigate>
       <ThemeProvider theme={theme}>
         <DialogProvider>
-          {/* <ActivePageProvider>{content}</ActivePageProvider> */}
-          <UploadPhotos />
+          <ActivePageProvider>{content}</ActivePageProvider>
         </DialogProvider>
       </ThemeProvider>
     </Auth0ProviderWithNavigate>
