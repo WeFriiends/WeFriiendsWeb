@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import UploadSlot from './UploadSlot'
-import DeleteModal from './DeleteModal'
 import { PhotoModal } from './PhotoModal'
+import DeletePhoto from './DeletePhoto'
 
 const UploadPhotos = () => {
   const { classes } = useStyles()
@@ -64,7 +64,7 @@ const UploadPhotos = () => {
         isOpened={isPhotoModalOpened}
         url={chosenUrl}
       />
-      <DeleteModal
+      <DeletePhoto
         isOpened={isDeleteModalOpened}
         setIsDeleteModalOpened={setIsDeleteModalOpened}
         deleteChosenPic={deleteChosenPic}

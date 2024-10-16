@@ -1,15 +1,15 @@
-import React, { useState, useRef } from 'react'
-import { Box, Typography, Button } from '@mui/material'
+import React from 'react'
+import { Box, Typography, Button, Modal } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { CommonModal } from 'common/components/CommonModal'
-interface DeleteModalProps {
+
+interface DeletePhotoProps {
   setIsDeleteModalOpened: (isOpened: boolean) => void
   isOpened: boolean
   deleteChosenPic: () => void
   setChosenId: (chosenId: string) => void
 }
 
-const DeleteModal: React.FC<DeleteModalProps> = ({
+const DeletePhotos: React.FC<DeletePhotoProps> = ({
   setIsDeleteModalOpened,
   isOpened,
   deleteChosenPic,
@@ -28,14 +28,20 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
   }
 
   return (
-    <CommonModal
-      isOpened={isOpened}
+    <Modal
+      open={isOpened}
+      className={classes.modalWrapper}
       onClose={deleteModalClose}
-      modalTitle={'modal-modal-title'}
-      modalDescription={'modal-modal-description'}
-      height={240}
     >
       <Box className={classes.deleteWrapper}>
+        <Box className={classes.box}>
+          <img
+            src={'/img/x-square.png'}
+            alt="close photo"
+            className={classes.closeIcon}
+            onClick={deleteModalClose}
+          />
+        </Box>
         <Typography className={classes.title}>Delete file?</Typography>
         <Box className={classes.buttonsWrapper}>
           <Button className={classes.button} onClick={cancelHandler}>
@@ -49,13 +55,20 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
           </Button>
         </Box>
       </Box>
-    </CommonModal>
+    </Modal>
   )
 }
 
-export default DeleteModal
+export default DeletePhotos
 
 const useStyles = makeStyles()(() => ({
+  modalWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    width: '100vw',
+  },
   title: {
     fontFamily: 'Inter',
     fontWeight: 500,
@@ -65,12 +78,16 @@ const useStyles = makeStyles()(() => ({
     color: '#f46b5d',
   },
   deleteWrapper: {
-    width: 300,
     display: 'flex',
     flexDirection: 'column',
     rowGap: 25,
-    justifyContent: 'space- around',
-    alignItems: 'self - start',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 240,
+    width: 370,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    position: 'relative',
   },
   button: {
     border: '2px solid #f46b5d',
@@ -92,5 +109,15 @@ const useStyles = makeStyles()(() => ({
     display: 'flex',
     justifyContent: 'space-between',
     gap: 15,
+  },
+  box: {
+    position: 'absolute',
+    top: '13px',
+    right: '13px',
+  },
+  closeIcon: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
 }))
