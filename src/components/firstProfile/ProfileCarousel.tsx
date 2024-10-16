@@ -60,7 +60,7 @@ const ProfileCarousel = () => {
       street,
       houseNumber,
       selectedStatuses,
-      userPhotos,
+      // userPhotos,
     } = getItemsFromLocalStorage([
       'name',
       'dob',

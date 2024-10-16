@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import UserPicsType from './UploadPhotos'
