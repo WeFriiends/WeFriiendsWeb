@@ -4,6 +4,8 @@ import {
   AccordionSummary,
   Box,
   Typography,
+  List,
+  ListItem,
 } from '@mui/material'
 
 import { makeStyles } from 'tss-react/mui'
@@ -17,6 +19,15 @@ interface UserProfileProps {
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const { classes } = useStyles()
   const accountId = '1'
+
+  const printInterest = (value: string | string[]) => {
+    if (typeof value === 'string') {
+      return value
+    } else {
+      return value.join(', ')
+    }
+  }
+
   return (
     <>
       <Box className={classes.mainGrid}>
@@ -53,15 +64,26 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
           <AccordionDetails
             sx={{ overflow: 'auto', maxHeight: 'calc(49vh - 340px)' }}
           >
-            <Typography variant="h3" className={classes.title}>
-              About Me
-            </Typography>
-            <Typography className={classes.text}>{user.aboutMe}</Typography>
-            <Typography variant="h3" className={classes.title}>
-              Education and Profession
-            </Typography>
-            <Typography className={classes.text}>{user.profession}</Typography>
-            <Typography className={classes.text}>{user.education}</Typography>
+            <List className={classes.reasons}>
+              {user.reasons.map((reason) => (
+                <ListItem key={reason} className={classes.reason}>
+                  {reason}
+                </ListItem>
+              ))}
+            </List>
+            <List>
+              {user.lifeStyle &&
+                Object.entries(user.lifeStyle).map(([interest, value]) => (
+                  <ListItem key={interest} className={classes.titleAndText}>
+                    <Typography variant="h3" className={classes.title}>
+                      {interest.charAt(0).toUpperCase() + interest.slice(1)}
+                    </Typography>
+                    <Typography className={classes.text}>
+                      {printInterest(value)}
+                    </Typography>
+                  </ListItem>
+                ))}
+            </List>
           </AccordionDetails>
         </Accordion>
       </Box>
@@ -124,6 +146,9 @@ const useStyles = makeStyles()(() => {
     text: {
       fontSize: 14,
       lineHeight: '22px',
+      background: '#FEDED2',
+      borderRadius: 20,
+      padding: '7px 15px',
     },
     accordion: {
       zIndex: 100,
@@ -137,6 +162,31 @@ const useStyles = makeStyles()(() => {
       '&.Mui-expanded': {
         marginTop: -206,
       },
+    },
+    reasons: {
+      display: 'grid',
+      gridTemplateColumns: '180px 180px ',
+      gap: 15,
+
+      '&MuiList-root': {
+        paddingBottom: 0,
+      },
+    },
+    reason: {
+      backgroundColor: 'rgba(254, 222, 210, 1)',
+      borderRadius: 10,
+
+      '&.MuiListItem-root': {
+        padding: '10px 20px',
+        fontSize: 14,
+        lineHeight: '16.8px',
+      },
+    },
+    titleAndText: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      padding: 0,
     },
   }
 })
