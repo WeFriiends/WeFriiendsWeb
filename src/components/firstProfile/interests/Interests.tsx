@@ -4,13 +4,19 @@ import { Box, Typography, Button, TextField, IconButton } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { makeStyles } from 'tss-react/mui'
+import { interestsData } from './interestsData'
 import theme from 'styles/createTheme'
 import Logo from 'components/logo/Logo'
+
+type ArrowRightBtnProps = {
+  onToggle: (isArrowRight: boolean) => void // Типизация пропса onToggle
+}
 //import AuthPagesWrapper from '../authPagesWrapper/AuthPagesWrapper'
 
 const Interests = () => {
   const { classes } = useStyles()
   const [aboutMe, setAboutMe] = useState('')
+  const [openTabPointer, setIsOpenTabPointer] = useState(-1)
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAboutMe(event.target.value)
   }
@@ -33,46 +39,22 @@ const Interests = () => {
         <Typography className={classes.title}>Lifestyle</Typography>
       </Box>
       <Box className={classes.itemContainer}>
-        <Box className={classes.item}>
-          <Typography>Smoking</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn />
-          </IconButton>
-        </Box>
-        <Box className={classes.item}>
-          <Typography>Educational level</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn />
-          </IconButton>
-        </Box>
-        <Box className={classes.item}>
-          <Typography>Children</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn />
-          </IconButton>
-        </Box>
-        <Box className={classes.item}>
-          <Typography>Drinking</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn />
-          </IconButton>
-        </Box>
-        <Box className={classes.item}>
-          <Typography>Pets</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn />
-          </IconButton>
-        </Box>
-        <Box className={classes.item}>
-          <Typography>Interests</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn />
-          </IconButton>
-        </Box>
+        {interestsData.map((data, index) => (
+          <Box key={index} className={classes.item}>
+            <Typography>{data.title}</Typography>
+            <IconButton className={classes.arrowRightBtn}>
+              <ArrowRightBtn onToggle={(isOpen) => console.log(isOpen)} />
+            </IconButton>
+            <Box>
+              {data.item.map((item, index) => (
+              ))}
+            </Box>
+          </Box>
+        ))}
         <Box className={classes.item}>
           <Typography>Language</Typography>
           <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn />
+            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
           </IconButton>
         </Box>
       </Box>
@@ -115,9 +97,20 @@ const ArrowBackBtn = () => {
   return <ArrowBackIcon className={classes.arrowSvg} />
 }
 
-const ArrowRightBtn = () => {
+const ArrowRightBtn: React.FC<ArrowRightBtnProps> = ({ onToggle }) => {
   const { classes } = useStyles()
-  return <ArrowForwardIosIcon className={classes.arrowRightSvg} />
+  const [isArrowRight, setIsArrowRight] = useState<boolean>(true)
+  const toggle = () => {
+    setIsArrowRight(!isArrowRight)
+    onToggle(isArrowRight)
+  }
+
+  return (
+    <ArrowForwardIosIcon
+      onClick={toggle}
+      className={isArrowRight ? classes.arrowRightSvg : classes.arrowDownSvg}
+    />
+  )
 }
 
 const useStyles = makeStyles()(() => {
@@ -155,6 +148,15 @@ const useStyles = makeStyles()(() => {
       height: '14px',
       color: theme.palette.text.primary,
       cursor: 'pointer',
+    },
+    arrowDownSvg: {
+      position: 'absolute',
+      width: '14px',
+      height: '14px',
+      color: theme.palette.text.primary,
+      cursor: 'pointer',
+      transform: 'rotate(90deg)',
+      transition: 'all .3s ease',
     },
     link: {
       textDecoration: 'none',
@@ -280,3 +282,42 @@ const useStyles = makeStyles()(() => {
     },
   }
 })
+
+/* 
+<Box className={classes.item}>
+          <Typography>Educational level</Typography>
+          <IconButton className={classes.arrowRightBtn}>
+            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
+          </IconButton>
+        </Box>
+        <Box className={classes.item}>
+          <Typography>Children</Typography>
+          <IconButton className={classes.arrowRightBtn}>
+            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
+          </IconButton>
+        </Box>
+        <Box className={classes.item}>
+          <Typography>Drinking</Typography>
+          <IconButton className={classes.arrowRightBtn}>
+            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
+          </IconButton>
+        </Box>
+        <Box className={classes.item}>
+          <Typography>Pets</Typography>
+          <IconButton className={classes.arrowRightBtn}>
+            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
+          </IconButton>
+        </Box>
+        <Box className={classes.item}>
+          <Typography>Interests</Typography>
+          <IconButton className={classes.arrowRightBtn}>
+            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
+          </IconButton>
+        </Box>
+        <Box className={classes.item}>
+          <Typography>Language</Typography>
+          <IconButton className={classes.arrowRightBtn}>
+            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
+          </IconButton>
+        </Box>
+*/
