@@ -1,6 +1,7 @@
 interface InterestData {
   title: string
   item: string[]
+  multiple?: boolean
 }
 
 export const interestsData: InterestData[] = [
@@ -20,6 +21,7 @@ export const interestsData: InterestData[] = [
       'Postgraduate Degrees',
       'Undergraduate Degrees',
     ],
+    multiple: true,
   },
   {
     title: 'Children',
@@ -61,6 +63,7 @@ export const interestsData: InterestData[] = [
       'Hamster/Guinea Pig/Gerbil',
       'Other',
     ],
+    multiple: true,
   },
   {
     title: 'Interests',
@@ -120,5 +123,6 @@ export const interestsData: InterestData[] = [
       'Paranormal',
       'Film Making',
     ],
+    multiple: true,
   },
 ]

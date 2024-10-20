@@ -1,6 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Box, Typography, Button, TextField, IconButton } from '@mui/material'
+import {
+  Box,
+  Typography,
+  Button,
+  TextField,
+  IconButton,
+  Chip,
+} from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { makeStyles } from 'tss-react/mui'
@@ -11,12 +18,17 @@ import Logo from 'components/logo/Logo'
 type ArrowRightBtnProps = {
   onToggle: (isArrowRight: boolean) => void // Типизация пропса onToggle
 }
+
+type ChipContainerProps = {
+  data: { title: string; item: string[] }
+  //onToggle: (isArrowRight: boolean) => void // Типизация пропса onToggle
+}
 //import AuthPagesWrapper from '../authPagesWrapper/AuthPagesWrapper'
 
 const Interests = () => {
   const { classes } = useStyles()
   const [aboutMe, setAboutMe] = useState('')
-  const [openTabPointer, setIsOpenTabPointer] = useState(-1)
+  const [openTabPointer, setIsOpenTabPointer] = useState('')
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAboutMe(event.target.value)
   }
@@ -41,18 +53,22 @@ const Interests = () => {
       <Box className={classes.itemContainer}>
         {interestsData.map((data, index) => (
           <Box key={index} className={classes.item}>
-            <Typography>{data.title}</Typography>
+            <Typography className={classes.itemTitle}>{data.title}</Typography>
             <IconButton className={classes.arrowRightBtn}>
-              <ArrowRightBtn onToggle={(isOpen) => console.log(isOpen)} />
+              <ArrowRightBtn
+                onToggle={(isOpen) =>
+                  setIsOpenTabPointer(isOpen ? data.title : '')
+                }
+              />
             </IconButton>
-            <Box>
-              {data.item.map((item, index) => (
+            {openTabPointer === data.title &&
+              ((data.multiple && <ChipContainerMulti data={data} />) || (
+                <ChipContainer data={data} />
               ))}
-            </Box>
           </Box>
         ))}
         <Box className={classes.item}>
-          <Typography>Language</Typography>
+          <Typography className={classes.itemTitle}>Language</Typography>
           <IconButton className={classes.arrowRightBtn}>
             <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
           </IconButton>
@@ -91,6 +107,52 @@ const Interests = () => {
 }
 
 export default Interests
+
+const ChipContainer: React.FC<ChipContainerProps> = ({ data }) => {
+  const { classes } = useStyles()
+  const [selectedItem, setSelectedItem] = useState<string>('')
+  return (
+    <Box className={classes.chipContainer}>
+      {data.item.map((item, index) => (
+        <Chip
+          key={index}
+          label={item}
+          style={{
+            backgroundColor: selectedItem === item ? '#FECAB7' : '#EEEEEE',
+          }}
+          onClick={() => setSelectedItem(item)}
+        />
+      ))}
+    </Box>
+  )
+}
+
+const ChipContainerMulti: React.FC<ChipContainerProps> = ({ data }) => {
+  const { classes } = useStyles()
+  const [selectedItems, setSelectedItems] = useState<string[]>([])
+  const checkItems = (item: string) => {
+    if (selectedItems.includes(item)) {
+      return setSelectedItems(selectedItems.filter((i) => i !== item))
+    }
+    setSelectedItems((prev) => [...prev, item])
+  }
+  return (
+    <Box className={classes.chipContainer}>
+      {data.item.map((item, index) => (
+        <Chip
+          key={index}
+          label={item}
+          style={{
+            backgroundColor: selectedItems.includes(item)
+              ? '#FECAB7'
+              : '#EEEEEE',
+          }}
+          onClick={() => checkItems(item)}
+        />
+      ))}
+    </Box>
+  )
+}
 
 const ArrowBackBtn = () => {
   const { classes } = useStyles()
@@ -192,7 +254,6 @@ const useStyles = makeStyles()(() => {
     },
     item: {
       position: 'relative',
-      height: '40px',
       fontFamily: 'Inter',
       fontWeight: 400,
       fontSize: '16px',
@@ -201,12 +262,21 @@ const useStyles = makeStyles()(() => {
       borderBottom: '1px solid #EEEEEE',
       marginBottom: '30px',
     },
+    itemTitle: {
+      marginBottom: '20px',
+    },
     arrowRightBtn: {
       position: 'absolute',
       right: '0',
       top: '0',
       width: '24px',
       height: '24px',
+    },
+    chipContainer: {
+      margin: '10px 0 15px',
+      display: 'flex',
+      gap: '10px',
+      flexWrap: 'wrap',
     },
     form: {
       display: 'flex',
@@ -284,6 +354,12 @@ const useStyles = makeStyles()(() => {
 })
 
 /* 
+<Chip
+                  key={index}
+                  className={classes.chip}
+                  label={item}
+                  onClick={handleClick}
+                />
 <Box className={classes.item}>
           <Typography>Educational level</Typography>
           <IconButton className={classes.arrowRightBtn}>
