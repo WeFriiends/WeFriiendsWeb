@@ -2,6 +2,8 @@ interface InterestData {
   title: string
   item: string[]
   multiple?: boolean
+  isOpen?: boolean
+  selectedItems?: string[]
 }
 
 export const interestsData: InterestData[] = [

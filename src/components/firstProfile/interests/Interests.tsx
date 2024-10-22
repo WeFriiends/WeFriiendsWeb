@@ -11,19 +11,21 @@ import {
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { makeStyles } from 'tss-react/mui'
-import { interestsData } from './interestsData'
+import { interestsData as dataInterests } from './interestsData'
 import theme from 'styles/createTheme'
 import Logo from 'components/logo/Logo'
 
 type ArrowRightBtnProps = {
-  onToggle: (isArrowRight: boolean) => void // Типизация пропса onToggle
+  onToggle: (isOpen: boolean) => void
+  isOpen: boolean | undefined
 }
 
 type ChipContainerProps = {
   data: { title: string; item: string[] }
-  //onToggle: (isArrowRight: boolean) => void // Типизация пропса onToggle
+  multiple?: boolean | undefined
+  onSelectedItems: (selectedItems: string[]) => void
+  selectedItems: string[] | undefined
 }
-//import AuthPagesWrapper from '../authPagesWrapper/AuthPagesWrapper'
 
 const Interests = () => {
   const { classes } = useStyles()
@@ -32,6 +34,8 @@ const Interests = () => {
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAboutMe(event.target.value)
   }
+
+  const [interestsData, setInterestsData] = useState(dataInterests)
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -56,22 +60,36 @@ const Interests = () => {
             <Typography className={classes.itemTitle}>{data.title}</Typography>
             <IconButton className={classes.arrowRightBtn}>
               <ArrowRightBtn
-                onToggle={(isOpen) =>
+                isOpen={data.isOpen}
+                onToggle={(isOpen) => {
                   setIsOpenTabPointer(isOpen ? data.title : '')
-                }
+                  setInterestsData((prev) => {
+                    const newInterestsData = [...prev]
+                    newInterestsData[index].isOpen = isOpen
+                    return newInterestsData
+                  })
+                }}
               />
             </IconButton>
-            {openTabPointer === data.title &&
-              ((data.multiple && <ChipContainerMulti data={data} />) || (
-                <ChipContainer data={data} />
-              ))}
+            {data.isOpen && (
+              <ChipContainerMulti
+                onSelectedItems={(selectedItems) => {
+                  setInterestsData((prev) => {
+                    const newInterestsData = prev
+                    newInterestsData[index].selectedItems = selectedItems
+                    return newInterestsData
+                  })
+                }}
+                data={data}
+                multiple={data.multiple}
+                selectedItems={data.selectedItems || []}
+              />
+            )}
           </Box>
         ))}
         <Box className={classes.item}>
           <Typography className={classes.itemTitle}>Language</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
-          </IconButton>
+          <IconButton className={classes.arrowRightBtn}></IconButton>
         </Box>
       </Box>
       <Box className={classes.titleContainer}>
@@ -108,34 +126,34 @@ const Interests = () => {
 
 export default Interests
 
-const ChipContainer: React.FC<ChipContainerProps> = ({ data }) => {
+const ChipContainerMulti: React.FC<ChipContainerProps> = ({
+  data,
+  multiple,
+  onSelectedItems,
+  selectedItems,
+}) => {
   const { classes } = useStyles()
-  const [selectedItem, setSelectedItem] = useState<string>('')
-  return (
-    <Box className={classes.chipContainer}>
-      {data.item.map((item, index) => (
-        <Chip
-          key={index}
-          label={item}
-          style={{
-            backgroundColor: selectedItem === item ? '#FECAB7' : '#EEEEEE',
-          }}
-          onClick={() => setSelectedItem(item)}
-        />
-      ))}
-    </Box>
-  )
-}
 
-const ChipContainerMulti: React.FC<ChipContainerProps> = ({ data }) => {
-  const { classes } = useStyles()
-  const [selectedItems, setSelectedItems] = useState<string[]>([])
+  // Инициализация состояния с помощью useState напрямую
+  const [_selectedItems, setSelectedItems] = useState<string[]>(
+    selectedItems || []
+  )
+
   const checkItems = (item: string) => {
-    if (selectedItems.includes(item)) {
-      return setSelectedItems(selectedItems.filter((i) => i !== item))
+    const newSelectedItems: string[] = []
+    if (_selectedItems.includes(item)) {
+      newSelectedItems.push(..._selectedItems.filter((i) => i !== item))
+      //setSelectedItems(_selectedItems.filter((i) => i !== item))
+    } else {
+      //setSelectedItems((prev) => [...prev, item])
+      const arr = multiple ? _selectedItems : []
+      newSelectedItems.push(...arr, item)
     }
-    setSelectedItems((prev) => [...prev, item])
+    setSelectedItems(newSelectedItems)
+    console.log(newSelectedItems)
+    onSelectedItems(newSelectedItems)
   }
+
   return (
     <Box className={classes.chipContainer}>
       {data.item.map((item, index) => (
@@ -143,7 +161,7 @@ const ChipContainerMulti: React.FC<ChipContainerProps> = ({ data }) => {
           key={index}
           label={item}
           style={{
-            backgroundColor: selectedItems.includes(item)
+            backgroundColor: _selectedItems.includes(item)
               ? '#FECAB7'
               : '#EEEEEE',
           }}
@@ -159,18 +177,18 @@ const ArrowBackBtn = () => {
   return <ArrowBackIcon className={classes.arrowSvg} />
 }
 
-const ArrowRightBtn: React.FC<ArrowRightBtnProps> = ({ onToggle }) => {
+const ArrowRightBtn: React.FC<ArrowRightBtnProps> = ({ onToggle, isOpen }) => {
   const { classes } = useStyles()
-  const [isArrowRight, setIsArrowRight] = useState<boolean>(true)
+  //const [isArrowRight, setIsArrowRight] = useState<boolean>(true)
   const toggle = () => {
-    setIsArrowRight(!isArrowRight)
-    onToggle(isArrowRight)
+    //setIsArrowRight(!isArrowRight)
+    onToggle(!isOpen)
   }
 
   return (
     <ArrowForwardIosIcon
       onClick={toggle}
-      className={isArrowRight ? classes.arrowRightSvg : classes.arrowDownSvg}
+      className={!isOpen ? classes.arrowRightSvg : classes.arrowDownSvg}
     />
   )
 }
