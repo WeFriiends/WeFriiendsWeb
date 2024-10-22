@@ -20,11 +20,19 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const { classes } = useStyles()
   const accountId = '1'
 
-  const printInterest = (value: string | string[]) => {
-    if (typeof value === 'string') {
-      return value
+  const printInterest = (interest: string | string[]) => {
+    if (typeof interest === 'string') {
+      return <Typography className={classes.text}>{interest}</Typography>
     } else {
-      return value.join(', ')
+      return (
+        <List className={classes.interestsList}>
+          {interest.map((value) => (
+            <ListItem key={value} className={classes.interest}>
+              {value}
+            </ListItem>
+          ))}
+        </List>
+      )
     }
   }
 
@@ -78,9 +86,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                     <Typography variant="h3" className={classes.title}>
                       {interest.charAt(0).toUpperCase() + interest.slice(1)}
                     </Typography>
-                    <Typography className={classes.text}>
-                      {printInterest(value)}
-                    </Typography>
+                    {printInterest(value)}
                   </ListItem>
                 ))}
             </List>
@@ -187,6 +193,18 @@ const useStyles = makeStyles()(() => {
       flexDirection: 'column',
       alignItems: 'flex-start',
       padding: 0,
+    },
+    interestsList: {
+      display: 'flex',
+      padding: 0,
+    },
+    interest: {
+      fontSize: 14,
+      lineHeight: '22px',
+      background: '#FEDED2',
+      borderRadius: 20,
+      padding: '7px 15px',
+      marginRight: 10,
     },
   }
 })
