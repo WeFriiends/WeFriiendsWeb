@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom'
 import {
   Box,
   Typography,
-  Button,
-  TextField,
   IconButton,
   Chip,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  Button,
 } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
@@ -14,6 +18,7 @@ import { makeStyles } from 'tss-react/mui'
 import { interestsData as dataInterests } from './interestsData'
 import theme from 'styles/createTheme'
 import Logo from 'components/logo/Logo'
+import LanguageSelector from './languageSelector'
 
 type ArrowRightBtnProps = {
   onToggle: (isOpen: boolean) => void
@@ -31,6 +36,13 @@ const Interests = () => {
   const { classes } = useStyles()
   const [aboutMe, setAboutMe] = useState('')
   const [openTabPointer, setIsOpenTabPointer] = useState('')
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([])
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false)
+
+  const handleSelectedLanguages = (languages: string[]) => {
+    setSelectedLanguages(languages)
+  }
+
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAboutMe(event.target.value)
   }
@@ -89,7 +101,41 @@ const Interests = () => {
         ))}
         <Box className={classes.item}>
           <Typography className={classes.itemTitle}>Language</Typography>
-          <IconButton className={classes.arrowRightBtn}></IconButton>
+          <IconButton
+            className={classes.arrowRightBtn}
+            onClick={() => setIsLanguageOpen(true)}
+          >
+            <ArrowForwardIosIcon className={classes.arrowRightSvg} />
+          </IconButton>
+          <Box className={classes.chipContainer}>
+            {selectedLanguages.map((language, index) => (
+              <Chip
+                key={index}
+                label={language}
+                style={{ margin: '4px', backgroundColor: '#FECAB7' }}
+              />
+            ))}
+          </Box>
+          <Dialog
+            open={isLanguageOpen}
+            onClose={() => setIsLanguageOpen(false)}
+            fullWidth
+          >
+            <DialogTitle className={classes.dialogTitle}>
+              Languages you speak
+            </DialogTitle>
+            <DialogActions>
+              <Button onClick={() => setIsLanguageOpen(false)} color="primary">
+                Close
+              </Button>
+            </DialogActions>
+            <DialogContent>
+              <LanguageSelector
+                onSelectedLanguages={handleSelectedLanguages}
+                selectedLanguages={selectedLanguages}
+              />
+            </DialogContent>
+          </Dialog>
         </Box>
       </Box>
       <Box className={classes.titleContainer}>
@@ -296,6 +342,20 @@ const useStyles = makeStyles()(() => {
       gap: '10px',
       flexWrap: 'wrap',
     },
+    dialogTitle: {
+      fontFamily: 'Inter',
+      fontWeight: 600,
+      fontSize: '18px',
+      color: theme.palette.text.primary,
+      maxWidth: '350px',
+      height: '42px',
+      marginBottom: '20px',
+      backgroundColor: '#FEDED2',
+      borderRadius: '20px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     form: {
       display: 'flex',
       justifyContent: 'center',
@@ -371,47 +431,20 @@ const useStyles = makeStyles()(() => {
   }
 })
 
-/* 
-<Chip
-                  key={index}
-                  className={classes.chip}
-                  label={item}
-                  onClick={handleClick}
-                />
-<Box className={classes.item}>
-          <Typography>Educational level</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
-          </IconButton>
-        </Box>
-        <Box className={classes.item}>
-          <Typography>Children</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
-          </IconButton>
-        </Box>
-        <Box className={classes.item}>
-          <Typography>Drinking</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
-          </IconButton>
-        </Box>
-        <Box className={classes.item}>
-          <Typography>Pets</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
-          </IconButton>
-        </Box>
-        <Box className={classes.item}>
-          <Typography>Interests</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
-          </IconButton>
-        </Box>
-        <Box className={classes.item}>
-          <Typography>Language</Typography>
-          <IconButton className={classes.arrowRightBtn}>
-            <ArrowRightBtn onToggle={() => console.log('ArrowRightBtn')} />
-          </IconButton>
-        </Box>
-*/
+/* <Box className={classes.itemContainer}>
+          <Box className={classes.item}>
+            <Typography className={classes.itemTitle}>Language</Typography>
+            <IconButton className={classes.arrowRightBtn}>
+              <ArrowRightBtn
+                isOpen={isLanguageOpen}
+                onToggle={() => setIsLanguageOpen(!isLanguageOpen)}
+              />
+            </IconButton>
+            {isLanguageOpen && (
+              <LanguageSelector
+                onSelectedLanguages={handleSelectedLanguages}
+                selectedLanguages={selectedLanguages}
+              />
+            )}
+          </Box>
+        </Box> */
