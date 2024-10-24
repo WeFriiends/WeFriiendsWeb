@@ -24,10 +24,12 @@
         "Let's be friends, I'm new in town"
       ],
       "lifeStyle": {
-        "smoking": "Non-Smoker",
-        "education": "master's degrees",
-        "children": "1 child",
-        "pets": ["dog", "cat"]
+        "questionary": {
+          "smoking": "Non-Smoker",
+          "education": "master's degrees",
+          "children": "1 child",
+          "pets": ["dog", "cat"]
+        }
       }
     },
     {
@@ -53,13 +55,15 @@
         "Let's take the dogs for a walk"
       ],
       "lifeStyle": {
-        "smoking": "Non-Smoker",
-        "education": "bachelor's degrees",
-        "children": "None",
-        "drink": "Less than monthly",
-        "pets": ["dog"],
-        "interest": ["#travel", "#psychology"],
-        "language": ["english"]
+        "questionary": {
+          "smoking": "Non-Smoker",
+          "education": "bachelor's degrees",
+          "children": "None",
+          "drink": "Less than monthly",
+          "pets": ["dog"],
+          "language": ["english"]
+        },
+        "interests": ["#travel", "#psychology"]
       }
     },
     {
@@ -84,13 +88,15 @@
         "I'm a new mom. Need some help"
       ],
       "lifeStyle": {
-        "smoking": "Non-Smoker",
-        "education": "bachelor's degrees",
-        "children": "None",
-        "drink": "Less than monthly",
-        "pets": ["dog"],
-        "interest": ["#travel", "#psychology"],
-        "language": ["english"],
+        "questionary": {
+          "smoking": "Non-Smoker",
+          "education": "bachelor's degrees",
+          "children": "None",
+          "drink": "Less than monthly",
+          "pets": ["dog"],
+          "language": ["english"]
+        },
+        "interests": ["#travel", "#psychology"],
         "aboutMe": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis eligendi ducimus est illo reprehenderit, commodi fugiat tempore qui dolor natus minima quidem, optio nulla ipsum voluptates quis soluta, alias totam."
       }
     },

@@ -86,16 +86,29 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                 </ListItem>
               ))}
             </List>
+            {user.lifeStyle && user.lifeStyle.aboutMe && (
+              <Box>
+                <Typography variant="h3" className={classes.title}>
+                  About me
+                </Typography>
+                <Typography className={classes.textAbout}>
+                  {user.lifeStyle.aboutMe}
+                </Typography>
+              </Box>
+            )}
             <List>
               {user.lifeStyle &&
-                Object.entries(user.lifeStyle).map(([interest, value]) => (
-                  <ListItem key={interest} className={classes.titleAndText}>
-                    <Typography variant="h3" className={classes.title}>
-                      {interest.charAt(0).toUpperCase() + interest.slice(1)}
-                    </Typography>
-                    {printInterest(value)}
-                  </ListItem>
-                ))}
+                user.lifeStyle.questionary &&
+                Object.entries(user.lifeStyle.questionary).map(
+                  ([interest, value]) => (
+                    <ListItem key={interest} className={classes.titleAndText}>
+                      <Typography variant="h3" className={classes.title}>
+                        {interest.charAt(0).toUpperCase() + interest.slice(1)}
+                      </Typography>
+                      {printInterest(value)}
+                    </ListItem>
+                  )
+                )}
             </List>
             <Box className={classes.reportBlock}>
               <Typography
@@ -234,6 +247,7 @@ const useStyles = makeStyles()(() => {
     },
     sendReport: {
       fontWeight: 500,
+      lineHeight: '20px',
       '&:hover': {
         color: theme.palette.primary.main,
       },
@@ -241,6 +255,11 @@ const useStyles = makeStyles()(() => {
     textReport: {
       fontSize: 14,
       paddingTop: 10,
+      lineHeight: '20px',
+    },
+    textAbout: {
+      fontSize: 14,
+      color: ' #000000',
     },
   }
 })
