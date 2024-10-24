@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import {
   Accordion,
   AccordionDetails,
@@ -7,11 +8,12 @@ import {
   List,
   ListItem,
 } from '@mui/material'
-
+import theme from '../../styles/createTheme'
 import { makeStyles } from 'tss-react/mui'
 import PhotoCarousel from './PhotoCarousel'
 import { UserProfileData } from '../../types/UserProfileData'
 import LikeDispay from './LikedDisplay'
+import ReportDialog from 'components/report/ReportDialog'
 
 interface UserProfileProps {
   user: UserProfileData
@@ -19,6 +21,11 @@ interface UserProfileProps {
 const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const { classes } = useStyles()
   const accountId = '1'
+  const reportDialogRef = useRef<{ handleOpenReportDialog: () => void }>(null)
+
+  const handleOpenReportDialog = () => {
+    reportDialogRef.current?.handleOpenReportDialog()
+  }
 
   const printInterest = (interest: string | string[]) => {
     if (typeof interest === 'string') {
@@ -90,6 +97,18 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                   </ListItem>
                 ))}
             </List>
+            <Box className={classes.reportBlock}>
+              <Typography
+                className={classes.sendReport}
+                onClick={handleOpenReportDialog}
+              >
+                Report a user
+              </Typography>
+              <ReportDialog ref={reportDialogRef} />
+              <Typography className={classes.textReport}>
+                Don’t worry, {user.name} won’t know about it
+              </Typography>
+            </Box>
           </AccordionDetails>
         </Accordion>
       </Box>
@@ -205,6 +224,23 @@ const useStyles = makeStyles()(() => {
       borderRadius: 20,
       padding: '7px 15px',
       marginRight: 10,
+    },
+    reportBlock: {
+      borderTop: '2px solid #E0E0E0',
+      marginTop: 90,
+      paddingTop: 20,
+      paddingBottom: 35,
+      textAlign: 'center',
+    },
+    sendReport: {
+      fontWeight: 500,
+      '&:hover': {
+        color: theme.palette.primary.main,
+      },
+    },
+    textReport: {
+      fontSize: 14,
+      paddingTop: 10,
     },
   }
 })
