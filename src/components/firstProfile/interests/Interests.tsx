@@ -11,9 +11,11 @@ import {
   DialogActions,
   TextField,
   Button,
+  Link as MuiLink,
 } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import CloseIcon from '@mui/icons-material/Close'
 import { makeStyles } from 'tss-react/mui'
 import { interestsData as dataInterests } from './interestsData'
 import theme from 'styles/createTheme'
@@ -35,9 +37,10 @@ type ChipContainerProps = {
 const Interests = () => {
   const { classes } = useStyles()
   const [aboutMe, setAboutMe] = useState('')
-  const [openTabPointer, setIsOpenTabPointer] = useState('')
+  const [, setIsOpenTabPointer] = useState('')
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([])
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
+  const [isLanguagePopUpOpen, setIsLanguagePopUpOpen] = useState(false)
 
   const handleSelectedLanguages = (languages: string[]) => {
     setSelectedLanguages(languages)
@@ -101,34 +104,85 @@ const Interests = () => {
         ))}
         <Box className={classes.item}>
           <Typography className={classes.itemTitle}>Language</Typography>
-          <IconButton
-            className={classes.arrowRightBtn}
-            onClick={() => setIsLanguageOpen(true)}
-          >
-            <ArrowForwardIosIcon className={classes.arrowRightSvg} />
+          <IconButton className={classes.arrowRightBtn}>
+            <ArrowRightBtn
+              isOpen={isLanguageOpen}
+              onToggle={(isOpen) => {
+                setIsLanguageOpen(isOpen)
+                if (selectedLanguages.length === 0 && isOpen) {
+                  setIsLanguagePopUpOpen(true)
+                }
+              }}
+            />
           </IconButton>
-          <Box className={classes.chipContainer}>
-            {selectedLanguages.map((language, index) => (
-              <Chip
-                key={index}
-                label={language}
-                style={{ margin: '4px', backgroundColor: '#FECAB7' }}
-              />
-            ))}
-          </Box>
+          {isLanguageOpen && (
+            <Box
+              className={classes.chipContainer}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                marginTop: '40px',
+                justifyContent: 'flex-start',
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'inline-flex',
+                  flexWrap: 'wrap',
+                  marginRight: 'auto',
+                }}
+              >
+                {selectedLanguages.map((language, index) => (
+                  <ChipWithClose
+                    onClose={() =>
+                      setSelectedLanguages(
+                        selectedLanguages.filter((l) => l !== language)
+                      )
+                    }
+                    key={index}
+                    label={language}
+                  />
+                ))}
+                <MuiLink
+                  className={classes.muiLink}
+                  component="button"
+                  variant="body2"
+                  sx={{ marginLeft: 'auto' }} // Позволяет разместить линк справа
+                  onClick={() => setIsLanguagePopUpOpen(true)} // Переносим обработчик клика сюда
+                >
+                  add more
+                </MuiLink>
+              </Box>
+            </Box>
+          )}
           <Dialog
-            open={isLanguageOpen}
+            open={isLanguagePopUpOpen}
             onClose={() => setIsLanguageOpen(false)}
-            fullWidth
+            sx={{
+              '& .MuiDialog-paper': {
+                width: '430px',
+                height: '396px',
+                borderRadius: '20px',
+                padding: '26px 40px 36px',
+                position: 'relative',
+              },
+            }}
           >
+            <DialogActions>
+              <Button
+                onClick={() => setIsLanguagePopUpOpen(false)}
+                sx={{
+                  position: 'absolute',
+                  top: '16px',
+                  right: '1px',
+                }}
+              >
+                <CloseIcon sx={{ color: theme.palette.text.primary }} />
+              </Button>
+            </DialogActions>
             <DialogTitle className={classes.dialogTitle}>
               Languages you speak
             </DialogTitle>
-            <DialogActions>
-              <Button onClick={() => setIsLanguageOpen(false)} color="primary">
-                Close
-              </Button>
-            </DialogActions>
             <DialogContent>
               <LanguageSelector
                 onSelectedLanguages={handleSelectedLanguages}
@@ -196,7 +250,6 @@ const ChipContainerMulti: React.FC<ChipContainerProps> = ({
       newSelectedItems.push(...arr, item)
     }
     setSelectedItems(newSelectedItems)
-    console.log(newSelectedItems)
     onSelectedItems(newSelectedItems)
   }
 
@@ -214,6 +267,22 @@ const ChipContainerMulti: React.FC<ChipContainerProps> = ({
           onClick={() => checkItems(item)}
         />
       ))}
+    </Box>
+  )
+}
+
+const ChipWithClose = ({
+  label,
+  onClose,
+}: {
+  label: string
+  onClose: () => void
+}) => {
+  const { classes } = useStyles()
+  return (
+    <Box sx={{ position: 'relative' }}>
+      <Chip label={label} style={{ margin: '4px' }} />
+      <CloseIcon className={classes.closeChipIcon} onClick={onClose} />
     </Box>
   )
 }
@@ -284,9 +353,30 @@ const useStyles = makeStyles()(() => {
       transform: 'rotate(90deg)',
       transition: 'all .3s ease',
     },
+    closeChipIcon: {
+      position: 'absolute',
+      width: '14px',
+      height: '14px',
+      backgroundColor: '#F46B5D',
+      color: 'white',
+      cursor: 'pointer',
+      borderRadius: '50%',
+      right: '2px',
+      top: '-2px',
+    },
     link: {
       textDecoration: 'none',
       color: 'inherit',
+    },
+    muiLink: {
+      color: theme.palette.secondary.main,
+      fontSize: '14px',
+      fontWeight: 600,
+      textDecorationLine: 'underline',
+      textDecorationStyle: 'solid',
+      textDecorationColor: theme.palette.secondary.main,
+      textUnderlineOffset: '4px',
+      alignItems: 'right',
     },
     title: {
       position: 'absolute',
@@ -349,7 +439,7 @@ const useStyles = makeStyles()(() => {
       color: theme.palette.text.primary,
       maxWidth: '350px',
       height: '42px',
-      marginBottom: '20px',
+      margin: '20px 0 60px',
       backgroundColor: '#FEDED2',
       borderRadius: '20px',
       display: 'flex',
@@ -427,6 +517,9 @@ const useStyles = makeStyles()(() => {
       fontFamily: 'Inter',
       textAlign: 'center',
       marginTop: '32px',
+      '&:hover': {
+        backgroundColor: '#FB8F67',
+      },
     },
   }
 })
@@ -447,4 +540,14 @@ const useStyles = makeStyles()(() => {
               />
             )}
           </Box>
-        </Box> */
+        </Box> 
+        <IconButton
+            className={classes.arrowRightBtn}
+            onClick={() => setIsLanguageOpen(true)}
+          >
+            <ArrowForwardIosIcon className={classes.arrowRightSvg} />
+          </IconButton>
+          <LanguageSelector
+                  onSelectedLanguages={handleSelectedLanguages}
+                  selectedLanguages={selectedLanguages}
+                />*/

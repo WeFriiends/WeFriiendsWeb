@@ -12,21 +12,19 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   onSelectedLanguages,
   selectedLanguages,
 }) => {
-  const [languages, setLanguages] = useState<string[]>([]) // Список всех языков
+  const [languages, setLanguages] = useState<string[]>([])
   const [_selectedLanguages, setSelectedLanguages] = useState<string[]>(
     selectedLanguages || []
   )
-  const [searchQuery, setSearchQuery] = useState<string>('') // Для поиска
-  const [filteredLanguages, setFilteredLanguages] = useState<string[]>([]) // Отфильтрованные языки
+  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [filteredLanguages, setFilteredLanguages] = useState<string[]>([])
 
-  // Инициализируем список всех языков при первом рендере
   useEffect(() => {
-    const allLanguages = iso6391.getAllNames() // Получаем список всех языков
+    const allLanguages = iso6391.getAllNames()
     setLanguages(allLanguages)
-    setFilteredLanguages(allLanguages) // По умолчанию все языки отображаются
+    setFilteredLanguages(allLanguages)
   }, [])
 
-  // Фильтрация языков на основе поискового запроса
   useEffect(() => {
     if (searchQuery) {
       setFilteredLanguages(
@@ -35,11 +33,10 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         )
       )
     } else {
-      setFilteredLanguages([]) // Показывать пустой список, если нет запроса
+      setFilteredLanguages([])
     }
   }, [searchQuery, languages])
 
-  // Обработчик выбора языков
   const toggleLanguageSelection = (language: string) => {
     const updatedSelectedLanguages = _selectedLanguages.includes(language)
       ? _selectedLanguages.filter((l) => l !== language)
@@ -52,23 +49,35 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   return (
     <Box>
       <TextField
-        variant="standard" // Только нижняя граница
+        variant="standard"
         placeholder="Search"
-        value={searchQuery} // Связываем поле ввода с состоянием
-        onChange={(e) => setSearchQuery(e.target.value)} // Обработчик изменения поиска
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
               <SearchIcon />
             </InputAdornment>
           ),
-          disableUnderline: false, // Оставляем нижнюю линию
+          disableUnderline: false,
         }}
         fullWidth
         margin="normal"
+        sx={{
+          '& .MuiInputBase-root': {
+            '&:hover:before': {
+              borderBottom: '#C5C5C5',
+            },
+            '&:before': {
+              borderBottom: '1px solid #C5C5C5',
+            },
+            '&:after': {
+              borderBottom: '1px solid #C5C5C5',
+            },
+          },
+        }}
       />
 
-      {/* Отображение списка языков только при наличии фильтрованных результатов */}
       {filteredLanguages.length > 0 && (
         <Box mt={2}>
           {filteredLanguages.map((language, index) => (
