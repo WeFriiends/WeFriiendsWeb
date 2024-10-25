@@ -110,6 +110,20 @@ const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
                   )
                 )}
             </List>
+            {user.lifeStyle && Array.isArray(user.lifeStyle.interests) && (
+              <Box>
+                <Typography variant="h3" className={classes.title}>
+                  Interests
+                </Typography>
+                <List className={classes.tagsList}>
+                  {user.lifeStyle.interests.map((interest) => (
+                    <ListItem key={interest} className={classes.tag}>
+                      {interest}
+                    </ListItem>
+                  ))}
+                </List>
+              </Box>
+            )}
             <Box className={classes.reportBlock}>
               <Typography
                 className={classes.sendReport}
@@ -260,6 +274,15 @@ const useStyles = makeStyles()(() => {
     textAbout: {
       fontSize: 14,
       color: ' #000000',
+    },
+    tagsList: {
+      display: 'flex',
+      gap: 15,
+    },
+    tag: {
+      backgroundColor: ' #EEEEEE',
+      padding: 8,
+      borderRadius: 8,
     },
   }
 })
