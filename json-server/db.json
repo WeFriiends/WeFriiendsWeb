@@ -29,7 +29,17 @@
           "education": "master's degrees",
           "children": "1 child",
           "pets": ["dog", "cat"]
-        }
+        },
+        "interests": [
+          "#travel",
+          "#psychology",
+          "#wine",
+          "#cinema",
+          "#Yoga",
+          "#womenwhocode",
+          "#relocation"
+        ],
+        "aboutMe": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis eligendi ducimus est illo reprehenderit, commodi fugiat tempore qui dolor natus minima quidem, optio nulla ipsum voluptates quis soluta, alias totam."
       }
     },
     {
