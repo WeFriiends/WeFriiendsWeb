@@ -278,11 +278,15 @@ const useStyles = makeStyles()(() => {
     tagsList: {
       display: 'flex',
       gap: 15,
+      flexWrap: 'wrap',
     },
     tag: {
       backgroundColor: ' #EEEEEE',
       padding: 8,
       borderRadius: 8,
+      width: 'auto',
+      fontSize: 12,
+      lineHeight: '20px',
     },
   }
 })
