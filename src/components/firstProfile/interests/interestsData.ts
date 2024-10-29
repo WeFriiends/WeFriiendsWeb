@@ -108,7 +108,6 @@ export const interestsData: InterestData[] = [
       'Cooking Shows',
       'Makeup&Beauty',
       'Board Games',
-      'Astronomy',
       'Crafts',
       'Fashion Design',
       'Travel Photography',

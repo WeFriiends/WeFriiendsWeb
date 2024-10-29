@@ -12,6 +12,7 @@ import GenderPick from './GenderPick'
 import ArrowBackButton from 'common/components/ArrowBackButton'
 import Status from './Status'
 import UserLocation from './location/UserLocation'
+import Interests from './interests/Interests'
 
 const carouselData = [
   {
@@ -33,6 +34,10 @@ const carouselData = [
   {
     component: <Status />,
     label: 'status',
+  },
+  {
+    component: <Interests />,
+    label: 'interests',
   },
 ]
 const ProfileCarousel = () => {

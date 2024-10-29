@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import {
   Box,
   Typography,
@@ -13,13 +12,11 @@ import {
   Button,
   Link as MuiLink,
 } from '@mui/material'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import CloseIcon from '@mui/icons-material/Close'
 import { makeStyles } from 'tss-react/mui'
 import { interestsData as dataInterests } from './interestsData'
 import theme from 'styles/createTheme'
-import Logo from 'components/logo/Logo'
 import LanguageSelector from './languageSelector'
 
 type ArrowRightBtnProps = {
@@ -60,12 +57,6 @@ const Interests = () => {
 
   return (
     <Box className={classes.mainBox}>
-      <Logo />
-      <Link to="/" className={classes.link}>
-        <Box className={classes.arrowBtn}>
-          <ArrowBackBtn />
-        </Box>
-      </Link>
       <Box className={classes.titleContainer}>
         <Typography className={classes.title}>Lifestyle</Typography>
       </Box>
@@ -207,9 +198,6 @@ const Interests = () => {
             }}
             variant="outlined"
           />
-          <Button type="submit" className={classes.submitBtn}>
-            Next
-          </Button>
         </form>
       </Box>
     </Box>
@@ -276,11 +264,6 @@ const ChipWithClose = ({
   )
 }
 
-const ArrowBackBtn = () => {
-  const { classes } = useStyles()
-  return <ArrowBackIcon className={classes.arrowSvg} />
-}
-
 const ArrowRightBtn: React.FC<ArrowRightBtnProps> = ({ onToggle, isOpen }) => {
   const { classes } = useStyles()
   const toggle = () => {
@@ -298,7 +281,6 @@ const ArrowRightBtn: React.FC<ArrowRightBtnProps> = ({ onToggle, isOpen }) => {
 const useStyles = makeStyles()(() => {
   return {
     mainBox: {
-      margin: '200px auto',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -438,6 +420,7 @@ const useStyles = makeStyles()(() => {
       justifyContent: 'center',
       flexDirection: 'column',
       maxWidth: '540px',
+      width: '540px',
       marginTop: '16px',
     },
     textarea: {
