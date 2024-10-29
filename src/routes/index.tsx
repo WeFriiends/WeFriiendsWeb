@@ -1,18 +1,23 @@
 import { RouteObject } from 'react-router'
 import { ComponentType, Suspense, lazy } from 'react'
+import AuthGuard from 'components/userAuth/AuthGuard'
 import LoadingScreen from 'common/svg/Loader'
 import YourLikesList from 'pages/YourLikesList'
 import NearMe from 'pages/NearMe'
 import AuthCallbackPage from 'pages/AuthCallbackPage'
-import NameProfile from 'components/firstProfile/NameProfile'
-import Status from 'components/firstProfile/Status'
-import Gender from 'components/firstProfile/Gender'
+// import MessagesAndFriends from 'pages/MessagesAndFriends'
+// import Invitation from '../components/invitation/Invitation'
+// import ErrorPage from 'pages/ErrorPage'
+// import Messages from 'pages/Messages'
+import FirstProfile from 'pages/FirstProfile'
+// import NameProfile from 'components/firstProfile/NameProfile'
 import Interests from 'components/firstProfile/interests/Interests'
 import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
 import Match from '../components/findMatch/Match'
 import Messages from 'pages/MessagesPage'
+import UserAccount from 'pages/UserAccount'
 import NavBar from 'components/navBar/NavBar'
 import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFriends'
 import ReportDialogExamplePage from '../components/report/ReportDialogExamplePage'
@@ -42,18 +47,8 @@ const routes: RouteObject[] = [
     children: [
       {
         path: 'fill-profile',
-        element: <NameProfile />,
-        //element: <AuthGuard component={NameProfile} />,
-      },
-      {
-        path: 'status',
-        element: <Status />,
-        //element: <AuthGuard component={NameProfile} />,
-      },
-      {
-        path: 'gender',
-        element: <Gender />,
-        //element: <AuthGuard component={NameProfile} />,
+        // element: <FirstProfile />,
+        element: <AuthGuard component={FirstProfile} />,
       },
       {
         path: 'fill-interests',
@@ -64,12 +59,17 @@ const routes: RouteObject[] = [
         element: <NavBar />,
         children: [
           {
+            path: 'account',
+            element: <UserAccount />,
+            // element: <AuthGuard component={YourLikesList} />,
+          },
+          {
             element: <TabsMessagesFriends />,
             children: [
               {
                 path: 'friends',
-                element: <Friends />,
-                // element: <AuthGuard component={Friends} />,
+                // element: <Friends />,
+                element: <AuthGuard component={Friends} />,
               },
               {
                 path: 'messages',

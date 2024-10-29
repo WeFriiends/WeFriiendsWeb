@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Typography, Box } from '@mui/material'
+import { useEffect, useState } from 'react'
+import { Typography, Box, FormHelperText } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { commonStyles } from 'styles/commonStyles'
+import { setItemToLocalStorage } from 'utils/localStorage'
 
 const STATUSES: Array<string> = [
   'Looking for new friends',
@@ -15,50 +15,41 @@ const STATUSES: Array<string> = [
 
 const Status = () => {
   const { classes } = useStyles()
-  const commonClasses = commonStyles().classes
 
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([])
 
-  const toggleStatus = (status: string) => {
-    if (selectedStatuses.includes(status)) {
-      setSelectedStatuses(selectedStatuses.filter((s) => s !== status))
+  useEffect(() => {
+    setItemToLocalStorage('selectedStatuses', selectedStatuses)
+  }, [selectedStatuses])
+
+  const toggleStatus = (statusId: string) => {
+    if (selectedStatuses.includes(statusId)) {
+      setSelectedStatuses(selectedStatuses.filter((s) => s !== statusId))
     } else if (selectedStatuses.length < 3) {
-      setSelectedStatuses([...selectedStatuses, status])
+      setSelectedStatuses([...selectedStatuses, statusId])
     }
   }
 
   return (
-    <Box className={classes.mainBox}>
-      <Box className={classes.titleContainer}>
-        <Typography
-          variant="h1"
-          className={`${commonClasses.title}
-          ${classes.title}`}
-        >
-          What are you looking for?
-        </Typography>
-      </Box>
-      <Box className={classes.tipContainer}>
-        <Typography className={`${commonClasses.subTitle} ${classes.subTitle}`}>
-          This will be your status. You can always change it
-        </Typography>
-        <Typography className={classes.subTitle}>
-          Please, choose 3 statuses maximum
-        </Typography>
-      </Box>
+    <>
+      <Typography variant="h1" className={classes.title}>
+        What are you looking for?
+      </Typography>
+      <FormHelperText>
+        This will be your status. You can always change it
+        <br />
+        Please, choose 3 statuses maximum
+      </FormHelperText>
+
       <Box className={classes.phraseWrapper}>
-        {STATUSES.map((phrase, index) => (
+        {STATUSES.map((phrase) => (
           <Box
             key={phrase}
             className={`${classes.phrase} ${classes.text}`}
-            onClick={(event) => {
-              const target = event.target as Element
-              toggleStatus(target.id)
-            }}
-            id={`phrase${index}`}
+            onClick={() => toggleStatus(phrase)}
             sx={{
-              backgroundColor: selectedStatuses.includes(`phrase${index}`)
-                ? '#faa06d'
+              backgroundColor: selectedStatuses.includes(phrase)
+                ? '#FEDED2'
                 : 'rgba(229, 229, 229, 0.40)',
             }}
           >
@@ -66,82 +57,33 @@ const Status = () => {
           </Box>
         ))}
       </Box>
-    </Box>
+    </>
   )
 }
 
 export default Status
 
-const useStyles = makeStyles()((theme) => {
+const useStyles = makeStyles()(() => {
   return {
-    mainBox: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      marginLeft: 20,
-      marginRight: 20,
-      paddingTop: 50,
-      overflow: 'hidden',
-      [theme.breakpoints.up('sm')]: {
-        paddingTop: 200,
-        width: 350,
-        margin: '0 auto',
-      },
-      [theme.breakpoints.up(420)]: {
-        width: 400,
-        margin: '0 auto',
-      },
-    },
     title: {
-      fontSize: 32,
-      fontWeight: 600,
-      lineHeight: '119%',
-      paddingTop: 0,
-    },
-    subTitle: {
-      fontFamily: 'Inter',
-      fontSize: 14,
-      color: '#1D878C',
-      fontWeight: 600,
-      lineHeight: 'normal',
-    },
-    titleContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      marginBottom: 14,
-    },
-    tipContainer: {
-      marginTop: 20,
-      marginBottom: 50,
+      padding: 0,
       textAlign: 'center',
-    },
-    tip: {
-      fontWeight: 400,
-      fontSize: 12,
-      lineHeight: '183%',
-      textAlign: 'center',
-      marginTop: 42,
-      marginBottom: 33,
-      color: '#639c9e',
+      margin: '0 -50px',
+      maxWidth: 'calc(100vw - 40px)',
     },
     phraseWrapper: {
       minHeight: 200,
       display: 'flex',
-      justifyContent: 'center',
-      gap: '10px 20px',
+      justifyContent: 'start',
+      gap: '15px 20px',
       flexWrap: 'wrap',
-      width: '90vw',
+      marginTop: 50,
       marginBottom: 70,
-      [theme.breakpoints.up(420)]: {
-        width: 400,
-        margin: 'o auto',
-        justifyContent: 'space-between',
-      },
     },
     phrase: {
+      boxSizing: 'border-box',
       minHeight: 40,
-      padding: '4px 20px',
+      padding: '4px 18px',
       color: '#444',
       fontFamily: 'Inter',
       fontSize: 12,
@@ -153,8 +95,15 @@ const useStyles = makeStyles()((theme) => {
       transition: '0.5s',
       '&:hover': {
         cursor: 'pointer',
-        backgroundColor: '#fba16d',
+        backgroundColor: '#FEDED2',
       },
+      '&:nth-child(1)': { maxWidth: 103 },
+      '&:nth-child(2)': { maxWidth: 152 },
+      '&:nth-child(3)': { maxWidth: 135 },
+      '&:nth-child(4)': { maxWidth: 190 },
+      '&:nth-child(5)': { maxWidth: 130 },
+      '&:nth-child(6)': { maxWidth: 140 },
+      '&:nth-child(7)': { maxWidth: 210 },
     },
     text: {
       fontSize: 12,

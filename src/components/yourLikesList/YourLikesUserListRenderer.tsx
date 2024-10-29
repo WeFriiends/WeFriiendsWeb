@@ -36,9 +36,7 @@ const YourLikesUserListRenderer: React.FC<UserListRendererProps> = ({
               <IconLightning />
             </Box>
             <Box component="aside">
-              <h4 className={classes.usernameStyling}>
-                {user.firstName} {user.lastName}
-              </h4>
+              <h4 className={classes.usernameStyling}>{user.name}</h4>
               <Box className={classes.distanceBoxPosition}>
                 <img src="/img/icon-location.svg" alt="distance" />
                 <Typography className={classes.locationTextStyle}>

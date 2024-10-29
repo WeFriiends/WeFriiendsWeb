@@ -18,7 +18,7 @@ const UserAuthentication = () => {
   const handleLogin = async () => {
     await loginWithRedirect({
       appState: {
-        returnTo: 'user/messages-and-friends',
+        returnTo: 'user/friends',
       },
     })
   }
