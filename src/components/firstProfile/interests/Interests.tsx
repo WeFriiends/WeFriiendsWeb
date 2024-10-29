@@ -125,34 +125,26 @@ const Interests = () => {
                 justifyContent: 'flex-start',
               }}
             >
-              <Box
-                sx={{
-                  display: 'inline-flex',
-                  flexWrap: 'wrap',
-                  marginRight: 'auto',
-                }}
+              {selectedLanguages.map((language, index) => (
+                <ChipWithClose
+                  onClose={() =>
+                    setSelectedLanguages(
+                      selectedLanguages.filter((l) => l !== language)
+                    )
+                  }
+                  key={index}
+                  label={language}
+                />
+              ))}
+              <MuiLink
+                className={classes.muiLink}
+                component="button"
+                variant="body2"
+                sx={{ marginLeft: 'auto' }}
+                onClick={() => setIsLanguagePopUpOpen(true)}
               >
-                {selectedLanguages.map((language, index) => (
-                  <ChipWithClose
-                    onClose={() =>
-                      setSelectedLanguages(
-                        selectedLanguages.filter((l) => l !== language)
-                      )
-                    }
-                    key={index}
-                    label={language}
-                  />
-                ))}
-                <MuiLink
-                  className={classes.muiLink}
-                  component="button"
-                  variant="body2"
-                  sx={{ marginLeft: 'auto' }} // Позволяет разместить линк справа
-                  onClick={() => setIsLanguagePopUpOpen(true)} // Переносим обработчик клика сюда
-                >
-                  add more
-                </MuiLink>
-              </Box>
+                add more
+              </MuiLink>
             </Box>
           )}
           <Dialog
@@ -234,7 +226,6 @@ const ChipContainerMulti: React.FC<ChipContainerProps> = ({
 }) => {
   const { classes } = useStyles()
 
-  // Инициализация состояния с помощью useState напрямую
   const [_selectedItems, setSelectedItems] = useState<string[]>(
     selectedItems || []
   )
@@ -243,9 +234,7 @@ const ChipContainerMulti: React.FC<ChipContainerProps> = ({
     const newSelectedItems: string[] = []
     if (_selectedItems.includes(item)) {
       newSelectedItems.push(..._selectedItems.filter((i) => i !== item))
-      //setSelectedItems(_selectedItems.filter((i) => i !== item))
     } else {
-      //setSelectedItems((prev) => [...prev, item])
       const arr = multiple ? _selectedItems : []
       newSelectedItems.push(...arr, item)
     }
@@ -294,9 +283,7 @@ const ArrowBackBtn = () => {
 
 const ArrowRightBtn: React.FC<ArrowRightBtnProps> = ({ onToggle, isOpen }) => {
   const { classes } = useStyles()
-  //const [isArrowRight, setIsArrowRight] = useState<boolean>(true)
   const toggle = () => {
-    //setIsArrowRight(!isArrowRight)
     onToggle(!isOpen)
   }
 
@@ -523,31 +510,3 @@ const useStyles = makeStyles()(() => {
     },
   }
 })
-
-/* <Box className={classes.itemContainer}>
-          <Box className={classes.item}>
-            <Typography className={classes.itemTitle}>Language</Typography>
-            <IconButton className={classes.arrowRightBtn}>
-              <ArrowRightBtn
-                isOpen={isLanguageOpen}
-                onToggle={() => setIsLanguageOpen(!isLanguageOpen)}
-              />
-            </IconButton>
-            {isLanguageOpen && (
-              <LanguageSelector
-                onSelectedLanguages={handleSelectedLanguages}
-                selectedLanguages={selectedLanguages}
-              />
-            )}
-          </Box>
-        </Box> 
-        <IconButton
-            className={classes.arrowRightBtn}
-            onClick={() => setIsLanguageOpen(true)}
-          >
-            <ArrowForwardIosIcon className={classes.arrowRightSvg} />
-          </IconButton>
-          <LanguageSelector
-                  onSelectedLanguages={handleSelectedLanguages}
-                  selectedLanguages={selectedLanguages}
-                />*/
