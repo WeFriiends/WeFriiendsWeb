@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import UploadSlot from './UploadSlot'
@@ -46,6 +46,23 @@ const UploadPhotos = () => {
   const hasAnyPics = (array: UserPicsType[]): boolean => {
     return array.some((pic) => pic.url !== null && pic.url.trim() !== '')
   }
+
+  useEffect(() => {
+    const fetchPhotos = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/photos')
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        const data = await response.json()
+        console.log(data)
+      } catch (error) {
+        console.error('Fetch error:', error)
+      }
+    }
+
+    fetchPhotos()
+  }, [])
 
   return (
     <Box className={classes.mainBox}>

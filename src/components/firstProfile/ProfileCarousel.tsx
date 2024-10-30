@@ -60,7 +60,7 @@ const ProfileCarousel = () => {
       street,
       houseNumber,
       selectedStatuses,
-      // userPhotos,
+      photos,
     } = getItemsFromLocalStorage([
       'name',
       'dob',
@@ -72,7 +72,7 @@ const ProfileCarousel = () => {
       'street',
       'houseNumber',
       'selectedStatuses',
-      'userPhotos',
+      'userPicsStorage',
     ])
     await createProfile(
       {
@@ -81,7 +81,7 @@ const ProfileCarousel = () => {
         gender,
         location: { lat, lng, country, city, street, houseNumber },
         reasons: selectedStatuses,
-        // userPhotos,
+        photos,
       },
       token
     )

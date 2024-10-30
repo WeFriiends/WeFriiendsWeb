@@ -52,8 +52,6 @@ const UploadSlot: React.FC<SlotType> = ({
           const newPic = {
             id: id,
             url: base64data as string,
-            width: img.width,
-            height: img.height,
           }
 
           const newUserPicsStorage = userPics.map((elem: UserPicsType) =>
@@ -153,6 +151,7 @@ const useStyles = makeStyles()(() => ({
     fontSize: 12,
     lineHeight: '167%',
     color: '#f46b5d',
+    // color: createTheme.ROSE,
     userSelect: 'none',
   },
   hiddenInput: {
