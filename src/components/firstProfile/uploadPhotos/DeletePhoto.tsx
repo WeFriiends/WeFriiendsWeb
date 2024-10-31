@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, Typography, Button, Modal } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
+import createTheme from 'styles/createTheme'
 
 interface DeletePhotoProps {
   setIsDeleteModalOpened: (isOpened: boolean) => void
@@ -75,7 +76,7 @@ const useStyles = makeStyles()(() => ({
     fontSize: 24,
     lineHeight: '83%',
     textAlign: 'center',
-    color: '#f46b5d',
+    color: createTheme.palette.primary.main,
   },
   deleteWrapper: {
     display: 'flex',
@@ -99,10 +100,10 @@ const useStyles = makeStyles()(() => ({
   },
   buttonDelete: {
     color: '#fff',
-    background: '#fb8f67',
+    background: createTheme.palette.primary.light,
     border: 'none',
     '&:hover': {
-      backgroundColor: '#F1562A',
+      background: createTheme.palette.primary.dark,
     },
   },
   buttonsWrapper: {

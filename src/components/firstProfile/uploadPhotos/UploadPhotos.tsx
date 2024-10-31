@@ -4,6 +4,7 @@ import { makeStyles } from 'tss-react/mui'
 import UploadSlot from './UploadSlot'
 import { PhotoModal } from './PhotoModal'
 import DeletePhoto from './DeletePhoto'
+import createTheme from 'styles/createTheme'
 
 const UploadPhotos = () => {
   const { classes } = useStyles()
@@ -135,11 +136,11 @@ const useStyles = makeStyles()(() => ({
     fontSize: 18,
     lineHeight: '132%',
     textAlign: 'center',
-    color: '#444',
+    color: createTheme.palette.text.primary,
   },
   hint: {
     textAlign: 'center',
-    color: '#444',
+    color: createTheme.palette.text.primary,
     fontWeight: 400,
     fontSize: 13,
   },

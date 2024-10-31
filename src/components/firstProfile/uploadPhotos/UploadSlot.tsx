@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import UserPicsType from './UploadPhotos'
+import createTheme from 'styles/createTheme'
 
 interface UserPicsType {
   id: string
@@ -150,8 +151,7 @@ const useStyles = makeStyles()(() => ({
     fontWeight: 700,
     fontSize: 12,
     lineHeight: '167%',
-    color: '#f46b5d',
-    // color: createTheme.ROSE,
+    color: createTheme.palette.primary.main,
     userSelect: 'none',
   },
   hiddenInput: {
