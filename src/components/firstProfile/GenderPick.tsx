@@ -1,11 +1,16 @@
 import { useState } from 'react'
 import { Box, IconButton, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { setItemToLocalStorage } from 'utils/localStorage'
+import {
+  getItemFromLocalStorage,
+  setItemToLocalStorage,
+} from 'utils/localStorage'
 
 const Gender = () => {
   const { classes } = useStyles()
-  const [chosenGender, setChosenGender] = useState<string>('female')
+  const [chosenGender, setChosenGender] = useState<string>(
+    getItemFromLocalStorage('gender')
+  )
   const [hoveredGender, setHoveredGender] = useState<string | null>(null)
 
   const getImage = (gender: string) => {
