@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Typography, Box, FormHelperText } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { setItemToLocalStorage } from 'utils/localStorage'
+import {
+  getItemFromLocalStorage,
+  setItemToLocalStorage,
+} from 'utils/localStorage'
 
 const STATUSES: Array<string> = [
   'Looking for new friends',
@@ -16,7 +19,9 @@ const STATUSES: Array<string> = [
 const Status = () => {
   const { classes } = useStyles()
 
-  const [selectedStatuses, setSelectedStatuses] = useState<string[]>([])
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>(
+    getItemFromLocalStorage('selectedStatuses')
+  )
 
   useEffect(() => {
     setItemToLocalStorage('selectedStatuses', selectedStatuses)
