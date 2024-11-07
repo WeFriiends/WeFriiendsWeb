@@ -1,7 +1,10 @@
 import { FC, useState, useEffect } from 'react'
 import { reverseGeocode } from '../../../actions/geocoding'
 import { useGeolocation } from '@uidotdev/usehooks'
-import { setItemToLocalStorage } from 'utils/localStorage'
+import {
+  getItemFromLocalStorage,
+  setItemToLocalStorage,
+} from 'utils/localStorage'
 import { InputAdornment, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import Loader from 'common/svg/Loader'
@@ -32,7 +35,7 @@ const UserLocation: FC = () => {
   const { classes } = useStyles()
   const { latitude, longitude, error } = useGeolocation()
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
-    null
+    { lat: getItemFromLocalStorage('lat'), lng: getItemFromLocalStorage('lng') }
   )
   const [address, setAddress] = useState<Address | null>(null)
   const [_, setIsFocused] = useState(false)

@@ -20,7 +20,7 @@ const Status = () => {
   const { classes } = useStyles()
 
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>(
-    getItemFromLocalStorage('selectedStatuses')
+    getItemFromLocalStorage('selectedStatuses') || []
   )
 
   useEffect(() => {

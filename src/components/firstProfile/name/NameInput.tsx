@@ -15,7 +15,9 @@ import NameValidationBox from './NameValidationBox'
 
 const NameInput = () => {
   const { classes } = useStyles()
-  const [fullName, setFullName] = useState(getItemFromLocalStorage('name'))
+  const [fullName, setFullName] = useState(
+    getItemFromLocalStorage('name') || ''
+  )
   const [error, setError] = useState<string | null>(null)
   const [hasTyped, setHasTyped] = useState(false)
 
