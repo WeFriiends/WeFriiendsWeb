@@ -82,7 +82,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         <Box mt={2}>
           {filteredLanguages.map((language, index) => (
             <Chip
-              key={index}
+              key={index + language}
               label={language}
               style={{
                 margin: '4px',

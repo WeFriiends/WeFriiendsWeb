@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Box,
   Typography,
@@ -39,12 +39,46 @@ const Interests = () => {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
   const [isLanguagePopUpOpen, setIsLanguagePopUpOpen] = useState(false)
 
+  useEffect(() => {
+    const savedInterestsData = localStorage.getItem('interestsData')
+    const savedSelectedLanguages = localStorage.getItem('selectedLanguages')
+    const savedAboutMe = localStorage.getItem('aboutMe')
+    if (savedInterestsData) {
+      try {
+        setInterestsData(JSON.parse(savedInterestsData))
+      } catch (error) {
+        console.error('Error parsing JSON:', error)
+      }
+    }
+    if (savedSelectedLanguages) {
+      try {
+        setSelectedLanguages(JSON.parse(savedSelectedLanguages))
+      } catch (error) {
+        console.error('Error parsing JSON:', error)
+      }
+    }
+    if (savedAboutMe) {
+      try {
+        setAboutMe(savedAboutMe)
+      } catch (error) {
+        console.error('Error parsing JSON:', error)
+      }
+    }
+  }, [])
+
   const handleSelectedLanguages = (languages: string[]) => {
     setSelectedLanguages(languages)
   }
 
+  const saveDataToLocalStorage = () => {
+    localStorage.setItem('interestsData', JSON.stringify(interestsData))
+    localStorage.setItem('selectedLanguages', JSON.stringify(selectedLanguages))
+    localStorage.setItem('aboutMe', aboutMe)
+  }
+
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAboutMe(event.target.value)
+    saveDataToLocalStorage()
   }
 
   const [interestsData, setInterestsData] = useState(dataInterests)
@@ -72,6 +106,7 @@ const Interests = () => {
                   setInterestsData((prev) => {
                     const newInterestsData = [...prev]
                     newInterestsData[index].isOpen = isOpen
+                    saveDataToLocalStorage()
                     return newInterestsData
                   })
                 }}
@@ -83,6 +118,7 @@ const Interests = () => {
                   setInterestsData((prev) => {
                     const newInterestsData = prev
                     newInterestsData[index].selectedItems = selectedItems
+                    saveDataToLocalStorage()
                     return newInterestsData
                   })
                 }}
@@ -118,11 +154,12 @@ const Interests = () => {
             >
               {selectedLanguages.map((language, index) => (
                 <ChipWithClose
-                  onClose={() =>
+                  onClose={() => {
                     setSelectedLanguages(
                       selectedLanguages.filter((l) => l !== language)
                     )
-                  }
+                    saveDataToLocalStorage()
+                  }}
                   key={index}
                   label={language}
                 />

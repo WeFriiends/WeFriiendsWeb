@@ -11,7 +11,6 @@ import AuthCallbackPage from 'pages/AuthCallbackPage'
 // import Messages from 'pages/Messages'
 import FirstProfile from 'pages/FirstProfile'
 // import NameProfile from 'components/firstProfile/NameProfile'
-import Interests from 'components/firstProfile/interests/Interests'
 import Friends from 'pages/FriendsPage'
 import Invitation from '../components/invitation/Invitation'
 import ErrorPage from 'pages/ErrorPage'
@@ -49,11 +48,6 @@ const routes: RouteObject[] = [
         path: 'fill-profile',
         // element: <FirstProfile />,
         element: <AuthGuard component={FirstProfile} />,
-      },
-      {
-        path: 'fill-interests',
-        element: <Interests />,
-        //element: <AuthGuard component={NameProfile} />,
       },
       {
         element: <NavBar />,
