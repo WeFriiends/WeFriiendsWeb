@@ -1,4 +1,4 @@
-interface InterestData {
+export interface InterestData {
   title: string
   item: string[]
   multiple?: boolean

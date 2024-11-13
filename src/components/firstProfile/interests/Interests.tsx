@@ -12,17 +12,13 @@ import {
   Button,
   Link as MuiLink,
 } from '@mui/material'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import CloseIcon from '@mui/icons-material/Close'
 import { makeStyles } from 'tss-react/mui'
 import { interestsData as dataInterests } from './interestsData'
 import theme from 'styles/createTheme'
 import LanguageSelector from './languageSelector'
-
-type ArrowRightBtnProps = {
-  onToggle: (isOpen: boolean) => void
-  isOpen: boolean | undefined
-}
+import InterestsItem from './InterestsItem'
+import { ArrowRightBtn } from './ArrowRightBtn'
 
 type ChipContainerProps = {
   data: { title: string; item: string[] }
@@ -96,38 +92,28 @@ const Interests = () => {
       </Box>
       <Box className={classes.itemContainer}>
         {interestsData.map((data, index) => (
-          <Box key={index} className={classes.item}>
-            <Typography className={classes.itemTitle}>{data.title}</Typography>
-            <IconButton className={classes.arrowRightBtn}>
-              <ArrowRightBtn
-                isOpen={data.isOpen}
-                onToggle={(isOpen) => {
-                  setIsOpenTabPointer(isOpen ? data.title : '')
-                  setInterestsData((prev) => {
-                    const newInterestsData = [...prev]
-                    newInterestsData[index].isOpen = isOpen
-                    saveDataToLocalStorage()
-                    return newInterestsData
-                  })
-                }}
-              />
-            </IconButton>
-            {data.isOpen && (
-              <ChipContainerMulti
-                onSelectedItems={(selectedItems) => {
-                  setInterestsData((prev) => {
-                    const newInterestsData = prev
-                    newInterestsData[index].selectedItems = selectedItems
-                    saveDataToLocalStorage()
-                    return newInterestsData
-                  })
-                }}
-                data={data}
-                multiple={data.multiple}
-                selectedItems={data.selectedItems || []}
-              />
-            )}
-          </Box>
+          <InterestsItem
+            key={index + data.title}
+            data={data}
+            index={index}
+            onToggle={(isOpen) => {
+              setIsOpenTabPointer(isOpen ? data.title : '')
+              setInterestsData((prev) => {
+                const newInterestsData = [...prev]
+                newInterestsData[index].isOpen = isOpen
+                saveDataToLocalStorage()
+                return newInterestsData
+              })
+            }}
+            onSelectedItems={(selectedItems) => {
+              setInterestsData((prev) => {
+                const newInterestsData = prev
+                newInterestsData[index].selectedItems = selectedItems
+                saveDataToLocalStorage()
+                return newInterestsData
+              })
+            }}
+          />
         ))}
         <Box className={classes.item}>
           <Typography className={classes.itemTitle}>Language</Typography>
@@ -143,15 +129,7 @@ const Interests = () => {
             />
           </IconButton>
           {isLanguageOpen && (
-            <Box
-              className={classes.chipContainer}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                marginTop: '40px',
-                justifyContent: 'flex-start',
-              }}
-            >
+            <Box className={classes.chipContainer}>
               {selectedLanguages.map((language, index) => (
                 <ChipWithClose
                   onClose={() => {
@@ -243,7 +221,7 @@ const Interests = () => {
 
 export default Interests
 
-const ChipContainerMulti: React.FC<ChipContainerProps> = ({
+export const ChipContainerMulti: React.FC<ChipContainerProps> = ({
   data,
   multiple,
   onSelectedItems,
@@ -301,20 +279,6 @@ const ChipWithClose = ({
   )
 }
 
-const ArrowRightBtn: React.FC<ArrowRightBtnProps> = ({ onToggle, isOpen }) => {
-  const { classes } = useStyles()
-  const toggle = () => {
-    onToggle(!isOpen)
-  }
-
-  return (
-    <ArrowForwardIosIcon
-      onClick={toggle}
-      className={!isOpen ? classes.arrowRightSvg : classes.arrowDownSvg}
-    />
-  )
-}
-
 const useStyles = makeStyles()(() => {
   return {
     mainBox: {
@@ -342,22 +306,6 @@ const useStyles = makeStyles()(() => {
       color: theme.palette.text.primary,
       cursor: 'pointer',
       top: '25%',
-    },
-    arrowRightSvg: {
-      position: 'absolute',
-      width: '14px',
-      height: '14px',
-      color: theme.palette.text.primary,
-      cursor: 'pointer',
-    },
-    arrowDownSvg: {
-      position: 'absolute',
-      width: '14px',
-      height: '14px',
-      color: theme.palette.text.primary,
-      cursor: 'pointer',
-      transform: 'rotate(90deg)',
-      transition: 'all .3s ease',
     },
     closeChipIcon: {
       position: 'absolute',
@@ -433,10 +381,12 @@ const useStyles = makeStyles()(() => {
       height: '24px',
     },
     chipContainer: {
-      margin: '10px 0 15px',
+      margin: '40px 0 15px',
       display: 'flex',
+      alignItems: 'center',
       gap: '10px',
       flexWrap: 'wrap',
+      justifyContent: 'flex-start',
     },
     dialogTitle: {
       fontFamily: 'Inter',
