@@ -79,12 +79,6 @@ const Interests = () => {
 
   const [interestsData, setInterestsData] = useState(dataInterests)
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    event.stopPropagation()
-    setAboutMe('')
-  }
-
   return (
     <Box className={classes.mainBox}>
       <Box className={classes.titleContainer}>
@@ -117,7 +111,11 @@ const Interests = () => {
         ))}
         <Box className={classes.item}>
           <Typography className={classes.itemTitle}>Language</Typography>
-          <IconButton className={classes.arrowRightBtn}>
+          <IconButton
+            className={classes.arrowRightBtn}
+            disableFocusRipple={true}
+            disableRipple={true}
+          >
             <ArrowRightBtn
               isOpen={isLanguageOpen}
               onToggle={(isOpen) => {
@@ -185,27 +183,25 @@ const Interests = () => {
       <Box className={classes.titleContainer}>
         <Typography className={classes.title}>About me</Typography>
       </Box>
-      <Box>
-        <form className={classes.form} onSubmit={onSubmit}>
-          <TextField
-            id="aboutMe"
-            type="text"
-            placeholder="Add about me..."
-            value={aboutMe}
-            onChange={onChange}
-            multiline
-            rows={6}
-            InputProps={{
-              classes: {
-                root: classes.textareaRoot,
-              },
-              inputProps: {
-                maxLength: 1000,
-              },
-            }}
-            variant="outlined"
-          />
-        </form>
+      <Box className={classes.aboutMeContainer}>
+        <TextField
+          id="aboutMe"
+          type="text"
+          placeholder="Add about me..."
+          value={aboutMe}
+          onChange={onChange}
+          multiline
+          rows={6}
+          InputProps={{
+            classes: {
+              root: classes.textareaRoot,
+            },
+            inputProps: {
+              maxLength: 1000,
+            },
+          }}
+          variant="outlined"
+        />
       </Box>
     </Box>
   )
@@ -342,27 +338,19 @@ const useStyles = makeStyles()(() => {
       display: 'flex',
       alignItems: 'center',
       flexDirection: 'column',
-      maxWidth: '540px',
-      width: '540px',
+      maxWidth: '100%',
+      width: '100%',
       height: '42px',
       borderRadius: '20px',
       backgroundColor: '#FEDED2',
       marginBottom: '20px',
-      '@media (max-width: 600px)': {
-        maxWidth: '280px',
-        width: '280px',
-      },
     },
     itemContainer: {
       display: 'flex',
       flexDirection: 'column',
-      maxWidth: '540px',
-      width: '540px',
+      maxWidth: '100%',
+      width: '100%',
       margin: '20px 0 40px',
-      '@media (max-width: 600px)': {
-        maxWidth: '280px',
-        width: '280px',
-      },
     },
     item: {
       position: 'relative',
@@ -411,7 +399,7 @@ const useStyles = makeStyles()(() => {
       fontWeight: 600,
       fontSize: '18px',
       color: theme.palette.text.primary,
-      maxWidth: '350px',
+      maxWidth: '100%',
       height: '42px',
       margin: '20px 0 60px',
       backgroundColor: '#FEDED2',
@@ -420,28 +408,22 @@ const useStyles = makeStyles()(() => {
       justifyContent: 'center',
       alignItems: 'center',
       '@media (max-width: 600px)': {
-        maxWidth: '100%',
-        width: '100%',
         fontSize: '14px',
         margin: '40px 0',
       },
     },
-    form: {
+    aboutMeContainer: {
       display: 'flex',
       justifyContent: 'center',
       flexDirection: 'column',
-      maxWidth: '540px',
-      width: '540px',
+      maxWidth: '100%',
+      width: '100%',
       marginTop: '16px',
-      '@media (max-width: 600px)': {
-        maxWidth: '280px',
-        width: '280px',
-      },
     },
     textarea: {
       disableUnderLine: true,
-      maxWidth: '540px',
-      width: '540px',
+      maxWidth: 'auto',
+      width: 'auto',
       height: '163px',
       padding: '10px 18.5px',
       borderRadius: '20px',
@@ -451,10 +433,6 @@ const useStyles = makeStyles()(() => {
       color: '#C5C5C5',
       fontWeight: 400,
       outline: 'none',
-      '@media (max-width: 600px)': {
-        maxWidth: '280px',
-        width: '280px',
-      },
     },
     textareaRoot: {
       border: 'none',
@@ -490,28 +468,6 @@ const useStyles = makeStyles()(() => {
         color: '#C5C5C5',
         border: '1px solid #C5C5C5',
         borderColor: '#C5C5C5',
-      },
-    },
-    submitBtn: {
-      maxWidth: '540px',
-      width: '540px',
-      height: '60px',
-      borderRadius: '10px',
-      backgroundColor: '#FB8F67',
-      color: '#FFFFFF',
-      fontSize: '18px',
-      fontWeight: 600,
-      outline: 'none',
-      border: 'none',
-      fontFamily: 'Inter',
-      textAlign: 'center',
-      marginTop: '32px',
-      '@media (max-width: 600px)': {
-        maxWidth: '280px',
-        width: '280px',
-      },
-      '&:hover': {
-        backgroundColor: '#FB8F67',
       },
     },
   }

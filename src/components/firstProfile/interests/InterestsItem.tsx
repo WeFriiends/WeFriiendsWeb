@@ -25,7 +25,11 @@ const InterestsItem: React.FC<InterestItemProps> = ({
   return (
     <Box key={index} className={classes.item}>
       <Typography className={classes.itemTitle}>{data.title}</Typography>
-      <IconButton className={classes.arrowRightBtn}>
+      <IconButton
+        className={classes.arrowRightBtn}
+        disableFocusRipple={true}
+        disableRipple={true}
+      >
         <ArrowRightBtn isOpen={data.isOpen} onToggle={onToggle} />
       </IconButton>
       {data.isOpen && (
