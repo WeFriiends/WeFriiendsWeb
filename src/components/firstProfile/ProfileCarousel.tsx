@@ -1,5 +1,4 @@
 import GenericCarousel from '../../common/components/Carousel'
-import Pagination from 'common/components/Pagination'
 import useHandleCarousel from 'hooks/useHandleCarousel'
 import NameInput from './name/NameInput'
 import DateOfBirthPicker from './DateOfBirthPicker'
@@ -12,6 +11,8 @@ import GenderPick from './GenderPick'
 import ArrowBackButton from 'common/components/ArrowBackButton'
 import Status from './Status'
 import UserLocation from './location/UserLocation'
+import MobileStepper from '@mui/material/MobileStepper'
+import { makeStyles } from 'tss-react/mui'
 
 const carouselData = [
   {
@@ -36,8 +37,9 @@ const carouselData = [
   },
 ]
 const ProfileCarousel = () => {
+  const { classes } = useStyles()
   const token = useBearerToken()
-  const { activeStep, handleBack, handleNext, handleClickPagination } =
+  const { activeStep, handleBack, handleNext } =
     useHandleCarousel()
 
   const carouselDataLength = carouselData.length
@@ -94,14 +96,33 @@ const ProfileCarousel = () => {
       {activeStep === carouselDataLength - 1 && (
         <PrimaryButton onClickHandler={onSubmit} label="Submit" />
       )}
-
-      <Pagination
+      <MobileStepper
+        className={classes.stepper}
+        variant="dots"
+        steps={carouselData.length}
+        position="static"
         activeStep={activeStep}
-        dots={carouselData.length}
-        onChangeIndex={handleClickPagination}
+        backButton={<></>}
+        nextButton={<></>}
       />
     </>
   )
 }
 
 export default ProfileCarousel
+
+const useStyles = makeStyles()((theme) => ({
+  stepper: {
+    '& .MuiLinearProgress-root': { width: '100%' },
+    '& .MuiMobileStepper-dot': {
+      width: 10,
+      height: 10,
+      borderRadius: 5,
+      backgroundColor: theme.palette.primary.main,
+      margin: '0 6px',
+    },
+    '& .MuiMobileStepper-dot.MuiMobileStepper-dotActive': {
+      backgroundColor: theme.palette.secondary.main,
+    },
+  },
+}))
