@@ -156,15 +156,7 @@ const Interests = () => {
           <Dialog
             open={isLanguagePopUpOpen}
             onClose={() => setIsLanguageOpen(false)}
-            sx={{
-              '& .MuiDialog-paper': {
-                width: '430px',
-                height: '396px',
-                borderRadius: '20px',
-                padding: '26px 40px 36px',
-                position: 'relative',
-              },
-            }}
+            className={classes.dialog}
           >
             <DialogActions>
               <Button
@@ -288,6 +280,10 @@ const useStyles = makeStyles()(() => {
       maxWidth: '540px',
       width: '540px',
       justifyContent: 'center',
+      '@media (max-width: 600px)': {
+        maxWidth: '280px',
+        width: '280px',
+      },
     },
     arrowBtn: {
       position: 'relative',
@@ -352,6 +348,10 @@ const useStyles = makeStyles()(() => {
       borderRadius: '20px',
       backgroundColor: '#FEDED2',
       marginBottom: '20px',
+      '@media (max-width: 600px)': {
+        maxWidth: '280px',
+        width: '280px',
+      },
     },
     itemContainer: {
       display: 'flex',
@@ -359,6 +359,10 @@ const useStyles = makeStyles()(() => {
       maxWidth: '540px',
       width: '540px',
       margin: '20px 0 40px',
+      '@media (max-width: 600px)': {
+        maxWidth: '280px',
+        width: '280px',
+      },
     },
     item: {
       position: 'relative',
@@ -388,6 +392,20 @@ const useStyles = makeStyles()(() => {
       flexWrap: 'wrap',
       justifyContent: 'flex-start',
     },
+    dialog: {
+      '& .MuiDialog-paper': {
+        width: '430px',
+        height: '396px',
+        borderRadius: '20px',
+        padding: '26px 40px 36px',
+        position: 'relative',
+        '@media (max-width: 600px)': {
+          maxWidth: '280px',
+          width: '280px',
+          padding: '16px 20px',
+        },
+      },
+    },
     dialogTitle: {
       fontFamily: 'Inter',
       fontWeight: 600,
@@ -401,6 +419,12 @@ const useStyles = makeStyles()(() => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      '@media (max-width: 600px)': {
+        maxWidth: '100%',
+        width: '100%',
+        fontSize: '14px',
+        margin: '40px 0',
+      },
     },
     form: {
       display: 'flex',
@@ -409,6 +433,10 @@ const useStyles = makeStyles()(() => {
       maxWidth: '540px',
       width: '540px',
       marginTop: '16px',
+      '@media (max-width: 600px)': {
+        maxWidth: '280px',
+        width: '280px',
+      },
     },
     textarea: {
       disableUnderLine: true,
@@ -423,6 +451,10 @@ const useStyles = makeStyles()(() => {
       color: '#C5C5C5',
       fontWeight: 400,
       outline: 'none',
+      '@media (max-width: 600px)': {
+        maxWidth: '280px',
+        width: '280px',
+      },
     },
     textareaRoot: {
       border: 'none',
@@ -474,6 +506,10 @@ const useStyles = makeStyles()(() => {
       fontFamily: 'Inter',
       textAlign: 'center',
       marginTop: '32px',
+      '@media (max-width: 600px)': {
+        maxWidth: '280px',
+        width: '280px',
+      },
       '&:hover': {
         backgroundColor: '#FB8F67',
       },
