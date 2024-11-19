@@ -3,7 +3,6 @@ import {
   Box,
   Typography,
   IconButton,
-  Chip,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -12,20 +11,14 @@ import {
   Button,
   Link as MuiLink,
 } from '@mui/material'
-import CloseIcon from '@mui/icons-material/Close'
 import { makeStyles } from 'tss-react/mui'
+import CloseIcon from '@mui/icons-material/Close'
 import { interestsData as dataInterests, InterestData } from './interestsData'
 import theme from 'styles/createTheme'
 import LanguageSelector from './languageSelector'
 import InterestsItem from './InterestsItem'
 import { ArrowRightBtn } from './ArrowRightBtn'
-
-type ChipContainerProps = {
-  data: { title: string; item: string[] }
-  multiple?: boolean | undefined
-  onSelectedItems: (selectedItems: string[]) => void
-  selectedItems: string[] | undefined
-}
+import { ChipWithClose } from './ChipWithClose'
 
 const Interests = () => {
   const { classes } = useStyles()
@@ -57,7 +50,6 @@ const Interests = () => {
     }
   }, [])
 
-  // Сохраняем selectedLanguages в localStorage при изменении
   useEffect(() => {
     localStorage.setItem('selectedLanguages', JSON.stringify(selectedLanguages))
   }, [selectedLanguages])
@@ -205,64 +197,6 @@ const Interests = () => {
 
 export default Interests
 
-export const ChipContainerMulti: React.FC<ChipContainerProps> = ({
-  data,
-  multiple,
-  onSelectedItems,
-  selectedItems,
-}) => {
-  const { classes } = useStyles()
-
-  const [_selectedItems, setSelectedItems] = useState<string[]>(
-    selectedItems || []
-  )
-
-  const checkItems = (item: string) => {
-    const newSelectedItems: string[] = []
-    if (_selectedItems.includes(item)) {
-      newSelectedItems.push(..._selectedItems.filter((i) => i !== item))
-    } else {
-      const arr = multiple ? _selectedItems : []
-      newSelectedItems.push(...arr, item)
-    }
-    setSelectedItems(newSelectedItems)
-    onSelectedItems(newSelectedItems)
-  }
-
-  return (
-    <Box className={classes.chipContainer}>
-      {data.item.map((item, index) => (
-        <Chip
-          key={index}
-          label={item}
-          style={{
-            backgroundColor: _selectedItems.includes(item)
-              ? '#FECAB7'
-              : '#EEEEEE',
-          }}
-          onClick={() => checkItems(item)}
-        />
-      ))}
-    </Box>
-  )
-}
-
-const ChipWithClose = ({
-  label,
-  onClose,
-}: {
-  label: string
-  onClose: () => void
-}) => {
-  const { classes } = useStyles()
-  return (
-    <Box sx={{ position: 'relative' }}>
-      <Chip label={label} style={{ margin: '4px' }} />
-      <CloseIcon className={classes.closeChipIcon} onClick={onClose} />
-    </Box>
-  )
-}
-
 const useStyles = makeStyles()(() => {
   return {
     mainBox: {
@@ -276,6 +210,14 @@ const useStyles = makeStyles()(() => {
         maxWidth: '280px',
         width: '280px',
       },
+    },
+    chipContainer: {
+      margin: '40px 0 15px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '10px',
+      flexWrap: 'wrap',
+      justifyContent: 'flex-start',
     },
     arrowBtn: {
       position: 'relative',
@@ -294,17 +236,6 @@ const useStyles = makeStyles()(() => {
       color: theme.palette.text.primary,
       cursor: 'pointer',
       top: '25%',
-    },
-    closeChipIcon: {
-      position: 'absolute',
-      width: '14px',
-      height: '14px',
-      backgroundColor: '#F46B5D',
-      color: 'white',
-      cursor: 'pointer',
-      borderRadius: '50%',
-      right: '2px',
-      top: '-2px',
     },
     link: {
       textDecoration: 'none',
@@ -367,14 +298,6 @@ const useStyles = makeStyles()(() => {
       top: '0',
       width: '24px',
       height: '24px',
-    },
-    chipContainer: {
-      margin: '40px 0 15px',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '10px',
-      flexWrap: 'wrap',
-      justifyContent: 'flex-start',
     },
     dialog: {
       '& .MuiDialog-paper': {

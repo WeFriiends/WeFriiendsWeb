@@ -1,7 +1,7 @@
 // InterestItem.tsx
 import React from 'react'
 import { Box, Typography, IconButton } from '@mui/material'
-import { ChipContainerMulti } from './Interests'
+import { ChipContainerMulti } from './ChipContainerMulti'
 import { ArrowRightBtn } from './ArrowRightBtn'
 import { InterestData } from './interestsData'
 import { makeStyles } from 'tss-react/mui'
