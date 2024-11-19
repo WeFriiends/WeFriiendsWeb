@@ -6,45 +6,57 @@ import theme from 'styles/createTheme'
 import InterestsItem from './InterestsItem'
 import { LanguageItem } from './LanguageItem'
 
+const LOCAL_STORAGE_KEY = 'userPreferences'
+
 const Interests = () => {
   const { classes } = useStyles()
-  const [aboutMe, setAboutMe] = useState(localStorage.getItem('aboutMe') || '')
-  const [, setIsOpenTabPointer] = useState('')
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(
-    JSON.parse(localStorage.getItem('selectedLanguages') || '[]')
-  )
-  const [interestsData, setInterestsData] =
-    useState<InterestData[]>(dataInterests)
 
-  useEffect(() => {
-    const savedInterestsData = localStorage.getItem('interestsData')
-    if (savedInterestsData) {
+  const loadInitialData = () => {
+    const savedData = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if (savedData) {
       try {
-        const selectedInterests = JSON.parse(savedInterestsData)
-        const aggregatedInterests = dataInterests.map((item, index) => {
-          return {
-            ...item,
-            selectedItems: selectedInterests[index],
-          }
-        })
-        setInterestsData(aggregatedInterests)
+        return JSON.parse(savedData)
       } catch (error) {
-        console.error('Error parsing JSON:', error)
+        console.error('Error parsing localStorage data:', error)
       }
     }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('selectedLanguages', JSON.stringify(selectedLanguages))
-  }, [selectedLanguages])
-  const saveDataToLocalStorageInterests = () => {
-    const selectedInterests = interestsData.map((item) => item.selectedItems)
-    localStorage.setItem('interestsData', JSON.stringify(selectedInterests))
+    return {}
   }
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const [preferences] = useState(() => loadInitialData())
+  const [aboutMe, setAboutMe] = useState(preferences.aboutMe || '')
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(
+    preferences.selectedLanguages || []
+  )
+  const [interestsData, setInterestsData] = useState<InterestData[]>(
+    dataInterests.map((interest) => ({
+      ...interest,
+      selectedItems: preferences[interest.title] || [],
+    }))
+  )
+
+  useEffect(() => {
+    const userPreferences = interestsData.reduce((acc, interest) => {
+      if (interest.selectedItems && interest.selectedItems.length > 0) {
+        acc[interest.title] =
+          interest.selectedItems.length === 1
+            ? interest.selectedItems[0]
+            : interest.selectedItems
+      }
+      return acc
+    }, {} as Record<string, any>)
+
+    const dataToSave = {
+      aboutMe,
+      selectedLanguages,
+      ...userPreferences,
+    }
+
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(dataToSave))
+  }, [aboutMe, selectedLanguages, interestsData])
+
+  const handleAboutMeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAboutMe(event.target.value)
-    localStorage.setItem('aboutMe', event.target.value)
   }
 
   return (
@@ -59,20 +71,17 @@ const Interests = () => {
             data={data}
             index={index}
             onToggle={(isOpen) => {
-              setIsOpenTabPointer(isOpen ? data.title : '')
               setInterestsData((prev) => {
-                const newInterestsData = [...prev]
-                newInterestsData[index].isOpen = isOpen
-                saveDataToLocalStorageInterests()
-                return newInterestsData
+                const updatedInterests = [...prev]
+                updatedInterests[index].isOpen = isOpen
+                return updatedInterests
               })
             }}
             onSelectedItems={(selectedItems) => {
               setInterestsData((prev) => {
-                const newInterestsData = prev
-                newInterestsData[index].selectedItems = selectedItems
-                saveDataToLocalStorageInterests()
-                return newInterestsData
+                const updatedInterests = [...prev]
+                updatedInterests[index].selectedItems = selectedItems
+                return updatedInterests
               })
             }}
           />
@@ -91,7 +100,7 @@ const Interests = () => {
           type="text"
           placeholder="Add about me..."
           value={aboutMe}
-          onChange={onChange}
+          onChange={handleAboutMeChange}
           multiline
           rows={6}
           InputProps={{
@@ -111,165 +120,59 @@ const Interests = () => {
 
 export default Interests
 
-const useStyles = makeStyles()(() => {
-  return {
-    mainBox: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      maxWidth: '540px',
-      width: '540px',
-      justifyContent: 'center',
-      '@media (max-width: 600px)': {
-        maxWidth: '280px',
-        width: '280px',
-      },
+const useStyles = makeStyles()(() => ({
+  mainBox: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    maxWidth: '540px',
+    width: '540px',
+    justifyContent: 'center',
+    '@media (max-width: 600px)': {
+      maxWidth: '280px',
+      width: '280px',
     },
-    chipContainer: {
-      margin: '40px 0 15px',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '10px',
-      flexWrap: 'wrap',
-      justifyContent: 'flex-start',
-    },
-    arrowBtn: {
-      position: 'relative',
-      width: '45px',
-      height: '45px',
-      borderRadius: '50%',
-      backgroundColor: '#FEDED2',
-      display: 'flex',
-      justifyContent: 'center',
-      margin: '50px 0',
-    },
-    arrowSvg: {
-      position: 'absolute',
-      width: '24px',
-      height: '24px',
-      color: theme.palette.text.primary,
-      cursor: 'pointer',
-      top: '25%',
-    },
-    link: {
-      textDecoration: 'none',
-      color: 'inherit',
-    },
-    muiLink: {
-      color: theme.palette.secondary.main,
-      fontSize: '14px',
-      fontWeight: 600,
-      textDecorationLine: 'underline',
-      textDecorationStyle: 'solid',
-      textDecorationColor: theme.palette.secondary.main,
-      textUnderlineOffset: '4px',
-      alignItems: 'right',
-    },
-    title: {
-      position: 'absolute',
-      fontFamily: 'Inter',
-      fontWeight: 600,
-      fontSize: '18px',
-      alignItems: 'center',
-      top: '20%',
-      color: theme.palette.text.primary,
-    },
-    titleContainer: {
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      flexDirection: 'column',
-      maxWidth: '100%',
-      width: '100%',
-      height: '42px',
-      borderRadius: '20px',
-      backgroundColor: '#FEDED2',
-      marginBottom: '20px',
-    },
-    itemContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      maxWidth: '100%',
-      width: '100%',
-      margin: '20px 0 40px',
-    },
-    item: {
-      position: 'relative',
-      fontFamily: 'Inter',
-      fontWeight: 400,
-      fontSize: '16px',
-      alignItems: 'center',
-      color: theme.palette.text.primary,
-      borderBottom: '1px solid #EEEEEE',
-      marginBottom: '30px',
-    },
-    itemTitle: {
-      marginBottom: '20px',
-    },
-    arrowRightBtn: {
-      position: 'absolute',
-      right: '0',
-      top: '0',
-      width: '24px',
-      height: '24px',
-    },
-    aboutMeContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexDirection: 'column',
-      maxWidth: '100%',
-      width: '100%',
-      marginTop: '16px',
-    },
-    textarea: {
-      disableUnderLine: true,
-      maxWidth: 'auto',
-      width: 'auto',
-      height: '163px',
-      padding: '10px 18.5px',
-      borderRadius: '20px',
-      border: '1px solid #C5C5C5',
-      fontFamily: 'Inter',
-      fontSize: '14px',
-      color: '#C5C5C5',
-      fontWeight: 400,
-      outline: 'none',
-    },
-    textareaRoot: {
-      border: 'none',
-      borderRadius: '20px',
-      outline: 'none',
-      backgroundColor: 'transparent',
-    },
-    textareaPlaceholder: {
-      fontFamily: 'Inter',
-      fontSize: '14px',
-      color: theme.palette.text.primary,
-      fontWeight: 400,
-    },
-    textFieldset: {
-      borderColor: '#C5C5C5',
-      borderRadius: '20px',
-    },
-    labelRoot: {
-      fontFamily: 'Inter',
-      fontSize: '14px',
-      color: '#C5C5C5',
-      fontWeight: 400,
-      borderColor: '#C5C5C5',
-    },
-    labelFocused: {
-      fontFamily: 'Inter',
-      fontSize: '14px',
-      color: 'C5C5C5',
-      fontWeight: 400,
-      borderColor: '#C5C5C5',
-      border: '1px solid #C5C5C5',
-      '&:focus': {
-        color: '#C5C5C5',
-        border: '1px solid #C5C5C5',
-        borderColor: '#C5C5C5',
-      },
-    },
-  }
-})
+  },
+  titleContainer: {
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    maxWidth: '100%',
+    width: '100%',
+    height: '42px',
+    borderRadius: '20px',
+    backgroundColor: '#FEDED2',
+    marginBottom: '20px',
+  },
+  title: {
+    position: 'absolute',
+    fontFamily: 'Inter',
+    fontWeight: 600,
+    fontSize: '18px',
+    alignItems: 'center',
+    top: '20%',
+    color: theme.palette.text.primary,
+  },
+  itemContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: '100%',
+    width: '100%',
+    margin: '20px 0 40px',
+  },
+  aboutMeContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    maxWidth: '100%',
+    width: '100%',
+    marginTop: '16px',
+  },
+  textareaRoot: {
+    border: 'none',
+    borderRadius: '20px',
+    outline: 'none',
+    backgroundColor: 'transparent',
+  },
+}))
