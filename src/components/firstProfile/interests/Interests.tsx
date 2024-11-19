@@ -1,62 +1,46 @@
 import { useEffect, useState } from 'react'
-import {
-  Box,
-  Typography,
-  IconButton,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  TextField,
-  Button,
-  Link as MuiLink,
-} from '@mui/material'
+import { Box, Typography, TextField } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import CloseIcon from '@mui/icons-material/Close'
 import { interestsData as dataInterests, InterestData } from './interestsData'
 import theme from 'styles/createTheme'
-import LanguageSelector from './languageSelector'
 import InterestsItem from './InterestsItem'
-import { ArrowRightBtn } from './ArrowRightBtn'
-import { ChipWithClose } from './ChipWithClose'
+import { LanguageItem } from './LanguageItem'
 
 const Interests = () => {
   const { classes } = useStyles()
   const [aboutMe, setAboutMe] = useState(localStorage.getItem('aboutMe') || '')
   const [, setIsOpenTabPointer] = useState('')
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(
-    JSON.parse(localStorage.getItem('selectedLanguages') || '[]')
-  )
-  const [isLanguageOpen, setIsLanguageOpen] = useState(false)
-  const [isLanguagePopUpOpen, setIsLanguagePopUpOpen] = useState(false)
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([])
   const [interestsData, setInterestsData] =
     useState<InterestData[]>(dataInterests)
 
   useEffect(() => {
-    const savedInterestsData = localStorage.getItem('interestsData')
-    if (savedInterestsData) {
-      try {
-        const selectedInterests = JSON.parse(savedInterestsData)
-        const aggregatedInterests = dataInterests.map((item, index) => {
-          return {
-            ...item,
-            selectedItems: selectedInterests[index],
-          }
-        })
-        setInterestsData(aggregatedInterests)
-      } catch (error) {
-        console.error('Error parsing JSON:', error)
-      }
+    const savedInterestsData = localStorage.getItem('interestsData') || '[]'
+    const savedLanguagesData = localStorage.getItem('selectedLanguages') || '[]'
+    try {
+      const selectedInterests = JSON.parse(savedInterestsData)
+      const aggregatedInterests = dataInterests.map((item, index) => {
+        return {
+          ...item,
+          selectedItems: selectedInterests[index],
+        }
+      })
+      setInterestsData(aggregatedInterests)
+    } catch (error) {
+      console.error('Error parsing JSON:', error)
+    }
+
+    try {
+      const selectedLanguages = JSON.parse(savedLanguagesData)
+      setSelectedLanguages(selectedLanguages)
+    } catch (error) {
+      console.error('Error parsing JSON:', error)
     }
   }, [])
 
   useEffect(() => {
     localStorage.setItem('selectedLanguages', JSON.stringify(selectedLanguages))
   }, [selectedLanguages])
-
-  const handleSelectedLanguages = (languages: string[]) => {
-    setSelectedLanguages(languages)
-  }
 
   const saveDataToLocalStorageInterests = () => {
     const selectedInterests = interestsData.map((item) => item.selectedItems)
@@ -98,75 +82,10 @@ const Interests = () => {
             }}
           />
         ))}
-        <Box className={classes.item}>
-          <Typography className={classes.itemTitle}>Language</Typography>
-          <IconButton
-            className={classes.arrowRightBtn}
-            disableFocusRipple={true}
-            disableRipple={true}
-          >
-            <ArrowRightBtn
-              isOpen={isLanguageOpen}
-              onToggle={(isOpen) => {
-                setIsLanguageOpen(isOpen)
-                if (selectedLanguages.length === 0 && isOpen) {
-                  setIsLanguagePopUpOpen(true)
-                }
-              }}
-            />
-          </IconButton>
-          {isLanguageOpen && (
-            <Box className={classes.chipContainer}>
-              {selectedLanguages.map((language, index) => (
-                <ChipWithClose
-                  onClose={() => {
-                    setSelectedLanguages(
-                      selectedLanguages.filter((l) => l !== language)
-                    )
-                  }}
-                  key={index}
-                  label={language}
-                />
-              ))}
-              <MuiLink
-                className={classes.muiLink}
-                component="button"
-                variant="body2"
-                sx={{ marginLeft: 'auto' }}
-                onClick={() => setIsLanguagePopUpOpen(true)}
-              >
-                add more
-              </MuiLink>
-            </Box>
-          )}
-          <Dialog
-            open={isLanguagePopUpOpen}
-            onClose={() => setIsLanguageOpen(false)}
-            className={classes.dialog}
-          >
-            <DialogActions>
-              <Button
-                onClick={() => setIsLanguagePopUpOpen(false)}
-                sx={{
-                  position: 'absolute',
-                  top: '16px',
-                  right: '1px',
-                }}
-              >
-                <CloseIcon sx={{ color: theme.palette.text.primary }} />
-              </Button>
-            </DialogActions>
-            <DialogTitle className={classes.dialogTitle}>
-              Languages you speak
-            </DialogTitle>
-            <DialogContent>
-              <LanguageSelector
-                onSelectedLanguages={handleSelectedLanguages}
-                selectedLanguages={selectedLanguages}
-              />
-            </DialogContent>
-          </Dialog>
-        </Box>
+        <LanguageItem
+          onSetSelectedLanguages={setSelectedLanguages}
+          selectedLanguages={selectedLanguages}
+        />
       </Box>
       <Box className={classes.titleContainer}>
         <Typography className={classes.title}>About me</Typography>
@@ -298,38 +217,6 @@ const useStyles = makeStyles()(() => {
       top: '0',
       width: '24px',
       height: '24px',
-    },
-    dialog: {
-      '& .MuiDialog-paper': {
-        width: '430px',
-        height: '396px',
-        borderRadius: '20px',
-        padding: '26px 40px 36px',
-        position: 'relative',
-        '@media (max-width: 600px)': {
-          maxWidth: '280px',
-          width: '280px',
-          padding: '16px 20px',
-        },
-      },
-    },
-    dialogTitle: {
-      fontFamily: 'Inter',
-      fontWeight: 600,
-      fontSize: '18px',
-      color: theme.palette.text.primary,
-      maxWidth: '100%',
-      height: '42px',
-      margin: '20px 0 60px',
-      backgroundColor: '#FEDED2',
-      borderRadius: '20px',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      '@media (max-width: 600px)': {
-        fontSize: '14px',
-        margin: '40px 0',
-      },
     },
     aboutMeContainer: {
       display: 'flex',
