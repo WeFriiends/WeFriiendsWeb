@@ -10,38 +10,33 @@ const Interests = () => {
   const { classes } = useStyles()
   const [aboutMe, setAboutMe] = useState(localStorage.getItem('aboutMe') || '')
   const [, setIsOpenTabPointer] = useState('')
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([])
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(
+    JSON.parse(localStorage.getItem('selectedLanguages') || '[]')
+  )
   const [interestsData, setInterestsData] =
     useState<InterestData[]>(dataInterests)
 
   useEffect(() => {
-    const savedInterestsData = localStorage.getItem('interestsData') || '[]'
-    const savedLanguagesData = localStorage.getItem('selectedLanguages') || '[]'
-    try {
-      const selectedInterests = JSON.parse(savedInterestsData)
-      const aggregatedInterests = dataInterests.map((item, index) => {
-        return {
-          ...item,
-          selectedItems: selectedInterests[index],
-        }
-      })
-      setInterestsData(aggregatedInterests)
-    } catch (error) {
-      console.error('Error parsing JSON:', error)
-    }
-
-    try {
-      const selectedLanguages = JSON.parse(savedLanguagesData)
-      setSelectedLanguages(selectedLanguages)
-    } catch (error) {
-      console.error('Error parsing JSON:', error)
+    const savedInterestsData = localStorage.getItem('interestsData')
+    if (savedInterestsData) {
+      try {
+        const selectedInterests = JSON.parse(savedInterestsData)
+        const aggregatedInterests = dataInterests.map((item, index) => {
+          return {
+            ...item,
+            selectedItems: selectedInterests[index],
+          }
+        })
+        setInterestsData(aggregatedInterests)
+      } catch (error) {
+        console.error('Error parsing JSON:', error)
+      }
     }
   }, [])
 
   useEffect(() => {
     localStorage.setItem('selectedLanguages', JSON.stringify(selectedLanguages))
   }, [selectedLanguages])
-
   const saveDataToLocalStorageInterests = () => {
     const selectedInterests = interestsData.map((item) => item.selectedItems)
     localStorage.setItem('interestsData', JSON.stringify(selectedInterests))
