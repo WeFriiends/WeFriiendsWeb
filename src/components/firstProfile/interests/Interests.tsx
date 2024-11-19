@@ -14,7 +14,7 @@ import {
 } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import { makeStyles } from 'tss-react/mui'
-import { interestsData as dataInterests } from './interestsData'
+import { interestsData as dataInterests, InterestData } from './interestsData'
 import theme from 'styles/createTheme'
 import LanguageSelector from './languageSelector'
 import InterestsItem from './InterestsItem'
@@ -29,55 +29,52 @@ type ChipContainerProps = {
 
 const Interests = () => {
   const { classes } = useStyles()
-  const [aboutMe, setAboutMe] = useState('')
+  const [aboutMe, setAboutMe] = useState(localStorage.getItem('aboutMe') || '')
   const [, setIsOpenTabPointer] = useState('')
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([])
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(
+    JSON.parse(localStorage.getItem('selectedLanguages') || '[]')
+  )
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
   const [isLanguagePopUpOpen, setIsLanguagePopUpOpen] = useState(false)
+  const [interestsData, setInterestsData] =
+    useState<InterestData[]>(dataInterests)
 
   useEffect(() => {
     const savedInterestsData = localStorage.getItem('interestsData')
-    const savedSelectedLanguages = localStorage.getItem('selectedLanguages')
-    const savedAboutMe = localStorage.getItem('aboutMe')
     if (savedInterestsData) {
       try {
-        setInterestsData(JSON.parse(savedInterestsData))
-      } catch (error) {
-        console.error('Error parsing JSON:', error)
-      }
-    }
-    if (savedSelectedLanguages) {
-      try {
-        setSelectedLanguages(JSON.parse(savedSelectedLanguages))
-      } catch (error) {
-        console.error('Error parsing JSON:', error)
-      }
-    }
-    if (savedAboutMe) {
-      try {
-        setAboutMe(savedAboutMe)
+        const selectedInterests = JSON.parse(savedInterestsData)
+        const aggregatedInterests = dataInterests.map((item, index) => {
+          return {
+            ...item,
+            selectedItems: selectedInterests[index],
+          }
+        })
+        setInterestsData(aggregatedInterests)
       } catch (error) {
         console.error('Error parsing JSON:', error)
       }
     }
   }, [])
 
+  // Сохраняем selectedLanguages в localStorage при изменении
+  useEffect(() => {
+    localStorage.setItem('selectedLanguages', JSON.stringify(selectedLanguages))
+  }, [selectedLanguages])
+
   const handleSelectedLanguages = (languages: string[]) => {
     setSelectedLanguages(languages)
   }
 
-  const saveDataToLocalStorage = () => {
-    localStorage.setItem('interestsData', JSON.stringify(interestsData))
-    localStorage.setItem('selectedLanguages', JSON.stringify(selectedLanguages))
-    localStorage.setItem('aboutMe', aboutMe)
+  const saveDataToLocalStorageInterests = () => {
+    const selectedInterests = interestsData.map((item) => item.selectedItems)
+    localStorage.setItem('interestsData', JSON.stringify(selectedInterests))
   }
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAboutMe(event.target.value)
-    saveDataToLocalStorage()
+    localStorage.setItem('aboutMe', event.target.value)
   }
-
-  const [interestsData, setInterestsData] = useState(dataInterests)
 
   return (
     <Box className={classes.mainBox}>
@@ -95,7 +92,7 @@ const Interests = () => {
               setInterestsData((prev) => {
                 const newInterestsData = [...prev]
                 newInterestsData[index].isOpen = isOpen
-                saveDataToLocalStorage()
+                saveDataToLocalStorageInterests()
                 return newInterestsData
               })
             }}
@@ -103,7 +100,7 @@ const Interests = () => {
               setInterestsData((prev) => {
                 const newInterestsData = prev
                 newInterestsData[index].selectedItems = selectedItems
-                saveDataToLocalStorage()
+                saveDataToLocalStorageInterests()
                 return newInterestsData
               })
             }}
@@ -134,7 +131,6 @@ const Interests = () => {
                     setSelectedLanguages(
                       selectedLanguages.filter((l) => l !== language)
                     )
-                    saveDataToLocalStorage()
                   }}
                   key={index}
                   label={language}
