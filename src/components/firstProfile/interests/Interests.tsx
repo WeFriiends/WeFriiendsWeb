@@ -38,10 +38,7 @@ const Interests = () => {
   useEffect(() => {
     const userPreferences = interestsData.reduce((acc, interest) => {
       if (interest.selectedItems && interest.selectedItems.length > 0) {
-        acc[interest.title] =
-          interest.selectedItems.length === 1
-            ? interest.selectedItems[0]
-            : interest.selectedItems
+        acc[interest.title] = interest.selectedItems
       }
       return acc
     }, {} as Record<string, any>)
