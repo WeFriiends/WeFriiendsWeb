@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
-import { Dayjs } from 'dayjs'
-import { setItemToLocalStorage } from 'utils/localStorage'
+import dayjs, { Dayjs } from 'dayjs'
+import {
+  getItemFromLocalStorage,
+  setItemToLocalStorage,
+} from 'utils/localStorage'
 import { FormHelperText, Typography, Box } from '@mui/material'
 import theme from 'styles/createTheme'
 import { makeStyles } from 'tss-react/mui'
@@ -11,7 +14,9 @@ import { makeStyles } from 'tss-react/mui'
 const DateOfBirthPicker = () => {
   const { classes } = useStyles()
 
-  const [dob, setDob] = React.useState<Dayjs | null>(null)
+  const [dob, setDob] = React.useState<Dayjs | null>(
+    dayjs(getItemFromLocalStorage('dob'))
+  )
   const [error, setError] = useState<string | null>(null)
 
   const validateDate = (dateValue: Dayjs | null) => {

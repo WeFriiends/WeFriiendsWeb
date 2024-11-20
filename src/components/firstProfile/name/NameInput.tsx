@@ -3,7 +3,10 @@ import TextField from '@mui/material/TextField'
 import { makeStyles } from 'tss-react/mui'
 import theme from 'styles/createTheme'
 import { FormHelperText, Typography } from '@mui/material'
-import { setItemToLocalStorage } from 'utils/localStorage'
+import {
+  getItemFromLocalStorage,
+  setItemToLocalStorage,
+} from 'utils/localStorage'
 import NameValidationBox from './NameValidationBox'
 
 // todo: Validation for all the steps of First Profile Carousel.
@@ -12,7 +15,9 @@ import NameValidationBox from './NameValidationBox'
 
 const NameInput = () => {
   const { classes } = useStyles()
-  const [fullName, setFullName] = useState('')
+  const [fullName, setFullName] = useState(
+    getItemFromLocalStorage('name') || ''
+  )
   const [error, setError] = useState<string | null>(null)
   const [hasTyped, setHasTyped] = useState(false)
 
