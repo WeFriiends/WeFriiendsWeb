@@ -28,7 +28,7 @@ export const PhotoModal = ({
 
   const isMobile = window.innerWidth < dimensions.width
   const width = isMobile ? window.innerWidth * 0.9 : dimensions.width
-  const height = dimensions.height
+  const { height } = dimensions
 
   const style = {
     backgroundImage: `url(${url})`,
