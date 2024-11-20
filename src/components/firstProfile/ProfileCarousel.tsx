@@ -12,8 +12,8 @@ import GenderPick from './GenderPick'
 import ArrowBackButton from 'common/components/ArrowBackButton'
 import Status from './Status'
 import UserLocation from './location/UserLocation'
-import UploadPhotos from 'components/firstProfile/uploadPhotos/UploadPhotos'
 import Interests from './interests/Interests'
+import UploadPhotos from 'components/firstProfile/uploadPhotos/UploadPhotos'
 
 const carouselData = [
   {
