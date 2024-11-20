@@ -7,6 +7,7 @@ import { setItemToLocalStorage } from 'utils/localStorage'
 import { FormHelperText, Typography, Box } from '@mui/material'
 import theme from 'styles/createTheme'
 import { makeStyles } from 'tss-react/mui'
+import { validateDob } from './utils/validateDob'
 
 const DateOfBirthPicker = () => {
   const { classes } = useStyles()
@@ -14,19 +15,14 @@ const DateOfBirthPicker = () => {
   const [dob, setDob] = React.useState<Dayjs | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  const validateDate = (dateValue: Dayjs | null) => {
-    if (dateValue) {
-      const age = new Date().getFullYear() - dateValue.year()
-      if (age < 18 || age > 150) {
-        setError('Please enter a valid date of birth.')
-      } else {
-        setError(null)
-      }
-    }
-  }
   const onChangePicker = (newValue: Dayjs | null) => {
+    console.log(newValue)
     setDob(newValue)
-    validateDate(newValue)
+    if (!validateDob(newValue)) {
+      setError('Please enter a valid date of birth.')
+    } else {
+      setError(null)
+    }
     if (error === null) {
       setItemToLocalStorage('dob', newValue)
     }
