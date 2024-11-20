@@ -42,7 +42,7 @@ export const PhotoModal = ({
     <Modal className={classes.modal} open={isOpened}>
       <Box style={style} className={classes.box}>
         <img
-          src={'/img/x-square.png'}
+          src={'/img/x-square-white.svg'}
           alt="close photo"
           className={classes.closeIcon}
           onClick={() => setIsPhotoModalOpened(false)}
