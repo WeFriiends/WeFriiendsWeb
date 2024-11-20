@@ -3,8 +3,14 @@ export const setItemToLocalStorage = (key: string, value: any) => {
 }
 
 export const getItemFromLocalStorage = (key: string) => {
-  const item = localStorage.getItem(key)
-  return item ? JSON.parse(item) : null
+  try {
+    const value = localStorage.getItem(key)
+    // Only parse if the value is not 'undefined' or null
+    return value && value !== 'undefined' ? JSON.parse(value) : null
+  } catch (e) {
+    console.error('Error parsing localStorage item', e)
+    return null // Return null if an error occurs during parsing
+  }
 }
 
 export const getItemsFromLocalStorage = (keys: string[]) => {

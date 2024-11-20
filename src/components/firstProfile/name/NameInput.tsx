@@ -1,40 +1,44 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TextField from '@mui/material/TextField'
 import { makeStyles } from 'tss-react/mui'
 import theme from 'styles/createTheme'
 import { FormHelperText, Typography } from '@mui/material'
-import { setItemToLocalStorage } from 'utils/localStorage'
-import NameValidationBox from './NameValidationBox'
+import { getItemFromLocalStorage } from 'utils/localStorage'
+import { validateName } from '../utils/validateName'
 
 // todo: Validation for all the steps of First Profile Carousel.
 // todo: check for working backend WeFriendsProfile, showing the error if it is not running.
 // todo: add instruction to ReadMe: how to run backend.
 
-const NameInput = () => {
+interface NameInputProps {
+  showWithError: boolean
+  onNameChange: (value: string) => void
+}
+
+const NameInput = ({ showWithError = false, onNameChange }: NameInputProps) => {
   const { classes } = useStyles()
-  const [fullName, setFullName] = useState('')
-  const [error, setError] = useState<string | null>(null)
+  const [fullName, setFullName] = useState(getItemFromLocalStorage('name'))
+  const [hasError, setHasError] = useState(false)
+  //'Name should contain 2-15 letters only, spaces allowed in between, without numbers or special characters.'
   const [hasTyped, setHasTyped] = useState(false)
 
-  const validateName = (value: string) => {
-    const regex = /^[a-zA-Z ]{2,15}$/
-    if (!regex.test(value) || value.startsWith(' ') || value.endsWith(' ')) {
-      setError(
-        'Name should contain 2-15 letters only, spaces allowed in between, without numbers or special characters.'
-      )
+  const handleInputChange = (value: string) => {
+    setFullName(value) // show text in input
+    setHasTyped(true)
+    if (validateName(value)) {
+      setHasError(true)
     } else {
-      setError(null)
+      setHasError(false)
     }
+    onNameChange(value)
   }
 
-  const handleInputChange = (value: string) => {
-    setFullName(value)
-    setHasTyped(true)
-    validateName(value)
-    if (error === null) {
-      setItemToLocalStorage('name', value)
+  useEffect(() => {
+    if (showWithError) {
+      setHasTyped(true)
+      setHasError(true)
     }
-  }
+  }, [showWithError, fullName])
 
   return (
     <>
@@ -48,7 +52,6 @@ const NameInput = () => {
         className={classes.profileInput}
         value={fullName}
         onChange={(e) => handleInputChange(e.target.value)}
-        error={!!error}
         fullWidth
       />
       {!hasTyped && (
@@ -56,10 +59,17 @@ const NameInput = () => {
           {`Please, note - you won’t be able to change this field later`}
         </FormHelperText>
       )}
-      {hasTyped && !error && (
+      {hasTyped && !hasError && (
         <FormHelperText>{`15 symbols max.`}</FormHelperText>
       )}
-      {error && <NameValidationBox />}
+      {hasError && (
+        <FormHelperText className={classes.errorBox}>
+          <h4>Your name</h4>
+          <p>- shouldn’t contain numbers</p>
+          <p>- has 2-15 symbols</p>
+          <p>- has no special characters</p>
+        </FormHelperText>
+      )}
     </>
   )
 }
@@ -99,6 +109,24 @@ const useStyles = makeStyles()(() => ({
     },
     '& .MuiOutlinedInput-notchedOutline': {
       border: 0,
+    },
+  },
+  errorBox: {
+    width: '100%',
+    padding: 20,
+    boxShadow: '0px 0px 5px #D9D9D9',
+    borderRadius: 10,
+    color: '#F1562A',
+    textAlign: 'left',
+    h4: {
+      fontSize: 14,
+      lineHeight: '22px',
+      fontWeight: 500,
+      marginBottom: 10,
+    },
+    p: {
+      fontSize: 12,
+      lineHeight: '18px',
     },
   },
 }))
