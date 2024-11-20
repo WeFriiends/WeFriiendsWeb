@@ -17,14 +17,6 @@ export const PhotoModal = ({
 
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
-  const style = {
-    backgroundImage: `url(${url})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    width: dimensions.width,
-    height: dimensions.height,
-  }
-
   useEffect(() => {
     const img = new Image()
     img.src = url
@@ -33,6 +25,18 @@ export const PhotoModal = ({
       setDimensions({ width: img.width, height: img.height })
     }
   }, [url])
+
+  const isMobile = window.innerWidth < dimensions.width
+  const width = isMobile ? window.innerWidth * 0.9 : dimensions.width
+  const height = dimensions.height
+
+  const style = {
+    backgroundImage: `url(${url})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    width: width,
+    height: height,
+  }
 
   return (
     <Modal className={classes.modal} open={isOpened}>

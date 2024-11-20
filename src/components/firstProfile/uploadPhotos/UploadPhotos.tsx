@@ -100,6 +100,10 @@ const useStyles = makeStyles()(() => ({
     marginLeft: 20,
     marginRight: 20,
     paddingTop: 50,
+    '@media (max-width: 600px)': {
+      maxWidth: '380px',
+      width: '380px',
+    },
   },
   picContainer: {
     width: 349,
@@ -110,6 +114,10 @@ const useStyles = makeStyles()(() => ({
     flexWrap: 'wrap',
     gap: 20,
     margin: 20,
+    '@media (max-width: 600px)': {
+      maxWidth: '380px',
+      width: '380px',
+    },
   },
   hintContainer: {
     height: 43,
