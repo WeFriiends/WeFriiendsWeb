@@ -6,6 +6,12 @@ import { PhotoModal } from './PhotoModal'
 import DeletePhoto from './DeletePhoto'
 import createTheme from 'styles/createTheme'
 
+declare global {
+  interface Window {
+    choosenFiles: File[]
+  }
+}
+
 const UploadPhotos = () => {
   const { classes } = useStyles()
   const [isDeleteModalOpened, setIsDeleteModalOpened] = useState<boolean>(false)
@@ -51,6 +57,12 @@ const UploadPhotos = () => {
 
   const choosenFilesHandler = (fileUrl: string, file: File, index: number) => {
     console.log(fileUrl, file, index)
+
+    // Проверка и инициализация
+    if (!Array.isArray(window.choosenFiles)) {
+      window.choosenFiles = []
+    }
+
     setChosenFiles((prevFiles) => {
       if (prevFiles) {
         const newFiles = [...prevFiles]
@@ -59,6 +71,9 @@ const UploadPhotos = () => {
       }
       return [file]
     })
+
+    // Добавление файла в глобальный массив
+    window.choosenFiles[index] = file
   }
 
   return (
