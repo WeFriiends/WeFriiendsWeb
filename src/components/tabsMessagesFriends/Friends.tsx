@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import { UserProfileData } from '../../types/UserProfileData'
+import { emptyProfile, UserProfileData } from '../../types/UserProfileData'
 import NoNewMatches from './NoNewMatchesOrMessages'
 import { useNewFriendsList } from 'hooks/useFriendsList'
 import theme from 'styles/createTheme'
@@ -9,19 +9,17 @@ import classnames from 'classnames'
 
 interface FriendsProps {
   onClick: (userProfileData: UserProfileData) => void
-  selectedFriend: UserProfileData
 }
 
-const Friends: React.FC<FriendsProps> = ({ onClick, selectedFriend }) => {
+const Friends: React.FC<FriendsProps> = ({ onClick }) => {
   const { classes } = useStyles()
-
   const { data: userFriends } = useNewFriendsList()
+  const [friendsData, setFriendsData] = useState<UserProfileData>(emptyProfile)
 
-  const handleClick = (id: string) => {
-    const friendsData = userFriends?.find(
-      (element: UserProfileData) => element.id == id
-    )
-    onClick(friendsData as UserProfileData)
+  const handleClick = (user: UserProfileData) => {
+    const friendsData = user
+    setFriendsData(friendsData)
+    onClick(friendsData)
   }
 
   if (userFriends?.length === 0) {
@@ -36,9 +34,9 @@ const Friends: React.FC<FriendsProps> = ({ onClick, selectedFriend }) => {
           key={element.id}
           className={classnames([
             { [classes.friendsPhotos]: true },
-            { [classes.fotoBorder]: element.id === selectedFriend.id },
+            { [classes.fotoBorder]: element.id === friendsData.id },
           ])}
-          onClick={() => handleClick(element.id)}
+          onClick={() => handleClick(element)}
         >
           <img
             src={element.photo[0].src}
@@ -46,7 +44,7 @@ const Friends: React.FC<FriendsProps> = ({ onClick, selectedFriend }) => {
             className={classes.smallPhoto}
           />
           <Typography className={classes.textOnPhoto}>
-            {element.firstName} {element.lastName}, {element.age}
+            {element.name}, {element.age}
           </Typography>
         </Box>
       ))}

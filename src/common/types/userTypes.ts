@@ -3,6 +3,5 @@ export type UserObjectType = {
   id: string
   location: string
   picture: string
-  firstName: string
-  lastName: string
+  name: string
 }

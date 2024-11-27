@@ -3,8 +3,7 @@
   "potentialFriends": [
     {
       "id": "11",
-      "firstName": "Elena",
-      "lastName": "S",
+      "name": "Elena S",
       "age": "36",
       "photo": [
         {
@@ -18,15 +17,34 @@
         }
       ],
       "city": "Madrid",
-      "aboutMe": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque esse natus, voluptatum minus cumque dolorum dignissimos? Fuga reprehenderit non rerum ex eos enim iure quod doloremque, repellat minus. Totam reiciendis quas ut soluta sint dolor praesentium ipsam quaerat, commodi dolores nisi similique. Commodi esse unde provident animi? Quaerat ipsam laudantium cupiditate fugiat? Quidem, necessitatibus voluptatem. Fugit, magni? Dicta dolore asperiores a voluptatum dolorem? Facilis in dolorem provident. Odio, soluta voluptatem! Eum aliquid ipsam provident numquam voluptas impedit natus! Facere sed expedita odit quasi eaque repellat minus recusandae voluptate excepturi, reiciendis adipisci aperiam soluta sint ullam harum ipsa sequi culpa consequuntur, quas vero amet consectetur! Laborum dolores magnam doloremque totam rerum inventore corporis odit eum, dicta quae voluptate dolorem recusandae quisquam dolor perferendis pariatur ab vitae excepturi reprehenderit suscipit cumque ipsa nobis? Distinctio numquam provident officiis tempore fugit! A nesciunt nihil libero optio recusandae eveniet facilis, fugiat sed molestiae. Quo nulla explicabo incidunt nihil suscipit? Nemo rerum doloremque ab totam, facere animi nam aliquam corrupti alias obcaecati fugiat dolores in est id incidunt commodi delectus, quibusdam itaque. Quam id dolorem ipsa repudiandae iste commodi rerum eius veniam voluptatibus, obcaecati maiores aperiam aut et vel ex ea nesciunt ipsum possimus velit aspernatur?",
-      "education": "Bachelor degree",
-      "profession": "Freelance Journalist",
-      "likedUsers": ["1", "2", "3"]
+      "likedUsers": ["1", "2", "3"],
+      "reasons": [
+        "Looking for new friends",
+        "I’m learning a new language. Let's talk!",
+        "Let's be friends, I'm new in town"
+      ],
+      "lifeStyle": {
+        "questionary": {
+          "smoking": "Non-Smoker",
+          "education": "master's degrees",
+          "children": "1 child",
+          "pets": ["dog", "cat"]
+        },
+        "interests": [
+          "#travel",
+          "#psychology",
+          "#wine",
+          "#cinema",
+          "#Yoga",
+          "#womenwhocode",
+          "#relocation"
+        ],
+        "aboutMe": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis eligendi ducimus est illo reprehenderit, commodi fugiat tempore qui dolor natus minima quidem, optio nulla ipsum voluptates quis soluta, alias totam."
+      }
     },
     {
       "id": "12",
-      "firstName": "Polina",
-      "lastName": "T",
+      "name": "Polina T",
       "age": "32",
       "photo": [
         {
@@ -40,15 +58,27 @@
         }
       ],
       "city": "Paris",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
-      "education": "Bachelor degree",
-      "profession": "Freelance Journalist",
-      "likedUsers": ["1", "5", "7"]
+      "likedUsers": ["1", "5", "7"],
+      "reasons": [
+        "My plans are to move abroad",
+        "I'm a new mom. Need some help",
+        "Let's take the dogs for a walk"
+      ],
+      "lifeStyle": {
+        "questionary": {
+          "smoking": "Non-Smoker",
+          "education": "bachelor's degrees",
+          "children": "None",
+          "drink": "Less than monthly",
+          "pets": ["dog"],
+          "language": ["english"]
+        },
+        "interests": ["#travel", "#psychology"]
+      }
     },
     {
       "id": "13",
-      "firstName": "Maria",
-      "lastName": "M",
+      "name": "Maria M",
       "age": "28",
       "photo": [
         {
@@ -62,15 +92,27 @@
         }
       ],
       "city": "Wien",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
-      "education": "Bachelor degree",
-      "profession": "Freelance Journalist",
-      "likedUsers": ["3", "7", "9"]
+      "likedUsers": ["3", "7", "9"],
+      "reasons": [
+        "My plans are to move abroad",
+        "I'm a new mom. Need some help"
+      ],
+      "lifeStyle": {
+        "questionary": {
+          "smoking": "Non-Smoker",
+          "education": "bachelor's degrees",
+          "children": "None",
+          "drink": "Less than monthly",
+          "pets": ["dog"],
+          "language": ["english"]
+        },
+        "interests": ["#travel", "#psychology"],
+        "aboutMe": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis eligendi ducimus est illo reprehenderit, commodi fugiat tempore qui dolor natus minima quidem, optio nulla ipsum voluptates quis soluta, alias totam."
+      }
     },
     {
       "id": "2",
-      "firstName": "Valentina",
-      "lastName": "M",
+      "name": "Valentina M",
       "age": "38",
       "photo": [
         { "src": "/img/friends/friends_photo2.jpg" },
@@ -82,15 +124,15 @@
         }
       ],
       "city": "Berlin",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
-      "education": "Master degree",
-      "profession": "Analyst",
-      "likedUsers": ["1", "8", "12"]
+      "likedUsers": ["1", "8", "12"],
+      "reasons": [
+        "I’m learning a new language. Let's talk!",
+        "Let's be friends, I'm new in town"
+      ]
     },
     {
       "id": "3",
-      "firstName": "Katya",
-      "lastName": "N",
+      "name": "Katya N",
       "age": "40",
       "photo": [
         { "src": "/img/friends/friends_photo3.jpg" },
@@ -102,15 +144,15 @@
         }
       ],
       "city": "Roma",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam",
-      "education": "Bachelor degree",
-      "profession": "Freelance Journalist",
-      "likedUsers": ["5", "9", "15"]
+      "likedUsers": ["5", "9", "15"],
+      "reasons": [
+        "I’m learning a new language. Let's talk!",
+        "Let's be friends, I'm new in town"
+      ]
     },
     {
       "id": "4",
-      "firstName": "Polina",
-      "lastName": "T",
+      "name": "Polina T",
       "age": "42",
       "photo": [
         { "src": "/img/friends/friends_photo4.jpg" },
@@ -122,15 +164,15 @@
         }
       ],
       "city": "Madrid",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-      "education": "Master degree",
-      "profession": "Teacher",
-      "likedUsers": ["1", "8", "10"]
+      "likedUsers": ["1", "8", "10"],
+      "reasons": [
+        "I’m learning a new language. Let's talk!",
+        "Let's be friends, I'm new in town"
+      ]
     },
     {
       "id": "5",
-      "firstName": "Nastya",
-      "lastName": "P",
+      "name": "Nastya P",
       "age": "42",
       "photo": [
         { "src": "/img/friends/friends_photo5.jpg" },
@@ -142,15 +184,15 @@
         }
       ],
       "city": "Madrid",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-      "education": "Master degree",
-      "profession": "Dentist",
-      "likedUsers": ["4", "6", "8"]
+      "likedUsers": ["4", "6", "8"],
+      "reasons": [
+        "I’m learning a new language. Let's talk!",
+        "Let's be friends, I'm new in town"
+      ]
     },
     {
       "id": "6",
-      "firstName": "Tanya",
-      "lastName": "Petrova",
+      "name": "Tanya Petrova",
       "age": "40",
       "photo": [
         { "src": "/img/friends/friends_photo1.jpg" },
@@ -161,16 +203,16 @@
           "src": "/img/photo_Elena.jpg"
         }
       ],
-      "city": "Milan",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-      "education": "",
       "profession": "Hairdresser",
-      "likedUsers": ["6", "10", "11"]
+      "likedUsers": ["6", "10", "11"],
+      "reasons": [
+        "I’m learning a new language. Let's talk!",
+        "Let's be friends, I'm new in town"
+      ]
     },
     {
       "id": "7",
-      "firstName": "Sonya",
-      "lastName": "S",
+      "name": "Sonya S",
       "age": "38",
       "photo": [
         { "src": "/img/friends/friends_photo2.jpg" },
@@ -182,15 +224,15 @@
         }
       ],
       "city": "Paris",
-      "aboutMe": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut",
-      "education": "Master degree",
-      "profession": "Doctor",
-      "likedUsers": ["1", "7", "9"]
+      "likedUsers": ["1", "7", "9"],
+      "reasons": [
+        "I’m learning a new language. Let's talk!",
+        "Let's be friends, I'm new in town"
+      ]
     },
     {
       "id": "8",
-      "firstName": "Katya",
-      "lastName": "L",
+      "name": "Katya L",
       "age": "36",
       "photo": [
         { "src": "/img/friends/friends_photo3.jpg" },
@@ -202,18 +244,18 @@
         }
       ],
       "city": "Madrid",
-      "aboutMe": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque esse natus, voluptatum minus cumque dolorum dignissimos? Fuga reprehenderit non rerum ex eos enim iure quod doloremque, repellat minus. Totam reiciendis quas ut soluta sint dolor praesentium ipsam quaerat, commodi dolores nisi similique. Commodi esse unde provident animi? Quaerat ipsam laudantium cupiditate fugiat? Quidem, necessitatibus voluptatem. Fugit, magni? Dicta dolore asperiores a voluptatum dolorem? Facilis in dolorem provident. Odio, soluta voluptatem! Eum aliquid ipsam provident numquam voluptas impedit natus! Facere sed expedita odit quasi eaque repellat minus recusandae voluptate excepturi, reiciendis adipisci aperiam soluta sint ullam harum ipsa sequi culpa consequuntur, quas vero amet consectetur! Laborum dolores magnam doloremque totam rerum inventore corporis odit eum, dicta quae voluptate dolorem recusandae quisquam dolor perferendis pariatur ab vitae excepturi reprehenderit suscipit cumque ipsa nobis? Distinctio numquam provident officiis tempore fugit! A nesciunt nihil libero optio recusandae eveniet facilis, fugiat sed molestiae. Quo nulla explicabo incidunt nihil suscipit? Nemo rerum doloremque ab totam, facere animi nam aliquam corrupti alias obcaecati fugiat dolores in est id incidunt commodi delectus, quibusdam itaque. Quam id dolorem ipsa repudiandae iste commodi rerum eius veniam voluptatibus, obcaecati maiores aperiam aut et vel ex ea nesciunt ipsum possimus velit aspernatur?",
-      "education": "",
-      "profession": "Hairdresser",
-      "likedUsers": ["1", "4", "8"]
+      "likedUsers": ["1", "4", "8"],
+      "reasons": [
+        "I’m learning a new language. Let's talk!",
+        "Let's be friends, I'm new in town"
+      ]
     }
   ],
   "lastMessages": [
     {
       "id": "1",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "S.",
+      "name": "Elena S",
       "age": "38",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
@@ -221,8 +263,7 @@
     {
       "id": "2",
       "avatar": "/img/photo_Elena_2.jpg",
-      "firstName": "Elena",
-      "lastName": "T.",
+      "name": "Elena T",
       "age": "40",
       "lastMessage": "Hello! Nice to meet you! I’m Elena. Can...",
       "messageCount": "3"
@@ -230,8 +271,7 @@
     {
       "id": "3",
       "avatar": "/img/photo_Elena_3.jpg",
-      "firstName": "Elena",
-      "lastName": "M.",
+      "name": "Elena M",
       "age": "36",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "0"
@@ -239,8 +279,7 @@
     {
       "id": "4",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "Antonova",
+      "name": "Elena Antonova",
       "age": "42",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
@@ -248,8 +287,7 @@
     {
       "id": "5",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "Petrova",
+      "name": "Elena Petrova",
       "age": "35",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
@@ -257,8 +295,7 @@
     {
       "id": "6",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "S.",
+      "name": "Elena S.",
       "age": "38",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
@@ -266,8 +303,7 @@
     {
       "id": "7",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "M.",
+      "name": "Elena M.",
       "age": "37",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
@@ -275,8 +311,7 @@
     {
       "id": "8",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "V.",
+      "name": "Elena V.",
       "age": "39",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"
@@ -284,8 +319,7 @@
     {
       "id": "9",
       "avatar": "/img/photo_Elena.jpg",
-      "firstName": "Elena",
-      "lastName": "W.",
+      "name": "Elena W.",
       "age": "38",
       "lastMessage": "Hello! Nice to meet you! I’m Elena",
       "messageCount": "1"

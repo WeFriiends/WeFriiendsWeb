@@ -11,6 +11,8 @@ import GenderPick from './GenderPick'
 import ArrowBackButton from 'common/components/ArrowBackButton'
 import Status from './Status'
 import UserLocation from './location/UserLocation'
+import Interests from './interests/Interests'
+import UploadPhotos from 'components/firstProfile/uploadPhotos/UploadPhotos'
 import MobileStepper from '@mui/material/MobileStepper'
 import { makeStyles } from 'tss-react/mui'
 import { useState } from 'react'
@@ -47,7 +49,7 @@ const ProfileCarousel = () => {
       }
     } else {
       setShowWithError(false) // Ensure error is cleared for other steps
-      //proceedToNextStep()
+      proceedToNextStep()
     }
   }
 
@@ -78,11 +80,21 @@ const ProfileCarousel = () => {
       component: <Status />,
       label: 'status',
     },
+    {
+      component: <Interests />,
+      label: 'interests',
+    },
+    {
+      component: <UploadPhotos />,
+      label: 'uploadPhotos',
+    },
   ]
+
   const carouselDataLength = carouselData.length
 
   // send values to backend
   const navigate = useNavigate()
+
   const onSubmit = async () => {
     const {
       name,
@@ -95,6 +107,7 @@ const ProfileCarousel = () => {
       street,
       houseNumber,
       selectedStatuses,
+      photos,
     } = getItemsFromLocalStorage([
       'name',
       'dob',
@@ -106,6 +119,7 @@ const ProfileCarousel = () => {
       'street',
       'houseNumber',
       'selectedStatuses',
+      'userPicsStorage',
     ])
     await createProfile(
       {
@@ -114,6 +128,7 @@ const ProfileCarousel = () => {
         gender,
         location: { lat, lng, country, city, street, houseNumber },
         reasons: selectedStatuses,
+        photos,
       },
       token
     )
