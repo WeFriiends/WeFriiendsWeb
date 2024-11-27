@@ -59,7 +59,7 @@ const UploadPhotos = () => {
     console.log(fileUrl, file, index)
 
     // Проверка и инициализация
-    if (!Array.isArray(window.choosenFiles)) {
+    /*if (!Array.isArray(window.choosenFiles)) {
       window.choosenFiles = []
     }
 
@@ -73,7 +73,7 @@ const UploadPhotos = () => {
     })
 
     // Добавление файла в глобальный массив
-    window.choosenFiles[index] = file
+    window.choosenFiles[index] = file*/
   }
 
   return (

@@ -57,6 +57,7 @@ const ProfileCarousel: React.FC = () => {
     interface ChoosenFile {
       id: string
       url: string
+      fileName: string
     }
     const choosenFiles: ChoosenFile[] = getItemFromLocalStorage(
       'userPicsStorage'
@@ -73,8 +74,7 @@ const ProfileCarousel: React.FC = () => {
       const [header, base64Data] = fileBase64.split(',')
       const [, mimeType] = header.match(/:(.*?);/) || [] // Извлекаем MIME-тип
       const blob = base64ToBlob(base64Data, mimeType)
-
-      formData.append(`file${index}`, blob, `file${index}.png`) // Имя файла (например, file0.png)
+      formData.append(`file${index}`, blob, cf.fileName)
     })
 
     try {

@@ -61,6 +61,7 @@ const UploadSlot: React.FC<SlotType> = ({
           const newPic = {
             id: id,
             url: base64data as string,
+            fileName: file.name,
           }
 
           const newUserPicsStorage = userPics.map((elem: UserPicsType) =>
