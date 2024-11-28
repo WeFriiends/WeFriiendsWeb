@@ -31,7 +31,6 @@ export const PhotoModal = ({
   let displayedHeight: number = imgHeight
 
   const isScreenWide = window.innerWidth > window.innerHeight
-  console.log('isScreenWide', isScreenWide)
 
   const windowWidth = window.innerWidth
   const windowHeight = window.innerHeight
