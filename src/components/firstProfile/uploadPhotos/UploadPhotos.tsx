@@ -102,7 +102,7 @@ const useStyles = makeStyles()(() => ({
     paddingTop: 50,
     '@media (max-width: 600px)': {
       maxWidth: '380px',
-      width: '380px',
+      width: '95vw',
     },
   },
   picContainer: {
@@ -116,7 +116,12 @@ const useStyles = makeStyles()(() => ({
     margin: 20,
     '@media (max-width: 600px)': {
       maxWidth: '380px',
-      width: '380px',
+      width: '95vw',
+      height: 'auto',
+    },
+    '@media (max-width: 368px)': {
+      justifyContent: 'space-around',
+      alignItems: 'center',
     },
   },
   hintContainer: {

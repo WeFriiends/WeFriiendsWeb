@@ -26,16 +26,33 @@ export const PhotoModal = ({
     }
   }, [url])
 
-  const isMobile = window.innerWidth < dimensions.width
-  const width = isMobile ? window.innerWidth * 0.9 : dimensions.width
-  const { height } = dimensions
+  const { width: imgWidth, height: imgHeight } = dimensions
+  let displayedWidth: number = imgWidth
+  let displayedHeight: number = imgHeight
+
+  const isScreenWide = window.innerWidth > window.innerHeight
+  console.log('isScreenWide', isScreenWide)
+
+  const windowWidth = window.innerWidth
+  const windowHeight = window.innerHeight
+
+  displayedWidth = imgWidth
+  displayedHeight = imgHeight
+
+  const widthScale = (windowWidth * 0.9) / imgWidth
+  const heightScale = (windowHeight * 0.9) / imgHeight
+
+  const scale = Math.min(widthScale, heightScale)
+
+  displayedWidth = imgWidth * scale
+  displayedHeight = imgHeight * scale
 
   const style = {
     backgroundImage: `url(${url})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    width: width,
-    height: height,
+    width: displayedWidth,
+    height: displayedHeight,
   }
 
   return (
