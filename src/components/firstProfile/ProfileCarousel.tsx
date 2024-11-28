@@ -50,10 +50,48 @@ const ProfileCarousel: React.FC = () => {
       console.error('No files selected for upload')
       return
     }*/
-
+    const {
+      name,
+      dob,
+      gender,
+      lat,
+      lng,
+      country,
+      city,
+      street,
+      houseNumber,
+      selectedStatuses,
+      userPreferences,
+      userPicsStorage: photos,
+    } = getItemsFromLocalStorage([
+      'name',
+      'dob',
+      'gender',
+      'lat',
+      'lng',
+      'country',
+      'city',
+      'street',
+      'houseNumber',
+      'selectedStatuses',
+      'userPreferences',
+      'userPicsStorage',
+    ])
     const formData = new FormData()
 
-    formData.append('username', 'JohnDoe')
+    formData.append('name', name)
+    formData.append('dateOfBirth', dob)
+    formData.append('gender', gender)
+    //location: { lat, lng, country, city, street, houseNumber }
+    /* reasons: selectedStatuses,
+          preferences: userPreferences,*/
+    formData.append(
+      'location',
+      JSON.stringify({ lat, lng, country, city, street, houseNumber })
+    )
+    formData.append('reasons', JSON.stringify(selectedStatuses))
+    formData.append('preferences', JSON.stringify(userPreferences))
+
     interface ChoosenFile {
       id: string
       url: string
@@ -94,43 +132,19 @@ const ProfileCarousel: React.FC = () => {
       console.log('Upload successful:', result)
 
       // Сохраняем профиль после успешной загрузки
-      const {
-        name,
-        dob,
-        gender,
-        lat,
-        lng,
-        country,
-        city,
-        street,
-        houseNumber,
-        selectedStatuses,
-        userPicsStorage: photos,
-      } = getItemsFromLocalStorage([
-        'name',
-        'dob',
-        'gender',
-        'lat',
-        'lng',
-        'country',
-        'city',
-        'street',
-        'houseNumber',
-        'selectedStatuses',
-        'userPicsStorage',
-      ])
 
-      await createProfile(
+      /*await createProfile(
         {
           name,
           dateOfBirth: dob,
           gender,
           location: { lat, lng, country, city, street, houseNumber },
           reasons: selectedStatuses,
+          preferences: userPreferences,
           photos,
         },
         token
-      )
+      )*/
 
       navigate('/user/friends')
     } catch (error) {
