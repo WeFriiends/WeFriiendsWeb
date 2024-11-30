@@ -18,7 +18,7 @@ interface SlotType {
   setChosenId: (chosenId: string) => void
   setIsPhotoModalOpened: (isPhotoModalOpened: boolean) => void
   setChosenUrl: (chosenUrl: string) => void
-  onFileSelected?: (fileUrl: string, file: File) => void // Новый пропс
+  onFileSelected?: (fileUrl: string, file: File) => void
 }
 
 const UploadSlot: React.FC<SlotType> = ({
@@ -30,7 +30,7 @@ const UploadSlot: React.FC<SlotType> = ({
   setChosenId,
   setIsPhotoModalOpened,
   setChosenUrl,
-  onFileSelected, // Новый пропс
+  onFileSelected,
 }) => {
   const { classes } = useStyles()
 
@@ -40,9 +40,8 @@ const UploadSlot: React.FC<SlotType> = ({
     const file = event.target.files?.[0] as File | undefined
 
     if (file) {
-      const fileUrl = URL.createObjectURL(file) // Создаем ссылку на файл
+      const fileUrl = URL.createObjectURL(file)
 
-      // Вызываем переданный пропс с URL и файлом
       if (onFileSelected) {
         onFileSelected(fileUrl, file)
       }
@@ -56,7 +55,6 @@ const UploadSlot: React.FC<SlotType> = ({
         const img = new Image()
         img.src = base64data as string
 
-        // Ждем, пока изображение загрузится, и получаем его размеры
         img.onload = () => {
           const newPic = {
             id: id,

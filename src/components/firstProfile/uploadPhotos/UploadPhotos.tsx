@@ -18,7 +18,6 @@ const UploadPhotos = () => {
   const [isPhotoModalOpened, setIsPhotoModalOpened] = useState<boolean>(false)
   const [chosenId, setChosenId] = useState<string>('')
   const [chosenUrl, setChosenUrl] = useState<string>('')
-  const [choosenFiles, setChosenFiles] = useState<File[] | null>(null)
 
   interface UserPicsType {
     id: string
@@ -55,27 +54,6 @@ const UploadPhotos = () => {
     return array.some((pic) => pic.url !== null && pic.url.trim() !== '')
   }
 
-  const choosenFilesHandler = (fileUrl: string, file: File, index: number) => {
-    console.log(fileUrl, file, index)
-
-    // Проверка и инициализация
-    /*if (!Array.isArray(window.choosenFiles)) {
-      window.choosenFiles = []
-    }
-
-    setChosenFiles((prevFiles) => {
-      if (prevFiles) {
-        const newFiles = [...prevFiles]
-        newFiles[index] = file
-        return newFiles
-      }
-      return [file]
-    })
-
-    // Добавление файла в глобальный массив
-    window.choosenFiles[index] = file*/
-  }
-
   return (
     <Box className={classes.mainBox}>
       {!hasAnyPics(userPics) && (
@@ -100,7 +78,7 @@ const UploadPhotos = () => {
         setChosenId={setChosenId}
       />
       <Box className={classes.picContainer}>
-        {userPics.map((pic, index) => (
+        {userPics.map((pic) => (
           <UploadSlot
             key={pic.id}
             id={pic.id}
@@ -111,9 +89,6 @@ const UploadPhotos = () => {
             setChosenId={setChosenId}
             setIsPhotoModalOpened={setIsPhotoModalOpened}
             setChosenUrl={setChosenUrl}
-            onFileSelected={(fileUrl: string, file: File) =>
-              choosenFilesHandler(fileUrl, file, index)
-            }
           />
         ))}
       </Box>
