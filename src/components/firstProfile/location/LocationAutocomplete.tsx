@@ -28,7 +28,7 @@ const LocationInputAutocomplete = ({
 
   // Monitor input changes and manage loading state manually
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
+    const { value } = e.target
     setInputLocation(value)
 
     // Trigger loading state while fetching suggestions

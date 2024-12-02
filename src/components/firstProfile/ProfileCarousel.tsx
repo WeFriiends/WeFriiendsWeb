@@ -15,7 +15,7 @@ import Interests from './interests/Interests'
 import UploadPhotos from 'components/firstProfile/uploadPhotos/UploadPhotos'
 import MobileStepper from '@mui/material/MobileStepper'
 import { makeStyles } from 'tss-react/mui'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { validateName } from './utils/validateName'
 import { validateDob } from './utils/validateDob'
 import { validateGender } from './utils/validateGender'
@@ -74,9 +74,9 @@ const ProfileCarousel = () => {
     setGenderChange(value)
   }
 
-  const handleLocationChange = (value: Address) => {
+  const handleLocationChange = useCallback((value: Address) => {
     setLocationChange(value)
-  }
+  }, [])
 
   const handleNext = () => {
     if (activeStep === 0) {
@@ -135,18 +135,6 @@ const ProfileCarousel = () => {
       proceedToNextStep()
     }
   }
-
-  // uncomment to clear local storage
-  // setItemToLocalStorage('name', '')
-  // setItemToLocalStorage('dob', '')
-  // setItemToLocalStorage('gender', '')
-  // setItemToLocalStorage('gender', '')
-  // setItemToLocalStorage('country', '')
-  // setItemToLocalStorage('city', '')
-  // setItemToLocalStorage('street', '')
-  // setItemToLocalStorage('houseNumber', '')
-  // setItemToLocalStorage('lat', '')
-  // setItemToLocalStorage('lng', '')
 
   const carouselData = [
     {

@@ -108,7 +108,7 @@ const UserLocation = ({
       }
       fetchAddress()
     }
-  }, [latitude, longitude, showManualInput])
+  }, [latitude, longitude, showManualInput, onLocationChange])
 
   const handleGetManualAddress = (value: any) => {
     // Assume `value` is the selected address object (e.g., from LocationInputAutocomplete)
