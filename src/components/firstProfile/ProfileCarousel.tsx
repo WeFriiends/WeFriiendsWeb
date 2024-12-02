@@ -17,10 +17,23 @@ import MobileStepper from '@mui/material/MobileStepper'
 import { makeStyles } from 'tss-react/mui'
 import { useState } from 'react'
 import { validateName } from './utils/validateName'
+import { validateDob } from './utils/validateDob'
+import { validateGender } from './utils/validateGender'
 import {
   setItemToLocalStorage,
   getItemFromLocalStorage,
 } from 'utils/localStorage'
+import { Dayjs } from 'dayjs'
+import { validateLocation } from './utils/validateLocation'
+
+type Address = {
+  country: string
+  city: string
+  street: string
+  houseNumber: string
+  lat: number
+  lng: number
+}
 
 const ProfileCarousel = () => {
   const { classes } = useStyles()
@@ -30,50 +43,146 @@ const ProfileCarousel = () => {
     handleBack,
     handleNext: proceedToNextStep,
   } = useHandleCarousel()
-  const [showWithError, setShowWithError] = useState(false)
+  const [showNameWithError, setShowNameWithError] = useState(false)
+  const [showDobWithError, setShowDobWithError] = useState(false)
+  const [showGenderWithError, setShowGenderWithError] = useState(false)
+  const [showLocationWithError, setShowLocationWithError] = useState(false)
+
   const [nameChange, setNameChange] = useState(getItemFromLocalStorage('name'))
+  const [dobChange, setDobChange] = useState(getItemFromLocalStorage('dob'))
+  const [genderChange, setGenderChange] = useState(
+    getItemFromLocalStorage('gender')
+  )
+  const [locationChange, setLocationChange] = useState(() => ({
+    country: getItemFromLocalStorage('country') || '',
+    city: getItemFromLocalStorage('city') || '',
+    street: getItemFromLocalStorage('street') || '',
+    houseNumber: getItemFromLocalStorage('houseNumber') || '',
+    lat: getItemFromLocalStorage('lat') || null,
+    lng: getItemFromLocalStorage('lng') || null,
+  }))
 
   const handleNameChange = (value: string) => {
     setNameChange(value)
   }
 
+  const handleDobChange = (value: Dayjs | null) => {
+    setDobChange(value)
+  }
+
+  const handleGenderChange = (value: string | null) => {
+    setGenderChange(value)
+  }
+
+  const handleLocationChange = (value: Address) => {
+    setLocationChange(value)
+  }
+
   const handleNext = () => {
-    console.log(nameChange)
     if (activeStep === 0) {
+      // Name
       if (validateName(nameChange)) {
         setItemToLocalStorage('name', nameChange)
+        setShowNameWithError(false)
         proceedToNextStep()
       } else {
-        setShowWithError(true)
+        setShowNameWithError(true)
         return
       }
-    } else {
-      setShowWithError(false) // Ensure error is cleared for other steps
+    } else if (activeStep === 1) {
+      // DOB
+      if (validateDob(dobChange)) {
+        setItemToLocalStorage('dob', dobChange)
+        setShowDobWithError(false)
+        proceedToNextStep()
+      } else {
+        setShowDobWithError(true)
+        return
+      }
+    } else if (activeStep === 2) {
+      // Gender
+      if (validateGender(genderChange)) {
+        setItemToLocalStorage('gender', genderChange)
+        setShowGenderWithError(false)
+        proceedToNextStep()
+      } else {
+        setShowGenderWithError(true)
+        return
+      }
+    } else if (activeStep === 3) {
+      // Location
+      if (validateLocation(locationChange)) {
+        setItemToLocalStorage('country', locationChange.country)
+        setItemToLocalStorage('city', locationChange.city)
+        setItemToLocalStorage('street', locationChange.street)
+        setItemToLocalStorage('houseNumber', locationChange.houseNumber)
+        setItemToLocalStorage('lat', locationChange.lat)
+        setItemToLocalStorage('lng', locationChange.lng)
+        setShowLocationWithError(false)
+        proceedToNextStep()
+      } else {
+        setShowLocationWithError(true)
+        return
+      }
+    } else if (activeStep === 4) {
+      // Statuses looking for
+      proceedToNextStep()
+    } else if (activeStep === 5) {
+      // Lifestyle and About me
+      proceedToNextStep()
+    } else if (activeStep === 6) {
+      // Photo
       proceedToNextStep()
     }
   }
 
-  //setItemToLocalStorage('name', '')
+  // uncomment to clear local storage
+  // setItemToLocalStorage('name', '')
+  // setItemToLocalStorage('dob', '')
+  // setItemToLocalStorage('gender', '')
+  // setItemToLocalStorage('gender', '')
+  // setItemToLocalStorage('country', '')
+  // setItemToLocalStorage('city', '')
+  // setItemToLocalStorage('street', '')
+  // setItemToLocalStorage('houseNumber', '')
+  // setItemToLocalStorage('lat', '')
+  // setItemToLocalStorage('lng', '')
+
   const carouselData = [
     {
       component: (
         <NameInput
           onNameChange={handleNameChange}
-          showWithError={showWithError}
+          showWithError={showNameWithError}
         />
       ),
       label: 'nameInput',
     },
     {
-      component: <DateOfBirthPicker />,
+      component: (
+        <DateOfBirthPicker
+          onDobChange={handleDobChange}
+          showWithError={showDobWithError}
+        />
+      ),
       label: 'dateOfBirthPicker',
     },
     {
-      component: <GenderPick />,
+      component: (
+        <GenderPick
+          onGenderChange={handleGenderChange}
+          showWithError={showGenderWithError}
+        />
+      ),
       label: 'genderPick',
     },
     {
-      component: <UserLocation />,
+      component: (
+        <UserLocation
+          onLocationChange={handleLocationChange}
+          showWithError={showLocationWithError}
+        />
+      ),
       label: 'userLocation',
     },
     {

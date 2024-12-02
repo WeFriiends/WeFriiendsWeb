@@ -6,10 +6,6 @@ import { FormHelperText, Typography } from '@mui/material'
 import { getItemFromLocalStorage } from 'utils/localStorage'
 import { validateName } from '../utils/validateName'
 
-// todo: Validation for all the steps of First Profile Carousel.
-// todo: check for working backend WeFriendsProfile, showing the error if it is not running.
-// todo: add instruction to ReadMe: how to run backend.
-
 interface NameInputProps {
   showWithError: boolean
   onNameChange: (value: string) => void
@@ -23,22 +19,19 @@ const NameInput = ({ showWithError = false, onNameChange }: NameInputProps) => {
   const [hasTyped, setHasTyped] = useState(false)
 
   const handleInputChange = (value: string) => {
-    setFullName(value) // show text in input
-    setHasTyped(true)
-    if (validateName(value)) {
-      setHasError(true)
-    } else {
-      setHasError(false)
-    }
-    onNameChange(value)
+    setFullName(value)
+    setHasTyped(value.length > 0) // Track if user has typed at least one symbol
+    onNameChange(value) // Pass the value to the parent component
+    const isValid = validateName(value)
+    setHasError(!isValid)
   }
 
+  // Trigger the error when showWithError is true (e.g., when validation fails)
   useEffect(() => {
     if (showWithError) {
-      setHasTyped(true)
       setHasError(true)
     }
-  }, [showWithError, fullName])
+  }, [showWithError])
 
   return (
     <>
@@ -54,14 +47,8 @@ const NameInput = ({ showWithError = false, onNameChange }: NameInputProps) => {
         onChange={(e) => handleInputChange(e.target.value)}
         fullWidth
       />
-      {!hasTyped && (
-        <FormHelperText>
-          {`Please, note - you won’t be able to change this field later`}
-        </FormHelperText>
-      )}
-      {hasTyped && !hasError && (
-        <FormHelperText>{`15 symbols max.`}</FormHelperText>
-      )}
+
+      {/* Error message for invalid name */}
       {hasError && (
         <FormHelperText className={classes.errorBox}>
           <h4>Your name</h4>
@@ -69,6 +56,16 @@ const NameInput = ({ showWithError = false, onNameChange }: NameInputProps) => {
           <p>- has 2-15 symbols</p>
           <p>- has no special characters</p>
         </FormHelperText>
+      )}
+
+      {/* Message when user has typed but there's no error */}
+      {!hasError && hasTyped && (
+        <FormHelperText>{`15 symbols max.`}</FormHelperText>
+      )}
+
+      {/* Placeholder message if the name has not been typed yet */}
+      {!hasError && !hasTyped && (
+        <FormHelperText>{`Please, note - you won’t be able to change this field later`}</FormHelperText>
       )}
     </>
   )
