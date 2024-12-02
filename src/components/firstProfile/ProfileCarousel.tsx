@@ -35,6 +35,9 @@ type Address = {
   lng: number
 }
 
+// todo: check the connection with WeFriiendsProfile and show the error before allowing to fill out the form.
+// todo: check if the user is already filled the first profile and show the error.
+
 const ProfileCarousel = () => {
   const { classes } = useStyles()
   const token = useBearerToken()

@@ -11,6 +11,7 @@ import LocationInputAutocomplete from './LocationAutocomplete'
 // todo: Check with PM the behaviour:
 // when the location is already saved in Local Storage, and then we choose another one,
 // and it's not valid, the button Next is still working and the last valid location is applied.
+// It can be fixed after MVP (Olga Zavizonnaia)
 // todo: refactoring?
 
 export const checkGeolocationPermission = async () => {
