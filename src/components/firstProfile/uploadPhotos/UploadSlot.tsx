@@ -18,6 +18,7 @@ interface SlotType {
   setChosenId: (chosenId: string) => void
   setIsPhotoModalOpened: (isPhotoModalOpened: boolean) => void
   setChosenUrl: (chosenUrl: string) => void
+  onFileSelected?: (fileUrl: string, file: File) => void
 }
 
 const UploadSlot: React.FC<SlotType> = ({
@@ -29,6 +30,7 @@ const UploadSlot: React.FC<SlotType> = ({
   setChosenId,
   setIsPhotoModalOpened,
   setChosenUrl,
+  onFileSelected,
 }) => {
   const { classes } = useStyles()
 
@@ -38,6 +40,11 @@ const UploadSlot: React.FC<SlotType> = ({
     const file = event.target.files?.[0] as File | undefined
 
     if (file) {
+      const fileUrl = URL.createObjectURL(file)
+
+      if (onFileSelected) {
+        onFileSelected(fileUrl, file)
+      }
       const reader = new FileReader()
       reader.readAsDataURL(file)
 
@@ -48,11 +55,11 @@ const UploadSlot: React.FC<SlotType> = ({
         const img = new Image()
         img.src = base64data as string
 
-        // Ждем, пока изображение загрузится, и получаем его размеры
         img.onload = () => {
           const newPic = {
             id: id,
             url: base64data as string,
+            fileName: file.name,
           }
 
           const newUserPicsStorage = userPics.map((elem: UserPicsType) =>

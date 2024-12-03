@@ -6,6 +6,12 @@ import { PhotoModal } from './PhotoModal'
 import DeletePhoto from './DeletePhoto'
 import createTheme from 'styles/createTheme'
 
+declare global {
+  interface Window {
+    choosenFiles: File[]
+  }
+}
+
 const UploadPhotos = () => {
   const { classes } = useStyles()
   const [isDeleteModalOpened, setIsDeleteModalOpened] = useState<boolean>(false)
