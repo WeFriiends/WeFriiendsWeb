@@ -7,15 +7,26 @@ import {
   TextField,
   Autocomplete,
   Link,
+  Button,
 } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 import IconNewTab from '../../common/svg/IconNewTab'
 import AgeRangeControl from './AgeRangeControl'
 import DistanceControl from './DistanceControl'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
+  const { logout } = useAuth0()
+
+  const handleLogout = () => {
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin, // Redirects to home after logout
+      },
+    })
+  }
 
   const locationNamesTempList = [
     { label: 'New York' },
@@ -152,14 +163,13 @@ const MyAccount: React.FC = () => {
             Share WeFriiends
           </Link>
           <hr className={classes.separator} />
-          <Link
+          <Button
+            variant="text"
+            onClick={handleLogout}
             className={classes.linkOrange}
-            href="https://wefriiends.com/documents/privacy.html"
-            target="_blank"
-            rel="noopener"
           >
             Log out
-          </Link>
+          </Button>
           <hr className={classes.separator} />
           <Link
             className={classes.linkOrange}
@@ -335,6 +345,8 @@ const useStyles = makeStyles()({
     textDecoration: 'none',
     margin: '15px 0 20px',
     display: 'block',
+    padding: 0,
+    textTransform: 'none',
   },
   version: {
     fontSize: 14,
