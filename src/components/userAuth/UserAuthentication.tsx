@@ -14,13 +14,6 @@ const UserAuthentication = () => {
   const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0()
   const navigate = useNavigate()
 
-  // Redirect if logged in
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/user/friends') // Redirect to the '/links' page if authenticated
-    }
-  }, [isAuthenticated, navigate])
-
   if (isLoading) {
     return <LoadingScreen />
   }
@@ -43,6 +36,13 @@ const UserAuthentication = () => {
       },
     })
   }
+
+  // Redirect if logged in
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/user/friends')
+    }
+  }, [isAuthenticated, navigate])
 
   return (
     <AuthPagesWrapper>
