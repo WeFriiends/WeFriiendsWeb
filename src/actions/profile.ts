@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios'
 
 // Define the base URL for your API
 const API_BASE_URL = 'http://localhost:8080/api/profile'
+// const API_BASE_URL = 'https://wefriiends.com/wefriiendsprofile/api/profile'
 
 // Function to create a profile
 export const createProfile = async (

@@ -1,41 +1,44 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import dayjs, { Dayjs } from 'dayjs'
-import {
-  getItemFromLocalStorage,
-  setItemToLocalStorage,
-} from 'utils/localStorage'
+import { getItemFromLocalStorage } from 'utils/localStorage'
 import { FormHelperText, Typography, Box } from '@mui/material'
 import theme from 'styles/createTheme'
 import { makeStyles } from 'tss-react/mui'
+import { validateDob } from './utils/validateDob'
 
-const DateOfBirthPicker = () => {
+interface DateOfBirthPickerProps {
+  showWithError: boolean
+  onDobChange: (value: Dayjs | null) => void
+}
+
+const DateOfBirthPicker = ({
+  showWithError = false,
+  onDobChange,
+}: DateOfBirthPickerProps) => {
   const { classes } = useStyles()
-
-  const [dob, setDob] = React.useState<Dayjs | null>(
-    dayjs(getItemFromLocalStorage('dob'))
-  )
+  const initialDob = dayjs(getItemFromLocalStorage('dob'))
   const [error, setError] = useState<string | null>(null)
 
-  const validateDate = (dateValue: Dayjs | null) => {
-    if (dateValue) {
-      const age = new Date().getFullYear() - dateValue.year()
-      if (age < 18 || age > 150) {
-        setError('Please enter a valid date of birth.')
-      } else {
-        setError(null)
-      }
-    }
-  }
   const onChangePicker = (newValue: Dayjs | null) => {
-    setDob(newValue)
-    validateDate(newValue)
-    if (error === null) {
-      setItemToLocalStorage('dob', newValue)
+    // hide the error on start changing
+    setError(null)
+
+    if (newValue === null || !validateDob(newValue)) {
+      setError('Invalid date. Please provide a valid date.')
+    } else {
+      setError(null)
     }
+    onDobChange(newValue)
   }
+
+  useEffect(() => {
+    if (showWithError) {
+      setError('Invalid date. Please provide a valid date.')
+    }
+  }, [showWithError])
 
   return (
     <>
@@ -49,13 +52,13 @@ const DateOfBirthPicker = () => {
         <Box className={classes.dateWrapper}>
           <DatePicker
             className={classes.dateInput}
-            value={dob}
+            value={dayjs(initialDob)}
             onChange={(newValue) => onChangePicker(newValue)}
           />
-          {!dob && !error && (
+          {!error && (
             <FormHelperText>{`Please, note - you won’t be able to change this field later`}</FormHelperText>
           )}
-          <FormHelperText>{error}</FormHelperText>
+          <FormHelperText error={true}>{error}</FormHelperText>
         </Box>
       </LocalizationProvider>
     </>
