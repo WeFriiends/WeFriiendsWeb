@@ -100,29 +100,17 @@ const useStyles = makeStyles()(() => ({
     marginLeft: 20,
     marginRight: 20,
     paddingTop: 50,
-    '@media (max-width: 600px)': {
-      maxWidth: '380px',
-      width: '95vw',
-    },
   },
   picContainer: {
-    width: 349,
-    height: 300,
+    width: '95vw',
+    maxWidth: '349',
+    height: 349,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     flexWrap: 'wrap',
     gap: 20,
     margin: 20,
-    '@media (max-width: 600px)': {
-      maxWidth: '380px',
-      width: '95vw',
-      height: 'auto',
-    },
-    '@media (max-width: 368px)': {
-      justifyContent: 'space-around',
-      alignItems: 'center',
-    },
   },
   hintContainer: {
     height: 43,

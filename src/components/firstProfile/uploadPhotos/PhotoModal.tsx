@@ -33,9 +33,6 @@ export const PhotoModal = ({
   const windowWidth = window.innerWidth
   const windowHeight = window.innerHeight
 
-  displayedWidth = imgWidth
-  displayedHeight = imgHeight
-
   const widthScale = (windowWidth * 0.9) / imgWidth
   const heightScale = (windowHeight * 0.9) / imgHeight
 
