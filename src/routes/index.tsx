@@ -23,6 +23,7 @@ import ReportDialogExamplePage from '../components/report/ReportDialogExamplePag
 import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
 import MyAccount from '../components/myAccount/MyAccount'
 import Dashboard from '../components/dashboard/Dashboard'
+import ChatExamplePage from '../components/chatExample/ChatExamplePage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -110,6 +111,10 @@ const routes: RouteObject[] = [
   {
     path: 'dashboard',
     element: <Dashboard />,
+  },
+  {
+    path: 'chat',
+    element: <ChatExamplePage />,
   },
   {
     path: 'report',
