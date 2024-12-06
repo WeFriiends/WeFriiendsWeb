@@ -106,7 +106,7 @@ const useStyles = makeStyles()(() => ({
     maxWidth: 349,
     height: 'auto',
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
     gap: 20,
