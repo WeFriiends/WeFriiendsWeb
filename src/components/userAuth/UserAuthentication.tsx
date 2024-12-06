@@ -17,7 +17,7 @@ const UserAuthentication = () => {
   // Redirect if logged in
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/user/friends')
+      navigate('/friends')
     }
   }, [isAuthenticated, navigate])
 
@@ -28,7 +28,7 @@ const UserAuthentication = () => {
   const handleLogin = async () => {
     await loginWithRedirect({
       appState: {
-        returnTo: 'user/friends',
+        returnTo: 'friends',
       },
     })
   }
@@ -36,7 +36,7 @@ const UserAuthentication = () => {
   const handleSignUp = async () => {
     await loginWithRedirect({
       appState: {
-        returnTo: 'user/fill-profile',
+        returnTo: 'fill-profile',
       },
       authorizationParams: {
         screen_hint: 'signup',

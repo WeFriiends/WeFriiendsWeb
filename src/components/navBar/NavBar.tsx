@@ -49,7 +49,7 @@ const NavBar = () => {
         <Button
           variant="text"
           disableRipple
-          onClick={() => navigate('/user/my-account')}
+          onClick={() => navigate('/my-account')}
           className={`${classes.userDetails} ${
             activePage === 'profile' && classes.userDetailsActive
           }`}

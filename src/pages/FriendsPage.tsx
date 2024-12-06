@@ -20,7 +20,7 @@ const FriendsPage = () => {
   }
 
   const startChat = () => {
-    navigate('/user/messages')
+    navigate('/messages')
   }
 
   return (

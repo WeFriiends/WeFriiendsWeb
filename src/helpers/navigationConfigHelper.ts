@@ -10,31 +10,31 @@ export const generateNavigationConfig = (): NavigationConfig[] => {
     {
       value: 'nearme',
       Icon: IconNearMe,
-      linkTo: '/user/near-me',
+      linkTo: '/near-me',
       size: { xs: { width: 20, height: 24 }, lg: { width: 31, height: 37 } },
     },
     {
       value: 'wholikedyou',
       Icon: iconLightning,
-      linkTo: '/user/who-liked-you',
+      linkTo: '/who-liked-you',
       size: { xs: { width: 20, height: 26 }, lg: { width: 27, height: 38 } },
     },
     {
       value: 'friends',
       Icon: iconII,
-      linkTo: '/user/friends',
+      linkTo: '/friends',
       size: { xs: { width: 15, height: 32 }, lg: { width: 25, height: 50 } },
     },
     {
       value: 'chat',
       Icon: IconChat,
-      linkTo: '/user/messages',
+      linkTo: '/messages',
       size: { xs: { width: 25, height: 25 }, lg: { width: 30, height: 30 } },
     },
     {
       value: 'profile',
       Icon: IconProfile,
-      linkTo: '/user/my-account',
+      linkTo: '/my-account',
       size: { xs: { width: 24, height: 26 }, lg: { width: 24, height: 26 } },
     },
   ]
