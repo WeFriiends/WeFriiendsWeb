@@ -22,6 +22,7 @@ import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFrie
 import ReportDialogExamplePage from '../components/report/ReportDialogExamplePage'
 import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
 import MyAccount from '../components/myAccount/MyAccount'
+import Dashboard from '../components/dashboard/Dashboard'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -42,70 +43,68 @@ const routes: RouteObject[] = [
     element: <AuthCallbackPage />,
   },
   {
-    path: 'user',
+    path: 'fill-profile',
+    // element: <FirstProfile />,
+    element: <AuthGuard component={FirstProfile} />,
+  },
+  {
+    element: <NavBar />,
     children: [
       {
-        path: 'fill-profile',
-        // element: <FirstProfile />,
-        element: <AuthGuard component={FirstProfile} />,
+        path: 'account',
+        element: <UserAccount />,
+        // element: <AuthGuard component={YourLikesList} />,
       },
       {
-        element: <NavBar />,
+        element: <TabsMessagesFriends />,
         children: [
           {
-            path: 'account',
-            element: <UserAccount />,
-            // element: <AuthGuard component={YourLikesList} />,
+            path: 'friends',
+            // element: <Friends />,
+            element: <AuthGuard component={Friends} />,
           },
           {
-            element: <TabsMessagesFriends />,
-            children: [
-              {
-                path: 'friends',
-                // element: <Friends />,
-                element: <AuthGuard component={Friends} />,
-              },
-              {
-                path: 'messages',
-                element: <Messages />,
-                // element: <AuthGuard component={Messages} />,
-              },
-            ],
-          },
-          {
-            path: 'who-liked-you',
-            element: <YourLikesList />,
-            // element: <AuthGuard component={YourLikesList} />,
-          },
-          {
-            path: 'near-me',
-            element: <NearMe />,
-            // element: <AuthGuard component={NearMe} />,
-          },
-          {
-            path: 'my-account',
-            element: <MyAccount />,
-            // element: <AuthGuard component={NearMe} />,
-          },
-          {
-            path: 'new-match',
-            element: (
-              <>
-                Hello World!
-                <Match
-                  isMatchModalOpen={true}
-                  onClose={() => void {}}
-                  onChat={() => void {}}
-                  friendsAvatar={'test.jpg'}
-                />
-              </>
-            ),
+            path: 'messages',
+            element: <Messages />,
+            // element: <AuthGuard component={Messages} />,
           },
         ],
       },
+      {
+        path: 'who-liked-you',
+        element: <YourLikesList />,
+        // element: <AuthGuard component={YourLikesList} />,
+      },
+      {
+        path: 'near-me',
+        element: <NearMe />,
+        // element: <AuthGuard component={NearMe} />,
+      },
+      {
+        path: 'my-account',
+        element: <MyAccount />,
+        // element: <AuthGuard component={NearMe} />,
+      },
+      {
+        path: 'new-match',
+        element: (
+          <>
+            Hello World!
+            <Match
+              isMatchModalOpen={true}
+              onClose={() => void {}}
+              onChat={() => void {}}
+              friendsAvatar={'test.jpg'}
+            />
+          </>
+        ),
+      },
     ],
   },
-
+  {
+    path: 'dashboard',
+    element: <Dashboard />,
+  },
   {
     path: 'report',
     element: <ReportDialogExamplePage />,
@@ -118,17 +117,6 @@ const routes: RouteObject[] = [
   { path: 'error-400', element: <ErrorPage code={400} /> }, // Route is working for demonstration
   { path: 'error-500', element: <ErrorPage code={500} /> }, // Route is working for demonstration
   { path: '*', element: <ErrorPage /> }, // Route is working for demonstration
-  //left code underneath as example of using path for common layout
-  // {
-  //   path: '*',
-  //   element: <MainLayout />,
-  //   children: [
-  //     {
-  //       index: true,
-  //       element: <Home />,
-  //     },
-  //   ],
-  // },
 ]
 
 export default routes
