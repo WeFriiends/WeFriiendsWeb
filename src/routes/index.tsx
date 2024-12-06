@@ -24,6 +24,7 @@ import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDial
 import MyAccount from '../components/myAccount/MyAccount'
 import Dashboard from '../components/dashboard/Dashboard'
 import ChatExamplePage from '../components/chatExample/ChatExamplePage'
+import FirestoreChatExamplePage from '../components/firestoreChatExample/FirestoreChatExamplePage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -115,6 +116,10 @@ const routes: RouteObject[] = [
   {
     path: 'chat',
     element: <ChatExamplePage />,
+  },
+  {
+    path: 'firestore-chat',
+    element: <FirestoreChatExamplePage />,
   },
   {
     path: 'report',
