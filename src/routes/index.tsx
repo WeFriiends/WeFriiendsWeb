@@ -22,6 +22,9 @@ import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFrie
 import ReportDialogExamplePage from '../components/report/ReportDialogExamplePage'
 import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
 import MyAccount from '../components/myAccount/MyAccount'
+import Dashboard from '../components/dashboard/Dashboard'
+import ChatExamplePage from '../components/chatExample/ChatExamplePage'
+import FirestoreChatExamplePage from '../components/firestoreChatExample/FirestoreChatExamplePage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -107,6 +110,18 @@ const routes: RouteObject[] = [
   },
 
   {
+    path: 'dashboard',
+    element: <Dashboard />,
+  },
+  {
+    path: 'chat',
+    element: <ChatExamplePage />,
+  },
+  {
+    path: 'firestore-chat',
+    element: <FirestoreChatExamplePage />,
+  },
+  {
     path: 'report',
     element: <ReportDialogExamplePage />,
   },
@@ -118,17 +133,6 @@ const routes: RouteObject[] = [
   { path: 'error-400', element: <ErrorPage code={400} /> }, // Route is working for demonstration
   { path: 'error-500', element: <ErrorPage code={500} /> }, // Route is working for demonstration
   { path: '*', element: <ErrorPage /> }, // Route is working for demonstration
-  //left code underneath as example of using path for common layout
-  // {
-  //   path: '*',
-  //   element: <MainLayout />,
-  //   children: [
-  //     {
-  //       index: true,
-  //       element: <Home />,
-  //     },
-  //   ],
-  // },
 ]
 
 export default routes
