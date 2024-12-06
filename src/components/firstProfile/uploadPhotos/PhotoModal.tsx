@@ -17,14 +17,6 @@ export const PhotoModal = ({
 
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
-  const style = {
-    backgroundImage: `url(${url})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    width: dimensions.width,
-    height: dimensions.height,
-  }
-
   useEffect(() => {
     const img = new Image()
     img.src = url
@@ -34,11 +26,34 @@ export const PhotoModal = ({
     }
   }, [url])
 
+  const { width: imgWidth, height: imgHeight } = dimensions
+  let displayedWidth: number = imgWidth
+  let displayedHeight: number = imgHeight
+
+  const windowWidth = window.innerWidth
+  const windowHeight = window.innerHeight
+
+  const widthScale = (windowWidth * 0.9) / imgWidth
+  const heightScale = (windowHeight * 0.9) / imgHeight
+
+  const scale = Math.min(widthScale, heightScale)
+
+  displayedWidth = imgWidth * scale
+  displayedHeight = imgHeight * scale
+
+  const style = {
+    backgroundImage: `url(${url})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    width: displayedWidth,
+    height: displayedHeight,
+  }
+
   return (
     <Modal className={classes.modal} open={isOpened}>
       <Box style={style} className={classes.box}>
         <img
-          src={'/img/x-square.png'}
+          src={'/img/x-square-white.svg'}
           alt="close photo"
           className={classes.closeIcon}
           onClick={() => setIsPhotoModalOpened(false)}
