@@ -103,8 +103,8 @@ const useStyles = makeStyles()(() => ({
   },
   picContainer: {
     width: '95vw',
-    maxWidth: '349',
-    height: 349,
+    maxWidth: 349,
+    height: 'auto',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
