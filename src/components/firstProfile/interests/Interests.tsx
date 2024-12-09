@@ -8,7 +8,10 @@ import { LanguageItem } from './LanguageItem'
 
 const LOCAL_STORAGE_KEY = 'userPreferences'
 
-const Interests = () => {
+interface InterestsProps {
+  showAboutMeFirst?: boolean
+}
+const Interests = ({ showAboutMeFirst = false }: InterestsProps) => {
   const { classes } = useStyles()
 
   const loadInitialData = () => {
@@ -58,6 +61,10 @@ const Interests = () => {
 
   return (
     <Box className={classes.mainBox}>
+      {showAboutMeFirst && (
+        <AboutMeSection aboutMe={aboutMe} onChange={handleAboutMeChange} />
+      )}
+      <Box sx={{ marginBottom: showAboutMeFirst ? '50px' : '0' }} />
       <Box className={classes.titleContainer}>
         <Typography className={classes.title}>Lifestyle</Typography>
       </Box>
@@ -88,6 +95,25 @@ const Interests = () => {
           selectedLanguages={selectedLanguages}
         />
       </Box>
+      {!showAboutMeFirst && (
+        <AboutMeSection aboutMe={aboutMe} onChange={handleAboutMeChange} />
+      )}
+    </Box>
+  )
+}
+
+export default Interests
+
+const AboutMeSection = ({
+  aboutMe,
+  onChange,
+}: {
+  aboutMe: string
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}) => {
+  const { classes } = useStyles()
+  return (
+    <>
       <Box className={classes.titleContainer}>
         <Typography className={classes.title}>About me</Typography>
       </Box>
@@ -97,7 +123,7 @@ const Interests = () => {
           type="text"
           placeholder="Add about me..."
           value={aboutMe}
-          onChange={handleAboutMeChange}
+          onChange={onChange}
           multiline
           rows={6}
           InputProps={{
@@ -111,11 +137,9 @@ const Interests = () => {
           variant="outlined"
         />
       </Box>
-    </Box>
+    </>
   )
 }
-
-export default Interests
 
 const useStyles = makeStyles()(() => ({
   mainBox: {
@@ -130,6 +154,7 @@ const useStyles = makeStyles()(() => ({
       width: '280px',
     },
   },
+
   titleContainer: {
     position: 'relative',
     display: 'flex',

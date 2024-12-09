@@ -13,9 +13,19 @@ import theme from '../../styles/createTheme'
 import IconNewTab from '../../common/svg/IconNewTab'
 import AgeRangeControl from './AgeRangeControl'
 import DistanceControl from './DistanceControl'
+import PrimaryButton from 'common/components/PrimaryButton'
+import Interests from 'components/firstProfile/interests/Interests'
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
+  const [isEditing, setIsEditing] = React.useState(false)
+
+  const handleEditClick = () => {
+    setIsEditing(true)
+  }
+  const handleSaveClick = () => {
+    setIsEditing(false)
+  }
 
   const locationNamesTempList = [
     { label: 'New York' },
@@ -26,7 +36,6 @@ const MyAccount: React.FC = () => {
     { label: 'Buenos Aires' },
     { label: 'Tokyo' },
   ]
-
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} className={classes.twoColumnLayoutWrapper}>
@@ -174,7 +183,25 @@ const MyAccount: React.FC = () => {
             version 2.33
           </Typography>
         </Box>
-        <Box className={classes.twoColumnLayoutColRight}>Right column</Box>
+        <Box className={classes.twoColumnLayoutColRight}>
+          {isEditing ? (
+            <>
+              <Box className={classes.interests}>
+                <Interests showAboutMeFirst={true} />
+              </Box>
+              <Box className={classes.buttonContainer}>
+                <PrimaryButton label="Save" onClickHandler={handleSaveClick} />
+              </Box>
+            </>
+          ) : (
+            <Box className={classes.buttonContainer}>
+              <PrimaryButton
+                label="Change Profile"
+                onClickHandler={handleEditClick}
+              />
+            </Box>
+          )}
+        </Box>
       </Grid>
     </Grid>
   )
@@ -211,10 +238,13 @@ const useStyles = makeStyles()({
     width: 450,
     outline: '1px solid pink',
     maxWidth: '100%',
+    overflow: 'auto',
+    padding: theme.spacing(2),
     [theme.breakpoints.up(850)]: {
       width: 450,
     },
   },
+
   title: {
     paddingTop: 60,
     paddingBottom: 10,
@@ -340,5 +370,15 @@ const useStyles = makeStyles()({
     fontSize: 14,
     lineHeight: '22px',
     color: theme.customPalette.colorActiveGrey,
+  },
+  interests: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: theme.spacing(2),
   },
 })
