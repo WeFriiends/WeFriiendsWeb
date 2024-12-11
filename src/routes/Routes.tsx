@@ -108,11 +108,7 @@ const routes: RouteObject[] = [
     element: <Dashboard />,
   },
   {
-    path: 'dashboard',
-    element: <Dashboard />,
-  },
-  {
-    path: 'chat',
+    path: 'realtime-database-chat',
     element: <RealtimeDatabaseChatExamplePage />,
   },
   {
