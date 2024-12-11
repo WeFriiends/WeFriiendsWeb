@@ -1,7 +1,18 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { getDatabase, ref, push, onValue, set } from 'firebase/database'
+import { getFirestore } from 'firebase/firestore'
 import React, { useState, useEffect } from 'react'
+import {
+  collection,
+  doc,
+  addDoc,
+  deleteDoc,
+  onSnapshot,
+  orderBy,
+  query,
+  limitToLast,
+} from 'firebase/firestore'
+import { makeStyles } from 'tss-react/mui'
+import theme from '../../../styles/createTheme'
 import {
   Avatar,
   Box,
@@ -9,10 +20,7 @@ import {
   TextareaAutosize,
   Typography,
 } from '@mui/material'
-import { makeStyles } from 'tss-react/mui'
-import theme from '../../styles/createTheme'
-import ChatMenu from '../chat/ChatMenu'
-//import { firebaseConfig } from './FirebaseConfig'
+import ChatMenu from '../../chat/ChatMenu'
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -24,66 +32,76 @@ const firebaseConfig = {
   databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
 }
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig)
-const db = getDatabase(app)
+const db = getFirestore(app)
 
 interface Message {
   id: string
   sender: string
-  message: string
-  timestamp: number
+  content: string
+  timestamp: Date
+  readStatus: boolean
 }
 
-interface ChatComponentProps {
+interface ChatRoomProps {
   roomId: string
   userName: string // Add userName prop
 }
 
-function ChatComponent({ roomId, userName }: ChatComponentProps) {
+const ChatRoomStyled: React.FC<ChatRoomProps> = ({ roomId, userName }) => {
   const { classes } = useStyles()
   const [messages, setMessages] = useState<Message[]>([])
   const [newMessage, setNewMessage] = useState('')
-  const messagesRef = ref(db, `rooms/${roomId}/messages`) // Reference to messages in the specific room
+  const messagesCollectionRef = collection(db, 'rooms', roomId, 'messages')
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const unsubscribe = onValue(messagesRef, (snapshot) => {
-      const data = snapshot.val()
-      if (isObject(data)) {
-        const messagesArray = Object.entries(data).map(([key, value]) => ({
-          id: key,
-          ...value,
-        })) as Message[]
-        setMessages(messagesArray)
-      } else {
-        setMessages([])
-      }
+    const q = query(
+      messagesCollectionRef,
+      orderBy('timestamp', 'asc'), // Sort by timestamp in descending order
+      limitToLast(100) // Limit to the last 10 messages (adjust as needed)
+    )
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const messagesData: Message[] = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        sender: doc.data().sender,
+        content: doc.data().content,
+        timestamp: doc.data().timestamp,
+        readStatus: doc.data().readStatus,
+      }))
+      setMessages(messagesData)
     })
 
     return () => unsubscribe()
-  }, [roomId, messagesRef]) // Include roomId in dependency array
+  }, [])
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setNewMessage(event.target.value)
-  }
-
-  function isObject(value: any): value is object {
-    return typeof value === 'object' && value !== null
-  }
-
-  const sendMessage = () => {
+  const handleSendMessage = async () => {
     if (newMessage.trim() !== '') {
-      const newMessageRef = push(messagesRef)
-      set(newMessageRef, {
-        sender: userName, // Use userName prop for sender
-        message: newMessage,
-        timestamp: Date.now(),
-        readStatus: false,
-      })
-      setNewMessage('')
+      try {
+        await addDoc(messagesCollectionRef, {
+          sender: userName, // Use userName prop for sender
+          content: newMessage,
+          timestamp: Date.now(),
+          readStatus: false,
+        })
+        setNewMessage('')
+        setError(null) // Clear any previous error
+      } catch (error: any) {
+        console.error('Error sending message:', error)
+        setError('Failed to send message. Please try again later.')
+      }
     }
   }
 
+  const handleDeleteMessage = async (messageId: string) => {
+    try {
+      await deleteDoc(doc(db, 'rooms', roomId, 'messages', messageId))
+      setError(null) // Clear any previous error
+    } catch (error: any) {
+      console.error('Error deleting message:', error)
+      setError('Failed to delete message. Please try again later.')
+    }
+  }
   return (
     <>
       <Box>
@@ -130,7 +148,7 @@ function ChatComponent({ roomId, userName }: ChatComponentProps) {
                   {': '}
                 </Typography>
                 <Typography className={classes.messageText}>
-                  {message.message}
+                  {message.content}
                 </Typography>
                 <Typography
                   className={classes.messageDate}
@@ -146,9 +164,16 @@ function ChatComponent({ roomId, userName }: ChatComponentProps) {
                     minute: '2-digit',
                   })}
                 </Typography>
+                <Button
+                  variant="text"
+                  onClick={() => handleDeleteMessage(message.id)}
+                >
+                  Delete
+                </Button>
               </Box>
             ))}
           </Box>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
           <Box className={classes.sendMessageSection}>
             <TextareaAutosize
               minRows={1}
@@ -156,11 +181,12 @@ function ChatComponent({ roomId, userName }: ChatComponentProps) {
               placeholder={`Type a message as ${userName}`}
               className={classes.textArea}
               value={newMessage}
-              onChange={handleInputChange}
+              onChange={(e) => setNewMessage(e.target.value)}
+              // onChange={handleInputChange}
             />
             <img src="/img/messages/lol.svg" alt="lol" />
             <Button
-              onClick={sendMessage}
+              onClick={handleSendMessage}
               className={classes.sendBtn}
               variant="outlined"
             >
@@ -173,14 +199,13 @@ function ChatComponent({ roomId, userName }: ChatComponentProps) {
   )
 }
 
-export default ChatComponent
+export default ChatRoomStyled
 
 const useStyles = makeStyles()({
   header: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    //marginTop: -78,
     paddingLeft: 22,
   },
   userInHeader: {

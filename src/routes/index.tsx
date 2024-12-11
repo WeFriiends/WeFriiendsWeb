@@ -23,8 +23,8 @@ import ReportDialogExamplePage from '../components/report/ReportDialogExamplePag
 import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
 import MyAccount from '../components/myAccount/MyAccount'
 import Dashboard from '../components/dashboard/Dashboard'
-import ChatExamplePage from '../components/chatExample/ChatExamplePage'
-import FirestoreChatExamplePage from '../components/firestoreChatExample/FirestoreChatExamplePage'
+import RealtimeDatabaseChatExamplePage from '../components/chatExample/RealtimeDatabaseChatExamplePage'
+import FirestoreChatExamplePage from '../components/chatExample/FirestoreChatExamplePage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -115,7 +115,7 @@ const routes: RouteObject[] = [
   },
   {
     path: 'chat',
-    element: <ChatExamplePage />,
+    element: <RealtimeDatabaseChatExamplePage />,
   },
   {
     path: 'firestore-chat',

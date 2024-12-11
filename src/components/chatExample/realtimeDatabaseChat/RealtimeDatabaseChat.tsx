@@ -39,7 +39,7 @@ interface ChatComponentProps {
   userName: string // Add userName prop
 }
 
-function ChatComponent({ roomId, userName }: ChatComponentProps) {
+function RealtimeDatabaseChat({ roomId, userName }: ChatComponentProps) {
   const [messages, setMessages] = useState<Message[]>([])
   const [newMessage, setNewMessage] = useState('')
   const messagesRef = ref(db, `rooms/${roomId}/messages`) // Reference to messages in the specific room
@@ -105,4 +105,4 @@ function ChatComponent({ roomId, userName }: ChatComponentProps) {
   )
 }
 
-export default ChatComponent
+export default RealtimeDatabaseChat
