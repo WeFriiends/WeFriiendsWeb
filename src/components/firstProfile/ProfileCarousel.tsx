@@ -25,15 +25,7 @@ import {
 } from 'utils/localStorage'
 import { Dayjs } from 'dayjs'
 import { validateLocation } from './utils/validateLocation'
-
-type Address = {
-  country: string
-  city: string
-  street: string
-  houseNumber: string
-  lat: number
-  lng: number
-}
+import { Address } from './profile'
 
 // todo: check the connection with WeFriiendsProfile and show the error before allowing to fill out the form.
 // todo: check if the user is already filled the first profile and show the error.

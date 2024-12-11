@@ -7,6 +7,7 @@ import Loader from 'common/svg/Loader'
 import { makeStyles } from 'tss-react/mui'
 import { validateLocation } from '../utils/validateLocation'
 import LocationInputAutocomplete from './LocationAutocomplete'
+import { Address } from '../profile'
 
 // todo: Check with PM the behaviour:
 // when the location is already saved in Local Storage, and then we choose another one,
@@ -26,15 +27,6 @@ export const checkGeolocationPermission = async () => {
     console.error('Error checking geolocation permission:', error)
     return 'error'
   }
-}
-
-type Address = {
-  country: string
-  city: string
-  street: string
-  houseNumber: string
-  lat: number
-  lng: number
 }
 
 interface UserLocationProps {

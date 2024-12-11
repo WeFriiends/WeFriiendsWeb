@@ -14,7 +14,7 @@ const SUGGESTIONS_LIMIT = 5
 const LocationInputAutocomplete = ({
   onLocationChange,
 }: {
-  onLocationChange: (location: any) => void
+  onLocationChange: (location: string) => void
 }) => {
   const [inputLocation, setInputLocation] = useState('')
   const [isFocused, setIsFocused] = useState(false)
@@ -43,7 +43,10 @@ const LocationInputAutocomplete = ({
   }
 
   // Handle selected value from Autocomplete
-  const handleSelectLocation = (event: any, value: any) => {
+  const handleSelectLocation = (
+    event: React.SyntheticEvent<Element, Event>,
+    value: any
+  ) => {
     // Send the selected location to the parent component
     if (value) {
       onLocationChange(value) // Passing the selected location to parent
