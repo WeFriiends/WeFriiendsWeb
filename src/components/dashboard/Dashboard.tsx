@@ -24,7 +24,10 @@ const Dashboard = () => {
   ]
 
   const routesTemporary = [
-    { path: '/account', label: 'User Account' },
+    {
+      path: '/account',
+      label: 'User Account (works only after login and first profile)',
+    },
     { path: '/dashboard', label: 'Dashboard' },
   ]
 
@@ -57,7 +60,9 @@ const Dashboard = () => {
           </Button>
         </Box>
       ))}
-      <Typography variant="h2">Technical/temporary routes</Typography>
+      <Typography variant="h2">
+        Examples, additional components, routes for demonstration
+      </Typography>
       {routesTemporaryExamples.map((route) => (
         <Box key={route.path} sx={{ display: 'flex', alignItems: 'center' }}>
           <Typography variant="body1">{route.path}</Typography>
