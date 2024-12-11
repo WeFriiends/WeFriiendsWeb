@@ -13,22 +13,22 @@ interface SlotType {
   id: string
   bgPic: string | null
   userPics: UserPicsType[]
-  setUserPics: (newPics: UserPicsType[]) => void
   setIsDeleteModalOpened(isOpened: boolean): void
   setChosenId: (chosenId: string) => void
   setIsPhotoModalOpened: (isPhotoModalOpened: boolean) => void
   setChosenUrl: (chosenUrl: string) => void
+  shiftPics: (array: UserPicsType[]) => void
 }
 
 const UploadSlot: React.FC<SlotType> = ({
   id,
   bgPic,
-  setUserPics,
   userPics,
   setIsDeleteModalOpened,
   setChosenId,
   setIsPhotoModalOpened,
   setChosenUrl,
+  shiftPics,
 }) => {
   const { classes } = useStyles()
 
@@ -44,11 +44,9 @@ const UploadSlot: React.FC<SlotType> = ({
       reader.onloadend = () => {
         const base64data = reader.result
 
-        // Создаем новый объект Image
         const img = new Image()
         img.src = base64data as string
 
-        // Ждем, пока изображение загрузится, и получаем его размеры
         img.onload = () => {
           const newPic = {
             id: id,
@@ -59,12 +57,7 @@ const UploadSlot: React.FC<SlotType> = ({
             elem.id === id ? newPic : elem
           )
 
-          localStorage.setItem(
-            'userPicsStorage',
-            JSON.stringify(newUserPicsStorage)
-          )
-
-          setUserPics(newUserPicsStorage)
+          shiftPics(newUserPicsStorage)
         }
       }
     }
