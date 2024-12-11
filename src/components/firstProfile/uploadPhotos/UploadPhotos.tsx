@@ -18,20 +18,18 @@ const UploadPhotos = () => {
     url: string | null
   }
 
-  const storedPicsString = localStorage.getItem('userPicsStorage')
-  const emptyPicArray: UserPicsType[] = Array.from(
-    { length: 6 },
-    (_, index) => ({
-      id: `userPic-${index}`,
-      url: null,
-    })
-  )
-
-  const initialPics = storedPicsString
-    ? JSON.parse(storedPicsString)
-    : emptyPicArray
+  const initialPics: UserPicsType[] = Array.from({ length: 6 }, (_, index) => ({
+    id: `userPic-${index}`,
+    url: null,
+  }))
 
   const [userPics, setUserPics] = useState<UserPicsType[]>(initialPics)
+
+  const shiftPics = (array: UserPicsType[]) => {
+    const picturesWithUrl = array.filter((pic) => pic.url !== null)
+    const picturesWithoutUrl = array.filter((pic) => pic.url === null)
+    setUserPics([...picturesWithUrl, ...picturesWithoutUrl])
+  }
 
   const deleteChosenPic = () => {
     const updatedPicArray: UserPicsType[] = userPics.map((pic) => {
@@ -41,7 +39,7 @@ const UploadPhotos = () => {
     })
     setUserPics(updatedPicArray)
     setIsDeleteModalOpened(false)
-    localStorage.setItem('userPicsStorage', JSON.stringify(updatedPicArray))
+    shiftPics(updatedPicArray)
   }
 
   const hasAnyPics = (array: UserPicsType[]): boolean => {
@@ -78,11 +76,11 @@ const UploadPhotos = () => {
             id={pic.id}
             bgPic={pic.url}
             userPics={userPics}
-            setUserPics={setUserPics}
             setIsDeleteModalOpened={setIsDeleteModalOpened}
             setChosenId={setChosenId}
             setIsPhotoModalOpened={setIsPhotoModalOpened}
             setChosenUrl={setChosenUrl}
+            shiftPics={shiftPics}
           />
         ))}
       </Box>
