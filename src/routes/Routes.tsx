@@ -22,7 +22,7 @@ import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFrie
 import ReportDialogExamplePage from '../components/report/ReportDialogExamplePage'
 import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
 import MyAccount from '../components/myAccount/MyAccount'
-import Dashboard from '../components/dashboard/Dashboard'
+import Dashboard from 'pages/Dashboard'
 import RealtimeDatabaseChatExamplePage from '../components/chatExample/RealtimeDatabaseChatExamplePage'
 import FirestoreChatExamplePage from '../components/chatExample/FirestoreChatExamplePage'
 
@@ -45,70 +45,68 @@ const routes: RouteObject[] = [
     element: <AuthCallbackPage />,
   },
   {
-    path: 'user',
+    path: 'fill-profile',
+    // element: <FirstProfile />,
+    element: <AuthGuard component={FirstProfile} />,
+  },
+  {
+    element: <NavBar />,
     children: [
       {
-        path: 'fill-profile',
-        // element: <FirstProfile />,
-        element: <AuthGuard component={FirstProfile} />,
+        path: 'account',
+        element: <UserAccount />,
+        // element: <AuthGuard component={YourLikesList} />,
       },
       {
-        element: <NavBar />,
+        element: <TabsMessagesFriends />,
         children: [
           {
-            path: 'account',
-            element: <UserAccount />,
-            // element: <AuthGuard component={YourLikesList} />,
+            path: 'friends',
+            // element: <Friends />,
+            element: <AuthGuard component={Friends} />,
           },
           {
-            element: <TabsMessagesFriends />,
-            children: [
-              {
-                path: 'friends',
-                // element: <Friends />,
-                element: <AuthGuard component={Friends} />,
-              },
-              {
-                path: 'messages',
-                element: <Messages />,
-                // element: <AuthGuard component={Messages} />,
-              },
-            ],
-          },
-          {
-            path: 'who-liked-you',
-            element: <YourLikesList />,
-            // element: <AuthGuard component={YourLikesList} />,
-          },
-          {
-            path: 'near-me',
-            element: <NearMe />,
-            // element: <AuthGuard component={NearMe} />,
-          },
-          {
-            path: 'my-account',
-            element: <MyAccount />,
-            // element: <AuthGuard component={NearMe} />,
-          },
-          {
-            path: 'new-match',
-            element: (
-              <>
-                Hello World!
-                <Match
-                  isMatchModalOpen={true}
-                  onClose={() => void {}}
-                  onChat={() => void {}}
-                  friendsAvatar={'test.jpg'}
-                />
-              </>
-            ),
+            path: 'messages',
+            element: <Messages />,
+            // element: <AuthGuard component={Messages} />,
           },
         ],
       },
+      {
+        path: 'who-liked-you',
+        element: <YourLikesList />,
+        // element: <AuthGuard component={YourLikesList} />,
+      },
+      {
+        path: 'near-me',
+        element: <NearMe />,
+        // element: <AuthGuard component={NearMe} />,
+      },
+      {
+        path: 'my-account',
+        element: <MyAccount />,
+        // element: <AuthGuard component={NearMe} />,
+      },
+      {
+        path: 'new-match',
+        element: (
+          <>
+            Hello World!
+            <Match
+              isMatchModalOpen={true}
+              onClose={() => void {}}
+              onChat={() => void {}}
+              friendsAvatar={'test.jpg'}
+            />
+          </>
+        ),
+      },
     ],
   },
-
+  {
+    path: 'dashboard',
+    element: <Dashboard/>,
+  },
   {
     path: 'dashboard',
     element: <Dashboard />,
