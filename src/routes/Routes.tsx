@@ -22,7 +22,7 @@ import TabsMessagesFriends from 'components/tabsMessagesFriends/TabsMessagesFrie
 import ReportDialogExamplePage from '../components/report/ReportDialogExamplePage'
 import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
 import MyAccount from '../components/myAccount/MyAccount'
-import Dashboard from '../components/dashboard/Dashboard'
+import Dashboard from 'pages/Dashboard'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
