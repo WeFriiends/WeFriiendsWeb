@@ -20,5 +20,5 @@ export const validateLocation = (location: Location): boolean => {
   if (!country || !city || !street || !houseNumber) return false
 
   // Validate latitude and longitude
-  return (lat >= -90) && (lat <= 90) && (lng >= -180) && (lng <= 180)
+  return lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180
 }
