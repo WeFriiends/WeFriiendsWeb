@@ -8,7 +8,7 @@ const FirestoreChatExamplePage = () => {
     <>
       <Box
         sx={{
-          m: 5,
+          margin: 5,
           display: 'grid',
           gridTemplateColumns: '575px 575px',
           gap: 50,
