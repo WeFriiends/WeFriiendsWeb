@@ -1,3 +1,9 @@
+/**
+ * Validates a location object.
+ * @param location - The location object to validate.
+ * @returns {boolean} - True if the location is valid, otherwise false.
+ */
+
 type Location = {
   country: string
   city: string
@@ -7,11 +13,6 @@ type Location = {
   lng: number
 }
 
-/**
- * Validates a location object.
- * @param location - The location object to validate.
- * @returns {boolean} - True if the location is valid, otherwise false.
- */
 export const validateLocation = (location: Location): boolean => {
   const { country, city, street, houseNumber, lat, lng } = location
 
@@ -19,5 +20,5 @@ export const validateLocation = (location: Location): boolean => {
   if (!country || !city || !street || !houseNumber) return false
 
   // Validate latitude and longitude
-  return !(lat < -90 || lat > 90 || lng < -180 || lng > 180)
+  return (lat >= -90) && (lat <= 90) && (lng >= -180) && (lng <= 180)
 }
