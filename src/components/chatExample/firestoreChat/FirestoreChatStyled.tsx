@@ -73,7 +73,7 @@ const ChatRoomStyled: React.FC<ChatRoomProps> = ({ roomId, userName }) => {
     })
 
     return () => unsubscribe()
-  })
+  }, [])
 
   const handleSendMessage = async () => {
     if (newMessage.trim() !== '') {
