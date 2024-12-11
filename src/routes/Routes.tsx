@@ -105,7 +105,7 @@ const routes: RouteObject[] = [
   },
   {
     path: 'dashboard',
-    element: <Dashboard/>,
+    element: <Dashboard />,
   },
   {
     path: 'dashboard',
