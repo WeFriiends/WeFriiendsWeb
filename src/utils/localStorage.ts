@@ -6,7 +6,7 @@ export const getItemFromLocalStorage = (key: string) => {
   try {
     const value = localStorage.getItem(key)
     // Parse only if value is not null
-    return value ? JSON.parse(value) : null
+    return value && value !== 'undefined' ? JSON.parse(value) : null
   } catch (e) {
     console.error('Error parsing localStorage item', e)
     return null // Return null if an error occurs during parsing

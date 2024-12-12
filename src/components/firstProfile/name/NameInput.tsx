@@ -50,7 +50,7 @@ const NameInput = ({ showWithError = false, onNameChange }: NameInputProps) => {
 
       {/* Error message for invalid name */}
       {hasError && (
-        <FormHelperText className={classes.errorBox}>
+        <FormHelperText className={classes.errorBox} component="div">
           <h4>Your name</h4>
           <p>- shouldn’t contain numbers</p>
           <p>- has 2-15 symbols</p>
