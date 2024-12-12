@@ -23,6 +23,8 @@ import ReportDialogExamplePage from '../components/report/ReportDialogExamplePag
 import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
 import MyAccount from '../components/myAccount/MyAccount'
 import Dashboard from 'pages/Dashboard'
+import RealtimeDatabaseChatExamplePage from '../components/chatExample/RealtimeDatabaseChatExamplePage'
+import FirestoreChatExamplePage from '../components/chatExample/FirestoreChatExamplePage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -104,6 +106,14 @@ const routes: RouteObject[] = [
   {
     path: 'dashboard',
     element: <Dashboard />,
+  },
+  {
+    path: 'realtime-database-chat',
+    element: <RealtimeDatabaseChatExamplePage />,
+  },
+  {
+    path: 'firestore-chat',
+    element: <FirestoreChatExamplePage />,
   },
   {
     path: 'report',
