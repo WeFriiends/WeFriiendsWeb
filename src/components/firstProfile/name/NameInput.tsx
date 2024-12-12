@@ -1,45 +1,37 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TextField from '@mui/material/TextField'
 import { makeStyles } from 'tss-react/mui'
 import theme from 'styles/createTheme'
 import { FormHelperText, Typography } from '@mui/material'
-import {
-  getItemFromLocalStorage,
-  setItemToLocalStorage,
-} from 'utils/localStorage'
-import NameValidationBox from './NameValidationBox'
+import { getItemFromLocalStorage } from 'utils/localStorage'
+import { validateName } from '../utils/validateName'
 
-// todo: Validation for all the steps of First Profile Carousel.
-// todo: check for working backend WeFriendsProfile, showing the error if it is not running.
-// todo: add instruction to ReadMe: how to run backend.
+interface NameInputProps {
+  showWithError: boolean
+  onNameChange: (value: string) => void
+}
 
-const NameInput = () => {
+const NameInput = ({ showWithError = false, onNameChange }: NameInputProps) => {
   const { classes } = useStyles()
-  const [fullName, setFullName] = useState(
-    getItemFromLocalStorage('name') || ''
-  )
-  const [error, setError] = useState<string | null>(null)
+  const [fullName, setFullName] = useState(getItemFromLocalStorage('name'))
+  const [hasError, setHasError] = useState(false)
+  //'Name should contain 2-15 letters only, spaces allowed in between, without numbers or special characters.'
   const [hasTyped, setHasTyped] = useState(false)
-
-  const validateName = (value: string) => {
-    const regex = /^[a-zA-Z ]{2,15}$/
-    if (!regex.test(value) || value.startsWith(' ') || value.endsWith(' ')) {
-      setError(
-        'Name should contain 2-15 letters only, spaces allowed in between, without numbers or special characters.'
-      )
-    } else {
-      setError(null)
-    }
-  }
 
   const handleInputChange = (value: string) => {
     setFullName(value)
-    setHasTyped(true)
-    validateName(value)
-    if (error === null) {
-      setItemToLocalStorage('name', value)
-    }
+    setHasTyped(value.length > 0) // Track if user has typed at least one symbol
+    onNameChange(value) // Pass the value to the parent component
+    const isValid = validateName(value)
+    setHasError(!isValid)
   }
+
+  // Trigger the error when showWithError is true (e.g., when validation fails)
+  useEffect(() => {
+    if (showWithError) {
+      setHasError(true)
+    }
+  }, [showWithError])
 
   return (
     <>
@@ -53,18 +45,28 @@ const NameInput = () => {
         className={classes.profileInput}
         value={fullName}
         onChange={(e) => handleInputChange(e.target.value)}
-        error={!!error}
         fullWidth
       />
-      {!hasTyped && (
-        <FormHelperText>
-          {`Please, note - you won’t be able to change this field later`}
+
+      {/* Error message for invalid name */}
+      {hasError && (
+        <FormHelperText className={classes.errorBox} component="div">
+          <h4>Your name</h4>
+          <p>- shouldn’t contain numbers</p>
+          <p>- has 2-15 symbols</p>
+          <p>- has no special characters</p>
         </FormHelperText>
       )}
-      {hasTyped && !error && (
+
+      {/* Message when user has typed but there's no error */}
+      {!hasError && hasTyped && (
         <FormHelperText>{`15 symbols max.`}</FormHelperText>
       )}
-      {error && <NameValidationBox />}
+
+      {/* Placeholder message if the name has not been typed yet */}
+      {!hasError && !hasTyped && (
+        <FormHelperText>{`Please, note - you won’t be able to change this field later`}</FormHelperText>
+      )}
     </>
   )
 }
@@ -104,6 +106,24 @@ const useStyles = makeStyles()(() => ({
     },
     '& .MuiOutlinedInput-notchedOutline': {
       border: 0,
+    },
+  },
+  errorBox: {
+    width: '100%',
+    padding: 20,
+    boxShadow: '0px 0px 5px #D9D9D9',
+    borderRadius: 10,
+    color: '#F1562A',
+    textAlign: 'left',
+    h4: {
+      fontSize: 14,
+      lineHeight: '22px',
+      fontWeight: 500,
+      marginBottom: 10,
+    },
+    p: {
+      fontSize: 12,
+      lineHeight: '18px',
     },
   },
 }))
