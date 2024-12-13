@@ -18,6 +18,7 @@ interface SlotType {
   setIsPhotoModalOpened: (isPhotoModalOpened: boolean) => void
   setChosenUrl: (chosenUrl: string) => void
   shiftPics: (array: UserPicsType[]) => void
+  setIsPicHuge(isPicTrue: boolean): void
 }
 
 const UploadSlot: React.FC<SlotType> = ({
@@ -29,6 +30,7 @@ const UploadSlot: React.FC<SlotType> = ({
   setIsPhotoModalOpened,
   setChosenUrl,
   shiftPics,
+  setIsPicHuge,
 }) => {
   const { classes } = useStyles()
 
@@ -38,6 +40,13 @@ const UploadSlot: React.FC<SlotType> = ({
     const file = event.target.files?.[0] as File | undefined
 
     if (file) {
+      const maxFileSize = 5 * 1024 * 1024
+      if (file.size >= maxFileSize) {
+        setIsPicHuge(true)
+        return
+      }
+
+      setIsPicHuge(false)
       const reader = new FileReader()
       reader.readAsDataURL(file)
 

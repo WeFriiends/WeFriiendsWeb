@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, FormHelperText } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import UploadSlot from './UploadSlot'
 import { PhotoModal } from './PhotoModal'
@@ -12,6 +12,7 @@ const UploadPhotos = () => {
   const [isPhotoModalOpened, setIsPhotoModalOpened] = useState<boolean>(false)
   const [chosenId, setChosenId] = useState<string>('')
   const [chosenUrl, setChosenUrl] = useState<string>('')
+  const [isPicHuge, setIsPicHuge] = useState<boolean>(false)
 
   interface UserPicsType {
     id: string
@@ -58,6 +59,9 @@ const UploadPhotos = () => {
           </Typography>
         </Box>
       )}
+      <FormHelperText className={isPicHuge ? classes.errorMsg : ''}>
+        {`Please note: you can't upload photo more than 5 MB`}
+      </FormHelperText>
       <PhotoModal
         setIsPhotoModalOpened={setIsPhotoModalOpened}
         isOpened={isPhotoModalOpened}
@@ -81,6 +85,7 @@ const UploadPhotos = () => {
             setIsPhotoModalOpened={setIsPhotoModalOpened}
             setChosenUrl={setChosenUrl}
             shiftPics={shiftPics}
+            setIsPicHuge={setIsPicHuge}
           />
         ))}
       </Box>
@@ -125,5 +130,12 @@ const useStyles = makeStyles()(() => ({
     color: createTheme.palette.text.primary,
     fontWeight: 400,
     fontSize: 13,
+  },
+  errorMsg: {
+    fontWeight: 400,
+    fontSize: 13,
+    lineHeight: '150%',
+    textAlign: 'center',
+    color: '#f1562a',
   },
 }))
