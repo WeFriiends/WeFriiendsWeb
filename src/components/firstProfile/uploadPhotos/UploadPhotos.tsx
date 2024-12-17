@@ -1,10 +1,15 @@
 import { useState } from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, FormHelperText } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import UploadSlot from './UploadSlot'
 import { PhotoModal } from './PhotoModal'
 import DeletePhoto from './DeletePhoto'
 import createTheme from 'styles/createTheme'
+
+interface UserPicsType {
+  id: string
+  url: string | null
+}
 
 const UploadPhotos = () => {
   const { classes } = useStyles()
@@ -12,26 +17,20 @@ const UploadPhotos = () => {
   const [isPhotoModalOpened, setIsPhotoModalOpened] = useState<boolean>(false)
   const [chosenId, setChosenId] = useState<string>('')
   const [chosenUrl, setChosenUrl] = useState<string>('')
+  const [isPicHuge, setIsPicHuge] = useState<boolean>(false)
 
-  interface UserPicsType {
-    id: string
-    url: string | null
-  }
-
-  const storedPicsString = localStorage.getItem('userPicsStorage')
-  const emptyPicArray: UserPicsType[] = Array.from(
-    { length: 6 },
-    (_, index) => ({
-      id: `userPic-${index}`,
-      url: null,
-    })
-  )
-
-  const initialPics = storedPicsString
-    ? JSON.parse(storedPicsString)
-    : emptyPicArray
+  const initialPics: UserPicsType[] = Array.from({ length: 6 }, (_, index) => ({
+    id: `userPic-${index}`,
+    url: null,
+  }))
 
   const [userPics, setUserPics] = useState<UserPicsType[]>(initialPics)
+
+  const shiftPics = (array: UserPicsType[]) => {
+    const picturesWithUrl = array.filter((pic) => pic.url !== null)
+    const picturesWithoutUrl = array.filter((pic) => pic.url === null)
+    setUserPics([...picturesWithUrl, ...picturesWithoutUrl])
+  }
 
   const deleteChosenPic = () => {
     const updatedPicArray: UserPicsType[] = userPics.map((pic) => {
@@ -41,7 +40,7 @@ const UploadPhotos = () => {
     })
     setUserPics(updatedPicArray)
     setIsDeleteModalOpened(false)
-    localStorage.setItem('userPicsStorage', JSON.stringify(updatedPicArray))
+    shiftPics(updatedPicArray)
   }
 
   const hasAnyPics = (array: UserPicsType[]): boolean => {
@@ -60,6 +59,11 @@ const UploadPhotos = () => {
           </Typography>
         </Box>
       )}
+      <FormHelperText
+        className={isPicHuge ? classes.errorMsg : classes.hintMsg}
+      >
+        {`Please note: you can't upload photo more than 5 MB`}
+      </FormHelperText>
       <PhotoModal
         setIsPhotoModalOpened={setIsPhotoModalOpened}
         isOpened={isPhotoModalOpened}
@@ -78,11 +82,12 @@ const UploadPhotos = () => {
             id={pic.id}
             bgPic={pic.url}
             userPics={userPics}
-            setUserPics={setUserPics}
             setIsDeleteModalOpened={setIsDeleteModalOpened}
             setChosenId={setChosenId}
             setIsPhotoModalOpened={setIsPhotoModalOpened}
             setChosenUrl={setChosenUrl}
+            shiftPics={shiftPics}
+            setIsPicHuge={setIsPicHuge}
           />
         ))}
       </Box>
@@ -127,5 +132,17 @@ const useStyles = makeStyles()(() => ({
     color: createTheme.palette.text.primary,
     fontWeight: 400,
     fontSize: 13,
+  },
+  hintMsg: {
+    fontWeight: 400,
+    fontSize: 13,
+    lineHeight: '150%',
+  },
+  errorMsg: {
+    fontWeight: 400,
+    fontSize: 13,
+    lineHeight: '150%',
+    textAlign: 'center',
+    color: createTheme.palette.primary.dark,
   },
 }))
