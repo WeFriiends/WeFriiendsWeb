@@ -6,6 +6,11 @@ import { PhotoModal } from './PhotoModal'
 import DeletePhoto from './DeletePhoto'
 import createTheme from 'styles/createTheme'
 
+interface UserPicsType {
+  id: string
+  url: string | null
+}
+
 const UploadPhotos = () => {
   const { classes } = useStyles()
   const [isDeleteModalOpened, setIsDeleteModalOpened] = useState<boolean>(false)
@@ -13,11 +18,6 @@ const UploadPhotos = () => {
   const [chosenId, setChosenId] = useState<string>('')
   const [chosenUrl, setChosenUrl] = useState<string>('')
   const [isPicHuge, setIsPicHuge] = useState<boolean>(false)
-
-  interface UserPicsType {
-    id: string
-    url: string | null
-  }
 
   const initialPics: UserPicsType[] = Array.from({ length: 6 }, (_, index) => ({
     id: `userPic-${index}`,
@@ -59,7 +59,9 @@ const UploadPhotos = () => {
           </Typography>
         </Box>
       )}
-      <FormHelperText className={isPicHuge ? classes.errorMsg : ''}>
+      <FormHelperText
+        className={isPicHuge ? classes.errorMsg : classes.hintMsg}
+      >
         {`Please note: you can't upload photo more than 5 MB`}
       </FormHelperText>
       <PhotoModal
@@ -131,11 +133,16 @@ const useStyles = makeStyles()(() => ({
     fontWeight: 400,
     fontSize: 13,
   },
+  hintMsg: {
+    fontWeight: 400,
+    fontSize: 13,
+    lineHeight: '150%',
+  },
   errorMsg: {
     fontWeight: 400,
     fontSize: 13,
     lineHeight: '150%',
     textAlign: 'center',
-    color: '#f1562a',
+    color: createTheme.palette.primary.dark,
   },
 }))
