@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import Logo from 'components/logo/Logo'
 import AccountConfirmationMessage from 'components/userAuth/AccountConfirmationMessage'
+import EmailVerified from 'components/userAuth/EmailVerified'
 
 const AuthCallbackPage = () => {
   const { error } = useAuth0()
@@ -12,7 +12,7 @@ const AuthCallbackPage = () => {
     else return <div>Oops... {error.message}</div>
   }
 
-  return <Logo />
+  return <EmailVerified />
 }
 
 export default AuthCallbackPage
