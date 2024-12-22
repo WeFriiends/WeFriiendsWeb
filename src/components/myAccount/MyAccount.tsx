@@ -15,6 +15,7 @@ import AgeRangeControl from './AgeRangeControl'
 import DistanceControl from './DistanceControl'
 import PrimaryButton from 'common/components/PrimaryButton'
 import Interests from 'components/firstProfile/interests/Interests'
+import PhotoCarousel from 'components/userProfile/PhotoCarousel'
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
@@ -36,6 +37,12 @@ const MyAccount: React.FC = () => {
     { label: 'Buenos Aires' },
     { label: 'Tokyo' },
   ]
+  const userPhoto = [
+    { src: '/img/photo_Elena.jpg' },
+    { src: '/img/photo_Elena_2.jpg' },
+    { src: '/img/photo_Elena_3.jpg' },
+  ]
+
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} className={classes.twoColumnLayoutWrapper}>
@@ -184,6 +191,9 @@ const MyAccount: React.FC = () => {
           </Typography>
         </Box>
         <Box className={classes.twoColumnLayoutColRight}>
+          {/* <Box style={{ position: 'relative' }}> */}
+          <PhotoCarousel items={userPhoto} />
+          {/* </Box> */}
           {isEditing ? (
             <>
               <Box className={classes.interests}>
@@ -375,10 +385,16 @@ const useStyles = makeStyles()({
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
+    marginTop: 60,
   },
   buttonContainer: {
     display: 'flex',
     justifyContent: 'center',
     marginTop: theme.spacing(2),
+  },
+  likesYou: {
+    position: 'absolute',
+    top: 10,
+    left: 10,
   },
 })
