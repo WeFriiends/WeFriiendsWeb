@@ -15,6 +15,10 @@ import IconNewTab from '../../common/svg/IconNewTab'
 import AgeRangeControl from './AgeRangeControl'
 import DistanceControl from './DistanceControl'
 import { useAuth0 } from '@auth0/auth0-react'
+import PhotoCarousel from 'components/userProfile/PhotoCarousel'
+import Interests from 'components/firstProfile/interests/Interests'
+import PrimaryButton from 'common/components/PrimaryButton'
+import UploadPhotos from 'components/firstProfile/uploadPhotos/UploadPhotos'
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
@@ -42,6 +46,13 @@ const MyAccount: React.FC = () => {
     { src: '/img/photo_Elena_2.jpg' },
     { src: '/img/photo_Elena_3.jpg' },
   ]
+  const [isEditing, setIsEditing] = React.useState(false)
+  const handleEditClick = () => {
+    setIsEditing(true)
+  }
+  const handleSaveClick = () => {
+    setIsEditing(false)
+  }
 
   return (
     <Grid container spacing={3}>
@@ -190,11 +201,13 @@ const MyAccount: React.FC = () => {
           </Typography>
         </Box>
         <Box className={classes.twoColumnLayoutColRight}>
-          {/* <Box style={{ position: 'relative' }}> */}
+          <Typography variant="h1" className={classes.title}>
+            My profile
+          </Typography>
           <PhotoCarousel items={userPhoto} />
-          {/* </Box> */}
           {isEditing ? (
             <>
+              <UploadPhotos />
               <Box className={classes.interests}>
                 <Interests showAboutMeFirst={true} />
               </Box>
@@ -245,10 +258,8 @@ const useStyles = makeStyles()({
   },
   twoColumnLayoutColRight: {
     width: 450,
-    outline: '1px solid pink',
     maxWidth: '100%',
     overflow: 'auto',
-    padding: theme.spacing(2),
     [theme.breakpoints.up(850)]: {
       width: 450,
     },
