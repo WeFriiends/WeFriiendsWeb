@@ -18,7 +18,7 @@ const NoMoreMatchesDialog = forwardRef(
     const [isModalVisible, setIsModalVisible] = useState(false)
 
     const handleChangeLocation = () => {
-      navigate('/user/my-account')
+      navigate('/my-account')
     }
 
     const handleOpenNoMoreMatchesDialog = () => {

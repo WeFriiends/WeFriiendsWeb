@@ -1,8 +1,10 @@
 import axios, { AxiosResponse } from 'axios'
-import { getItemsFromLocalStorage } from 'utils/localStorage'
+import { UserPicsType } from '../types/UserProfileData'
 
 // Define the base URL for your API
 const API_BASE_URL = 'http://localhost:8080/api/profile'
+//const API_BASE_URL = 'https://wefriiends.com/wefriiendsprofile/api/profile'
+
 function base64ToBlob(base64: string, mimeType: string): Blob {
   const byteCharacters = atob(base64)
   const byteNumbers = Array.from(byteCharacters, (char) => char.charCodeAt(0))
@@ -10,77 +12,84 @@ function base64ToBlob(base64: string, mimeType: string): Blob {
   return new Blob([byteArray], { type: mimeType })
 }
 
+interface Location {
+  lat: number
+  lng: number
+  country: string
+  city: string
+  street: string
+  houseNumber: string
+}
+
+interface UserPreferences {
+  aboutMe?: string
+  selectedLanguages?: string[]
+  Smoking?: string[]
+  EducationalLevel?: string[]
+  Children?: string[]
+  Drinking?: string[]
+  Pets?: string[]
+  Interests?: string[]
+}
+
+interface ProfileData {
+  name: string
+  dateOfBirth: string
+  gender: string
+  location: Location
+  reasons: string[]
+  userPreferences: UserPreferences
+  userPicsStorage: UserPicsType[]
+}
+
 // Function to create a profile
-export const createProfile = async ({ token }: { token: string | null }) => {
+export const createProfile = async (
+  data: ProfileData,
+  token: string
+): Promise<any> => {
   const {
     name,
-    dob,
+    dateOfBirth,
     gender,
-    lat,
-    lng,
-    country,
-    city,
-    street,
-    houseNumber,
-    selectedStatuses,
+    location,
+    reasons,
     userPreferences,
-    userPicsStorage: photos,
-  } = getItemsFromLocalStorage([
-    'name',
-    'dob',
-    'gender',
-    'lat',
-    'lng',
-    'country',
-    'city',
-    'street',
-    'houseNumber',
-    'selectedStatuses',
-    'userPreferences',
-    'userPicsStorage',
-  ])
-  const choosenFiles: ChoosenFile[] = photos.filter((cf: ChoosenFile) => cf.url)
+    userPicsStorage,
+  } = data
+
+  const choosenFiles: UserPicsType[] = userPicsStorage.filter(
+    (cf: UserPicsType) => cf.url
+  )
   const formData = new FormData()
 
   formData.append('name', name)
-  formData.append('dateOfBirth', dob)
+  formData.append('dateOfBirth', dateOfBirth)
   formData.append('gender', gender)
-  formData.append(
-    'location',
-    JSON.stringify({ lat, lng, country, city, street, houseNumber })
-  )
-  formData.append('reasons', JSON.stringify(selectedStatuses))
+  formData.append('location', JSON.stringify(location))
+  formData.append('reasons', JSON.stringify(reasons))
   formData.append('preferences', JSON.stringify(userPreferences))
 
-  interface ChoosenFile {
-    id: string
-    url: string
-    fileName: string
-  }
   choosenFiles.forEach((cf, index) => {
-    const fileBase64 = cf.url
-    const [header, base64Data] = fileBase64.split(',')
-    const [, mimeType] = header.match(/:(.*?);/) || []
-    const blob = base64ToBlob(base64Data, mimeType)
-    formData.append(`file${index}`, blob, cf.fileName)
+    if (cf.url) {
+      const fileBase64 = cf.url
+      const [header, base64Data] = fileBase64.split(',')
+      const [, mimeType] = header.match(/:(.*?);/) || []
+      const blob = base64ToBlob(base64Data, mimeType)
+      formData.append(`file${index}`, blob, cf.fileName)
+    } else {
+      // Handle the case where cf.url is null or undefined
+      console.error(`cf.url is null or undefined for index ${index}`)
+    }
   })
 
-  const response = await fetch('http://localhost:8080/api/profile', {
-    method: 'POST',
-    body: formData,
+  const response = await axios.post(API_BASE_URL, formData, {
     headers: {
       Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
     },
   })
 
-  if (!response.ok) {
-    throw new Error(`Error: ${response.statusText}`)
-  }
-
-  const result = await response.json()
-  console.log('Upload successful:', result)
-
-  return result
+  return response.data
 }
 
 // Function to get the current profile
@@ -113,6 +122,7 @@ export const updateProfile = async (
   return response.data
 }
 
+// Function to delete a profile
 export const deleteProfile = async (token: string | null) => {
   const response = await axios.delete(API_BASE_URL, {
     headers: {

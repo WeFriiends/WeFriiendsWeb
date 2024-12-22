@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import UserPicsType from './UploadPhotos'
+//import UserPicsType from './UploadPhotos'
 import createTheme from 'styles/createTheme'
 
 interface UserPicsType {
@@ -13,24 +13,26 @@ interface SlotType {
   id: string
   bgPic: string | null
   userPics: UserPicsType[]
-  setUserPics: (newPics: UserPicsType[]) => void
   setIsDeleteModalOpened(isOpened: boolean): void
   setChosenId: (chosenId: string) => void
   setIsPhotoModalOpened: (isPhotoModalOpened: boolean) => void
   setChosenUrl: (chosenUrl: string) => void
   onFileSelected?: (fileUrl: string, file: File) => void
+  shiftPics: (array: UserPicsType[]) => void
+  setIsPicHuge(isPicTrue: boolean): void
 }
 
 const UploadSlot: React.FC<SlotType> = ({
   id,
   bgPic,
-  setUserPics,
   userPics,
   setIsDeleteModalOpened,
   setChosenId,
   setIsPhotoModalOpened,
   setChosenUrl,
   onFileSelected,
+  shiftPics,
+  setIsPicHuge,
 }) => {
   const { classes } = useStyles()
 
@@ -45,13 +47,19 @@ const UploadSlot: React.FC<SlotType> = ({
       if (onFileSelected) {
         onFileSelected(fileUrl, file)
       }
+      const maxFileSize = 5 * 1024 * 1024
+      if (file.size >= maxFileSize) {
+        setIsPicHuge(true)
+        return
+      }
+
+      setIsPicHuge(false)
       const reader = new FileReader()
       reader.readAsDataURL(file)
 
       reader.onloadend = () => {
         const base64data = reader.result
 
-        // Создаем новый объект Image
         const img = new Image()
         img.src = base64data as string
 
@@ -66,12 +74,7 @@ const UploadSlot: React.FC<SlotType> = ({
             elem.id === id ? newPic : elem
           )
 
-          localStorage.setItem(
-            'userPicsStorage',
-            JSON.stringify(newUserPicsStorage)
-          )
-
-          setUserPics(newUserPicsStorage)
+          shiftPics(newUserPicsStorage)
         }
       }
     }

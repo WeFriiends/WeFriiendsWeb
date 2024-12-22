@@ -79,7 +79,7 @@ const Swipes = () => {
   }
 
   const startChat = () => {
-    navigate('/user/messages')
+    navigate('/messages')
   }
 
   const NoMoreMatchesDialogRef = useRef<{
