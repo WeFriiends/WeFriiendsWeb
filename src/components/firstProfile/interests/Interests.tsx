@@ -31,14 +31,14 @@ const Interests = () => {
   const [interestsData, setInterestsData] = useState<InterestData[]>(
     dataInterests.map((interest) => ({
       ...interest,
-      selectedItems: preferences[interest.title] || [],
+      selectedItems: preferences[interest.titleBase] || [],
     }))
   )
 
   useEffect(() => {
     const userPreferences = interestsData.reduce((acc, interest) => {
       if (interest.selectedItems && interest.selectedItems.length > 0) {
-        acc[interest.title] = interest.selectedItems
+        acc[interest.titleBase] = interest.selectedItems
       }
       return acc
     }, {} as Record<string, any>)

@@ -40,3 +40,9 @@ export interface UserChatProfile {
   name: string
   age: string
 }
+
+export interface UserPicsType {
+  id: string
+  url: string | null
+  fileName?: string
+}

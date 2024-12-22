@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import UserPicsType from './UploadPhotos'
+//import UserPicsType from './UploadPhotos'
 import createTheme from 'styles/createTheme'
 
 interface UserPicsType {
@@ -17,6 +17,7 @@ interface SlotType {
   setChosenId: (chosenId: string) => void
   setIsPhotoModalOpened: (isPhotoModalOpened: boolean) => void
   setChosenUrl: (chosenUrl: string) => void
+  onFileSelected?: (fileUrl: string, file: File) => void
   shiftPics: (array: UserPicsType[]) => void
   setIsPicHuge(isPicTrue: boolean): void
 }
@@ -29,6 +30,7 @@ const UploadSlot: React.FC<SlotType> = ({
   setChosenId,
   setIsPhotoModalOpened,
   setChosenUrl,
+  onFileSelected,
   shiftPics,
   setIsPicHuge,
 }) => {
@@ -40,6 +42,11 @@ const UploadSlot: React.FC<SlotType> = ({
     const file = event.target.files?.[0] as File | undefined
 
     if (file) {
+      const fileUrl = URL.createObjectURL(file)
+
+      if (onFileSelected) {
+        onFileSelected(fileUrl, file)
+      }
       const maxFileSize = 5 * 1024 * 1024
       if (file.size >= maxFileSize) {
         setIsPicHuge(true)
@@ -60,6 +67,7 @@ const UploadSlot: React.FC<SlotType> = ({
           const newPic = {
             id: id,
             url: base64data as string,
+            fileName: file.name,
           }
 
           const newUserPicsStorage = userPics.map((elem: UserPicsType) =>

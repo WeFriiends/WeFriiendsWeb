@@ -5,19 +5,29 @@ import UploadSlot from './UploadSlot'
 import { PhotoModal } from './PhotoModal'
 import DeletePhoto from './DeletePhoto'
 import createTheme from 'styles/createTheme'
+import { UserPicsType } from '../../../types/UserProfileData'
 
-interface UserPicsType {
-  id: string
-  url: string | null
+declare global {
+  interface Window {
+    choosenFiles: File[]
+  }
 }
 
-const UploadPhotos = () => {
+const UploadPhotos = ({
+  onPicChange,
+}: {
+  onPicChange: (array: UserPicsType[]) => void
+}) => {
   const { classes } = useStyles()
   const [isDeleteModalOpened, setIsDeleteModalOpened] = useState<boolean>(false)
   const [isPhotoModalOpened, setIsPhotoModalOpened] = useState<boolean>(false)
   const [chosenId, setChosenId] = useState<string>('')
   const [chosenUrl, setChosenUrl] = useState<string>('')
   const [isPicHuge, setIsPicHuge] = useState<boolean>(false)
+
+  const handlePicChange = (photos: UserPicsType[]) => {
+    onPicChange(photos.map((pic) => ({ ...pic, url: pic.url ?? '' })))
+  }
 
   const initialPics: UserPicsType[] = Array.from({ length: 6 }, (_, index) => ({
     id: `userPic-${index}`,
@@ -30,6 +40,7 @@ const UploadPhotos = () => {
     const picturesWithUrl = array.filter((pic) => pic.url !== null)
     const picturesWithoutUrl = array.filter((pic) => pic.url === null)
     setUserPics([...picturesWithUrl, ...picturesWithoutUrl])
+    handlePicChange([...picturesWithUrl, ...picturesWithoutUrl])
   }
 
   const deleteChosenPic = () => {
