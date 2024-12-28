@@ -209,7 +209,7 @@ const MyAccount: React.FC = () => {
             <>
               <UploadPhotos />
               <Box className={classes.interests}>
-                <Interests showAboutMeFirst={true} />
+                <Interests isAboutMeShown={true} />
               </Box>
               <Box className={classes.buttonContainer}>
                 <PrimaryButton label="Save" onClickHandler={handleSaveClick} />

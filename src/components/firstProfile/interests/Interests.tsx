@@ -9,9 +9,9 @@ import { LanguageItem } from './LanguageItem'
 const LOCAL_STORAGE_KEY = 'userPreferences'
 
 interface InterestsProps {
-  showAboutMeFirst?: boolean
+  isAboutMeShown?: boolean
 }
-const Interests = ({ showAboutMeFirst = false }: InterestsProps) => {
+const Interests = ({ isAboutMeShown = false }: InterestsProps) => {
   const { classes } = useStyles()
 
   const loadInitialData = () => {
@@ -61,10 +61,10 @@ const Interests = ({ showAboutMeFirst = false }: InterestsProps) => {
 
   return (
     <Box className={classes.mainBox}>
-      {showAboutMeFirst && (
+      {isAboutMeShown && (
         <AboutMeSection aboutMe={aboutMe} onChange={handleAboutMeChange} />
       )}
-      <Box sx={{ marginBottom: showAboutMeFirst ? '50px' : '0' }} />
+      <Box sx={{ marginBottom: isAboutMeShown ? '50px' : '0' }} />
       <Box className={classes.titleContainer}>
         <Typography className={classes.title}>Lifestyle</Typography>
       </Box>
@@ -95,7 +95,7 @@ const Interests = ({ showAboutMeFirst = false }: InterestsProps) => {
           selectedLanguages={selectedLanguages}
         />
       </Box>
-      {!showAboutMeFirst && (
+      {!isAboutMeShown && (
         <AboutMeSection aboutMe={aboutMe} onChange={handleAboutMeChange} />
       )}
     </Box>
