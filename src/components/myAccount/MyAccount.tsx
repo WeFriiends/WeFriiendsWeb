@@ -404,9 +404,4 @@ const useStyles = makeStyles()({
     justifyContent: 'center',
     marginTop: theme.spacing(2),
   },
-  likesYou: {
-    position: 'absolute',
-    top: 10,
-    left: 10,
-  },
 })
