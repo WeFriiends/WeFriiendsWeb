@@ -1,17 +1,22 @@
-import { useState } from 'react'
-import { Box, IconButton, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { Box, FormHelperText, IconButton, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import {
-  getItemFromLocalStorage,
-  setItemToLocalStorage,
-} from 'utils/localStorage'
+import { getItemFromLocalStorage } from 'utils/localStorage'
+import { validateGender } from './utils/validateGender'
 
-const Gender = () => {
+interface GenderProps {
+  showWithError: boolean
+  onGenderChange: (value: string | null) => void
+}
+
+const Gender = ({ showWithError = false, onGenderChange }: GenderProps) => {
   const { classes } = useStyles()
-  const [chosenGender, setChosenGender] = useState<string>(
+  const [chosenGender, setChosenGender] = useState<string | null>(
     getItemFromLocalStorage('gender')
   )
   const [hoveredGender, setHoveredGender] = useState<string | null>(null)
+
+  const [error, setError] = useState<string | null>(null)
 
   const getImage = (gender: string) => {
     if (
@@ -23,9 +28,20 @@ const Gender = () => {
     return `/img/firstProfile/${gender}.svg`
   }
   const genderPick = (gender: string) => {
-    setChosenGender(gender)
-    setItemToLocalStorage('gender', gender)
+    if (validateGender(gender)) {
+      setChosenGender(gender)
+      onGenderChange(gender)
+    } else {
+      setError('Please choose a gender.')
+    }
+    //setItemToLocalStorage('gender', gender)
   }
+
+  useEffect(() => {
+    if (showWithError) {
+      setError('Please choose a gender.')
+    }
+  }, [showWithError, chosenGender])
 
   return (
     <>
@@ -52,12 +68,11 @@ const Gender = () => {
                 alt={`${gender} logo`}
               />
             </IconButton>
-            <Typography className={classes.genderText}>
-              {gender.charAt(0).toUpperCase() + gender.slice(1)}
-            </Typography>
+            <Typography className={classes.genderText}>{gender}</Typography>
           </Box>
         ))}
       </Box>
+      <FormHelperText error={true}>{error}</FormHelperText>
     </>
   )
 }
@@ -86,6 +101,7 @@ const useStyles = makeStyles()((theme) => ({
     fontWeight: 500,
     fontSize: '1.125rem',
     lineHeight: '150%',
+    textTransform: 'capitalize',
   },
   containerPosition: {
     display: 'flex',
