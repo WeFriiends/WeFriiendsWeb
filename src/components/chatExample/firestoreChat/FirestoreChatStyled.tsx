@@ -60,7 +60,7 @@ const ChatRoomStyled: React.FC<ChatRoomProps> = ({ roomId, userName }) => {
     })
 
     return () => unsubscribe()
-  }, [])
+  }, []) // eslint-disable-next-line react-hooks/exhaustive-deps
 
   const handleSendMessage = async () => {
     if (newMessage.trim() !== '') {
