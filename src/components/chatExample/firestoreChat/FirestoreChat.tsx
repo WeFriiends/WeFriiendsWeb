@@ -31,7 +31,6 @@ const ChatRoom: React.FC<ChatRoomProps> = ({ roomId, userName }) => {
   const messagesCollectionRef = collection(db, 'rooms', roomId, 'messages')
   const [error, setError] = useState<string | null>(null)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const q = query(
       messagesCollectionRef,
@@ -50,7 +49,8 @@ const ChatRoom: React.FC<ChatRoomProps> = ({ roomId, userName }) => {
     })
 
     return () => unsubscribe()
-  }, []) // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleSendMessage = async () => {
     if (newMessage.trim() !== '') {
