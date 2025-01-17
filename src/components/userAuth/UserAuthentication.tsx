@@ -3,13 +3,23 @@ import { makeStyles } from 'tss-react/mui'
 import { useAuth0 } from '@auth0/auth0-react'
 import { commonStyles } from 'styles/commonStyles'
 import LoadingScreen from 'common/svg/Loader'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import theme from '../../styles/createTheme'
 import AuthPagesWrapper from '../authPagesWrapper/AuthPagesWrapper'
 
 const UserAuthentication = () => {
   const { classes } = useStyles()
   const commonClasses = commonStyles().classes
-  const { isLoading, loginWithRedirect } = useAuth0()
+  const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0()
+  const navigate = useNavigate()
+
+  // Redirect if logged in
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/friends')
+    }
+  }, [isAuthenticated, navigate])
 
   if (isLoading) {
     return <LoadingScreen />
@@ -18,7 +28,7 @@ const UserAuthentication = () => {
   const handleLogin = async () => {
     await loginWithRedirect({
       appState: {
-        returnTo: 'user/friends',
+        returnTo: 'friends',
       },
     })
   }
@@ -26,9 +36,8 @@ const UserAuthentication = () => {
   const handleSignUp = async () => {
     await loginWithRedirect({
       appState: {
-        returnTo: 'user/fill-profile',
+        returnTo: 'fill-profile',
       },
-
       authorizationParams: {
         screen_hint: 'signup',
       },
@@ -122,6 +131,7 @@ const UserAuthentication = () => {
     </AuthPagesWrapper>
   )
 }
+
 export default UserAuthentication
 
 const useStyles = makeStyles()({

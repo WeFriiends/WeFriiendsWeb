@@ -224,7 +224,7 @@ const ProfileCarousel = () => {
       },
       token
     )
-    navigate('/user/friends')
+    navigate('/friends')
   }
   return (
     <>
