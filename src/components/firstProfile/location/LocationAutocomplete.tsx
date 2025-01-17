@@ -32,7 +32,7 @@ const LocationInputAutocomplete = ({
     setInputLocation(value)
 
     // Trigger loading state while fetching suggestions
-    if (value.length > 0) {
+    if (value.length >= 4) {
       setIsLoading(true)
       setTimeout(() => {
         setIsLoading(false) // Simulating loading completion
@@ -41,7 +41,6 @@ const LocationInputAutocomplete = ({
       setIsLoading(false)
     }
   }
-
   // Handle selected value from Autocomplete
   const handleSelectLocation = (
     event: React.SyntheticEvent<Element, Event>,
