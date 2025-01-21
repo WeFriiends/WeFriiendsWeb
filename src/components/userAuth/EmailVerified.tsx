@@ -17,7 +17,7 @@ const EmailVerified = () => {
   return (
     <Box className={classes.mainBox}>
       <Logo />
-      <Typography className={classes.text} sx={{ paddingTop: '65px' }}>
+      <Typography className={classes.text} sx={{ marginTop: '90px' }}>
         Glad you’re here!
       </Typography>
       <Typography className={classes.text} sx={{ marginBottom: '50px' }}>
