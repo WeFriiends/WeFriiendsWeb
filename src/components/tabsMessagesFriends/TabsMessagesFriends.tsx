@@ -23,9 +23,9 @@ const TabsMessagesFriends: React.FC = () => {
         sx={{ maxWidth: '419px', paddingBottom: '38px', paddingTop: '10px' }}
       >
         <Link
-          to="/user/messages"
+          to="/messages"
           style={{
-            color: getColor('/user/messages'),
+            color: getColor('/messages'),
             paddingRight: '60px',
           }}
           className={classes.labelStyle}
@@ -33,9 +33,9 @@ const TabsMessagesFriends: React.FC = () => {
           Messages
         </Link>
         <Link
-          to="/user/friends"
+          to="/friends"
           style={{
-            color: getColor('/user/friends'),
+            color: getColor('/friends'),
           }}
           className={classes.labelStyle}
         >{`New friends (${friendsList?.length})`}</Link>
