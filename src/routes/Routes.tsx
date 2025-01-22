@@ -23,6 +23,8 @@ import ReportDialogExamplePage from '../components/report/ReportDialogExamplePag
 import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
 import MyAccount from '../components/myAccount/MyAccount'
 import Dashboard from 'pages/Dashboard'
+import EmailVerified from 'components/userAuth/EmailVerified'
+import AccountConfirmationMessage from 'components/userAuth/AccountConfirmationMessage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>
@@ -42,6 +44,8 @@ const routes: RouteObject[] = [
     path: 'callback',
     element: <AuthCallbackPage />,
   },
+  { path: 'email-confirmed', element: <EmailVerified /> },
+  { path: 'email-verify', element: <AccountConfirmationMessage /> },
   {
     path: 'fill-profile',
     // element: <FirstProfile />,
