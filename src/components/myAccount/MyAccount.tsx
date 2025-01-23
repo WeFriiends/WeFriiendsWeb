@@ -8,6 +8,7 @@ import {
   Autocomplete,
   Link,
   Button,
+  FormHelperText,
 } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
@@ -19,10 +20,34 @@ import PhotoCarousel from 'components/userProfile/PhotoCarousel'
 import Interests from 'components/firstProfile/interests/Interests'
 import PrimaryButton from 'common/components/PrimaryButton'
 import UploadPhotos from 'components/firstProfile/uploadPhotos/UploadPhotos'
+import useProfileData from '../../hooks/useProfileData'
+import LocationInputAutocomplete from '../firstProfile/location/LocationAutocomplete'
+import { Address } from '../firstProfile/profile'
+import { validateLocation } from '../firstProfile/utils/validateLocation'
+import { useEffect, useState } from 'react'
+import { getItemFromLocalStorage } from '../../utils/localStorage'
+import { useNavigate } from 'react-router-dom'
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
   const { logout } = useAuth0()
+  const { profile, loading, error } = useProfileData()
+  const [errorForm, setFormError] = useState<string | null>(null)
+  const [address, setAddress] = useState<Address | null>(null)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (profile?.location) {
+      setAddress({
+        country: profile.location.country || '',
+        city: profile.location.city || '',
+        street: profile.location.street || '',
+        houseNumber: profile.location.city || '',
+        lat: profile.location.lat || 0,
+        lng: profile.location.lng || 0,
+      })
+    }
+  }, [profile])
 
   const handleLogout = () => {
     logout({
@@ -54,8 +79,39 @@ const MyAccount: React.FC = () => {
     setIsEditing(false)
   }
 
+  const handleGetManualAddress = (value: any) => {
+    // Assume `value` is the selected address object (e.g., from LocationInputAutocomplete)
+    const resolvedAddress: Address = {
+      country: value.addressDetails.country || '',
+      city: value.addressDetails.city || '',
+      street: value.addressDetails.road || '',
+      houseNumber: value.addressDetails.house_number || '',
+      lat: value.latitude || 0,
+      lng: value.longitude || 0,
+    }
+
+    console.log(resolvedAddress)
+    //
+    // if (validateLocation(resolvedAddress)) {
+    //   setAddress(resolvedAddress) // Update the state with the selected address
+    //   onLocationChange(resolvedAddress) // Call the onLocationChange callback to notify parent component
+    //   setFormError(null)
+    // } else {
+    //   setFormError(
+    //       'Invalid location data, accuracy up to house number is needed.'
+    //   )
+    // }
+  }
+
   return (
     <Grid container spacing={3}>
+      <Button
+        variant="text"
+        onClick={() => navigate('/account')}
+        sx={{ textDecoration: 'none', color: '#007bff' }}
+      >
+        Change account
+      </Button>
       <Grid item xs={12} className={classes.twoColumnLayoutWrapper}>
         <Box className={classes.twoColumnLayoutColLeft}>
           <Typography variant="h1" className={classes.title}>
@@ -74,6 +130,16 @@ const MyAccount: React.FC = () => {
             <Typography variant="h2" className={classes.subtitle}>
               Location
             </Typography>
+            <LocationInputAutocomplete
+              onLocationChange={handleGetManualAddress}
+            />
+            <FormHelperText error={true}>{errorForm}</FormHelperText>
+            <br />
+            <br />
+            <br />
+            {`${profile?.location.country}, ${profile?.location.city}, ${profile?.location.street}`}
+            {profile?.location.houseNumber} &&{' '}
+            {`, ${profile?.location.houseNumber}`}
             <Box className={classes.btnLocation}>
               <Autocomplete
                 className={classes.inputLocation}
