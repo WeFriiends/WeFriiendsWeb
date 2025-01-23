@@ -52,10 +52,6 @@ const UploadPhotos = ({
     shiftPics(updatedPicArray)
   }
 
-  const hasAnyPics = (array: UserPicsType[]): boolean => {
-    return array.some((pic) => pic.url !== null && pic.url.trim() !== '')
-  }
-
   return (
     <Box className={classes.mainBox}>
       {!isPhotoSubmitted && (
