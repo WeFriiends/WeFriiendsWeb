@@ -42,6 +42,7 @@ const ProfileCarousel = () => {
   const [showDobWithError, setShowDobWithError] = useState(false)
   const [showGenderWithError, setShowGenderWithError] = useState(false)
   const [showLocationWithError, setShowLocationWithError] = useState(false)
+  const [isPhotoSubmitted, setIsPhotoSubmitted] = useState(false)
 
   const [nameChange, setNameChange] = useState(getItemFromLocalStorage('name'))
   const [dobChange, setDobChange] = useState(getItemFromLocalStorage('dob'))
@@ -177,7 +178,12 @@ const ProfileCarousel = () => {
       label: 'interests',
     },
     {
-      component: <UploadPhotos />,
+      component: (
+        <UploadPhotos
+          isPhotoSubmitted={isPhotoSubmitted}
+          setIsPhotoSubmitted={setIsPhotoSubmitted}
+        />
+      ),
       label: 'uploadPhotos',
     },
   ]
@@ -188,6 +194,7 @@ const ProfileCarousel = () => {
   const navigate = useNavigate()
 
   const onSubmit = async () => {
+    if (!isPhotoSubmitted) return
     const {
       name,
       dob,
@@ -199,7 +206,7 @@ const ProfileCarousel = () => {
       street,
       houseNumber,
       selectedStatuses,
-      photos,
+      userPicsStorage,
     } = getItemsFromLocalStorage([
       'name',
       'dob',
@@ -220,7 +227,7 @@ const ProfileCarousel = () => {
         gender,
         location: { lat, lng, country, city, street, houseNumber },
         reasons: selectedStatuses,
-        photos,
+        photos: userPicsStorage,
       },
       token
     )

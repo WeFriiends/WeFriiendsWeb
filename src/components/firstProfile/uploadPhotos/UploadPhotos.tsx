@@ -11,7 +11,15 @@ interface UserPicsType {
   url: string | null
 }
 
-const UploadPhotos = () => {
+interface UploadPhotosProps {
+  isPhotoSubmitted?: boolean
+  setIsPhotoSubmitted?: (value: boolean) => void
+}
+
+const UploadPhotos = ({
+  isPhotoSubmitted,
+  setIsPhotoSubmitted,
+}: UploadPhotosProps) => {
   const { classes } = useStyles()
   const [isDeleteModalOpened, setIsDeleteModalOpened] = useState<boolean>(false)
   const [isPhotoModalOpened, setIsPhotoModalOpened] = useState<boolean>(false)
@@ -30,6 +38,7 @@ const UploadPhotos = () => {
     const picturesWithUrl = array.filter((pic) => pic.url !== null)
     const picturesWithoutUrl = array.filter((pic) => pic.url === null)
     setUserPics([...picturesWithUrl, ...picturesWithoutUrl])
+    setIsPhotoSubmitted && setIsPhotoSubmitted(Boolean(picturesWithUrl?.length))
   }
 
   const deleteChosenPic = () => {
@@ -49,7 +58,7 @@ const UploadPhotos = () => {
 
   return (
     <Box className={classes.mainBox}>
-      {!hasAnyPics(userPics) && (
+      {!isPhotoSubmitted && (
         <Box className={classes.hintContainer}>
           <Typography className={classes.title}>
             Upload at least 1 photo
