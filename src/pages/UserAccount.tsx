@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useProfileStore } from '../zustand/store'
 import useBearerToken from 'hooks/useBearToken'
 import Loader from '../common/svg/Loader'
-import useProfileData from '../hooks/useProfileData'
-import { updateProfile } from '../zustand/api'
 
 const UserAccount = () => {
   const { logout } = useAuth0()
-  const { profile, loading, error } = useProfileData()
-  const { deleteProfile } = useProfileStore()
+  const {
+    data: profile,
+    loading,
+    error,
+    deleteProfile,
+    updateProfile: updateProfileAction,
+  } = useProfileStore()
   const token = useBearerToken()
 
   const deleteAccount = async () => {
@@ -28,16 +31,16 @@ const UserAccount = () => {
   const handleProfileUpdate = async () => {
     if (token) {
       try {
-        await updateProfile(
+        await updateProfileAction(
           {
             name: 'string',
             location: {
               lat: 1,
               lng: 1,
-              country: 'aaa',
-              city: 'aaa',
-              street: 'asd',
-              houseNumber: '1',
+              country: 'Turkey',
+              city: 'Коньяалты',
+              street: 'Likya Yolu 14.02',
+              houseNumber: '33A',
             },
           },
           token
@@ -63,8 +66,10 @@ const UserAccount = () => {
         <h2>Name: {profile?.name}</h2>
         <h2>Date of Birth: {profile?.dateOfBirth}</h2>
         <h2>Gender: {profile?.gender}</h2>
+        <h2>Country: {profile?.location?.country}</h2>
         <h2>City: {profile?.location?.city}</h2>
         <h2>Street: {profile?.location?.street}</h2>
+        <h2>House number: {profile?.location?.houseNumber}</h2>
         <h2>
           Reasons:
           {profile?.reasons?.map((reason: string) => (

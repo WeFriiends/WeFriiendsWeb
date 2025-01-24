@@ -6,34 +6,27 @@ import {
   Typography,
   TextField,
   Autocomplete,
-  Link,
   Button,
   FormHelperText,
 } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
-import IconNewTab from '../../common/svg/IconNewTab'
 import AgeRangeControl from './AgeRangeControl'
 import DistanceControl from './DistanceControl'
-import { useAuth0 } from '@auth0/auth0-react'
-import PhotoCarousel from 'components/userProfile/PhotoCarousel'
-import Interests from 'components/firstProfile/interests/Interests'
-import PrimaryButton from 'common/components/PrimaryButton'
-import UploadPhotos from 'components/firstProfile/uploadPhotos/UploadPhotos'
-import useProfileData from '../../hooks/useProfileData'
+import { useProfileStore } from '../../zustand/store'
 import LocationInputAutocomplete from '../firstProfile/location/LocationAutocomplete'
 import { Address } from '../firstProfile/profile'
 import { validateLocation } from '../firstProfile/utils/validateLocation'
 import { useEffect, useState } from 'react'
-import { getItemFromLocalStorage } from '../../utils/localStorage'
 import { useNavigate } from 'react-router-dom'
+import HelpAndSupport from './HelpAndSupport'
+import MyProfile from './MyProfile'
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
-  const { logout } = useAuth0()
-  const { profile, loading, error } = useProfileData()
+  const { data: profile, loading } = useProfileStore()
   const [errorForm, setFormError] = useState<string | null>(null)
-  const [address, setAddress] = useState<Address | null>(null)
+  const [, setAddress] = useState<Address | null>(null)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -42,20 +35,12 @@ const MyAccount: React.FC = () => {
         country: profile.location.country || '',
         city: profile.location.city || '',
         street: profile.location.street || '',
-        houseNumber: profile.location.city || '',
+        houseNumber: profile.location.houseNumber || '',
         lat: profile.location.lat || 0,
         lng: profile.location.lng || 0,
       })
     }
   }, [profile])
-
-  const handleLogout = () => {
-    logout({
-      logoutParams: {
-        returnTo: window.location.origin, // Redirects to home after logout
-      },
-    })
-  }
 
   const locationNamesTempList = [
     { label: 'New York' },
@@ -66,21 +51,10 @@ const MyAccount: React.FC = () => {
     { label: 'Buenos Aires' },
     { label: 'Tokyo' },
   ]
-  const userPhoto = [
-    { src: '/img/photo_Elena.jpg' },
-    { src: '/img/photo_Elena_2.jpg' },
-    { src: '/img/photo_Elena_3.jpg' },
-  ]
-  const [isEditing, setIsEditing] = React.useState(false)
-  const handleEditClick = () => {
-    setIsEditing(true)
-  }
-  const handleSaveClick = () => {
-    setIsEditing(false)
-  }
 
   const handleGetManualAddress = (value: any) => {
     // Assume `value` is the selected address object (e.g., from LocationInputAutocomplete)
+
     const resolvedAddress: Address = {
       country: value.addressDetails.country || '',
       city: value.addressDetails.city || '',
@@ -92,15 +66,16 @@ const MyAccount: React.FC = () => {
 
     console.log(resolvedAddress)
     //
-    // if (validateLocation(resolvedAddress)) {
-    //   setAddress(resolvedAddress) // Update the state with the selected address
-    //   onLocationChange(resolvedAddress) // Call the onLocationChange callback to notify parent component
-    //   setFormError(null)
-    // } else {
-    //   setFormError(
-    //       'Invalid location data, accuracy up to house number is needed.'
-    //   )
-    // }
+    if (validateLocation(resolvedAddress)) {
+      console.log('new valid address')
+      //   setAddress(resolvedAddress) // Update the state with the selected address
+      //   onLocationChange(resolvedAddress) // Call the onLocationChange callback to notify parent component
+      setFormError(null)
+    } else {
+      setFormError(
+        'Invalid location data, accuracy up to house number is needed.'
+      )
+    }
   }
 
   return (
@@ -137,9 +112,15 @@ const MyAccount: React.FC = () => {
             <br />
             <br />
             <br />
-            {`${profile?.location.country}, ${profile?.location.city}, ${profile?.location.street}`}
-            {profile?.location.houseNumber} &&{' '}
-            {`, ${profile?.location.houseNumber}`}
+            {loading ? (
+              'Loading...'
+            ) : (
+              <>
+                {`${profile?.location.country}, ${profile?.location.city}, ${profile?.location.street}`}
+                {profile?.location.houseNumber && ''}
+                {`, ${profile?.location.houseNumber}`}
+              </>
+            )}
             <Box className={classes.btnLocation}>
               <Autocomplete
                 className={classes.inputLocation}
@@ -166,129 +147,10 @@ const MyAccount: React.FC = () => {
           <Box className={classes.settingsItem}>
             <AgeRangeControl />
           </Box>
-          <Typography variant="h1" className={classes.helpTitle}>
-            Help & support
-          </Typography>
-          <hr className={classes.separator} />
-          <Typography variant="h2" className={classes.subtitle}>
-            Security tips
-          </Typography>
-          <Typography variant="body2" className={classes.description}>
-            <Link
-              className={classes.linkGrey}
-              href="https://wefriiends.com/documents/privacy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Rules of community
-              <IconNewTab />
-            </Link>
-            <Link
-              className={classes.linkGrey}
-              href="https://wefriiends.com/documents/privacy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Security tips
-              <IconNewTab />
-            </Link>
-          </Typography>
-          <hr className={classes.separator} />
-          <Typography variant="h2" className={classes.subtitle}>
-            Legal data
-          </Typography>
-          <Typography variant="body2" className={classes.description}>
-            <Link
-              className={classes.linkGrey}
-              href="https://wefriiends.com/documents/privacy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Privacy settings
-              <IconNewTab />
-            </Link>
-            <Link
-              className={classes.linkGrey}
-              href="https://wefriiends.com/documents/privacy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Cookies
-              <IconNewTab />
-            </Link>
-            <Link
-              className={classes.linkGrey}
-              href="https://wefriiends.com/documents/privacy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Privacy policy
-              <IconNewTab />
-            </Link>
-            <Link
-              className={classes.linkGrey}
-              href="https://wefriiends.com/documents/privacy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Terms of use
-              <IconNewTab />
-            </Link>
-          </Typography>
-          <hr className={classes.separator} />
-          <Link
-            className={classes.linkOrange}
-            href="https://wefriiends.com/documents/privacy.html"
-            target="_blank"
-            rel="noopener"
-          >
-            Share WeFriiends
-          </Link>
-          <hr className={classes.separator} />
-          <Button
-            variant="text"
-            onClick={handleLogout}
-            className={classes.linkOrange}
-          >
-            Log out
-          </Button>
-          <hr className={classes.separator} />
-          <Link
-            className={classes.linkOrange}
-            href="https://wefriiends.com/documents/privacy.html"
-            target="_blank"
-            rel="noopener"
-          >
-            Delete account
-          </Link>
-          <hr className={classes.separator} />
-          <Typography variant="body2" className={classes.version}>
-            version 2.33
-          </Typography>
+          <HelpAndSupport />
         </Box>
         <Box className={classes.twoColumnLayoutColRight}>
-          <Typography variant="h1" className={classes.title}>
-            My profile
-          </Typography>
-          <PhotoCarousel items={userPhoto} />
-          {isEditing ? (
-            <>
-              <UploadPhotos />
-              <Box className={classes.interests}>
-                <Interests isAboutMeShown={true} />
-              </Box>
-              <Box className={classes.buttonContainer}>
-                <PrimaryButton label="Save" onClickHandler={handleSaveClick} />
-              </Box>
-            </>
-          ) : (
-            <Box className={classes.buttonContainer}>
-              <PrimaryButton
-                label="Change Profile"
-                onClickHandler={handleEditClick}
-              />
-            </Box>
-          )}
+          <MyProfile />
         </Box>
       </Grid>
     </Grid>
@@ -344,13 +206,6 @@ const useStyles = makeStyles()({
       fontSize: 24,
       fontWeight: 500,
     },
-  },
-  helpTitle: {
-    fontSize: 20,
-    fontWeight: 500,
-    lineHeight: '20px',
-    marginTop: 200,
-    paddingBottom: 20,
   },
   subtitle: {
     fontSize: 16,
@@ -419,55 +274,5 @@ const useStyles = makeStyles()({
   },
   inputLocation: {
     border: 0,
-  },
-  separator: {
-    height: 1.5,
-    lineHeight: 0,
-    border: 0,
-    backgroundColor: theme.customPalette.colorInputGrey,
-    marginBottom: 25,
-  },
-  linkGrey: {
-    fontSize: 16,
-    lineHeight: '22px',
-    color: theme.customPalette.colorActiveGrey,
-    textDecoration: 'none',
-    display: 'flex',
-    maxWidth: '190px',
-    justifyContent: 'space-between',
-    marginBottom: 5,
-    '&:hover': {
-      fontWeight: 600,
-      '& svg path': {
-        fill: theme.palette.primary.main,
-      },
-    },
-  },
-  linkOrange: {
-    fontWeight: 500,
-    fontSize: 16,
-    lineHeight: '20px',
-    color: theme.palette.primary.dark,
-    textDecoration: 'none',
-    margin: '15px 0 20px',
-    display: 'block',
-    padding: 0,
-    textTransform: 'none',
-  },
-  version: {
-    fontSize: 14,
-    lineHeight: '22px',
-    color: theme.customPalette.colorActiveGrey,
-  },
-  interests: {
-    display: 'flex',
-    justifyContent: 'center',
-    width: '100%',
-    marginTop: 60,
-  },
-  buttonContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: theme.spacing(2),
   },
 })

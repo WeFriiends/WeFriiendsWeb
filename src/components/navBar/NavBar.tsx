@@ -13,7 +13,6 @@ import { NavigationItems } from '../navigationItems/NavigationItems'
 import theme from '../../styles/createTheme'
 import { Outlet, useNavigate } from 'react-router-dom'
 import useProfileData from '../../hooks/useProfileData'
-import Loader from '../../common/svg/Loader'
 
 const NavBar = () => {
   const { classes } = useStyles()
@@ -61,10 +60,10 @@ const NavBar = () => {
           ></Avatar>
           {!loading ? (
             <Typography className={classes.name}>
-              {profile?.name ? profile?.name : 'UserName'}
+              {profile?.name || 'UserName'}
             </Typography>
           ) : (
-            <Loader />
+            <Typography className={classes.name}>Loading...</Typography>
           )}
         </Button>
       </Box>
