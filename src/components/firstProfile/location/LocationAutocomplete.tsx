@@ -13,8 +13,10 @@ const SUGGESTIONS_LIMIT = 5
 
 const LocationInputAutocomplete = ({
   onLocationChange,
+  defaultValue = 'Search city',
 }: {
   onLocationChange: (location: string) => void
+  defaultValue?: string
 }) => {
   const [inputLocation, setInputLocation] = useState('')
   const [isFocused, setIsFocused] = useState(false)
@@ -32,7 +34,7 @@ const LocationInputAutocomplete = ({
     setInputLocation(value)
 
     // Trigger loading state while fetching suggestions
-    if (value.length >= 4) {
+    if (value.length > 0) {
       setIsLoading(true)
       setTimeout(() => {
         setIsLoading(false) // Simulating loading completion
@@ -91,7 +93,7 @@ const LocationInputAutocomplete = ({
                       isFocused || inputLocation.length ? 'none' : 'inline',
                   }}
                 >
-                  &nbsp;Search city
+                  &nbsp;{defaultValue}
                 </span>
               </InputAdornment>
             ),

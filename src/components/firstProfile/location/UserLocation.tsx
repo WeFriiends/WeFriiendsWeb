@@ -107,11 +107,16 @@ const UserLocation = ({
     // Assume `value` is the selected address object (e.g., from LocationInputAutocomplete)
     const resolvedAddress: Address = {
       country: value.addressDetails.country || '',
-      city: value.addressDetails.city || '',
+      city:
+        value.addressDetails.city ||
+        value.addressDetails.town ||
+        value.addressDetails.hamlet ||
+        value.addressDetails.village ||
+        '',
       street: value.addressDetails.road || '',
       houseNumber: value.addressDetails.house_number || '',
-      lat: value.latitude || 0,
-      lng: value.longitude || 0,
+      lat: value.latitude,
+      lng: value.longitude,
     }
 
     if (validateLocation(resolvedAddress)) {

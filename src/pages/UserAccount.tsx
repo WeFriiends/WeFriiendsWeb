@@ -33,14 +33,13 @@ const UserAccount = () => {
       try {
         await updateProfileAction(
           {
-            name: 'string',
             location: {
-              lat: 1,
-              lng: 1,
-              country: 'Turkey',
-              city: 'Коньяалты',
-              street: 'Likya Yolu 14.02',
-              houseNumber: '33A',
+              lat: 47.0265,
+              lng: 28.8374,
+              country: 'Moldova',
+              city: 'Chișinău',
+              street: 'Alexander Pushkin Street',
+              houseNumber: '33',
             },
           },
           token

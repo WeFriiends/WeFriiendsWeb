@@ -5,7 +5,6 @@ import {
   Icon,
   Typography,
   TextField,
-  Autocomplete,
   Button,
   FormHelperText,
 } from '@mui/material'
@@ -21,13 +20,19 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import HelpAndSupport from './HelpAndSupport'
 import MyProfile from './MyProfile'
+import useBearerToken from '../../hooks/useBearToken'
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
-  const { data: profile, loading } = useProfileStore()
-  const [errorForm, setFormError] = useState<string | null>(null)
+  const {
+    data: profile,
+    loading,
+    updateProfile: updateProfileAction,
+  } = useProfileStore()
+  const [errorLocation, setErrorLocation] = useState<string | null>(null)
   const [, setAddress] = useState<Address | null>(null)
   const navigate = useNavigate()
+  const token = useBearerToken()
 
   useEffect(() => {
     if (profile?.location) {
@@ -42,37 +47,53 @@ const MyAccount: React.FC = () => {
     }
   }, [profile])
 
-  const locationNamesTempList = [
-    { label: 'New York' },
-    { label: 'Seoul' },
-    { label: 'Istanbul' },
-    { label: 'Beijing' },
-    { label: 'São Paulo' },
-    { label: 'Buenos Aires' },
-    { label: 'Tokyo' },
-  ]
-
-  const handleGetManualAddress = (value: any) => {
+  const handleGetManualAddress = async (value: any) => {
     // Assume `value` is the selected address object (e.g., from LocationInputAutocomplete)
 
     const resolvedAddress: Address = {
       country: value.addressDetails.country || '',
-      city: value.addressDetails.city || '',
+      city:
+        value.addressDetails.city ||
+        value.addressDetails.town ||
+        value.addressDetails.hamlet ||
+        value.addressDetails.village ||
+        '',
       street: value.addressDetails.road || '',
       houseNumber: value.addressDetails.house_number || '',
-      lat: value.latitude || 0,
-      lng: value.longitude || 0,
+      lat: value.latitude,
+      lng: value.longitude,
     }
 
-    console.log(resolvedAddress)
-    //
     if (validateLocation(resolvedAddress)) {
-      console.log('new valid address')
-      //   setAddress(resolvedAddress) // Update the state with the selected address
-      //   onLocationChange(resolvedAddress) // Call the onLocationChange callback to notify parent component
-      setFormError(null)
+      // Обновляем адрес на сервере
+      setErrorLocation('Changing...')
+      if (token) {
+        try {
+          await updateProfileAction(
+            {
+              location: {
+                lat: resolvedAddress.lat,
+                lng: resolvedAddress.lng,
+                country: resolvedAddress.country,
+                city: resolvedAddress.city,
+                street: resolvedAddress.street,
+                houseNumber: resolvedAddress.houseNumber,
+              },
+            },
+            token
+          )
+          // Показываем сообщение об успешном обновлении, только если запрос прошел успешно
+          setErrorLocation('The address has been successfully changed.')
+        } catch (err) {
+          console.error('Error updating address:', err)
+          setErrorLocation('Failed to update address.')
+        }
+      } else {
+        console.error('Token is not available.')
+        setErrorLocation('Authentication error. Please try logging in again.')
+      }
     } else {
-      setFormError(
+      setErrorLocation(
         'Invalid location data, accuracy up to house number is needed.'
       )
     }
@@ -107,28 +128,25 @@ const MyAccount: React.FC = () => {
             </Typography>
             <LocationInputAutocomplete
               onLocationChange={handleGetManualAddress}
+              defaultValue={
+                loading
+                  ? 'Loading...'
+                  : `${profile?.location.country || ''}, ${
+                      profile?.location.city || ''
+                    }, ${profile?.location.street || ''}${
+                      profile?.location.houseNumber
+                        ? `, ${profile.location.houseNumber}`
+                        : ''
+                    }`
+              }
             />
-            <FormHelperText error={true}>{errorForm}</FormHelperText>
-            <br />
-            <br />
-            <br />
-            {loading ? (
-              'Loading...'
-            ) : (
-              <>
-                {`${profile?.location.country}, ${profile?.location.city}, ${profile?.location.street}`}
-                {profile?.location.houseNumber && ''}
-                {`, ${profile?.location.houseNumber}`}
-              </>
-            )}
+            <FormHelperText error={true}>{errorLocation}</FormHelperText>
+
             <Box className={classes.btnLocation}>
-              <Autocomplete
+              <TextField
                 className={classes.inputLocation}
-                disablePortal
                 id="location"
-                options={locationNamesTempList}
                 sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="" />}
               />
               <Icon>
                 <img
