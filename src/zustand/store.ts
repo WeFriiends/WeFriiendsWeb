@@ -2,7 +2,6 @@ import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 import { createProfile, getProfile, updateProfile, deleteProfile } from './api'
 
-// Типы для профиля
 interface Profile {
   name: string
   dateOfBirth: string
@@ -19,30 +18,33 @@ interface Profile {
   reasons: string[]
 }
 
-// Типы состояния
+interface ErrorResponse {
+  message: string
+  status?: number
+  details?: any
+}
+
 interface ProfileState {
   loading: boolean
   success: boolean
   error: boolean
   data: Profile | null
-  errorData: any
+  errorData: ErrorResponse | null
 }
 
-// Типы действий
 interface ProfileActions {
   createProfile: (profileData: Profile, token: string | null) => Promise<void>
   getProfile: (token: string | null) => Promise<void>
   updateProfile: (
     profileData: Partial<Profile>,
     token: string | null
-  ) => Promise<void>
+  ) => Promise<{ status: number }>
   deleteProfile: (token: string | null) => Promise<void>
 }
 
-// Типизация для стора
 type ProfileStore = ProfileState & ProfileActions
 
-// Начальное состояние
+// Initial state
 const initialState: ProfileState = {
   loading: true,
   success: false,
@@ -53,50 +55,64 @@ const initialState: ProfileState = {
 
 // Zustand store
 export const useProfileStore = create<ProfileStore>()(
-  devtools((set) => ({
-    ...initialState,
+  devtools((set) => {
+    const resetState = () => set({ ...initialState })
 
-    createProfile: async (profileData, token) => {
-      set({ ...initialState })
-      try {
-        const data = await createProfile(profileData, token)
-        set({ loading: false, success: true, data })
-      } catch (error) {
-        set({ loading: false, error: true, errorData: error })
-      }
-    },
+    const handleError = (error: any, actionName: string) => {
+      console.error(`Error in ${actionName}:`, error)
+      set({
+        loading: false,
+        error: true,
+        errorData: {
+          message: error.message || 'Unknown error',
+          status: error.response?.status,
+          details: error.response?.data,
+        },
+      })
+    }
 
-    getProfile: async (token) => {
-      set({ ...initialState })
+    const fetchData = async (
+      apiMethod: () => Promise<any>,
+      actionName: string
+    ) => {
+      resetState()
       try {
-        const data = await getProfile(token)
-        set({ loading: false, success: true, data })
+        const response = await apiMethod()
+        if (response.status >= 200 && response.status < 300) {
+          set({ loading: false, success: true, data: response.data })
+          return response
+        } else {
+          console.error(`Unexpected status: ${response.status}`)
+        }
       } catch (error) {
-        set({ loading: false, error: true, errorData: error })
+        handleError(error, actionName)
+        throw error
       }
-    },
+    }
 
-    updateProfile: async (profileData, token) => {
-      set({ ...initialState })
-      try {
-        await updateProfile(profileData, token)
-        console.log('Profile updated, fetching new data...')
-        const data = await getProfile(token) // Force getProfile on updateProfile
-        set({ loading: false, success: true, data })
-      } catch (error) {
-        console.error('Error updating profile:', error)
-        set({ loading: false, error: true, errorData: error })
-      }
-    },
+    return {
+      ...initialState,
+      createProfile: async (profileData, token) =>
+        await fetchData(
+          () => createProfile(profileData, token),
+          'createProfile'
+        ),
 
-    deleteProfile: async (token) => {
-      set({ ...initialState })
-      try {
-        const data = await deleteProfile(token)
-        set({ loading: false, success: true, data })
-      } catch (error) {
-        set({ loading: false, error: true, errorData: error })
-      }
-    },
-  }))
+      // It is used everywhere to fetch data from the database and display it on the front-end
+      getProfile: async (token) =>
+        await fetchData(() => getProfile(token), 'getProfile'),
+
+      // It is used on the /my-account page to change the address (to be used for more options)
+      updateProfile: async (profileData, token) => {
+        return await fetchData(
+          () => updateProfile(profileData, token),
+          'updateProfile'
+        )
+      },
+
+      // It is used to remove the profile from the MongoDB (not from Auth0)
+      deleteProfile: async (token) =>
+        await fetchData(() => deleteProfile(token), 'deleteProfile'),
+    }
+  })
 )

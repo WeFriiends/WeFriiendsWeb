@@ -14,14 +14,12 @@ const request = async (method, url, data = {}, token = null) => {
       headers['Authorization'] = `Bearer ${token}`
     }
 
-    const response = await axios({
+    return await axios({
       method,
       url: `${API_BASE_URL}${url}`,
       data,
       headers,
     })
-
-    return response.data
   } catch (error) {
     console.error(`API ${method} ${url} failed:`, error)
     throw error.response?.data || error.message

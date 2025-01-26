@@ -8,6 +8,7 @@ import { makeStyles } from 'tss-react/mui'
 import { validateLocation } from '../utils/validateLocation'
 import LocationInputAutocomplete from './LocationAutocomplete'
 import { Address } from '../profile'
+import { getResolvedAddress } from '../utils/getResolvedAddress'
 
 // todo: Check with PM the behaviour:
 // when the location is already saved in Local Storage, and then we choose another one,
@@ -76,12 +77,12 @@ const UserLocation = ({
             response.address
 
           const resolvedAddress: Address = {
+            lat: latitude,
+            lng: longitude,
             country: country || '',
             city: city || town || village || '',
             street: road || '',
             houseNumber: house_number || '',
-            lat: latitude,
-            lng: longitude,
           }
 
           // Validate the address before saving
@@ -105,21 +106,9 @@ const UserLocation = ({
 
   const handleGetManualAddress = (value: any) => {
     // Assume `value` is the selected address object (e.g., from LocationInputAutocomplete)
-    const resolvedAddress: Address = {
-      country: value.addressDetails.country || '',
-      city:
-        value.addressDetails.city ||
-        value.addressDetails.town ||
-        value.addressDetails.hamlet ||
-        value.addressDetails.village ||
-        '',
-      street: value.addressDetails.road || '',
-      houseNumber: value.addressDetails.house_number || '',
-      lat: value.latitude,
-      lng: value.longitude,
-    }
+    const resolvedAddress = getResolvedAddress(value)
 
-    if (validateLocation(resolvedAddress)) {
+    if (resolvedAddress) {
       setAddress(resolvedAddress) // Update the state with the selected address
       onLocationChange(resolvedAddress) // Call the onLocationChange callback to notify parent component
       setFormError(null)
@@ -154,16 +143,8 @@ const UserLocation = ({
           </Typography>
 
           <LocationInputAutocomplete
-            onLocationChange={handleGetManualAddress}
+            onLocationSelected={handleGetManualAddress}
           />
-          {/* For debugging: address && (
-            <Box className={classes.textAddress}>
-              <Icon>
-                <img src="/img/icon-search.svg" alt="Close" />
-              </Icon>
-              {`${address.country}, ${address.city}, ${address.street}, ${address.houseNumber}`}
-            </Box>
-          )*/}
         </Box>
       )}
       {!showManualInput && address && !loading && (
@@ -188,7 +169,6 @@ const useStyles = makeStyles()((theme) => ({
     position: 'relative',
     width: 'auto',
     height: 100,
-    //backgroundColor: 'red',
   },
   textAddress: {
     display: 'flex',

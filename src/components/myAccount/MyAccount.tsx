@@ -1,13 +1,5 @@
 import * as React from 'react'
-import {
-  Box,
-  Grid,
-  Icon,
-  Typography,
-  TextField,
-  Button,
-  FormHelperText,
-} from '@mui/material'
+import { Box, Grid, Typography, FormHelperText } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
 import AgeRangeControl from './AgeRangeControl'
@@ -15,12 +7,11 @@ import DistanceControl from './DistanceControl'
 import { useProfileStore } from '../../zustand/store'
 import LocationInputAutocomplete from '../firstProfile/location/LocationAutocomplete'
 import { Address } from '../firstProfile/profile'
-import { validateLocation } from '../firstProfile/utils/validateLocation'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import HelpAndSupport from './HelpAndSupport'
 import MyProfile from './MyProfile'
 import useBearerToken from '../../hooks/useBearToken'
+import { getResolvedAddress } from '../firstProfile/utils/getResolvedAddress'
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
@@ -30,8 +21,10 @@ const MyAccount: React.FC = () => {
     updateProfile: updateProfileAction,
   } = useProfileStore()
   const [errorLocation, setErrorLocation] = useState<string | null>(null)
+  const [noticeLocation, setNoticeLocation] = useState<string | null>(
+    'To change your address, type a street name along with the house number, then wait for suggestions.'
+  )
   const [, setAddress] = useState<Address | null>(null)
-  const navigate = useNavigate()
   const token = useBearerToken()
 
   useEffect(() => {
@@ -50,26 +43,14 @@ const MyAccount: React.FC = () => {
   const handleGetManualAddress = async (value: any) => {
     // Assume `value` is the selected address object (e.g., from LocationInputAutocomplete)
 
-    const resolvedAddress: Address = {
-      country: value.addressDetails.country || '',
-      city:
-        value.addressDetails.city ||
-        value.addressDetails.town ||
-        value.addressDetails.hamlet ||
-        value.addressDetails.village ||
-        '',
-      street: value.addressDetails.road || '',
-      houseNumber: value.addressDetails.house_number || '',
-      lat: value.latitude,
-      lng: value.longitude,
-    }
+    const resolvedAddress = getResolvedAddress(value)
 
-    if (validateLocation(resolvedAddress)) {
+    if (resolvedAddress) {
       // Обновляем адрес на сервере
       setErrorLocation('Changing...')
       if (token) {
         try {
-          await updateProfileAction(
+          const response = await updateProfileAction(
             {
               location: {
                 lat: resolvedAddress.lat,
@@ -82,8 +63,13 @@ const MyAccount: React.FC = () => {
             },
             token
           )
-          // Показываем сообщение об успешном обновлении, только если запрос прошел успешно
-          setErrorLocation('The address has been successfully changed.')
+
+          if (response.status === 200) {
+            setErrorLocation('')
+            setNoticeLocation('The address has been successfully changed.')
+          } else {
+            setErrorLocation('Failed to update address. Please try again.')
+          }
         } catch (err) {
           console.error('Error updating address:', err)
           setErrorLocation('Failed to update address.')
@@ -99,15 +85,13 @@ const MyAccount: React.FC = () => {
     }
   }
 
+  const handleLocationChanged = () => {
+    setErrorLocation('')
+    setNoticeLocation('')
+  }
+
   return (
     <Grid container spacing={3}>
-      <Button
-        variant="text"
-        onClick={() => navigate('/account')}
-        sx={{ textDecoration: 'none', color: '#007bff' }}
-      >
-        Change account
-      </Button>
       <Grid item xs={12} className={classes.twoColumnLayoutWrapper}>
         <Box className={classes.twoColumnLayoutColLeft}>
           <Typography variant="h1" className={classes.title}>
@@ -127,7 +111,8 @@ const MyAccount: React.FC = () => {
               Location
             </Typography>
             <LocationInputAutocomplete
-              onLocationChange={handleGetManualAddress}
+              onLocationSelected={handleGetManualAddress}
+              onLocationChanged={handleLocationChanged}
               defaultValue={
                 loading
                   ? 'Loading...'
@@ -141,21 +126,10 @@ const MyAccount: React.FC = () => {
               }
             />
             <FormHelperText error={true}>{errorLocation}</FormHelperText>
+            <FormHelperText error={false}>{noticeLocation}</FormHelperText>
+            <br />
+            <br />
 
-            <Box className={classes.btnLocation}>
-              <TextField
-                className={classes.inputLocation}
-                id="location"
-                sx={{ width: 300 }}
-              />
-              <Icon>
-                <img
-                  className={classes.btnLocationIcon}
-                  src="/img/icon-location-arrow.svg"
-                  alt="Change location"
-                />
-              </Icon>
-            </Box>
             <DistanceControl>
               <Typography variant="body2" className={classes.descriptionSlider}>
                 Distance from location (100 km max)
@@ -246,51 +220,5 @@ const useStyles = makeStyles()({
   },
   settingsItem: {
     marginBottom: 30,
-  },
-  btnLocation: {
-    height: 34,
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: theme.palette.common.white,
-    boxShadow: '0 0 7px 1px rgba(217, 217, 217, 0.5)',
-    borderRadius: 8,
-    fontWeight: 500,
-    fontSize: 12,
-    marginBottom: 20,
-    paddingRight: 10,
-    color: theme.palette.common.black,
-    textTransform: 'none',
-    '& .MuiInputBase-root.MuiAutocomplete-inputRoot': {
-      padding: 0,
-    },
-    '& .MuiOutlinedInput-root .MuiAutocomplete-endAdornment': {
-      display: 'none',
-    },
-    '& .MuiInputBase-input.MuiOutlinedInput-input': {
-      padding: '8.5px 15px',
-      fontWeight: 500,
-      fontSize: 12,
-      color: theme.palette.common.black,
-    },
-    '& .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'transparent',
-    },
-    '& .MuiAutocomplete-hasPopupIcon .MuiOutlinedInput-root': {
-      padding: 0,
-    },
-    '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline, & .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-      {
-        border: 0,
-      },
-  },
-  btnLocationIcon: {
-    width: 15,
-    height: 14,
-    margin: '5px 0',
-  },
-  inputLocation: {
-    border: 0,
   },
 })
