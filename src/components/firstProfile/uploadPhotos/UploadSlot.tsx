@@ -19,6 +19,7 @@ interface SlotType {
   setChosenUrl: (chosenUrl: string) => void
   shiftPics: (array: UserPicsType[]) => void
   setIsPicHuge(isPicTrue: boolean): void
+  setIsSubmitClicked?: (value: boolean) => void
 }
 
 const UploadSlot: React.FC<SlotType> = ({
@@ -31,6 +32,7 @@ const UploadSlot: React.FC<SlotType> = ({
   setChosenUrl,
   shiftPics,
   setIsPicHuge,
+  setIsSubmitClicked,
 }) => {
   const { classes } = useStyles()
 
@@ -83,6 +85,11 @@ const UploadSlot: React.FC<SlotType> = ({
     }
   }
 
+  const slotHandler = () => {
+    setIsSubmitClicked && setIsSubmitClicked(false)
+    bgPic ? displayModalPic() : initiateInputClick()
+  }
+
   const handleDeletePic = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation()
     setChosenId(id)
@@ -95,9 +102,7 @@ const UploadSlot: React.FC<SlotType> = ({
       style={{
         backgroundImage: `url(${bgPic})`,
       }}
-      onClick={() => {
-        bgPic ? displayModalPic() : initiateInputClick()
-      }}
+      onClick={slotHandler}
     >
       {!bgPic && (
         <Box className={classes.innerBox}>

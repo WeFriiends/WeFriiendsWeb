@@ -14,11 +14,15 @@ interface UserPicsType {
 interface UploadPhotosProps {
   isPhotoSubmitted?: boolean
   setIsPhotoSubmitted?: (value: boolean) => void
+  isSubmitClicked?: boolean
+  setIsSubmitClicked?: (value: boolean) => void
 }
 
 const UploadPhotos = ({
   isPhotoSubmitted,
   setIsPhotoSubmitted,
+  isSubmitClicked,
+  setIsSubmitClicked,
 }: UploadPhotosProps) => {
   const { classes } = useStyles()
   const [isDeleteModalOpened, setIsDeleteModalOpened] = useState<boolean>(false)
@@ -56,7 +60,9 @@ const UploadPhotos = ({
     <Box className={classes.mainBox}>
       {!isPhotoSubmitted && (
         <Box className={classes.hintContainer}>
-          <Typography className={classes.title}>
+          <Typography
+            className={isSubmitClicked ? classes.errorTitle : classes.title}
+          >
             Upload at least 1 photo
           </Typography>
           <Typography className={classes.hint}>
@@ -93,6 +99,7 @@ const UploadPhotos = ({
             setChosenUrl={setChosenUrl}
             shiftPics={shiftPics}
             setIsPicHuge={setIsPicHuge}
+            setIsSubmitClicked={setIsSubmitClicked}
           />
         ))}
       </Box>
@@ -147,6 +154,13 @@ const useStyles = makeStyles()(() => ({
     fontWeight: 400,
     fontSize: 13,
     lineHeight: '150%',
+    textAlign: 'center',
+    color: createTheme.palette.primary.dark,
+  },
+  errorTitle: {
+    fontWeight: 600,
+    fontSize: 18,
+    lineHeight: '132%',
     textAlign: 'center',
     color: createTheme.palette.primary.dark,
   },
