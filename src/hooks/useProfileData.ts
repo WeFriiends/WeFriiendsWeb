@@ -7,10 +7,8 @@ const useProfileData = () => {
   const { data: profile, loading, error, getProfile } = useProfileStore()
 
   useEffect(() => {
-    console.log('get profile data if not existed')
     if (token && !profile) {
       // to avoid re-querying if data has already been loaded
-      console.log('get profile data - not existed')
       getProfile(token)
     }
   }, [getProfile, token, profile])

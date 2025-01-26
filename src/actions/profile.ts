@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
+import axios from 'axios'
 
 // Define the base URL for your API
 const API_BASE_URL = 'http://localhost:8080/api/profile'

@@ -67,7 +67,6 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   onChange,
   disableSwap,
   getAriaValueText,
-  ariaLabel,
   min,
   max,
   valueLabelFormat,
