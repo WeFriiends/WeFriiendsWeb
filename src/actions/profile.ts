@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 import { UserPicsType } from '../types/UserProfileData'
+import { Location, UserPreferences } from '../types/FirstProfile'
 
 // Define the base URL for your API
 const API_BASE_URL = 'http://localhost:8080/api/profile'
@@ -10,26 +11,6 @@ function base64ToBlob(base64: string, mimeType: string): Blob {
   const byteNumbers = Array.from(byteCharacters, (char) => char.charCodeAt(0))
   const byteArray = new Uint8Array(byteNumbers)
   return new Blob([byteArray], { type: mimeType })
-}
-
-interface Location {
-  lat: number
-  lng: number
-  country: string
-  city: string
-  street: string
-  houseNumber: string
-}
-
-interface UserPreferences {
-  aboutMe?: string
-  selectedLanguages?: string[]
-  Smoking?: string[]
-  EducationalLevel?: string[]
-  Children?: string[]
-  Drinking?: string[]
-  Pets?: string[]
-  Interests?: string[]
 }
 
 interface ProfileData {
@@ -82,14 +63,22 @@ export const createProfile = async (
     }
   })
 
-  const response = await axios.post(API_BASE_URL, formData, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'multipart/form-data',
-    },
-  })
+  try {
+    const response = await axios.post(API_BASE_URL, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    })
 
-  return response.data
+    return response.data
+  } catch (error: any) {
+    console.error(
+      'Error creating profile:',
+      error.response?.data || error.message
+    )
+    throw new Error(error.response?.data?.message || 'Failed to create profile')
+  }
 }
 
 // Function to get the current profile
