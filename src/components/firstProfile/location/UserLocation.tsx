@@ -34,14 +34,10 @@ export const checkGeolocationPermission = async () => {
 }
 
 interface UserLocationProps {
-  showWithError: boolean
   onLocationChange: (location: Address) => void
 }
 
-const UserLocation = ({
-  showWithError,
-  onLocationChange,
-}: UserLocationProps) => {
+const UserLocation = ({ onLocationChange }: UserLocationProps) => {
   const { classes } = useStyles()
   const { latitude, longitude, error } = useGeolocation()
   const [address, setAddress] = useState<Address | null>({
@@ -117,7 +113,6 @@ const UserLocation = ({
       setAddress(resolvedAddress) // Update the state with the selected address
       onLocationChange(resolvedAddress) // Call the onLocationChange callback to notify parent component
       setErrorLocation(null)
-      showWithError = false
     } else {
       onLocationChange({
         country: '',
@@ -135,7 +130,6 @@ const UserLocation = ({
       setItemToLocalStorage('lat', '')
       setItemToLocalStorage('lng', '')
 
-      showWithError = true
       setErrorLocation(
         'Invalid location data, accuracy up to house number is needed.'
       )

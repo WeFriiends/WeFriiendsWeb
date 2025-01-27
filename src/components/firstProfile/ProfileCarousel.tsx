@@ -41,7 +41,6 @@ const ProfileCarousel = () => {
   const [showNameWithError, setShowNameWithError] = useState(false)
   const [showDobWithError, setShowDobWithError] = useState(false)
   const [showGenderWithError, setShowGenderWithError] = useState(false)
-  const [showLocationWithError, setShowLocationWithError] = useState(false)
 
   const [nameChange, setNameChange] = useState(getItemFromLocalStorage('name'))
   const [dobChange, setDobChange] = useState(getItemFromLocalStorage('dob'))
@@ -113,10 +112,8 @@ const ProfileCarousel = () => {
         setItemToLocalStorage('houseNumber', locationChange.houseNumber)
         setItemToLocalStorage('lat', locationChange.lat)
         setItemToLocalStorage('lng', locationChange.lng)
-        setShowLocationWithError(false)
         proceedToNextStep()
       } else {
-        setShowLocationWithError(true)
         return
       }
     } else if (activeStep === 4) {
@@ -160,12 +157,7 @@ const ProfileCarousel = () => {
       label: 'genderPick',
     },
     {
-      component: (
-        <UserLocation
-          onLocationChange={handleLocationChange}
-          showWithError={showLocationWithError}
-        />
-      ),
+      component: <UserLocation onLocationChange={handleLocationChange} />,
       label: 'userLocation',
     },
     {
