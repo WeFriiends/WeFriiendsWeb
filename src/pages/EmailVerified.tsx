@@ -2,7 +2,7 @@ import { Box, Button, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import Logo from 'components/logo/Logo'
 import { useAuth0 } from '@auth0/auth0-react'
-import theme from '../../styles/createTheme'
+import theme from '../styles/createTheme'
 
 const EmailVerified = () => {
   const { classes } = useStyles()
@@ -11,7 +11,7 @@ const EmailVerified = () => {
   const handleLogin = async () => {
     await loginWithRedirect({
       appState: {
-        returnTo: 'user/fill-profile',
+        returnTo: 'fill-profile',
       },
     })
   }

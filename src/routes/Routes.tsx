@@ -23,8 +23,8 @@ import ReportDialogExamplePage from '../components/report/ReportDialogExamplePag
 import DeleteUserDialogExamplePage from '../components/deleteUser/DeleteUserDialogExamplePage'
 import MyAccount from '../components/myAccount/MyAccount'
 import Dashboard from 'pages/Dashboard'
-import EmailVerified from 'components/userAuth/EmailVerified'
-import AccountConfirmationMessage from 'components/userAuth/AccountConfirmationMessage'
+import EmailVerified from 'pages/EmailVerified'
+import AccountConfirmationMessage from 'pages/AccountConfirmationMessage'
 
 const Loadable =
   (Component: ComponentType) => (props: JSX.IntrinsicAttributes) =>

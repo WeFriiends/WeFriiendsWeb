@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import theme from '../../styles/createTheme'
+import theme from '../styles/createTheme'
 import Logo from 'components/logo/Logo'
 
 const AccountConfirmationMessage = () => {
