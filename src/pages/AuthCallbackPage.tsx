@@ -1,60 +1,55 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import AccountConfirmationMessage from 'components/userAuth/AccountConfirmationMessage'
-import EmailVerified from 'components/userAuth/EmailVerified'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const AuthCallbackPage = () => {
-  const { handleRedirectCallback, error } = useAuth0()
+  const { handleRedirectCallback } = useAuth0()
   const navigate = useNavigate()
   const location = useLocation()
+  const shouldRedirect = useRef(true)
 
   useEffect(() => {
+    const urlSearchParams = () => {
+      const searchParam = new URLSearchParams(location.search)
+      const message = searchParam.get('message')
+      const errorDescription = searchParam.get('error_description')
+      const code = searchParam.has('code')
+      const state = searchParam.has('state')
+      return { message, errorDescription, code, state }
+    }
     const processCallback = async () => {
       try {
-        const searchParam = new URLSearchParams(location.search)
-        const message = searchParam.get('message')
-        const errorDecription = searchParam.get('error_description')
-        console.log('errorDecription:', errorDecription)
-        if (message && message.includes('Your email was verified')) {
-          console.log('Email was verified')
+        const { message, errorDescription, code, state } = urlSearchParams()
+
+        if (message?.includes('Your email was verified')) {
           navigate('/email-confirmed')
         } else if (
-          errorDecription &&
-          errorDecription.includes('Please verify your email before logging in')
+          errorDescription?.includes(
+            'Please verify your email before logging in'
+          )
         ) {
-          console.log('Please verify your email')
           navigate('/email-verify')
+        } else if (code && state) {
+          await handleRedirectCallback()
+          navigate('/fill-profile')
+        } else {
+          console.warn('No valid callback parameters found in URL.')
         }
-        await handleRedirectCallback()
-        navigate('/fill-profile')
       } catch (error) {
         console.error('Error during callback:', error)
+        console.error(error)
       }
     }
 
-    processCallback()
-  }, [handleRedirectCallback, navigate, location.search, error])
-
-  if (
-    error &&
-    error.message !== 'Please verify your email before logging in.'
-  ) {
-    console.error(error)
-    console.log('error message:', error.message)
-    return <div>Oops... {error.message}</div>
-  }
+    // This prevents calling handleRedirectCallback() twice, as useEffect is being called twice.
+    // See https://community.auth0.com/t/error-invalid-state-when-calling-handleredirectcallback-on-react-app/95329 for details
+    if (shouldRedirect.current) {
+      shouldRedirect.current = false
+      processCallback()
+    }
+  }, [handleRedirectCallback, navigate, location.search])
 
   return <div>Loading...</div>
-
-  // if (error) {
-  //   console.error(error)
-  //   if (error.message == 'Please verify your email before logging in.')
-  //     return <AccountConfirmationMessage />
-  //   else return <div>Oops... {error.message}</div>
-  // }
-
-  // return <EmailVerified />
 }
 
 export default AuthCallbackPage
