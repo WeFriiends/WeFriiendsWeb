@@ -42,6 +42,8 @@ const ProfileCarousel = () => {
   const [showDobWithError, setShowDobWithError] = useState(false)
   const [showGenderWithError, setShowGenderWithError] = useState(false)
   const [showLocationWithError, setShowLocationWithError] = useState(false)
+  const [isPhotoSubmitted, setIsPhotoSubmitted] = useState(false)
+  const [isSubmitClicked, setIsSubmitClicked] = useState(false)
 
   const [nameChange, setNameChange] = useState(getItemFromLocalStorage('name'))
   const [dobChange, setDobChange] = useState(getItemFromLocalStorage('dob'))
@@ -177,7 +179,14 @@ const ProfileCarousel = () => {
       label: 'interests',
     },
     {
-      component: <UploadPhotos />,
+      component: (
+        <UploadPhotos
+          isPhotoSubmitted={isPhotoSubmitted}
+          setIsPhotoSubmitted={setIsPhotoSubmitted}
+          isSubmitClicked={isSubmitClicked}
+          setIsSubmitClicked={setIsSubmitClicked}
+        />
+      ),
       label: 'uploadPhotos',
     },
   ]
@@ -188,43 +197,47 @@ const ProfileCarousel = () => {
   const navigate = useNavigate()
 
   const onSubmit = async () => {
-    const {
-      name,
-      dob,
-      gender,
-      lat,
-      lng,
-      country,
-      city,
-      street,
-      houseNumber,
-      selectedStatuses,
-      photos,
-    } = getItemsFromLocalStorage([
-      'name',
-      'dob',
-      'gender',
-      'lat',
-      'lng',
-      'country',
-      'city',
-      'street',
-      'houseNumber',
-      'selectedStatuses',
-      'userPicsStorage',
-    ])
-    await createProfile(
-      {
+    if (!isPhotoSubmitted) {
+      setIsSubmitClicked(true)
+    } else {
+      const {
         name,
-        dateOfBirth: dob,
+        dob,
         gender,
-        location: { lat, lng, country, city, street, houseNumber },
-        reasons: selectedStatuses,
-        photos,
-      },
-      token
-    )
-    navigate('/friends')
+        lat,
+        lng,
+        country,
+        city,
+        street,
+        houseNumber,
+        selectedStatuses,
+        userPicsStorage,
+      } = getItemsFromLocalStorage([
+        'name',
+        'dob',
+        'gender',
+        'lat',
+        'lng',
+        'country',
+        'city',
+        'street',
+        'houseNumber',
+        'selectedStatuses',
+        'userPicsStorage',
+      ])
+      await createProfile(
+        {
+          name,
+          dateOfBirth: dob,
+          gender,
+          location: { lat, lng, country, city, street, houseNumber },
+          reasons: selectedStatuses,
+          photos: userPicsStorage,
+        },
+        token
+      )
+      navigate('/friends')
+    }
   }
   return (
     <>
