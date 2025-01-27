@@ -2,6 +2,7 @@ import { Box, Button, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import Logo from 'components/logo/Logo'
 import { useAuth0 } from '@auth0/auth0-react'
+import theme from '../../styles/createTheme'
 
 const EmailVerified = () => {
   const { classes } = useStyles()
@@ -17,11 +18,8 @@ const EmailVerified = () => {
   return (
     <Box className={classes.mainBox}>
       <Logo />
-      <Typography className={classes.text} sx={{ marginTop: '90px' }}>
-        Glad you’re here!
-      </Typography>
-      <Typography className={classes.text} sx={{ marginBottom: '50px' }}>
-        Hope, you’ll enjoy!
+      <Typography className={classes.text}>
+        Glad you’re here! <br /> Hope, you’ll enjoy!
       </Typography>
       <Button
         className={classes.startButton}
@@ -40,23 +38,31 @@ const useStyles = makeStyles()({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center',
     paddingTop: 200,
-    maxWidth: 355,
-    margin: '0 auto',
   },
   text: {
     fontSize: 40,
     lineHeight: '150%',
     fontWeight: 500,
+    marginTop: 90,
+    marginBottom: 50,
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: 290,
+    },
   },
   startButton: {
-    width: '70%',
+    width: 260,
     textTransform: 'lowercase',
-    backgroundColor: '#FB8F67',
+    backgroundColor: theme.palette.primary.light,
     color: '#FFFFFF',
     height: 56,
     fontSize: 18,
     fontWeight: 600,
     borderRadius: 10,
+    boxShadow: 'none',
+    '&:hover': {
+      boxShadow: 'none',
+    },
   },
 })

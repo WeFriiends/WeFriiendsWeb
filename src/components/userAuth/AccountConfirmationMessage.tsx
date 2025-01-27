@@ -11,9 +11,9 @@ const AccountConfirmationMessage = () => {
       <Logo />
       <Box className={classes.textBox}>
         <Typography className={classes.title}>Just one more step!</Typography>
-        <Box mb={5} mt={3}>
+        <Box mb={5} mt={10}>
           <Typography sx={{ fontSize: 18, lineHeight: '22px' }}>
-            We’ve sent an e-mail to confirm your account
+            We’ve sent an e-mail <br /> to confirm your account
           </Typography>
         </Box>
         <Box>
