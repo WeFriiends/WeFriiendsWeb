@@ -1,4 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
+import Loader from 'common/svg/Loader'
 import { useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
@@ -49,7 +50,7 @@ const AuthCallbackPage = () => {
     }
   }, [handleRedirectCallback, navigate, location.search])
 
-  return <div>Loading...</div>
+  return <Loader />
 }
 
 export default AuthCallbackPage
