@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { reverseGeocode } from '../../../actions/geocoding'
 import { useGeolocation } from '@uidotdev/usehooks'
-import { getItemFromLocalStorage } from 'utils/localStorage'
+import {
+  getItemFromLocalStorage,
+  setItemToLocalStorage,
+} from 'utils/localStorage'
 import { Box, FormHelperText, Icon, Typography } from '@mui/material'
 import Loader from 'common/svg/Loader'
 import { makeStyles } from 'tss-react/mui'
@@ -50,7 +53,10 @@ const UserLocation = ({
     lng: getItemFromLocalStorage('lng'),
   })
   const [showManualInput, setShowManualInput] = useState(false)
-  const [errorForm, setFormError] = useState<string | null>(null)
+  const [errorLocation, setErrorLocation] = useState<string | null>(null)
+  const [noticeLocation, setNoticeLocation] = useState<string | null>(
+    'To change your address, type a street name along with the house number, then wait for suggestions.'
+  )
   const [loading, setLoading] = useState(true)
 
   // Проверяем разрешение геолокации
@@ -89,13 +95,13 @@ const UserLocation = ({
           if (validateLocation(resolvedAddress)) {
             setAddress(resolvedAddress) // Update the state with the selected address
             onLocationChange(resolvedAddress) // Call the onLocationChange callback to notify parent component
-            setFormError(null)
+            setErrorLocation(null)
           } else {
-            setFormError('Invalid location data: ' + resolvedAddress)
+            setErrorLocation('Invalid location data: ' + resolvedAddress)
           }
         } catch (err) {
           console.error('Error fetching address:', err)
-          setFormError('Error fetching address: ' + err)
+          setErrorLocation('Error fetching address: ' + err)
         } finally {
           setLoading(false) // Stop loading once address is resolved
         }
@@ -107,23 +113,39 @@ const UserLocation = ({
   const handleGetManualAddress = (value: any) => {
     // Assume `value` is the selected address object (e.g., from LocationInputAutocomplete)
     const resolvedAddress = getResolvedAddress(value)
-
     if (resolvedAddress) {
       setAddress(resolvedAddress) // Update the state with the selected address
       onLocationChange(resolvedAddress) // Call the onLocationChange callback to notify parent component
-      setFormError(null)
+      setErrorLocation(null)
+      showWithError = false
     } else {
-      setFormError(
+      onLocationChange({
+        country: '',
+        city: '',
+        street: '',
+        houseNumber: '',
+        lat: 0,
+        lng: 0,
+      })
+
+      setItemToLocalStorage('country', '')
+      setItemToLocalStorage('city', '')
+      setItemToLocalStorage('street', '')
+      setItemToLocalStorage('houseNumber', '')
+      setItemToLocalStorage('lat', '')
+      setItemToLocalStorage('lng', '')
+
+      showWithError = true
+      setErrorLocation(
         'Invalid location data, accuracy up to house number is needed.'
       )
     }
   }
 
-  useEffect(() => {
-    if (showWithError) {
-      setFormError('Please choose location.')
-    }
-  }, [showWithError, address])
+  const handleLocationChanged = () => {
+    setErrorLocation('')
+    setNoticeLocation('')
+  }
 
   return (
     <Box>
@@ -144,6 +166,14 @@ const UserLocation = ({
 
           <LocationInputAutocomplete
             onLocationSelected={handleGetManualAddress}
+            onLocationChanged={handleLocationChanged}
+            defaultValue={
+              address?.country
+                ? `${address?.country}, ${address?.city}, ${address?.street}${
+                    address?.houseNumber ? `, ${address.houseNumber}` : ''
+                  }`
+                : 'Search location'
+            }
           />
         </Box>
       )}
@@ -157,7 +187,8 @@ const UserLocation = ({
           </Box>
         </>
       )}
-      <FormHelperText error={true}>{errorForm}</FormHelperText>
+      <FormHelperText error={true}>{errorLocation}</FormHelperText>
+      <FormHelperText error={false}>{noticeLocation}</FormHelperText>
     </Box>
   )
 }

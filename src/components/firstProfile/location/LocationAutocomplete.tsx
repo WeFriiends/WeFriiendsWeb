@@ -84,6 +84,7 @@ const LocationInputAutocomplete = ({
               display: 'none',
             },
           }}
+          multiline={true}
           onChange={handleInputChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
@@ -99,6 +100,7 @@ const LocationInputAutocomplete = ({
                 </Icon>
                 <span
                   style={{
+                    maxWidth: 200,
                     display:
                       isFocused || inputLocation.length ? 'none' : 'inline',
                   }}

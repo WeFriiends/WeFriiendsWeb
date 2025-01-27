@@ -125,8 +125,12 @@ const MyAccount: React.FC = () => {
                     }`
               }
             />
-            <FormHelperText error={true}>{errorLocation}</FormHelperText>
-            <FormHelperText error={false}>{noticeLocation}</FormHelperText>
+            <FormHelperText sx={{ textAlign: 'left' }} error={true}>
+              {errorLocation}
+            </FormHelperText>
+            <FormHelperText sx={{ textAlign: 'left' }} error={false}>
+              {noticeLocation}
+            </FormHelperText>
             <br />
             <br />
 
