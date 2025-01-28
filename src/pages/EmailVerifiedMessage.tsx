@@ -4,7 +4,7 @@ import Logo from 'components/logo/Logo'
 import { useAuth0 } from '@auth0/auth0-react'
 import theme from '../styles/createTheme'
 
-const EmailVerified = () => {
+const EmailVerifiedMessage = () => {
   const { classes } = useStyles()
   const { loginWithRedirect } = useAuth0()
 
@@ -31,7 +31,7 @@ const EmailVerified = () => {
     </Box>
   )
 }
-export default EmailVerified
+export default EmailVerifiedMessage
 
 const useStyles = makeStyles()({
   mainBox: {

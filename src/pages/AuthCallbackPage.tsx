@@ -22,19 +22,26 @@ const AuthCallbackPage = () => {
       try {
         const { message, errorDescription, code, state } = urlSearchParams()
 
-        if (message?.includes('Your email was verified')) {
+        if (message?.includes('Your email was verified'))
           navigate('/email-confirmed')
-        } else if (
+        else if (message?.includes('This URL can be used only once'))
+          navigate('/email-already-confirmed')
+        else if (
           errorDescription?.includes(
             'Please verify your email before logging in'
           )
-        ) {
-          navigate('/email-verify')
-        } else if (code && state) {
+        )
+          navigate('/account-created')
+        else if (code && state) {
           await handleRedirectCallback()
           navigate('/fill-profile')
         } else {
-          console.warn('No valid callback parameters found in URL.')
+          console.error('No valid callback parameters found in URL: ', {
+            message,
+            errorDescription,
+            code,
+            state,
+          })
         }
       } catch (error) {
         console.error('Error during callback:', error)
