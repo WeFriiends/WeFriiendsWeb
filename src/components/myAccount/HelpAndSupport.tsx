@@ -8,13 +8,41 @@ import { useAuth0 } from '@auth0/auth0-react'
 const HelpAndSupport: React.FC = () => {
   const { classes } = useStyles()
   const { logout } = useAuth0()
+
   const handleLogout = () => {
     logout({
       logoutParams: {
-        returnTo: window.location.origin, // Redirects to home after logout
+        returnTo: window.location.origin,
       },
     })
   }
+
+  const linksSecurityTips = [
+    {
+      text: 'Rules of community',
+      href: 'https://wefriiends.com/documents/privacy.html',
+    },
+    {
+      text: 'Security tips',
+      href: 'https://wefriiends.com/documents/privacy.html',
+    },
+  ]
+
+  const linksLegalData = [
+    {
+      text: 'Privacy settings',
+      href: 'https://wefriiends.com/documents/privacy.html',
+    },
+    { text: 'Cookies', href: 'https://wefriiends.com/documents/privacy.html' },
+    {
+      text: 'Privacy policy',
+      href: 'https://wefriiends.com/documents/privacy.html',
+    },
+    {
+      text: 'Terms of use',
+      href: 'https://wefriiends.com/documents/privacy.html',
+    },
+  ]
 
   return (
     <>
@@ -26,66 +54,36 @@ const HelpAndSupport: React.FC = () => {
         Security tips
       </Typography>
       <Typography variant="body2" className={classes.description}>
-        <Link
-          className={classes.linkGrey}
-          href="https://wefriiends.com/documents/privacy.html"
-          target="_blank"
-          rel="noopener"
-        >
-          Rules of community
-          <IconNewTab />
-        </Link>
-        <Link
-          className={classes.linkGrey}
-          href="https://wefriiends.com/documents/privacy.html"
-          target="_blank"
-          rel="noopener"
-        >
-          Security tips
-          <IconNewTab />
-        </Link>
+        {linksSecurityTips.map(({ text, href }) => (
+          <Link
+            key={text}
+            className={classes.linkGrey}
+            href={href}
+            target="_blank"
+            rel="noopener"
+          >
+            {text}
+            <IconNewTab />
+          </Link>
+        ))}
       </Typography>
       <hr className={classes.separator} />
       <Typography variant="h2" className={classes.subtitle}>
         Legal data
       </Typography>
       <Typography variant="body2" className={classes.description}>
-        <Link
-          className={classes.linkGrey}
-          href="https://wefriiends.com/documents/privacy.html"
-          target="_blank"
-          rel="noopener"
-        >
-          Privacy settings
-          <IconNewTab />
-        </Link>
-        <Link
-          className={classes.linkGrey}
-          href="https://wefriiends.com/documents/privacy.html"
-          target="_blank"
-          rel="noopener"
-        >
-          Cookies
-          <IconNewTab />
-        </Link>
-        <Link
-          className={classes.linkGrey}
-          href="https://wefriiends.com/documents/privacy.html"
-          target="_blank"
-          rel="noopener"
-        >
-          Privacy policy
-          <IconNewTab />
-        </Link>
-        <Link
-          className={classes.linkGrey}
-          href="https://wefriiends.com/documents/privacy.html"
-          target="_blank"
-          rel="noopener"
-        >
-          Terms of use
-          <IconNewTab />
-        </Link>
+        {linksLegalData.map(({ text, href }) => (
+          <Link
+            key={text}
+            className={classes.linkGrey}
+            href={href}
+            target="_blank"
+            rel="noopener"
+          >
+            {text}
+            <IconNewTab />
+          </Link>
+        ))}
       </Typography>
       <hr className={classes.separator} />
       <Link
