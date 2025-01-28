@@ -45,7 +45,6 @@ const AuthCallbackPage = () => {
         }
       } catch (error) {
         console.error('Error during callback:', error)
-        console.error(error)
       }
     }
 
