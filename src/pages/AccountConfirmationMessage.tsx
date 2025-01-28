@@ -38,6 +38,7 @@ const useStyles = makeStyles()({
   textBox: {
     paddingTop: 80,
     textAlign: 'center',
+    color: theme.palette.text.primary,
   },
   title: {
     fontSize: 32,

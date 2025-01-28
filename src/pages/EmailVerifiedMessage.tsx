@@ -47,6 +47,7 @@ const useStyles = makeStyles()({
     fontWeight: 500,
     marginTop: 90,
     marginBottom: 50,
+    color: theme.palette.text.primary,
     [theme.breakpoints.down('sm')]: {
       maxWidth: 290,
     },
