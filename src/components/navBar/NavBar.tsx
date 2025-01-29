@@ -12,14 +12,14 @@ import { generateNavigationConfig } from '../../helpers/navigationConfigHelper'
 import { NavigationItems } from '../navigationItems/NavigationItems'
 import theme from '../../styles/createTheme'
 import { Outlet, useNavigate } from 'react-router-dom'
-import useProfileData from 'hooks/useProfileData'
+import useProfileData from '../../hooks/useProfileData'
 
 const NavBar = () => {
   const { classes } = useStyles()
   const { activePage, setNewActivePage } = useActivePage()
   const navigationConfig = generateNavigationConfig()
   const navigate = useNavigate()
-  const { profile } = useProfileData()
+  const { profile, loading } = useProfileData()
 
   // Set current active menu item if we open the corresponding link
   useEffect(() => {
@@ -55,15 +55,16 @@ const NavBar = () => {
           }`}
         >
           <Avatar
-            src={
-              profile?.photos[0] ? profile?.photos[0] : '/img/avatar_elena.jpg'
-            }
+            src={profile?.photos?.[0] ?? '/img/avatar_elena.jpg'}
             sx={{ width: 56, height: 56 }}
           ></Avatar>
-          <Typography className={classes.name}>
-            {' '}
-            {profile?.name ? profile?.name : 'Elena S'}
-          </Typography>
+          {!loading ? (
+            <Typography className={classes.name}>
+              {profile?.name || 'UserName'}
+            </Typography>
+          ) : (
+            <Typography className={classes.name}>Loading...</Typography>
+          )}
         </Button>
       </Box>
       <Box component="main" className={classes.main}>

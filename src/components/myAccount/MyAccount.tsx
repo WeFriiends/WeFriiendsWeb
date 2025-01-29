@@ -1,57 +1,93 @@
 import * as React from 'react'
-import {
-  Box,
-  Grid,
-  Icon,
-  Typography,
-  TextField,
-  Autocomplete,
-  Link,
-  Button,
-} from '@mui/material'
+import { Box, Grid, Typography, FormHelperText } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import theme from '../../styles/createTheme'
-import IconNewTab from '../../common/svg/IconNewTab'
 import AgeRangeControl from './AgeRangeControl'
 import DistanceControl from './DistanceControl'
-import { useAuth0 } from '@auth0/auth0-react'
-import PhotoCarousel from 'components/userProfile/PhotoCarousel'
-import Interests from 'components/firstProfile/interests/Interests'
-import PrimaryButton from 'common/components/PrimaryButton'
-import UploadPhotos from 'components/firstProfile/uploadPhotos/UploadPhotos'
+import { useProfileStore } from '../../zustand/store'
+import LocationInputAutocomplete from '../firstProfile/location/LocationAutocomplete'
+import { Address } from '../firstProfile/profile'
+import { useEffect, useState } from 'react'
+import HelpAndSupport from './HelpAndSupport'
+import MyProfile from './MyProfile'
+import useBearerToken from '../../hooks/useBearToken'
+import { getResolvedAddress } from '../firstProfile/utils/getResolvedAddress'
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
-  const { logout } = useAuth0()
+  const {
+    data: profile,
+    loading,
+    updateProfile: updateProfileAction,
+  } = useProfileStore()
+  const [errorLocation, setErrorLocation] = useState<string | null>(null)
+  const [noticeLocation, setNoticeLocation] = useState<string | null>(
+    'To change your address, type a street name along with the house number, then wait for suggestions.'
+  )
+  const [, setAddress] = useState<Address | null>(null)
+  const token = useBearerToken()
 
-  const handleLogout = () => {
-    logout({
-      logoutParams: {
-        returnTo: window.location.origin, // Redirects to home after logout
-      },
-    })
+  useEffect(() => {
+    if (profile?.location) {
+      setAddress({
+        country: profile.location.country || '',
+        city: profile.location.city || '',
+        street: profile.location.street || '',
+        houseNumber: profile.location.houseNumber || '',
+        lat: profile.location.lat || 0,
+        lng: profile.location.lng || 0,
+      })
+    }
+  }, [profile])
+
+  const handleGetManualAddress = async (value: any) => {
+    // Assume `value` is the selected address object (e.g., from LocationInputAutocomplete)
+
+    const resolvedAddress = getResolvedAddress(value)
+
+    if (resolvedAddress) {
+      // Обновляем адрес на сервере
+      setErrorLocation('Changing...')
+      if (token) {
+        try {
+          const response = await updateProfileAction(
+            {
+              location: {
+                lat: resolvedAddress.lat,
+                lng: resolvedAddress.lng,
+                country: resolvedAddress.country,
+                city: resolvedAddress.city,
+                street: resolvedAddress.street,
+                houseNumber: resolvedAddress.houseNumber,
+              },
+            },
+            token
+          )
+
+          if (response.status === 200) {
+            setErrorLocation('')
+            setNoticeLocation('The address has been successfully changed.')
+          } else {
+            setErrorLocation('Failed to update address. Please try again.')
+          }
+        } catch (err) {
+          console.error('Error updating address:', err)
+          setErrorLocation('Failed to update address.')
+        }
+      } else {
+        console.error('Token is not available.')
+        setErrorLocation('Authentication error. Please try logging in again.')
+      }
+    } else {
+      setErrorLocation(
+        'Invalid location data, accuracy up to house number is needed.'
+      )
+    }
   }
 
-  const locationNamesTempList = [
-    { label: 'New York' },
-    { label: 'Seoul' },
-    { label: 'Istanbul' },
-    { label: 'Beijing' },
-    { label: 'São Paulo' },
-    { label: 'Buenos Aires' },
-    { label: 'Tokyo' },
-  ]
-  const userPhoto = [
-    { src: '/img/photo_Elena.jpg' },
-    { src: '/img/photo_Elena_2.jpg' },
-    { src: '/img/photo_Elena_3.jpg' },
-  ]
-  const [isEditing, setIsEditing] = React.useState(false)
-  const handleEditClick = () => {
-    setIsEditing(true)
-  }
-  const handleSaveClick = () => {
-    setIsEditing(false)
+  const handleLocationChanged = () => {
+    setErrorLocation('')
+    setNoticeLocation('')
   }
 
   return (
@@ -74,23 +110,30 @@ const MyAccount: React.FC = () => {
             <Typography variant="h2" className={classes.subtitle}>
               Location
             </Typography>
-            <Box className={classes.btnLocation}>
-              <Autocomplete
-                className={classes.inputLocation}
-                disablePortal
-                id="location"
-                options={locationNamesTempList}
-                sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="" />}
-              />
-              <Icon>
-                <img
-                  className={classes.btnLocationIcon}
-                  src="/img/icon-location-arrow.svg"
-                  alt="Change location"
-                />
-              </Icon>
-            </Box>
+            <LocationInputAutocomplete
+              onLocationSelected={handleGetManualAddress}
+              onLocationChanged={handleLocationChanged}
+              defaultValue={
+                loading
+                  ? 'Loading...'
+                  : `${profile?.location.country || ''}, ${
+                      profile?.location.city || ''
+                    }, ${profile?.location.street || ''}${
+                      profile?.location.houseNumber
+                        ? `, ${profile.location.houseNumber}`
+                        : ''
+                    }`
+              }
+            />
+            <FormHelperText sx={{ textAlign: 'left' }} error={true}>
+              {errorLocation}
+            </FormHelperText>
+            <FormHelperText sx={{ textAlign: 'left' }} error={false}>
+              {noticeLocation}
+            </FormHelperText>
+            <br />
+            <br />
+
             <DistanceControl>
               <Typography variant="body2" className={classes.descriptionSlider}>
                 Distance from location (100 km max)
@@ -100,129 +143,10 @@ const MyAccount: React.FC = () => {
           <Box className={classes.settingsItem}>
             <AgeRangeControl />
           </Box>
-          <Typography variant="h1" className={classes.helpTitle}>
-            Help & support
-          </Typography>
-          <hr className={classes.separator} />
-          <Typography variant="h2" className={classes.subtitle}>
-            Security tips
-          </Typography>
-          <Typography variant="body2" className={classes.description}>
-            <Link
-              className={classes.linkGrey}
-              href="https://wefriiends.com/documents/privacy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Rules of community
-              <IconNewTab />
-            </Link>
-            <Link
-              className={classes.linkGrey}
-              href="https://wefriiends.com/documents/privacy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Security tips
-              <IconNewTab />
-            </Link>
-          </Typography>
-          <hr className={classes.separator} />
-          <Typography variant="h2" className={classes.subtitle}>
-            Legal data
-          </Typography>
-          <Typography variant="body2" className={classes.description}>
-            <Link
-              className={classes.linkGrey}
-              href="https://wefriiends.com/documents/privacy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Privacy settings
-              <IconNewTab />
-            </Link>
-            <Link
-              className={classes.linkGrey}
-              href="https://wefriiends.com/documents/privacy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Cookies
-              <IconNewTab />
-            </Link>
-            <Link
-              className={classes.linkGrey}
-              href="https://wefriiends.com/documents/privacy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Privacy policy
-              <IconNewTab />
-            </Link>
-            <Link
-              className={classes.linkGrey}
-              href="https://wefriiends.com/documents/privacy.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Terms of use
-              <IconNewTab />
-            </Link>
-          </Typography>
-          <hr className={classes.separator} />
-          <Link
-            className={classes.linkOrange}
-            href="https://wefriiends.com/documents/privacy.html"
-            target="_blank"
-            rel="noopener"
-          >
-            Share WeFriiends
-          </Link>
-          <hr className={classes.separator} />
-          <Button
-            variant="text"
-            onClick={handleLogout}
-            className={classes.linkOrange}
-          >
-            Log out
-          </Button>
-          <hr className={classes.separator} />
-          <Link
-            className={classes.linkOrange}
-            href="https://wefriiends.com/documents/privacy.html"
-            target="_blank"
-            rel="noopener"
-          >
-            Delete account
-          </Link>
-          <hr className={classes.separator} />
-          <Typography variant="body2" className={classes.version}>
-            version 2.33
-          </Typography>
+          <HelpAndSupport />
         </Box>
         <Box className={classes.twoColumnLayoutColRight}>
-          <Typography variant="h1" className={classes.title}>
-            My profile
-          </Typography>
-          <PhotoCarousel items={userPhoto} />
-          {isEditing ? (
-            <>
-              <UploadPhotos />
-              <Box className={classes.interests}>
-                <Interests isAboutMeShown={true} />
-              </Box>
-              <Box className={classes.buttonContainer}>
-                <PrimaryButton label="Save" onClickHandler={handleSaveClick} />
-              </Box>
-            </>
-          ) : (
-            <Box className={classes.buttonContainer}>
-              <PrimaryButton
-                label="Change Profile"
-                onClickHandler={handleEditClick}
-              />
-            </Box>
-          )}
+          <MyProfile />
         </Box>
       </Grid>
     </Grid>
@@ -279,13 +203,6 @@ const useStyles = makeStyles()({
       fontWeight: 500,
     },
   },
-  helpTitle: {
-    fontSize: 20,
-    fontWeight: 500,
-    lineHeight: '20px',
-    marginTop: 200,
-    paddingBottom: 20,
-  },
   subtitle: {
     fontSize: 16,
     lineHeight: '22px',
@@ -307,101 +224,5 @@ const useStyles = makeStyles()({
   },
   settingsItem: {
     marginBottom: 30,
-  },
-  btnLocation: {
-    height: 34,
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: theme.palette.common.white,
-    boxShadow: '0 0 7px 1px rgba(217, 217, 217, 0.5)',
-    borderRadius: 8,
-    fontWeight: 500,
-    fontSize: 12,
-    marginBottom: 20,
-    paddingRight: 10,
-    color: theme.palette.common.black,
-    textTransform: 'none',
-    '& .MuiInputBase-root.MuiAutocomplete-inputRoot': {
-      padding: 0,
-    },
-    '& .MuiOutlinedInput-root .MuiAutocomplete-endAdornment': {
-      display: 'none',
-    },
-    '& .MuiInputBase-input.MuiOutlinedInput-input': {
-      padding: '8.5px 15px',
-      fontWeight: 500,
-      fontSize: 12,
-      color: theme.palette.common.black,
-    },
-    '& .MuiOutlinedInput-notchedOutline': {
-      borderColor: 'transparent',
-    },
-    '& .MuiAutocomplete-hasPopupIcon .MuiOutlinedInput-root': {
-      padding: 0,
-    },
-    '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline, & .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-      {
-        border: 0,
-      },
-  },
-  btnLocationIcon: {
-    width: 15,
-    height: 14,
-    margin: '5px 0',
-  },
-  inputLocation: {
-    border: 0,
-  },
-  separator: {
-    height: 1.5,
-    lineHeight: 0,
-    border: 0,
-    backgroundColor: theme.customPalette.colorInputGrey,
-    marginBottom: 25,
-  },
-  linkGrey: {
-    fontSize: 16,
-    lineHeight: '22px',
-    color: theme.customPalette.colorActiveGrey,
-    textDecoration: 'none',
-    display: 'flex',
-    maxWidth: '190px',
-    justifyContent: 'space-between',
-    marginBottom: 5,
-    '&:hover': {
-      fontWeight: 600,
-      '& svg path': {
-        fill: theme.palette.primary.main,
-      },
-    },
-  },
-  linkOrange: {
-    fontWeight: 500,
-    fontSize: 16,
-    lineHeight: '20px',
-    color: theme.palette.primary.dark,
-    textDecoration: 'none',
-    margin: '15px 0 20px',
-    display: 'block',
-    padding: 0,
-    textTransform: 'none',
-  },
-  version: {
-    fontSize: 14,
-    lineHeight: '22px',
-    color: theme.customPalette.colorActiveGrey,
-  },
-  interests: {
-    display: 'flex',
-    justifyContent: 'center',
-    width: '100%',
-    marginTop: 60,
-  },
-  buttonContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: theme.spacing(2),
   },
 })
