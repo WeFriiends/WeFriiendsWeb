@@ -11,7 +11,19 @@ interface UserPicsType {
   url: string | null
 }
 
-const UploadPhotos = () => {
+interface UploadPhotosProps {
+  isPhotoSubmitted?: boolean
+  setIsPhotoSubmitted?: (value: boolean) => void
+  isSubmitClicked?: boolean
+  setIsSubmitClicked?: (value: boolean) => void
+}
+
+const UploadPhotos = ({
+  isPhotoSubmitted,
+  setIsPhotoSubmitted,
+  isSubmitClicked,
+  setIsSubmitClicked,
+}: UploadPhotosProps) => {
   const { classes } = useStyles()
   const [isDeleteModalOpened, setIsDeleteModalOpened] = useState<boolean>(false)
   const [isPhotoModalOpened, setIsPhotoModalOpened] = useState<boolean>(false)
@@ -30,6 +42,7 @@ const UploadPhotos = () => {
     const picturesWithUrl = array.filter((pic) => pic.url !== null)
     const picturesWithoutUrl = array.filter((pic) => pic.url === null)
     setUserPics([...picturesWithUrl, ...picturesWithoutUrl])
+    setIsPhotoSubmitted && setIsPhotoSubmitted(Boolean(picturesWithUrl?.length))
   }
 
   const deleteChosenPic = () => {
@@ -43,15 +56,13 @@ const UploadPhotos = () => {
     shiftPics(updatedPicArray)
   }
 
-  const hasAnyPics = (array: UserPicsType[]): boolean => {
-    return array.some((pic) => pic.url !== null && pic.url.trim() !== '')
-  }
-
   return (
     <Box className={classes.mainBox}>
-      {!hasAnyPics(userPics) && (
+      {!isPhotoSubmitted && (
         <Box className={classes.hintContainer}>
-          <Typography className={classes.title}>
+          <Typography
+            className={isSubmitClicked ? classes.errorTitle : classes.title}
+          >
             Upload at least 1 photo
           </Typography>
           <Typography className={classes.hint}>
@@ -88,6 +99,7 @@ const UploadPhotos = () => {
             setChosenUrl={setChosenUrl}
             shiftPics={shiftPics}
             setIsPicHuge={setIsPicHuge}
+            setIsSubmitClicked={setIsSubmitClicked}
           />
         ))}
       </Box>
@@ -142,6 +154,13 @@ const useStyles = makeStyles()(() => ({
     fontWeight: 400,
     fontSize: 13,
     lineHeight: '150%',
+    textAlign: 'center',
+    color: createTheme.palette.primary.dark,
+  },
+  errorTitle: {
+    fontWeight: 600,
+    fontSize: 18,
+    lineHeight: '132%',
     textAlign: 'center',
     color: createTheme.palette.primary.dark,
   },
