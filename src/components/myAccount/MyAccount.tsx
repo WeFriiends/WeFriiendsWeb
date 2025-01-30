@@ -15,6 +15,10 @@ import IconNewTab from '../../common/svg/IconNewTab'
 import AgeRangeControl from './AgeRangeControl'
 import DistanceControl from './DistanceControl'
 import { useAuth0 } from '@auth0/auth0-react'
+import PhotoCarousel from 'components/userProfile/PhotoCarousel'
+import Interests from 'components/firstProfile/interests/Interests'
+import PrimaryButton from 'common/components/PrimaryButton'
+import UploadPhotos from 'components/firstProfile/uploadPhotos/UploadPhotos'
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
@@ -37,6 +41,18 @@ const MyAccount: React.FC = () => {
     { label: 'Buenos Aires' },
     { label: 'Tokyo' },
   ]
+  const userPhoto = [
+    { src: '/img/photo_Elena.jpg' },
+    { src: '/img/photo_Elena_2.jpg' },
+    { src: '/img/photo_Elena_3.jpg' },
+  ]
+  const [isEditing, setIsEditing] = React.useState(false)
+  const handleEditClick = () => {
+    setIsEditing(true)
+  }
+  const handleSaveClick = () => {
+    setIsEditing(false)
+  }
 
   return (
     <Grid container spacing={3}>
@@ -184,7 +200,30 @@ const MyAccount: React.FC = () => {
             version 2.33
           </Typography>
         </Box>
-        <Box className={classes.twoColumnLayoutColRight}>Right column</Box>
+        <Box className={classes.twoColumnLayoutColRight}>
+          <Typography variant="h1" className={classes.title}>
+            My profile
+          </Typography>
+          <PhotoCarousel items={userPhoto} />
+          {isEditing ? (
+            <>
+              <UploadPhotos />
+              <Box className={classes.interests}>
+                <Interests isAboutMeShown={true} />
+              </Box>
+              <Box className={classes.buttonContainer}>
+                <PrimaryButton label="Save" onClickHandler={handleSaveClick} />
+              </Box>
+            </>
+          ) : (
+            <Box className={classes.buttonContainer}>
+              <PrimaryButton
+                label="Change Profile"
+                onClickHandler={handleEditClick}
+              />
+            </Box>
+          )}
+        </Box>
       </Grid>
     </Grid>
   )
@@ -219,12 +258,13 @@ const useStyles = makeStyles()({
   },
   twoColumnLayoutColRight: {
     width: 450,
-    outline: '1px solid pink',
     maxWidth: '100%',
+    overflow: 'auto',
     [theme.breakpoints.up(850)]: {
       width: 450,
     },
   },
+
   title: {
     paddingTop: 60,
     paddingBottom: 10,
@@ -352,5 +392,16 @@ const useStyles = makeStyles()({
     fontSize: 14,
     lineHeight: '22px',
     color: theme.customPalette.colorActiveGrey,
+  },
+  interests: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+    marginTop: 60,
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: theme.spacing(2),
   },
 })
