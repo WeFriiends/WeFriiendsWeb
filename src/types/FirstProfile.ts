@@ -17,3 +17,9 @@ export interface UserPreferences {
   Pets?: string[]
   Interests?: string[]
 }
+
+export interface UserPicsType {
+  id: string
+  url: string | null
+  blobFile?: Blob | null
+}

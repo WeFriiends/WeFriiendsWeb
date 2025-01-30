@@ -1,13 +1,8 @@
 import React, { useRef } from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-//import UserPicsType from './UploadPhotos'
+import { UserPicsType } from '../../../types/FirstProfile'
 import createTheme from 'styles/createTheme'
-
-interface UserPicsType {
-  id: string
-  url: string | null
-}
 
 interface SlotType {
   id: string
@@ -55,27 +50,23 @@ const UploadSlot: React.FC<SlotType> = ({
 
       setIsPicHuge(false)
       const reader = new FileReader()
-      reader.readAsDataURL(file)
+      reader.readAsArrayBuffer(file)
 
       reader.onloadend = () => {
-        const base64data = reader.result
+        const arrayBuffer = reader.result as ArrayBuffer
+        const blob = new Blob([arrayBuffer], { type: file.type })
 
-        const img = new Image()
-        img.src = base64data as string
-
-        img.onload = () => {
-          const newPic = {
-            id: id,
-            url: base64data as string,
-            fileName: file.name,
-          }
-
-          const newUserPicsStorage = userPics.map((elem: UserPicsType) =>
-            elem.id === id ? newPic : elem
-          )
-
-          shiftPics(newUserPicsStorage)
+        const newPic = {
+          id: id,
+          url: URL.createObjectURL(blob),
+          blobFile: blob,
         }
+
+        const newUserPicsStorage = userPics.map((elem: UserPicsType) =>
+          elem.id === id ? newPic : elem
+        )
+
+        shiftPics(newUserPicsStorage)
       }
     }
   }

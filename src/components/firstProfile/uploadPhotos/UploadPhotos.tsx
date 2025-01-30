@@ -5,13 +5,7 @@ import UploadSlot from './UploadSlot'
 import { PhotoModal } from './PhotoModal'
 import DeletePhoto from './DeletePhoto'
 import createTheme from 'styles/createTheme'
-import { UserPicsType } from '../../../types/UserProfileData'
-
-declare global {
-  interface Window {
-    choosenFiles: File[]
-  }
-}
+import { UserPicsType } from '../../../types/FirstProfile'
 
 const UploadPhotos = ({
   onPicChange,
@@ -32,6 +26,7 @@ const UploadPhotos = ({
   const initialPics: UserPicsType[] = Array.from({ length: 6 }, (_, index) => ({
     id: `userPic-${index}`,
     url: null,
+    blobFile: null,
   }))
 
   const [userPics, setUserPics] = useState<UserPicsType[]>(initialPics)
