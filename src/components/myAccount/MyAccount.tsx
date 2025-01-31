@@ -18,7 +18,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import PhotoCarousel from 'components/userProfile/PhotoCarousel'
 import Interests from 'components/firstProfile/interests/Interests'
 import PrimaryButton from 'common/components/PrimaryButton'
-import UploadPhotos from 'components/firstProfile/uploadPhotos/UploadPhotos'
+// import UploadPhotos from 'components/firstProfile/uploadPhotos/UploadPhotos'
 
 const MyAccount: React.FC = () => {
   const { classes } = useStyles()
@@ -207,7 +207,8 @@ const MyAccount: React.FC = () => {
           <PhotoCarousel items={userPhoto} />
           {isEditing ? (
             <>
-              <UploadPhotos />
+              {/* A parameter has been added to UploadPhotos that requires adding logic */}
+              {/* <UploadPhotos /> */}
               <Box className={classes.interests}>
                 <Interests isAboutMeShown={true} />
               </Box>
