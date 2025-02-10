@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import theme from '../../styles/createTheme'
 import { makeStyles } from 'tss-react/mui'
@@ -21,6 +22,16 @@ const MyProfile: React.FC = () => {
   const handleSaveClick = () => {
     setIsEditing(false)
   }
+
+  interface UserPicsType {
+    id: string
+    url: string | null
+  }
+
+  const [, setPhotos] = useState<UserPicsType[]>([])
+  const handlePicChange = (photos: UserPicsType[]) => {
+    setPhotos(photos)
+  }
   return (
     <>
       <Typography variant="h1" className={classes.title}>
@@ -29,7 +40,7 @@ const MyProfile: React.FC = () => {
       <PhotoCarousel items={userPhoto} />
       {isEditing ? (
         <>
-          <UploadPhotos />
+          <UploadPhotos onPicChange={handlePicChange} />
           <Box className={classes.interests}>
             <Interests isAboutMeShown={true} />
           </Box>

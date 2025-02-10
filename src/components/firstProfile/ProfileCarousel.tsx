@@ -131,15 +131,15 @@ const ProfileCarousel = () => {
     }
   }
 
-  /*interface UserPicsType {
+  interface UserPicsType {
     id: string
     url: string | null
-  }*/
+  }
 
-  /*const [photos, setPhotos] = useState<UserPicsType[]>([])
+  const [, setPhotos] = useState<UserPicsType[]>([])
   const handlePicChange = (photos: UserPicsType[]) => {
     setPhotos(photos)
-  }*/
+  }
 
   const carouselData = [
     {
@@ -188,6 +188,7 @@ const ProfileCarousel = () => {
           setIsPhotoSubmitted={setIsPhotoSubmitted}
           isSubmitClicked={isSubmitClicked}
           setIsSubmitClicked={setIsSubmitClicked}
+          onPicChange={handlePicChange}
         />
       ),
       label: 'uploadPhotos',
@@ -239,6 +240,7 @@ const ProfileCarousel = () => {
           reasons: selectedStatuses,
           photos: userPicsStorage,
           userPreferences,
+          userPicsStorage: [],
         },
         token
       )

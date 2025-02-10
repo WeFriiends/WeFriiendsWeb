@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { UserPicsType } from '../types/FirstProfile'
+import { Location, UserPreferences } from '../types/FirstProfile'
 
 // Define the base URL for your API
 const API_BASE_URL = 'http://localhost:8080/api/profile'
@@ -12,6 +14,7 @@ interface ProfileData {
   reasons: string[]
   userPreferences: UserPreferences
   userPicsStorage: UserPicsType[]
+  photos: string
 }
 
 // Function to create a profile
