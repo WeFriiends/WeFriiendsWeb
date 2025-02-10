@@ -54,7 +54,6 @@ const AgeRangeControl = () => {
         </Box>
       </Typography>
       <RangeSlider
-        ariaLabel="Age range"
         disableSwap
         value={ageRange}
         onChange={handleSliderChange}

@@ -5,13 +5,27 @@ import UploadSlot from './UploadSlot'
 import { PhotoModal } from './PhotoModal'
 import DeletePhoto from './DeletePhoto'
 import createTheme from 'styles/createTheme'
-import { UserPicsType } from '../../../types/FirstProfile'
+
+interface UserPicsType {
+  id: string
+  url: string | null
+}
+
+interface UploadPhotosProps {
+  isPhotoSubmitted?: boolean
+  setIsPhotoSubmitted?: (value: boolean) => void
+  isSubmitClicked?: boolean
+  setIsSubmitClicked?: (value: boolean) => void
+  onPicChange: (array: UserPicsType[]) => void
+}
 
 const UploadPhotos = ({
+  isPhotoSubmitted,
+  setIsPhotoSubmitted,
+  isSubmitClicked,
+  setIsSubmitClicked,
   onPicChange,
-}: {
-  onPicChange: (array: UserPicsType[]) => void
-}) => {
+}: UploadPhotosProps) => {
   const { classes } = useStyles()
   const [isDeleteModalOpened, setIsDeleteModalOpened] = useState<boolean>(false)
   const [isPhotoModalOpened, setIsPhotoModalOpened] = useState<boolean>(false)
@@ -35,6 +49,7 @@ const UploadPhotos = ({
     const picturesWithUrl = array.filter((pic) => pic.url !== null)
     const picturesWithoutUrl = array.filter((pic) => pic.url === null)
     setUserPics([...picturesWithUrl, ...picturesWithoutUrl])
+    setIsPhotoSubmitted && setIsPhotoSubmitted(Boolean(picturesWithUrl?.length))
     handlePicChange([...picturesWithUrl, ...picturesWithoutUrl])
   }
 
@@ -49,15 +64,13 @@ const UploadPhotos = ({
     shiftPics(updatedPicArray)
   }
 
-  const hasAnyPics = (array: UserPicsType[]): boolean => {
-    return array.some((pic) => pic.url !== null && pic.url.trim() !== '')
-  }
-
   return (
     <Box className={classes.mainBox}>
-      {!hasAnyPics(userPics) && (
+      {!isPhotoSubmitted && (
         <Box className={classes.hintContainer}>
-          <Typography className={classes.title}>
+          <Typography
+            className={isSubmitClicked ? classes.errorTitle : classes.title}
+          >
             Upload at least 1 photo
           </Typography>
           <Typography className={classes.hint}>
@@ -94,6 +107,7 @@ const UploadPhotos = ({
             setChosenUrl={setChosenUrl}
             shiftPics={shiftPics}
             setIsPicHuge={setIsPicHuge}
+            setIsSubmitClicked={setIsSubmitClicked}
           />
         ))}
       </Box>
@@ -148,6 +162,13 @@ const useStyles = makeStyles()(() => ({
     fontWeight: 400,
     fontSize: 13,
     lineHeight: '150%',
+    textAlign: 'center',
+    color: createTheme.palette.primary.dark,
+  },
+  errorTitle: {
+    fontWeight: 600,
+    fontSize: 18,
+    lineHeight: '132%',
     textAlign: 'center',
     color: createTheme.palette.primary.dark,
   },

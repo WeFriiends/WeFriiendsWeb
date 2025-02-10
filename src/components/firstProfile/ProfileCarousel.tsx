@@ -13,7 +13,6 @@ import Status from './Status'
 import UserLocation from './location/UserLocation'
 import Interests from './interests/Interests'
 import UploadPhotos from 'components/firstProfile/uploadPhotos/UploadPhotos'
-import { UserPicsType } from '../../types/FirstProfile'
 import MobileStepper from '@mui/material/MobileStepper'
 import { makeStyles } from 'tss-react/mui'
 import { useCallback, useState } from 'react'
@@ -43,7 +42,8 @@ const ProfileCarousel = () => {
   const [showNameWithError, setShowNameWithError] = useState(false)
   const [showDobWithError, setShowDobWithError] = useState(false)
   const [showGenderWithError, setShowGenderWithError] = useState(false)
-  const [showLocationWithError, setShowLocationWithError] = useState(false)
+  const [isPhotoSubmitted, setIsPhotoSubmitted] = useState(false)
+  const [isSubmitClicked, setIsSubmitClicked] = useState(false)
 
   const [nameChange, setNameChange] = useState(getItemFromLocalStorage('name'))
   const [dobChange, setDobChange] = useState(getItemFromLocalStorage('dob'))
@@ -115,10 +115,8 @@ const ProfileCarousel = () => {
         setItemToLocalStorage('houseNumber', locationChange.houseNumber)
         setItemToLocalStorage('lat', locationChange.lat)
         setItemToLocalStorage('lng', locationChange.lng)
-        setShowLocationWithError(false)
         proceedToNextStep()
       } else {
-        setShowLocationWithError(true)
         return
       }
     } else if (activeStep === 4) {
@@ -138,10 +136,10 @@ const ProfileCarousel = () => {
     url: string | null
   }*/
 
-  const [photos, setPhotos] = useState<UserPicsType[]>([])
+  /*const [photos, setPhotos] = useState<UserPicsType[]>([])
   const handlePicChange = (photos: UserPicsType[]) => {
     setPhotos(photos)
-  }
+  }*/
 
   const carouselData = [
     {
@@ -172,12 +170,7 @@ const ProfileCarousel = () => {
       label: 'genderPick',
     },
     {
-      component: (
-        <UserLocation
-          onLocationChange={handleLocationChange}
-          showWithError={showLocationWithError}
-        />
-      ),
+      component: <UserLocation onLocationChange={handleLocationChange} />,
       label: 'userLocation',
     },
     {
@@ -189,7 +182,14 @@ const ProfileCarousel = () => {
       label: 'interests',
     },
     {
-      component: <UploadPhotos onPicChange={handlePicChange} />,
+      component: (
+        <UploadPhotos
+          isPhotoSubmitted={isPhotoSubmitted}
+          setIsPhotoSubmitted={setIsPhotoSubmitted}
+          isSubmitClicked={isSubmitClicked}
+          setIsSubmitClicked={setIsSubmitClicked}
+        />
+      ),
       label: 'uploadPhotos',
     },
   ]
@@ -200,46 +200,51 @@ const ProfileCarousel = () => {
   const navigate = useNavigate()
 
   const onSubmit = async () => {
-    const {
-      name,
-      dob,
-      gender,
-      lat,
-      lng,
-      country,
-      city,
-      street,
-      houseNumber,
-      selectedStatuses,
-      userPreferences,
-    } = getItemsFromLocalStorage([
-      'name',
-      'dob',
-      'gender',
-      'lat',
-      'lng',
-      'country',
-      'city',
-      'street',
-      'houseNumber',
-      'selectedStatuses',
-      'userPreferences',
-    ])
-    await createProfile(
-      {
+    if (!isPhotoSubmitted) {
+      setIsSubmitClicked(true)
+    } else {
+      const {
         name,
-        dateOfBirth: dob,
+        dob,
         gender,
-        location: { lat, lng, country, city, street, houseNumber },
-        reasons: selectedStatuses,
+        lat,
+        lng,
+        country,
+        city,
+        street,
+        houseNumber,
+        selectedStatuses,
+        userPicsStorage,
         userPreferences,
-        userPicsStorage: photos,
-      },
-      token
-    )
-    navigate('/friends')
+      } = getItemsFromLocalStorage([
+        'name',
+        'dob',
+        'gender',
+        'lat',
+        'lng',
+        'country',
+        'city',
+        'street',
+        'houseNumber',
+        'selectedStatuses',
+        'userPicsStorage',
+        'userPreferences',
+      ])
+      await createProfile(
+        {
+          name,
+          dateOfBirth: dob,
+          gender,
+          location: { lat, lng, country, city, street, houseNumber },
+          reasons: selectedStatuses,
+          photos: userPicsStorage,
+          userPreferences,
+        },
+        token
+      )
+      navigate('/friends')
+    }
   }
-
   return (
     <>
       {activeStep > 0 && <ArrowBackButton stepBackHandler={handleBack} />}

@@ -1,16 +1,19 @@
-import useSWR from 'swr'
-import { getProfile as fetcher } from 'actions/profile'
+import { useEffect } from 'react'
+import { useProfileStore } from '../zustand/store'
 import useBearerToken from './useBearToken'
 
 const useProfileData = () => {
   const token = useBearerToken()
+  const { data: profile, loading, error, getProfile } = useProfileStore()
 
-  const { data, error } = useSWR(`${token}`, fetcher)
-  return {
-    profile: data,
-    error,
-    isLoading: !data && !error,
-  }
+  useEffect(() => {
+    if (token && !profile) {
+      // to avoid re-querying if data has already been loaded
+      getProfile(token)
+    }
+  }, [getProfile, token, profile])
+
+  return { profile, loading, error }
 }
 
 export default useProfileData
