@@ -1,9 +1,9 @@
+import React from 'react'
 import GenericCarousel from '../../common/components/Carousel'
 import useHandleCarousel from 'hooks/useHandleCarousel'
 import NameInput from './name/NameInput'
 import DateOfBirthPicker from './DateOfBirthPicker'
 import PrimaryButton from 'common/components/PrimaryButton'
-import { getItemsFromLocalStorage } from 'utils/localStorage'
 import { createProfile } from 'actions/profile'
 import useBearerToken from 'hooks/useBearToken'
 import { useNavigate } from 'react-router-dom'
@@ -22,6 +22,7 @@ import { validateGender } from './utils/validateGender'
 import {
   setItemToLocalStorage,
   getItemFromLocalStorage,
+  getItemsFromLocalStorage,
 } from 'utils/localStorage'
 import { Dayjs } from 'dayjs'
 import { validateLocation } from './utils/validateLocation'
@@ -130,6 +131,16 @@ const ProfileCarousel = () => {
     }
   }
 
+  interface UserPicsType {
+    id: string
+    url: string | null
+  }
+
+  const [, setPhotos] = useState<UserPicsType[]>([])
+  const handlePicChange = (photos: UserPicsType[]) => {
+    setPhotos(photos)
+  }
+
   const carouselData = [
     {
       component: (
@@ -177,6 +188,7 @@ const ProfileCarousel = () => {
           setIsPhotoSubmitted={setIsPhotoSubmitted}
           isSubmitClicked={isSubmitClicked}
           setIsSubmitClicked={setIsSubmitClicked}
+          onPicChange={handlePicChange}
         />
       ),
       label: 'uploadPhotos',
@@ -204,6 +216,7 @@ const ProfileCarousel = () => {
         houseNumber,
         selectedStatuses,
         userPicsStorage,
+        userPreferences,
       } = getItemsFromLocalStorage([
         'name',
         'dob',
@@ -216,6 +229,7 @@ const ProfileCarousel = () => {
         'houseNumber',
         'selectedStatuses',
         'userPicsStorage',
+        'userPreferences',
       ])
       await createProfile(
         {
@@ -225,6 +239,8 @@ const ProfileCarousel = () => {
           location: { lat, lng, country, city, street, houseNumber },
           reasons: selectedStatuses,
           photos: userPicsStorage,
+          userPreferences,
+          userPicsStorage: [],
         },
         token
       )
@@ -239,7 +255,6 @@ const ProfileCarousel = () => {
         renderItem={(item) => item.component}
         activeStep={activeStep}
       />
-
       {activeStep < carouselDataLength - 1 && (
         <PrimaryButton onClickHandler={handleNext} label="Next" />
       )}
