@@ -64,9 +64,9 @@ const Interests = ({
 
   const handleAboutMeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const aboutMeText = event.target.value
+    setAboutMe(aboutMeText)
     if (aboutMeText.length <= 1000) {
       if (validateAboutMe(aboutMeText)) {
-        setAboutMe(aboutMeText)
         setHasAboutMeError && setHasAboutMeError(false)
       } else {
         setHasAboutMeError && setHasAboutMeError(true)
@@ -169,8 +169,8 @@ const AboutMeSection = ({
       </Box>
       {hasAboutMeError && (
         <FormHelperText className={classes.errorBox} component="div">
-          <h4>Unsupported symbols alert</h4>
-          <p>Unsupported symbols were removed</p>
+          <h4>Please remove unsupported sybmols</h4>
+          <p>You cannot use symbols &lt; &gt; &amp; &apos;</p>
         </FormHelperText>
       )}
     </>
