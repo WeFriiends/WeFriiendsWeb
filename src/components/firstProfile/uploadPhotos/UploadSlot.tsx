@@ -1,13 +1,8 @@
 import React, { useRef } from 'react'
 import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
-import UserPicsType from './UploadPhotos'
+import { UserPicsType } from '../../../types/FirstProfile'
 import createTheme from 'styles/createTheme'
-
-interface UserPicsType {
-  id: string
-  url: string | null
-}
 
 interface SlotType {
   id: string
@@ -17,6 +12,7 @@ interface SlotType {
   setChosenId: (chosenId: string) => void
   setIsPhotoModalOpened: (isPhotoModalOpened: boolean) => void
   setChosenUrl: (chosenUrl: string) => void
+  onFileSelected?: (fileUrl: string, file: File) => void
   shiftPics: (array: UserPicsType[]) => void
   setIsPicHuge(isPicTrue: boolean): void
   setIsSubmitClicked?: (value: boolean) => void
@@ -30,6 +26,7 @@ const UploadSlot: React.FC<SlotType> = ({
   setChosenId,
   setIsPhotoModalOpened,
   setChosenUrl,
+  onFileSelected,
   shiftPics,
   setIsPicHuge,
   setIsSubmitClicked,
@@ -42,6 +39,11 @@ const UploadSlot: React.FC<SlotType> = ({
     const file = event.target.files?.[0] as File | undefined
 
     if (file) {
+      const fileUrl = URL.createObjectURL(file)
+
+      if (onFileSelected) {
+        onFileSelected(fileUrl, file)
+      }
       const maxFileSize = 5 * 1024 * 1024
       if (file.size >= maxFileSize) {
         setIsPicHuge(true)
@@ -50,26 +52,23 @@ const UploadSlot: React.FC<SlotType> = ({
 
       setIsPicHuge(false)
       const reader = new FileReader()
-      reader.readAsDataURL(file)
+      reader.readAsArrayBuffer(file)
 
       reader.onloadend = () => {
-        const base64data = reader.result
+        const arrayBuffer = reader.result as ArrayBuffer
+        const blob = new Blob([arrayBuffer], { type: file.type })
 
-        const img = new Image()
-        img.src = base64data as string
-
-        img.onload = () => {
-          const newPic = {
-            id: id,
-            url: base64data as string,
-          }
-
-          const newUserPicsStorage = userPics.map((elem: UserPicsType) =>
-            elem.id === id ? newPic : elem
-          )
-
-          shiftPics(newUserPicsStorage)
+        const newPic = {
+          id: id,
+          url: URL.createObjectURL(blob),
+          blobFile: blob,
         }
+
+        const newUserPicsStorage = userPics.map((elem: UserPicsType) =>
+          elem.id === id ? newPic : elem
+        )
+
+        shiftPics(newUserPicsStorage)
       }
     }
   }

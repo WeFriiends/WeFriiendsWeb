@@ -16,6 +16,7 @@ interface UploadPhotosProps {
   setIsPhotoSubmitted?: (value: boolean) => void
   isSubmitClicked?: boolean
   setIsSubmitClicked?: (value: boolean) => void
+  onPicChange: (array: UserPicsType[]) => void
 }
 
 const UploadPhotos = ({
@@ -23,6 +24,7 @@ const UploadPhotos = ({
   setIsPhotoSubmitted,
   isSubmitClicked,
   setIsSubmitClicked,
+  onPicChange,
 }: UploadPhotosProps) => {
   const { classes } = useStyles()
   const [isDeleteModalOpened, setIsDeleteModalOpened] = useState<boolean>(false)
@@ -31,9 +33,14 @@ const UploadPhotos = ({
   const [chosenUrl, setChosenUrl] = useState<string>('')
   const [isPicHuge, setIsPicHuge] = useState<boolean>(false)
 
+  const handlePicChange = (photos: UserPicsType[]) => {
+    onPicChange(photos.map((pic) => ({ ...pic, url: pic.url ?? '' })))
+  }
+
   const initialPics: UserPicsType[] = Array.from({ length: 6 }, (_, index) => ({
     id: `userPic-${index}`,
     url: null,
+    blobFile: null,
   }))
 
   const [userPics, setUserPics] = useState<UserPicsType[]>(initialPics)
@@ -43,6 +50,7 @@ const UploadPhotos = ({
     const picturesWithoutUrl = array.filter((pic) => pic.url === null)
     setUserPics([...picturesWithUrl, ...picturesWithoutUrl])
     setIsPhotoSubmitted && setIsPhotoSubmitted(Boolean(picturesWithUrl?.length))
+    handlePicChange([...picturesWithUrl, ...picturesWithoutUrl])
   }
 
   const deleteChosenPic = () => {
