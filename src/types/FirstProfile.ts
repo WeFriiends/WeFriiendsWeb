@@ -20,6 +20,6 @@ export interface UserPreferences {
 
 export interface UserPicsType {
   id: string
-  url: string | null
-  blobFile?: Blob | null
+  url: string
+  blobFile: Blob | null
 }

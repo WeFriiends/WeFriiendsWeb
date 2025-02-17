@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { UserPicsType } from '../../../types/FirstProfile'
 import createTheme from 'styles/createTheme'
+import { useProfileStore } from 'zustand/store'
 
 interface SlotType {
   id: string
@@ -31,6 +32,7 @@ const UploadSlot: React.FC<SlotType> = ({
   setIsPicHuge,
   setIsSubmitClicked,
 }) => {
+  const { addPhoto } = useProfileStore()
   const { classes } = useStyles()
 
   const fileInputRef = useRef<HTMLInputElement | null>(null)
@@ -58,12 +60,12 @@ const UploadSlot: React.FC<SlotType> = ({
         const arrayBuffer = reader.result as ArrayBuffer
         const blob = new Blob([arrayBuffer], { type: file.type })
 
-        const newPic = {
+        const newPic: UserPicsType = {
           id: id,
           url: URL.createObjectURL(blob),
           blobFile: blob,
         }
-
+        addPhoto(newPic)
         const newUserPicsStorage = userPics.map((elem: UserPicsType) =>
           elem.id === id ? newPic : elem
         )

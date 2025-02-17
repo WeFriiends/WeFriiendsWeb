@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 import { createProfile, getProfile, updateProfile, deleteProfile } from './api'
+import { UserPicsType } from '../types/FirstProfile'
 
 interface Profile {
   name: string
@@ -13,7 +14,7 @@ interface Profile {
     street?: string
     houseNumber?: string
   }
-  photos?: string[]
+  photos: UserPicsType[]
   gender: string
   reasons: string[]
 }
@@ -28,7 +29,7 @@ interface ProfileState {
   loading: boolean
   success: boolean
   error: boolean
-  data: Profile | null
+  data: Profile
   errorData: ErrorResponse | null
 }
 
@@ -40,6 +41,8 @@ interface ProfileActions {
     token: string | null
   ) => Promise<{ status: number }>
   deleteProfile: (token: string | null) => Promise<void>
+  addPhoto: (photoUrl: UserPicsType) => void
+  removePhoto: (photoUrl: string) => void
 }
 
 type ProfileStore = ProfileState & ProfileActions
@@ -49,7 +52,14 @@ const initialState: ProfileState = {
   loading: true,
   success: false,
   error: false,
-  data: null,
+  data: {
+    name: '',
+    dateOfBirth: '',
+    location: { lat: 0, lng: 0 },
+    gender: '',
+    reasons: [],
+    photos: [],
+  },
   errorData: null,
 }
 
@@ -113,6 +123,25 @@ export const useProfileStore = create<ProfileStore>()(
       // It is used to remove the profile from the MongoDB (not from Auth0)
       deleteProfile: async (token) =>
         await fetchData(() => deleteProfile(token), 'deleteProfile'),
+
+      addPhoto: (photo: UserPicsType) => {
+        set((state) => {
+          if (!state.data) {
+            return state
+          }
+
+          return {
+            data: {
+              ...state.data,
+              photos: [
+                ...(state.data.photos?.filter((p) => p.id !== photo.id) || []),
+                photo,
+              ],
+            },
+          }
+        })
+      },
+      //removePhoto: (photoId: string) => console.log('removePhoto', photoId),
     }
   })
 )

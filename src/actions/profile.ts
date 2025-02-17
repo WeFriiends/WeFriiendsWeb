@@ -14,7 +14,7 @@ interface ProfileData {
   reasons: string[]
   userPreferences: UserPreferences
   userPicsStorage: UserPicsType[]
-  photos: string
+  photos: any
 }
 
 // Function to create a profile
@@ -29,11 +29,11 @@ export const createProfile = async (
     location,
     reasons,
     userPreferences,
-    userPicsStorage,
+    photos,
   } = data
 
-  const choosenFiles: UserPicsType[] = userPicsStorage.filter(
-    (cf: UserPicsType) => cf.url
+  const choosenFiles: UserPicsType[] = photos.filter(
+    (photoData: UserPicsType) => photoData.url
   )
   const formData = new FormData()
 

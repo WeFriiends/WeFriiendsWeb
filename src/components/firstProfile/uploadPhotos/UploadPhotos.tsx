@@ -5,11 +5,7 @@ import UploadSlot from './UploadSlot'
 import { PhotoModal } from './PhotoModal'
 import DeletePhoto from './DeletePhoto'
 import createTheme from 'styles/createTheme'
-
-interface UserPicsType {
-  id: string
-  url: string | null
-}
+import { UserPicsType } from 'types/FirstProfile'
 
 interface UploadPhotosProps {
   isPhotoSubmitted?: boolean
@@ -39,7 +35,7 @@ const UploadPhotos = ({
 
   const initialPics: UserPicsType[] = Array.from({ length: 6 }, (_, index) => ({
     id: `userPic-${index}`,
-    url: null,
+    url: '',
     blobFile: null,
   }))
 
@@ -56,7 +52,7 @@ const UploadPhotos = ({
   const deleteChosenPic = () => {
     const updatedPicArray: UserPicsType[] = userPics.map((pic) => {
       if (pic.id === chosenId) {
-        return { ...pic, url: null }
+        return { ...pic, url: '' }
       } else return pic
     })
     setUserPics(updatedPicArray)
