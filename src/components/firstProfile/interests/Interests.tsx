@@ -1,17 +1,24 @@
 import { useEffect, useState } from 'react'
-import { Box, Typography, TextField } from '@mui/material'
+import { Box, Typography, TextField, FormHelperText } from '@mui/material'
 import { makeStyles } from 'tss-react/mui'
 import { interestsData as dataInterests, InterestData } from './interestsData'
 import theme from 'styles/createTheme'
 import InterestsItem from './InterestsItem'
 import { LanguageItem } from './LanguageItem'
+import { validateAboutMe } from '../utils/validateAboutMe'
 
 const LOCAL_STORAGE_KEY = 'userPreferences'
 
 interface InterestsProps {
   isAboutMeShown?: boolean
+  hasAboutMeError?: boolean
+  setHasAboutMeError?: (value: boolean) => void
 }
-const Interests = ({ isAboutMeShown = false }: InterestsProps) => {
+const Interests = ({
+  isAboutMeShown = false,
+  hasAboutMeError = false,
+  setHasAboutMeError,
+}: InterestsProps) => {
   const { classes } = useStyles()
 
   const loadInitialData = () => {
@@ -56,13 +63,25 @@ const Interests = ({ isAboutMeShown = false }: InterestsProps) => {
   }, [aboutMe, selectedLanguages, interestsData])
 
   const handleAboutMeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setAboutMe(event.target.value)
+    const aboutMeText = event.target.value
+    setAboutMe(aboutMeText)
+    if (aboutMeText.length <= 1000) {
+      if (validateAboutMe(aboutMeText)) {
+        setHasAboutMeError && setHasAboutMeError(false)
+      } else {
+        setHasAboutMeError && setHasAboutMeError(true)
+      }
+    }
   }
 
   return (
     <Box className={classes.mainBox}>
       {isAboutMeShown && (
-        <AboutMeSection aboutMe={aboutMe} onChange={handleAboutMeChange} />
+        <AboutMeSection
+          aboutMe={aboutMe}
+          onChange={handleAboutMeChange}
+          hasAboutMeError={hasAboutMeError}
+        />
       )}
       <Box sx={{ marginBottom: isAboutMeShown ? '50px' : '0' }} />
       <Box className={classes.titleContainer}>
@@ -96,7 +115,11 @@ const Interests = ({ isAboutMeShown = false }: InterestsProps) => {
         />
       </Box>
       {!isAboutMeShown && (
-        <AboutMeSection aboutMe={aboutMe} onChange={handleAboutMeChange} />
+        <AboutMeSection
+          aboutMe={aboutMe}
+          onChange={handleAboutMeChange}
+          hasAboutMeError={hasAboutMeError}
+        />
       )}
     </Box>
   )
@@ -107,11 +130,14 @@ export default Interests
 const AboutMeSection = ({
   aboutMe,
   onChange,
+  hasAboutMeError,
 }: {
   aboutMe: string
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  hasAboutMeError: boolean
 }) => {
   const { classes } = useStyles()
+
   return (
     <>
       <Box className={classes.titleContainer}>
@@ -121,7 +147,8 @@ const AboutMeSection = ({
         <TextField
           id="aboutMe"
           type="text"
-          placeholder="Add about me..."
+          placeholder=" Add smth interesting about you.
+        Please note, you have 1000 symbols."
           value={aboutMe}
           onChange={onChange}
           multiline
@@ -136,7 +163,16 @@ const AboutMeSection = ({
           }}
           variant="outlined"
         />
+        <Typography className={classes.counter}>
+          {1000 - aboutMe.length}
+        </Typography>
       </Box>
+      {hasAboutMeError && (
+        <FormHelperText className={classes.errorBox} component="div">
+          <h4>Please remove unsupported sybmols</h4>
+          <p>You cannot use symbols &lt; &gt; &amp; &apos;</p>
+        </FormHelperText>
+      )}
     </>
   )
 }
@@ -184,6 +220,7 @@ const useStyles = makeStyles()(() => ({
     margin: '20px 0 40px',
   },
   aboutMeContainer: {
+    position: 'relative',
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column',
@@ -191,10 +228,34 @@ const useStyles = makeStyles()(() => ({
     width: '100%',
     marginTop: '16px',
   },
+  counter: {
+    position: 'absolute',
+    bottom: 8,
+    right: 12,
+    color: 'gray',
+  },
   textareaRoot: {
     border: 'none',
     borderRadius: '20px',
     outline: 'none',
     backgroundColor: 'transparent',
+  },
+  errorBox: {
+    width: '100%',
+    padding: 20,
+    boxShadow: '0px 0px 5px #D9D9D9',
+    borderRadius: 10,
+    color: '#F1562A',
+    textAlign: 'left',
+    h4: {
+      fontSize: 14,
+      lineHeight: '22px',
+      fontWeight: 500,
+      marginBottom: 10,
+    },
+    p: {
+      fontSize: 12,
+      lineHeight: '18px',
+    },
   },
 }))

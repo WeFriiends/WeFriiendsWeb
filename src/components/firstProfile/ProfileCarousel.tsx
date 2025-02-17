@@ -46,6 +46,7 @@ const ProfileCarousel = () => {
   const [showGenderWithError, setShowGenderWithError] = useState(false)
   const [isPhotoSubmitted, setIsPhotoSubmitted] = useState(false)
   const [isSubmitClicked, setIsSubmitClicked] = useState(false)
+  const [hasAboutMeError, setHasAboutMeError] = useState(false)
 
   const [nameChange, setNameChange] = useState(getItemFromLocalStorage('name'))
   const [dobChange, setDobChange] = useState(getItemFromLocalStorage('dob'))
@@ -126,7 +127,9 @@ const ProfileCarousel = () => {
       proceedToNextStep()
     } else if (activeStep === 5) {
       // Lifestyle and About me
-      proceedToNextStep()
+      if (!hasAboutMeError) {
+        proceedToNextStep()
+      }
     } else if (activeStep === 6) {
       // Photo
       proceedToNextStep()
@@ -180,7 +183,12 @@ const ProfileCarousel = () => {
       label: 'status',
     },
     {
-      component: <Interests />,
+      component: (
+        <Interests
+          hasAboutMeError={hasAboutMeError}
+          setHasAboutMeError={setHasAboutMeError}
+        />
+      ),
       label: 'interests',
     },
     {
